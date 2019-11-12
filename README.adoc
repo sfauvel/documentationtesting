@@ -1,0 +1,17 @@
+= Documentation testing
+
+Instead of writing tests, we just writing documentation from the code.
+
+We can execute code and format output to show what is the context, the action and result.
+
+When documentation change, test fails.
+
+We have to check the new behaviour describe in documentation is the right one and, if it is, approved documentation.
+The fact of approving documentation meaning the specification is write.
+
+The advantage is that we not have to check in tests the expected result.
+If the result we see in documentation is right, that's ok.
+The second advantage is that we focus on documentation so that all our tests are readable by every one.
+
+The main goal is when we change a configuration, we do not have to change tests.
+We just see difference in documentation and approved it or not.
