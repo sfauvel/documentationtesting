@@ -2,16 +2,35 @@
 
 Instead of writing tests, we just writing documentation from the code.
 
-We can execute code and format output to show what is the context, the action and result.
+Each test method is a documentation generator that not indicate expected result but just write the result.
 
-When documentation change, test fails.
-
-We have to check the new behaviour describe in documentation is the right one and, if it is, approved documentation.
-The fact of approving documentation meaning the specification is write.
+The user has to validate documentation produced that is now the expected output.
+When documentation changed, test fails and the user needs to validate or not this new behavior.
 
 The advantage is that we not have to check in tests the expected result.
 If the result we see in documentation is right, that's ok.
 The second advantage is that we focus on documentation so that all our tests are readable by every one.
 
-The main goal is when we change a configuration, we do not have to change tests.
-We just see difference in documentation and approved it or not.
+This idea comes from writing some code that is only configuration.
+In that case, writing tests is just rewriting code and there is no real value.
+But, this information still needs to be checked.
+
+== Quick start
+
+Start by writing a test that inherits from `org.sfvl.doctesting.ApprovalsBase`.
+
+Use `ẁrite` method to write all you want to be in documentation.
+It should be at least input and output.
+When you write output, you don't write values expected but only values given by the application.
+
+Then run test as usual.
+First time, test fails and a file is produced in `src/test/docs` with the name of the test.
+The filename ends with `received.adoc`.
+
+Read the file and verify that it says what we expected.
+If it is the case, rename it with `approved.adoc` instead of `received.adoc`.
+
+== Generate a full documentation
+
+To generate a single file with all tests, launch MainDocumentation class.
+
