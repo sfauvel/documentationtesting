@@ -59,11 +59,10 @@ public class GameOfLifeTest extends ApprovalsBase {
                 "| " + drawGameOfLife(linesNextGeneration).replaceAll("\\|", "!"),
                 "|====",
                 "",
-                "")
+                ""));
 
-                + Files.lines(Paths.get("src", "test", "resources", "style.css"))
-                .collect(Collectors.joining("\n")))
-        ;
+        write(Files.lines(Paths.get("src", "test", "resources", "style.css"))
+                .collect(Collectors.joining("\n")));
     }
 
     private GameOfLife textToGameOfLife(String[] lines) {
