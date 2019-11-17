@@ -1,7 +1,0 @@
-= Return buzz when divisible by five
-
-When number is divisible by five, returns buzz.
-
-FizzBuzz(5) = Buzz +
- FizzBuzz(25) = Buzz +
- 

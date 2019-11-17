@@ -1,6 +1,4 @@
 = Documentation
 
-include::org/sfvl/application/FizzBuzzTest.return_given_number.approved.adoc[leveloffset=2]
-include::org/sfvl/application/FizzBuzzTest.return_fizzbuzz_when_divisible_by_three_and_five.approved.adoc[leveloffset=2]
-include::org/sfvl/application/FizzBuzzTest.return_buzz_when_divisible_by_five.approved.adoc[leveloffset=2]
-include::org/sfvl/application/FizzBuzzTest.return_fizz_when_divisible_by_three.approved.adoc[leveloffset=2]
+include::src/test/docs/org/sfvl/application/GameOfLifeTest.die_when_less_than_2_neighbours.approved.adoc[leveloffset=2]
+include::src/test/docs/org/sfvl/application/GameOfLifeTest.stay_alive_when_2_neighbours.approved.adoc[leveloffset=2]

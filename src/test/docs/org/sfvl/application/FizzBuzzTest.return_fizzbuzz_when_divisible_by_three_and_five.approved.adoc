@@ -1,7 +1,0 @@
-= Return fizzbuzz when divisible by three and five
-
-When number is divisible three and five, returns fizzbuzz.
-
-FizzBuzz(15) = FizzBuzz +
- FizzBuzz(60) = FizzBuzz +
- 

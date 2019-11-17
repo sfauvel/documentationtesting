@@ -33,7 +33,14 @@ public class MainDocumentation {
 
         String testsDocumentation = testMethods.stream()
                 .map(DocumentationNamer::new)
-                .map(m -> DocumentationNamer.DOC_ROOT_PATH.relativize(Paths.get(m.getSourceFilePath())) + "/" + m.getApprovalName() + ".approved.adoc")
+                .map(m -> {
+
+                    String file = Paths.get(m.getSourceFilePath()) + "/" + m.getApprovalName() + ".approved.adoc";
+                    if (new File(file).exists()) {
+                        return file;
+                    }
+                    return Paths.get(m.getSourceFilePath()) + "/" + m.getApprovalName() + ".received.adoc";
+                })
                 .map(m -> "include::" + m + "[leveloffset=2]")
                 .collect(Collectors.joining("\n"));
 

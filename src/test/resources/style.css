@@ -1,0 +1,39 @@
+++++
+<style>
+
+.gameOfLife p {
+/* Need to set margin to 0 only with html file, not with adoc files.*/
+ifdef::htmlOutput[]
+    margin: 0;
+endif::[]
+    line-height: 1em;
+    width: 1em
+}
+
+.gameOfLife td {
+    line-height: 1em;
+    padding: 0;
+    color: white;
+}
+
+
+table .gameOfLife tr.even, table .gameOfLife tr.alt {
+    background: white;
+    color: white;
+}
+
+tr.even, tr.alt, table tr:nth-of-type(2n) {
+    background: white;
+}
+
+td .dead {
+    background-color:white;
+    color: white;
+}
+td .alive {
+    background-color:black;
+    color: black;
+}
+
+</style>
+++++
