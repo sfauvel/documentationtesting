@@ -34,7 +34,7 @@ public class MainDocumentation {
         String testsDocumentation = testMethods.stream()
                 .map(DocumentationNamer::new)
                 .map(m -> DocumentationNamer.DOC_ROOT_PATH.relativize(Paths.get(m.getSourceFilePath())) + "/" + m.getApprovalName() + ".approved.adoc")
-                .map(m -> "include::" + m + "[leveloffset=2]")
+                .map(m -> "include::" + m + "[leveloffset=+1]")
                 .collect(Collectors.joining("\n"));
 
         System.out.println(testsDocumentation);
