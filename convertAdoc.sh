@@ -7,14 +7,16 @@ DOCKER_WORKDIR=/documents
 
 FILENAME=Documentation
 TARGET_PATH=src/test/docs
+SOURCE_PATH=src/main/java
 
 # Need to set 'htmlOutput' attribute to have a specific style.
 
 docker run -it \
-	-v $(pwd):${DOCKER_WORKDIR}/ \
-	-w ${DOCKER_WORKDIR}/${TARGET_PATH} \
+	-v $(pwd)/${TARGET_PATH}:${DOCKER_WORKDIR}/ \
+	-v $(pwd)/${SOURCE_PATH}:/sourceDir:ro \
+	-w ${DOCKER_WORKDIR} \
     	${DOCKER_IMAGE} \
-    	asciidoctor -r asciidoctor-diagram -a sourcedir=${DOCKER_WORKDIR}/src/main/java --attribute htmlOutput="html" ${FILENAME}.adoc
+    	asciidoctor -r asciidoctor-diagram -a sourcedir=/sourceDir --attribute htmlOutput="html" ${FILENAME}.adoc
 
 echo "HTML documentation was generated. You can found it in ${TARGET_PATH}"
 

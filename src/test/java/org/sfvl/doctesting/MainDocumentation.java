@@ -36,12 +36,11 @@ public class MainDocumentation {
                 .map(m -> {
 
                     String file = Paths.get(m.getSourceFilePath()) + "/" + m.getApprovalName() + ".approved.adoc";
-                    if (new File(file).exists()) {
-                        return file;
-                    }
-                    return Paths.get(m.getSourceFilePath()) + "/" + m.getApprovalName() + ".received.adoc";
+                    String status =  new File(file).exists() ? "approved" : "received";
+
+                    return DocumentationNamer.DOC_ROOT_PATH.relativize(Paths.get(m.getSourceFilePath())) + "/" + m.getApprovalName() + "." + status + ".adoc";
                 })
-                .map(m -> "include::" + m + "[leveloffset=2]")
+                .map(m -> "include::" + m + "[]")
                 .collect(Collectors.joining("\n"));
 
         System.out.println(testsDocumentation);
@@ -49,7 +48,10 @@ public class MainDocumentation {
         Path path = DocumentationNamer.DOC_ROOT_PATH.resolve(DOCUMENTATION_FILENAME + ".adoc");
         try (FileWriter fileWriter = new FileWriter(path.toFile())) {
             fileWriter.write("= " + DOCUMENTATION_TITLE + "\n\n");
+
+            fileWriter.write("\n\n:leveloffset: +1\n\n");
             fileWriter.write(testsDocumentation);
+            fileWriter.write("\n\n:leveloffset: -1\n\n");
         }
 
     }
