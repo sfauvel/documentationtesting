@@ -28,7 +28,7 @@ public class FizzBuzzTest extends ApprovalsBase {
     }
 
     /**
-     * When number is divisible by five, returns buzz.
+     * When number is divisible by five, returns Buzz.
      */
     @Test
     public void return_buzz_when_divisible_by_five() {
@@ -37,7 +37,7 @@ public class FizzBuzzTest extends ApprovalsBase {
     }
 
     /**
-     * When number is divisible three and five, returns fizzbuzz.
+     * When number is divisible three and five, returns FizzBuzz.
      */
     @Test
     public void return_fizzbuzz_when_divisible_by_three_and_five() {
