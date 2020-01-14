@@ -4,8 +4,6 @@ import com.thoughtworks.qdox.JavaProjectBuilder;
 import com.thoughtworks.qdox.model.JavaClass;
 import com.thoughtworks.qdox.model.JavaMethod;
 import org.approvaltests.Approvals;
-import org.approvaltests.core.ApprovalWriter;
-import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.TestInfo;

@@ -4,10 +4,10 @@ Instead of writing tests, we just writing documentation from the code.
 
 Each test method is a documentation generator that not indicate expected result but just write the result.
 
-The user has to validate documentation produced that is now the expected output.
+The user has to validate documentation produced and make it the now the expected output.
 When documentation changed, test fails and the user needs to validate or not this new behavior.
 
-The advantage is that we not have to check in tests the expected result.
+The advantage is that we not have to check the expected result in tests.
 If the result we see in documentation is right, that's ok.
 The second advantage is that we focus on documentation so that all our tests are readable by every one.
 
