@@ -14,17 +14,19 @@ import java.util.Optional;
 
 /**
  * Base class for test.
+ *
+ * It checks that everything write during test is identically to the content approved.
  */
 public class ApprovalsBase {
 
     private StringBuffer sb = new StringBuffer();
 
-    protected void write(String s) {
-        sb.append(s);
-    }
-
-    protected void approved() {
-        Approvals.verify(sb.toString(), "adoc");
+    /**
+     * Write a text to the output.
+     * @param text
+     */
+    protected void write(String text) {
+        sb.append(text);
     }
 
     @AfterEach
@@ -48,7 +50,7 @@ public class ApprovalsBase {
         return title.substring(0, 1).toUpperCase() + title.substring(1);
     }
 
-    public String getComment(Class<?> clazz, String methodName) {
+    private String getComment(Class<?> clazz, String methodName) {
         JavaProjectBuilder builder = new JavaProjectBuilder();
         builder.addSourceTree(new File("src/test/java"));
 
