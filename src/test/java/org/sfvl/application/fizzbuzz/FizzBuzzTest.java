@@ -1,4 +1,4 @@
-package org.sfvl.application;
+package org.sfvl.application.fizzbuzz;
 
 import org.junit.jupiter.api.Test;
 import org.sfvl.doctesting.ApprovalsBase;

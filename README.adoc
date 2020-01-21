@@ -30,7 +30,28 @@ The filename ends with `received.adoc`.
 Read the file and verify that it says what we expected.
 If it is the case, rename it with `approved.adoc` instead of `received.adoc`.
 
+
+[source, java]
+.Example with DemoTest.java
+----
+include::src/test/java/org/sfvl/application/demo/DemoTest.java[]
+----
+
+|===
+| File generated
+a| include::src/test/docs/org/sfvl/application/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[]
+|===
+
 == Generate a full documentation
 
-To generate a single file with all tests, launch MainDocumentation class.
+To generate a single file with all tests, launch `MainDocumentation` class.
+
+`convertAdoc.sh` takes the single generated file to convert it to HTML.
+
+You can use `RunAll` class to make all process in a single command.
+launch tests, generate an asciidoc with all files generated and convert it to HTML.
+
+If you decide to change style of the documentation generated, all your tests will be failed.
+You can approve them all using `approveAll.sh`.
+
 
