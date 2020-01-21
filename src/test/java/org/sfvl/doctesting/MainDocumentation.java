@@ -13,9 +13,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -30,12 +28,12 @@ public class MainDocumentation {
     private void generate(String packageToScan) throws IOException {
         Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
 
-        final Map<String, List<Method>> methodsByClass = testMethods.stream().collect(Collectors.groupingBy(
-                m -> m.getDeclaringClass().getSimpleName()
+        final Map<Class<?>, List<Method>> methodsByClass = testMethods.stream().collect(Collectors.groupingBy(
+                m -> m.getDeclaringClass()
         ));
 
         String testsDocumentation = methodsByClass.entrySet().stream()
-            .map(e -> "== " + e.getKey() + "\n\n:leveloffset: +1\n" + includeMethods(e.getValue()) + "\n:leveloffset: -1\n")
+            .map(e -> "== " + e.getKey().getSimpleName() + "\n" + getComment(e.getKey())  + "\n\n:leveloffset: +1\n" + includeMethods(e.getValue()) + "\n:leveloffset: -1\n")
                 .collect(Collectors.joining("\n"));
 
         System.out.println(testsDocumentation);
@@ -54,6 +52,15 @@ public class MainDocumentation {
                     .map(m -> DocumentationNamer.DOC_ROOT_PATH.relativize(Paths.get(m.getSourceFilePath())) + "/" + m.getApprovalName() + ".approved.adoc")
                     .map(m -> "include::" + m + "[leveloffset=+1]")
                     .collect(Collectors.joining("\n"));
+    }
+
+    private String getComment(Class<?> clazz) {
+        JavaProjectBuilder builder = new JavaProjectBuilder();
+        builder.addSourceTree(new File("src/test/java"));
+
+        JavaClass javaClass = builder.getClassByName(clazz.getCanonicalName());
+
+        return Optional.ofNullable(javaClass.getComment()).orElse("");
     }
 
     private Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {

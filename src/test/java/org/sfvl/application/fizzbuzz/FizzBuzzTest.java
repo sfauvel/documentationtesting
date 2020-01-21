@@ -4,6 +4,11 @@ import org.junit.jupiter.api.Test;
 import org.sfvl.doctesting.ApprovalsBase;
 import org.sfvl.application.FizzBuzz;
 
+/**
+ * Fizz buzz is a group word game for children to teach them about division.
+ *
+ * link:https://en.wikipedia.org/wiki/Fizz_buzz[]
+ */
 public class FizzBuzzTest extends ApprovalsBase {
 
 

@@ -3,6 +3,9 @@ package org.sfvl.application.demo;
 import org.junit.jupiter.api.Test;
 import org.sfvl.doctesting.ApprovalsBase;
 
+/**
+ * Demo of a simple usage to generate documentation.
+ */
 public class DemoTest  extends ApprovalsBase {
 
     /**
