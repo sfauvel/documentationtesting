@@ -9,11 +9,15 @@ include::org/sfvl/application/demo/DemoTest.should_be_5_when_adding_2_and_3.appr
 :leveloffset: -1
 
 == FizzBuzzTest
-Fizz buzz is a group word game for children to teach them about division.
+link:https://en.wikipedia.org/wiki/Fizz_buzz[Fizz buzz] is a group word game for children to teach them about division.
 
-link:https://en.wikipedia.org/wiki/Fizz_buzz[]
+Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number
+and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz “.
+
+http://codingdojo.org/kata/FizzBuzz/
 
 :leveloffset: +1
+include::org/sfvl/application/fizzbuzz/FizzBuzzTest.sample_ouput.approved.adoc[leveloffset=+1]
 include::org/sfvl/application/fizzbuzz/FizzBuzzTest.return_given_number.approved.adoc[leveloffset=+1]
 include::org/sfvl/application/fizzbuzz/FizzBuzzTest.return_fizzbuzz_when_divisible_by_three_and_five.approved.adoc[leveloffset=+1]
 include::org/sfvl/application/fizzbuzz/FizzBuzzTest.return_buzz_when_divisible_by_five.approved.adoc[leveloffset=+1]

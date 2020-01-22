@@ -4,13 +4,26 @@ import org.junit.jupiter.api.Test;
 import org.sfvl.doctesting.ApprovalsBase;
 import org.sfvl.application.FizzBuzz;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 /**
- * Fizz buzz is a group word game for children to teach them about division.
+ * link:https://en.wikipedia.org/wiki/Fizz_buzz[Fizz buzz] is a group word game for children to teach them about division.
  *
- * link:https://en.wikipedia.org/wiki/Fizz_buzz[]
+ * Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number
+ * and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz “.
+ *
+ * http://codingdojo.org/kata/FizzBuzz/
  */
 public class FizzBuzzTest extends ApprovalsBase {
 
+    @Test
+    public void sample_ouput() {
+        write(IntStream.rangeClosed(1, 20)
+                .mapToObj(FizzBuzz::get)
+                .collect(Collectors.joining(" +\n")));
+        write("... etc up to 100");
+    }
 
     /**
      * When number is not divisible by five or three, returns the number.
