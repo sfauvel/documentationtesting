@@ -12,14 +12,15 @@ import java.nio.file.Paths;
  */
 public class DocumentationNamer implements ApprovalNamer {
 
-    public static final Path DOC_ROOT_PATH = Paths.get("src", "test", "docs");
     private final Method testMethod;
+    private final Path docRootPath;
 
-    public DocumentationNamer(TestInfo testInfo) {
-        this(testInfo.getTestMethod().get());
+    public DocumentationNamer(Path docRootPath, TestInfo testInfo) {
+        this(docRootPath, testInfo.getTestMethod().get());
     }
 
-    public DocumentationNamer(Method testMethod) {
+    public DocumentationNamer(Path docRootPath, Method testMethod) {
+        this.docRootPath = docRootPath;
         this.testMethod = testMethod;
     }
 
@@ -35,6 +36,6 @@ public class DocumentationNamer implements ApprovalNamer {
         String canonicalName = testMethod.getDeclaringClass().getPackage().getName();
         String pathName = canonicalName.toString().replace('.', '/');
 
-        return DOC_ROOT_PATH.resolve(pathName) + "/";
+        return docRootPath.resolve(pathName) + "/";
     }
 }

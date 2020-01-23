@@ -1,4 +1,4 @@
-package org.sfvl.application.demo;
+package org.sfvl.demo;
 
 import org.junit.jupiter.api.Test;
 import org.sfvl.doctesting.ApprovalsBase;
