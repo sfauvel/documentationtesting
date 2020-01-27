@@ -15,44 +15,16 @@ then
   #  return
 fi
 
-function generate() {
-    COMMAND="$@"
 
-    docker run -it \
-        -v $(pwd):${DOCKER_WORKDIR}/ \
-        -w ${DOCKER_WORKDIR} \
-            ${DOCKER_IMAGE} \
-                $COMMAND \
-                -r asciidoctor-diagram \
-                -a sourcedir=${DOCKER_WORKDIR}/src/main/java \
-                -a webfonts! \
-                ${ASCIIDOC_PATH}/${FILENAME}.adoc
-}
+function generateAsciidoc() {
 
-function generateDoc() {
-    MODULE=documentationtestingdoc
-
-    docker run -it \
-    	-v $(pwd):${DOCKER_WORKDIR}/ \
-	    -w ${DOCKER_WORKDIR}/${MODULE} \
-    	${DOCKER_IMAGE} \
-    	asciidoctor \
-    	-D ${DOCKER_WORKDIR}/docs \
-    	-o index.html \
-    	-r asciidoctor-diagram \
-    	-a sourcedir=${DOCKER_WORKDIR}/${MODULE}/src/main/java \
-        -a webfonts! \
-    	--attribute htmlOutput="html" \
-    	${DOCKER_WORKDIR}/documentationtestingdoc/target/adoc/demo.adoc
-}
-
-function generateDemo() {
-    FILENAME=Documentation
     MODULE=$1
+    DESTINATION=$2
+    ADOC_FILE=$3
 
-    if [ ! -d docs/${MODULE} ]
+    if [ ! -d ${DESTINATION} ]
     then
-        mkdir docs/${MODULE}
+        mkdir ${DESTINATION}
     fi
 
     docker run -it \
@@ -60,14 +32,25 @@ function generateDemo() {
 	    -w ${DOCKER_WORKDIR}/${MODULE} \
     	${DOCKER_IMAGE} \
     	asciidoctor \
-    	-D ${DOCKER_WORKDIR}/docs/${MODULE} \
+    	-D ${DOCKER_WORKDIR}/${DESTINATION} \
     	-o index.html \
     	-r asciidoctor-diagram \
     	-a sourcedir=${DOCKER_WORKDIR}/${MODULE}/src/main/java \
         -a webfonts! \
     	--attribute htmlOutput="html" \
-    	${DOCKER_WORKDIR}/${MODULE}/src/test/docs/${FILENAME}.adoc
+    	--attribute rootpath="..\..\.." \
+    	${ADOC_FILE}
 
+}
+
+function generateDoc() {
+    MODULE=documentationtestingdoc
+    generateAsciidoc ${MODULE} docs ${DOCKER_WORKDIR}/${MODULE}/target/adoc/demo.adoc
+}
+
+function generateDemo() {
+    MODULE=$1
+    generateAsciidoc ${MODULE} docs/${MODULE} ${DOCKER_WORKDIR}/${MODULE}/src/test/docs/Documentation.adoc
 }
 
 if [ ! -d ${DOC_PATH} ]
@@ -75,12 +58,14 @@ then
     mkdir ${DOC_PATH}
 fi
 
-spushd documentationtestingdoc
+# Generate main doc
+pushd documentationtestingdoc
 mvn install exec:java -Dexec.mainClass="fr.sfvl.documentationtesting.DocGenerator"
 popd
 
 generateDoc
 
+# Generate examples
 for demo_foder in  $(ls | grep "demo_*")
 do
     generateDemo $demo_foder

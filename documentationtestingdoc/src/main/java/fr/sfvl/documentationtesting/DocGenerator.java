@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class DocGenerator {
     private final Formatter formatter;
@@ -25,15 +27,21 @@ public class DocGenerator {
 
     private void execute() throws IOException {
 
+        final Path rootpath = Path.of(".");
+
+        final String demos = Files.list(rootpath)
+                .filter(p -> Files.isDirectory(p))
+                .map(p -> p.getFileName().toString())
+                .filter(name -> name.startsWith("demo_"))
+                .map(demo -> addDemo(demo))
+                .collect(Collectors.joining());
+
         String doc = formatter.standardOptions() +
                 formatter.tableOfContent() +
                 formatter.title(1, "Documentation testing") +
                 formatter.include(docPath.relativize(Paths.get("..", "README.adoc").toAbsolutePath()).toString()) +
-                formatter.title(2, "Examples") +
-                addDemo("demo_basic") +
-                addDemo("demo_fizzbuzz") +
-                addDemo("demo_gildedrose")
-                ;
+                formatter.title(2, "Examples list") +
+                demos;
 
         Files.createDirectories(docPath);
 
@@ -42,8 +50,7 @@ public class DocGenerator {
     }
 
     private String addDemo(String module) {
-        return formatter.title(3, "Demo basic")
-                + "\nlink:"+(Paths.get(".", module, "index.html").toString())+"[" + module + "]\n";
+        return "\n * link:"+(Paths.get(".", module, "index.html").toString())+"[" + module + "]\n";
     }
 
     private void generateReport(String doc) throws IOException {

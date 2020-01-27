@@ -1,4 +1,5 @@
 = Documentation testing
+:rootpath: .
 
 Instead of writing tests, we just writing documentation from the code.
 
@@ -34,12 +35,12 @@ If it is the case, rename it with `approved.adoc` instead of `received.adoc`.
 [source, java]
 .Example with DemoTest.java
 ----
-include::demo_basic/src/test/java/org/sfvl/application/demo/DemoTest.java[]
+include::demo_basic/src/test/java/org/sfvl/demo/DemoTest.java[]
 ----
 
 |===
 | File generated
-a| include::demo_basic/src/test/docs/org/sfvl/application/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[]
+a| include::{rootpath}/demo_basic/src/test/docs/org/sfvl/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[]
 |===
 
 == Generate a full documentation
