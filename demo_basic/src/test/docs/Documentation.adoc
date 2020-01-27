@@ -1,0 +1,9 @@
+= Documentation
+:toc: left
+
+== DemoTest
+
+
+:leveloffset: +1
+include::org/sfvl/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+1]
+:leveloffset: -1

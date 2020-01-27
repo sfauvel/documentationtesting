@@ -49,6 +49,7 @@
             <groupId>org.sfvl</groupId>
             <artifactId>documentationtesting</artifactId>
             <version>${documentationtesting.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

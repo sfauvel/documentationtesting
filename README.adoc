@@ -4,7 +4,7 @@ Instead of writing tests, we just writing documentation from the code.
 
 Each test method is a documentation generator that not indicate expected result but just write the result.
 
-The user has to validate documentation produced and make it the now the expected output.
+The user has to verify documentation produced and to validate that it describe the expected behavior.
 When documentation changed, test fails and the user needs to validate or not this new behavior.
 
 The advantage is that we not have to check the expected result in tests.
@@ -34,12 +34,12 @@ If it is the case, rename it with `approved.adoc` instead of `received.adoc`.
 [source, java]
 .Example with DemoTest.java
 ----
-include::src/test/java/org/sfvl/application/demo/DemoTest.java[]
+include::demo_basic/src/test/java/org/sfvl/application/demo/DemoTest.java[]
 ----
 
 |===
 | File generated
-a| include::src/test/docs/org/sfvl/application/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[]
+a| include::demo_basic/src/test/docs/org/sfvl/application/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[]
 |===
 
 == Generate a full documentation
@@ -55,3 +55,6 @@ If you decide to change style of the documentation generated, all your tests wil
 You can approve them all using `approveAll.sh`.
 
 
+== Examples
+
+Several examples are provided to show how we can use it.

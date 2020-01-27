@@ -19,12 +19,6 @@ docker run \
 
 echo "HTML documentation was generated. You can found it in ${TARGET_PATH}"
 
-docker run \
-	-v $(pwd):${DOCKER_WORKDIR}/ \
-	-w ${DOCKER_WORKDIR}/${TARGET_PATH} \
-    	${DOCKER_IMAGE} \
-    	ls /documents
-
 #docker run -it \
 #	-v $(pwd):${DOCKER_WORKDIR}/ \
 #	-w ${DOCKER_WORKDIR}/${TARGET_PATH} \
