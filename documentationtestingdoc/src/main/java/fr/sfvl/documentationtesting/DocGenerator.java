@@ -27,9 +27,9 @@ public class DocGenerator {
 
     private void execute() throws IOException {
 
-        final Path rootpath = Path.of(".");
+        final Path rootPath = Paths.get(this.getClass().getClassLoader().getResource("").getPath());
 
-        final String demos = Files.list(rootpath)
+        final String demos = Files.list(rootPath.resolve("../../.."))
                 .filter(p -> Files.isDirectory(p))
                 .map(p -> p.getFileName().toString())
                 .filter(name -> name.startsWith("demo_"))
