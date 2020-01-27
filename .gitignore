@@ -8,4 +8,4 @@
 .classpath
 
 # Maven
-/target
+**/target

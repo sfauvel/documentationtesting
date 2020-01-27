@@ -1,0 +1,7 @@
+= Return fizz when divisible by three
+
+When number is divisible by three, returns Fizz.
+
+FizzBuzz(3) = Fizz +
+ FizzBuzz(9) = Fizz +
+ 
