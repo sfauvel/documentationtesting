@@ -21,6 +21,7 @@ function generateAsciidoc() {
     MODULE=$1
     DESTINATION=$2
     ADOC_FILE=$3
+    STYLESHEETS=$(pwd)/stylesheets
 
     if [ ! -d ${DESTINATION} ]
     then
@@ -29,6 +30,7 @@ function generateAsciidoc() {
 
     docker run -it \
     	-v $(pwd):${DOCKER_WORKDIR}/ \
+    	-v ${STYLESHEETS}:/stylesheets:ro \
 	    -w ${DOCKER_WORKDIR}/${MODULE} \
     	${DOCKER_IMAGE} \
     	asciidoctor \
@@ -37,6 +39,7 @@ function generateAsciidoc() {
     	-r asciidoctor-diagram \
     	-a sourcedir=${DOCKER_WORKDIR}/${MODULE}/src/main/java \
         -a webfonts! \
+        -a stylesheet=/stylesheets/adoc-rocket-panda.css \
     	--attribute htmlOutput="html" \
     	--attribute rootpath="..\..\.." \
     	${ADOC_FILE}
