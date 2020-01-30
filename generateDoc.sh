@@ -61,6 +61,9 @@ then
     mkdir ${DOC_PATH}
 fi
 
+
+mvn install package
+
 # Generate main doc
 pushd documentationtestingdoc
 mvn install exec:java -Dexec.mainClass="fr.sfvl.documentationtesting.DocGenerator"

@@ -38,9 +38,9 @@ public class DocGenerator {
 
         String doc = formatter.standardOptions() +
                 formatter.tableOfContent() +
-                formatter.title(1, "Documentation testing") +
+              //  formatter.title(1, "Documentation testing") + // Title is already on readme
                 formatter.include(docPath.relativize(Paths.get("..", "README.adoc").toAbsolutePath()).toString()) +
-                formatter.title(2, "Examples list") +
+                formatter.title(3, "Examples list") +
                 demos;
 
         Files.createDirectories(docPath);
