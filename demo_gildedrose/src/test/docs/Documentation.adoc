@@ -2,9 +2,10 @@
 :toc: left
 :nofooter:
 
-== InnTest
 include::../../../readme.adoc[leveloffset=+1]
 
-:leveloffset: +1
+== InnTest
+
+
 include::fr/xebia/katas/gildedrose/InnTest.example_of_evolution_by_item.approved.adoc[leveloffset=+1]
-:leveloffset: -1
+

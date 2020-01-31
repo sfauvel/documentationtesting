@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -52,16 +51,24 @@ public class MainDocumentation {
                 .map(e -> "== "
                         + e.getKey().getSimpleName()
                         + "\n" + getComment(e.getKey())
-                        + "\n\n:leveloffset: +1\n"
+                        + "\n\n"
                         + includeMethods(e.getValue())
-                        + "\n:leveloffset: -1\n")
+                        + "\n\n"
+                )
                 .collect(Collectors.joining("\n"));
 
         System.out.println(testsDocumentation);
 
+        final Path readmePath = Paths.get(this.getClass().getClassLoader().getResource("").getPath())
+                .resolve(Paths.get("..", "..", "readme.adoc"));
+
         Path path = docRootPath.resolve(DOCUMENTATION_FILENAME + ".adoc");
         try (FileWriter fileWriter = new FileWriter(path.toFile())) {
             fileWriter.write("= " + DOCUMENTATION_TITLE + "\n:toc: left\n:nofooter:\n\n");
+            if (readmePath.toFile().exists()) {
+                fileWriter.write("include::../../../readme.adoc[leveloffset=+1]\n\n");
+            }
+
             fileWriter.write(testsDocumentation);
         }
 
