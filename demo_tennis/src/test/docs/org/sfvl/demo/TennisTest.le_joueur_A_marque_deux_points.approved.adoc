@@ -1,0 +1,12 @@
+= Le joueur A marque deux points
+
+Le joueur A marque deux fois, le score est de 30 / 0.
+
+[%autowidth]
+|===
+|A | B
+| * |
+| * |
+|===
+Score: 30 / 0
+

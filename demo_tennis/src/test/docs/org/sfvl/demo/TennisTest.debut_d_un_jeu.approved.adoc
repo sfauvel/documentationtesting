@@ -1,0 +1,10 @@
+= Debut d un jeu
+
+Au début du jeu, le score est de 0 / 0.
+
+[%autowidth]
+|===
+|A | B
+|===
+Score: 0 / 0
+

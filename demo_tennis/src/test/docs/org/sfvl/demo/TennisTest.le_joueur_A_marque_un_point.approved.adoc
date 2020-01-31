@@ -1,0 +1,11 @@
+= Le joueur A marque un point
+
+Le joueur A marque une fois, le score est de 15 / 0.
+
+[%autowidth]
+|===
+|A | B
+| * |
+|===
+Score: 15 / 0
+
