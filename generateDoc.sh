@@ -11,8 +11,8 @@ FILENAME=demo
 
 if [ ! -d ${ASCIIDOC_PATH} ]
 then
+
     echo "Directory ${ASCIIDOC_PATH} does not exists."
-  #  return
 fi
 
 
@@ -29,15 +29,16 @@ function generateAsciidoc() {
     fi
 
     docker run -it \
-    	-v $(pwd):${DOCKER_WORKDIR}/ \
+    	-v $(pwd)/${MODULE}:${DOCKER_WORKDIR}/ \
+    	-v $(pwd)/${DESTINATION}:/destination/ \
     	-v ${STYLESHEETS}:/stylesheets:ro \
-	    -w ${DOCKER_WORKDIR}/${MODULE} \
+	    -w ${DOCKER_WORKDIR} \
     	${DOCKER_IMAGE} \
     	asciidoctor \
-    	-D ${DOCKER_WORKDIR}/${DESTINATION} \
+    	-D /destination \
     	-o index.html \
     	-r asciidoctor-diagram \
-    	-a sourcedir=${DOCKER_WORKDIR}/${MODULE}/src/main/java \
+    	-a sourcedir=${DOCKER_WORKDIR}/src/main/java \
         -a webfonts! \
         -a stylesheet=/stylesheets/adoc-rocket-panda.css \
     	--attribute htmlOutput="html" \
@@ -48,12 +49,12 @@ function generateAsciidoc() {
 
 function generateDoc() {
     MODULE=documentationtestingdoc
-    generateAsciidoc ${MODULE} docs ${DOCKER_WORKDIR}/${MODULE}/target/adoc/demo.adoc
+    generateAsciidoc "" docs ${DOCKER_WORKDIR}/${MODULE}/target/adoc/demo.adoc
 }
 
 function generateDemo() {
     MODULE=$1
-    generateAsciidoc ${MODULE} docs/${MODULE} ${DOCKER_WORKDIR}/${MODULE}/src/test/docs/Documentation.adoc
+    generateAsciidoc ${MODULE} docs/${MODULE} ${DOCKER_WORKDIR}/src/test/docs/Documentation.adoc
 }
 
 if [ ! -d ${DOC_PATH} ]
@@ -61,20 +62,17 @@ then
     mkdir ${DOC_PATH}
 fi
 
+# Generate all documentation
+mvn clean install package
 
-mvn install package
-
-# Generate main doc
-pushd documentationtestingdoc
-mvn install exec:java -Dexec.mainClass="fr.sfvl.documentationtesting.DocGenerator"
-popd
-
-generateDoc
-
-# Generate examples
-for demo_foder in  $(ls | grep "demo_*")
+# Generate Html files
+echo -n "Generate Html"
+for demo_folder in  $(ls | grep "demo_*")
 do
-    generateDemo $demo_foder
+    generateDemo $demo_folder
+    echo -n "."
 done
 
+generateDoc
+echo "."
 
