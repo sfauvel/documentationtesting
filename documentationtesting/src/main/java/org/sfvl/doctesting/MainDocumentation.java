@@ -56,7 +56,7 @@ public class MainDocumentation {
 
         Path path = docRootPath.resolve(DOCUMENTATION_FILENAME + ".adoc");
         try (FileWriter fileWriter = new FileWriter(path.toFile())) {
-            fileWriter.write("= " + DOCUMENTATION_TITLE + "\n:toc: left\n\n");
+            fileWriter.write("= " + DOCUMENTATION_TITLE + "\n:toc: left\n:nofooter:\n\n");
             fileWriter.write(testsDocumentation);
         }
 

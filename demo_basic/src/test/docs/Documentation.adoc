@@ -1,5 +1,6 @@
 = Documentation
 :toc: left
+:nofooter:
 
 == DemoTest
 Demo of a simple usage to generate documentation.

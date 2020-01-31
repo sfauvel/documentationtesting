@@ -1,5 +1,6 @@
 = Documentation
 :toc: left
+:nofooter:
 
 == InnTest
 include::/documents/readme.adoc[leveloffset=+1]
