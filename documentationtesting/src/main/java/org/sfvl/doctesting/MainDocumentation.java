@@ -64,9 +64,11 @@ public class MainDocumentation {
 
         Path path = docRootPath.resolve(DOCUMENTATION_FILENAME + ".adoc");
         try (FileWriter fileWriter = new FileWriter(path.toFile())) {
-            fileWriter.write("= " + DOCUMENTATION_TITLE + "\n:toc: left\n:nofooter:\n\n");
+            fileWriter.write(":toc: left\n:nofooter:\n\n");
             if (readmePath.toFile().exists()) {
                 fileWriter.write("include::../../../readme.adoc[leveloffset=+1]\n\n");
+            } else {
+                fileWriter.write("= " + DOCUMENTATION_TITLE + "\n\n");
             }
 
             fileWriter.write(testsDocumentation);
@@ -78,7 +80,7 @@ public class MainDocumentation {
         return testMethods.stream()
                 .map(m -> new DocumentationNamer(docRootPath, m))
                 .map(m -> docRootPath.relativize(Paths.get(m.getSourceFilePath())) + "/" + m.getApprovalName() + ".approved.adoc")
-                .map(m -> "include::" + m + "[leveloffset=+1]")
+                .map(m -> "include::" + m + "[leveloffset=+2]")
                 .collect(Collectors.joining("\n"));
     }
 
