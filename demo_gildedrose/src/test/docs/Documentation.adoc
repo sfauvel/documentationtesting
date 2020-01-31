@@ -1,9 +1,9 @@
-= Documentation
+= Gilded Rose
 :toc: left
 :nofooter:
 
 == InnTest
-include::/documents/readme.adoc[leveloffset=+1]
+include::../../../readme.adoc[leveloffset=+1]
 
 :leveloffset: +1
 include::fr/xebia/katas/gildedrose/InnTest.example_of_evolution_by_item.approved.adoc[leveloffset=+1]

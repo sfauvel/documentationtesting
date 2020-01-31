@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
- * include::/documents/readme.adoc[leveloffset=+1]
+ * include::../../../readme.adoc[leveloffset=+1]
  */
 public class InnTest extends ApprovalsBase {
 

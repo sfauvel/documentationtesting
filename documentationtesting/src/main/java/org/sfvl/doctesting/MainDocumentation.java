@@ -25,11 +25,16 @@ import java.util.stream.Collectors;
 public class MainDocumentation {
 
     private static final String PACKAGE_TO_SCAN = "org.sfvl";
-    private static final String DOCUMENTATION_TITLE = "Documentation";
+    private final String DOCUMENTATION_TITLE;
     private static final String DOCUMENTATION_FILENAME = "Documentation";
     private final Path docRootPath;
 
     public MainDocumentation() {
+        this("Documentation");
+    }
+
+    public MainDocumentation(String documentationTitle) {
+        DOCUMENTATION_TITLE = documentationTitle;
         docRootPath = Paths.get(this.getClass().getClassLoader().getResource("").getPath())
                 .resolve(Paths.get("..", "..", "src", "test", "docs"));
 
