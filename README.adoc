@@ -18,6 +18,8 @@ But, this information still needs to be checked.
 
 == Quick start
 
+To get source and examples: https://github.com/sfauvel/documentationtesting
+
 Start by writing a test that inherits from `org.sfvl.doctesting.ApprovalsBase`.
 
 Use `ẁrite` method to write all you want to be in documentation.
