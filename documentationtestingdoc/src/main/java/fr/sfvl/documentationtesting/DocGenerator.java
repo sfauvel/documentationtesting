@@ -37,6 +37,7 @@ public class DocGenerator {
                 .collect(Collectors.joining());
 
         String doc = formatter.standardOptions() +
+                ":nofooter:\n" +
                 formatter.tableOfContent() +
               //  formatter.title(1, "Documentation testing") + // Title is already on readme
                 formatter.include(docPath.relativize(Paths.get("README.adoc").toAbsolutePath()).toString()) +
