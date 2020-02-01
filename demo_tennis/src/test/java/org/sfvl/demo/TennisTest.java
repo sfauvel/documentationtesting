@@ -3,106 +3,116 @@ package org.sfvl.demo;
 import org.junit.jupiter.api.Test;
 import org.sfvl.doctesting.ApprovalsBase;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
- * On veut afficher un score de tennis.
+ * We will display a tennis score.
  */
 public class TennisTest extends ApprovalsBase {
 
-    /**
-     * Au début du jeu, le score est de 0 / 0.
-     */
-    @Test
-    public void debut_d_un_jeu() {
-        final Tennis tennis = new Tennis();
-        write("[%autowidth]\n|===\n");
-        write("|A | B\n");
-        write("|===\n");
+    static class TennisRecorder extends Tennis {
+        List<String> points = new ArrayList<>();
+        @Override
+        public void playerAWinPoint() {
+            points.add("A");
+            super.playerAWinPoint();
+        }
 
-        displayScore(tennis);
+        @Override
+        public void playerBWinPoint() {
+            points.add("B");
+            super.playerBWinPoint();
+        }
     }
 
-    /**
-     * Le joueur A marque une fois, le score est de 15 / 0.
-     */
-    @Test
-    public void le_joueur_A_marque_un_point() {
-        final Tennis tennis = new Tennis();
-        write("[%autowidth]\n|===\n");
-        write("|A | B\n");
-        joueurAMarque(tennis);
-        write("|===\n");
-
-        displayScore(tennis);
-    }
+    TennisRecorder tennis = new TennisRecorder();
 
     /**
-     * Le joueur B marque une fois, le score est de 0 / 15.
+     * At the begining, score is 0 / 0.
      */
     @Test
-    public void le_joueur_B_marque_un_point() {
-        final Tennis tennis = new Tennis();
-        write("[%autowidth]\n|===\n");
-        write("|A | B\n");
-        joueurBMarque(tennis);
-        write("|===\n");
+    public void start_of_the_game() {
+
         displayScore(tennis);
     }
 
     /**
-     * Le joueur A marque deux fois, le score est de 30 / 0.
+     * When player A win one point, score is 15 / 0.
      */
     @Test
-    public void le_joueur_A_marque_deux_points() {
-        final Tennis tennis = new Tennis();
-        write("[%autowidth]\n|===\n");
-        write("|A | B\n");
-        joueurAMarque(tennis);
-        joueurAMarque(tennis);
-        write("|===\n");
+    public void player_A_win_one_point() {
+        tennis.playerAWinPoint();
+
         displayScore(tennis);
     }
 
     /**
-     * Le joueur B marque deux fois, le score est de 0 / 30.
+     * When player B win one point, score is 0 / 15.
      */
     @Test
-    public void le_joueur_B_marque_deux_points() {
-        final Tennis tennis = new Tennis();
-        write("[%autowidth]\n|===\n");
-        write("|A | B\n");
-        joueurBMarque(tennis);
-        joueurBMarque(tennis);
-        write("|===\n");
+    public void player_B_win_one_point() {
+        
+        tennis.playerBWinPoint();
+
         displayScore(tennis);
     }
 
+    /**
+     * When player A win two points, score is 30 / 0.
+     */
     @Test
-    public void cas_complexe() {
-        final Tennis tennis = new Tennis();
-        write("[%autowidth]\n|===\n");
-        write("|A | B\n");
-        joueurBMarque(tennis);
-        joueurAMarque(tennis);
-        joueurAMarque(tennis);
-        joueurBMarque(tennis);
-        joueurBMarque(tennis);
-        write("|===\n");
+    public void player_A_win_two_points() {
+
+        tennis.playerAWinPoint();
+        tennis.playerAWinPoint();
+
         displayScore(tennis);
     }
 
-    private void joueurAMarque(Tennis tennis) {
-        write("| * |\n");
-        tennis.joueurAMarque();
+    /**
+     * When player B win two points, score is 0 / 30.
+     */
+    @Test
+    public void player_B_win_two_points() {
+        
+        tennis.playerBWinPoint();
+        tennis.playerBWinPoint();
+
+        displayScore(tennis);
     }
 
-    private void joueurBMarque(Tennis tennis) {
-        write("| | *\n");
-        tennis.joueurBMarque();
+    /**
+     * When player A win 2 points and player B win 3 points, score is 30 / 40.
+     */
+    @Test
+    public void both_players_win_some_points() {
+
+        tennis.playerBWinPoint();
+        tennis.playerAWinPoint();
+        tennis.playerAWinPoint();
+        tennis.playerBWinPoint();
+        tennis.playerBWinPoint();
+
+        displayScore(tennis);
     }
 
-    private void displayScore(Tennis tennis) {
+
+    private void displayScore(TennisRecorder tennis) {
         Score score = tennis.getScore();
-        write("Score: " + score.joueurA() + " / " + score.joueurB() + "\n\n");
+        write("[%autowidth]\n|===\n");
+        write("| A" + pointsToTable("A", tennis.points) + " | " + score.playerA() + " \n");
+        write("| B" + pointsToTable("B", tennis.points) + " | " + score.playerB() + " \n");
+        write("|===\n");
+    }
+
+    private String pointsToTable(String player, List<String> points) {
+        if (points.isEmpty()) {
+            return "";
+        } else {
+            return points.stream().map(p -> p.equals(player) ? "*" : " ").collect(Collectors.joining(" | ", " | ", ""));
+        }
     }
 }
 

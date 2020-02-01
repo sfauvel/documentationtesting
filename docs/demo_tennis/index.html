@@ -653,12 +653,12 @@ ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .olist, .olist .ulist 
 <li><a href="#_tennis">Tennis</a></li>
 <li><a href="#_tennistest">TennisTest</a>
 <ul class="sectlevel2">
-<li><a href="#_le_joueur_b_marque_un_point">Le joueur B marque un point</a></li>
-<li><a href="#_cas_complexe">Cas complexe</a></li>
-<li><a href="#_le_joueur_b_marque_deux_points">Le joueur B marque deux points</a></li>
-<li><a href="#_le_joueur_a_marque_deux_points">Le joueur A marque deux points</a></li>
-<li><a href="#_le_joueur_a_marque_un_point">Le joueur A marque un point</a></li>
-<li><a href="#_debut_d_un_jeu">Debut d un jeu</a></li>
+<li><a href="#_player_a_win_one_point">Player A win one point</a></li>
+<li><a href="#_start_of_the_game">Start of the game</a></li>
+<li><a href="#_player_a_win_two_points">Player A win two points</a></li>
+<li><a href="#_player_b_win_two_points">Player B win two points</a></li>
+<li><a href="#_player_b_win_one_point">Player B win one point</a></li>
+<li><a href="#_both_players_win_some_points">Both players win some points</a></li>
 </ul>
 </li>
 </ul>
@@ -702,12 +702,37 @@ ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .olist, .olist .ulist 
 <h2 id="_tennistest">TennisTest</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>On veut afficher un score de tennis.</p>
+<p>We will display a tennis score.</p>
 </div>
 <div class="sect2">
-<h3 id="_le_joueur_b_marque_un_point">Le joueur B marque un point</h3>
+<h3 id="_player_a_win_one_point">Player A win one point</h3>
 <div class="paragraph">
-<p>Le joueur B marque une fois, le score est de 0 / 15.</p>
+<p>When player A win one point, score is 15 / 0.</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_start_of_the_game">Start of the game</h3>
+<div class="paragraph">
+<p>At the begining, score is 0 / 0.</p>
 </div>
 <table class="tableblock frame-all grid-all">
 <colgroup>
@@ -717,159 +742,132 @@ ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .olist, .olist .ulist 
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">B</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>Score: 0 / 15</p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="_cas_complexe">Cas complexe</h3>
+<h3 id="_player_a_win_two_points">Player A win two points</h3>
+<div class="paragraph">
+<p>When player A win two points, score is 30 / 0.</p>
+</div>
 <table class="tableblock frame-all grid-all">
 <colgroup>
+<col>
+<col>
 <col>
 <col>
 </colgroup>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">B</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>Score: 30 / 40</p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="_le_joueur_b_marque_deux_points">Le joueur B marque deux points</h3>
+<h3 id="_player_b_win_two_points">Player B win two points</h3>
 <div class="paragraph">
-<p>Le joueur B marque deux fois, le score est de 0 / 30.</p>
+<p>When player B win two points, score is 0 / 30.</p>
 </div>
 <table class="tableblock frame-all grid-all">
 <colgroup>
+<col>
+<col>
 <col>
 <col>
 </colgroup>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">B</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>Score: 0 / 30</p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="_le_joueur_a_marque_deux_points">Le joueur A marque deux points</h3>
+<h3 id="_player_b_win_one_point">Player B win one point</h3>
 <div class="paragraph">
-<p>Le joueur A marque deux fois, le score est de 30 / 0.</p>
+<p>When player B win one point, score is 0 / 15.</p>
 </div>
 <table class="tableblock frame-all grid-all">
 <colgroup>
+<col>
 <col>
 <col>
 </colgroup>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">B</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>Score: 30 / 0</p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="_le_joueur_a_marque_un_point">Le joueur A marque un point</h3>
+<h3 id="_both_players_win_some_points">Both players win some points</h3>
 <div class="paragraph">
-<p>Le joueur A marque une fois, le score est de 15 / 0.</p>
+<p>When player A win 2 points and player B win 3 points, score is 30 / 40.</p>
 </div>
 <table class="tableblock frame-all grid-all">
 <colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
 <col>
 <col>
 </colgroup>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">B</p></td>
-</tr>
-<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30</p></td>
 </tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Score: 15 / 0</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_debut_d_un_jeu">Debut d un jeu</h3>
-<div class="paragraph">
-<p>Au début du jeu, le score est de 0 / 0.</p>
-</div>
-<table class="tableblock frame-all grid-all">
-<colgroup>
-<col>
-<col>
-</colgroup>
-<tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">B</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">40</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>Score: 0 / 0</p>
-</div>
 </div>
 </div>
 </div>

@@ -4,12 +4,12 @@
 include::../../../readme.adoc[leveloffset=+1]
 
 == TennisTest
-On veut afficher un score de tennis.
+We will display a tennis score.
 
-include::org/sfvl/demo/TennisTest.le_joueur_B_marque_un_point.approved.adoc[leveloffset=+2]
-include::org/sfvl/demo/TennisTest.cas_complexe.approved.adoc[leveloffset=+2]
-include::org/sfvl/demo/TennisTest.le_joueur_B_marque_deux_points.approved.adoc[leveloffset=+2]
-include::org/sfvl/demo/TennisTest.le_joueur_A_marque_deux_points.approved.adoc[leveloffset=+2]
-include::org/sfvl/demo/TennisTest.le_joueur_A_marque_un_point.approved.adoc[leveloffset=+2]
-include::org/sfvl/demo/TennisTest.debut_d_un_jeu.approved.adoc[leveloffset=+2]
+include::org/sfvl/demo/TennisTest.player_A_win_one_point.approved.adoc[leveloffset=+2]
+include::org/sfvl/demo/TennisTest.start_of_the_game.approved.adoc[leveloffset=+2]
+include::org/sfvl/demo/TennisTest.player_A_win_two_points.approved.adoc[leveloffset=+2]
+include::org/sfvl/demo/TennisTest.player_B_win_two_points.approved.adoc[leveloffset=+2]
+include::org/sfvl/demo/TennisTest.player_B_win_one_point.approved.adoc[leveloffset=+2]
+include::org/sfvl/demo/TennisTest.both_players_win_some_points.approved.adoc[leveloffset=+2]
 

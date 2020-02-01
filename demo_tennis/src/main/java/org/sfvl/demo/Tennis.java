@@ -9,11 +9,11 @@ public class Tennis {
         return new Score(nbPointsA, nbPointsB);
     }
 
-    public void joueurAMarque() {
+    public void playerAWinPoint() {
         nbPointsA++;
     }
 
-    public void joueurBMarque() {
+    public void playerBWinPoint() {
         nbPointsB++;
     }
 }

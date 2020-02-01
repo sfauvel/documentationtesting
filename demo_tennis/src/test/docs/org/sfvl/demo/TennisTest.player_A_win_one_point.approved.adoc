@@ -1,0 +1,9 @@
+= Player A win one point
+
+When player A win one point, score is 15 / 0.
+
+[%autowidth]
+|===
+| A | * | 15 
+| B |   | 0 
+|===

@@ -24,11 +24,11 @@ public class Score {
         this(0,0);
     }
 
-    public String joueurA() {
+    public String playerA() {
         return scoreA;
     }
 
-    public String joueurB() {
+    public String playerB() {
         return scoreB;
     }
 }
