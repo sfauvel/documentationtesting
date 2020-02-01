@@ -16,9 +16,11 @@ This idea comes from writing some code that is only configuration.
 In that case, writing tests is just rewriting code and there is no real value.
 But, this information still needs to be checked.
 
-== Quick start
-
 To get source and examples: https://github.com/sfauvel/documentationtesting
+
+Full documenation is here: https://sfauvel.github.io/documentationtesting/
+
+== Quick start
 
 Start by writing a test that inherits from `org.sfvl.doctesting.ApprovalsBase`.
 
