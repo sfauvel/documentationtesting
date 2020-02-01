@@ -65,6 +65,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.knowm.xchart</groupId>
+            <artifactId>xchart</artifactId>
+            <version>3.6.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.sfvl</groupId>
             <artifactId>documentationtesting</artifactId>
             <version>${documentationtesting.version}</version>

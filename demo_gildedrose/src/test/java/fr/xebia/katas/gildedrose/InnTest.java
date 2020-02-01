@@ -1,12 +1,16 @@
 package fr.xebia.katas.gildedrose;
 
-import fr.xebia.katas.gildedrose.Inn;
-import fr.xebia.katas.gildedrose.Item;
 import org.junit.jupiter.api.Test;
+import org.knowm.xchart.*;
+import org.knowm.xchart.style.Styler;
 import org.sfvl.doctesting.ApprovalsBase;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.IntToDoubleFunction;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -23,7 +27,7 @@ public class InnTest extends ApprovalsBase {
         }
     }
 
-    private void check_item_update(int index) {
+    private void check_item_update(int index) throws IOException {
         final Item initialItem = inn.getItems().get(index);
         final String name = initialItem.getName();
 
@@ -41,7 +45,7 @@ public class InnTest extends ApprovalsBase {
             inn.updateQuality();
 
             final Item item = inn.getItems().stream()
-                    .filter(__ ->  __.getName().equals(name))
+                    .filter(__ -> __.getName().equals(name))
                     .findFirst()
                     .get();
 
@@ -55,7 +59,37 @@ public class InnTest extends ApprovalsBase {
         write("\n\n");
     }
 
-    private void check_item_update_line(int index) {
+    private String generateGraph(String name, List<Integer> sellIns, List<Integer> qualities) throws IOException {
+
+        final Path docRootPath = Paths.get(this.getClass().getClassLoader().getResource("").getPath())
+                .resolve(Paths.get("..", "..", "src", "test", "docs"));
+
+
+        // Create Chart
+        final XYChart chart = new XYChartBuilder().width(600).height(300).title(name).build();
+
+        // Customize Chart
+        chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideNE);
+
+        chart.addSeries("SellIn", IntStream.range(0, sellIns.size()).toArray(), sellIns.stream().mapToInt(i -> i).toArray());
+        chart.addSeries("Qualities", IntStream.range(0, qualities.size()).toArray(), qualities.stream().mapToInt(i -> i).toArray());
+
+        // Show it
+        new SwingWrapper(chart).displayChart();
+
+        // Save it
+        final String fileName = name
+                .replaceAll(" ", "_")
+                .replaceAll("\\+", "");
+
+        final Path path = Paths.get(getClass().getPackage().getName().replaceAll("\\.", "/"), fileName);
+
+        BitmapEncoder.saveBitmap(chart, docRootPath.resolve(path).toFile().getPath(), BitmapEncoder.BitmapFormat.PNG);
+
+        return path + ".png";
+    }
+
+    private void check_item_update_line(int index) throws IOException {
         final Item initialItem = inn.getItems().get(index);
         final String name = initialItem.getName();
 
@@ -69,7 +103,7 @@ public class InnTest extends ApprovalsBase {
             inn.updateQuality();
 
             final Item item = inn.getItems().stream()
-                    .filter(__ ->  __.getName().equals(name))
+                    .filter(__ -> __.getName().equals(name))
                     .findFirst()
                     .get();
 
@@ -78,7 +112,9 @@ public class InnTest extends ApprovalsBase {
 
         }
 
-        write("\n\n== Item " + name);
+        write("\n\n== Item " + name + "\n\n");
+
+
         write("\n|====\n");
 
         write("| iteration" + IntStream.range(0, sellIns.size()).mapToObj(Integer::toString).collect(Collectors.joining(" | ", " | ", "\n")));
@@ -87,6 +123,9 @@ public class InnTest extends ApprovalsBase {
 
         write("|====");
         write("\n\n");
+
+        final String imageFile = generateGraph(name, sellIns, qualities);
+        write("image:" + imageFile + "[]\n\n");
     }
 
 }
