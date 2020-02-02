@@ -80,6 +80,7 @@ public class InnTest extends ApprovalsBase {
         // Save it
         final String fileName = name
                 .replaceAll(" ", "_")
+                .replaceAll(",", "_")
                 .replaceAll("\\+", "");
 
         final Path path = Paths.get(getClass().getPackage().getName().replaceAll("\\.", "/"), fileName);
@@ -125,7 +126,7 @@ public class InnTest extends ApprovalsBase {
         write("\n\n");
 
         final String imageFile = generateGraph(name, sellIns, qualities);
-        write("image:" + imageFile + "[]\n\n");
+        write("image::" + imageFile + "[]\n\n");
     }
 
 }

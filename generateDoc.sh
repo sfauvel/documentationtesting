@@ -55,6 +55,10 @@ function generateDoc() {
 function generateDemo() {
     MODULE=$1
     generateAsciidoc ${MODULE} docs/${MODULE} ${DOCKER_WORKDIR}/src/test/docs/Documentation.adoc
+
+    pushd ${MODULE}/src/test/docs
+    find . -name *.png -exec cp --parents {} ../../../../docs/${MODULE} \;
+    popd
 }
 
 if [ ! -d ${DOC_PATH} ]
