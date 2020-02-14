@@ -74,9 +74,6 @@ public class InnTest extends ApprovalsBase {
         chart.addSeries("SellIn", IntStream.range(0, sellIns.size()).toArray(), sellIns.stream().mapToInt(i -> i).toArray());
         chart.addSeries("Qualities", IntStream.range(0, qualities.size()).toArray(), qualities.stream().mapToInt(i -> i).toArray());
 
-        // Show it
-        new SwingWrapper(chart).displayChart();
-
         // Save it
         final String fileName = name
                 .replaceAll(" ", "_")
@@ -88,6 +85,14 @@ public class InnTest extends ApprovalsBase {
         BitmapEncoder.saveBitmap(chart, docRootPath.resolve(path).toFile().getPath(), BitmapEncoder.BitmapFormat.PNG);
 
         return path + ".png";
+    }
+
+    /**
+     * Show chart.
+     * @param chart
+     */
+    private void show(XYChart chart) {
+        new SwingWrapper(chart).displayChart();
     }
 
     private void check_item_update_line(int index) throws IOException {

@@ -48,11 +48,22 @@ public class ApprovalsBase {
                 Approvals.getReporter());
     }
 
+    /**
+     * Return name specified in DisplayName annotation.
+     * If annotation is not present, this is the method name taht will be returned
+     * after some test formmatting (remove '_', uppercase first letter).
+     * @param testInfo
+     * @return
+     */
     private String formatTitle(TestInfo testInfo) {
-        String title = testInfo.getTestMethod().get().getName()
-                .replace("_", " ");
-
-        return title.substring(0, 1).toUpperCase() + title.substring(1);
+        String displayName = testInfo.getDisplayName();
+        String methodName = testInfo.getTestMethod().get().getName();
+        if (displayName.equals(methodName+"()")) {
+            String title = methodName.replace("_", " ");
+            return title.substring(0, 1).toUpperCase() + title.substring(1);
+        } else {
+            return displayName;
+        }
     }
 
     private String getComment(Class<?> clazz, String methodName) {
