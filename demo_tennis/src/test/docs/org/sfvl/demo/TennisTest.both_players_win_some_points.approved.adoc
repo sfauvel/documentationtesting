@@ -4,6 +4,6 @@ When player A win 2 points and player B win 3 points, score is 30 / 40.
 
 [%autowidth]
 |===
-| A |   | * | * |   |   | 30 
-| B | * |   |   | * | * | 40 
+| A |   | &#x2714; | &#x2714; |   |   | 30 
+| B | &#x2714; |   |   | &#x2714; | &#x2714; | 40 
 |===

@@ -5,5 +5,5 @@ When player B win two points, score is 0 / 30.
 [%autowidth]
 |===
 | A |   |   | 0 
-| B | * | * | 30 
+| B | &#x2714; | &#x2714; | 30 
 |===

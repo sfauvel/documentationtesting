@@ -2,6 +2,7 @@ package org.sfvl.doctesting;
 
 import com.thoughtworks.qdox.JavaProjectBuilder;
 import com.thoughtworks.qdox.model.JavaClass;
+import com.thoughtworks.qdox.model.JavaModel;
 import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
@@ -12,11 +13,9 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Generate a main documentation to group all test documentations.
@@ -77,21 +76,34 @@ public class MainDocumentation {
     }
 
     private String includeMethods(List<Method> testMethods) {
-        return testMethods.stream()
+
+        return getMethodsInOrder(testMethods)
                 .map(m -> new DocumentationNamer(docRootPath, m))
                 .map(m -> docRootPath.relativize(Paths.get(m.getSourceFilePath())) + "/" + m.getApprovalName() + ".approved.adoc")
                 .map(m -> "include::" + m + "[leveloffset=+2]")
                 .collect(Collectors.joining("\n"));
     }
 
+    private Stream<Method> getMethodsInOrder(List<Method> testMethods) {
+        Map<String, Method> methodsByName = testMethods.stream().collect(Collectors.toMap(
+                m -> m.getName(),
+                m -> m
+        ));
+
+        JavaProjectBuilder builder = createJavaProjectBuilderWithTestPath();
+
+        Method firstMethod = testMethods.get(0);
+        JavaClass javaClass = builder.getClassByName(firstMethod.getDeclaringClass().getCanonicalName());
+
+        return javaClass.getMethods().stream()
+                .filter(m -> methodsByName.containsKey(m.getName()))
+                .sorted(Comparator.comparingInt(JavaModel::getLineNumber))
+                .map(m -> methodsByName.get(m.getName()));
+
+    }
+
     private String getComment(Class<?> clazz) {
-        JavaProjectBuilder builder = new JavaProjectBuilder();
-
-        final Path testPath = Paths.get(this.getClass().getClassLoader().getResource("").getPath())
-                .resolve(Paths.get("..", "..", "src", "test", "java"));
-
-//        builder.addSourceTree(new File("src/test/java"));
-        builder.addSourceTree(testPath.toFile());
+        JavaProjectBuilder builder = createJavaProjectBuilderWithTestPath();
 
         JavaClass javaClass = builder.getClassByName(clazz.getCanonicalName());
 
@@ -103,6 +115,14 @@ public class MainDocumentation {
         return reflections.getMethodsAnnotatedWith(annotation);
     }
 
+    private JavaProjectBuilder createJavaProjectBuilderWithTestPath() {
+        JavaProjectBuilder builder = new JavaProjectBuilder();
+
+        final Path testPath = Paths.get(this.getClass().getClassLoader().getResource("").getPath())
+                .resolve(Paths.get("..", "..", "src", "test", "java"));
+        builder.addSourceTree(testPath.toFile());
+        return builder;
+    }
 
     public static void main(String... args) throws IOException {
         new MainDocumentation().generate(PACKAGE_TO_SCAN);

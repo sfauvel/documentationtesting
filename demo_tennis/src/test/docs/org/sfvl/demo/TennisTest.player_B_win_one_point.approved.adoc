@@ -5,5 +5,5 @@ When player B win one point, score is 0 / 15.
 [%autowidth]
 |===
 | A |   | 0 
-| B | * | 15 
+| B | &#x2714; | 15 
 |===

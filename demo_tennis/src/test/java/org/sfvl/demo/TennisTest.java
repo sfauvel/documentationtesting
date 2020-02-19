@@ -111,7 +111,7 @@ public class TennisTest extends ApprovalsBase {
         if (points.isEmpty()) {
             return "";
         } else {
-            return points.stream().map(p -> p.equals(player) ? "*" : " ").collect(Collectors.joining(" | ", " | ", ""));
+            return points.stream().map(p -> p.equals(player) ? "&#x2714;" : " ").collect(Collectors.joining(" | ", " | ", ""));
         }
     }
 }

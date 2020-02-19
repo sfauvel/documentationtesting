@@ -4,6 +4,6 @@ When player A win one point, score is 15 / 0.
 
 [%autowidth]
 |===
-| A | * | 15 
+| A | &#x2714; | 15 
 | B |   | 0 
 |===
