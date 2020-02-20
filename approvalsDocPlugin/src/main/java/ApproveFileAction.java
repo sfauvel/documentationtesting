@@ -5,6 +5,7 @@ import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
 
@@ -29,24 +30,17 @@ public class ApproveFileAction extends AnAction {
 
     }
 
-
     @Override
     public void actionPerformed(@NotNull AnActionEvent actionEvent) {
 
         VirtualFile actionEventData = actionEvent.getData(PlatformDataKeys.VIRTUAL_FILE);
-        List<VirtualFile> receivedChildren = getReceivedFiles(actionEventData);
-
-        ApprovedAction approvedAction = new ApprovedAction(
-                actionEvent.getProject(),
-                receivedChildren
-        );
 
         CommandProcessor.getInstance().executeCommand(
                 actionEvent.getProject(),
-                approvedAction,
+                new ApprovedRunnable(actionEvent.getProject(), actionEventData),
+//                new WriteAction(new ApprovedRunnable(actionEventData)), // Why using WriteAction ?
                 getApproveActionName(actionEventData),
                 "Approvals");
-
     }
 
     @NotNull
@@ -54,46 +48,62 @@ public class ApproveFileAction extends AnAction {
         return actionEventData.isDirectory() ? "Approved All" : "Approved file";
     }
 
-    private void addReceivedFiles(List<VirtualFile> receivedFiles, VirtualFile virtualFile) {
-        if (!virtualFile.isDirectory()) {
-            if (ApprovalFile.isReceivedFilename(virtualFile.getName())) {
-                receivedFiles.add(virtualFile);
-            }
-        } else {
-            Arrays.stream(virtualFile.getChildren())
-                    .forEach(child -> addReceivedFiles(receivedFiles, child));
+    static class ApprovedRunnable implements Runnable {
+        private final VirtualFile virtualFile;
+        private final Project project;
+
+        public ApprovedRunnable(Project project, VirtualFile virtualFile) {
+            this.project = project;
+            this.virtualFile = virtualFile;
         }
 
-    }
+        private void addReceivedFiles(List<VirtualFile> receivedFiles, VirtualFile virtualFile) {
+            if (!virtualFile.isDirectory()) {
+                if (ApprovalFile.isReceivedFilename(virtualFile.getName())) {
+                    receivedFiles.add(virtualFile);
+                }
+            } else {
+                Arrays.stream(virtualFile.getChildren())
+                        .forEach(child -> addReceivedFiles(receivedFiles, child));
+            }
 
-    private List<VirtualFile> getReceivedFiles(VirtualFile virtualFile) {
-        List<VirtualFile> receivedFiles = new ArrayList<VirtualFile>();
-        addReceivedFiles(receivedFiles, virtualFile);
-        return receivedFiles;
-    }
+        }
 
-    static class ApprovedAction extends WriteAction {
-        public ApprovedAction(Project project, List<VirtualFile> filesToRename) {
-            super(() -> {
-                for (VirtualFile fileToRename : filesToRename) {
+        private List<VirtualFile> getReceivedFiles(VirtualFile virtualFile) {
+            List<VirtualFile> receivedFiles = new ArrayList<VirtualFile>();
+            addReceivedFiles(receivedFiles, virtualFile);
+            return receivedFiles;
+        }
 
-                    ApprovalFile approvalFile = ApprovalFile.valueOf(fileToRename.getName()).get();
-                    String newFileName = approvalFile.to(ApprovalFile.Status.APPROVED).getName();
-                    try {
-                        VirtualFile newFileByRelativePath = fileToRename.findFileByRelativePath("../" + newFileName);
-                        if (newFileByRelativePath != null) {
-                            newFileByRelativePath.delete(null);
-                        }
+        @Override
+        public void run() {
+            List<VirtualFile> filesToRename = getReceivedFiles(virtualFile);
 
-                        fileToRename.rename(null, newFileName);
-                        System.out.println(String.format("File '%s' renamed to '%s'", fileToRename.getName(), newFileName));
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                        System.err.println(String.format("File '%s' could not be renamed to '%s'", fileToRename.getName(), newFileName));
+            if (!Messages.isApplicationInUnitTestOrHeadless()) {
+                int result = Messages.showYesNoDialog(project, "You will approved " + filesToRename.size() + " files.\nDo you want to continue ?", "Approvals", Messages.getQuestionIcon());
+                if (result == Messages.NO) {
+                    return;
+                }
+            }
+
+            for (VirtualFile fileToRename : filesToRename) {
+                String oldFilename = fileToRename.getName();
+                ApprovalFile approvalFile = ApprovalFile.valueOf(oldFilename).get();
+                String newFileName = approvalFile.to(ApprovalFile.Status.APPROVED).getName();
+                try {
+                    VirtualFile newFileByRelativePath = fileToRename.findFileByRelativePath("../" + newFileName);
+                    if (newFileByRelativePath != null) {
+                        newFileByRelativePath.delete(null);
                     }
 
+                    fileToRename.rename(null, newFileName);
+                    System.out.println(String.format("File '%s' renamed to '%s'", oldFilename, newFileName));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    System.err.println(String.format("File '%s' could not be renamed to '%s'", oldFilename, newFileName));
                 }
-            });
+
+            }
         }
     }
 

@@ -15,7 +15,9 @@
         <!-- Add your extensions here -->
     </extensions>
 
+
     <actions>
+
         <action id="ApproveFileAction"
                 class="ApproveFileAction"
                 text="Approve file"
@@ -23,12 +25,13 @@
             <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
         </action>
-
         <action id="CompareFileAction"
                 class="CompareFileAction"
                 text="CompareFileAction"
                 description="CompareFileAction">
-            <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="first">
+
+            </add-to-group>
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
         </action>
     </actions>
