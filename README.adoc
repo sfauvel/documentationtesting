@@ -63,3 +63,9 @@ You can approve them all using `approveAll.sh`.
 == Examples
 
 Several examples are provided to show how we can use it.
+
+== Plugins
+
+A plugin for IntelliJ is provided in approvalsDocPlugin folder.
+
+include::approvalsDocPlugin/README.adoc[leveloffset=3]
