@@ -38,7 +38,6 @@ public class ApproveFileAction extends AnAction {
         CommandProcessor.getInstance().executeCommand(
                 actionEvent.getProject(),
                 new ApprovedRunnable(actionEvent.getProject(), actionEventData),
-//                new WriteAction(new ApprovedRunnable(actionEventData)), // Why using WriteAction ?
                 getApproveActionName(actionEventData),
                 "Approvals");
     }
@@ -77,6 +76,10 @@ public class ApproveFileAction extends AnAction {
 
         @Override
         public void run() {
+            ApplicationManager.getApplication().runWriteAction(() -> approveReceivedFiles());
+        }
+
+        private void approveReceivedFiles() {
             List<VirtualFile> filesToRename = getReceivedFiles(virtualFile);
 
             if (!Messages.isApplicationInUnitTestOrHeadless()) {
@@ -107,16 +110,5 @@ public class ApproveFileAction extends AnAction {
         }
     }
 
-    static class WriteAction implements Runnable {
-        WriteAction(Runnable cmd) {
-            this.cmd = cmd;
-        }
-
-        public void run() {
-            ApplicationManager.getApplication().runWriteAction(cmd);
-        }
-
-        Runnable cmd;
-    }
 
 }

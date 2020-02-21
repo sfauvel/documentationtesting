@@ -18,7 +18,7 @@ But, this information still needs to be checked.
 
 To get source and examples: https://github.com/sfauvel/documentationtesting
 
-Full documenation is here: https://sfauvel.github.io/documentationtesting/
+Full documentation is here: https://sfauvel.github.io/documentationtesting/
 
 == Quick start
 
