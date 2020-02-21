@@ -1,10 +1,15 @@
+import com.intellij.openapi.actionSystem.IdeActions;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.CommandProcessor;
+import com.intellij.openapi.command.UndoConfirmationPolicy;
+import com.intellij.openapi.command.undo.UndoManager;
+import com.intellij.openapi.editor.actionSystem.EditorAction;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.ui.TestInputDialog;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiManager;
 import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 
 import java.io.*;
@@ -29,19 +34,6 @@ public class ApprovalsDocPluginTest extends BasePlatformTestCase {
         }
 
     }
-
-//    public void test_approved_one_received_file() throws IOException {
-//        String receivedFile = "tmp/file.received.adoc";
-//        String approvedFile = "tmp/file.approved.adoc";
-//
-//        myFixture.addFileToProject(receivedFile, "some text");
-//
-//        VirtualFile virtualFile = myFixture.findFileInTempDir(receivedFile);
-//        performAction(new ApproveFileAction.ApprovedAction(myFixture.getProject(), Arrays.asList(virtualFile)));
-//
-//        assertNotExists(receivedFile);
-//        assertExists(approvedFile);
-//    }
 
     public void test_approved_one_received_file() throws IOException {
         String receivedFile = "tmp/file.received.adoc";
@@ -75,6 +67,26 @@ public class ApprovalsDocPluginTest extends BasePlatformTestCase {
         assertExists(approvedFileB);
     }
 
+    public void test_cancelled_approved_files() throws IOException {
+        String receivedFileA = "tmp/fileA.received.adoc";
+        String receivedFileB = "tmp/fileB.received.adoc";
+
+        myFixture.addFileToProject(receivedFileA, "some text for A");
+        myFixture.addFileToProject(receivedFileB, "some text for B");
+
+        VirtualFile virtualFile = myFixture.findFileInTempDir("tmp");
+        performAction(new ApproveFileAction.ApprovedRunnable(myFixture.getProject(), virtualFile));
+
+        assertNotExists(receivedFileA);
+        assertNotExists(receivedFileB);
+
+        UndoManager undoManager = UndoManager.getInstance(getProject());
+        undoManager.undo(null);
+
+        assertExists(receivedFileA);
+        assertExists(receivedFileB);
+    }
+
     private void assertExists(String filename) {
         assertExists(myFixture.findFileInTempDir(filename));
     }
@@ -96,6 +108,12 @@ public class ApprovalsDocPluginTest extends BasePlatformTestCase {
     }
 
     private void performWriteAction(final Project project, final Runnable action) {
-        ApplicationManager.getApplication().runWriteAction(() -> CommandProcessor.getInstance().executeCommand(project, action, "test command", null));
+        ApplicationManager.getApplication().runWriteAction(
+                () -> CommandProcessor.getInstance().executeCommand(
+                        project,
+                        action,
+                        "test command",
+                        null,
+                        UndoConfirmationPolicy.DO_NOT_REQUEST_CONFIRMATION));
     }
 }
