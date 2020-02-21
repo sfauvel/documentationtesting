@@ -3,6 +3,7 @@ package org.sfvl.doctesting;
 import com.thoughtworks.qdox.JavaProjectBuilder;
 import com.thoughtworks.qdox.model.JavaClass;
 import com.thoughtworks.qdox.model.JavaModel;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
@@ -48,7 +49,7 @@ public class MainDocumentation {
 
         String testsDocumentation = methodsByClass.entrySet().stream()
                 .map(e -> "== "
-                        + e.getKey().getSimpleName()
+                        + getTestClassTitle(e)
                         + "\n" + getComment(e.getKey())
                         + "\n\n"
                         + includeMethods(e.getValue())
@@ -73,6 +74,16 @@ public class MainDocumentation {
             fileWriter.write(testsDocumentation);
         }
 
+    }
+
+    private String getTestClassTitle(Map.Entry<Class<?>, List<Method>> e) {
+        Class<?> testClass = e.getKey();
+        DisplayName annotation = testClass.getAnnotation(DisplayName.class);
+        if (annotation != null) {
+            return annotation.value();
+        } else {
+            return testClass.getSimpleName();
+        }
     }
 
     private String includeMethods(List<Method> testMethods) {

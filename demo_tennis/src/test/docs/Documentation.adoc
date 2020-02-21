@@ -3,7 +3,7 @@
 
 include::../../../readme.adoc[leveloffset=+1]
 
-== TennisTest
+== Scores examples
 We will display a tennis score.
 
 include::org/sfvl/demo/TennisTest.start_of_the_game.approved.adoc[leveloffset=+2]

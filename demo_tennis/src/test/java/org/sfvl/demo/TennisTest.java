@@ -1,5 +1,6 @@
 package org.sfvl.demo;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.sfvl.doctesting.ApprovalsBase;
 
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 /**
  * We will display a tennis score.
  */
+@DisplayName(value="Scores examples")
 public class TennisTest extends ApprovalsBase {
 
     static class TennisRecorder extends Tennis {
