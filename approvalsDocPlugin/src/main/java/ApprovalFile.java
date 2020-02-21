@@ -78,7 +78,7 @@ public class ApprovalFile {
     }
 
     public ApprovalFile to(Status approved) {
-        return new ApprovalFile(this.filename.split("\\.")[0], approved, this.extension);
+        return new ApprovalFile(this.filename, approved, this.extension);
     }
 
     public static enum Status {

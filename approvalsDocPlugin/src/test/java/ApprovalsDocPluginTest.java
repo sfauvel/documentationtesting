@@ -36,8 +36,8 @@ public class ApprovalsDocPluginTest extends BasePlatformTestCase {
     }
 
     public void test_approved_one_received_file() throws IOException {
-        String receivedFile = "tmp/file.received.adoc";
-        String approvedFile = "tmp/file.approved.adoc";
+        String receivedFile = "tmp/file.multi.name.received.adoc";
+        String approvedFile = "tmp/file.multi.name.approved.adoc";
 
         myFixture.addFileToProject(receivedFile, "some text");
 
@@ -47,6 +47,21 @@ public class ApprovalsDocPluginTest extends BasePlatformTestCase {
 
         assertNotExists(receivedFile);
         assertExists(approvedFile);
+    }
+
+    public void test_approved_file_to_replace_a_previous_approbation() throws IOException {
+        String receivedFile = "tmp/file.received.adoc";
+        String approvedFile = "tmp/file.approved.adoc";
+
+        myFixture.addFileToProject(receivedFile, "new text");
+        myFixture.addFileToProject(approvedFile, "old text");
+
+        VirtualFile virtualFile = myFixture.findFileInTempDir(receivedFile);
+
+        performAction(new ApproveFileAction.ApprovedRunnable(myFixture.getProject(), virtualFile));
+
+        VirtualFile newApprovedFile = myFixture.findFileInTempDir(approvedFile);
+        assertEquals("new text", new String(newApprovedFile.contentsToByteArray()));
     }
 
     public void test_approved_one_directory() throws IOException {

@@ -65,6 +65,14 @@ public class ApprovalFileTest {
         assertEquals("test.approved.adoc", filename.getName());
     }
 
+    @Test
+    public void approve_a_received_file_with_multi_parts_name() {
+        ApprovalFile filename = ApprovalFile.valueOf("test.file.multi_part.received.adoc").get().to(ApprovalFile.Status.APPROVED);
+        assertFalse(filename.isReceived());
+        assertTrue(filename.isApproved());
+        assertEquals("test.file.multi_part.approved.adoc", filename.getName());
+    }
+
     private void assertThrow(Class<? extends Exception> expectedException, Runnable function) {
         try {
             function.run();
