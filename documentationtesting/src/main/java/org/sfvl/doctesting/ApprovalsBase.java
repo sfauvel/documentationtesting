@@ -11,8 +11,10 @@ import org.junit.jupiter.api.TestInfo;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Base class for test.
@@ -27,8 +29,8 @@ public class ApprovalsBase {
      * Write a text to the output.
      * @param text
      */
-    protected void write(String text) {
-        sb.append(text);
+    protected void write(String... texts) {
+        sb.append(Arrays.stream(texts).collect(Collectors.joining("\n")));
     }
 
     @AfterEach

@@ -111,16 +111,18 @@ public class TennisTest extends ApprovalsBase {
     }
 
     private void writeStyle() {
-        write("\n++++\n" +
-                "<style>\n" +
-                "table.tableblock.grid-all {\n" +
-                "    border-collapse: collapse;\n" +
-                "}\n" +
-                "table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr > .tableblock:last-child {\n" +
-                "    border: 1px solid #dddddd;\n" +
-                "}\n" +
-                "</style>\n" +
-                "++++\n");
+        write("", 
+                "++++",
+                "<style>",
+                "table.tableblock.grid-all {",
+                "    border-collapse: collapse;",
+                "}",
+                "table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr > .tableblock:last-child {",
+                "    border: 1px solid #dddddd;",
+                "}",
+                "</style>",
+                "++++",
+                "");
     }
 
     private String pointsToTable(String player, List<String> points) {
