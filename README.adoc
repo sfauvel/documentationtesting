@@ -24,7 +24,7 @@ Full documentation is here: https://sfauvel.github.io/documentationtesting/
 
 Start by writing a test that inherits from `org.sfvl.doctesting.ApprovalsBase`.
 
-Use `ẁrite` method to write all you want to be in documentation.
+Use `write` method to write all you want to be in documentation.
 It should be at least input and output.
 When you write output, you don't write values expected but only values given by the application.
 
@@ -64,8 +64,12 @@ You can approve them all using `approveAll.sh`.
 
 Several examples are provided to show how we can use it.
 
+ifdef::fulldoc[]
+include::./documentationtestingdoc/target/adoc/demo_list.adoc[]
+endif::[]
+
 == Plugins
 
 A plugin for IntelliJ is provided in approvalsDocPlugin folder.
 
-include::approvalsDocPlugin/README.adoc[leveloffset=3]
+include::approvalsDocPlugin/README.adoc[leveloffset=+2]
