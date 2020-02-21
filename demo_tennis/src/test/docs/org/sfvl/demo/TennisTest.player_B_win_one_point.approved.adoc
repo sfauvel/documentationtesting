@@ -2,8 +2,20 @@
 
 When player B win one point, score is 0 / 15.
 
-[%autowidth]
+[%autowidth, cols=3*, stripes=none]
 |===
-| A |   | 0 
-| B | &#x2714; | 15 
+| Player A |  
+.2+^.^| *0 - 15* 
+| Player B | &#x2714;| 
 |===
+
+++++
+<style>
+table.tableblock.grid-all {
+    border-collapse: collapse;
+}
+table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr > .tableblock:last-child {
+    border: 1px solid #dddddd;
+}
+</style>
+++++

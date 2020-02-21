@@ -2,8 +2,20 @@
 
 At the begining, score is 0 / 0.
 
-[%autowidth]
+[%autowidth, cols=2*, stripes=none]
 |===
-| A | 0 
-| B | 0 
+| Player A
+.2+^.^| *0 - 0* 
+| Player B| 
 |===
+
+++++
+<style>
+table.tableblock.grid-all {
+    border-collapse: collapse;
+}
+table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr > .tableblock:last-child {
+    border: 1px solid #dddddd;
+}
+</style>
+++++

@@ -101,10 +101,26 @@ public class TennisTest extends ApprovalsBase {
 
     private void displayScore(TennisRecorder tennis) {
         Score score = tennis.getScore();
-        write("[%autowidth]\n|===\n");
-        write("| A" + pointsToTable("A", tennis.points) + " | " + score.playerA() + " \n");
-        write("| B" + pointsToTable("B", tennis.points) + " | " + score.playerB() + " \n");
+        String textScore = score.playerA() + " - " + score.playerB();
+        write("[%autowidth, cols=" + (tennis.points.size()+2) + "*, stripes=none]\n|===\n");
+        write("| Player A" + pointsToTable("A", tennis.points) + "\n.2+^.^| *" + textScore + "* \n");
+        write("| Player B" + pointsToTable("B", tennis.points) + "| \n");
         write("|===\n");
+
+        writeStyle();
+    }
+
+    private void writeStyle() {
+        write("\n++++\n" +
+                "<style>\n" +
+                "table.tableblock.grid-all {\n" +
+                "    border-collapse: collapse;\n" +
+                "}\n" +
+                "table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr > .tableblock:last-child {\n" +
+                "    border: 1px solid #dddddd;\n" +
+                "}\n" +
+                "</style>\n" +
+                "++++\n");
     }
 
     private String pointsToTable(String player, List<String> points) {
