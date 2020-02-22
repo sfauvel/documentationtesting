@@ -652,12 +652,18 @@ ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .olist, .olist .ulist 
 <ul class="sectlevel1">
 <li><a href="#_documentation_testing">Documentation testing</a>
 <ul class="sectlevel2">
-<li><a href="#_quick_start">Quick start</a></li>
-<li><a href="#_generate_a_full_documentation">Generate a full documentation</a></li>
+<li><a href="#_principal">Principal</a></li>
 <li><a href="#_examples">Examples</a></li>
-<li><a href="#_plugins">Plugins</a>
+<li><a href="#_what_does_it_change">What does it change</a></li>
+<li><a href="#_quick_start">Quick start</a></li>
+<li><a href="#_project">Project</a>
 <ul class="sectlevel3">
+<li><a href="#_generate_a_full_documentation">Generate a full documentation</a></li>
+<li><a href="#_plugins">Plugins</a>
+<ul class="sectlevel4">
 <li><a href="#_intellij_plugin">IntelliJ Plugin</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -670,6 +676,200 @@ ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .olist, .olist .ulist 
 <h2 id="_documentation_testing">Documentation testing</h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p>Imagine that your tests are as readable as documentation and that they look like this</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Tennis</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stripes-none fit-content">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Player A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2714;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><strong>15 - 30</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Player B</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2714;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2714;</p></td>
+</tr>
+</tbody>
+</table>
+<style>
+table.tableblock.grid-all {
+    border-collapse: collapse;
+}
+table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr > .tableblock:last-child {
+    border: 1px solid #dddddd;
+}
+</style>
+</div>
+</div>
+<div class="paragraph">
+<p>or like that</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Game of life</strong></p>
+</div>
+<table class="tableblock frame-none grid-none stripes-none fit-content">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p>Stay alive when 2 neighbours</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-all grid-all gameOfLife" style="width: 4%;">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+</tr>
+</tbody>
+</table></div></td>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p>&#8658;</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-all grid-all gameOfLife" style="width: 4%;">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+</tr>
+</tbody>
+</table></div></td>
+</tr>
+</tbody>
+</table>
+<style>
+
+.gameOfLife p {
+/* Need to set margin to 0 only with html file, not with adoc files.*/
+    margin: 0;
+    line-height: 1em;
+    width: 1em
+}
+
+.gameOfLife td {
+    line-height: 1em;
+    padding: 0;
+    color: white;
+}
+
+
+table .gameOfLife tr.even, table .gameOfLife tr.alt {
+    background: white;
+    color: white;
+}
+
+tr.even, tr.alt, table tr:nth-of-type(2n) {
+    background: white;
+}
+
+td .content .dead p {
+    background-color:white;
+    color: white;
+}
+td .content .alive p {
+    background-color:black;
+    color: black;
+}
+
+</style>
+</div>
+</div>
+<div class="paragraph">
+<p>This is what this project offers you to set up.</p>
+</div>
+<div class="sect2">
+<h3 id="_principal">Principal</h3>
+<div class="paragraph">
 <p>Instead of writing tests, we just writing documentation from the code.</p>
 </div>
 <div class="paragraph">
@@ -680,6 +880,38 @@ ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .olist, .olist .ulist 
 When documentation changed, test fails and the user needs to validate or not this new behavior.</p>
 </div>
 <div class="paragraph">
+<p>It&#8217;s a mix between <a href="https://www.amazon.com/Living-Documentation-Cyrille-Martraire/dp/0134689321">living documentation</a>
+and <a href="https://en.wikipedia.org/wiki/Characterization_test">Golden Master</a> (or <a href="https://michaelfeathers.silvrback.com/characterization-testing">characterization-testing</a>]).</p>
+</div>
+<div class="paragraph">
+<p>Full project documentation is here: <a href="https://sfauvel.github.io/documentationtesting/" class="bare">https://sfauvel.github.io/documentationtesting/</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_examples">Examples</h3>
+<div class="paragraph">
+<p>Several examples are provided to show how we can use it and what it can produce.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="./demo_tennis/index.html">demo_tennis</a></p>
+</li>
+<li>
+<p><a href="./demo_gildedrose/index.html">demo_gildedrose</a></p>
+</li>
+<li>
+<p><a href="./demo_basic/index.html">demo_basic</a></p>
+</li>
+<li>
+<p><a href="./demo_fizzbuzz/index.html">demo_fizzbuzz</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_does_it_change">What does it change</h3>
+<div class="paragraph">
 <p>The advantage is that we not have to check the expected result in tests.
 If the result we see in documentation is right, that&#8217;s ok.
 The second advantage is that we focus on documentation so that all our tests are readable by every one.</p>
@@ -689,14 +921,12 @@ The second advantage is that we focus on documentation so that all our tests are
 In that case, writing tests is just rewriting code and there is no real value.
 But, this information still needs to be checked.</p>
 </div>
-<div class="paragraph">
-<p>To get source and examples: <a href="https://github.com/sfauvel/documentationtesting" class="bare">https://github.com/sfauvel/documentationtesting</a></p>
-</div>
-<div class="paragraph">
-<p>Full documentation is here: <a href="https://sfauvel.github.io/documentationtesting/" class="bare">https://sfauvel.github.io/documentationtesting/</a></p>
 </div>
 <div class="sect2">
 <h3 id="_quick_start">Quick start</h3>
+<div class="paragraph">
+<p>The only module you need is <code>documentationtestesting</code> one.</p>
+</div>
 <div class="paragraph">
 <p>Start by writing a test that inherits from <code>org.sfvl.doctesting.ApprovalsBase</code>.</p>
 </div>
@@ -747,7 +977,7 @@ public class DemoTest  extends ApprovalsBase {
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">File generated</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">File generated to validate</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="sect1">
@@ -766,7 +996,12 @@ public class DemoTest  extends ApprovalsBase {
 </table>
 </div>
 <div class="sect2">
-<h3 id="_generate_a_full_documentation">Generate a full documentation</h3>
+<h3 id="_project">Project</h3>
+<div class="paragraph">
+<p>To get source and examples: <a href="https://github.com/sfauvel/documentationtesting" class="bare">https://github.com/sfauvel/documentationtesting</a></p>
+</div>
+<div class="sect3">
+<h4 id="_generate_a_full_documentation">Generate a full documentation</h4>
 <div class="paragraph">
 <p>To generate a single file with all tests, launch <code>MainDocumentation</code> class.</p>
 </div>
@@ -782,35 +1017,13 @@ launch tests, generate an asciidoc with all files generated and convert it to HT
 You can approve them all using <code>approveAll.sh</code>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_examples">Examples</h3>
-<div class="paragraph">
-<p>Several examples are provided to show how we can use it.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="./demo_tennis/index.html">demo_tennis</a></p>
-</li>
-<li>
-<p><a href="./demo_gildedrose/index.html">demo_gildedrose</a></p>
-</li>
-<li>
-<p><a href="./demo_basic/index.html">demo_basic</a></p>
-</li>
-<li>
-<p><a href="./demo_fizzbuzz/index.html">demo_fizzbuzz</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_plugins">Plugins</h3>
+<div class="sect3">
+<h4 id="_plugins">Plugins</h4>
 <div class="paragraph">
 <p>A plugin for IntelliJ is provided in approvalsDocPlugin folder.</p>
 </div>
-<div class="sect3">
-<h4 id="_intellij_plugin">IntelliJ Plugin</h4>
+<div class="sect4">
+<h5 id="_intellij_plugin">IntelliJ Plugin</h5>
 <div class="paragraph">
 <p>This plugin provide some automation to approve files from Approvals.</p>
 </div>
@@ -833,6 +1046,7 @@ You can approve them all using <code>approveAll.sh</code>.</p>
 <div class="paragraph">
 <p>This plugin is a beta version.
 You have to compile it and deploy it to your IntelliJ from .jar file present in 'build/distributions' folder.</p>
+</div>
 </div>
 </div>
 </div>
