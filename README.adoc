@@ -145,6 +145,16 @@ and link:https://en.wikipedia.org/wiki/Characterization_test[Golden Master] (or 
 
 Full project documentation is here: https://sfauvel.github.io/documentationtesting/
 
+=== Git version
+
+Here, we just generated files and compare them with git version. +
+It's done in `@AfterEach` to check when we throw one test from IDE.
+
+A script `check.sh` verify all differences to the head git version.
+The advantage is that it check also missing files (because a test was removed) and main documentation that include all others.
+
+When you want to approve a file, you need to commit it.
+
 == Examples
 
 Several examples are provided to show how we can use it and what it can produce.
