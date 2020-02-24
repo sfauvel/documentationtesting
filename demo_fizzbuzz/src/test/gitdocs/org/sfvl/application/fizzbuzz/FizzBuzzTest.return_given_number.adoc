@@ -1,9 +1,0 @@
-= Return given number
-
-When number is not divisible by five or three, returns the number.
-
-FizzBuzz(1) = 1 +
- FizzBuzz(2) = 2 +
- FizzBuzz(4) = 4 +
- FizzBuzz(22) = 22 +
- 
