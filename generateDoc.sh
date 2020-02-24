@@ -82,6 +82,7 @@ mvn clean install package
 echo -n "Generate Html"
 for demo_folder in  $(ls | grep "demo_*")
 do
+    source check.sh $demo_folder
     generateDemo $demo_folder
     echo -n "."
 done

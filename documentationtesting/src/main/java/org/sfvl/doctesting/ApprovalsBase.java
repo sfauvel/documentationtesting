@@ -3,18 +3,25 @@ package org.sfvl.doctesting;
 import com.thoughtworks.qdox.JavaProjectBuilder;
 import com.thoughtworks.qdox.model.JavaClass;
 import com.thoughtworks.qdox.model.JavaMethod;
-import org.approvaltests.Approvals;
-import org.approvaltests.writers.ApprovalTextWriter;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.Status;
+import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.lib.IndexDiff;
+import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.TestInfo;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Base class for test.
@@ -26,6 +33,22 @@ public class ApprovalsBase {
     private StringBuffer sb = new StringBuffer();
 
     /**
+     * Return git root path.
+     * This method is protected to allow a project to create a subclass and redefine git root path.
+     * @return
+     */
+    protected Path getGitRootPath() {
+        return Paths.get(this.getClass().getClassLoader().getResource("").getPath())
+                .getParent().getParent().getParent();
+    }
+
+    private Path getDocPath() {
+        return Paths.get(this.getClass().getClassLoader().getResource("").getPath())
+                .getParent().getParent()
+                .resolve(Paths.get("src", "test", "docs"));
+    }
+
+    /**
      * Write a text to the output.
      * @param text
      */
@@ -34,20 +57,55 @@ public class ApprovalsBase {
     }
 
     @AfterEach
-    public void approvedAfterTest(TestInfo testInfo) {
+    public void approvedAfterTest(TestInfo testInfo) throws IOException, GitAPIException {
 
-        String content = String.join("\n\n",
-                "= " + formatTitle(testInfo),
-                getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName()),
-                sb.toString());
+        final Path docRootPathGit = getDocPath();
+        final DocumentationNamer documentationNamer = new DocumentationNamer(docRootPathGit, testInfo);
 
-        final Path docRootPath = Paths.get(this.getClass().getClassLoader().getResource("").getPath())
-                .resolve(Paths.get("..", "..", "src", "test", "docs"));
+        writeContent(testInfo, documentationNamer);
 
-        Approvals.verify(
-                new ApprovalTextWriter(content, "adoc"),
-                new DocumentationNamer(docRootPath, testInfo),
-                Approvals.getReporter());
+        assertNoModification(documentationNamer);
+    }
+
+    private void writeContent(TestInfo testInfo, DocumentationNamer documentationNamer) throws IOException {
+        final Path filePath = documentationNamer.getFilePath();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath.toFile().toString()))) {
+            final String content = String.join("\n\n",
+                    "= " + formatTitle(testInfo),
+                    getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName()),
+                    sb.toString());
+
+            writer.write(content);
+        }
+    }
+
+    private void assertNoModification(DocumentationNamer documentationNamer) throws IOException, GitAPIException {
+        final Path gitRoot = getGitRootPath();
+
+        final Path subPath = gitRoot.relativize(documentationNamer.getFilePath());
+        if (isModify(gitRoot, subPath.toString())) {
+            fail("File was modified:" + documentationNamer.getApprovalName()+".adoc");
+        } else {
+            System.out.println("Success:" + documentationNamer.getApprovalName()+".adoc");
+
+        }
+    }
+
+    public boolean isModify(Path root, String path) throws IOException, GitAPIException {
+        System.out.println(path.toString());
+        File rootGit = root
+                .resolve(".git")
+                .toFile();
+
+        Repository repository = new FileRepositoryBuilder()
+                .setGitDir(rootGit)
+                .setMustExist(true)
+                .build();
+
+        try (Git git = new Git(repository)) {
+            Status status = git.status().addPath(path).call();
+            return !status.isClean();
+        }
     }
 
     /**
