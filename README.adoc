@@ -152,8 +152,17 @@ It's done in `@AfterEach` to check when we throw one test from IDE.
 
 A script `check.sh` verify all differences to the head git version.
 The advantage is that it check also missing files (because a test was removed) and main documentation that include all others.
+Every files within doc folder will be checked.
 
-When you want to approve a file, you need to commit it.
+When you want to approve a file, you just have to commit it.
+
+Process is decomposed in 3 steps.
+
+* Generate doc (no framework really needed, Xunit is just a tool to help us to run all generation)
+* Check there is no difference
+* Generate Html from adoc
+
+
 
 == Examples
 

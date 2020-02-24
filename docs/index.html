@@ -652,7 +652,11 @@ ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .olist, .olist .ulist 
 <ul class="sectlevel1">
 <li><a href="#_documentation_testing">Documentation testing</a>
 <ul class="sectlevel2">
-<li><a href="#_principal">Principal</a></li>
+<li><a href="#_principal">Principal</a>
+<ul class="sectlevel3">
+<li><a href="#_git_version">Git version</a></li>
+</ul>
+</li>
 <li><a href="#_examples">Examples</a></li>
 <li><a href="#_what_does_it_change">What does it change</a></li>
 <li><a href="#_quick_start">Quick start</a></li>
@@ -885,6 +889,21 @@ and <a href="https://en.wikipedia.org/wiki/Characterization_test">Golden Master<
 </div>
 <div class="paragraph">
 <p>Full project documentation is here: <a href="https://sfauvel.github.io/documentationtesting/" class="bare">https://sfauvel.github.io/documentationtesting/</a></p>
+</div>
+<div class="sect3">
+<h4 id="_git_version">Git version</h4>
+<div class="paragraph">
+<p>Here, we just generated files and compare them with git version.<br>
+It&#8217;s done in <code>@AfterEach</code> to check when we throw one test from IDE.</p>
+</div>
+<div class="paragraph">
+<p>A script <code>check.sh</code> verify all differences to the head git version.
+The advantage is that it check also missing files (because a test was removed) and main documentation that include all others.
+Every files within doc folder will be checked.</p>
+</div>
+<div class="paragraph">
+<p>When you want to approve a file, you just have to commit it.</p>
+</div>
 </div>
 </div>
 <div class="sect2">

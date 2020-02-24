@@ -82,6 +82,7 @@ mvn clean install package
 echo -n "Generate Html"
 for demo_folder in  $(ls | grep "demo_*")
 do
+    echo ""
     echo ---------------------
     echo "$demo_folder"
     echo ---------------------
