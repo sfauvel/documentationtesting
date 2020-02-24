@@ -7,5 +7,5 @@ include::../../../readme.adoc[leveloffset=+1]
 == InnTest
 
 
-include::fr/xebia/katas/gildedrose/InnTest.example_of_evolution_by_item.approved.adoc[leveloffset=+2]
+include::fr/xebia/katas/gildedrose/InnTest.example_of_evolution_by_item.adoc[leveloffset=+2]
 
