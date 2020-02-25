@@ -158,10 +158,20 @@ When you want to approve a file, you just have to commit it.
 
 Process is decomposed in 3 steps.
 
-* Generate doc (no framework really needed, Xunit is just a tool to help us to run all generation)
-* Check there is no difference
-* Generate Html from adoc
 
+[cols="1,1"]
+|====
+| Module | Need
+
+| Generate doc | source code, *.adoc writer
+| Check there is no difference | shell, git, *.adoc
+| Generate Html from adoc | asciidoc, *.adoc
+|====
+
+Generate documentation not required any framework.
+The only need is writing files containing what we need to check.
+There is no constraint about language used to generate files.
+Using xUnit simplify this by creating one file by test using method name and run it with tools provided.
 
 
 == Examples
