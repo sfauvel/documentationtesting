@@ -38,8 +38,16 @@ public class ApprovalsBase {
      * @return
      */
     protected Path getGitRootPath() {
-        return Paths.get(this.getClass().getClassLoader().getResource("").getPath())
-                .getParent().getParent().getParent();
+
+        final Path originalPath = Paths.get(this.getClass().getClassLoader().getResource("").getPath());
+        Path path = originalPath;
+        while (!path.resolve(".git").toFile().exists()) {
+            path = path.getParent();
+            if (path == null) {
+                throw new RuntimeException("No git repository found from parents of " + originalPath.toString());
+            }
+        }
+        return path;
     }
 
     private Path getDocPath() {
