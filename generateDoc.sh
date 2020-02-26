@@ -9,6 +9,11 @@ DOC_PATH=docs
 ASCIIDOC_PATH=documentationtestingdoc/target/adoc
 FILENAME=demo
 
+# Validation mode: git or approvals
+# With approvals: file .approved is compare to .received (no need to have git). It not verify removed tests
+# with git: file .approved is compare with git commited version. It detect tests removed.
+VALIDATION_MODE="git"
+
 if [ ! -d ${ASCIIDOC_PATH} ]
 then
 
@@ -78,15 +83,21 @@ fi
 function remove_docs_directories() {
   for DEMO_NAME in  $(ls | grep "demo_*")
   do
-    rm -rf $DEMO_NAME/src/test/docs # Do not remove if check with approvals
+    rm -rf $DEMO_NAME/src/test/docs
   done
 }
 
 # Generate all documentation
+
 # delete docs directories to check files not regenerated because of a removed test.
-#remove_docs_directories () # Do not remove if check with approvals
+# Do not remove if check with approvals
+if [ $VALIDATION_MODE = "git" ]
+then
+  remove_docs_directories
+fi
+
 # 'noassert' avoir to check diff on each test. That's not seem to significantly faster.
-mvn clean install package -Dnoassert -Dapproved_with=approvals
+mvn clean install package -Dnoassert -Dapproved_with=$VALIDATION_MODE
 
 # Check file differences
 ALL_RESULTS=""
