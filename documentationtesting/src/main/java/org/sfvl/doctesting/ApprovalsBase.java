@@ -75,7 +75,10 @@ public class ApprovalsBase {
 
         writeContent(testInfo, documentationNamer);
 
-        assertNoModification(documentationNamer);
+        // When property noassert is present, we just generate documents without checking.
+        if (System.getProperty("noassert") == null) {
+            assertNoModification(documentationNamer);
+        }
     }
 
     private void writeContent(TestInfo testInfo, DocumentationNamer documentationNamer) throws IOException {

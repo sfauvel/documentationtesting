@@ -76,27 +76,62 @@ then
 fi
 
 # Generate all documentation
-mvn clean install package
+# 'noassert' avoir to check diff on each test. That's not seem to significantly faster.
+mvn clean install package -Dnoassert
 
 # Check file differences
+ALL_RESULTS=""
 echo -n "Generate Html"
-for demo_folder in  $(ls | grep "demo_*")
+for DEMO_NAME in  $(ls | grep "demo_*")
 do
     echo ""
     echo ---------------------
-    echo "$demo_folder"
+    echo "$DEMO_NAME"
     echo ---------------------
-    source check.sh $demo_folder/src/test/docs
+    DEMO_RESULT=$(source checkDoc.sh $DEMO_NAME/src/test/docs)
+    DEMO_STATUS="${DEMO_RESULT##*$'\n'}" # Last line
+    echo "$DEMO_RESULT"
+    ALL_RESULTS="$ALL_RESULTS- ${DEMO_NAME}: ${DEMO_STATUS}\n"
 done
+
+echo ""
+echo ---------------------
+echo Results:
+echo -e "$ALL_RESULTS"
 
 # Generate Html files
-echo -n "Generate Html"
-for demo_folder in  $(ls | grep "demo_*")
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NO_COLOR='\033[0m' # No Color
+
+write_failure() {
+  echo -e "${RED}$1${NO_COLOR}"
+}
+
+write_success() {
+  echo -e "${GREEN}$1${NO_COLOR}"
+}
+
+
+write_result() {
+  HTML_RESULT="$*"
+  if [ -z "$HTML_RESULT" ]
+  then
+    write_success "OK"
+  else
+    write_failure "FAILURE"
+    write_failure "$HTML_RESULT"
+  fi
+}
+
+echo "Generate Html: "
+for DEMO_NAME in  $(ls | grep "demo_*")
 do
-    generateDemo $demo_folder
-    echo -n "."
+    echo -n "- ${DEMO_NAME}: "
+    HTML_RESULT=$(generateDemo $DEMO_NAME)
+    write_result "$HTML_RESULT"
 done
 
-generateDoc
-echo "."
-
+HTML_RESULT=$(generateDoc)
+echo -n "- project documentation: "
+write_result "$HTML_RESULT"

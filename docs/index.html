@@ -897,7 +897,7 @@ and <a href="https://en.wikipedia.org/wiki/Characterization_test">Golden Master<
 It&#8217;s done in <code>@AfterEach</code> to check when we throw one test from IDE.</p>
 </div>
 <div class="paragraph">
-<p>A script <code>check.sh</code> verify all differences to the head git version.
+<p>A script <code>check.sh</code> verify all differences compare to the head git version (you can do the same using only git).
 The advantage is that it check also missing files (because a test was removed) and main documentation that include all others.
 Every files within doc folder will be checked.</p>
 </div>
@@ -907,18 +907,37 @@ Every files within doc folder will be checked.</p>
 <div class="paragraph">
 <p>Process is decomposed in 3 steps.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Generate doc (no framework really needed, Xunit is just a tool to help us to run all generation)</p>
-</li>
-<li>
-<p>Check there is no difference</p>
-</li>
-<li>
-<p>Generate Html from adoc</p>
-</li>
-</ul>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Module</th>
+<th class="tableblock halign-left valign-top">Need</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generate doc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">source code, *.adoc writer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check there is no difference</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shell, git, *.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generate Html from adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">asciidoc, *.adoc</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Generate documentation not required any framework.
+The only need is writing files containing what we need to check.
+There is no constraint about language used to generate files.
+Using xUnit simplify this by creating one file by test using method name and run it with tools provided.</p>
 </div>
 </div>
 </div>
@@ -988,7 +1007,7 @@ If it is the case, rename it with <code>approved.adoc</code> instead of <code>re
 <div class="listingblock">
 <div class="title">Example with DemoTest.java</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="java">package org.sfvl.demo;
+<pre class="highlight"><code class="language-java" data-lang="java">package org.sfvl.demo;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -1021,8 +1040,16 @@ public class DemoTest  extends ApprovalsBase {
 <td class="tableblock halign-left valign-top"><p class="tableblock">File generated to validate</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Unresolved directive in &lt;stdin&gt; - include::../../../demo_basic/src/test/docs/org/sfvl/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+3]</p>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="sect1">
+<h2 id="_adding_2_simple_numbers">Adding 2 simple numbers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When adding two simple numbers, the java operator '+' should return the sum of them.</p>
+</div>
+<div class="paragraph">
+<p>2 + 3 = 5</p>
+</div>
+</div>
 </div></div></td>
 </tr>
 </tbody>
