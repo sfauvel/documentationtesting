@@ -6,10 +6,10 @@ include::../../../readme.adoc[leveloffset=+1]
 == Scores examples
 We will display a tennis score.
 
-include::org/sfvl/demo/TennisTest.start_of_the_game.adoc[leveloffset=+2]
-include::org/sfvl/demo/TennisTest.player_A_win_one_point.adoc[leveloffset=+2]
-include::org/sfvl/demo/TennisTest.player_B_win_one_point.adoc[leveloffset=+2]
-include::org/sfvl/demo/TennisTest.player_A_win_two_points.adoc[leveloffset=+2]
-include::org/sfvl/demo/TennisTest.player_B_win_two_points.adoc[leveloffset=+2]
-include::org/sfvl/demo/TennisTest.both_players_win_some_points.adoc[leveloffset=+2]
+include::org/sfvl/demo/TennisTest.start_of_the_game.approved.adoc[leveloffset=+2]
+include::org/sfvl/demo/TennisTest.player_A_win_one_point.approved.adoc[leveloffset=+2]
+include::org/sfvl/demo/TennisTest.player_B_win_one_point.approved.adoc[leveloffset=+2]
+include::org/sfvl/demo/TennisTest.player_A_win_two_points.approved.adoc[leveloffset=+2]
+include::org/sfvl/demo/TennisTest.player_B_win_two_points.approved.adoc[leveloffset=+2]
+include::org/sfvl/demo/TennisTest.both_players_win_some_points.approved.adoc[leveloffset=+2]
 

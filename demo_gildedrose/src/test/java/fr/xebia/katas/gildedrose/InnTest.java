@@ -82,7 +82,7 @@ public class InnTest extends ApprovalsBase {
 
         Path relativeFilePath = Paths.get(getClass().getPackage().getName().replaceAll("\\.", "/"), fileName);
         Path fullPath = docRootPath.resolve(relativeFilePath);
-        createDirIfNotExists(fullPath);
+        createDirIfNotExists(fullPath.getParent());
 
         BitmapEncoder.saveBitmap(chart, fullPath.toString(), BitmapEncoder.BitmapFormat.PNG);
 
