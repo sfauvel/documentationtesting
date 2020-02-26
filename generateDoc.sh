@@ -76,6 +76,11 @@ then
 fi
 
 # Generate all documentation
+# delete docs directories to check files not regenerated because of a removed test.
+for DEMO_NAME in  $(ls | grep "demo_*")
+do
+  rm -rf $DEMO_NAME/src/test/docs
+done
 # 'noassert' avoir to check diff on each test. That's not seem to significantly faster.
 mvn clean install package -Dnoassert
 
