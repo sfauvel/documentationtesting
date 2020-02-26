@@ -1,0 +1,10 @@
+:toc: left
+:nofooter:
+
+= Documentation
+
+== DemoTest
+Demo of a simple usage to generate documentation.
+
+include::org/sfvl/demo/DemoTest.should_be_5_when_adding_2_and_3.adoc[leveloffset=+2]
+
