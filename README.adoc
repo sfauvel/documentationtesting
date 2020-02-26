@@ -150,7 +150,7 @@ Full project documentation is here: https://sfauvel.github.io/documentationtesti
 Here, we just generated files and compare them with git version. +
 It's done in `@AfterEach` to check when we throw one test from IDE.
 
-A script `check.sh` verify all differences to the head git version.
+A script `check.sh` verify all differences compare to the head git version (you can do the same using only git).
 The advantage is that it check also missing files (because a test was removed) and main documentation that include all others.
 Every files within doc folder will be checked.
 
@@ -218,7 +218,7 @@ include::demo_basic/src/test/java/org/sfvl/demo/DemoTest.java[]
 
 |===
 | File generated to validate
-a| include::{rootpath}/demo_basic/src/test/docs/org/sfvl/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+3]
+a| include::{rootpath}/demo_basic/src/test/docs/org/sfvl/demo/DemoTest.should_be_5_when_adding_2_and_3.adoc[leveloffset=+3]
 |===
 
 == Project
