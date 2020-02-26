@@ -120,7 +120,7 @@ public interface Formatter {
         public String standardOptions() {
             return String.join("\n",
                     ":sourcedir: ..",
-                    ":source-highlighter: Rouge",
+                    ":source-highlighter: coderay",
                     ":docinfo:",
                     ""
             );
