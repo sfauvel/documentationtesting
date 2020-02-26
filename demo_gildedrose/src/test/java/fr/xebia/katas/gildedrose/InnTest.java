@@ -80,11 +80,13 @@ public class InnTest extends ApprovalsBase {
                 .replaceAll(",", "_")
                 .replaceAll("\\+", "");
 
-        final Path path = Paths.get(getClass().getPackage().getName().replaceAll("\\.", "/"), fileName);
+        Path relativeFilePath = Paths.get(getClass().getPackage().getName().replaceAll("\\.", "/"), fileName);
+        Path fullPath = docRootPath.resolve(relativeFilePath);
+        createDirIfNotExists(fullPath);
 
-        BitmapEncoder.saveBitmap(chart, docRootPath.resolve(path).toFile().getPath(), BitmapEncoder.BitmapFormat.PNG);
+        BitmapEncoder.saveBitmap(chart, fullPath.toString(), BitmapEncoder.BitmapFormat.PNG);
 
-        return path + ".png";
+        return relativeFilePath + ".png";
     }
 
     /**

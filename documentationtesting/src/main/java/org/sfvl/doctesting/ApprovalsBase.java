@@ -51,9 +51,11 @@ public class ApprovalsBase {
     }
 
     private Path getDocPath() {
-        return Paths.get(this.getClass().getClassLoader().getResource("").getPath())
+        Path docPath = Paths.get(this.getClass().getClassLoader().getResource("").getPath())
                 .getParent().getParent()
                 .resolve(Paths.get("src", "test", "docs"));
+        createDirIfNotExists(docPath);
+        return docPath;
     }
 
     /**
@@ -80,6 +82,7 @@ public class ApprovalsBase {
 
     private void writeContent(TestInfo testInfo, DocumentationNamer documentationNamer) throws IOException {
         final Path filePath = documentationNamer.getFilePath();
+        createDirIfNotExists(Paths.get(documentationNamer.getSourceFilePath()));
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath.toFile().toString()))) {
             final String content = String.join("\n\n",
                     "= " + formatTitle(testInfo),
@@ -87,6 +90,14 @@ public class ApprovalsBase {
                     sb.toString());
 
             writer.write(content);
+        }
+    }
+
+    public void createDirIfNotExists(Path path) {
+        if (!path.toFile().exists()) {
+            if (!path.toFile().mkdirs()) {
+                throw new RuntimeException("Error creating path: " + path.toString());
+            }
         }
     }
 
