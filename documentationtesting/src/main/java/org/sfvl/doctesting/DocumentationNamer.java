@@ -37,6 +37,6 @@ public class DocumentationNamer {
     }
 
     public Path getFilePath() {
-        return Paths.get(getSourceFilePath(), getApprovalName()+".adoc");
+        return Paths.get(getSourceFilePath(), getApprovalName()+".approved.adoc");
     }
 }

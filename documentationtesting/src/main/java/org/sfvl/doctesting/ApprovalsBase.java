@@ -3,10 +3,12 @@ package org.sfvl.doctesting;
 import com.thoughtworks.qdox.JavaProjectBuilder;
 import com.thoughtworks.qdox.model.JavaClass;
 import com.thoughtworks.qdox.model.JavaMethod;
+import org.approvaltests.Approvals;
+import org.approvaltests.namer.ApprovalNamer;
+import org.approvaltests.writers.ApprovalTextWriter;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.Status;
 import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.lib.IndexDiff;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.junit.jupiter.api.AfterEach;
@@ -69,10 +71,19 @@ public class ApprovalsBase {
     @AfterEach
     public void approvedAfterTest(TestInfo testInfo) throws IOException, GitAPIException {
 
-        final Path docRootPathGit = getDocPath();
-        final DocumentationNamer documentationNamer = new DocumentationNamer(docRootPathGit, testInfo);
+        final Path docRootPath = getDocPath();
+        String content = buildContent(testInfo);
 
-        writeContent(testInfo, documentationNamer);
+        if ("approvals".equals(System.getProperty("approved_with"))) {
+            approvedAfterTestWithApproval(content, new DocumentationNamer(docRootPath, testInfo));
+        } else {
+            approvalAfterTestWithGit(content, new DocumentationNamer(docRootPath, testInfo));
+        }
+    }
+
+    private void approvalAfterTestWithGit(final String content, final DocumentationNamer documentationNamer) throws IOException, GitAPIException {
+
+        writeContent(documentationNamer, content);
 
         // When property noassert is present, we just generate documents without checking.
         if (System.getProperty("noassert") == null) {
@@ -80,17 +91,39 @@ public class ApprovalsBase {
         }
     }
 
-    private void writeContent(TestInfo testInfo, DocumentationNamer documentationNamer) throws IOException {
+    private void approvedAfterTestWithApproval(final String content, final DocumentationNamer documentationNamer) {
+        ApprovalNamer approvalNamer = new ApprovalNamer() {
+
+            @Override
+            public String getApprovalName() {
+                return documentationNamer.getApprovalName();
+            }
+
+            @Override
+            public String getSourceFilePath() {
+                return documentationNamer.getSourceFilePath();
+            }
+        };
+
+        Approvals.verify(
+                new ApprovalTextWriter(content, "adoc"),
+                approvalNamer,
+                Approvals.getReporter());
+    }
+
+    private void writeContent(DocumentationNamer documentationNamer, String content) throws IOException {
         final Path filePath = documentationNamer.getFilePath();
         createDirIfNotExists(Paths.get(documentationNamer.getSourceFilePath()));
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath.toFile().toString()))) {
-            final String content = String.join("\n\n",
-                    "= " + formatTitle(testInfo),
-                    getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName()),
-                    sb.toString());
-
             writer.write(content);
         }
+    }
+
+    private String buildContent(TestInfo testInfo) {
+        return String.join("\n\n",
+                "= " + formatTitle(testInfo),
+                getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName()),
+                sb.toString());
     }
 
     public void createDirIfNotExists(Path path) {

@@ -90,7 +90,7 @@ public class MainDocumentation {
 
         return getMethodsInOrder(testMethods)
                 .map(m -> new DocumentationNamer(docRootPath, m))
-                .map(m -> docRootPath.relativize(Paths.get(m.getSourceFilePath())) + "/" + m.getApprovalName() + ".adoc")
+                .map(m -> docRootPath.relativize(Paths.get(m.getSourceFilePath())) + "/" + m.getApprovalName() + ".approved.adoc")
                 .map(m -> "include::" + m + "[leveloffset=+2]")
                 .collect(Collectors.joining("\n"));
     }

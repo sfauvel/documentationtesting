@@ -75,14 +75,18 @@ then
     mkdir ${DOC_PATH}
 fi
 
+function remove_docs_directories() {
+  for DEMO_NAME in  $(ls | grep "demo_*")
+  do
+    rm -rf $DEMO_NAME/src/test/docs # Do not remove if check with approvals
+  done
+}
+
 # Generate all documentation
 # delete docs directories to check files not regenerated because of a removed test.
-for DEMO_NAME in  $(ls | grep "demo_*")
-do
-  rm -rf $DEMO_NAME/src/test/docs
-done
+#remove_docs_directories () # Do not remove if check with approvals
 # 'noassert' avoir to check diff on each test. That's not seem to significantly faster.
-mvn clean install package -Dnoassert
+mvn clean install package -Dnoassert -Dapproved_with=approvals
 
 # Check file differences
 ALL_RESULTS=""
