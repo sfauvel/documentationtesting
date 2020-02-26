@@ -210,8 +210,8 @@ Read the file and verify that it says what we expected.
 If it is the case, rename it with `approved.adoc` instead of `received.adoc`.
 
 
-[source, java]
 .Example with DemoTest.java
+[source, java]
 ----
 include::demo_basic/src/test/java/org/sfvl/demo/DemoTest.java[]
 ----
