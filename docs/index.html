@@ -652,11 +652,7 @@ ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .olist, .olist .ulist 
 <ul class="sectlevel1">
 <li><a href="#_documentation_testing">Documentation testing</a>
 <ul class="sectlevel2">
-<li><a href="#_principal">Principal</a>
-<ul class="sectlevel3">
-<li><a href="#_git_version">Git version</a></li>
-</ul>
-</li>
+<li><a href="#_principal">Principal</a></li>
 <li><a href="#_examples">Examples</a></li>
 <li><a href="#_what_does_it_change">What does it change</a></li>
 <li><a href="#_quick_start">Quick start</a></li>
@@ -670,6 +666,12 @@ ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .olist, .olist .ulist 
 </li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#_ways_to_implement">Ways to implement</a>
+<ul class="sectlevel2">
+<li><a href="#_git_version">Git version</a></li>
+<li><a href="#_approvals_version">Approvals version</a></li>
 </ul>
 </li>
 </ul>
@@ -890,77 +892,14 @@ and <a href="https://en.wikipedia.org/wiki/Characterization_test">Golden Master<
 <div class="paragraph">
 <p>Full project documentation is here: <a href="https://sfauvel.github.io/documentationtesting/" class="bare">https://sfauvel.github.io/documentationtesting/</a></p>
 </div>
-<div class="sect3">
-<h4 id="_git_version">Git version</h4>
-<div class="paragraph">
-<p>Here, we just generated files and compare them with git version.<br>
-It&#8217;s done in <code>@AfterEach</code> to check when we throw one test from IDE.</p>
-</div>
-<div class="paragraph">
-<p>A script <code>check.sh</code> verify all differences compare to the head git version (you can do the same using only git).
-The advantage is that it check also missing files (because a test was removed) and main documentation that include all others.
-Every files within doc folder will be checked.</p>
-</div>
-<div class="paragraph">
-<p>When you want to approve a file, you just have to commit it.</p>
-</div>
-<div class="paragraph">
-<p>Process is decomposed in 3 steps.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Module</th>
-<th class="tableblock halign-left valign-top">Need</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Generate doc</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">source code, *.adoc writer</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Check there is no difference</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">shell, git, *.adoc</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Generate Html from adoc</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">asciidoc, *.adoc</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Generate documentation not required any framework.
-The only need is writing files containing what we need to check.
-There is no constraint about language used to generate files.
-Using xUnit simplify this by creating one file by test using method name and run it with tools provided.</p>
-</div>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_examples">Examples</h3>
 <div class="paragraph">
 <p>Several examples are provided to show how we can use it and what it can produce.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="./demo_tennis/index.html">demo_tennis</a></p>
-</li>
-<li>
-<p><a href="./demo_gildedrose/index.html">demo_gildedrose</a></p>
-</li>
-<li>
-<p><a href="./demo_basic/index.html">demo_basic</a></p>
-</li>
-<li>
-<p><a href="./demo_fizzbuzz/index.html">demo_fizzbuzz</a></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Unresolved directive in ../../../../README.adoc - include::./documentationtestingdoc/target/adoc/demo_list.adoc[]</p>
 </div>
 </div>
 <div class="sect2">
@@ -1034,16 +973,8 @@ If it is the case, rename it with <code>approved.adoc</code> instead of <code>re
 <td class="tableblock halign-left valign-top"><p class="tableblock">File generated to validate</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="sect1">
-<h2 id="_adding_2_simple_numbers">Adding 2 simple numbers</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>When adding two simple numbers, the java operator '+' should return the sum of them.</p>
-</div>
-<div class="paragraph">
-<p>2 + 3 = 5</p>
-</div>
-</div>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Unresolved directive in &lt;stdin&gt; - include::../../../demo_basic/src/test/docs/org/sfvl/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+3]</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1102,6 +1033,70 @@ You can approve them all using <code>approveAll.sh</code>.</p>
 You have to compile it and deploy it to your IntelliJ from .jar file present in 'build/distributions' folder.</p>
 </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ways_to_implement">Ways to implement</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_git_version">Git version</h3>
+<div class="paragraph">
+<p>Here, we just generated files and compare them with git version.<br>
+It&#8217;s done in <code>@AfterEach</code> to check when we throw one test from IDE.</p>
+</div>
+<div class="paragraph">
+<p>A script <code>check.sh</code> verify all differences compare to the head git version (you can do the same using only git).
+The advantage is that it check also missing files (because a test was removed) and main documentation that include all others.
+Every files within doc folder will be checked.</p>
+</div>
+<div class="paragraph">
+<p>When you want to approve a file, you just have to commit it.</p>
+</div>
+<div class="paragraph">
+<p>Process is decomposed in 3 steps.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Module</th>
+<th class="tableblock halign-left valign-top">Need</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generate doc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">source code, *.adoc writer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check there is no difference</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shell, git, *.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generate Html from adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">asciidoc, *.adoc</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Generate documentation not required any framework.
+The only need is writing files containing what we need to check.
+There is no constraint about language used to generate files.
+Using xUnit simplify this by creating one file by test using method name and run it with tools provided.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_approvals_version">Approvals version</h3>
+<div class="paragraph">
+<p>Approvals is a library to make golden master.
+Using it, each test produce a <code>.received</code> file.
+It is compare with a <code>.approved</code> file with the same name.
+The test fail if there is a difference.</p>
 </div>
 </div>
 </div>

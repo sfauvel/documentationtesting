@@ -145,35 +145,6 @@ and link:https://en.wikipedia.org/wiki/Characterization_test[Golden Master] (or 
 
 Full project documentation is here: https://sfauvel.github.io/documentationtesting/
 
-=== Git version
-
-Here, we just generated files and compare them with git version. +
-It's done in `@AfterEach` to check when we throw one test from IDE.
-
-A script `check.sh` verify all differences compare to the head git version (you can do the same using only git).
-The advantage is that it check also missing files (because a test was removed) and main documentation that include all others.
-Every files within doc folder will be checked.
-
-When you want to approve a file, you just have to commit it.
-
-Process is decomposed in 3 steps.
-
-
-[cols="1,1"]
-|====
-| Module | Need
-
-| Generate doc | source code, *.adoc writer
-| Check there is no difference | shell, git, *.adoc
-| Generate Html from adoc | asciidoc, *.adoc
-|====
-
-Generate documentation not required any framework.
-The only need is writing files containing what we need to check.
-There is no constraint about language used to generate files.
-Using xUnit simplify this by creating one file by test using method name and run it with tools provided.
-
-
 == Examples
 
 Several examples are provided to show how we can use it and what it can produce.
