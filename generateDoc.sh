@@ -54,7 +54,7 @@ function generateAsciidoc() {
 
 function generateDoc() {
     MODULE=documentationtestingdoc
-    generateAsciidoc "" docs ${DOCKER_WORKDIR}/${MODULE}/target/adoc/demo.adoc
+    generateAsciidoc "" docs ${DOCKER_WORKDIR}/${MODULE}/target/classes/docs/demo.adoc
 }
 
 # Redefine pushd and popd to avoid trace

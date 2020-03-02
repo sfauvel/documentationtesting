@@ -44,7 +44,8 @@ public class DocGenerator {
                 ":nofooter:\n" +
                 ":fulldoc:\n" +
                 formatter.tableOfContent() +
-                formatter.include(docPath.relativize(Paths.get("README.adoc").toAbsolutePath()).toString());
+                formatter.include(docPath.relativize(Paths.get("README.adoc").toAbsolutePath()).toString()) +
+                formatter.include("ways_to_implement.adoc");
 
         Files.createDirectories(docPath);
 
