@@ -1,6 +1,6 @@
 = Start of the game
 
-At the begining, score is 0 / 0.
+At the beginning, score is 0 / 0.
 
 [%autowidth, cols=2*, stripes=none]
 |===

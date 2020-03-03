@@ -5,7 +5,6 @@ import org.junit.jupiter.api.TestInfo;
 
 import java.lang.reflect.Method;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  * Class to define documentation file name from a test method.

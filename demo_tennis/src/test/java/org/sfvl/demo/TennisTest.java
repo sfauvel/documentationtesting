@@ -32,7 +32,7 @@ public class TennisTest extends ApprovalsBase {
     TennisRecorder tennis = new TennisRecorder();
 
     /**
-     * At the begining, score is 0 / 0.
+     * At the beginning, score is 0 / 0.
      */
     @Test
     public void start_of_the_game() {
