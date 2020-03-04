@@ -40,7 +40,7 @@ When development is finished, you can merge the branch and removed all intermedi
 
 == Approvals version
 
-Approvals is a library to make golden master.
+Approvals is a library to make golden master (https://github.com/approvals).
 Using it, each test produce a `.received` file.
 It is compared with a `.approved` file with the same name.
 The test fail if there is a difference.
