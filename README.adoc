@@ -150,7 +150,7 @@ Full project documentation is here: https://sfauvel.github.io/documentationtesti
 Several examples are provided to show how we can use it and what it can produce.
 
 ifdef::fulldoc[]
-include::./documentationtestingdoc/target/adoc/demo_list.adoc[]
+include::./documentationtestingdoc/target/classes/docs/demo_list.adoc[]
 endif::[]
 
 == What does it change

@@ -56,7 +56,7 @@ public class MainDocumentation {
                 )
                 .collect(Collectors.joining("\n"));
 
-        System.out.println(testsDocumentation);
+        //System.out.println(testsDocumentation);
 
         final Path readmePath = pathProvider.getProjectPath().resolve(Paths.get("readme.adoc"));
 

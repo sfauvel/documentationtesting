@@ -1,19 +1,19 @@
 #!/bin/bash
+# Check differences between file on disk and git files in one subdirectory.
+# Each difference is consider as a regression.
 
-ROOT_DOC=$1
-
-set -euo pipefail
-#IFS=$'\n\t'
-
-if [ -z "$ROOT_DOC" ]
+if [ -z "$1" ]
 then
   echo First parameter with path to check must be define
   exit 0
+else
+  ROOT_DOC=$1
 fi
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-NO_COLOR='\033[0m' # No Color
+set -euo pipefail
+
+source loadWritingFunction.sh
+
 NEW_LINE=$'\n'
 
 ALL_FAILING_TESTS=$(git status -s --no-renames $ROOT_DOC)
@@ -31,14 +31,6 @@ else
   NB_FAILURES=0
 fi
 
-write_failure() {
-  echo -e "${RED}$1${NO_COLOR}"
-}
-
-write_success() {
-  echo -e "${GREEN}$1${NO_COLOR}"
-}
-
 for FILENAME in $ALL_GIT_FILES
 do
   SIMPLE_FILE_NAME=$(sed -r "s|.*\/(.*).adoc|\1|g" <<<"$FILENAME")
@@ -51,7 +43,7 @@ done
 
 echo ---------------------
 
-if [ ! -z "ALL_FAILING_TESTS" ]
+if [ ! -z "$ALL_FAILING_TESTS" ]
 then
   write_failure "FAILURES: ${NB_FAILURES}"
 else
