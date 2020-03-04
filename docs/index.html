@@ -1114,7 +1114,9 @@ Using xUnit simplify this by creating one file by test using method name and run
 <p>Using git involves to commit approved files.
 That means you have to commit approved files to have green test.
 But if you do, you are red test in your git repository until you commit your code.
-If you want to work with baby steps, you could create a branch to commit approved files.
+If you want to work with baby steps, you could just commit on your local branch the approved files.
+Before pushing, you can make an interactive rebase to remove useless commits (identify with a pattern like DOC:).
+You also can create a specific branch to work on the feature and commit approved files to it.
 When development is finished, you can merge branch removing all intermediate states.</p>
 </div>
 </div>
