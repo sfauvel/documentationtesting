@@ -18,7 +18,7 @@ import java.util.stream.IntStream;
 public class FizzBuzzTest extends ApprovalsBase {
 
     @Test
-    public void sample_ouput() {
+    public void sample_output() {
         write(IntStream.rangeClosed(1, 20)
                 .mapToObj(FizzBuzz::get)
                 .collect(Collectors.joining(" +\n")));
@@ -55,7 +55,7 @@ public class FizzBuzzTest extends ApprovalsBase {
     }
 
     /**
-     * When number is divisible three and five, returns FizzBuzz.
+     * When number is divisible by three and five, returns FizzBuzz.
      */
     @Test
     public void return_fizzbuzz_when_divisible_by_three_and_five() {
