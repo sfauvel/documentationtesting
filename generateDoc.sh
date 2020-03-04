@@ -2,8 +2,8 @@
 set -euo pipefail
 
 # Validation mode: git or approvals
-# With approvals: file .approved is compare to .received (no need to have git). It not verify removed tests
-# with git: file .approved is compare with git commited version. It detect tests removed.
+# With approvals: file .approved is compared to .received (no need to have git). It not verifies removed tests
+# with git: file .approved is compared with git commited version. It detects tests removed.
 VALIDATION_MODE="git"
 
 function remove_docs_directories() {
@@ -22,10 +22,11 @@ function generate_docs() {
     remove_docs_directories
   fi
 
-  # 'noassert' avoir to check diff on each test. That's not seem to significantly faster.
+  # 'noassert' avoid to check diff on each test. That's not seem to build significantly faster with this option.
+  # The main advantage is that the build do not break, and we can have a result for all modules.
   mvn clean install package -Dnoassert -Dapproved_with=$VALIDATION_MODE
+  #mvn clean install package -Dapproved_with=$VALIDATION_MODE
 }
-
 
 # Check file differences
 function check_file_differences() {
