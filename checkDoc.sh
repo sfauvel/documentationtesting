@@ -2,16 +2,27 @@
 
 ROOT_DOC=$1
 
+set -euo pipefail
+#IFS=$'\n\t'
+
+if [ -z "$ROOT_DOC" ]
+then
+  echo First parameter with path to check must be define
+  exit 0
+fi
+
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NO_COLOR='\033[0m' # No Color
 NEW_LINE=$'\n'
 
-ALL_FAILING_TESTS=$(git status -s $ROOT_DOC)
+ALL_FAILING_TESTS=$(git status -s --no-renames $ROOT_DOC)
 
-ALL_GIT_FILES_NOT_DELETED=$(git ls-files -oc $ROOT_DOC)
-DELETED_FILE=$(git diff-index  --diff-filter=D --name-only HEAD $ROOT_DOC)
-ALL_GIT_FILES="$ALL_GIT_FILES_NOT_DELETED$NEW_LINE$DELETED_FILE"
+ALL_FILES_NOT_DELETED=$(find $ROOT_DOC -type f -printf "%f\n")
+# Warning: option is 'one' digit and not a lowercase letter 'L'.
+DELETED_FILE=$(git diff-index --diff-filter=D --name-only HEAD $ROOT_DOC)
+
+ALL_GIT_FILES="$ALL_FILES_NOT_DELETED$NEW_LINE$DELETED_FILE"
 
 if [ ! -z "$ALL_FAILING_TESTS" ]
 then
@@ -19,7 +30,6 @@ then
 else
   NB_FAILURES=0
 fi
-
 
 write_failure() {
   echo -e "${RED}$1${NO_COLOR}"
@@ -41,10 +51,7 @@ done
 
 echo ---------------------
 
-if [ ! -z "$GIT_DIFF_BETWEEN_HEAD_AND_INDEX" ]
-then
-  write_failure "FAILURES: ${NB_FAILURES}"
-elif [ ! -z "$GIT_NOT_INDEXES_FILES" ]
+if [ ! -z "ALL_FAILING_TESTS" ]
 then
   write_failure "FAILURES: ${NB_FAILURES}"
 else
