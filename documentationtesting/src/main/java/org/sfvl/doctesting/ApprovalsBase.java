@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 /**
  * Base class for test.
  *
- * It checks that everything write during test is identically to the content approved.
+ * It checks that everything written during test is identical to the approved content.
  */
 public class ApprovalsBase {
 
@@ -62,7 +62,6 @@ public class ApprovalsBase {
 
     /**
      * Write a text to the output.
-     * @param text
      */
     protected void write(String... texts) {
         sb.append(Arrays.stream(texts).collect(Collectors.joining("\n")));
@@ -165,8 +164,8 @@ public class ApprovalsBase {
 
     /**
      * Return name specified in DisplayName annotation.
-     * If annotation is not present, this is the method name taht will be returned
-     * after some test formmatting (remove '_', uppercase first letter).
+     * If annotation is not present, this is the method name that will be returned
+     * after some test formatting (remove '_', uppercase first letter).
      * @param testInfo
      * @return
      */
