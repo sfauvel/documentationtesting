@@ -898,8 +898,21 @@ and <a href="https://en.wikipedia.org/wiki/Characterization_test">Golden Master<
 <div class="paragraph">
 <p>Several examples are provided to show how we can use it and what it can produce.</p>
 </div>
-<div class="paragraph">
-<p>Unresolved directive in ../../../../README.adoc - include::./documentationtestingdoc/target/adoc/demo_list.adoc[]</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="./demo_tennis/index.html">demo_tennis</a></p>
+</li>
+<li>
+<p><a href="./demo_gildedrose/index.html">demo_gildedrose</a></p>
+</li>
+<li>
+<p><a href="./demo_basic/index.html">demo_basic</a></p>
+</li>
+<li>
+<p><a href="./demo_fizzbuzz/index.html">demo_fizzbuzz</a></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -973,8 +986,16 @@ If it is the case, rename it with <code>approved.adoc</code> instead of <code>re
 <td class="tableblock halign-left valign-top"><p class="tableblock">File generated to validate</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Unresolved directive in &lt;stdin&gt; - include::../../../demo_basic/src/test/docs/org/sfvl/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+3]</p>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="sect1">
+<h2 id="_adding_2_simple_numbers">Adding 2 simple numbers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When adding two simple numbers, the java operator '+' should return the sum of them.</p>
+</div>
+<div class="paragraph">
+<p>2 + 3 = 5</p>
+</div>
+</div>
 </div></div></td>
 </tr>
 </tbody>
@@ -1088,6 +1109,13 @@ Every files within doc folder will be checked.</p>
 The only need is writing files containing what we need to check.
 There is no constraint about language used to generate files.
 Using xUnit simplify this by creating one file by test using method name and run it with tools provided.</p>
+</div>
+<div class="paragraph">
+<p>Using git involves to commit approved files.
+That means you have to commit approved files to have green test.
+But if you do, you are red test in your git repository.
+If you want to work with baby steps, you could create a branch to commit approved files.
+When development is finished, you can merge branch removing all intermediate states.</p>
 </div>
 </div>
 <div class="sect2">

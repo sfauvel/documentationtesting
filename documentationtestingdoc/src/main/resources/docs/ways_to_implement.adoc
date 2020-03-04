@@ -27,6 +27,11 @@ The only need is writing files containing what we need to check.
 There is no constraint about language used to generate files.
 Using xUnit simplify this by creating one file by test using method name and run it with tools provided.
 
+Using git involves to commit approved files.
+That means you have to commit approved files to have green test.
+But if you do, you are red test in your git repository until you commit your code.
+If you want to work with baby steps, you could create a branch to commit approved files.
+When development is finished, you can merge branch removing all intermediate states.
 
 == Approvals version
 
