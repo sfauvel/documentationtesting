@@ -1061,6 +1061,9 @@ You have to compile it and deploy it to your IntelliJ from .jar file present in 
 <div class="sect1">
 <h2 id="_ways_to_implement">Ways to implement</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>There are different ways to check regressions in documents generated.</p>
+</div>
 <div class="sect2">
 <h3 id="_git_version">Git version</h3>
 <div class="paragraph">
@@ -1068,7 +1071,7 @@ You have to compile it and deploy it to your IntelliJ from .jar file present in 
 It&#8217;s done in <code>@AfterEach</code> to check when we throw one test from IDE.</p>
 </div>
 <div class="paragraph">
-<p>A script <code>check.sh</code> verify all differences compare to the head git version (you can do the same using only git).
+<p>A script <code>checkDocInFolder.sh</code> verify all differences compare to the head git version (you can do the same using only git).
 The advantage is that it check also missing files (because a test was removed) and main documentation that include all others.
 Every files within doc folder will be checked.</p>
 </div>
@@ -1117,7 +1120,7 @@ But if you do, you are red test in your git repository until you commit your cod
 If you want to work with baby steps, you could just commit on your local branch the approved files.
 Before pushing, you can make an interactive rebase to remove useless commits (identify with a pattern like DOC:).
 You also can create a specific branch to work on the feature and commit approved files to it.
-When development is finished, you can merge branch removing all intermediate states.</p>
+When development is finished, you can merge the branch and removed all intermediate states.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1125,8 +1128,13 @@ When development is finished, you can merge branch removing all intermediate sta
 <div class="paragraph">
 <p>Approvals is a library to make golden master.
 Using it, each test produce a <code>.received</code> file.
-It is compare with a <code>.approved</code> file with the same name.
+It is compared with a <code>.approved</code> file with the same name.
 The test fail if there is a difference.</p>
+</div>
+<div class="paragraph">
+<p>The method is simple, produce files easy to compare and is integrated to the test lifecycle.
+Inconvenient is that the library is specific to a language and need to be available for it.
+There is also some difficulties to well identify tests that were deleted or renamed.</p>
 </div>
 </div>
 </div>
