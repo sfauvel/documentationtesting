@@ -17,18 +17,23 @@ public class DocGenerator {
     public DocGenerator(Formatter formatter) {
         this.formatter = formatter;
 
+        docPath = getProjectPath().resolve(Path.of("target", "adoc")).toAbsolutePath();
+    }
 
-        final Path docRootPath = Paths.get(this.getClass().getClassLoader().getResource("").getPath());
-        docPath = docRootPath.resolve(Path.of("..", "adoc")).toAbsolutePath();
-
+    /**
+     * Get path of the project as a module.
+     * To be compatible in different system, a File is created from the path and then retransform to a path.
+     * @return
+     */
+    protected final Path getProjectPath() {
+        Path classesPath = new File(this.getClass().getClassLoader().getResource("").getPath()).toPath();
+        return classesPath.getParent().getParent();
     }
 
 
     private void execute() throws IOException {
 
-        final Path rootPath = Paths.get(this.getClass().getClassLoader().getResource("").getPath());
-
-        final String demos = Files.list(rootPath.resolve("../../.."))
+        final String demos = Files.list(getProjectPath().getParent())
                 .filter(p -> Files.isDirectory(p))
                 .map(p -> p.getFileName().toString())
                 .filter(name -> name.startsWith("demo_"))

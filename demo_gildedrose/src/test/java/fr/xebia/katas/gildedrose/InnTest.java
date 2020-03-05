@@ -61,9 +61,7 @@ public class InnTest extends ApprovalsBase {
 
     private String generateGraph(String name, List<Integer> sellIns, List<Integer> qualities) throws IOException {
 
-        final Path docRootPath = Paths.get(this.getClass().getClassLoader().getResource("").getPath())
-                .resolve(Paths.get("..", "..", "src", "test", "docs"));
-
+        final Path docPath = getDocPath();
 
         // Create Chart
         final XYChart chart = new XYChartBuilder().width(600).height(300).title(name).build();
@@ -82,7 +80,7 @@ public class InnTest extends ApprovalsBase {
 
         final Path path = Paths.get(getClass().getPackage().getName().replaceAll("\\.", "/"), fileName);
 
-        BitmapEncoder.saveBitmap(chart, docRootPath.resolve(path).toFile().getPath(), BitmapEncoder.BitmapFormat.PNG);
+        BitmapEncoder.saveBitmap(chart, docPath.resolve(path).toFile().getPath(), BitmapEncoder.BitmapFormat.PNG);
 
         return path + ".png";
     }

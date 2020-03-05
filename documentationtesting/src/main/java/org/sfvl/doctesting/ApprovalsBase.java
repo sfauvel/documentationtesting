@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
  */
 public class ApprovalsBase {
 
+    private static final PathProvider pathBuidler = new PathProvider();
     private StringBuffer sb = new StringBuffer();
 
     /**
@@ -40,13 +41,18 @@ public class ApprovalsBase {
                 getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName()),
                 sb.toString());
 
-        final Path docRootPath = Paths.get(this.getClass().getClassLoader().getResource("").getPath())
-                .resolve(Paths.get("..", "..", "src", "test", "docs"));
-
         Approvals.verify(
                 new ApprovalTextWriter(content, "adoc"),
-                new DocumentationNamer(docRootPath, testInfo),
+                new DocumentationNamer(getDocPath(), testInfo),
                 Approvals.getReporter());
+    }
+
+    /**
+     * Give path where docs are generated.
+     * @return
+     */
+    protected Path getDocPath() {
+        return pathBuidler.getProjectPath().resolve(Paths.get( "src", "test", "docs"));
     }
 
     /**
