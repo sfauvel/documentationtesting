@@ -60,6 +60,33 @@ function generateDemo() {
     popdNoTrace
 }
 
+function writeToDoc() {
+   echo "$*" >> ${MODULE}/docs/Documentation.adoc
+}
+function generatePythonDemo() {
+    MODULE=$1
+
+    rm ${MODULE}/docs/Documentation.adoc
+    ADOC_FILES=$(ls -1 ${MODULE}/docs)
+
+    touch ${MODULE}/docs/Documentation.adoc
+    writeToDoc ":toc: left"
+    writeToDoc ":nofooter:"
+    writeToDoc ""
+    writeToDoc "== Python examples"
+    writeToDoc ""
+    for FILENAME in $ADOC_FILES
+    do
+      writeToDoc "include::${FILENAME}[leveloffset=+2]"
+    done
+
+    generateAsciidoc ${MODULE} docs/${MODULE} ${DOCKER_WORKDIR}/docs/Documentation.adoc
+
+    #pushdNoTrace ${MODULE}/src/test/docs
+    #find . -name *.png -exec cp --parents {} ../../../../docs/${MODULE} \;
+    #popdNoTrace
+}
+
 function write_result() {
   HTML_RESULT="$*"
   if [ -z "$HTML_RESULT" ]
@@ -84,6 +111,7 @@ function convert_all_to_html() {
       HTML_RESULT=$(generateDemo $DEMO_NAME)
       write_result "$HTML_RESULT"
   done
+  generatePythonDemo python_project
 
   HTML_RESULT=$(generateDoc)
   echo -n "- project documentation: "
@@ -92,4 +120,5 @@ function convert_all_to_html() {
 }
 
 source loadWritingFunction.sh
+
 convert_all_to_html
