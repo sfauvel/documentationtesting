@@ -44,7 +44,7 @@ public class ApprovalsBase {
      */
     protected Path getGitRootPath() {
 
-        final Path originalPath = Paths.get(this.getClass().getClassLoader().getResource("").getPath());
+        final Path originalPath = pathBuidler.getProjectPath();
         Path path = originalPath;
         while (!path.resolve(".git").toFile().exists()) {
             path = path.getParent();
@@ -55,12 +55,12 @@ public class ApprovalsBase {
         return path;
     }
 
-    private Path getDocPath() {
-        Path docPath = Paths.get(this.getClass().getClassLoader().getResource("").getPath())
-                .getParent().getParent()
-                .resolve(Paths.get("src", "test", "docs"));
-        createDirIfNotExists(docPath);
-        return docPath;
+    /**
+     * Give path where docs are generated.
+     * @return
+     */
+    protected Path getDocPath() {
+        return pathBuidler.getProjectPath().resolve(Paths.get( "src", "test", "docs"));
     }
 
     /**
