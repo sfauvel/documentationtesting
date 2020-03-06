@@ -26,6 +26,7 @@ public class MainDocumentation {
     private static final String PACKAGE_TO_SCAN = "org.sfvl";
     private final String DOCUMENTATION_TITLE;
     private static final String DOCUMENTATION_FILENAME = "Documentation";
+    private static final PathProvider pathProvider = new PathProvider();
     private final Path docRootPath;
 
     public MainDocumentation() {
@@ -34,9 +35,7 @@ public class MainDocumentation {
 
     public MainDocumentation(String documentationTitle) {
         DOCUMENTATION_TITLE = documentationTitle;
-        docRootPath = Paths.get(this.getClass().getClassLoader().getResource("").getPath())
-                .resolve(Paths.get("..", "..", "src", "test", "docs"));
-
+        docRootPath = pathProvider.getProjectPath().resolve(Paths.get("src", "test", "docs"));
     }
 
     protected void generate(String packageToScan) throws IOException {
@@ -59,8 +58,7 @@ public class MainDocumentation {
 
         //System.out.println(testsDocumentation);
 
-        final Path readmePath = Paths.get(this.getClass().getClassLoader().getResource("").getPath())
-                .resolve(Paths.get("..", "..", "readme.adoc"));
+        final Path readmePath = pathProvider.getProjectPath().resolve(Paths.get("readme.adoc"));
 
         Path path = docRootPath.resolve(DOCUMENTATION_FILENAME + ".adoc");
         try (FileWriter fileWriter = new FileWriter(path.toFile())) {
@@ -129,8 +127,7 @@ public class MainDocumentation {
     private JavaProjectBuilder createJavaProjectBuilderWithTestPath() {
         JavaProjectBuilder builder = new JavaProjectBuilder();
 
-        final Path testPath = Paths.get(this.getClass().getClassLoader().getResource("").getPath())
-                .resolve(Paths.get("..", "..", "src", "test", "java"));
+        final Path testPath = pathProvider.getProjectPath().resolve(Paths.get("src", "test", "java"));
         builder.addSourceTree(testPath.toFile());
         return builder;
     }
