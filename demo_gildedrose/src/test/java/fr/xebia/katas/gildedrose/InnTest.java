@@ -18,16 +18,17 @@ import java.util.stream.IntStream;
  */
 public class InnTest extends ApprovalsBase {
 
-    private Inn inn = new Inn();
 
     @Test
     public void example_of_evolution_by_item() throws Exception {
-        for (int i = 0; i < inn.getItems().size(); i++) {
-            check_item_update_line(i);
+        for (int i = 0; i < new Inn().getItems().size(); i++) {
+            Inn inn = new Inn();
+
+            check_item_update_line(inn, i);
         }
     }
 
-    private void check_item_update(int index) throws IOException {
+    private void check_item_update(Inn inn, int index) throws IOException {
         final Item initialItem = inn.getItems().get(index);
         final String name = initialItem.getName();
 
@@ -95,27 +96,22 @@ public class InnTest extends ApprovalsBase {
         new SwingWrapper(chart).displayChart();
     }
 
-    private void check_item_update_line(int index) throws IOException {
+    private void check_item_update_line(Inn inn, int index) throws IOException {
+
         final Item initialItem = inn.getItems().get(index);
         final String name = initialItem.getName();
 
         List<Integer> sellIns = new ArrayList<>();
         List<Integer> qualities = new ArrayList<>();
 
-        sellIns.add(initialItem.getSellIn());
-        qualities.add(initialItem.getQuality());
+        for (int i = 1; i <= 20; i++) {
 
-        for (int i = 1; i < 20; i++) {
-            inn.updateQuality();
-
-            final Item item = inn.getItems().stream()
-                    .filter(__ -> __.getName().equals(name))
-                    .findFirst()
-                    .get();
+            final Item item = getItem(inn, name);
 
             sellIns.add(item.getSellIn());
             qualities.add(item.getQuality());
 
+            inn.updateQuality();
         }
 
         write("\n\n== Item " + name + "\n\n");
@@ -132,6 +128,13 @@ public class InnTest extends ApprovalsBase {
 
         final String imageFile = generateGraph(name, sellIns, qualities);
         write("image::" + imageFile + "[]\n\n");
+    }
+
+    private Item getItem(Inn inn, String name) {
+        return inn.getItems().stream()
+                .filter(__ -> __.getName().equals(name))
+                .findFirst()
+                .get();
     }
 
 }
