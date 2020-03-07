@@ -49,6 +49,7 @@ function generate_docs() {
   # The main advantage is that the build do not break, and we can have a result for all modules.
   mvn clean install package -Dnoassert -Dapproved_with=$VALIDATION_MODE
   #mvn clean install package -Dapproved_with=$VALIDATION_MODE
+
 }
 
 # Check file differences
@@ -57,11 +58,20 @@ function check_file_differences() {
   echo -n "Generate Html"
   for DEMO_NAME in  $(ls | grep "demo_*")
   do
+      if [ -d "$DEMO_NAME/src/test/docs" ]
+      then
+        DOC_FOLDER=src/test/docs
+      elif [ -d "$DEMO_NAME/docs" ]
+      then
+        DOC_FOLDER=docs
+      fi
+      echo ${DOC_FOLDER}
+
       echo ""
       echo ---------------------
       echo "$DEMO_NAME"
       echo ---------------------
-      DEMO_RESULT=$(source checkDocInFolder.sh $DEMO_NAME/src/test/docs)
+      DEMO_RESULT=$(source checkDocInFolder.sh ${DEMO_NAME}/${DOC_FOLDER})
       DEMO_STATUS="${DEMO_RESULT##*$'\n'}" # Last line
       echo "$DEMO_RESULT"
       ALL_RESULTS="$ALL_RESULTS- ${DEMO_NAME}: ${DEMO_STATUS}\n"
@@ -73,7 +83,30 @@ function check_file_differences() {
   echo -e "$ALL_RESULTS"
 }
 
+function generatePythonDemo() {
+    MODULE=$1
+    pushd ${MODULE}/docs
+    ADOC_FILES=$(ls -1 test_*)
+
+    DOC=Documentation.adoc
+    echo "" > ${DOC} # Delete file content
+    echo ":toc: left" >> ${DOC}
+    echo ":nofooter:" >> ${DOC}
+    echo "" >> ${DOC}
+    echo "== Python examples" >> ${DOC}
+    echo "" >> ${DOC}
+    for FILENAME in $ADOC_FILES
+    do
+      echo "include::${FILENAME}[leveloffset=+2]" >> ${DOC}
+    done
+    popd
+}
+
 source loadWritingFunction.sh
 generate_docs
+pushd demo_python
+source runTests.sh
+popd
+generatePythonDemo demo_python
 check_file_differences
 source convertAdocToHtml.sh

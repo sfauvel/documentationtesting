@@ -53,31 +53,37 @@ function generateDoc() {
 
 function generateDemo() {
     MODULE=$1
-    generateAsciidoc ${MODULE} docs/${MODULE} ${DOCKER_WORKDIR}/src/test/docs/Documentation.adoc
+    if [ -d "$MODULE/src/test/docs" ]
+    then
+      DOC_FOLDER=src/test/docs
+    elif [ -d "$MODULE/docs" ]
+    then
+      DOC_FOLDER=docs
+    fi
 
-    pushdNoTrace ${MODULE}/src/test/docs
+    generateAsciidoc ${MODULE} docs/${MODULE} ${DOCKER_WORKDIR}/${DOC_FOLDER}/Documentation.adoc
+
+    pushdNoTrace ${MODULE}/${DOC_FOLDER}
     find . -name *.png -exec cp --parents {} ../../../../docs/${MODULE} \;
     popdNoTrace
 }
 
-function writeToDoc() {
-   echo "$*" >> ${MODULE}/docs/Documentation.adoc
-}
 function generatePythonDemo() {
     MODULE=$1
 
     rm ${MODULE}/docs/Documentation.adoc
     ADOC_FILES=$(ls -1 ${MODULE}/docs)
 
-    touch ${MODULE}/docs/Documentation.adoc
-    writeToDoc ":toc: left"
-    writeToDoc ":nofooter:"
-    writeToDoc ""
-    writeToDoc "== Python examples"
-    writeToDoc ""
+    DOC = ${MODULE}/docs/Documentation.adoc
+    touch ${DOC}
+    echo ":toc: left" >> ${DOC}
+    echo ":nofooter:" >> ${DOC}
+    echo "" >> ${DOC}
+    echo "== Python examples" >> ${DOC}
+    echo "" >> ${DOC}
     for FILENAME in $ADOC_FILES
     do
-      writeToDoc "include::${FILENAME}[leveloffset=+2]"
+      echo "include::${FILENAME}[leveloffset=+2]" >> ${DOC}
     done
 
     generateAsciidoc ${MODULE} docs/${MODULE} ${DOCKER_WORKDIR}/docs/Documentation.adoc
@@ -111,7 +117,7 @@ function convert_all_to_html() {
       HTML_RESULT=$(generateDemo $DEMO_NAME)
       write_result "$HTML_RESULT"
   done
-  generatePythonDemo python_project
+ # generatePythonDemo python_project
 
   HTML_RESULT=$(generateDoc)
   echo -n "- project documentation: "
