@@ -1,0 +1,3 @@
+= test_upper
+
+upper with "foo" => "FOO"
