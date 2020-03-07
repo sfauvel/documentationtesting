@@ -1,0 +1,9 @@
+
+:toc: left
+:nofooter:
+
+== Python examples
+
+include::test_isupper.adoc[leveloffset=+2]
+include::test_split.adoc[leveloffset=+2]
+include::test_upper.adoc[leveloffset=+2]

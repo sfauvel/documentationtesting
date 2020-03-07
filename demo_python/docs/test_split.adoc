@@ -1,0 +1,21 @@
+= test_split
+
+
+split without parameter
+
+====
+
+"hello world".split() => "['hello', 'world']"
+
+====
+
+
+split with an int
+
+====
+
+"hello world".split(2) => Exception
+
+====
+
+
