@@ -29,36 +29,84 @@ while getopts ":hm" opt; do
    esac
 done
 
-function generate_demos() {
+function remove_docs_directories() {
+  for DEMO_NAME in  $(ls | grep "demo_*")
+  do
+    rm -rf $DEMO_NAME/src/test/docs
+  done
+}
+
+# Generate all documentation for all module of project.
+function generate_docs() {
+  # delete docs directories to check files not regenerated because of a removed test.
+  # Do not remove if check with approvals
+  if [ $VALIDATION_MODE = "git" ]
+  then
+    remove_docs_directories
+  fi
+
+  # 'noassert' avoid to check diff on each test. That's not seem to build significantly faster with this option.
+  # The main advantage is that the build do not break, and we can have a result for all modules.
+  mvn clean install package -Dnoassert -Dapproved_with=$VALIDATION_MODE
+  #mvn clean install package -Dapproved_with=$VALIDATION_MODE
+
+}
+
+# Check file differences
+function check_file_differences() {
   ALL_RESULTS=""
   echo -n "Generate Html"
   for DEMO_NAME in  $(ls | grep "demo_*")
   do
-      pushd $DEMO_NAME
-      DEMO_RESULT=$(source ./generateDoc.sh)
-      echo "$DEMO_RESULT"
+      if [ -d "$DEMO_NAME/src/test/docs" ]
+      then
+        DOC_FOLDER=src/test/docs
+      elif [ -d "$DEMO_NAME/docs" ]
+      then
+        DOC_FOLDER=docs
+      fi
+      echo ${DOC_FOLDER}
 
+      echo ""
+      echo ---------------------
+      echo "$DEMO_NAME"
+      echo ---------------------
+      DEMO_RESULT=$(source checkDocInFolder.sh ${DEMO_NAME}/${DOC_FOLDER})
       DEMO_STATUS="${DEMO_RESULT##*$'\n'}" # Last line
+      echo "$DEMO_RESULT"
       ALL_RESULTS="$ALL_RESULTS- ${DEMO_NAME}: ${DEMO_STATUS}\n"
-      popd
   done
 
+  echo ""
   echo ---------------------
-  echo "$DEMO_RESULT"
-  echo ---------------------
-
   echo Results:
   echo -e "$ALL_RESULTS"
 }
 
+function generatePythonDemo() {
+    MODULE=$1
+    pushd ${MODULE}/docs
+    ADOC_FILES=$(ls -1 test_*)
 
-function generate_general_doc() {
-  pushd documentationtestingdoc
-  mvn clean install package -Dnoassert -Dapproved_with=$VALIDATION_MODE
-  popd
-
-  scripts/convertAdocToHtml.sh documentationtestingdoc/target/classes/docs demo.adoc ./docs
+    DOC=Documentation.adoc
+    echo "" > ${DOC} # Delete file content
+    echo ":toc: left" >> ${DOC}
+    echo ":nofooter:" >> ${DOC}
+    echo "" >> ${DOC}
+    echo "== Python examples" >> ${DOC}
+    echo "" >> ${DOC}
+    for FILENAME in $ADOC_FILES
+    do
+      echo "include::${FILENAME}[leveloffset=+2]" >> ${DOC}
+    done
+    popd
 }
 
-generate_demos
-generate_general_doc
+source loadWritingFunction.sh
+generate_docs
+pushd demo_python
+source runTests.sh
+popd
+generatePythonDemo demo_python
+check_file_differences
+source convertAdocToHtml.sh
