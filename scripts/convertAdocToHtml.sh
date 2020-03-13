@@ -23,7 +23,7 @@ function generateAsciidoc() {
 
     if [ ! -d ${DESTINATION} ]
     then
-        mkdir ${DESTINATION}
+        mkdir -p ${DESTINATION}
     fi
 
     docker run -it \

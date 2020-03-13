@@ -17,7 +17,7 @@ public class DocGenerator {
     public DocGenerator(Formatter formatter) {
         this.formatter = formatter;
 
-        docPath = getProjectPath().resolve(Path.of("target", "adoc")).toAbsolutePath();
+        docPath = getProjectPath().resolve(Path.of("target", "classes", "docs")).toAbsolutePath();
     }
 
     /**
@@ -40,11 +40,12 @@ public class DocGenerator {
                 .map(demo -> addDemo(demo))
                 .collect(Collectors.joining());
 
+
         String doc = formatter.standardOptions() +
                 ":nofooter:\n" +
                 ":fulldoc:\n" +
                 formatter.tableOfContent() +
-                formatter.include(docPath.relativize(Paths.get("README.adoc").toAbsolutePath()).toString()) +
+                formatter.include(docPath.relativize(getProjectPath().getParent().resolve("README.adoc").toAbsolutePath()).toString()) +
                 formatter.include("ways_to_implement.adoc");
 
         Files.createDirectories(docPath);
