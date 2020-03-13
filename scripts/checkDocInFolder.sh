@@ -17,13 +17,14 @@ source ${SCRIPT_PATH}/loadWritingFunction.sh
 
 NEW_LINE=$'\n'
 
+# We add all files to index to simplify comparison with head.
+git add --all $ROOT_DOC
+
 ALL_FAILING_TESTS=$(git status -s --no-renames $ROOT_DOC)
 
-ALL_FILES_NOT_DELETED=$(find $ROOT_DOC -type f -printf "%f\n")
-# Warning: option is 'one' digit and not a lowercase letter 'L'.
-GIT_DELETED_FILE=$(git diff-index --diff-filter=D --name-only HEAD $ROOT_DOC)
-
-ALL_GIT_FILES="${ALL_FILES_NOT_DELETED}${NEW_LINE}${GIT_DELETED_FILE}"
+GIT_FILES=$(git ls-tree -r --name-only HEAD $ROOT_DOC)
+PATH_FILES=$(find . -type f -path "./$ROOT_DOC/*" -printf '%P\n')
+ALL_GIT_FILES=$(echo "${GIT_FILES}${NEW_LINE}${PATH_FILES}"|sort|uniq)
 
 NB_FAILURES=0
 for FILENAME in $ALL_GIT_FILES
