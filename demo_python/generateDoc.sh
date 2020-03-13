@@ -57,7 +57,7 @@ function generate_docs() {
   # The main advantage is that the build do not break, and we can have a result for all modules.
   docker run \
     -v $(pwd)/src:/project/src:ro \
-    -v $(pwd)/docs:/project/docs \
+    -v $(pwd)/${DOCS_PATH}:/project/docs \
     -w /project/src \
     -it python:3.8.1 \
     python -m unittest
