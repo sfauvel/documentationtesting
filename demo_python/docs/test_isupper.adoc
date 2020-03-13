@@ -1,0 +1,7 @@
+= test_isupper
+
+isupper with "FOO" => "True"
+
+isupper with "Foo" => "False"
+
+
