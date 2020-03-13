@@ -9,18 +9,6 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <junit.version>5.4.1</junit.version>
-        <mockito.version>2.25.1</mockito.version>
-        <qdox.version>2.0-M10</qdox.version>
-        <reflections.version>0.9.11</reflections.version>
-        <approvaltests.version>4.0.2</approvaltests.version>
-        <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
-    </properties>
-
     <modules>
         <module>documentationtesting</module>
         <module>demo_basic</module>
@@ -29,19 +17,5 @@
         <module>demo_tennis</module>
         <module>documentationtestingdoc</module>
     </modules>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
