@@ -43,6 +43,22 @@ function remove_docs_directories() {
 
 }
 
+function generate_main_documentation_file() {
+  ADOC_FILES=$(ls -1 ${DOCS_PATH})
+
+  DOC=${DOCS_PATH}/Documentation.adoc
+  touch ${DOC}
+  echo ":toc: left" >> ${DOC}
+  echo ":nofooter:" >> ${DOC}
+  echo "" >> ${DOC}
+  echo "== Python examples" >> ${DOC}
+  echo "" >> ${DOC}
+  for FILENAME in $ADOC_FILES
+  do
+    echo "include::${FILENAME}[leveloffset=+2]" >> ${DOC}
+  done
+}
+
 # Generate all documentation for all module of project.
 function generate_docs() {
   # delete docs directories to check files not regenerated because of a removed test.
@@ -62,19 +78,8 @@ function generate_docs() {
     -it python:3.8.1 \
     python -m unittest
 
-  ADOC_FILES=$(ls -1 docs)
+  generate_main_documentation_file
 
-  DOC=docs/Documentation.adoc
-  touch ${DOC}
-  echo ":toc: left" >> ${DOC}
-  echo ":nofooter:" >> ${DOC}
-  echo "" >> ${DOC}
-  echo "== Python examples" >> ${DOC}
-  echo "" >> ${DOC}
-  for FILENAME in $ADOC_FILES
-  do
-    echo "include::${FILENAME}[leveloffset=+2]" >> ${DOC}
-  done
 }
 
 # Check file differences
