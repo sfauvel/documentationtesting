@@ -8,7 +8,6 @@
     <artifactId>documentationtesting</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -17,7 +16,7 @@
         <qdox.version>2.0-M10</qdox.version>
         <reflections.version>0.9.11</reflections.version>
         <approvaltests.version>4.0.2</approvaltests.version>
-        <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+        <org.eclipse.jgit.version>5.2.1.201812262042-r</org.eclipse.jgit.version>
     </properties>
 
    <build>
@@ -39,37 +38,31 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.version}</version>
-            <!--<scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
-            <!--<scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-launcher</artifactId>
             <version>1.2.0</version>
-            <!--<scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
             <version>${mockito.version}</version>
-            <!--<scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>com.approvaltests</groupId>
             <artifactId>approvaltests</artifactId>
             <version>${approvaltests.version}</version>
-            <!--<scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>com.thoughtworks.qdox</groupId>
             <artifactId>qdox</artifactId>
             <version>${qdox.version}</version>
-            <!--<scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>
@@ -79,7 +72,7 @@
         <dependency>
             <groupId>org.eclipse.jgit</groupId>
             <artifactId>org.eclipse.jgit</artifactId>
-            <version>5.2.1.201812262042-r</version>
+            <version>${org.eclipse.jgit.version}</version>
         </dependency>
     </dependencies>
 
