@@ -11,6 +11,7 @@
 
     <modules>
         <module>documentationtesting</module>
+        <module>demo_minimal</module>
         <module>demo_basic</module>
         <module>demo_fizzbuzz</module>
         <module>demo_gameoflife</module>
