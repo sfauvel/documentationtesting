@@ -9,6 +9,8 @@
     <artifactId>demo_gildedrose</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <description>Gilded Rose displaying evolution of values in a table and with a graphic.</description>
+
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>

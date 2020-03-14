@@ -72,7 +72,7 @@ public interface Formatter {
                     "----",
                     "")
                     .stream()
-                    .filter(Predicate.not(Objects::isNull))
+                    .filter(obj -> !Objects.isNull(obj))
                     .collect(Collectors.joining("\n"));
 
         }

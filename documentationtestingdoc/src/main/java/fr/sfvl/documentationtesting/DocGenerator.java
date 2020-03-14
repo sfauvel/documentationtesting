@@ -1,5 +1,13 @@
 package fr.sfvl.documentationtesting;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -7,6 +15,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class DocGenerator {
@@ -17,7 +26,7 @@ public class DocGenerator {
     public DocGenerator(Formatter formatter) {
         this.formatter = formatter;
 
-        docPath = getProjectPath().resolve(Path.of("target", "classes", "docs")).toAbsolutePath();
+        docPath = getProjectPath().resolve(Paths.get("target", "classes", "docs")).toAbsolutePath();
     }
 
     /**
@@ -56,7 +65,13 @@ public class DocGenerator {
     }
 
     private String addDemo(String module) {
-        return "\n * link:"+(Paths.get(".", module, "index.html").toString())+"[" + module + "]\n";
+        String description = null;
+        try {
+            description = generatePomDescription(getProjectPath().getParent().resolve(module));
+        } catch (ParserConfigurationException | IOException | SAXException e) {
+            description = "no description";
+        }
+        return "\n * link:"+(Paths.get(".", module, "index.html").toString())+"[" + module + "]: "+ description +" \n";
     }
 
     private void generateDocFile(String docName, String doc) throws IOException {
@@ -67,6 +82,28 @@ public class DocGenerator {
             writer.append(doc);
         }
 
+    }
+
+    public String generatePomDescription(Path module)
+            throws ParserConfigurationException, IOException, SAXException {
+
+        Element root = parsePom(module).getDocumentElement();
+
+        return Optional.of(root)
+                .map(r -> r.getElementsByTagName("description"))
+                .map(d -> d.item(0))
+                .map(i -> i.getTextContent())
+                .orElse("no description");
+
+    }
+
+    private static Document parsePom(Path module)
+            throws ParserConfigurationException, SAXException, IOException {
+
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+
+        return builder.parse(module.resolve("pom.xml").toFile());
     }
 
     public static void main (String... args) throws IOException {
