@@ -1,0 +1,363 @@
+= Becomes alive when 3 neighbours
+
+
+
+[cols="1a,1a,1a", width=4em, frame=none, grid=none]
+|====
+| [.gameOfLife]
+[cols="3*a"]
+!====
+! [.alive]
+*
+! [.alive]
+*
+! [.alive]
+*
+
+! [.dead]
+*
+! [.dead]
+*
+! [.dead]
+*
+
+! [.dead]
+*
+! [.dead]
+*
+! [.dead]
+*
+
+!====
+^.^| =>
+
+| [.gameOfLifeResult]
+[cols="3*a"]
+!====
+! []
+*
+! []
+*
+! []
+*
+
+! []
+*
+! [.alive]
+*
+! []
+*
+
+! []
+*
+! []
+*
+! []
+*
+
+!====
+|====
+
+++++
+<style>
+
+table.tableblock.grid-all {
+    border-spacing: 0;
+}
+
+table.tableblock.gameOfLife, .gameOfLife th.tableblock, .gameOfLife td.tableblock {
+    border: 1px solid #dedede;
+
+}
+
+table.tableblock {
+    margin-bottom: 0;
+}
+
+.gameOfLife p, .gameOfLifeResult p {
+/* Need to set margin to 0 only with html file, not with adoc files.*/
+ifdef::htmlOutput[]
+   /* margin: 0;*/
+endif::[]
+    line-height: 1em;
+    width: 1em
+}
+
+.gameOfLife td {
+    line-height: 1em;
+    padding: 0;
+    color: white;
+}
+
+.gameOfLifeResult td {
+    line-height: 1em;
+    padding: 0;
+    color: white;
+    border: 0 solid white;
+}
+
+.gameOfLifeResult tr:nth-child(2) td:nth-child(2) {
+    color: white;
+    border: 1px solid black;
+}
+
+table .gameOfLife tr.even, table .gameOfLife tr.alt {
+    background: white;
+    color: white;
+}
+
+tr.even, tr.alt, table tr:nth-of-type(2n) {
+    background: white;
+}
+
+td .dead {
+    background-color:white;
+    color: white;
+}
+td .alive {
+    background-color:black;
+    color: black;
+}
+
+</style>
+++++
+
+[cols="1a,1a,1a", width=4em, frame=none, grid=none]
+|====
+| [.gameOfLife]
+[cols="3*a"]
+!====
+! [.dead]
+*
+! [.dead]
+*
+! [.alive]
+*
+
+! [.dead]
+*
+! [.dead]
+*
+! [.alive]
+*
+
+! [.dead]
+*
+! [.dead]
+*
+! [.alive]
+*
+
+!====
+^.^| =>
+
+| [.gameOfLifeResult]
+[cols="3*a"]
+!====
+! []
+*
+! []
+*
+! []
+*
+
+! []
+*
+! [.alive]
+*
+! []
+*
+
+! []
+*
+! []
+*
+! []
+*
+
+!====
+|====
+
+++++
+<style>
+
+table.tableblock.grid-all {
+    border-spacing: 0;
+}
+
+table.tableblock.gameOfLife, .gameOfLife th.tableblock, .gameOfLife td.tableblock {
+    border: 1px solid #dedede;
+
+}
+
+table.tableblock {
+    margin-bottom: 0;
+}
+
+.gameOfLife p, .gameOfLifeResult p {
+/* Need to set margin to 0 only with html file, not with adoc files.*/
+ifdef::htmlOutput[]
+   /* margin: 0;*/
+endif::[]
+    line-height: 1em;
+    width: 1em
+}
+
+.gameOfLife td {
+    line-height: 1em;
+    padding: 0;
+    color: white;
+}
+
+.gameOfLifeResult td {
+    line-height: 1em;
+    padding: 0;
+    color: white;
+    border: 0 solid white;
+}
+
+.gameOfLifeResult tr:nth-child(2) td:nth-child(2) {
+    color: white;
+    border: 1px solid black;
+}
+
+table .gameOfLife tr.even, table .gameOfLife tr.alt {
+    background: white;
+    color: white;
+}
+
+tr.even, tr.alt, table tr:nth-of-type(2n) {
+    background: white;
+}
+
+td .dead {
+    background-color:white;
+    color: white;
+}
+td .alive {
+    background-color:black;
+    color: black;
+}
+
+</style>
+++++
+
+[cols="1a,1a,1a", width=4em, frame=none, grid=none]
+|====
+| [.gameOfLife]
+[cols="3*a"]
+!====
+! [.alive]
+*
+! [.dead]
+*
+! [.alive]
+*
+
+! [.dead]
+*
+! [.dead]
+*
+! [.dead]
+*
+
+! [.alive]
+*
+! [.dead]
+*
+! [.dead]
+*
+
+!====
+^.^| =>
+
+| [.gameOfLifeResult]
+[cols="3*a"]
+!====
+! []
+*
+! []
+*
+! []
+*
+
+! []
+*
+! [.alive]
+*
+! []
+*
+
+! []
+*
+! []
+*
+! []
+*
+
+!====
+|====
+
+++++
+<style>
+
+table.tableblock.grid-all {
+    border-spacing: 0;
+}
+
+table.tableblock.gameOfLife, .gameOfLife th.tableblock, .gameOfLife td.tableblock {
+    border: 1px solid #dedede;
+
+}
+
+table.tableblock {
+    margin-bottom: 0;
+}
+
+.gameOfLife p, .gameOfLifeResult p {
+/* Need to set margin to 0 only with html file, not with adoc files.*/
+ifdef::htmlOutput[]
+   /* margin: 0;*/
+endif::[]
+    line-height: 1em;
+    width: 1em
+}
+
+.gameOfLife td {
+    line-height: 1em;
+    padding: 0;
+    color: white;
+}
+
+.gameOfLifeResult td {
+    line-height: 1em;
+    padding: 0;
+    color: white;
+    border: 0 solid white;
+}
+
+.gameOfLifeResult tr:nth-child(2) td:nth-child(2) {
+    color: white;
+    border: 1px solid black;
+}
+
+table .gameOfLife tr.even, table .gameOfLife tr.alt {
+    background: white;
+    color: white;
+}
+
+tr.even, tr.alt, table tr:nth-of-type(2n) {
+    background: white;
+}
+
+td .dead {
+    background-color:white;
+    color: white;
+}
+td .alive {
+    background-color:black;
+    color: black;
+}
+
+</style>
+++++

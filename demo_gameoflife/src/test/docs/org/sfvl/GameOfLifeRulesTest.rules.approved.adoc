@@ -1,0 +1,16 @@
+= Rules
+
+
+
+At each step in time, the following transitions occur: 
+
+. Any live cell with *0, 1 live neighbours* dies, as if by underpopulation. 
+
+. Any live cell with *2, 3 live neighbours* lives on to the next generation. 
+
+. Any live cell with *4, 5, 6, 9 live neighbours* dies, as if by overpopulation. 
+
+. Any dead cell with *3 live neighbours* , becomes a live cell as if by reproduction. 
+
+. Any dead cell with *2, 4 live neighbours*  stayed a dead cell. 
+

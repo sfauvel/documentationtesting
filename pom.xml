@@ -14,6 +14,7 @@
         <module>demo_minimal</module>
         <module>demo_basic</module>
         <module>demo_fizzbuzz</module>
+        <module>demo_gameoflife</module>
         <module>demo_gildedrose</module>
         <module>demo_tennis</module>
         <module>documentationtestingdoc</module>
