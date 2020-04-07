@@ -3,8 +3,6 @@ package org.sfvl.application.fizzbuzz;
 import org.sfvl.doctesting.MainDocumentation;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class FizzBuzzDocumentation extends MainDocumentation {
 

@@ -1,5 +1,6 @@
 package org.sfvl.demo;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.sfvl.doctesting.ApprovalsBase;
 
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 /**
  * We will display a tennis score.
  */
+@DisplayName(value="Scores examples")
 public class TennisTest extends ApprovalsBase {
 
     static class TennisRecorder extends Tennis {
@@ -30,7 +32,7 @@ public class TennisTest extends ApprovalsBase {
     TennisRecorder tennis = new TennisRecorder();
 
     /**
-     * At the begining, score is 0 / 0.
+     * At the beginning, score is 0 / 0.
      */
     @Test
     public void start_of_the_game() {
@@ -101,17 +103,35 @@ public class TennisTest extends ApprovalsBase {
 
     private void displayScore(TennisRecorder tennis) {
         Score score = tennis.getScore();
-        write("[%autowidth]\n|===\n");
-        write("| A" + pointsToTable("A", tennis.points) + " | " + score.playerA() + " \n");
-        write("| B" + pointsToTable("B", tennis.points) + " | " + score.playerB() + " \n");
+        String textScore = score.playerA() + " - " + score.playerB();
+        write("[%autowidth, cols=" + (tennis.points.size()+2) + "*, stripes=none]\n|===\n");
+        write("| Player A" + pointsToTable("A", tennis.points) + "\n.2+^.^| *" + textScore + "* \n");
+        write("| Player B" + pointsToTable("B", tennis.points) + "| \n");
         write("|===\n");
+
+        writeStyle();
+    }
+
+    private void writeStyle() {
+        write("", 
+                "++++",
+                "<style>",
+                "table.tableblock.grid-all {",
+                "    border-collapse: collapse;",
+                "}",
+                "table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr > .tableblock:last-child {",
+                "    border: 1px solid #dddddd;",
+                "}",
+                "</style>",
+                "++++",
+                "");
     }
 
     private String pointsToTable(String player, List<String> points) {
         if (points.isEmpty()) {
             return "";
         } else {
-            return points.stream().map(p -> p.equals(player) ? "*" : " ").collect(Collectors.joining(" | ", " | ", ""));
+            return points.stream().map(p -> p.equals(player) ? "&#x2714;" : " ").collect(Collectors.joining(" | ", " | ", ""));
         }
     }
 }

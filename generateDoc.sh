@@ -42,7 +42,7 @@ function generateAsciidoc() {
         -a webfonts! \
         -a stylesheet=/stylesheets/adoc-rocket-panda.css \
     	--attribute htmlOutput="html" \
-    	--attribute rootpath="..\..\.." \
+    	--attribute rootpath="../../.." \
     	${ADOC_FILE}
 
 }
@@ -50,6 +50,15 @@ function generateAsciidoc() {
 function generateDoc() {
     MODULE=documentationtestingdoc
     generateAsciidoc "" docs ${DOCKER_WORKDIR}/${MODULE}/target/adoc/demo.adoc
+}
+
+# Redefine pushd and popd to avoid trace
+function pushd() {
+  command pushd "$@" > /dev/null
+}
+
+function popd() {
+  command popd "$@" > /dev/null
 }
 
 function generateDemo() {

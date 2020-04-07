@@ -1,0 +1,12 @@
+= IntelliJ Plugin
+
+This plugin provide some automation to approve files from Approvals.
+
+Key features:
+
+* Approve a 'received' file
+* Approve all 'received' file in a directory
+* Compare 'received' file and 'approved' file
+
+This plugin is a beta version.
+You have to compile it and deploy it to your IntelliJ from .jar file present in 'build/distributions' folder.

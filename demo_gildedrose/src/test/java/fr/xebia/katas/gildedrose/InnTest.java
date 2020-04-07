@@ -18,16 +18,17 @@ import java.util.stream.IntStream;
  */
 public class InnTest extends ApprovalsBase {
 
-    private Inn inn = new Inn();
 
     @Test
     public void example_of_evolution_by_item() throws Exception {
-        for (int i = 0; i < inn.getItems().size(); i++) {
-            check_item_update_line(i);
+        for (int i = 0; i < new Inn().getItems().size(); i++) {
+            Inn inn = new Inn();
+
+            check_item_update_line(inn, i);
         }
     }
 
-    private void check_item_update(int index) throws IOException {
+    private void check_item_update(Inn inn, int index) throws IOException {
         final Item initialItem = inn.getItems().get(index);
         final String name = initialItem.getName();
 
@@ -61,9 +62,7 @@ public class InnTest extends ApprovalsBase {
 
     private String generateGraph(String name, List<Integer> sellIns, List<Integer> qualities) throws IOException {
 
-        final Path docRootPath = Paths.get(this.getClass().getClassLoader().getResource("").getPath())
-                .resolve(Paths.get("..", "..", "src", "test", "docs"));
-
+        final Path docPath = getDocPath();
 
         // Create Chart
         final XYChart chart = new XYChartBuilder().width(600).height(300).title(name).build();
@@ -74,9 +73,6 @@ public class InnTest extends ApprovalsBase {
         chart.addSeries("SellIn", IntStream.range(0, sellIns.size()).toArray(), sellIns.stream().mapToInt(i -> i).toArray());
         chart.addSeries("Qualities", IntStream.range(0, qualities.size()).toArray(), qualities.stream().mapToInt(i -> i).toArray());
 
-        // Show it
-        new SwingWrapper(chart).displayChart();
-
         // Save it
         final String fileName = name
                 .replaceAll(" ", "_")
@@ -85,32 +81,35 @@ public class InnTest extends ApprovalsBase {
 
         final Path path = Paths.get(getClass().getPackage().getName().replaceAll("\\.", "/"), fileName);
 
-        BitmapEncoder.saveBitmap(chart, docRootPath.resolve(path).toFile().getPath(), BitmapEncoder.BitmapFormat.PNG);
+        BitmapEncoder.saveBitmap(chart, docPath.resolve(path).toFile().getPath(), BitmapEncoder.BitmapFormat.PNG);
 
         return path + ".png";
     }
 
-    private void check_item_update_line(int index) throws IOException {
+    /**
+     * Show chart.
+     * @param chart
+     */
+    private void show(XYChart chart) {
+        new SwingWrapper(chart).displayChart();
+    }
+
+    private void check_item_update_line(Inn inn, int index) throws IOException {
+
         final Item initialItem = inn.getItems().get(index);
         final String name = initialItem.getName();
 
         List<Integer> sellIns = new ArrayList<>();
         List<Integer> qualities = new ArrayList<>();
 
-        sellIns.add(initialItem.getSellIn());
-        qualities.add(initialItem.getQuality());
+        for (int i = 1; i <= 20; i++) {
 
-        for (int i = 1; i < 20; i++) {
-            inn.updateQuality();
-
-            final Item item = inn.getItems().stream()
-                    .filter(__ -> __.getName().equals(name))
-                    .findFirst()
-                    .get();
+            final Item item = getItem(inn, name);
 
             sellIns.add(item.getSellIn());
             qualities.add(item.getQuality());
 
+            inn.updateQuality();
         }
 
         write("\n\n== Item " + name + "\n\n");
@@ -127,6 +126,13 @@ public class InnTest extends ApprovalsBase {
 
         final String imageFile = generateGraph(name, sellIns, qualities);
         write("image::" + imageFile + "[]\n\n");
+    }
+
+    private Item getItem(Inn inn, String name) {
+        return inn.getItems().stream()
+                .filter(__ -> __.getName().equals(name))
+                .findFirst()
+                .get();
     }
 
 }

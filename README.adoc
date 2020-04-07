@@ -1,12 +1,159 @@
 = Documentation testing
 :rootpath: .
 
+Imagine that your tests are as readable as documentation and that they look like this
+
+====
+*Tennis*
+
+[%autowidth, cols=5*, stripes=none]
+|===
+| Player A | &#x2714; |   |
+.2+^.^| *15 - 30*
+| Player B | | &#x2714; | &#x2714;|
+|===
+
+++++
+<style>
+table.tableblock.grid-all {
+    border-collapse: collapse;
+}
+table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr > .tableblock:last-child {
+    border: 1px solid #dddddd;
+}
+</style>
+++++
+====
+
+or like that
+
+====
+*Game of life*
+
+[%autowidth]
+[cols="4a, 1a,1a,1a", stripes=none, frame=none, grid=none]
+|====
+^.^| Stay alive when 2 neighbours
+| [.gameOfLife]
+[cols="3*a", width=4em]
+!====
+! [.dead]
+*
+! [.dead]
+*
+! [.dead]
+*
+
+! [.alive]
+*
+! [.alive]
+*
+! [.alive]
+*
+
+! [.dead]
+*
+! [.dead]
+*
+! [.dead]
+*
+
+!====
+^.^| =>
+
+| [.gameOfLife]
+[cols="3*a", width=4em]]
+!====
+! [.dead]
+*
+! [.alive]
+*
+! [.dead]
+*
+
+! [.dead]
+*
+! [.alive]
+*
+! [.dead]
+*
+
+! [.dead]
+*
+! [.alive]
+*
+! [.dead]
+*
+
+!====
+|====
+
+++++
+<style>
+
+.gameOfLife p {
+/* Need to set margin to 0 only with html file, not with adoc files.*/
+ifdef::htmlOutput[]
+    margin: 0;
+endif::[]
+    line-height: 1em;
+    width: 1em
+}
+
+.gameOfLife td {
+    line-height: 1em;
+    padding: 0;
+    color: white;
+}
+
+
+table .gameOfLife tr.even, table .gameOfLife tr.alt {
+    background: white;
+    color: white;
+}
+
+tr.even, tr.alt, table tr:nth-of-type(2n) {
+    background: white;
+}
+
+td .content .dead p {
+    background-color:white;
+    color: white;
+}
+td .content .alive p {
+    background-color:black;
+    color: black;
+}
+
+</style>
+++++
+====
+
+This is what this project offers you to set up.
+
+== Principal
+
 Instead of writing tests, we just writing documentation from the code.
 
 Each test method is a documentation generator that not indicate expected result but just write the result.
 
 The user has to verify documentation produced and to validate that it describe the expected behavior.
 When documentation changed, test fails and the user needs to validate or not this new behavior.
+
+It's a mix between link:https://www.amazon.com/Living-Documentation-Cyrille-Martraire/dp/0134689321[living documentation]
+and link:https://en.wikipedia.org/wiki/Characterization_test[Golden Master] (or link:https://michaelfeathers.silvrback.com/characterization-testing[characterization-testing]]).
+
+Full project documentation is here: https://sfauvel.github.io/documentationtesting/
+
+== Examples
+
+Several examples are provided to show how we can use it and what it can produce.
+
+ifdef::fulldoc[]
+include::./documentationtestingdoc/target/adoc/demo_list.adoc[]
+endif::[]
+
+== What does it change
 
 The advantage is that we not have to check the expected result in tests.
 If the result we see in documentation is right, that's ok.
@@ -16,15 +163,13 @@ This idea comes from writing some code that is only configuration.
 In that case, writing tests is just rewriting code and there is no real value.
 But, this information still needs to be checked.
 
-To get source and examples: https://github.com/sfauvel/documentationtesting
-
-Full documenation is here: https://sfauvel.github.io/documentationtesting/
-
 == Quick start
+
+The only module you need is `documentationtestesting` one.
 
 Start by writing a test that inherits from `org.sfvl.doctesting.ApprovalsBase`.
 
-Use `ẁrite` method to write all you want to be in documentation.
+Use `write` method to write all you want to be in documentation.
 It should be at least input and output.
 When you write output, you don't write values expected but only values given by the application.
 
@@ -43,11 +188,15 @@ include::demo_basic/src/test/java/org/sfvl/demo/DemoTest.java[]
 ----
 
 |===
-| File generated
-a| include::{rootpath}/demo_basic/src/test/docs/org/sfvl/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[]
+| File generated to validate
+a| include::{rootpath}/demo_basic/src/test/docs/org/sfvl/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+3]
 |===
 
-== Generate a full documentation
+== Project
+
+To get source and examples: https://github.com/sfauvel/documentationtesting
+
+=== Generate a full documentation
 
 To generate a single file with all tests, launch `MainDocumentation` class.
 
@@ -59,7 +208,8 @@ launch tests, generate an asciidoc with all files generated and convert it to HT
 If you decide to change style of the documentation generated, all your tests will be failed.
 You can approve them all using `approveAll.sh`.
 
+=== Plugins
 
-== Examples
+A plugin for IntelliJ is provided in approvalsDocPlugin folder.
 
-Several examples are provided to show how we can use it.
+include::approvalsDocPlugin/README.adoc[leveloffset=+3]

@@ -1,0 +1,38 @@
+<idea-plugin>
+    <id>org.sfvl.doctesting.approvalsDocPlugin</id>
+    <name>ApprovalsDocPlugin</name>
+    <vendor email="sfauvel@gmail.com" url="https://github.com/sfauvel">Sébastien Fauvel</vendor>
+
+    <description><![CDATA[
+    Allow to manipulate 'approvals' files (approved and received)
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+
+    <actions>
+
+        <action id="ApproveFileAction"
+                class="ApproveFileAction"
+                text="Approve file"
+                description="Approve file">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+        <action id="CompareFileAction"
+                class="CompareFileAction"
+                text="CompareFileAction"
+                description="CompareFileAction">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="first">
+
+            </add-to-group>
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+    </actions>
+</idea-plugin>
