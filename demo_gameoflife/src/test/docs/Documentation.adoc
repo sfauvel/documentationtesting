@@ -12,7 +12,7 @@ include::org/sfvl/GameOfLifeRulesTest.rules.approved.adoc[leveloffset=+2]
 == GameOfLifeTest
 https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
-include::org/sfvl/GameOfLifeTest.stay_alive_when_2_neighbours.approved.adoc[leveloffset=+2]
 include::org/sfvl/GameOfLifeTest.die_when_less_than_2_neighbours.approved.adoc[leveloffset=+2]
+include::org/sfvl/GameOfLifeTest.stay_alive_when_2_neighbours.approved.adoc[leveloffset=+2]
 include::org/sfvl/GameOfLifeTest.becomes_alive_when_3_neighbours.approved.adoc[leveloffset=+2]
 
