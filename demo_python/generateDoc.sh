@@ -21,12 +21,12 @@ function show_help() {
   echo "    -m VALIDATION_MODE: could be 'git' or 'approvals'."
 }
 
-while getopts ":hm" opt; do
+while getopts ":hm:g" opt; do
    case ${opt} in
      h ) show_help
        exit 0
        ;;
-     m ) VALIDATION_MODE=$opt
+     m ) VALIDATION_MODE=${OPTARG}
        ;;
      \? ) show_help
        exit 0
