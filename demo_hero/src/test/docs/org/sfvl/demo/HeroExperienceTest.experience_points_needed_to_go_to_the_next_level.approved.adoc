@@ -3,7 +3,7 @@
 With some experience, hero will pass a new level.
 It needs more and more experience points to pass a level with higher level.
 
-Number of points required to change level : stem:[(1.55 ^ "level") + (35 * "level)" + 50]
+Number of points required to change level : stem:[(1.55^"level") + (35*"level)" + 50]
 
 
 [%autowidth, cols="^.^1,^.^1,^.^1,^.^1", options="header"]

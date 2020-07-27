@@ -304,7 +304,7 @@ public class HeroExperienceTest extends ApprovalsBase {
      * With some experience, hero will pass a new level.
      * It needs more and more experience points to pass a level with higher level.
      *
-     * Number of points required to change level : stem:[(1.55 ^ "level") + (35 * "level)" + 50]
+     * Number of points required to change level : stem:[(1.55^"level") + (35*"level)" + 50]
      */
     @Test
     public void experience_points_needed_to_go_to_the_next_level() {

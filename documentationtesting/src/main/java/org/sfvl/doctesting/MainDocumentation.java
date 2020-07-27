@@ -62,7 +62,7 @@ public class MainDocumentation {
 
         Path path = docRootPath.resolve(DOCUMENTATION_FILENAME + ".adoc");
         try (FileWriter fileWriter = new FileWriter(path.toFile())) {
-            fileWriter.write(":toc: left\n:nofooter:\n\n");
+            fileWriter.write(":toc: left\n:nofooter:\n:stem:\n\n");
             if (readmePath.toFile().exists()) {
                 fileWriter.write("include::../../../readme.adoc[leveloffset=+1]\n\n");
             } else {

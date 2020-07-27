@@ -16125,7 +16125,7 @@ It needs more and more experience points to pass a level with higher level.</p>
 It needs more and more experience points to pass a level with higher level.</p>
 </div>
 <div class="paragraph">
-<p>Number of points required to change level : \$(1.55 ^ "level") + (35 * "level)" + 50\$</p>
+<p>Number of points required to change level : \$(1.55^"level") + (35*"level)" + 50\$</p>
 </div>
 <table class="tableblock frame-all grid-all fit-content">
 <colgroup>
@@ -16358,5 +16358,29 @@ last level</th>
 </div>
 </div>
 </div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>
