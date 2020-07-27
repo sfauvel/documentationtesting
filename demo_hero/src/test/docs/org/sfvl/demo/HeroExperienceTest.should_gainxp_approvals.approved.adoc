@@ -1,0 +1,477 @@
+= Should gainxp approvals
+
+Typical output provided by characterization test.
+It's just data and it's hard to analysis when there is a difference.
+It's not made to be read by someone.
+
+
+----
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=0
+input: 
+	data.xpGained=100
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=0
+input: 
+	data.xpGained=10
+output:
+	nlevel=1
+	getNxp=13
+	getNlevelboost=0
+input: 
+	data.xpGained=0
+output:
+	nlevel=1
+	getNxp=3
+	getNlevelboost=0
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=15
+	getNxp=0
+	getNlevelboost=0
+input: 
+	data.xpGained=100
+output:
+	nlevel=14
+	getNxp=103
+	getNlevelboost=0
+input: 
+	data.xpGained=10
+output:
+	nlevel=14
+	getNxp=13
+	getNlevelboost=0
+input: 
+	data.xpGained=0
+output:
+	nlevel=14
+	getNxp=3
+	getNlevelboost=0
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=1
+input: 
+	data.xpGained=100
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=1
+input: 
+	data.xpGained=10
+output:
+	nlevel=1
+	getNxp=13
+	getNlevelboost=1
+input: 
+	data.xpGained=0
+output:
+	nlevel=1
+	getNxp=3
+	getNlevelboost=1
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=15
+	getNxp=0
+	getNlevelboost=1
+input: 
+	data.xpGained=100
+output:
+	nlevel=14
+	getNxp=103
+	getNlevelboost=1
+input: 
+	data.xpGained=10
+output:
+	nlevel=14
+	getNxp=13
+	getNlevelboost=1
+input: 
+	data.xpGained=0
+output:
+	nlevel=14
+	getNxp=3
+	getNlevelboost=1
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=5
+input: 
+	data.xpGained=100
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=5
+input: 
+	data.xpGained=10
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=5
+input: 
+	data.xpGained=0
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=5
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=15
+	getNxp=0
+	getNlevelboost=5
+input: 
+	data.xpGained=100
+output:
+	nlevel=14
+	getNxp=103
+	getNlevelboost=5
+input: 
+	data.xpGained=10
+output:
+	nlevel=14
+	getNxp=13
+	getNlevelboost=5
+input: 
+	data.xpGained=0
+output:
+	nlevel=14
+	getNxp=3
+	getNlevelboost=5
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=0
+input: 
+	data.xpGained=100
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=0
+input: 
+	data.xpGained=10
+output:
+	nlevel=1
+	getNxp=40
+	getNlevelboost=0
+input: 
+	data.xpGained=0
+output:
+	nlevel=1
+	getNxp=30
+	getNlevelboost=0
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=15
+	getNxp=0
+	getNlevelboost=0
+input: 
+	data.xpGained=100
+output:
+	nlevel=14
+	getNxp=130
+	getNlevelboost=0
+input: 
+	data.xpGained=10
+output:
+	nlevel=14
+	getNxp=40
+	getNlevelboost=0
+input: 
+	data.xpGained=0
+output:
+	nlevel=14
+	getNxp=30
+	getNlevelboost=0
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=1
+input: 
+	data.xpGained=100
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=1
+input: 
+	data.xpGained=10
+output:
+	nlevel=1
+	getNxp=40
+	getNlevelboost=1
+input: 
+	data.xpGained=0
+output:
+	nlevel=1
+	getNxp=30
+	getNlevelboost=1
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=15
+	getNxp=0
+	getNlevelboost=1
+input: 
+	data.xpGained=100
+output:
+	nlevel=14
+	getNxp=130
+	getNlevelboost=1
+input: 
+	data.xpGained=10
+output:
+	nlevel=14
+	getNxp=40
+	getNlevelboost=1
+input: 
+	data.xpGained=0
+output:
+	nlevel=14
+	getNxp=30
+	getNlevelboost=1
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=5
+input: 
+	data.xpGained=100
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=5
+input: 
+	data.xpGained=10
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=5
+input: 
+	data.xpGained=0
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=5
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=15
+	getNxp=0
+	getNlevelboost=5
+input: 
+	data.xpGained=100
+output:
+	nlevel=14
+	getNxp=130
+	getNlevelboost=5
+input: 
+	data.xpGained=10
+output:
+	nlevel=14
+	getNxp=40
+	getNlevelboost=5
+input: 
+	data.xpGained=0
+output:
+	nlevel=14
+	getNxp=30
+	getNlevelboost=5
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=0
+input: 
+	data.xpGained=100
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=0
+input: 
+	data.xpGained=10
+output:
+	nlevel=1
+	getNxp=70
+	getNlevelboost=0
+input: 
+	data.xpGained=0
+output:
+	nlevel=1
+	getNxp=60
+	getNlevelboost=0
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=15
+	getNxp=0
+	getNlevelboost=0
+input: 
+	data.xpGained=100
+output:
+	nlevel=14
+	getNxp=160
+	getNlevelboost=0
+input: 
+	data.xpGained=10
+output:
+	nlevel=14
+	getNxp=70
+	getNlevelboost=0
+input: 
+	data.xpGained=0
+output:
+	nlevel=14
+	getNxp=60
+	getNlevelboost=0
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=1
+input: 
+	data.xpGained=100
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=1
+input: 
+	data.xpGained=10
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=1
+input: 
+	data.xpGained=0
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=1
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=15
+	getNxp=0
+	getNlevelboost=1
+input: 
+	data.xpGained=100
+output:
+	nlevel=14
+	getNxp=160
+	getNlevelboost=1
+input: 
+	data.xpGained=10
+output:
+	nlevel=14
+	getNxp=70
+	getNlevelboost=1
+input: 
+	data.xpGained=0
+output:
+	nlevel=14
+	getNxp=60
+	getNlevelboost=1
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=5
+input: 
+	data.xpGained=100
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=5
+input: 
+	data.xpGained=10
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=5
+input: 
+	data.xpGained=0
+Bob gains a NINJA level!
+output:
+	nlevel=2
+	getNxp=0
+	getNlevelboost=5
+input: 
+	data.xpGained=1000
+Bob gains a NINJA level!
+output:
+	nlevel=15
+	getNxp=0
+	getNlevelboost=5
+input: 
+	data.xpGained=100
+output:
+	nlevel=14
+	getNxp=160
+	getNlevelboost=5
+input: 
+	data.xpGained=10
+output:
+	nlevel=14
+	getNxp=70
+	getNlevelboost=5
+input: 
+	data.xpGained=0
+output:
+	nlevel=14
+	getNxp=60
+	getNlevelboost=5
+
+----

@@ -1,0 +1,657 @@
+= Should gainxp
+
+We generate a lot of heros and values used to update hero during test.
+We display the result of each combination.
+
+- Result is not very readable.
+- It's difficult to see what has changed between two cases.
+- Some values have been choosen arbitrary and limits are not explicit in final document.
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 3 | 0
+ | 2 | 0 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 3 | 0
+ | 2 | 0 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 3 | 0
+ | 1 | 13 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 3 | 0
+ | 1 | 3 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 3 | 0
+ | 15 | 0 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 3 | 0
+ | 14 | 103 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 3 | 0
+ | 14 | 13 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 3 | 0
+ | 14 | 3 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 3 | 1
+ | 2 | 0 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 3 | 1
+ | 2 | 0 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 3 | 1
+ | 1 | 13 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 3 | 1
+ | 1 | 3 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 3 | 1
+ | 15 | 0 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 3 | 1
+ | 14 | 103 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 3 | 1
+ | 14 | 13 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 3 | 1
+ | 14 | 3 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 3 | 5
+ | 2 | 0 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 3 | 5
+ | 2 | 0 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 3 | 5
+ | 2 | 0 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 3 | 5
+ | 2 | 0 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 3 | 5
+ | 15 | 0 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 3 | 5
+ | 14 | 103 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 3 | 5
+ | 14 | 13 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 3 | 5
+ | 14 | 3 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 30 | 0
+ | 2 | 0 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 30 | 0
+ | 2 | 0 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 30 | 0
+ | 1 | 40 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 30 | 0
+ | 1 | 30 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 30 | 0
+ | 15 | 0 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 30 | 0
+ | 14 | 130 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 30 | 0
+ | 14 | 40 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 30 | 0
+ | 14 | 30 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 30 | 1
+ | 2 | 0 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 30 | 1
+ | 2 | 0 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 30 | 1
+ | 1 | 40 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 30 | 1
+ | 1 | 30 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 30 | 1
+ | 15 | 0 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 30 | 1
+ | 14 | 130 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 30 | 1
+ | 14 | 40 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 30 | 1
+ | 14 | 30 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 30 | 5
+ | 2 | 0 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 30 | 5
+ | 2 | 0 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 30 | 5
+ | 2 | 0 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 30 | 5
+ | 2 | 0 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 30 | 5
+ | 15 | 0 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 30 | 5
+ | 14 | 130 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 30 | 5
+ | 14 | 40 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 30 | 5
+ | 14 | 30 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 60 | 0
+ | 2 | 0 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 60 | 0
+ | 2 | 0 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 60 | 0
+ | 1 | 70 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 60 | 0
+ | 1 | 60 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 60 | 0
+ | 15 | 0 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 60 | 0
+ | 14 | 160 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 60 | 0
+ | 14 | 70 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 60 | 0
+ | 14 | 60 | 0
+|====
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 60 | 1
+ | 2 | 0 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 60 | 1
+ | 2 | 0 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 60 | 1
+ | 2 | 0 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 60 | 1
+ | 2 | 0 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 60 | 1
+ | 15 | 0 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 60 | 1
+ | 14 | 160 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 60 | 1
+ | 14 | 70 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 60 | 1
+ | 14 | 60 | 1
+|====
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 60 | 5
+ | 2 | 0 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 60 | 5
+ | 2 | 0 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 60 | 5
+ | 2 | 0 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 1 | 60 | 5
+ | 2 | 0 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=1000
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 60 | 5
+ | 15 | 0 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=100
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 60 | 5
+ | 14 | 160 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=10
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 60 | 5
+ | 14 | 70 | 5
+|====
+
+== data.classgain=NINJA data.xpGained=0
+
+[options="header"]
+|====
+ | nlevel  | getNxp  | getNlevelboost 
+ | 14 | 60 | 5
+ | 14 | 60 | 5
+|====
+

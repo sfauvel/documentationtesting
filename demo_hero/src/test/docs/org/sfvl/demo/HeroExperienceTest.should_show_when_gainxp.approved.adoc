@@ -1,0 +1,37 @@
+= Should show when gainxp
+
+With some experience, hero will pass a new level.
+It needs more and more experience points to pass a level with higher level.
+
+Number of points required to change level : stem:[(1.55 ^ "level") + (35 * "level)" + 50]
+
+
+Pass to level 1 with 52 xp (+52)
+
+Pass to level 2 with 139 xp (+87)
+
+Pass to level 3 with 262 xp (+123)
+
+Pass to level 4 with 421 xp (+159)
+
+Pass to level 5 with 617 xp (+196)
+
+Pass to level 6 with 851 xp (+234)
+
+Pass to level 7 with 1125 xp (+274)
+
+Pass to level 8 with 1442 xp (+317)
+
+Pass to level 9 with 1806 xp (+364)
+
+Pass to level 10 with 2223 xp (+417)
+
+Pass to level 11 with 2704 xp (+481)
+
+Pass to level 12 with 3264 xp (+560)
+
+Pass to level 13 with 3927 xp (+663)
+
+Pass to level 14 with 4731 xp (+804)
+
+Pass to level 15 with 5734 xp (+1003)

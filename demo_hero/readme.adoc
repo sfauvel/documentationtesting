@@ -1,0 +1,8 @@
+= Description
+
+This demo shows several ways of doing documentation for a same method.
+
+Code comes from a RPG game that uses a hero.
+This hero has `levels` and gains `experience` to level up.
+
+
