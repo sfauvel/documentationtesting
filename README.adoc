@@ -205,8 +205,10 @@ To generate a single file with all tests, launch `MainDocumentation` class.
 You can use `RunAll` class to make all process in a single command.
 launch tests, generate an asciidoc with all files generated and convert it to HTML.
 
+=== Modify doc format
+
 If you decide to change style of the documentation generated, all your tests will be failed.
-You can approve them all using `approveAll.sh`.
+You can approve them renaming all files `*.received.adoc` to `*.approved.adoc`.
 
 === Plugins
 
