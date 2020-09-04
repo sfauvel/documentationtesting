@@ -56,16 +56,8 @@ public class ApprovalsBase {
     }
 
     /**
-     * Give path where docs are generated.
-     * @return
-     */
-    protected Path getDocPath() {
-        return pathBuidler.getProjectPath().resolve(Paths.get( "src", "test", "docs"));
-    }
-
-    /**
      * Write a text to the output.
-     * @param text
+     * @param texts
      */
     protected void write(String... texts) {
         sb.append(Arrays.stream(texts).collect(Collectors.joining("\n")));
