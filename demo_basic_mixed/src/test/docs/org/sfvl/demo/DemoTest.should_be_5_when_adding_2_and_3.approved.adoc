@@ -1,0 +1,5 @@
+= Adding 2 simple numbers
+
+When adding two simple numbers, the java operator '+' should return the sum of them.
+
+2 + 3 = 5

@@ -1,13 +1,13 @@
 package org.sfvl.demo;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.sfvl.doctesting.ApprovalsBase;
+import org.junit.jupiter.api.Test;
+import org.sfvl.doctesting.SelectableBase;
 
 /**
  * Demo of a simple usage to generate documentation.
  */
-public class DemoTest  extends ApprovalsBase {
+public class DemoTest extends SelectableBase {
 
     /**
      * When adding two simple numbers, the java operator '+' should return the sum of them.
@@ -17,6 +17,6 @@ public class DemoTest  extends ApprovalsBase {
     public void should_be_5_when_adding_2_and_3() {
         int a = 2;
         int b = 3;
-        write(String.format("%d + %d = %d", a, b, a+b));
+        write(String.format("%d + %d = %d", a, b, a + b));
     }
 }

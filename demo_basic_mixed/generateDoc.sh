@@ -38,21 +38,6 @@ function remove_docs_directories() {
   rm -rf ${DOCS_PATH}
 }
 
-# Generate all documentation for all module of project.
-function generate_docs() {
-  # delete docs directories to check files not regenerated because of a removed test.
-  # Do not remove if check with approvals
-  if [ $VALIDATION_MODE = "git" ]
-  then
-    remove_docs_directories
-  fi
-
-  # 'noassert' avoid to check diff on each test. That's not seem to build significantly faster with this option.
-  # The main advantage is that the build do not break, and we can have a result for all modules.
-  mvn clean install package -Dnoassert -Dapproved_with=$VALIDATION_MODE
-  #mvn clean install package -Dapproved_with=$VALIDATION_MODE
-}
-
 # Check file differences
 function check_file_differences() {
   echo ""
@@ -63,6 +48,16 @@ function check_file_differences() {
 }
 
 source ${SCRIPTS_PATH}/loadWritingFunction.sh
-generate_docs
-check_file_differences
+if [ $VALIDATION_MODE = "git" ]
+then
+  # delete docs directories to check files not regenerated because of a removed test.
+  remove_docs_directories
+  # 'noassert' avoid to check diff on each test. That's not seem to build significantly faster with this option.
+  # The main advantage is that the build do not break, and we can have a result for all modules.
+  mvn clean install package -Dnoassert -Dapproved_with=$VALIDATION_MODE
+  check_file_differences
+else
+  # Do not remove approved file with approvals because it's the reference
+  mvn clean install package -Dapproved_with=$VALIDATION_MODE
+fi
 ${SCRIPTS_PATH}/convertAdocToHtml.sh ${DOCS_PATH} Documentation.adoc ${DESTINATION_PATH}

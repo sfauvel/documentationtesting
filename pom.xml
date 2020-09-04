@@ -12,7 +12,9 @@
     <modules>
         <module>documentationtesting</module>
         <module>demo_minimal</module>
-        <module>demo_basic</module>
+        <module>demo_basic_approvals</module>
+        <module>demo_basic_git</module>
+        <module>demo_basic_mixed</module>
         <module>demo_fizzbuzz</module>
         <module>demo_gameoflife</module>
         <module>demo_gildedrose</module>
