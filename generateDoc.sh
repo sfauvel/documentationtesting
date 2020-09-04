@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+source ./scripts/loadWritingFunction.sh
+
 # Validation mode: git or approvals
 # With approvals: file .approved is compared to .received (no need to have git). It not verifies removed tests
 # with git: file .approved is compared with git commited version. It detects tests removed.
@@ -29,22 +31,34 @@ while getopts ":hm:g" opt; do
    esac
 done
 
-function generate_demos() {
+function generate_docs() {
+  ALL_DEMOS=$1
   ALL_RESULTS=""
+  ALL_STATUS_RESULT="${GREEN}OK${NO_COLOR}"
+  local TEST_COLOR
   echo -n "Generate Html"
-  for DEMO_NAME in  $(ls | grep "demo_*")
+  for DEMO_NAME in $ALL_DEMOS
   do
       pushd $DEMO_NAME
-      DEMO_RESULT=$(source ./generateDoc.sh)
-      echo "$DEMO_RESULT"
+      returncode=0
+      ./generateDoc.sh || returncode=$?
 
-      DEMO_STATUS="${DEMO_RESULT##*$'\n'}" # Last line
-      ALL_RESULTS="$ALL_RESULTS- ${DEMO_NAME}: ${DEMO_STATUS}\n"
+      if [[ returncode -eq 0 ]]
+      then
+        DEMO_STATUS="${GREEN}OK${NO_COLOR}"
+        TEST_COLOR=${GREEN}
+      else
+        ALL_STATUS_RESULT="${RED}FAILED${NO_COLOR}"
+        DEMO_STATUS="FAILED"
+        TEST_COLOR=${RED}
+      fi
+
+      ALL_RESULTS="$ALL_RESULTS${TEST_COLOR}- ${DEMO_NAME}: ${DEMO_STATUS}${NO_COLOR}\n"
       popd
   done
 
   echo ---------------------
-  echo "$DEMO_RESULT"
+  echo -e "$ALL_STATUS_RESULT"
   echo ---------------------
 
   echo Results:
@@ -52,13 +66,4 @@ function generate_demos() {
 }
 
 
-function generate_general_doc() {
-  pushd documentationtestingdoc
-  mvn clean install package -Dnoassert -Dapproved_with=$VALIDATION_MODE
-  popd
-
-  scripts/convertAdocToHtml.sh documentationtestingdoc/target/classes/docs demo.adoc ./docs
-}
-
-generate_demos
-generate_general_doc
+generate_docs "$(ls | grep "demo_*") documentationtestingdoc"

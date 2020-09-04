@@ -189,7 +189,7 @@ include::demo_basic_approvals/src/test/java/org/sfvl/demo/DemoTest.java[]
 
 |===
 | File generated to validate
-a| include::{rootpath}/demo_basic/src/test/docs/org/sfvl/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+3]
+a| include::{rootpath}/demo_basic_approvals/src/test/docs/org/sfvl/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+3]
 |===
 
 == Project

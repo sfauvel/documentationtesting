@@ -67,5 +67,7 @@ function write_result() {
 
 
 source ${SCRIPT_PATH}/loadWritingFunction.sh
+echo -n "Convert $2 to html: "
 HTML_RESULT=$(generateDemo $1 $2 $3)
 write_result "$HTML_RESULT"
+

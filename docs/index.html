@@ -652,11 +652,7 @@ ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .olist, .olist .ulist 
 <ul class="sectlevel1">
 <li><a href="#_documentation_testing">Documentation testing</a>
 <ul class="sectlevel2">
-<li><a href="#_principal">Principal</a>
-<ul class="sectlevel3">
-<li><a href="#_git_version">Git version</a></li>
-</ul>
-</li>
+<li><a href="#_principal">Principal</a></li>
 <li><a href="#_examples">Examples</a></li>
 <li><a href="#_what_does_it_change">What does it change</a></li>
 <li><a href="#_quick_start">Quick start</a></li>
@@ -670,6 +666,12 @@ ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .olist, .olist .ulist 
 </li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#_ways_to_implement">Ways to implement</a>
+<ul class="sectlevel2">
+<li><a href="#_git_version">Git version</a></li>
+<li><a href="#_approvals_version">Approvals version</a></li>
 </ul>
 </li>
 </ul>
@@ -890,56 +892,6 @@ and <a href="https://en.wikipedia.org/wiki/Characterization_test">Golden Master<
 <div class="paragraph">
 <p>Full project documentation is here: <a href="https://sfauvel.github.io/documentationtesting/" class="bare">https://sfauvel.github.io/documentationtesting/</a></p>
 </div>
-<div class="sect3">
-<h4 id="_git_version">Git version</h4>
-<div class="paragraph">
-<p>Here, we just generated files and compare them with git version.<br>
-It&#8217;s done in <code>@AfterEach</code> to check when we throw one test from IDE.</p>
-</div>
-<div class="paragraph">
-<p>A script <code>check.sh</code> verify all differences compare to the head git version (you can do the same using only git).
-The advantage is that it check also missing files (because a test was removed) and main documentation that include all others.
-Every files within doc folder will be checked.</p>
-</div>
-<div class="paragraph">
-<p>When you want to approve a file, you just have to commit it.</p>
-</div>
-<div class="paragraph">
-<p>Process is decomposed in 3 steps.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Module</th>
-<th class="tableblock halign-left valign-top">Need</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Generate doc</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">source code, *.adoc writer</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Check there is no difference</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">shell, git, *.adoc</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Generate Html from adoc</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">asciidoc, *.adoc</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Generate documentation not required any framework.
-The only need is writing files containing what we need to check.
-There is no constraint about language used to generate files.
-Using xUnit simplify this by creating one file by test using method name and run it with tools provided.</p>
-</div>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_examples">Examples</h3>
@@ -949,22 +901,34 @@ Using xUnit simplify this by creating one file by test using method name and run
 <div class="ulist">
 <ul>
 <li>
-<p><a href="./demo_basic/index.html">demo_basic</a></p>
+<p><a href="./demo_basic_approvals/index.html">demo_basic_approvals</a>: Simple demo with validation using approvals.</p>
 </li>
 <li>
-<p><a href="./demo_tennis/index.html">demo_tennis</a></p>
+<p><a href="./demo_python/index.html">demo_python</a>: no description</p>
 </li>
 <li>
-<p><a href="./demo_gameoflife/index.html">demo_gameoflife</a></p>
+<p><a href="./demo_basic_git/index.html">demo_basic_git</a>: Simple demo with validation using git.</p>
 </li>
 <li>
-<p><a href="./demo_gildedrose/index.html">demo_gildedrose</a></p>
+<p><a href="./demo_tennis/index.html">demo_tennis</a>: Tennis score display in a readable board.</p>
 </li>
 <li>
-<p><a href="./demo_fizzbuzz/index.html">demo_fizzbuzz</a></p>
+<p><a href="./demo_basic_mixed/index.html">demo_basic_mixed</a>: Simple demo with validation using approvals or git.</p>
 </li>
 <li>
-<p><a href="./demo_hero/index.html">demo_hero</a></p>
+<p><a href="./demo_gameoflife/index.html">demo_gameoflife</a>: no description</p>
+</li>
+<li>
+<p><a href="./demo_minimal/index.html">demo_minimal</a>: Minimal project generating doc</p>
+</li>
+<li>
+<p><a href="./demo_gildedrose/index.html">demo_gildedrose</a>: Gilded Rose displaying evolution of values in a table and with a graphic.</p>
+</li>
+<li>
+<p><a href="./demo_fizzbuzz/index.html">demo_fizzbuzz</a>: Fizz buzz with samples foreach rules.</p>
+</li>
+<li>
+<p><a href="./demo_hero/index.html">demo_hero</a>: no description</p>
 </li>
 </ul>
 </div>
@@ -1009,14 +973,14 @@ If it is the case, rename it with <code>approved.adoc</code> instead of <code>re
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">package</span> <span class="namespace">org.sfvl.demo</span>;
 
-<span class="keyword">import</span> <span class="include">org.junit.jupiter.api.Test</span>;
 <span class="keyword">import</span> <span class="include">org.junit.jupiter.api.DisplayName</span>;
+<span class="keyword">import</span> <span class="include">org.junit.jupiter.api.Test</span>;
 <span class="keyword">import</span> <span class="include">org.sfvl.doctesting.ApprovalsBase</span>;
 
 <span class="comment">/**
  * Demo of a simple usage to generate documentation.
  */</span>
-<span class="directive">public</span> <span class="type">class</span> <span class="class">DemoTest</span>  <span class="directive">extends</span> ApprovalsBase {
+<span class="directive">public</span> <span class="type">class</span> <span class="class">DemoTest</span> <span class="directive">extends</span> ApprovalsBase {
 
     <span class="comment">/**
      * When adding two simple numbers, the java operator '+' should return the sum of them.
@@ -1026,7 +990,7 @@ If it is the case, rename it with <code>approved.adoc</code> instead of <code>re
     <span class="directive">public</span> <span class="type">void</span> should_be_5_when_adding_2_and_3() {
         <span class="type">int</span> a = <span class="integer">2</span>;
         <span class="type">int</span> b = <span class="integer">3</span>;
-        write(<span class="predefined-type">String</span>.format(<span class="string"><span class="delimiter">&quot;</span><span class="content">%d + %d = %d</span><span class="delimiter">&quot;</span></span>, a, b, a+b));
+        write(<span class="predefined-type">String</span>.format(<span class="string"><span class="delimiter">&quot;</span><span class="content">%d + %d = %d</span><span class="delimiter">&quot;</span></span>, a, b, a + b));
     }
 }</code></pre>
 </div>
@@ -1108,6 +1072,87 @@ You can approve them all using <code>approveAll.sh</code>.</p>
 You have to compile it and deploy it to your IntelliJ from .jar file present in 'build/distributions' folder.</p>
 </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ways_to_implement">Ways to implement</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are different ways to check regressions in documents generated.</p>
+</div>
+<div class="sect2">
+<h3 id="_git_version">Git version</h3>
+<div class="paragraph">
+<p>Here, we just generated files and compare them with git version.<br>
+It&#8217;s done in <code>@AfterEach</code> to check when we throw one test from IDE.</p>
+</div>
+<div class="paragraph">
+<p>A script <code>checkDocInFolder.sh</code> verify all differences compare to the head git version (you can do the same using only git).
+The advantage is that it check also missing files (because a test was removed) and main documentation that include all others.
+Every files within doc folder will be checked.</p>
+</div>
+<div class="paragraph">
+<p>When you want to approve a file, you just have to commit it.</p>
+</div>
+<div class="paragraph">
+<p>Process is decomposed in 3 steps.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Module</th>
+<th class="tableblock halign-left valign-top">Need</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generate doc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">source code, *.adoc writer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check there is no difference</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shell, git, *.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generate Html from adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">asciidoc, *.adoc</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Generate documentation not required any framework.
+The only need is writing files containing what we need to check.
+There is no constraint about language used to generate files.
+Using xUnit simplify this by creating one file by test using method name and run it with tools provided.</p>
+</div>
+<div class="paragraph">
+<p>Using git involves to commit approved files.
+That means you have to commit approved files to have green test.
+But if you do, you are red test in your git repository until you commit your code.
+If you want to work with baby steps, you could just commit on your local branch the approved files.
+Before pushing, you can make an interactive rebase to remove useless commits (identify with a pattern like DOC:).
+You also can create a specific branch to work on the feature and commit approved files to it.
+When development is finished, you can merge the branch and removed all intermediate states.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_approvals_version">Approvals version</h3>
+<div class="paragraph">
+<p>Approvals is a library to make golden master (<a href="https://github.com/approvals" class="bare">https://github.com/approvals</a>).
+Using it, each test produce a <code>.received</code> file.
+It is compared with a <code>.approved</code> file with the same name.
+The test fail if there is a difference.</p>
+</div>
+<div class="paragraph">
+<p>The method is simple, produce files easy to compare and is integrated to the test lifecycle.
+Inconvenient is that the library is specific to a language and need to be available for it.
+There is also some difficulties to well identify tests that were deleted or renamed.</p>
 </div>
 </div>
 </div>
