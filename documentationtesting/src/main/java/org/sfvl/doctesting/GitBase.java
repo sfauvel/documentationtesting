@@ -1,15 +1,10 @@
 package org.sfvl.doctesting;
 
-import com.thoughtworks.qdox.JavaProjectBuilder;
-import com.thoughtworks.qdox.model.JavaClass;
-import com.thoughtworks.qdox.model.JavaMethod;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.Status;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.TestInfo;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -17,10 +12,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -34,7 +25,7 @@ public class GitBase extends DocAsTestBase {
     /**
      * Return git root path.
      * This method is protected to allow a project to create a subclass and redefine git root path.
-     * @return
+     *
      */
     protected Path getGitRootPath() {
 
@@ -54,8 +45,8 @@ public class GitBase extends DocAsTestBase {
 
         writeContent(documentationNamer, content);
 
-        // When property noassert is present, we just generate documents without checking.
-        if (System.getProperty("noassert") == null) {
+        // When property 'no-assert' is present, we just generate documents without checking.
+        if (System.getProperty("no-assert") == null) {
             assertNoModification(documentationNamer);
         }
     }
@@ -81,15 +72,14 @@ public class GitBase extends DocAsTestBase {
 
         final Path subPath = gitRoot.relativize(documentationNamer.getFilePath());
         if (isModify(gitRoot, subPath.toString())) {
-            fail("File was modified:" + documentationNamer.getApprovalName()+".adoc");
+            fail("File was modified:" + documentationNamer.getApprovalName() + ".adoc");
         } else {
-            System.out.println("Success:" + documentationNamer.getApprovalName()+".adoc");
+            System.out.println("Success:" + documentationNamer.getApprovalName() + ".adoc");
 
         }
     }
 
     public boolean isModify(Path root, String path) throws IOException, GitAPIException {
-        System.out.println(path.toString());
         File rootGit = root
                 .resolve(".git")
                 .toFile();
@@ -101,7 +91,9 @@ public class GitBase extends DocAsTestBase {
 
         try (Git git = new Git(repository)) {
             Status status = git.status().addPath(path).call();
-            return !status.isClean();
+            return !(status.getModified().isEmpty()
+                    && status.getUntracked().isEmpty()
+                    && status.getMissing().isEmpty());
         }
     }
 

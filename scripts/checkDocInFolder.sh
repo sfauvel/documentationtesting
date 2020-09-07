@@ -17,10 +17,15 @@ source ${SCRIPT_PATH}/loadWritingFunction.sh
 
 NEW_LINE=$'\n'
 
-# We add all files to index to simplify comparison with head.
-git add --all $ROOT_DOC
-
-ALL_FAILING_TESTS=$(git status -s --no-renames $ROOT_DOC)
+# We use staged files as reference
+STATUS=$(git status -s --no-renames $ROOT_DOC)
+if [ -z "$STATUS" ]
+then
+  NOT_STAGED_STATUS=""
+else
+  NOT_STAGED_STATUS=$(echo "$STATUS" | grep "^.[^ ].*$")
+fi
+ALL_FAILING_TESTS="$NOT_STAGED_STATUS"
 
 GIT_FILES=$(git ls-tree -r --name-only HEAD $ROOT_DOC)
 PATH_FILES=$(find . -type f -path "./$ROOT_DOC/*" -printf '%P\n')
@@ -39,7 +44,6 @@ do
 done
 
 echo ---------------------
-
 if [ ! -z "$ALL_FAILING_TESTS" ]
 then
   write_failure "FAILURES: ${NB_FAILURES}"

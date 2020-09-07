@@ -69,7 +69,7 @@ function generate_docs() {
     mkdir ${DOCS_PATH}
   fi
 
-  # 'noassert' avoid to check diff on each test. That's not seem to build significantly faster with this option.
+  # 'no-assert' avoid to check diff on each test. That's not seem to build significantly faster with this option.
   # The main advantage is that the build do not break, and we can have a result for all modules.
   docker run \
     -v $(pwd)/src:/project/src:ro \

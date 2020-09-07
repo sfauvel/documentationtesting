@@ -14,9 +14,9 @@ function remove_docs_directories() {
 function generate_docs() {
   remove_docs_directories
 
-  # 'noassert' avoid to check diff on each test. That's not seem to build significantly faster with this option.
+  # 'no-assert' avoid to check diff on each test. That's not seem to build significantly faster with this option.
   # The main advantage is that the build do not break, and we can have a result for all modules.
-  mvn clean install package -Dnoassert
+  mvn clean install package -Dno-assert
 }
 
 # Check file differences
