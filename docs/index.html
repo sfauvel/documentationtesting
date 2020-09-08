@@ -671,8 +671,12 @@ ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .olist, .olist .ulist 
 </li>
 <li><a href="#_ways_to_implement">Ways to implement</a>
 <ul class="sectlevel2">
+<li><a href="#_identif_modified_files">Identif modified files</a>
+<ul class="sectlevel3">
 <li><a href="#_git_version">Git version</a></li>
 <li><a href="#_approvals_version">Approvals version</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -917,7 +921,7 @@ and <a href="https://en.wikipedia.org/wiki/Characterization_test">Golden Master<
 <p><a href="./demo_basic_mixed/index.html">demo_basic_mixed</a>: Simple demo with validation using approvals or git.</p>
 </li>
 <li>
-<p><a href="./demo_gameoflife/index.html">demo_gameoflife</a>: no description</p>
+<p><a href="./demo_gameoflife/index.html">demo_gameoflife</a>: The famous game of life kata with a visual representation of each rule.</p>
 </li>
 <li>
 <p><a href="./demo_minimal/index.html">demo_minimal</a>: Minimal project generating doc</p>
@@ -929,7 +933,7 @@ and <a href="https://en.wikipedia.org/wiki/Characterization_test">Golden Master<
 <p><a href="./demo_fizzbuzz/index.html">demo_fizzbuzz</a>: Fizz buzz with samples foreach rules.</p>
 </li>
 <li>
-<p><a href="./demo_hero/index.html">demo_hero</a>: no description</p>
+<p><a href="./demo_hero/index.html">demo_hero</a>: Shows different documentation that could be produced to verify the same thing.</p>
 </li>
 </ul>
 </div>
@@ -1084,24 +1088,11 @@ You have to compile it and deploy it to your IntelliJ from .jar file present in 
 <h2 id="_ways_to_implement">Ways to implement</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>There are different ways to check regressions in documents generated.</p>
-</div>
-<div class="sect2">
-<h3 id="_git_version">Git version</h3>
-<div class="paragraph">
-<p>Here, we just generated files and compare them with git version.<br>
-It&#8217;s done in <code>@AfterEach</code> to check when we throw one test from IDE.</p>
+<p>We just need to check that there is no difference in documents generated.
+There is several ways to do that.</p>
 </div>
 <div class="paragraph">
-<p>A script <code>checkDocInFolder.sh</code> verify all differences compare to the head git version (you can do the same using only git).
-The advantage is that it check also missing files (because a test was removed) and main documentation that include all others.
-Every files within doc folder will be checked.</p>
-</div>
-<div class="paragraph">
-<p>When you want to approve a file, you just have to commit it.</p>
-</div>
-<div class="paragraph">
-<p>Process is decomposed in 3 steps.</p>
+<p>Global process is decomposed in 3 steps.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1116,15 +1107,15 @@ Every files within doc folder will be checked.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Generate doc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generate documentation</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">source code, *.adoc writer</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Check there is no difference</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">shell, git, *.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">file comparator, *.adoc</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Generate Html from adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generate Html from asciiddoc files</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">asciidoc, *.adoc</p></td>
 </tr>
 </tbody>
@@ -1133,20 +1124,37 @@ Every files within doc folder will be checked.</p>
 <p>Generate documentation not required any framework.
 The only need is writing files containing what we need to check.
 There is no constraint about language used to generate files.
-Using xUnit simplify this by creating one file by test using method name and run it with tools provided.</p>
-</div>
-<div class="paragraph">
-<p>Using git involves to commit approved files.
-That means you have to commit approved files to have green test.
-But if you do, you are red test in your git repository until you commit your code.
-If you want to work with baby steps, you could just commit on your local branch the approved files.
-Before pushing, you can make an interactive rebase to remove useless commits (identify with a pattern like DOC:).
-You also can create a specific branch to work on the feature and commit approved files to it.
-When development is finished, you can merge the branch and removed all intermediate states.</p>
-</div>
+Using xUnit simplify this but it&#8217;s not required.
+We can create one file by test using method name and run it with tools already provided in IDE.</p>
 </div>
 <div class="sect2">
-<h3 id="_approvals_version">Approvals version</h3>
+<h3 id="_identif_modified_files">Identif modified files</h3>
+<div class="sect3">
+<h4 id="_git_version">Git version</h4>
+<div class="paragraph">
+<p>Git is made to check modification between files on disk and files in repository.
+So, we just have to generated files and ask to git if there is a difference with his version.</p>
+</div>
+<div class="paragraph">
+<p>We can call <code>git status</code> to see files that has changed.
+To provide a simple output, a script <code>checkDocInFolder.sh</code> verify all differences compare to staged files in git.</p>
+</div>
+<div class="paragraph">
+<p>The advantage is that it check all files in doc folder: missing files (because a test was removed), images and main documentation that include all others.</p>
+</div>
+<div class="paragraph">
+<p>We also can add a verification after each test to verify the test from IDE.
+It&#8217;s done in Java with JUnit 5 in methods annotated <code>@AfterEach</code> using JGit for example.</p>
+</div>
+<div class="paragraph">
+<p>When you want to approve a file, you just have to staged it.</p>
+</div>
+<div class="paragraph">
+<p>Using git involves to staged approved files.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_approvals_version">Approvals version</h4>
 <div class="paragraph">
 <p>Approvals is a library to make golden master (<a href="https://github.com/approvals" class="bare">https://github.com/approvals</a>).
 Using it, each test produce a <code>.received</code> file.
@@ -1156,7 +1164,9 @@ The test fail if there is a difference.</p>
 <div class="paragraph">
 <p>The method is simple, produce files easy to compare and is integrated to the test lifecycle.
 Inconvenient is that the library is specific to a language and need to be available for it.
-There is also some difficulties to well identify tests that were deleted or renamed.</p>
+There is also some difficulties to well identify tests that were deleted or renamed.
+It&#8217;s also could be difficult to check other files generated like images.</p>
+</div>
 </div>
 </div>
 </div>

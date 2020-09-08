@@ -11,7 +11,7 @@
 
     <artifactId>demo_hero</artifactId>
 
-
+    <description>Shows different documentation that could be produced to verify the same thing.</description>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
