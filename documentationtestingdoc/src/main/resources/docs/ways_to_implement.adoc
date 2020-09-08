@@ -1,44 +1,46 @@
 = Ways to implement
 
-There are different ways to check regressions in documents generated.
+We just need to check that there is no difference in documents generated.
+There is several ways to do that.
 
 
-== Git version
-
-Here, we just generated files and compare them with git version. +
-It's done in `@AfterEach` to check when we throw one test from IDE.
-
-A script `checkDocInFolder.sh` verify all differences compare to the head git version (you can do the same using only git).
-The advantage is that it check also missing files (because a test was removed) and main documentation that include all others.
-Every files within doc folder will be checked.
-
-When you want to approve a file, you just have to commit it.
-
-Process is decomposed in 3 steps.
+Global process is decomposed in 3 steps.
 
 [cols="1,1"]
 |====
 | Module | Need
 
-| Generate doc | source code, *.adoc writer
-| Check there is no difference | shell, git, *.adoc
-| Generate Html from adoc | asciidoc, *.adoc
+| Generate documentation | source code, *.adoc writer
+| Check there is no difference | file comparator, *.adoc
+| Generate Html from asciiddoc files | asciidoc, *.adoc
 |====
 
 Generate documentation not required any framework.
 The only need is writing files containing what we need to check.
 There is no constraint about language used to generate files.
-Using xUnit simplify this by creating one file by test using method name and run it with tools provided.
+Using xUnit simplify this but it's not required.
+We can create one file by test using method name and run it with tools already provided in IDE.
 
-Using git involves to commit approved files.
-That means you have to commit approved files to have green test.
-But if you do, you are red test in your git repository until you commit your code.
-If you want to work with baby steps, you could just commit on your local branch the approved files.
-Before pushing, you can make an interactive rebase to remove useless commits (identify with a pattern like DOC:).
-You also can create a specific branch to work on the feature and commit approved files to it.
-When development is finished, you can merge the branch and removed all intermediate states.
+== Identif modified files
 
-== Approvals version
+=== Git version
+
+Git is made to check modification between files on disk and files in repository.
+So, we just have to generated files and ask to git if there is a difference with his version.
+
+We can call `git status` to see files that has changed.
+To provide a simple output, a script `checkDocInFolder.sh` verify all differences compare to staged files in git.
+
+The advantage is that it check all files in doc folder: missing files (because a test was removed), images and main documentation that include all others.
+
+We also can add a verification after each test to verify the test from IDE.
+It's done in Java with JUnit 5 in methods annotated `@AfterEach` using JGit for example.
+
+When you want to approve a file, you just have to staged it.
+
+Using git involves to staged approved files.
+
+=== Approvals version
 
 Approvals is a library to make golden master (https://github.com/approvals).
 Using it, each test produce a `.received` file.
@@ -48,3 +50,4 @@ The test fail if there is a difference.
 The method is simple, produce files easy to compare and is integrated to the test lifecycle.
 Inconvenient is that the library is specific to a language and need to be available for it.
 There is also some difficulties to well identify tests that were deleted or renamed.
+It's also could be difficult to check other files generated like images.
