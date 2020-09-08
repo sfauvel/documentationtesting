@@ -1,5 +1,6 @@
 package org.sfvl;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.sfvl.doctesting.ApprovalsBase;
 
@@ -17,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
  */
+@DisplayName("Game of life illustrated by examples")
 public class GameOfLifeTest extends ApprovalsBase {
 
     /**
