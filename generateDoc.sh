@@ -66,4 +66,4 @@ function generate_docs() {
 }
 
 
-generate_docs "$(ls | grep "demo_*") documentationtestingdoc"
+generate_docs "$(ls | grep "demo_*") $(ls | grep "tech_*") documentationtestingdoc"
