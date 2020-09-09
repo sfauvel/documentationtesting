@@ -653,7 +653,12 @@ ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .olist, .olist .ulist 
 <li><a href="#_documentation_testing">Documentation testing</a>
 <ul class="sectlevel2">
 <li><a href="#_principal">Principal</a></li>
-<li><a href="#_examples">Examples</a></li>
+<li><a href="#_examples">Examples</a>
+<ul class="sectlevel3">
+<li><a href="#_documentation_produced">Documentation produced</a></li>
+<li><a href="#_technical_alternatives">Technical alternatives</a></li>
+</ul>
+</li>
 <li><a href="#_what_does_it_change">What does it change</a></li>
 <li><a href="#_quick_start">Quick start</a></li>
 <li><a href="#_project">Project</a>
@@ -903,16 +908,12 @@ and <a href="https://en.wikipedia.org/wiki/Characterization_test">Golden Master<
 <div class="paragraph">
 <p>Several examples are provided to show how we can use it and what it can produce.</p>
 </div>
+<div class="sect3">
+<h4 id="_documentation_produced">Documentation produced</h4>
 <div class="ulist">
 <ul>
 <li>
 <p><a href="./demo_basic_approvals/index.html">demo_basic_approvals</a>: Simple demo with validation using approvals.</p>
-</li>
-<li>
-<p><a href="./demo_basic_git/index.html">demo_basic_git</a>: Simple demo with validation using git.</p>
-</li>
-<li>
-<p><a href="./demo_basic_mixed/index.html">demo_basic_mixed</a>: Simple demo with validation using approvals or git.</p>
 </li>
 <li>
 <p><a href="./demo_fizzbuzz/index.html">demo_fizzbuzz</a>: Fizz buzz with samples foreach rules.</p>
@@ -938,6 +939,23 @@ and <a href="https://en.wikipedia.org/wiki/Characterization_test">Golden Master<
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_technical_alternatives">Technical alternatives</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="./tech_junit5_extension/index.html">tech_junit5_extension</a>: Demo using junit5 extension.</p>
+</li>
+<li>
+<p><a href="./tech_using_git/index.html">tech_using_git</a>: Simple demo with validation using git.</p>
+</li>
+<li>
+<p><a href="./tech_using_git_or_approvals/index.html">tech_using_git_or_approvals</a>: Simple demo with validation using git or approvals.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_what_does_it_change">What does it change</h3>
 <div class="paragraph">
@@ -954,7 +972,8 @@ But, this information still needs to be checked.</p>
 <div class="sect2">
 <h3 id="_quick_start">Quick start</h3>
 <div class="paragraph">
-<p>The only module you need is <code>documentationtestesting</code> one.</p>
+<p>You want to create your own Java project to try this approach.
+The only module you need is <code>documentationtestesting</code> one.</p>
 </div>
 <div class="paragraph">
 <p>Start by writing a test that inherits from <code>org.sfvl.doctesting.ApprovalsBase</code>.</p>
@@ -970,8 +989,11 @@ First time, test fails and a file is produced in <code>src/test/docs</code> with
 The filename ends with <code>received.adoc</code>.</p>
 </div>
 <div class="paragraph">
-<p>Read the file and verify that it says what we expected.
+<p>Read the file and verify that it looks like as you want.
 If it is the case, rename it with <code>approved.adoc</code> instead of <code>received.adoc</code>.</p>
+</div>
+<div class="paragraph">
+<p>Relaunch tests and they should pass.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example with DemoTest.java</div>

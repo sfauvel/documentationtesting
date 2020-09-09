@@ -6,10 +6,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.sfvl</groupId>
-    <artifactId>demo_basic_mixed</artifactId>
+    <artifactId>tech_using_git_or_approvals</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <description>Simple demo with validation using approvals or git.</description>
+    <description>Simple demo with validation using git or approvals.</description>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>

@@ -50,6 +50,13 @@ public class DocGenerator {
                 .map(demo -> addDemo(demo))
                 .collect(Collectors.joining());
 
+        final String demos_tech = Files.list(getProjectPath().getParent())
+                .filter(p -> Files.isDirectory(p))
+                .map(p -> p.getFileName().toString())
+                .filter(name -> name.startsWith("tech_"))
+                .sorted()
+                .map(demo -> addDemo(demo))
+                .collect(Collectors.joining());
 
         String doc = formatter.standardOptions() +
                 ":nofooter:\n" +
@@ -61,7 +68,8 @@ public class DocGenerator {
         Files.createDirectories(docPath);
 
         generateDocFile(docName, doc);
-        generateDocFile("demo_list.adoc", demos);
+        generateDocFile("demo_list.adoc", "\n=== Documentation produced\n\n" + demos);
+        generateDocFile("tech_list.adoc", "\n=== Technical alternatives\n\n" +demos_tech);
 
     }
 

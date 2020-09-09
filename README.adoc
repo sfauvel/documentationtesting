@@ -151,6 +151,7 @@ Several examples are provided to show how we can use it and what it can produce.
 
 ifdef::fulldoc[]
 include::./documentationtestingdoc/target/classes/docs/demo_list.adoc[]
+include::./documentationtestingdoc/target/classes/docs/tech_list.adoc[]
 endif::[]
 
 == What does it change
