@@ -46,6 +46,7 @@ public class DocGenerator {
                 .filter(p -> Files.isDirectory(p))
                 .map(p -> p.getFileName().toString())
                 .filter(name -> name.startsWith("demo_"))
+                .sorted()
                 .map(demo -> addDemo(demo))
                 .collect(Collectors.joining());
 

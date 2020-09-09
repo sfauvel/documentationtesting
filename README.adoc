@@ -165,6 +165,7 @@ But, this information still needs to be checked.
 
 == Quick start
 
+You want to create your own Java project to try this approach.
 The only module you need is `documentationtestesting` one.
 
 Start by writing a test that inherits from `org.sfvl.doctesting.ApprovalsBase`.
@@ -177,9 +178,10 @@ Then run test as usual.
 First time, test fails and a file is produced in `src/test/docs` with the name of the test.
 The filename ends with `received.adoc`.
 
-Read the file and verify that it says what we expected.
+Read the file and verify that it looks like as you want.
 If it is the case, rename it with `approved.adoc` instead of `received.adoc`.
 
+Relaunch tests and they should pass.
 
 .Example with DemoTest.java
 [source, java]
