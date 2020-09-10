@@ -18,6 +18,7 @@
         <module>demo_gildedrose</module>
         <module>demo_tennis</module>
         <module>demo_hero</module>
+        <module>tech_using_asciidoctorj</module>
         <module>tech_using_git</module>
         <module>tech_using_git_or_approvals</module>
         <module>tech_junit5_extension</module>

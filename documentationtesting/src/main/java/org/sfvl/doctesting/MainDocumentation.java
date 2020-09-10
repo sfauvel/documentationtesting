@@ -38,8 +38,15 @@ public class MainDocumentation {
         docRootPath = pathProvider.getProjectPath().resolve(Paths.get("src", "test", "docs"));
     }
 
-    protected void generate(String packageToScan) throws IOException {
+    public Path getDocRootPath() {
+        return docRootPath;
+    }
 
+    protected void generate(String packageToScan) throws IOException {
+        generate(packageToScan, DOCUMENTATION_FILENAME);
+    }
+
+    protected void generate(String packageToScan, String documentationFilename) throws IOException {
         Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
 
         final Map<Class<?>, List<Method>> methodsByClass = testMethods.stream().collect(Collectors.groupingBy(
@@ -60,7 +67,7 @@ public class MainDocumentation {
 
         final Path readmePath = pathProvider.getProjectPath().resolve(Paths.get("readme.adoc"));
 
-        Path path = docRootPath.resolve(DOCUMENTATION_FILENAME + ".adoc");
+        Path path = docRootPath.resolve(documentationFilename + ".adoc");
         try (FileWriter fileWriter = new FileWriter(path.toFile())) {
             fileWriter.write(":toc: left\n:nofooter:\n:stem:\n\n");
             if (readmePath.toFile().exists()) {
@@ -71,7 +78,6 @@ public class MainDocumentation {
 
             fileWriter.write(testsDocumentation);
         }
-
     }
 
     private String getTestClassTitle(Map.Entry<Class<?>, List<Method>> e) {

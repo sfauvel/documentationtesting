@@ -1,0 +1,8 @@
+= Generate html with asciidoctorj
+
+https://asciidoctor.org/docs/asciidoctorj/[asciidoctorj] is a library that convert asciidoctor files to html.
+
+We can use it instead of installing Asciidoctor or use a docker image to produce HTML.
+
+`Asciidoctorj` is easy to use on a java project but it's less portable than using docker to project with other languages.
+
