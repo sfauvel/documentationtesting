@@ -23,7 +23,7 @@ if [ -z "$STATUS" ]
 then
   NOT_STAGED_STATUS=""
 else
-  NOT_STAGED_STATUS=$(echo "$STATUS" | grep "^.[^ ].*$")
+  NOT_STAGED_STATUS=$(echo "$STATUS" | grep "^.[^ ].*$") || true
 fi
 ALL_FAILING_TESTS="$NOT_STAGED_STATUS"
 

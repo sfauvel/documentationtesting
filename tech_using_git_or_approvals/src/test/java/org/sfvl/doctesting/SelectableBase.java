@@ -1,9 +1,5 @@
 package org.sfvl.doctesting;
 
-import org.approvaltests.Approvals;
-import org.approvaltests.namer.ApprovalNamer;
-import org.approvaltests.writers.ApprovalTextWriter;
-
 /**
  * Base class for test.
  *

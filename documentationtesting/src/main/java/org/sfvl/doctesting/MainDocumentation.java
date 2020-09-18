@@ -47,6 +47,23 @@ public class MainDocumentation {
     }
 
     protected void generate(String packageToScan, String documentationFilename) throws IOException {
+        final String content = getDocumentationContent(packageToScan);
+
+        Path path = docRootPath.resolve(documentationFilename + ".adoc");
+        try (FileWriter fileWriter = new FileWriter(path.toFile())) {
+            writeDoc(fileWriter, content);
+        }
+    }
+
+    protected String getDocumentationContent(String packageToScan) {
+        final String testsDocumentation = getMethodDocumentation(packageToScan);
+
+        final String header = getHeader();
+
+        return header + testsDocumentation;
+    }
+
+    protected String getMethodDocumentation(String packageToScan) {
         Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
 
         final Map<Class<?>, List<Method>> methodsByClass = testMethods.stream().collect(Collectors.groupingBy(
@@ -64,20 +81,21 @@ public class MainDocumentation {
                 .collect(Collectors.joining("\n"));
 
         //System.out.println(testsDocumentation);
+        return testsDocumentation;
+    }
 
+    protected String getHeader() {
         final Path readmePath = pathProvider.getProjectPath().resolve(Paths.get("readme.adoc"));
 
-        Path path = docRootPath.resolve(documentationFilename + ".adoc");
-        try (FileWriter fileWriter = new FileWriter(path.toFile())) {
-            fileWriter.write(":toc: left\n:nofooter:\n:stem:\n\n");
-            if (readmePath.toFile().exists()) {
-                fileWriter.write("include::../../../readme.adoc[leveloffset=+1]\n\n");
-            } else {
-                fileWriter.write("= " + DOCUMENTATION_TITLE + "\n\n");
-            }
+        final String header = ":toc: left\n:nofooter:\n:stem:\n\n" +
+                (readmePath.toFile().exists()
+                ? "include::../../../readme.adoc[leveloffset=+1]\n\n"
+                : "= " + DOCUMENTATION_TITLE + "\n\n");
+        return header;
+    }
 
-            fileWriter.write(testsDocumentation);
-        }
+    private void writeDoc(FileWriter fileWriter, String content) throws IOException {
+        fileWriter.write(content);
     }
 
     private String getTestClassTitle(Map.Entry<Class<?>, List<Method>> e) {
@@ -125,7 +143,7 @@ public class MainDocumentation {
         return Optional.ofNullable(javaClass.getComment()).orElse("");
     }
 
-    private Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
+    protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
         Reflections reflections = new Reflections(packageToScan, new MethodAnnotationsScanner());
         return reflections.getMethodsAnnotatedWith(annotation);
     }

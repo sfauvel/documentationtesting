@@ -1,0 +1,46 @@
+:toc: left
+:nofooter:
+:stem:
+
+include::../../../readme.adoc[leveloffset=+1]
+
+
+== Performances
+
+We compare performance of tests using different approaches.
+
+Using Git, we can verify documentation on each test or not.
+When we run all tests, this verification is done at the end by script that launch tests.
+To have total time using Git without verification on each test, we should add time of global checking.
+This step is fast, it's just a shell script with some git commands.
+
+[%autowidth]
+|====
+include::PerfGitWithAssertTest.adoc[]
+include::PerfApprovalsTest.adoc[]
+include::PerfJUnitTest.adoc[]
+include::PerfGitNoAssertTest.adoc[]
+|====
+== Check file modification with git after each test.
+Demo of a simple usage to generate documentation.
+
+include::org/sfvl/demo/PerfGitWithAssertTest.should_give_person_information.approved.adoc[leveloffset=+2]
+
+
+== Verify documentation with _Approvals_ library.
+Demo of a simple usage to generate documentation.
+
+include::org/sfvl/demo/PerfApprovalsTest.should_give_person_information.approved.adoc[leveloffset=+2]
+
+
+== Using JUnit assertions to test.
+
+
+include::org/sfvl/demo/PerfJUnitTest.should_give_person_information.approved.adoc[leveloffset=+2]
+
+
+== Use Git to check file modification but after all tests. The time shown not include this verification.
+Demo of a simple usage to generate documentation.
+
+include::org/sfvl/demo/PerfGitNoAssertTest.should_give_person_information.approved.adoc[leveloffset=+2]
+

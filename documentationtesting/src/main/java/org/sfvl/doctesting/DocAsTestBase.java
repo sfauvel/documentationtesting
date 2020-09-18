@@ -71,7 +71,7 @@ public abstract class DocAsTestBase {
      * Write a text to the output.
      * @param texts
      */
-    protected void write(String... texts) {
+    public void write(String... texts) {
         sb.append(Arrays.stream(texts).collect(Collectors.joining("\n")));
     }
 

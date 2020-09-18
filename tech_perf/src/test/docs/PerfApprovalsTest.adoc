@@ -1,0 +1,1 @@
+| PerfApprovalsTest | 107ms | Verify documentation with _Approvals_ library.

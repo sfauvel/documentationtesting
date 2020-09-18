@@ -9,6 +9,6 @@ public class BasicDocumentation extends MainDocumentation {
     public static void main(String... args) throws IOException {
         final BasicDocumentation generator = new BasicDocumentation();
 
-        generator.generate("org.sfvl");
+        generator.generate("org.sfvl.demo");
     }
 }

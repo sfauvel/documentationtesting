@@ -4,18 +4,6 @@
 
 = Documentation
 
-== GitBaseTest
-
-
-include::org/sfvl/doctesting/GitBaseTest.should_not_modified_when_no_file.approved.adoc[leveloffset=+2]
-include::org/sfvl/doctesting/GitBaseTest.should_modified_when_new_file_not_already_staged.approved.adoc[leveloffset=+2]
-include::org/sfvl/doctesting/GitBaseTest.should_not_modified_when_new_file_staged.approved.adoc[leveloffset=+2]
-include::org/sfvl/doctesting/GitBaseTest.should_modified_when_file_staged_and_then_modified.approved.adoc[leveloffset=+2]
-include::org/sfvl/doctesting/GitBaseTest.should_modified_when_file_removed_from_disk.approved.adoc[leveloffset=+2]
-include::org/sfvl/doctesting/GitBaseTest.should_not_modified_when_file_removed_from_git_and_from_disk.approved.adoc[leveloffset=+2]
-include::org/sfvl/doctesting/GitBaseTest.should_modified_when_file_removed_from_git.approved.adoc[leveloffset=+2]
-
-
 == DemoTest
 Demo of a simple usage to generate documentation.
 

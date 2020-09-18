@@ -1,0 +1,14 @@
+= Should give person information
+
+
+
+With an instance of Person:
+
+* *First Name*: John
+* *Last Name*: Doe
+* *Year of birth*: 1975
+
+Results calling methods are:
+
+* *age()*: 45 (_if we are in 2020_)
+* *toString()*: John Doe

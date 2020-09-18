@@ -1,0 +1,11 @@
+= Performance
+
+We evaluate performance using different approaches.
+
+This comparison is very light and approximate.
+It's just to give an idea of the cost to generate files and compare them.
+
+We show a table with time to execute one test.
+
+We also show what each test provide as information.
+With Junit, we just display test source code.

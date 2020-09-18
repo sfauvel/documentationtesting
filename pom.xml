@@ -22,6 +22,7 @@
         <module>tech_using_git</module>
         <module>tech_using_git_or_approvals</module>
         <module>tech_junit5_extension</module>
+        <module>tech_perf</module>
         <module>documentationtestingdoc</module>
     </modules>
 
