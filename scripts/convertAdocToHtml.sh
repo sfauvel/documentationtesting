@@ -6,6 +6,10 @@ DOCKER_IMAGE=asciidoctor/docker-asciidoctor
 DOCKER_WORKDIR=/documents
 DOC_PATH=docs
 SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+# Styles come from : https://github.com/darshandsoni/asciidoctor-skins
+#STYLE=adoc-readthedocs.css
+#STYLE=adoc-rocket-panda.css
+STYLE=asciidoctor.css
 
 function generateAsciidoc() {
 
@@ -19,6 +23,7 @@ function generateAsciidoc() {
     # echo ADOC_FILE: $ADOC_FILE
     # echo DESTINATION: $DESTINATION
     # echo STYLESHEETS: $STYLESHEETS
+    # echo STYLE: $STYLE
     # echo ------------------------------
 
     if [ ! -d ${DESTINATION} ]
@@ -38,7 +43,7 @@ function generateAsciidoc() {
     	-r asciidoctor-diagram \
     	-a sourcedir=${DOCKER_WORKDIR}/src/main/java \
         -a webfonts! \
-        -a stylesheet=/stylesheets/adoc-rocket-panda.css \
+        -a stylesheet=/stylesheets/${STYLE} \
     	--attribute htmlOutput="html" \
     	--attribute rootpath="${DOCKER_WORKDIR}" \
     	${ADOC_FILE}

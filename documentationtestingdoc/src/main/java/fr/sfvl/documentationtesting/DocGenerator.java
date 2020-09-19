@@ -61,7 +61,7 @@ public class DocGenerator {
         String doc = formatter.standardOptions() +
                 ":nofooter:\n" +
                 ":fulldoc:\n" +
-                formatter.tableOfContent() +
+                formatter.tableOfContent(4) +
                 formatter.include(docPath.relativize(getProjectPath().getParent().resolve("README.adoc").toAbsolutePath()).toString()) +
                 formatter.include("ways_to_implement.adoc");
 

@@ -3,7 +3,6 @@ package fr.sfvl.documentationtesting;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static java.util.Optional.ofNullable;
@@ -19,6 +18,8 @@ public interface Formatter {
     String paragraph(String... content);
 
     String tableOfContent();
+
+    String tableOfContent(int level);
 
     String addDefinition(String key, String description);
 
@@ -146,7 +147,12 @@ public interface Formatter {
 
         @Override
         public String tableOfContent() {
-            return ":toc: left\n:toclevels: 4\n";
+            return tableOfContent(4);
+        }
+
+        @Override
+        public String tableOfContent(int level) {
+            return String.format(":toc: left\n:toclevels: %d, \n", level);
         }
 
         @Override

@@ -1,1 +1,1 @@
-| PerfJUnitTest | 4ms | Using JUnit assertions to test.
+| PerfJUnitTest | 6ms | Using JUnit assertions to test.
