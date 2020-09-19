@@ -13,6 +13,7 @@ Imagine that your tests are as readable as documentation and that they look like
 | Player B | | &#x2714; | &#x2714;|
 |===
 
+ifndef::env-github[]
 ++++
 <style>
 table.tableblock.grid-all {
@@ -23,8 +24,10 @@ table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr
 }
 </style>
 ++++
+endif::[]
 ====
 
+ifndef::env-github[]
 or like that
 
 ====
@@ -91,6 +94,10 @@ or like that
 ++++
 <style>
 
+table.gameOfLife {
+    height:3em;
+}
+
 .gameOfLife p {
 /* Need to set margin to 0 only with html file, not with adoc files.*/
 ifdef::htmlOutput[]
@@ -127,7 +134,9 @@ td .content .alive p {
 
 </style>
 ++++
+
 ====
+endif::[]
 
 This is what this project offers you to set up.
 
