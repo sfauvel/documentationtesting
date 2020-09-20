@@ -1,37 +1,41 @@
 package org.sfvl.demo;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.sfvl.Person;
 import org.sfvl.doctesting.DocAsTestBase;
 import org.sfvl.doctesting.MainDocumentation;
 import org.sfvl.doctesting.PathProvider;
+import org.w3c.dom.NamedNodeMap;
+import org.xml.sax.SAXException;
 
-import java.io.FileWriter;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.nio.file.Path;
-import java.time.Duration;
+import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class BasicDocumentation extends MainDocumentation {
 
     @Override
     protected String getDocumentationContent(String packageToScan) {
-        Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
 
-        final Map<Class<?>, List<Method>> methodsByClass = testMethods.stream().collect(Collectors.groupingBy(
-                m -> m.getDeclaringClass()
-        ));
+        String lines  = "";
+        try {
+            lines = parseTestReport();
+        } catch (Exception e) {
+            new RuntimeException(e);
+        }
 
-        final String perfs = methodsByClass.keySet().stream()
-                .map(clazz -> "include::" + clazz.getSimpleName() + ".adoc[]")
-                .collect(Collectors.joining("\n"));
+        String timeFromReports = "\n[%autowidth]\n|====\n" +
+                "| Class | Time in seconds) | Description \n" +
+                lines +
+                "\n|====\n";
 
         final String perfDocumentation = "\n== Performances\n\n" +
                 "We compare performance of tests using different approaches.\n" +
@@ -39,9 +43,7 @@ public class BasicDocumentation extends MainDocumentation {
                 "When we run all tests, this verification is done at the end by script that launch tests.\n" +
                 "To have total time using Git without verification on each test, we should add time of global checking.\n" +
                 "This step is fast, it's just a shell script with some git commands.\n" +
-                "\n[%autowidth]\n|====\n" +
-                perfs +
-                "\n|====\n";
+                timeFromReports;
 
         return getHeader() +
                 perfDocumentation +
@@ -54,23 +56,31 @@ public class BasicDocumentation extends MainDocumentation {
         generator.generate("org.sfvl");
     }
 
-
-    public static void writeDuration(Class<?> aClass, LocalDateTime begin, LocalDateTime end) throws IOException {
+    public static String parseTestReport() throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException {
         final PathProvider pathProvider = new PathProvider();
-        final int durationInMilliseconds = Duration.between(begin, end).getNano() / (1000 * 1000);
-        System.out.println(aClass.getSimpleName()+ ": " + durationInMilliseconds +"ms");
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
 
-        final DisplayName annotation = aClass.getAnnotation(DisplayName.class);
+        final Path reportPath = pathProvider.getProjectPath().resolve(Paths.get("target", "surefire-reports"));
+        final Set<File> testReports = Stream.of(reportPath.toFile().listFiles())
+                .filter(file -> !file.isDirectory())
+                .filter(file -> file.getName().startsWith("TEST-"))
+                .collect(Collectors.toSet());
 
-        final Path docPath = new MainDocumentation().getDocRootPath();
-        final Path path = docPath.resolve(aClass.getSimpleName()+".adoc");
-        try (FileWriter fileWriter = new FileWriter(path.toFile())) {
-            fileWriter.write("| " + aClass.getSimpleName()
-                    + " | " + durationInMilliseconds +"ms"
-                    + " | " + annotation.value());
+        StringBuffer buffer = new StringBuffer();
+        for (File report : testReports) {
+            final NamedNodeMap attributes = builder.parse(report)
+                    .getElementsByTagName("testcase")
+                    .item(0)
+                    .getAttributes();
+            final String timeItem = attributes.getNamedItem("time").getNodeValue();
+            final String classname = attributes.getNamedItem("classname").getNodeValue();
+            final Class<?> testClass = Class.forName(classname);
+            final DisplayName annotation = testClass.getAnnotation(DisplayName.class);
+            buffer.append("| " + testClass.getSimpleName() + " | " + timeItem + " | " + annotation.value() + "\n");
         }
+        return buffer.toString();
     }
-
 
     public static void generateTestDocumentation(DocAsTestBase doc) {
         final LocalDate now = LocalDate.now();
@@ -86,7 +96,7 @@ public class BasicDocumentation extends MainDocumentation {
         doc.write("* *Last Name*: " + lastName + "\n");
         doc.write("* *Year of birth*: " + yearOfBirth + "\n");
         doc.write("\nResults calling methods are:\n\n");
-        doc.write("* *age()*: " + person.age() + " (_if we are in "+now.getYear()+"_)\n");
+        doc.write("* *age()*: " + person.age() + " (_if we are in " + now.getYear() + "_)\n");
         doc.write("* *toString()*: " + person.toString() + "\n");
     }
 }

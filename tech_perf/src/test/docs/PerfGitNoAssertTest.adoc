@@ -1,1 +1,0 @@
-| PerfGitNoAssertTest | 11ms | Use Git to check file modification but after all tests. The time shown not include this verification.

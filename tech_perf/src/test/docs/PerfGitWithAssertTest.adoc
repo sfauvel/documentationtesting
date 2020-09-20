@@ -1,1 +1,0 @@
-| PerfGitWithAssertTest | 172ms | Check file modification with git after each test.

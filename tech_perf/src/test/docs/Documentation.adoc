@@ -16,31 +16,33 @@ This step is fast, it's just a shell script with some git commands.
 
 [%autowidth]
 |====
-include::PerfJUnitTest.adoc[]
-include::PerfApprovalsTest.adoc[]
-include::PerfGitWithAssertTest.adoc[]
-include::PerfGitNoAssertTest.adoc[]
+| Class | Time in seconds) | Description 
+| PerfGitNoAssertTest | 0.01 | Use Git to check file modification but after all tests. The time shown not include this verification.
+| PerfGitWithAssertTest | 0.171 | Check file modification with git after each test.
+| PerfJUnitTest | 0.004 | Using JUnit assertions to test.
+| PerfApprovalsTest | 0.092 | Verify documentation with _Approvals_ library.
+
 |====
-== Using JUnit assertions to test.
-
-
-include::org/sfvl/demo/PerfJUnitTest.should_give_person_information.approved.adoc[leveloffset=+2]
-
-
 == Verify documentation with _Approvals_ library.
 Demo of a simple usage to generate documentation.
 
 include::org/sfvl/demo/PerfApprovalsTest.should_give_person_information.approved.adoc[leveloffset=+2]
 
 
-== Check file modification with git after each test.
-Demo of a simple usage to generate documentation.
-
-include::org/sfvl/demo/PerfGitWithAssertTest.should_give_person_information.approved.adoc[leveloffset=+2]
-
-
 == Use Git to check file modification but after all tests. The time shown not include this verification.
 Demo of a simple usage to generate documentation.
 
 include::org/sfvl/demo/PerfGitNoAssertTest.should_give_person_information.approved.adoc[leveloffset=+2]
+
+
+== Using JUnit assertions to test.
+
+
+include::org/sfvl/demo/PerfJUnitTest.should_give_person_information.approved.adoc[leveloffset=+2]
+
+
+== Check file modification with git after each test.
+Demo of a simple usage to generate documentation.
+
+include::org/sfvl/demo/PerfGitWithAssertTest.should_give_person_information.approved.adoc[leveloffset=+2]
 
