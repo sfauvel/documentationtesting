@@ -16,13 +16,14 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Using JUnit assertions to test.")
-public class PerfJUnitTest {
+@TestCategory(category = TestCategory.Cat.Simple)
+public class UsingJUnitTest {
 
     @AfterAll
     public static void end() throws IOException, NoSuchMethodException {
 
         final Path docPath = new MainDocumentation().getDocRootPath();
-        final DocumentationNamer documentationNamer = new DocumentationNamer(docPath, PerfJUnitTest.class.getMethod("should_give_person_information"));
+        final DocumentationNamer documentationNamer = new DocumentationNamer(docPath, UsingJUnitTest.class.getMethod("checkPerson"));
 
         final Class<?> aClass = MethodHandles.lookup().lookupClass();
 
@@ -41,6 +42,10 @@ public class PerfJUnitTest {
     // tag::code[]
     @Test
     public void should_give_person_information() {
+        checkPerson();
+    }
+
+    public static void checkPerson() {
         final LocalDate now = LocalDate.now();
         final int current_year = now.getYear();
         final int age = 45;

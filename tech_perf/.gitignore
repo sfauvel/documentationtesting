@@ -1,0 +1,2 @@
+# Exclude generated files for tests without be needed.
+src/test/docs/**/*_xxx_*

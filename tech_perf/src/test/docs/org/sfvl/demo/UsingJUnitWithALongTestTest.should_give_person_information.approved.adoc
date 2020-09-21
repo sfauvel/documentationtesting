@@ -1,0 +1,5 @@
+
+[source,java,indent=0]
+----
+include::../../../../java/org/sfvl/demo/UsingJUnitWithALongTestTest.java[tags=code]
+----

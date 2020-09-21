@@ -1,5 +1,0 @@
-
-[source,java,indent=0]
-----
-include::../../../../java/org/sfvl/demo/PerfJUnitTest.java[tags=code]
-----

@@ -11,8 +11,9 @@ import java.io.IOException;
 /**
  * Demo of a simple usage to generate documentation.
  */
-@DisplayName("Use Git to check file modification but after all tests. The time shown not include this verification.")
-public class PerfGitNoAssertTest extends GitBase {
+@DisplayName("Use Git to check file modification but after all tests. The time shown not include this verification. There is only one test but it check 100 times the same case.")
+@TestCategory(category = TestCategory.Cat.Long)
+public class UsingGitWithNoAssertOptionAndALongTestTest extends GitBase {
 
     @BeforeAll
     public static void begin() {
@@ -26,6 +27,9 @@ public class PerfGitNoAssertTest extends GitBase {
 
     @Test
     public void should_give_person_information() {
-        BasicDocumentation.generateTestDocumentation(this);
+        // Check a lot but generate only one file.
+        for (int i = 0; i < 1000; i++) {
+            BasicDocumentation.generateTestDocumentation(this);
+        }
     }
 }

@@ -98,7 +98,7 @@ public class MainDocumentation {
         fileWriter.write(content);
     }
 
-    private String getTestClassTitle(Map.Entry<Class<?>, List<Method>> e) {
+    protected String getTestClassTitle(Map.Entry<Class<?>, List<Method>> e) {
         Class<?> testClass = e.getKey();
         DisplayName annotation = testClass.getAnnotation(DisplayName.class);
         if (annotation != null) {
@@ -108,7 +108,7 @@ public class MainDocumentation {
         }
     }
 
-    private String includeMethods(List<Method> testMethods) {
+    protected String includeMethods(List<Method> testMethods) {
 
         return getMethodsInOrder(testMethods)
                 .map(m -> new DocumentationNamer(docRootPath, m))
@@ -135,7 +135,7 @@ public class MainDocumentation {
 
     }
 
-    private String getComment(Class<?> clazz) {
+    protected String getComment(Class<?> clazz) {
         JavaProjectBuilder builder = createJavaProjectBuilderWithTestPath();
 
         JavaClass javaClass = builder.getClassByName(clazz.getCanonicalName());

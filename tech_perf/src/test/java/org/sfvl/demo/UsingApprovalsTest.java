@@ -2,16 +2,18 @@ package org.sfvl.demo;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.sfvl.doctesting.GitBase;
+import org.sfvl.doctesting.ApprovalsBase;
 
 /**
  * Demo of a simple usage to generate documentation.
  */
-@DisplayName("Check file modification with git after each test.")
-public class PerfGitWithAssertTest extends GitBase {
+@DisplayName("Verify documentation with _Approvals_ library.")
+@TestCategory(category = TestCategory.Cat.Simple)
+public class UsingApprovalsTest extends ApprovalsBase {
 
     @Test
     public void should_give_person_information() {
         BasicDocumentation.generateTestDocumentation(this);
     }
+
 }

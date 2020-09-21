@@ -1,11 +1,13 @@
 package org.sfvl.demo;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.sfvl.Person;
 import org.sfvl.doctesting.DocAsTestBase;
 import org.sfvl.doctesting.MainDocumentation;
 import org.sfvl.doctesting.PathProvider;
 import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -13,10 +15,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,7 +28,7 @@ public class BasicDocumentation extends MainDocumentation {
     @Override
     protected String getDocumentationContent(String packageToScan) {
 
-        String lines  = "";
+        String lines = "";
         try {
             lines = parseTestReport();
         } catch (Exception e) {
@@ -33,7 +36,7 @@ public class BasicDocumentation extends MainDocumentation {
         }
 
         String timeFromReports = "\n[%autowidth]\n|====\n" +
-                "| Class | Time in seconds) | Description \n" +
+                "| Category | Class | Time in seconds) | Description \n" +
                 lines +
                 "\n|====\n";
 
@@ -50,6 +53,28 @@ public class BasicDocumentation extends MainDocumentation {
                 getMethodDocumentation(packageToScan);
     }
 
+    @Override
+    protected String getMethodDocumentation(String packageToScan) {
+        Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
+
+        final Map<Class<?>, List<Method>> methodsByClass = testMethods.stream()
+                .filter(m -> m.getDeclaringClass().getAnnotation(TestCategory.class).category().equals(TestCategory.Cat.Simple))
+                .collect(Collectors.groupingBy(m -> m.getDeclaringClass()));
+
+        String testsDocumentation = methodsByClass.entrySet().stream()
+                .map(e -> "== "
+                        + getTestClassTitle(e)
+                        + "\n" + getComment(e.getKey())
+                        + "\n\n"
+                        + includeMethods(e.getValue())
+                        + "\n\n"
+                )
+                .collect(Collectors.joining("\n"));
+
+        //System.out.println(testsDocumentation);
+        return testsDocumentation;
+    }
+
     public static void main(String... args) throws IOException {
         final BasicDocumentation generator = new BasicDocumentation();
 
@@ -62,24 +87,27 @@ public class BasicDocumentation extends MainDocumentation {
         DocumentBuilder builder = factory.newDocumentBuilder();
 
         final Path reportPath = pathProvider.getProjectPath().resolve(Paths.get("target", "surefire-reports"));
-        final Set<File> testReports = Stream.of(reportPath.toFile().listFiles())
+        final List<File> testReports = Stream.of(reportPath.toFile().listFiles())
                 .filter(file -> !file.isDirectory())
                 .filter(file -> file.getName().startsWith("TEST-"))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
 
-        StringBuffer buffer = new StringBuffer();
+        List<String> lines = new ArrayList<>();
         for (File report : testReports) {
-            final NamedNodeMap attributes = builder.parse(report)
-                    .getElementsByTagName("testcase")
-                    .item(0)
-                    .getAttributes();
+            final Node testsuite = builder.parse(report).getElementsByTagName("testsuite").item(0);
+
+            final NamedNodeMap attributes = testsuite.getAttributes();
             final String timeItem = attributes.getNamedItem("time").getNodeValue();
-            final String classname = attributes.getNamedItem("classname").getNodeValue();
+            final String classname = attributes.getNamedItem("name").getNodeValue();
             final Class<?> testClass = Class.forName(classname);
             final DisplayName annotation = testClass.getAnnotation(DisplayName.class);
-            buffer.append("| " + testClass.getSimpleName() + " | " + timeItem + " | " + annotation.value() + "\n");
+            final String category = testClass.getAnnotation(TestCategory.class).category().name();
+            lines.add("| " + category + " | " + testClass.getSimpleName() + " | " + timeItem + " | " + annotation.value());
+
         }
-        return buffer.toString();
+        return lines.stream()
+                .sorted()
+                .collect(Collectors.joining("\n"));
     }
 
     public static void generateTestDocumentation(DocAsTestBase doc) {
