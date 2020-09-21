@@ -8,7 +8,8 @@ public @interface TestCategory {
     public static enum Cat {
         Simple,
         Long,
-        Many
+        Many,
+        Lot;
     }
     Cat category();
 }

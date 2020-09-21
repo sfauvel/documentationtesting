@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 public abstract class DocAsTestBase {
     protected static final PathProvider pathBuidler = new PathProvider();
     protected StringBuffer sb = new StringBuffer();
+    private static JavaProjectBuilder builder;
 
     /**
      * Return name specified in DisplayName annotation.
@@ -37,13 +38,26 @@ public abstract class DocAsTestBase {
         }
     }
 
-    protected String getComment(Class<?> clazz, String methodName) {
-        JavaProjectBuilder builder = new JavaProjectBuilder();
-        builder.addSourceTree(new File("src/test/java"));
+    /**
+     * Init JavaProjectBuilder it's a bit long (more than 100ms).
+     * We init it only once to avoid this low performances.
+     */
+    static {
+        if (builder == null) {
+            builder = new JavaProjectBuilder();
+            builder.addSourceTree(new File("src/test/java"));
+        }
+    }
 
+    protected String getComment(Class<?> clazz, String methodName) {
         JavaClass javaClass = builder.getClassByName(clazz.getCanonicalName());
 
+
         JavaMethod method = javaClass.getMethod(methodName, Collections.emptyList(), false);
+        while (method == null && javaClass != null) {
+            javaClass = javaClass.getSuperJavaClass();
+            method = javaClass.getMethod(methodName, Collections.emptyList(), false);
+        }
         return Optional.ofNullable(method.getComment()).orElse("");
     }
 
@@ -69,6 +83,7 @@ public abstract class DocAsTestBase {
 
     /**
      * Write a text to the output.
+     *
      * @param texts
      */
     public void write(String... texts) {

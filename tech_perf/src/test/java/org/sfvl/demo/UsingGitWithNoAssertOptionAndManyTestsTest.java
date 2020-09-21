@@ -27,13 +27,12 @@ public class UsingGitWithNoAssertOptionAndManyTestsTest extends GitBase {
 
 //    @Test
 //    public void generate_tests() {
-//        for (int i = 0; i < 100; i++) {
+//        for (int i = 0; i < 1000; i++) {
 //            System.out.println("" +
-//            "@Test\n" +
-//            "public void should_give_person_information_xxx_" + i + "() {\n" +
-//            "    BasicDocumentation.generateTestDocumentation(this);\n" +
-//            "}\n" +
-//                    "");
+//            "@Test " +
+//            "public void should_give_person_information_xxx_" + i + "() { " +
+//            "BasicDocumentation.generateTestDocumentation(this); " +
+//            "}");
 //        }
 //    }
 

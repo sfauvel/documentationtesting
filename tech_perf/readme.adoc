@@ -13,8 +13,11 @@ This option, is used when we launch tests with script to check failure only at t
 We show what each test provide as output to compare a classical test to the approach based on the documentation.
 With Junit, we just display test source code.
 
-We see a factor of 20 between JUnit and Git.
-With Approvals, we see a factor of 50.
-This approach is clearly slower than using Junit, but we are still able to execute 100 tests in 1 seconds.
+We see a factor of 7 between JUnit and Git.
+In fact, there is a time taken to build JavaProjectBuilder to be able to parse code and retrieve comments.
+This initialization finished, tests are pretty fast with a factor of 3 with JUnit.
+With Approvals, preformance is less good (but may be optimized).
+This approach is clearly slower than using Junit, but difference is not really signifiant unless there is a lot a tests.
+We execute 1000 tests in less than 1 second.
 
 

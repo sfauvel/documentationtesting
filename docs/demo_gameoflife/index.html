@@ -442,6 +442,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_game_of_life_rules">Game of life rules</a>
+<ul class="sectlevel2">
+<li><a href="#_rules">Rules</a></li>
+</ul>
+</li>
 <li><a href="#_game_of_life_illustrated_by_examples">Game of life illustrated by examples</a>
 <ul class="sectlevel2">
 <li><a href="#_die_when_less_than_2_neighbours">Die when less than 2 neighbours</a></li>
@@ -449,15 +454,43 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_becomes_alive_when_3_neighbours">Becomes alive when 3 neighbours</a></li>
 </ul>
 </li>
-<li><a href="#_game_of_life_rules">Game of life rules</a>
-<ul class="sectlevel2">
-<li><a href="#_rules">Rules</a></li>
-</ul>
-</li>
 </ul>
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_game_of_life_rules">Game of life rules</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" class="bare">https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life</a></p>
+</div>
+<div class="sect2">
+<h3 id="_rules">Rules</h3>
+<div class="paragraph">
+<p>At each step in time, the following transitions occur:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Any live cell with <strong>0, 1 live neighbours</strong> dies, as if by underpopulation.</p>
+</li>
+<li>
+<p>Any live cell with <strong>2, 3 live neighbours</strong> lives on to the next generation.</p>
+</li>
+<li>
+<p>Any live cell with <strong>4, 5, 6, 9 live neighbours</strong> dies, as if by overpopulation.</p>
+</li>
+<li>
+<p>Any dead cell with <strong>3 live neighbours</strong> , becomes a live cell as if by reproduction.</p>
+</li>
+<li>
+<p>Any dead cell with <strong>2, 4 live neighbours</strong>  stayed a dead cell.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_game_of_life_illustrated_by_examples">Game of life illustrated by examples</h2>
 <div class="sectionbody">
@@ -1260,39 +1293,6 @@ td .alive {
 }
 
 </style>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_game_of_life_rules">Game of life rules</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" class="bare">https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life</a></p>
-</div>
-<div class="sect2">
-<h3 id="_rules">Rules</h3>
-<div class="paragraph">
-<p>At each step in time, the following transitions occur:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Any live cell with <strong>0, 1 live neighbours</strong> dies, as if by underpopulation.</p>
-</li>
-<li>
-<p>Any live cell with <strong>2, 3 live neighbours</strong> lives on to the next generation.</p>
-</li>
-<li>
-<p>Any live cell with <strong>4, 5, 6, 9 live neighbours</strong> dies, as if by overpopulation.</p>
-</li>
-<li>
-<p>Any dead cell with <strong>3 live neighbours</strong> , becomes a live cell as if by reproduction.</p>
-</li>
-<li>
-<p>Any dead cell with <strong>2, 4 live neighbours</strong>  stayed a dead cell.</p>
-</li>
-</ol>
-</div>
 </div>
 </div>
 </div>

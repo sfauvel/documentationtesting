@@ -57,10 +57,24 @@ public class BasicDocumentation extends MainDocumentation {
     protected String getMethodDocumentation(String packageToScan) {
         Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
 
-        final Map<Class<?>, List<Method>> methodsByClass = testMethods.stream()
+//        for (Method testMethod : testMethods) {
+//            try {
+//                System.out.println(testMethod.getDeclaringClass());
+//                System.out.println(testMethod.getDeclaringClass().getAnnotation(TestCategory.class));
+//                System.out.println(testMethod.getDeclaringClass().getAnnotation(TestCategory.class).category());
+//                System.out.println(testMethod.getDeclaringClass().getAnnotation(TestCategory.class).category().equals(TestCategory.Cat.Simple));
+//            } catch(Exception e ) {
+//                throw e;
+//            }
+//        }
+        Map<Class<?>, List<Method>> methodsByClass;
+        try {
+         methodsByClass = testMethods.stream()
                 .filter(m -> m.getDeclaringClass().getAnnotation(TestCategory.class).category().equals(TestCategory.Cat.Simple))
                 .collect(Collectors.groupingBy(m -> m.getDeclaringClass()));
-
+        } catch(Exception e ) {
+            throw e;
+        }
         String testsDocumentation = methodsByClass.entrySet().stream()
                 .map(e -> "== "
                         + getTestClassTitle(e)
@@ -94,6 +108,7 @@ public class BasicDocumentation extends MainDocumentation {
 
         List<String> lines = new ArrayList<>();
         for (File report : testReports) {
+            System.out.println(report.getName());
             final Node testsuite = builder.parse(report).getElementsByTagName("testsuite").item(0);
 
             final NamedNodeMap attributes = testsuite.getAttributes();
