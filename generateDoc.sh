@@ -65,5 +65,4 @@ function generate_docs() {
   echo -e "$ALL_RESULTS"
 }
 
-mvn -pl documentationtesting -am clean install
-generate_docs "$(ls | grep "demo_*") $(ls | grep "tech_*") documentationtestingdoc"
+generate_docs "documentationtesting $(ls | grep "demo_*") $(ls | grep "tech_*") documentationtestingdoc"

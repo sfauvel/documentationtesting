@@ -1,0 +1,31 @@
+= Warning
+
+
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+    output = formatter.warning("Take care of that");
+----
+
+[red]##_Render_##
+
+
+[WARNING]
+====
+Take care of that
+====
+
+
+[red]##_Asciidoc generated_##
+----
+
+[WARNING]
+====
+Take care of that
+====
+
+----
+
+___

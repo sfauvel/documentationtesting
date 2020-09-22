@@ -1,0 +1,30 @@
+= Paragraph
+
+Each text is written in a separate line on asciidoc file.
+There is no line break when text is rendered in HTML.
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+    output = formatter.paragraph("We write some sentences.", "Each of them are in is own line in asciidoc text.", "They are in a same paragraph at the end.");
+----
+
+[red]##_Render_##
+
+We write some sentences.
+Each of them are in is own line in asciidoc text.
+They are in a same paragraph at the end.
+
+
+
+[red]##_Asciidoc generated_##
+----
+We write some sentences.
+Each of them are in is own line in asciidoc text.
+They are in a same paragraph at the end.
+
+
+----
+
+___

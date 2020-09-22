@@ -1,8 +1,9 @@
 package fr.sfvl.documentationtesting;
 
+import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.docformatter.Formatter;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -32,6 +33,7 @@ public class DocGenerator {
     /**
      * Get path of the project as a module.
      * To be compatible in different system, a File is created from the path and then retransform to a path.
+     *
      * @return
      */
     protected final Path getProjectPath() {
@@ -69,7 +71,7 @@ public class DocGenerator {
 
         generateDocFile(docName, doc);
         generateDocFile("demo_list.adoc", "\n=== Documentation produced\n\n" + demos);
-        generateDocFile("tech_list.adoc", "\n=== Technical alternatives\n\n" +demos_tech);
+        generateDocFile("tech_list.adoc", "\n=== Technical alternatives\n\n" + demos_tech);
 
     }
 
@@ -80,7 +82,7 @@ public class DocGenerator {
         } catch (ParserConfigurationException | IOException | SAXException e) {
             description = "no description";
         }
-        return "\n * link:"+(Paths.get(".", module, "index.html").toString())+"[" + module + "]: "+ description +" \n";
+        return "\n * link:" + (Paths.get(".", module, "index.html").toString()) + "[" + module + "]: " + description + " \n";
     }
 
     private void generateDocFile(String docName, String doc) throws IOException {
@@ -115,8 +117,8 @@ public class DocGenerator {
         return builder.parse(module.resolve("pom.xml").toFile());
     }
 
-    public static void main (String... args) throws IOException {
+    public static void main(String... args) throws IOException {
 
-        new DocGenerator(new Formatter.AsciidoctorFormatter()).execute();
+        new DocGenerator(new AsciidocFormatter()).execute();
     }
 }

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Should add 2 numbers</title>
+<title>Documentation</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -436,19 +436,396 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
-<h1>Should add 2 numbers</h1>
+<h1>Documentation</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_asciidocformattertest">AsciidocFormatterTest</a>
+<ul class="sectlevel2">
+<li><a href="#_title">Title</a></li>
+<li><a href="#_warning">Warning</a></li>
+<li><a href="#_paragraph">Paragraph</a></li>
+<li><a href="#_description">Description</a></li>
+<li><a href="#_definition">Definition</a></li>
+<li><a href="#_anchor">Anchor</a></li>
+<li><a href="#_link">Link</a></li>
+<li><a href="#_table_of_content">Table of content</a></li>
+<li><a href="#_one_list_item">One list item</a></li>
+<li><a href="#_full_list">Full list</a></li>
+<li><a href="#_empty_list">Empty list</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_asciidocformattertest">AsciidocFormatterTest</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>2 + 3 = 5</p>
+<p>Each section of this documentation explain one method of the AsciidocFormatter.
+We present for each method:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>how it can be uses in code</p>
+</li>
+<li>
+<p>what the asciidoc generated will look like at the end (except when it&#8217;s not possible)</p>
+</li>
+<li>
+<p>the asciidoc text generated</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_title">Title</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.title(2, "Description");</code></pre>
 </div>
 </div>
-<div id="footer">
-<div id="footer-text">
-Last updated 2020-09-22 21:43:28 UTC
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>== Description</pre>
 </div>
 </div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_warning">Warning</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.warning("Take care of that");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Take care of that</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[WARNING]
+====
+Take care of that
+====</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_paragraph">Paragraph</h3>
+<div class="paragraph">
+<p>Each text is written in a separate line on asciidoc file.
+There is no line break when text is rendered in HTML.</p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.paragraph("We write some sentences.", "Each of them are in is own line in asciidoc text.", "They are in a same paragraph at the end.");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="paragraph">
+<p>We write some sentences.
+Each of them are in is own line in asciidoc text.
+They are in a same paragraph at the end.</p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>We write some sentences.
+Each of them are in is own line in asciidoc text.
+They are in a same paragraph at the end.</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_description">Description</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.description("Describe something.");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="paragraph">
+<p>Describe something.</p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Describe something.</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_definition">Definition</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.addDefinition("Asciidoctor", "A fast text processor &amp; publishing toolchain for converting AsciiDoc to HTML");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Asciidoctor</dt>
+<dd>
+<p>A fast text processor &amp; publishing toolchain for converting AsciiDoc to HTML</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Asciidoctor:: A fast text processor &amp; publishing toolchain for converting AsciiDoc to HTML</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_anchor">Anchor</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.anchorLink("AnchorExample", "This is a link to anoter place");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="paragraph">
+<p><a href="#anchorexample">This is a link to anoter place</a></p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;&lt;anchorexample,This is a link to anoter place&gt;&gt;</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_link">Link</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.link("AnchorExample") + "You can make an anchor to here";</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="paragraph">
+<p><a id="anchorexample"></a>You can make an anchor to here</p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[[anchorexample]]You can make an anchor to here</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_table_of_content">Table of content</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.tableOfContent(3);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>:toc: left
+:toclevels: 3,</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_one_list_item">One list item</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.listItem("First") + formatter.listItem("Second");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>First</p>
+</li>
+<li>
+<p>Second</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>* First
+* Second</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_full_list">Full list</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.listItems("First", "Second", "Third");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>First</p>
+</li>
+<li>
+<p>Second</p>
+</li>
+<li>
+<p>Third</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>* First
+* Second
+* Third</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_empty_list">Empty list</h3>
+<div class="paragraph">
+<p>When no items, listItems method return an empty string.</p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.listItems();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre></pre>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>

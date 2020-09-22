@@ -1,0 +1,21 @@
+= Link
+
+
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+    output = formatter.link("AnchorExample") + "You can make an anchor to here";
+----
+
+[red]##_Render_##
+
+[[anchorexample]]You can make an anchor to here
+
+[red]##_Asciidoc generated_##
+----
+[[anchorexample]]You can make an anchor to here
+----
+
+___

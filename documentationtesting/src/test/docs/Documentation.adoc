@@ -1,0 +1,26 @@
+:toc: left
+:nofooter:
+:stem:
+
+= Documentation
+
+== AsciidocFormatterTest
+Each section of this documentation explain one method of the AsciidocFormatter.
+We present for each method:
+
+- how it can be uses in code
+- what the asciidoc generated will look like at the end (except when it's not possible)
+- the asciidoc text generated
+
+include::org/sfvl/docformatter/AsciidocFormatterTest.should_format_title.approved.adoc[leveloffset=+2]
+include::org/sfvl/docformatter/AsciidocFormatterTest.should_format_warning.approved.adoc[leveloffset=+2]
+include::org/sfvl/docformatter/AsciidocFormatterTest.should_format_paragraph.approved.adoc[leveloffset=+2]
+include::org/sfvl/docformatter/AsciidocFormatterTest.should_format_description.approved.adoc[leveloffset=+2]
+include::org/sfvl/docformatter/AsciidocFormatterTest.should_format_definition.approved.adoc[leveloffset=+2]
+include::org/sfvl/docformatter/AsciidocFormatterTest.should_format_anchorLink.approved.adoc[leveloffset=+2]
+include::org/sfvl/docformatter/AsciidocFormatterTest.should_format_link.approved.adoc[leveloffset=+2]
+include::org/sfvl/docformatter/AsciidocFormatterTest.should_format_table_of_content.approved.adoc[leveloffset=+2]
+include::org/sfvl/docformatter/AsciidocFormatterTest.should_format_one_list_item.approved.adoc[leveloffset=+2]
+include::org/sfvl/docformatter/AsciidocFormatterTest.should_format_list.approved.adoc[leveloffset=+2]
+include::org/sfvl/docformatter/AsciidocFormatterTest.should_format_empty_list.approved.adoc[leveloffset=+2]
+

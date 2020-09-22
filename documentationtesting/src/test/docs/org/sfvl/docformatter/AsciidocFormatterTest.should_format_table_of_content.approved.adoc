@@ -1,0 +1,19 @@
+= Table of content
+
+
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+    output = formatter.tableOfContent(3);
+----
+
+[red]##_Asciidoc generated_##
+----
+:toc: left
+:toclevels: 3, 
+
+----
+
+___

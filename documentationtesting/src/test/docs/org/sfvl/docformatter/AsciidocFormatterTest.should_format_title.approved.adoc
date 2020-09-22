@@ -1,0 +1,19 @@
+= Title
+
+
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+    output = formatter.title(2, "Description");
+----
+
+[red]##_Asciidoc generated_##
+----
+
+== Description
+
+----
+
+___

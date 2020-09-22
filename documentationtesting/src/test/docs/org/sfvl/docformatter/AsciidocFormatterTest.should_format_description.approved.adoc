@@ -1,0 +1,23 @@
+= Description
+
+
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+    output = formatter.description("Describe something.");
+----
+
+[red]##_Render_##
+
+Describe something.
+
+
+[red]##_Asciidoc generated_##
+----
+Describe something.
+
+----
+
+___

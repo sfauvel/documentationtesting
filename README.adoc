@@ -208,6 +208,11 @@ a| include::{rootpath}/demo_basic_approvals/src/test/docs/org/sfvl/demo/DemoTest
 
 To get source and examples: https://github.com/sfauvel/documentationtesting
 
+
+ifdef::fulldoc[]
+link:documentationtesting/index.html[Code documentation of project DocumentationTesting]
+endif::[]
+
 === Generate a full documentation
 
 To generate a single file with all tests, launch `MainDocumentation` class.

@@ -1,0 +1,27 @@
+= Full list
+
+
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+    output = formatter.listItems("First", "Second", "Third");
+----
+
+[red]##_Render_##
+
+
+* First
+* Second
+* Third
+
+[red]##_Asciidoc generated_##
+----
+
+* First
+* Second
+* Third
+----
+
+___

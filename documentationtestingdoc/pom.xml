@@ -12,6 +12,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <documentationtesting.version>1.0-SNAPSHOT</documentationtesting.version>
     </properties>
 
     <build>
@@ -43,4 +44,12 @@
             </plugin>
         </plugins>
     </build>
+    <dependencies>
+        <dependency>
+            <groupId>org.sfvl</groupId>
+            <artifactId>documentationtesting</artifactId>
+            <version>${documentationtesting.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>

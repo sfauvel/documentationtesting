@@ -1,0 +1,21 @@
+= Anchor
+
+
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+    output = formatter.anchorLink("AnchorExample", "This is a link to anoter place");
+----
+
+[red]##_Render_##
+
+<<anchorexample,This is a link to anoter place>>
+
+[red]##_Asciidoc generated_##
+----
+<<anchorexample,This is a link to anoter place>>
+----
+
+___

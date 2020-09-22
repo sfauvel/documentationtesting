@@ -1,0 +1,25 @@
+= Definition
+
+
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+    output = formatter.addDefinition("Asciidoctor", "A fast text processor & publishing toolchain for converting AsciiDoc to HTML");
+----
+
+[red]##_Render_##
+
+
+Asciidoctor:: A fast text processor & publishing toolchain for converting AsciiDoc to HTML
+
+
+[red]##_Asciidoc generated_##
+----
+
+Asciidoctor:: A fast text processor & publishing toolchain for converting AsciiDoc to HTML
+
+----
+
+___
