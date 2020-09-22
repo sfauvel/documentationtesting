@@ -10,7 +10,7 @@ public class AsciidocFormatter implements Formatter {
     public String standardOptions() {
         return String.join("\n",
                 ":sourcedir: ..",
-                ":source-highlighter: coderay",
+                ":source-highlighter: rouge",
                 ":docinfo:",
                 ""
         );

@@ -19,13 +19,13 @@ Take care of that
 
 
 [red]##_Asciidoc generated_##
-----
+------
 
 [WARNING]
 ====
 Take care of that
 ====
 
-----
+------
 
 ___

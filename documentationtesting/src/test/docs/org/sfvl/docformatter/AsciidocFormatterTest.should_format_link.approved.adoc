@@ -14,8 +14,8 @@
 [[anchorexample]]You can make an anchor to here
 
 [red]##_Asciidoc generated_##
-----
+------
 [[anchorexample]]You can make an anchor to here
-----
+------
 
 ___

@@ -15,9 +15,9 @@ Describe something.
 
 
 [red]##_Asciidoc generated_##
-----
+------
 Describe something.
 
-----
+------
 
 ___

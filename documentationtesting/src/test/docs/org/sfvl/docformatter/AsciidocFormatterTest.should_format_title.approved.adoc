@@ -10,10 +10,10 @@
 ----
 
 [red]##_Asciidoc generated_##
-----
+------
 
 == Description
 
-----
+------
 
 ___

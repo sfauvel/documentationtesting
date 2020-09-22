@@ -10,8 +10,8 @@ When no items, listItems method return an empty string.
 ----
 
 [red]##_Asciidoc generated_##
-----
+------
 
-----
+------
 
 ___

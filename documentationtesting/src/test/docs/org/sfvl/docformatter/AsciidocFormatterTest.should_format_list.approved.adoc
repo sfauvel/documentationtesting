@@ -17,11 +17,11 @@
 * Third
 
 [red]##_Asciidoc generated_##
-----
+------
 
 * First
 * Second
 * Third
-----
+------
 
 ___

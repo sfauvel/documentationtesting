@@ -444,6 +444,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_asciidocformattertest">AsciidocFormatterTest</a>
 <ul class="sectlevel2">
+<li><a href="#_standard_options">Standard options</a></li>
+<li><a href="#_table_of_content">Table of content</a></li>
 <li><a href="#_title">Title</a></li>
 <li><a href="#_warning">Warning</a></li>
 <li><a href="#_paragraph">Paragraph</a></li>
@@ -451,10 +453,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_definition">Definition</a></li>
 <li><a href="#_anchor">Anchor</a></li>
 <li><a href="#_link">Link</a></li>
-<li><a href="#_table_of_content">Table of content</a></li>
 <li><a href="#_one_list_item">One list item</a></li>
 <li><a href="#_full_list">Full list</a></li>
 <li><a href="#_empty_list">Empty list</a></li>
+<li><a href="#_source_code">Source code</a></li>
 </ul>
 </li>
 </ul>
@@ -480,6 +482,52 @@ We present for each method:</p>
 <p>the asciidoc text generated</p>
 </li>
 </ul>
+</div>
+<div class="sect2">
+<h3 id="_standard_options">Standard options</h3>
+<div class="paragraph">
+<p>General options add to the document.</p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.standardOptions();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>:sourcedir: ..
+:source-highlighter: rouge
+:docinfo:</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_table_of_content">Table of content</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.tableOfContent(3);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>:toc: left
+:toclevels: 3,</pre>
+</div>
+</div>
+<hr>
 </div>
 <div class="sect2">
 <h3 id="_title">Title</h3>
@@ -685,27 +733,6 @@ They are in a same paragraph at the end.</pre>
 <hr>
 </div>
 <div class="sect2">
-<h3 id="_table_of_content">Table of content</h3>
-<div class="paragraph">
-<p><span class="red"><em>Usage</em></span></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.tableOfContent(3);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><span class="red"><em>Asciidoc generated</em></span></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>:toc: left
-:toclevels: 3,</pre>
-</div>
-</div>
-<hr>
-</div>
-<div class="sect2">
 <h3 id="_one_list_item">One list item</h3>
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
@@ -796,6 +823,43 @@ They are in a same paragraph at the end.</pre>
 <div class="listingblock">
 <div class="content">
 <pre></pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_source_code">Source code</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.sourceCode("public int add(int a, int b) {\n" + "   int result = a + b;\n" + "   return result;\n" + "}");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public int add(int a, int b) {
+   int result = a + b;
+   return result;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[source,java,indent=0]
+----
+public int add(int a, int b) {
+   int result = a + b;
+   return result;
+}
+----</pre>
 </div>
 </div>
 <hr>

@@ -31,6 +31,23 @@ public class AsciidocFormatterTest extends ApprovalsBase {
         boolean showRender() default true;
     }
 
+    /**
+     * General options add to the document.
+     */
+    @Test
+    @DisplayName("Standard options")
+    @TestOption(showRender = false)
+    public void should_format_standard_option() {
+        output = formatter.standardOptions();
+    }
+
+    @Test
+    @DisplayName("Table of content")
+    @TestOption(showRender = false)
+    public void should_format_table_of_content() {
+        output = formatter.tableOfContent(3);
+    }
+
     @Test
     @DisplayName("Title")
     @TestOption(showRender = false)
@@ -81,13 +98,6 @@ public class AsciidocFormatterTest extends ApprovalsBase {
     }
 
     @Test
-    @DisplayName("Table of content")
-    @TestOption(showRender = false)
-    public void should_format_table_of_content() {
-        output = formatter.tableOfContent(3);
-    }
-
-    @Test
     @DisplayName("One list item")
     public void should_format_one_list_item() {
         output = formatter.listItem("First")
@@ -104,10 +114,20 @@ public class AsciidocFormatterTest extends ApprovalsBase {
      * When no items, listItems method return an empty string.
      */
     @Test
-    @DisplayName("Empty list ")
+    @DisplayName("Empty list")
     @TestOption(showRender = false)
     public void should_format_empty_list() {
         output = formatter.listItems();
+    }
+
+    @Test
+    @DisplayName("Source code")
+    public void should_format_source_code() {
+        output = formatter.sourceCode(
+                        "public int add(int a, int b) {\n" +
+                        "   int result = a + b;\n" +
+                        "   return result;\n" +
+                        "}");
     }
 
     @AfterEach
@@ -126,9 +146,9 @@ public class AsciidocFormatterTest extends ApprovalsBase {
             write(output);
             write("\n");
         }
-        write("\n[red]##_Asciidoc generated_##\n----\n");
+        write("\n[red]##_Asciidoc generated_##\n------\n");
         write(output);
-        write("\n----\n");
+        write("\n------\n");
 
         write("\n___\n");
     }

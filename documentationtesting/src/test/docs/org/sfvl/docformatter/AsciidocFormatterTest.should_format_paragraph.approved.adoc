@@ -19,12 +19,12 @@ They are in a same paragraph at the end.
 
 
 [red]##_Asciidoc generated_##
-----
+------
 We write some sentences.
 Each of them are in is own line in asciidoc text.
 They are in a same paragraph at the end.
 
 
-----
+------
 
 ___

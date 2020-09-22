@@ -16,10 +16,10 @@
 * Second
 
 [red]##_Asciidoc generated_##
-----
+------
 
 * First
 * Second
-----
+------
 
 ___

@@ -1,0 +1,20 @@
+= Standard options
+
+General options add to the document.
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+    output = formatter.standardOptions();
+----
+
+[red]##_Asciidoc generated_##
+------
+:sourcedir: ..
+:source-highlighter: rouge
+:docinfo:
+
+------
+
+___

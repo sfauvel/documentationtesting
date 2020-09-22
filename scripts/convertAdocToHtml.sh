@@ -2,7 +2,7 @@
 # Convert all documentation of modules writing in asciidoctor to a global HTML documentation.
 set -euo pipefail
 
-DOCKER_IMAGE=asciidoctor/docker-asciidoctor
+DOCKER_IMAGE=asciidoctor/docker-asciidoctor:1.1.0
 DOCKER_WORKDIR=/documents
 DOC_PATH=docs
 SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"

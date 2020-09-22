@@ -16,10 +16,10 @@ Asciidoctor:: A fast text processor & publishing toolchain for converting AsciiD
 
 
 [red]##_Asciidoc generated_##
-----
+------
 
 Asciidoctor:: A fast text processor & publishing toolchain for converting AsciiDoc to HTML
 
-----
+------
 
 ___

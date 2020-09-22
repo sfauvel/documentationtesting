@@ -14,8 +14,8 @@
 <<anchorexample,This is a link to anoter place>>
 
 [red]##_Asciidoc generated_##
-----
+------
 <<anchorexample,This is a link to anoter place>>
-----
+------
 
 ___
