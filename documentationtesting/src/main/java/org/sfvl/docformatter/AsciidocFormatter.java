@@ -5,13 +5,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AsciidocFormatter implements Formatter {
-
+    /**
+     * Standard option to add at the begining of the document.
+     * (link:https://asciidoctor.org/docs/user-manual/#builtin-attributes[Description from asciidoctor Documentation])
+     *
+     * - *sourcedir*: Path to locate source files.
+     * - *source-highlighter*: Source code highlighter to use.
+     * - *docinfo*:
+     * @returnlink:https://asciidoctor.org/docs/user-manual/#docinfo-file[Add custom header and footer]
+     */
     @Override
     public String standardOptions() {
         return String.join("\n",
                 ":sourcedir: ..",
                 ":source-highlighter: rouge",
                 ":docinfo:",
+//                ":sectlinks:" ,
                 ""
         );
     }
@@ -65,11 +74,6 @@ public class AsciidocFormatter implements Formatter {
     @Override
     public String sourceCode(String source) {
         return block("----", "source,java,indent=0", source);
-    }
-
-    @Override
-    public String startDocument(String title) {
-        return String.format("= %s\n:toc: left\n:toclevels: 3\n:sectlinks:\n:source-highlighter: coderay", title);
     }
 
     @Override

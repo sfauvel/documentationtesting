@@ -4,7 +4,10 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.utils.SourceRoot;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.sfvl.doctesting.ApprovalsBase;
 
 import java.lang.annotation.Retention;
@@ -28,15 +31,15 @@ public class AsciidocFormatterTest extends ApprovalsBase {
 
     @Retention(RetentionPolicy.RUNTIME)
     public @interface TestOption {
+        /// False if 'render' section should not be added to the final document.
         boolean showRender() default true;
+        /// The name of the method in AsciidocFormatter that used to get documentation.
+        String includeMethodDoc() default "";
     }
 
-    /**
-     * General options add to the document.
-     */
     @Test
     @DisplayName("Standard options")
-    @TestOption(showRender = false)
+    @TestOption(showRender = false, includeMethodDoc = "standardOptions")
     public void should_format_standard_option() {
         output = formatter.standardOptions();
     }
@@ -82,19 +85,19 @@ public class AsciidocFormatterTest extends ApprovalsBase {
     @Test
     @DisplayName("Definition")
     public void should_format_definition() {
-        output = formatter.addDefinition("Asciidoctor", "A fast text processor & publishing toolchain for converting AsciiDoc to HTML" );
+        output = formatter.addDefinition("Asciidoctor", "A fast text processor & publishing toolchain for converting AsciiDoc to HTML");
     }
 
     @Test
     @DisplayName("Anchor")
     public void should_format_anchorLink() {
-        output = formatter.anchorLink("AnchorExample", "This is a link to anoter place" );
+        output = formatter.anchorLink("AnchorExample", "This is a link to anoter place");
     }
 
     @Test
     @DisplayName("Link")
     public void should_format_link() {
-        output = formatter.link("AnchorExample" ) + "You can make an anchor to here";
+        output = formatter.link("AnchorExample") + "You can make an anchor to here";
     }
 
     @Test
@@ -124,7 +127,7 @@ public class AsciidocFormatterTest extends ApprovalsBase {
     @DisplayName("Source code")
     public void should_format_source_code() {
         output = formatter.sourceCode(
-                        "public int add(int a, int b) {\n" +
+                "public int add(int a, int b) {\n" +
                         "   int result = a + b;\n" +
                         "   return result;\n" +
                         "}");
@@ -133,15 +136,21 @@ public class AsciidocFormatterTest extends ApprovalsBase {
     @AfterEach
     public void displaySource(TestInfo testinfo) {
 
+        final Optional<TestOption> annotation = Optional.ofNullable(testinfo.getTestMethod()
+                .get()
+                .getAnnotation(TestOption.class));
+
+        annotation.map(TestOption::includeMethodDoc)
+                .filter(name -> !name.isEmpty())
+                .map(methodName -> getComment(AsciidocFormatter.class, methodName))
+                .ifPresent(doc -> write(doc + "\n"));
+
         write("\n[red]##_Usage_##\n[source,java,indent=0]\n----\n");
         write(extractMethodBody(testinfo));
+
         write("\n----\n");
 
-        final Boolean showRender = Optional.ofNullable(testinfo.getTestMethod().get()
-                .getAnnotation(TestOption.class))
-                .map(option -> option.showRender())
-                .orElse(true);
-        if (showRender) {
+        if (annotation.map(TestOption::showRender).orElse(true)) {
             write("\n[red]##_Render_##\n\n");
             write(output);
             write("\n");

@@ -29,8 +29,6 @@ public interface Formatter {
 
     String sourceCode(String source);
 
-    String startDocument(String title);
-
     String include(String filename);
 
     String warning(String message);

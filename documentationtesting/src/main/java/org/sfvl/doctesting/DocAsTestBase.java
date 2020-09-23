@@ -45,6 +45,7 @@ public abstract class DocAsTestBase {
     static {
         if (builder == null) {
             builder = new JavaProjectBuilder();
+            builder.addSourceTree(new File("src/main/java"));
             builder.addSourceTree(new File("src/test/java"));
         }
     }
