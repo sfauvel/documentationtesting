@@ -10,8 +10,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.sfvl.doctesting.ApprovalsBase;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
@@ -33,6 +36,7 @@ public class AsciidocFormatterTest extends ApprovalsBase {
     public @interface TestOption {
         /// False if 'render' section should not be added to the final document.
         boolean showRender() default true;
+
         /// The name of the method in AsciidocFormatter that used to get documentation.
         String includeMethodDoc() default "";
     }
@@ -133,6 +137,14 @@ public class AsciidocFormatterTest extends ApprovalsBase {
                         "}");
     }
 
+    @Test
+    @DisplayName("Include another file")
+    public void should_format_include() throws IOException {
+        final String fileToInclude = "tmp/anotherFile.adoc";
+        writeAFile(fileToInclude, "Text from another file included in this one");
+        output = formatter.include(fileToInclude);
+    }
+
     @AfterEach
     public void displaySource(TestInfo testinfo) {
 
@@ -156,7 +168,7 @@ public class AsciidocFormatterTest extends ApprovalsBase {
             write("\n");
         }
         write("\n[red]##_Asciidoc generated_##\n------\n");
-        write(output);
+        write(output.replaceAll("\\ninclude", "\n\\\\include"));
         write("\n------\n");
 
         write("\n___\n");
@@ -193,4 +205,15 @@ public class AsciidocFormatterTest extends ApprovalsBase {
         return javaCode.toString();
     }
 
+    public void writeAFile(String fileName, String text) throws IOException {
+
+        final String canonicalName = this.getClass().getPackage().getName();
+        final String pathName = canonicalName.toString().replace('.', '/');
+        final Path filePath = getDocPath().resolve(pathName).resolve(fileName);
+
+        filePath.getParent().toFile().mkdirs();
+        try (FileWriter writerInclude = new FileWriter(filePath.toFile())) {
+            writerInclude.write(text);
+        }
+    }
 }

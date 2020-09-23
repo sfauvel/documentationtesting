@@ -126,8 +126,8 @@ public class AsciidocFormatter implements Formatter {
     }
 
     @Override
-    public Formatter.Source source(String filename) {
-        return new Formatter.Source(filename);
+    public Source source(String filename) {
+        return new Source(filename);
     }
 
     private String block(String delimiter, String name, String message) {

@@ -1,0 +1,27 @@
+= Include another file
+
+
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+    final String fileToInclude = "tmp/anotherFile.adoc";
+    writeAFile(fileToInclude, "Text from another file included in this one");
+    output = formatter.include(fileToInclude);
+----
+
+[red]##_Render_##
+
+
+include::tmp/anotherFile.adoc[leveloffset=+1]
+
+
+[red]##_Asciidoc generated_##
+------
+
+\include::tmp/anotherFile.adoc[leveloffset=+1]
+
+------
+
+___

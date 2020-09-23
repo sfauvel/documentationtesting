@@ -457,6 +457,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_full_list">Full list</a></li>
 <li><a href="#_empty_list">Empty list</a></li>
 <li><a href="#_source_code">Source code</a></li>
+<li><a href="#_include_another_file">Include another file</a></li>
 </ul>
 </li>
 </ul>
@@ -874,6 +875,34 @@ public int add(int a, int b) {
    return result;
 }
 ----</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_include_another_file">Include another file</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">final String fileToInclude = "tmp/anotherFile.adoc";
+writeAFile(fileToInclude, "Text from another file included in this one");
+output = formatter.include(fileToInclude);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="paragraph">
+<p>Text from another file included in this one</p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>include::tmp/anotherFile.adoc[leveloffset=+1]</pre>
 </div>
 </div>
 <hr>
