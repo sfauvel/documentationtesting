@@ -127,7 +127,7 @@ public class InnTest extends ApprovalsBase {
         write("\n\n");
 
         final String imageFile = generateGraph(name, sellIns, qualities);
-        write("image::" + imageFile + "[]\n\n");
+        write("image::" + imageFile.replace("\\", "/") + "[]\n\n");
     }
 
     private Item getItem(Inn inn, String name) {
