@@ -43,16 +43,15 @@ public class DocGenerator {
 
 
     private void execute() throws IOException {
-
-        final String demos = Files.list(getProjectPath().getParent())
+        System.out.println(getProjectPath());
+        final String demos = Files.list(getProjectPath().getParent().resolve("samples"))
                 .filter(p -> Files.isDirectory(p))
-                .map(p -> p.getFileName().toString())
-                .filter(name -> name.startsWith("demo_"))
+                .filter(path -> path.getFileName().toString().startsWith("demo_"))
                 .sorted()
                 .map(demo -> addDemo(demo))
                 .collect(Collectors.joining());
 
-        final String demos_tech = Files.list(getProjectPath().getParent())
+        final String demos_tech = Files.list(getProjectPath().getParent().resolve("samples"))
                 .filter(p -> Files.isDirectory(p))
                 .map(p -> p.getFileName().toString())
                 .filter(name -> name.startsWith("tech_"))
@@ -75,10 +74,21 @@ public class DocGenerator {
 
     }
 
+    private String addDemo(Path modulePath) {
+        String moduleName = modulePath.getFileName().toString();
+        String description = null;
+        try {
+            description = generatePomDescription(getProjectPath().getParent().resolve(moduleName));
+        } catch (ParserConfigurationException | IOException | SAXException e) {
+            description = "no description";
+        }
+        return "\n * link:" + (Paths.get(".", moduleName, "index.html").toString()) + "[" + moduleName + "]: " + description + " \n";
+    }
+
     private String addDemo(String module) {
         String description = null;
         try {
-            description = generatePomDescription(getProjectPath().getParent().resolve(module));
+            description = generatePomDescription(getProjectPath().getParent().resolve("samples").resolve(module));
         } catch (ParserConfigurationException | IOException | SAXException e) {
             description = "no description";
         }

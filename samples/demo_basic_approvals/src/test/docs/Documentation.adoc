@@ -1,0 +1,13 @@
+:toc: left
+:nofooter:
+:stem:
+
+= Using Approvals
+
+View source project on link:{github}/demo_basic_approvals[Github]
+
+== DemoTest
+Demo of a simple usage to generate documentation.
+
+include::org/sfvl/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+2]
+

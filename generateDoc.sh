@@ -58,11 +58,14 @@ function generate_docs() {
   done
 
   echo ---------------------
+  echo Results:
+  echo ---------------------
+  echo -e "$ALL_RESULTS"
+
+  echo ---------------------
   echo -e "$ALL_STATUS_RESULT"
   echo ---------------------
 
-  echo Results:
-  echo -e "$ALL_RESULTS"
 }
 
-generate_docs "documentationtesting $(ls | grep "demo_*") $(ls | grep "tech_*") documentationtestingdoc"
+generate_docs "documentationtesting $(find samples -maxdepth 1 -name "demo_*") $(find samples -maxdepth 1 -name "tech_*") documentationtestingdoc"
