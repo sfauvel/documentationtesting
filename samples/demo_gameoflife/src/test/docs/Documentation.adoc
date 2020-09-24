@@ -4,13 +4,7 @@
 
 = Game of life
 
-View source project on link:{github}/demo_gameoflife[Github]
-
-== Game of life rules
-https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
-
-include::org/sfvl/GameOfLifeRulesTest.rules.approved.adoc[leveloffset=+2]
-
+View source project on link:{github}/samples/demo_gameoflife[Github]
 
 == Game of life illustrated by examples
 https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
@@ -18,4 +12,10 @@ https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 include::org/sfvl/GameOfLifeTest.die_when_less_than_2_neighbours.approved.adoc[leveloffset=+2]
 include::org/sfvl/GameOfLifeTest.stay_alive_when_2_neighbours.approved.adoc[leveloffset=+2]
 include::org/sfvl/GameOfLifeTest.becomes_alive_when_3_neighbours.approved.adoc[leveloffset=+2]
+
+
+== Game of life rules
+https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+
+include::org/sfvl/GameOfLifeRulesTest.rules.approved.adoc[leveloffset=+2]
 

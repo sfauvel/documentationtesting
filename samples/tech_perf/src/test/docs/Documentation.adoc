@@ -4,7 +4,7 @@
 
 include::../../../readme.adoc[leveloffset=+1]
 
-View source project on link:{github}/tech_perf[Github]
+View source project on link:{github}/samples/tech_perf[Github]
 
 
 == Performances
@@ -19,38 +19,38 @@ This step is fast, it's just a shell script with some git commands.
 [%autowidth]
 |====
 | Category | Class | Time in seconds) | Description 
-| Long | UsingGitWithNoAssertOptionAndALongTestTest | 0.19 | Use Git to check file modification but after all tests. The time shown not include this verification. There is only one test but it check 100 times the same case.
+| Long | UsingGitWithNoAssertOptionAndALongTestTest | 0.192 | Use Git to check file modification but after all tests. The time shown not include this verification. There is only one test but it check 100 times the same case.
 | Long | UsingJUnitWithALongTestTest | 0.007 | Using JUnit assertions to test. There is only one test but it check 100 times the same case.
-| Lot | UsingGitWithNoAssertOptionAndLotOfTests_A_Test | 0.311 | Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.
-| Lot | UsingGitWithNoAssertOptionAndLotOfTests_B_Test | 0.571 | Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.
-| Lot | UsingJUnitAndLotOfTestsTest | 0.102 | Using JUnit assertions to test 1000 cases.
-| Many | UsingGitWithNoAssertOptionAndManyTestsTest | 0.118 | Use Git to check file modification but after all tests. The time shown not include this verification. 100 tests are made.
-| Many | UsingJUnitAndManyTestsTest | 0.011 | Using JUnit assertions to test 100 cases.
-| Simple | UsingApprovalsTest | 0.045 | Verify documentation with _Approvals_ library.
-| Simple | UsingGitAssertingOnEachTestTest | 0.179 | Check file modification with git after each test.
+| Lot | UsingGitWithNoAssertOptionAndLotOfTests_A_Test | 0.293 | Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.
+| Lot | UsingGitWithNoAssertOptionAndLotOfTests_B_Test | 0.567 | Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.
+| Lot | UsingJUnitAndLotOfTestsTest | 0.1 | Using JUnit assertions to test 1000 cases.
+| Many | UsingGitWithNoAssertOptionAndManyTestsTest | 0.117 | Use Git to check file modification but after all tests. The time shown not include this verification. 100 tests are made.
+| Many | UsingJUnitAndManyTestsTest | 0.014 | Using JUnit assertions to test 100 cases.
+| Simple | UsingApprovalsTest | 0.043 | Verify documentation with _Approvals_ library.
+| Simple | UsingGitAssertingOnEachTestTest | 0.18 | Check file modification with git after each test.
 | Simple | UsingGitWithNoAssertOptionTest | 0.002 | Use Git to check file modification but after all tests. The time shown not include this verification.
-| Simple | UsingJUnitTest | 0 | Using JUnit assertions to test.
+| Simple | UsingJUnitTest | 0.001 | Using JUnit assertions to test.
 |====
-== Verify documentation with _Approvals_ library.
-Demo of a simple usage to generate documentation.
-
-include::org/sfvl/demo/UsingApprovalsTest.should_give_person_information.approved.adoc[leveloffset=+2]
-
-
 == Using JUnit assertions to test.
 
 
 include::org/sfvl/demo/UsingJUnitTest.should_give_person_information.approved.adoc[leveloffset=+2]
 
 
-== Check file modification with git after each test.
+== Verify documentation with _Approvals_ library.
 Demo of a simple usage to generate documentation.
 
-include::org/sfvl/demo/UsingGitAssertingOnEachTestTest.should_give_person_information.approved.adoc[leveloffset=+2]
+include::org/sfvl/demo/UsingApprovalsTest.should_give_person_information.approved.adoc[leveloffset=+2]
 
 
 == Use Git to check file modification but after all tests. The time shown not include this verification.
 Demo of a simple usage to generate documentation.
 
 include::org/sfvl/demo/UsingGitWithNoAssertOptionTest.should_give_person_information.approved.adoc[leveloffset=+2]
+
+
+== Check file modification with git after each test.
+Demo of a simple usage to generate documentation.
+
+include::org/sfvl/demo/UsingGitAssertingOnEachTestTest.should_give_person_information.approved.adoc[leveloffset=+2]
 

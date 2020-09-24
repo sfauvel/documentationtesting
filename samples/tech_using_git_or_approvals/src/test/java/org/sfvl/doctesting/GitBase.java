@@ -22,24 +22,6 @@ import static org.junit.jupiter.api.Assertions.fail;
  */
 public class GitBase extends DocAsTestBase {
 
-    /**
-     * Return git root path.
-     * This method is protected to allow a project to create a subclass and redefine git root path.
-     *
-     */
-    protected Path getGitRootPath() {
-
-        final Path originalPath = pathBuidler.getProjectPath();
-        Path path = originalPath;
-        while (!path.resolve(".git").toFile().exists()) {
-            path = path.getParent();
-            if (path == null) {
-                throw new RuntimeException("No git repository found from parents of " + originalPath.toString());
-            }
-        }
-        return path;
-    }
-
     @Override
     protected void approvalAfterTestSpecific(final String content, final DocumentationNamer documentationNamer) throws Exception {
 
@@ -68,7 +50,7 @@ public class GitBase extends DocAsTestBase {
     }
 
     private void assertNoModification(DocumentationNamer documentationNamer) throws Exception {
-        final Path gitRoot = getGitRootPath();
+        final Path gitRoot = pathBuidler.getGitRootPath();
 
         final Path subPath = gitRoot.relativize(documentationNamer.getFilePath());
         if (isModify(gitRoot, subPath.toString())) {

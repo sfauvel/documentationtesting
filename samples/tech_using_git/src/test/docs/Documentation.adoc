@@ -4,7 +4,7 @@
 
 = Using Git
 
-View source project on link:{github}/tech_using_git[Github]
+View source project on link:{github}/samples/tech_using_git[Github]
 
 == DemoTest
 Demo of a simple usage to generate documentation.

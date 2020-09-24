@@ -4,7 +4,7 @@
 
 = Using Git and Approvals
 
-View source project on link:{github}/tech_using_git_or_approvals[Github]
+View source project on link:{github}/samples/tech_using_git_or_approvals[Github]
 
 == DemoTest
 Demo of a simple usage to generate documentation.

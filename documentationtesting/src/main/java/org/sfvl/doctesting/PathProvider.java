@@ -13,4 +13,22 @@ public class PathProvider {
         Path classesPath = new File(this.getClass().getClassLoader().getResource("").getPath()).toPath();
         return classesPath.getParent().getParent();
     }
+
+    /**
+     * Return git root path.
+     * This method is protected to allow a project to create a subclass and redefine git root path.
+     *
+     */
+    public Path getGitRootPath() {
+
+        final Path originalPath = getProjectPath();
+        Path path = originalPath;
+        while (!path.resolve(".git").toFile().exists()) {
+            path = path.getParent();
+            if (path == null) {
+                throw new RuntimeException("No git repository found from parents of " + originalPath.toString());
+            }
+        }
+        return path;
+    }
 }

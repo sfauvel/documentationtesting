@@ -4,7 +4,7 @@
 
 include::../../../readme.adoc[leveloffset=+1]
 
-View source project on link:{github}/demo_tennis[Github]
+View source project on link:{github}/samples/demo_tennis[Github]
 
 == Scores examples
 We will display a tennis score.

@@ -4,7 +4,7 @@
 
 = JUnit5 extension
 
-View source project on link:{github}/tech_junit5_extension[Github]
+View source project on link:{github}/samples/tech_junit5_extension[Github]
 
 == DemoTest
 Demo of a simple usage to generate documentation.
