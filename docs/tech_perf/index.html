@@ -443,18 +443,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_performance">Performance</a></li>
 <li><a href="#_performances">Performances</a></li>
-<li><a href="#_using_junit_assertions_to_test">Using JUnit assertions to test.</a></li>
 <li><a href="#_verify_documentation_with_approvals_library">Verify documentation with <em>Approvals</em> library.</a>
 <ul class="sectlevel2">
 <li><a href="#_should_give_person_information">Should give person information</a></li>
 </ul>
 </li>
-<li><a href="#_use_git_to_check_file_modification_but_after_all_tests_the_time_shown_not_include_this_verification">Use Git to check file modification but after all tests. The time shown not include this verification.</a>
+<li><a href="#_check_file_modification_with_git_after_each_test">Check file modification with git after each test.</a>
 <ul class="sectlevel2">
 <li><a href="#_should_give_person_information_2">Should give person information</a></li>
 </ul>
 </li>
-<li><a href="#_check_file_modification_with_git_after_each_test">Check file modification with git after each test.</a>
+<li><a href="#_using_junit_assertions_to_test">Using JUnit assertions to test.</a></li>
+<li><a href="#_use_git_to_check_file_modification_but_after_all_tests_the_time_shown_not_include_this_verification">Use Git to check file modification but after all tests. The time shown not include this verification.</a>
 <ul class="sectlevel2">
 <li><a href="#_should_give_person_information_3">Should give person information</a></li>
 </ul>
@@ -525,61 +525,61 @@ This step is fast, it&#8217;s just a shell script with some git commands.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Long</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndALongTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.192</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.18</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. There is only one test but it check 100 times the same case.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Long</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitWithALongTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.007</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.009</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test. There is only one test but it check 100 times the same case.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndLotOfTests_A_Test</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.293</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.287</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndLotOfTests_B_Test</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.567</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.571</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitAndLotOfTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.086</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test 1000 cases.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Many</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndManyTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.117</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.113</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100 tests are made.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Many</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitAndManyTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.014</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.015</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test 100 cases.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingApprovalsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.043</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.039</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify documentation with <em>Approvals</em> library.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitAssertingOnEachTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.18</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.178</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Check file modification with git after each test.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.002</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.003</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification.</p></td>
 </tr>
 <tr>
@@ -590,29 +590,6 @@ This step is fast, it&#8217;s just a shell script with some git commands.</p>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_using_junit_assertions_to_test">Using JUnit assertions to test.</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">@Test
-public void should_give_person_information() {
-    checkPerson();
-}
-
-public static void checkPerson() {
-    final LocalDate now = LocalDate.now();
-    final int current_year = now.getYear();
-    final int age = 45;
-    final Person person = new Person("John", "Doe", LocalDate.of(current_year - age, 11, 23));
-
-    assertEquals(age, person.age());
-    assertEquals("John Doe", person.toString());
-}</code></pre>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -656,7 +633,7 @@ public static void checkPerson() {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_use_git_to_check_file_modification_but_after_all_tests_the_time_shown_not_include_this_verification">Use Git to check file modification but after all tests. The time shown not include this verification.</h2>
+<h2 id="_check_file_modification_with_git_after_each_test">Check file modification with git after each test.</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Demo of a simple usage to generate documentation.</p>
@@ -696,7 +673,30 @@ public static void checkPerson() {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_check_file_modification_with_git_after_each_test">Check file modification with git after each test.</h2>
+<h2 id="_using_junit_assertions_to_test">Using JUnit assertions to test.</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">@Test
+public void should_give_person_information() {
+    checkPerson();
+}
+
+public static void checkPerson() {
+    final LocalDate now = LocalDate.now();
+    final int current_year = now.getYear();
+    final int age = 45;
+    final Person person = new Person("John", "Doe", LocalDate.of(current_year - age, 11, 23));
+
+    assertEquals(age, person.age());
+    assertEquals("John Doe", person.toString());
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_use_git_to_check_file_modification_but_after_all_tests_the_time_shown_not_include_this_verification">Use Git to check file modification but after all tests. The time shown not include this verification.</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Demo of a simple usage to generate documentation.</p>

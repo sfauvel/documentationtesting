@@ -43,7 +43,7 @@ public class DocGenerator {
 
 
     private void execute() throws IOException {
-        System.out.println(getProjectPath());
+
         final String demos = Files.list(getProjectPath().getParent().resolve("samples"))
                 .filter(p -> Files.isDirectory(p))
                 .filter(path -> path.getFileName().toString().startsWith("demo_"))
@@ -53,8 +53,7 @@ public class DocGenerator {
 
         final String demos_tech = Files.list(getProjectPath().getParent().resolve("samples"))
                 .filter(p -> Files.isDirectory(p))
-                .map(p -> p.getFileName().toString())
-                .filter(name -> name.startsWith("tech_"))
+                .filter(path -> path.getFileName().toString().startsWith("tech_"))
                 .sorted()
                 .map(demo -> addDemo(demo))
                 .collect(Collectors.joining());
@@ -78,21 +77,11 @@ public class DocGenerator {
         String moduleName = modulePath.getFileName().toString();
         String description = null;
         try {
-            description = generatePomDescription(getProjectPath().getParent().resolve(moduleName));
+            description = generatePomDescription(modulePath);
         } catch (ParserConfigurationException | IOException | SAXException e) {
             description = "no description";
         }
         return "\n * link:" + (Paths.get(".", moduleName, "index.html").toString()) + "[" + moduleName + "]: " + description + " \n";
-    }
-
-    private String addDemo(String module) {
-        String description = null;
-        try {
-            description = generatePomDescription(getProjectPath().getParent().resolve("samples").resolve(module));
-        } catch (ParserConfigurationException | IOException | SAXException e) {
-            description = "no description";
-        }
-        return "\n * link:" + (Paths.get(".", module, "index.html").toString()) + "[" + module + "]: " + description + " \n";
     }
 
     private void generateDocFile(String docName, String doc) throws IOException {
