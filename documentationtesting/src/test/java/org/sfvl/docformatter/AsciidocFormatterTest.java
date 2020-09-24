@@ -21,13 +21,16 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * Each section of this documentation explain one method of the AsciidocFormatter.
- * We present for each method:
+ * `AsciidocFormatter` provides high level methods to generate asciidoc text.
+ *
+ * Each section of this documentation explain one method of the `AsciidocFormatter`.
+ * For each method, we describe:
  *
  * - how it can be uses in code
  * - what the asciidoc generated will look like at the end (except when it's not possible)
  * - the asciidoc text generated
  */
+@DisplayName("Asciidoctor formatter")
 public class AsciidocFormatterTest extends ApprovalsBase {
     private static AsciidocFormatter formatter = new AsciidocFormatter();
     private String output;

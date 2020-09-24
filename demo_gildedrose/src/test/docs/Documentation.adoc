@@ -4,6 +4,8 @@
 
 include::../../../readme.adoc[leveloffset=+1]
 
+View source project on link:{github}/demo_gildedrose[Github]
+
 == InnTest
 
 

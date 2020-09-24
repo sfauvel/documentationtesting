@@ -4,6 +4,8 @@
 
 = Documentation
 
+View source project on link:{github}/demo_basic_approvals[Github]
+
 == DemoTest
 Demo of a simple usage to generate documentation.
 

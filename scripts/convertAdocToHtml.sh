@@ -2,6 +2,7 @@
 # Convert all documentation of modules writing in asciidoctor to a global HTML documentation.
 set -euo pipefail
 
+REPO_GITHUB=https://github.com/sfauvel/documentationtesting
 DOCKER_IMAGE=asciidoctor/docker-asciidoctor:1.1.0
 DOCKER_WORKDIR=/documents
 DOC_PATH=docs
@@ -45,6 +46,7 @@ function generateAsciidoc() {
         -a webfonts! \
         -a stylesheet=/stylesheets/${STYLE} \
     	--attribute htmlOutput="html" \
+    	--attribute github="${REPO_GITHUB}/tree/master" \
     	--attribute rootpath="${DOCKER_WORKDIR}" \
     	${ADOC_FILE}
 

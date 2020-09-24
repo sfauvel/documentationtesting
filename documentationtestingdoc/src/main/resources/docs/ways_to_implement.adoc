@@ -21,7 +21,7 @@ There is no constraint about language used to generate files.
 Using xUnit simplify this but it's not required.
 We can create one file by test using method name and run it with tools already provided in IDE.
 
-== Identif modified files
+== Identify modified files
 
 === Git version
 

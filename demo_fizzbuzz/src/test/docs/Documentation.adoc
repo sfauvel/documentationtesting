@@ -4,6 +4,8 @@
 
 = FizzBuzz
 
+View source project on link:{github}/demo_fizzbuzz[Github]
+
 == FizzBuzzTest
 link:https://en.wikipedia.org/wiki/Fizz_buzz[Fizz buzz] is a group word game for children to teach them about division.
 

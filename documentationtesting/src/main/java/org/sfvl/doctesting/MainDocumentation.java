@@ -87,10 +87,13 @@ public class MainDocumentation {
     protected String getHeader() {
         final Path readmePath = pathProvider.getProjectPath().resolve(Paths.get("readme.adoc"));
 
+        final String projectFolderName = pathProvider.getProjectPath().getName(pathProvider.getProjectPath().getNameCount() - 1).toString();
+
         final String header = ":toc: left\n:nofooter:\n:stem:\n\n" +
                 (readmePath.toFile().exists()
                 ? "include::../../../readme.adoc[leveloffset=+1]\n\n"
-                : "= " + DOCUMENTATION_TITLE + "\n\n");
+                : "= " + DOCUMENTATION_TITLE + "\n\n") +
+                "View source project on link:{github}/"+projectFolderName+"[Github]\n\n";;
         return header;
     }
 
