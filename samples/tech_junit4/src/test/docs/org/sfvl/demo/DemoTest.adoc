@@ -1,0 +1,10 @@
+= org.sfvl.demo.Demo
+:toc:
+
+== Description
+
+
+
+== Examples
+
+include::DemoTest.adding_2_simple_numbers.approved.adoc[leveloffset=+2]
