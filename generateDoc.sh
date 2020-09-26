@@ -68,4 +68,15 @@ function generate_docs() {
 
 }
 
-generate_docs "documentationtesting $(find samples -maxdepth 1 -name "demo_*") $(find samples -maxdepth 1 -name "tech_*") documentationtestingdoc"
+set +u
+if [ -z $1 ]
+then
+  echo "NO parameters"
+  MODULES="documentationtesting $(find samples -maxdepth 1 -name "demo_*") $(find samples -maxdepth 1 -name "tech_*") documentationtestingdoc"
+else
+  echo "parameters: $1"
+  MODULES="$1"
+fi
+set -u
+
+generate_docs "$MODULES"
