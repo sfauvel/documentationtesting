@@ -24,6 +24,8 @@ public class DemoTest {
             int a = 2;
             int b = 3;
 
+            writer.write(":nofooter:");
+            writer.newLine();
             writer.write("= Should add 2 numbers");
             writer.newLine();
             writer.newLine();

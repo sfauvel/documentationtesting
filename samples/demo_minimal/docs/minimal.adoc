@@ -1,3 +1,4 @@
+:nofooter:
 = Should add 2 numbers
 
 2 + 3 = 5
