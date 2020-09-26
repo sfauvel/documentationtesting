@@ -1,0 +1,6 @@
+:toc: left
+:nofooter:
+
+== Haskell examples
+
+include::test_calculator.adoc[leveloffset=+2]

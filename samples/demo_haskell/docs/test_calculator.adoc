@@ -1,0 +1,9 @@
+= calc_sum
+
+
+calc_sum [] = 0
+
+calc_sum [2] = 2
+
+calc_sum [2,3] = 5
+
