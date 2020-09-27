@@ -6,6 +6,7 @@ PROJECT_NAME=${PWD##*/}
 SCRIPTS_PATH=${DOC_PROJECT_PATH}/scripts
 DOCS_PATH=docs
 DESTINATION_PATH=${DOC_PROJECT_PATH}/docs/${PROJECT_NAME}
+DOCKER_IMAGE=python:3.8.1
 
 # Validation mode: git or approvals
 # With approvals: file .approved is compared to .received (no need to have git). It not verifies removed tests
@@ -35,13 +36,20 @@ while getopts ":hm:g" opt; do
    esac
 done
 
-function remove_docs_directories() {
+function execute_on_docker() {
+
+  local WORKING_FOLDER=$1
+  local COMMAND=$2
+
   docker run \
     -v $(pwd):/project \
-    -w /project \
-    -it python:3.8.1 \
-    rm -rf ${DOCS_PATH}
+    -w /project/${WORKING_FOLDER} \
+    -it ${DOCKER_IMAGE} \
+    ${COMMAND}
+}
 
+function remove_docs_directories() {
+  execute_on_docker . "rm -rf ${DOCS_PATH}"
 }
 
 function generate_main_documentation_file() {
@@ -72,12 +80,7 @@ function generate_docs() {
 
   # 'no-assert' avoid to check diff on each test. That's not seem to build significantly faster with this option.
   # The main advantage is that the build do not break, and we can have a result for all modules.
-  docker run \
-    -v $(pwd)/src:/project/src:ro \
-    -v $(pwd)/${DOCS_PATH}:/project/docs \
-    -w /project/src \
-    -it python:3.8.1 \
-    python -m unittest
+  execute_on_docker src "python -m unittest"
 
   generate_main_documentation_file
 

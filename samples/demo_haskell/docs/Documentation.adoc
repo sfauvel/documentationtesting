@@ -1,6 +1,8 @@
 :toc: left
 :nofooter:
 
-== Haskell examples
+= Haskell examples
+
+== test_calculator
 
 include::test_calculator.adoc[leveloffset=+2]

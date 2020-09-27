@@ -71,6 +71,7 @@ public class MainDocumentation {
         ));
 
         String testsDocumentation = methodsByClass.entrySet().stream()
+                .sorted(Comparator.comparing(e -> e.getKey().getSimpleName()))
                 .map(e -> "== "
                         + getTestClassTitle(e)
                         + "\n" + getComment(e.getKey())

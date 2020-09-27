@@ -6,6 +6,7 @@ PROJECT_NAME=${PWD##*/}
 SCRIPTS_PATH=${DOC_PROJECT_PATH}/scripts
 DOCS_PATH=docs
 DESTINATION_PATH=${DOC_PROJECT_PATH}/docs/${PROJECT_NAME}
+DOCKER_IMAGE=haskell_dev
 
 # Validation mode: git or approvals
 # With approvals: file .approved is compared to .received (no need to have git). It not verifies removed tests
@@ -35,13 +36,20 @@ while getopts ":hm:g" opt; do
    esac
 done
 
-function remove_docs_directories() {
+function execute_on_docker() {
+
+  local WORKING_FOLDER=$1
+  local COMMAND=$2
+
   docker run \
     -v $(pwd):/project \
-    -w /project \
-    -it python:3.8.1 \
-    rm -rf ${DOCS_PATH}
+    -w /project/${WORKING_FOLDER} \
+    -it ${DOCKER_IMAGE} \
+    ${COMMAND}
+}
 
+function remove_docs_directories() {
+  execute_on_docker . "rm -rf ${DOCS_PATH}"
 }
 
 function generate_main_documentation_file() {
@@ -52,10 +60,12 @@ function generate_main_documentation_file() {
   echo ":toc: left" >> ${DOC}
   echo ":nofooter:" >> ${DOC}
   echo "" >> ${DOC}
-  echo "== Haskell examples" >> ${DOC}
+  echo "= Haskell examples" >> ${DOC}
   echo "" >> ${DOC}
   for FILENAME in $ADOC_FILES
   do
+    echo "== ${FILENAME%%.*}" >> ${DOC}
+    echo "" >> ${DOC}
     echo "include::${FILENAME}[leveloffset=+2]" >> ${DOC}
   done
 }
@@ -76,14 +86,10 @@ function generate_docs() {
   for TEST_FILE_NAME in $(find src -maxdepth 1 -name "test_*")
   do
     DOC_NAME=${TEST_FILE_NAME/src\//}
-    echo "Doc: ${DOC_NAME}"
-    docker run \
-      -v $(pwd):/sources \
-      -w /sources \
-      -it haskell_dev \
-      ghc -o target/${DOC_NAME} -outputdir target -no-keep-hi-files -no-keep-o-files ${TEST_FILE_NAME} && ./target/${DOC_NAME}
+    echo "Execute: ${DOC_NAME}"
+    execute_on_docker . "ghc -o target/${DOC_NAME} -outputdir target -no-keep-hi-files -no-keep-o-files ${TEST_FILE_NAME}"
+    execute_on_docker . "./target/${DOC_NAME}"
   done
-
 
   generate_main_documentation_file
 
