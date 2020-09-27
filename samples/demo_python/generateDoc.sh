@@ -59,6 +59,7 @@ function generate_main_documentation_file() {
   touch ${DOC}
   echo ":toc: left" >> ${DOC}
   echo ":nofooter:" >> ${DOC}
+  echo ":description: Example in Python." >> ${DOC}
   echo "" >> ${DOC}
   echo "== Python examples" >> ${DOC}
   echo "" >> ${DOC}

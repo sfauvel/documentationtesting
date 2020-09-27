@@ -75,13 +75,27 @@ public class DocGenerator {
 
     private String addDemo(Path modulePath) {
         String moduleName = modulePath.getFileName().toString();
-        String description = null;
-        try {
-            description = generatePomDescription(modulePath);
-        } catch (ParserConfigurationException | IOException | SAXException e) {
-            description = "no description";
+        Optional<String> description = generatePomDescriptionXXX(modulePath);
+        if (!description.isPresent()) {
+            description = generateDocumentationDescription(modulePath);
         }
-        return "\n * link:" + (Paths.get(".", moduleName, "index.html").toString()) + "[" + moduleName + "]: " + description + " \n";
+
+        return "\n * link:" + (Paths.get(".", moduleName, "index.html").toString())
+                + "[" + moduleName + "]: "
+                + description.orElse("no description") + " \n";
+    }
+
+    private Optional<String> generatePomDescriptionXXX(Path modulePath) {
+        Element root = null;
+        try {
+            root = parsePom(modulePath).getDocumentElement();
+        } catch (ParserConfigurationException | IOException | SAXException e) {
+            return Optional.empty();
+        }
+        return Optional.of(root)
+                .map(r -> r.getElementsByTagName("description"))
+                .map(d -> d.item(0))
+                .map(i -> i.getTextContent());
     }
 
     private void generateDocFile(String docName, String doc) throws IOException {
@@ -94,7 +108,7 @@ public class DocGenerator {
 
     }
 
-    public String generatePomDescription(Path module)
+    public Optional<String> generatePomDescription(Path module)
             throws ParserConfigurationException, IOException, SAXException {
 
         Element root = parsePom(module).getDocumentElement();
@@ -102,9 +116,21 @@ public class DocGenerator {
         return Optional.of(root)
                 .map(r -> r.getElementsByTagName("description"))
                 .map(d -> d.item(0))
-                .map(i -> i.getTextContent())
-                .orElse("no description");
+                .map(i -> i.getTextContent());
+    }
 
+    private Optional<String> generateDocumentationDescription(Path modulePath) {
+        final Path docFile = modulePath.resolve("docs").resolve("Documentation.adoc");
+
+        final String prefix = ":description:";
+        try {
+            return Files.lines(docFile)
+                    .filter(line -> line.startsWith(prefix))
+                    .findFirst()
+                    .map(line -> line.substring(prefix.length()).trim());
+        } catch (IOException e) {
+            return Optional.empty();
+        }
     }
 
     private static Document parsePom(Path module)

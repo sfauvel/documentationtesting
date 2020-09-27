@@ -1,5 +1,6 @@
 :toc: left
 :nofooter:
+:description: Example in Haskell.
 
 = Haskell examples
 

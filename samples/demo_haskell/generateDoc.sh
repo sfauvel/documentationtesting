@@ -59,6 +59,7 @@ function generate_main_documentation_file() {
   touch ${DOC}
   echo ":toc: left" >> ${DOC}
   echo ":nofooter:" >> ${DOC}
+  echo ":description: Example in Haskell." >> ${DOC}
   echo "" >> ${DOC}
   echo "= Haskell examples" >> ${DOC}
   echo "" >> ${DOC}
