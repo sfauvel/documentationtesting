@@ -25,6 +25,7 @@ public interface Formatter {
     String sourceCode(String source);
 
     String include(String filename);
+    String include(String filename, int offset);
 
     String warning(String message);
 

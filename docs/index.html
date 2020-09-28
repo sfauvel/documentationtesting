@@ -463,14 +463,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
-</ul>
-</li>
 <li><a href="#_ways_to_implement">Ways to implement</a>
-<ul class="sectlevel2">
-<li><a href="#_identify_modified_files">Identify modified files</a>
 <ul class="sectlevel3">
+<li><a href="#_identify_modified_files">Identify modified files</a>
+<ul class="sectlevel4">
 <li><a href="#_git_version">Git version</a></li>
 <li><a href="#_approvals_version">Approvals version</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -914,11 +914,8 @@ You have to compile it and deploy it to your IntelliJ from .jar file present in 
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_ways_to_implement">Ways to implement</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_ways_to_implement">Ways to implement</h3>
 <div class="paragraph">
 <p>We just need to check that there is no difference in documents generated.
 There is several ways to do that.</p>
@@ -959,10 +956,10 @@ There is no constraint about language used to generate files.
 Using xUnit simplify this but it&#8217;s not required.
 We can create one file by test using method name and run it with tools already provided in IDE.</p>
 </div>
-<div class="sect2">
-<h3 id="_identify_modified_files">Identify modified files</h3>
 <div class="sect3">
-<h4 id="_git_version">Git version</h4>
+<h4 id="_identify_modified_files">Identify modified files</h4>
+<div class="sect4">
+<h5 id="_git_version">Git version</h5>
 <div class="paragraph">
 <p>Git is made to check modification between files on disk and files in repository.
 So, we just have to generated files and ask to git if there is a difference with his version.</p>
@@ -985,8 +982,8 @@ It&#8217;s done in Java with JUnit 5 in methods annotated <code>@AfterEach</code
 <p>Using git involves to staged approved files.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_approvals_version">Approvals version</h4>
+<div class="sect4">
+<h5 id="_approvals_version">Approvals version</h5>
 <div class="paragraph">
 <p>Approvals is a library to make golden master (<a href="https://github.com/approvals" class="bare">https://github.com/approvals</a>).
 Using it, each test produce a <code>.received</code> file.
@@ -998,6 +995,7 @@ The test fail if there is a difference.</p>
 Inconvenient is that the library is specific to a language and need to be available for it.
 There is also some difficulties to well identify tests that were deleted or renamed.
 It&#8217;s also could be difficult to check other files generated like images.</p>
+</div>
 </div>
 </div>
 </div>

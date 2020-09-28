@@ -63,7 +63,7 @@ public class DocGenerator {
                 ":fulldoc:\n" +
                 formatter.tableOfContent(4) +
                 formatter.include(docPath.relativize(getProjectPath().getParent().resolve("README.adoc").toAbsolutePath()).toString()) +
-                formatter.include("ways_to_implement.adoc");
+                formatter.include("ways_to_implement.adoc", 2);
 
         Files.createDirectories(docPath);
 

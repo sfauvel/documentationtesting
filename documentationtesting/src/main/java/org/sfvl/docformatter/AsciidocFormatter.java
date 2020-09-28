@@ -78,7 +78,12 @@ public class AsciidocFormatter implements Formatter {
 
     @Override
     public String include(String filename) {
-        return String.format("\ninclude::%s[leveloffset=+1]\n", filename);
+        return include(filename, 1);
+    }
+
+    @Override
+    public String include(String filename, int offset) {
+        return String.format("\ninclude::%s[leveloffset=+%d]\n", filename, offset);
     }
 
     @Override
