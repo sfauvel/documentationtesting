@@ -148,6 +148,26 @@ public class AsciidocFormatterTest extends ApprovalsBase {
         output = formatter.include(fileToInclude);
     }
 
+    @Test
+    @DisplayName("Table")
+    public void should_format_table() throws IOException {
+        output = formatter.table(Arrays.asList(
+                Arrays.asList("A", "B", "C"),
+                Arrays.asList("x", "y", "z"),
+                Arrays.asList("1", "2", "3")
+        ));
+    }
+
+    @Test
+    @DisplayName("Table with header")
+    public void should_format_table_with_header() throws IOException {
+        output = formatter.tableWithHeader(Arrays.asList(
+                Arrays.asList("A", "B", "C"),
+                Arrays.asList("x", "y", "z"),
+                Arrays.asList("1", "2", "3")
+        ));
+    }
+
     @AfterEach
     public void displaySource(TestInfo testinfo) {
 

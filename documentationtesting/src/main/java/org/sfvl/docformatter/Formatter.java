@@ -36,12 +36,12 @@ public interface Formatter {
     String anchorLink(String id, String visibleText);
 
     String table(List<List<? extends Object>> data);
+    String tableWithHeader(List<List<? extends Object>> asList);
 
     String image(String filename);
 
     String sourceFragment(String s, String interestingCode);
 
     Source source(String s);
-
 
 }

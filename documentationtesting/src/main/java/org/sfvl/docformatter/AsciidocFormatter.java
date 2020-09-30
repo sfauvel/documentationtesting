@@ -112,10 +112,21 @@ public class AsciidocFormatter implements Formatter {
     @Override
     public String table(List<List<? extends Object>> data) {
         return "\n|====\n" +
-                data.stream().map(line -> {
-                    return line.stream().map(Object::toString).collect(Collectors.joining("|", "|", "\n"));
-                }).collect(Collectors.joining()) +
-                "|====\n";
+                data.stream().map(this::formatTableLine).collect(Collectors.joining("\n")) +
+                "\n|====\n";
+    }
+
+    @Override
+    public String tableWithHeader(List<List<?>> data) {
+        return "\n|====\n" +
+                data.stream().limit(1).map(this::formatTableLine).collect(Collectors.joining("\n")) +
+                "\n\n"+
+                data.stream().skip(1).map(this::formatTableLine).collect(Collectors.joining("\n")) +
+                "\n|====\n";
+    }
+
+    private String formatTableLine(List<?> line) {
+        return line.stream().map(Object::toString).collect(Collectors.joining("|", "|", ""));
     }
 
     @Override
