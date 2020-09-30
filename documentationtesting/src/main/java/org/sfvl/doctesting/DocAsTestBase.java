@@ -3,6 +3,7 @@ package org.sfvl.doctesting;
 import com.thoughtworks.qdox.JavaProjectBuilder;
 import com.thoughtworks.qdox.model.JavaClass;
 import com.thoughtworks.qdox.model.JavaMethod;
+import com.thoughtworks.qdox.model.JavaType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.TestInfo;
 
@@ -11,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -20,9 +22,13 @@ public abstract class DocAsTestBase {
     private static JavaProjectBuilder builder;
 
     /**
-     * Return name specified in DisplayName annotation.
+     * Return the name to use as title from a test method .
+     * It returns the value specified with _DisplayName_ annotation.
      * If annotation is not present, this is the method name that will be returned
      * after some test formatting (remove '_', uppercase first letter).
+     *
+     * It's based on value return by _displayName_ method.
+     * It returns either DisplayName annotation value or method name.
      *
      * @param testInfo
      * @return
@@ -51,15 +57,18 @@ public abstract class DocAsTestBase {
     }
 
     protected String getComment(Class<?> clazz, String methodName) {
+        return getComment(clazz, methodName, Collections.emptyList());
+    }
+
+    protected String getComment(Class<?> clazz, String methodName, List<JavaType> argumentList) {
         JavaClass javaClass = builder.getClassByName(clazz.getCanonicalName());
 
-
-        JavaMethod method = javaClass.getMethod(methodName, Collections.emptyList(), false);
-        while (method == null && javaClass != null) {
+        JavaMethod method = javaClass.getMethod(methodName, argumentList, false);
+        while (method == null && javaClass.getSuperJavaClass() != null) {
             javaClass = javaClass.getSuperJavaClass();
-            method = javaClass.getMethod(methodName, Collections.emptyList(), false);
+            method = javaClass.getMethod(methodName, argumentList, false);
         }
-        return Optional.ofNullable(method.getComment()).orElse("");
+        return Optional.ofNullable(method).map(c -> c.getComment()).orElse("");
     }
 
     /**
@@ -92,6 +101,9 @@ public abstract class DocAsTestBase {
     }
 
     protected String buildContent(TestInfo testInfo) {
+        final JavaClass testInfoJavaClass = builder.getClassByName(TestInfo.class.getCanonicalName());
+        final String comment1 = getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName());
+        final String comment2 = getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName(), Arrays.asList(testInfoJavaClass));
         return String.join("\n\n",
                 "= " + formatTitle(testInfo),
                 getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName()),
