@@ -455,6 +455,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_project">Project</a>
 <ul class="sectlevel3">
 <li><a href="#_generate_a_full_documentation">Generate a full documentation</a></li>
+<li><a href="#_on_windows">On Windows</a></li>
 <li><a href="#_modify_doc_format">Modify doc format</a></li>
 <li><a href="#_plugins">Plugins</a>
 <ul class="sectlevel4">
@@ -872,6 +873,22 @@ If it is the case, rename it with <code>approved.adoc</code> instead of <code>re
 <div class="paragraph">
 <p>You can use <code>RunAll</code> class to make all process in a single command.
 launch tests, generate an asciidoc with all files generated and convert it to HTML.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_on_windows">On Windows</h4>
+<div class="paragraph">
+<p>Scripts are written to run with bash.
+On windows, you can execute them in a Git bash console for example.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s not possible to run docker with volume in a bash script on Windows.
+To execute projets on specific language, compiler need to be installed in machin.</p>
+</div>
+<div class="paragraph">
+<p>We also used docker to convert asciidoc to html.
+On windows, this generation could not be done when executing all project.
+A script <em>convertADocToHtml.bat</em> is provided to generate Html for one project.</p>
 </div>
 </div>
 <div class="sect3">
