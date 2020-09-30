@@ -2,8 +2,26 @@
 # Convert all documentation of modules writing in asciidoctor to a global HTML documentation.
 set -euo pipefail
 
+ASCIIDOC_DOCKER_IMAGE=asciidoctor/docker-asciidoctor:1.1.0
+if [[ "$(uname)" =~ "NT" ]]; then IS_WINDOWS=true; else IS_WINDOWS=false; fi
+
+if [[ -z ASCIIDOC_DOCKER_IMAGE ]]
+then
+  echo "No docker image defined"
+  echo "Html will not be generated"
+  #read -t 5 -n1 -r -p "Press a key to continue..." key
+  exit 0
+fi
+
+if $IS_WINDOWS
+then
+  echo "Docker will not work in a shell bash on Windows"
+  echo "Html will not be generated"
+  #read -t 5 -n1 -r -p "Press a key to continue..." key
+  exit 0
+fi
+
 REPO_GITHUB=https://github.com/sfauvel/documentationtesting
-DOCKER_IMAGE=asciidoctor/docker-asciidoctor:1.1.0
 DOCKER_WORKDIR=/documents
 DOC_PATH=docs
 SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
@@ -37,7 +55,7 @@ function generateAsciidoc() {
     	-v $(pwd)/${DESTINATION}:/destination/ \
     	-v ${STYLESHEETS}:/stylesheets:ro \
 	    -w ${DOCKER_WORKDIR} \
-    	${DOCKER_IMAGE} \
+    	${ASCIIDOC_DOCKER_IMAGE} \
     	asciidoctor \
     	-D /destination \
     	-o index.html \
