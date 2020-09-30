@@ -1,25 +1,21 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -eo pipefail
 
 DOC_PROJECT_PATH=../..
 PROJECT_NAME=${PWD##*/}
 SCRIPTS_PATH=${DOC_PROJECT_PATH}/scripts
 DOCS_PATH=docs
 DESTINATION_PATH=${DOC_PROJECT_PATH}/docs/${PROJECT_NAME}
-
-# Validation mode: git or approvals
-# With approvals: file .approved is compared to .received (no need to have git). It not verifies removed tests
-# with git: file .approved is compared with git commited version. It detects tests removed.
-VALIDATION_MODE="git"
+PYTHON_DOCKER_IMAGE=python:3.8.1
+if [[ "$(uname)" =~ "NT" ]]; then IS_WINDOWS=true; else IS_WINDOWS=false; fi
 
 # Usage info
 function show_help() {
-  echo "Usage: ${0##*/} [-h] [-m VALIDATION_MODE] [FILE]..."
+  echo "Usage: ${0##*/} [-h]"
   echo "Build all the project: compile, generate documentation, verify there is no regression"
   echo "and convert asciidoctor generated to Html."
   echo ""
   echo "    -h                  display this help and exit."
-  echo "    -m VALIDATION_MODE: could be 'git' or 'approvals'."
 }
 
 while getopts ":hm:g" opt; do
@@ -27,21 +23,33 @@ while getopts ":hm:g" opt; do
      h ) show_help
        exit 0
        ;;
-     m ) VALIDATION_MODE=${OPTARG}
-       ;;
      \? ) show_help
        exit 0
        ;;
    esac
 done
 
-function remove_docs_directories() {
-  docker run \
-    -v $(pwd):/project \
-    -w /project \
-    -it python:3.8.1 \
-    rm -rf ${DOCS_PATH}
+function execute_command() {
+  local WORKING_FOLDER=$1
+  local COMMAND=$2
 
+  if [[ -z $PYTHON_DOCKER_IMAGE || $IS_WINDOWS = true ]]
+  then
+    pushd ${WORKING_FOLDER}
+    ${COMMAND}
+    popd
+  else
+    docker run \
+      -v $(pwd):/project \
+      -w /project/${WORKING_FOLDER} \
+      -it $$PYTHON_DOCKER_IMAGE \
+      ${COMMAND}
+  fi
+}
+
+function reset_docs_directories() {
+  execute_command . "rm -rf ${DOCS_PATH}"
+  mkdir ${DOCS_PATH}
 }
 
 function generate_main_documentation_file() {
@@ -64,20 +72,9 @@ function generate_main_documentation_file() {
 function generate_docs() {
   # delete docs directories to check files not regenerated because of a removed test.
   # Do not remove if check with approvals
-  if [ $VALIDATION_MODE = "git" ]
-  then
-    remove_docs_directories
-    mkdir ${DOCS_PATH}
-  fi
+  reset_docs_directories
 
-  # 'no-assert' avoid to check diff on each test. That's not seem to build significantly faster with this option.
-  # The main advantage is that the build do not break, and we can have a result for all modules.
-  docker run \
-    -v $(pwd)/src:/project/src:ro \
-    -v $(pwd)/${DOCS_PATH}:/project/docs \
-    -w /project/src \
-    -it python:3.8.1 \
-    python -m unittest
+  execute_command src "python -m unittest"
 
   generate_main_documentation_file
 
