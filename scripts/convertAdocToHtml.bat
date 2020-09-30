@@ -1,4 +1,10 @@
 
+REM convert an asccidoc file to html
+REM Usage: convertAdocToHtml.bat [ASCIIDOC FOLDER] [FILE_ASCIIDOC] [DESTINATION DIRECTORY]
+REM ASCIIDOC FOLDER: Folder where asciidoc files can be found
+REM FILE_ASCIIDOC: Asciidoc file to convert
+REM DESTINATION DIRECTORY: Directory where html will be generated. This folder is created if it does not exist.
+
 echo -n "Convert %2 to html: "
 
 set DOCS_INPUT_PATH=%1
@@ -17,6 +23,14 @@ set PROJECT_PATH=%cd%
 pushd %CURRENT_PATH%\..
 set ROOT_PATH=%cd%
 popd
+
+mkdir %DOC_DESTINATION_PATH%
+pushd %DOC_DESTINATION_PATH%
+set DOC_DESTINATION_PATH=%cd%
+popd
+
+echo %DOC_DESTINATION_PATH%
+echo %DOCS_INPUT_PATH%
 
 set STYLESHEETS=%ROOT_PATH%\stylesheets
 
@@ -40,3 +54,4 @@ docker run -it ^
     --attribute github="%REPO_GITHUB%/tree/master" ^
     --attribute rootpath="%DOCKER_WORKDIR%" ^
     %ADOC_FILE%
+
