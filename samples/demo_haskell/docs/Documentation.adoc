@@ -2,8 +2,6 @@
 :nofooter:
 :description: Example in Haskell.
 
-= Haskell examples
-
-== test_calculator
+== Haskell examples
 
 include::test_calculator.adoc[leveloffset=+2]

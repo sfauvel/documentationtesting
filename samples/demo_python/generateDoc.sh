@@ -42,7 +42,7 @@ function execute_command() {
     docker run \
       -v $(pwd):/project \
       -w /project/${WORKING_FOLDER} \
-      -it $$PYTHON_DOCKER_IMAGE \
+      -it $PYTHON_DOCKER_IMAGE \
       ${COMMAND}
   fi
 }
