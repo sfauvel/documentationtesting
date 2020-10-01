@@ -31,4 +31,6 @@ include::org/sfvl/docformatter/AsciidocFormatterTest.should_format_list.approved
 include::org/sfvl/docformatter/AsciidocFormatterTest.should_format_empty_list.approved.adoc[leveloffset=+2]
 include::org/sfvl/docformatter/AsciidocFormatterTest.should_format_source_code.approved.adoc[leveloffset=+2]
 include::org/sfvl/docformatter/AsciidocFormatterTest.should_format_include.approved.adoc[leveloffset=+2]
+include::org/sfvl/docformatter/AsciidocFormatterTest.should_format_table.approved.adoc[leveloffset=+2]
+include::org/sfvl/docformatter/AsciidocFormatterTest.should_format_table_with_header.approved.adoc[leveloffset=+2]
 
