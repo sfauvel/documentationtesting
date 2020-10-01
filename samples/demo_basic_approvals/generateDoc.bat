@@ -1,5 +1,5 @@
 
-mvn clean install package
+mvn clean install package -q
 
 set CURRENT_PATH=%~dp0
 pushd ..\..

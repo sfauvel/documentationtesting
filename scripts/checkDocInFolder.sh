@@ -1,19 +1,40 @@
 #!/bin/bash
-# Check differences between file on disk and git files in one subdirectory.
-# Each difference is consider as a regression.
-
-if [ -z "$1" ]
-then
-  echo First parameter with path to check must be define
-  exit 0
-else
-  ROOT_DOC=$1
-fi
-
-set -euo pipefail
 
 SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 source ${SCRIPT_PATH}/loadWritingFunction.sh
+
+ARGS=( "$@" )
+while getopts "h" OPTION; do
+   case ${OPTION} in
+     h ) show_help
+       exit 0
+       ;;
+     \? ) show_help
+       exit 0
+       ;;
+   esac
+done
+
+LAST_OPTION_INDEX=$((OPTIND-1))
+
+ROOT_DOC=${ARGS[${LAST_OPTION_INDEX}+0]}
+if [ -z "$ROOT_DOC" ]; then show_help; exit 0; fi
+
+set -euo pipefail
+
+# Usage info
+function show_help() {
+  echo -e "${BOLD}NAME${NO_COLOR}"
+  echo -e "\t${BOLD}${0##*/}${NO_COLOR} - Check differences between files on disk and git staged files."
+  echo -e "${BOLD}SYNOPSIS${NO_COLOR}"
+  echo -e "\t${BOLD}${0##*/}${NO_COLOR} [OPTION]... PATH"
+  echo -e "${BOLD}DESCRIPTION${NO_COLOR}"
+  echo -e "\tCheck differences between files in PATH and git staged files."
+  echo -e "\tEach difference is consider as a failure."
+  echo -e ""
+  echo -e "\t${BOLD}-h${NO_COLOR}"
+  echo -e "\t\t display this help and exit."
+}
 
 NEW_LINE=$'\n'
 
@@ -35,7 +56,8 @@ NB_FAILURES=0
 for FILENAME in $ALL_GIT_FILES
 do
   SIMPLE_FILE_NAME=$(sed -r "s|.*\/(.*).adoc|\1|g" <<<"$FILENAME")
-  if [[ $ALL_FAILING_TESTS == *"$FILENAME"* ]]; then
+  if [[ $ALL_FAILING_TESTS == *"$FILENAME"* ]]
+  then
     FAILURE_LINE=$(grep "$FILENAME" <<< "${ALL_FAILING_TESTS}")
     write_failure "- ${SIMPLE_FILE_NAME}(${FAILURE_LINE:1:1})"
     NB_FAILURES=`expr ${NB_FAILURES} + 1`
@@ -45,7 +67,7 @@ do
 done
 
 echo ---------------------
-if [ ! -z "$ALL_FAILING_TESTS" ]
+if [ -n "$ALL_FAILING_TESTS" ]
 then
   write_failure "FAILURES: ${NB_FAILURES}"
 else

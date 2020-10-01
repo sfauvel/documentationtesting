@@ -36,10 +36,12 @@ function generate_docs() {
   ALL_RESULTS=""
   ALL_STATUS_RESULT="${GREEN}OK${NO_COLOR}"
   local TEST_COLOR
-  echo -n "Generate Html"
+  echo "Generate projects documentation..."
   for DEMO_NAME in $ALL_DEMOS
   do
-      pushd $DEMO_NAME
+      echo "---------------------"
+      echo "Project ${DEMO_NAME}"
+      pushd $DEMO_NAME > /dev/null
       returncode=0
       ./generateDoc.sh || returncode=$?
 
@@ -54,7 +56,7 @@ function generate_docs() {
       fi
 
       ALL_RESULTS="$ALL_RESULTS${TEST_COLOR}- ${DEMO_NAME}: ${DEMO_STATUS}${NO_COLOR}\n"
-      popd
+      popd > /dev/null
   done
 
   echo ---------------------
@@ -69,12 +71,10 @@ function generate_docs() {
 }
 
 set +u
-if [ -z $1 ]
+if [ -z "$1" ]
 then
-  echo "NO parameters"
   MODULES="documentationtesting $(find samples -maxdepth 1 -name "demo_*") $(find samples -maxdepth 1 -name "tech_*") documentationtestingdoc"
 else
-  echo "parameters: $1"
   MODULES="$1"
 fi
 set -u
