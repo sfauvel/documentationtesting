@@ -36,7 +36,8 @@ for FILENAME in $ALL_GIT_FILES
 do
   SIMPLE_FILE_NAME=$(sed -r "s|.*\/(.*).adoc|\1|g" <<<"$FILENAME")
   if [[ $ALL_FAILING_TESTS == *"$FILENAME"* ]]; then
-    write_failure "- $SIMPLE_FILE_NAME"
+    FAILURE_LINE=$(grep "$FILENAME" <<< "${ALL_FAILING_TESTS}")
+    write_failure "- ${SIMPLE_FILE_NAME}(${FAILURE_LINE:1:1})"
     NB_FAILURES=`expr ${NB_FAILURES} + 1`
   else
     write_success "- $SIMPLE_FILE_NAME"
