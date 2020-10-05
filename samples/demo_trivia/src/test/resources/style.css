@@ -1,0 +1,66 @@
+++++
+<style>
+
+p {
+    margin: 0;
+}
+
+.triviaBoard, .triviaBoard p {
+    margin:0;
+    padding: 0;
+    /*white-space: nowrap;*/
+}
+.triviaBoard td {
+    border: solid 1px white;
+    text-align:center;
+    width:5em;
+    margin:0;
+    padding: 0;
+}
+
+.triviaBoard .currentPlayer {
+    font-weight: bold;
+}
+
+.sports {
+    background-color:yellow;
+    color: black;
+}
+.pop {
+    background-color:blue;
+    color: white;
+}
+.science {
+    background-color:green;
+    color: white;
+}
+.rock {
+    background-color:red;
+    color: white;
+}
+.rightAnswer {
+    color:green;
+}
+.wrongAnswer {
+    color:red;
+}
+.dice {
+    font-size:2em;
+}
+
+.boardTitle {
+    font-color: #ba3925;
+    font-size:0.8em;
+    text-rendering: optimizeLegibility;
+    text-align: left;
+    font-family: "Noto Serif","DejaVu Serif",serif;
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.boardTitle p {
+    color: #ba3925;
+    font-size:0.8em;
+}
+</style>
+++++

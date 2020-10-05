@@ -1,0 +1,151 @@
+= Win the game
+
+The first player to score 6 points wins the game.
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"><p class="currentPlayer">Chet &#x2784;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Chet rolled a [.dice]#&#x2682;#
+ +
+[rightAnswer]#&#x2714;#
+Chet correctly answered to Rock question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="currentPlayer">Chet &#x2785;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Chet wins the game !!! +
+++++
+<style>
+
+p {
+    margin: 0;
+}
+
+.triviaBoard, .triviaBoard p {
+    margin:0;
+    padding: 0;
+    /*white-space: nowrap;*/
+}
+.triviaBoard td {
+    border: solid 1px white;
+    text-align:center;
+    width:5em;
+    margin:0;
+    padding: 0;
+}
+
+.triviaBoard .currentPlayer {
+    font-weight: bold;
+}
+
+.sports {
+    background-color:yellow;
+    color: black;
+}
+.pop {
+    background-color:blue;
+    color: white;
+}
+.science {
+    background-color:green;
+    color: white;
+}
+.rock {
+    background-color:red;
+    color: white;
+}
+.rightAnswer {
+    color:green;
+}
+.wrongAnswer {
+    color:red;
+}
+.dice {
+    font-size:2em;
+}
+
+.boardTitle {
+    font-color: #ba3925;
+    font-size:0.8em;
+    text-rendering: optimizeLegibility;
+    text-align: left;
+    font-family: "Noto Serif","DejaVu Serif",serif;
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.boardTitle p {
+    color: #ba3925;
+    font-size:0.8em;
+}
+</style>
+++++

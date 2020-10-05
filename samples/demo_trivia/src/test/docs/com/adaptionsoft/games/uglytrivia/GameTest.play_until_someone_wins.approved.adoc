@@ -1,0 +1,1965 @@
+= A full game
+
+This is a full game from the beginning to the end when a player wins the game.
+
+&nbsp; +
+Players : 
+
+Chet, Pat, Sue
+
+*Turn 1*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"><p class="currentPlayer">Chet </p><p class="">Pat </p><p class="">Sue </p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Chet rolled a [.dice]#&#x2681;#
+ +
+[rightAnswer]#&#x2714;#
+Chet correctly answered to Sports question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"><p class="">Pat </p><p class="">Sue </p></td>
+<td class="science"></td>
+<td class="sports"><p class="currentPlayer">Chet &#x2780;</p></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 2*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"><p class="currentPlayer">Pat </p><p class="">Sue </p></td>
+<td class="science"></td>
+<td class="sports"><p class="">Chet &#x2780;</p></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Pat rolled a [.dice]#&#x2681;#
+ +
+[rightAnswer]#&#x2714;#
+Pat correctly answered to Sports question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"><p class="">Sue </p></td>
+<td class="science"></td>
+<td class="sports"><p class="">Chet &#x2780;</p><p class="currentPlayer">Pat &#x2780;</p></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 3*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"><p class="currentPlayer">Sue </p></td>
+<td class="science"></td>
+<td class="sports"><p class="">Chet &#x2780;</p><p class="">Pat &#x2780;</p></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Sue rolled a [.dice]#&#x2680;#
+ +
+[rightAnswer]#&#x2714;#
+Sue correctly answered to Science question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"><p class="currentPlayer">Sue &#x2780;</p></td>
+<td class="sports"><p class="">Chet &#x2780;</p><p class="">Pat &#x2780;</p></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 4*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"><p class="">Sue &#x2780;</p></td>
+<td class="sports"><p class="currentPlayer">Chet &#x2780;</p><p class="">Pat &#x2780;</p></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Chet rolled a [.dice]#&#x2680;#
+ +
+[rightAnswer]#&#x2714;#
+Chet correctly answered to Rock question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"><p class="">Sue &#x2780;</p></td>
+<td class="sports"><p class="">Pat &#x2780;</p></td>
+<td class="rock"><p class="currentPlayer">Chet &#x2781;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 5*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"><p class="">Sue &#x2780;</p></td>
+<td class="sports"><p class="currentPlayer">Pat &#x2780;</p></td>
+<td class="rock"><p class="">Chet &#x2781;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Pat rolled a [.dice]#&#x2681;#
+ +
+[rightAnswer]#&#x2714;#
+Pat correctly answered to Pop question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"><p class="">Sue &#x2780;</p></td>
+<td class="sports"></td>
+<td class="rock"><p class="">Chet &#x2781;</p></td>
+<td class="pop"><p class="currentPlayer">Pat &#x2781;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 6*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"><p class="currentPlayer">Sue &#x2780;</p></td>
+<td class="sports"></td>
+<td class="rock"><p class="">Chet &#x2781;</p></td>
+<td class="pop"><p class="">Pat &#x2781;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Sue rolled a [.dice]#&#x2682;#
+ +
+[rightAnswer]#&#x2714;#
+Sue correctly answered to Pop question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="">Chet &#x2781;</p></td>
+<td class="pop"><p class="">Pat &#x2781;</p><p class="currentPlayer">Sue &#x2781;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 7*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="currentPlayer">Chet &#x2781;</p></td>
+<td class="pop"><p class="">Pat &#x2781;</p><p class="">Sue &#x2781;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Chet rolled a [.dice]#&#x2680;#
+ +
+[wrongAnswer]#&#x2718;#
+Chet incorrectly answered to Pop question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"><p class="currentPlayer">[Chet] &#x2781;</p><p class="">Pat &#x2781;</p><p class="">Sue &#x2781;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 8*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"><p class="">[Chet] &#x2781;</p><p class="currentPlayer">Pat &#x2781;</p><p class="">Sue &#x2781;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Pat rolled a [.dice]#&#x2682;#
+ +
+[wrongAnswer]#&#x2718;#
+Pat incorrectly answered to Rock question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"><p class="">[Chet] &#x2781;</p><p class="">Sue &#x2781;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="currentPlayer">[Pat] &#x2781;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 9*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"><p class="">[Chet] &#x2781;</p><p class="currentPlayer">Sue &#x2781;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="">[Pat] &#x2781;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Sue rolled a [.dice]#&#x2682;#
+ +
+[rightAnswer]#&#x2714;#
+Sue correctly answered to Rock question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"><p class="">[Chet] &#x2781;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="">[Pat] &#x2781;</p><p class="currentPlayer">Sue &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 10*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"><p class="currentPlayer">[Chet] &#x2781;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Chet rolled a [.dice]#&#x2682;#
+ and is getting out of penality box +
+[rightAnswer]#&#x2714;#
+Chet correctly answered to Rock question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="currentPlayer">Chet &#x2782;</p><p class="">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 11*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="">Chet &#x2782;</p><p class="currentPlayer">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Pat rolled a [.dice]#&#x2681;#
+ and is not getting out of the penalty box +
+No question for Pat +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="">Chet &#x2782;</p><p class="currentPlayer">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 12*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="">Chet &#x2782;</p><p class="currentPlayer">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Pat rolled a [.dice]#&#x2681;#
+ and is not getting out of the penalty box +
+No question for Pat +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="">Chet &#x2782;</p><p class="currentPlayer">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 13*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="">Chet &#x2782;</p><p class="currentPlayer">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Pat rolled a [.dice]#&#x2682;#
+ and is getting out of penality box +
+[wrongAnswer]#&#x2718;#
+Pat incorrectly answered to Sports question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="">Chet &#x2782;</p><p class="">Sue &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"><p class="currentPlayer">[Pat] &#x2781;</p></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 14*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="">Chet &#x2782;</p><p class="currentPlayer">Sue &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"><p class="">[Pat] &#x2781;</p></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Sue rolled a [.dice]#&#x2683;#
+ +
+[rightAnswer]#&#x2714;#
+Sue correctly answered to Rock question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="">Chet &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"><p class="">[Pat] &#x2781;</p></td>
+<td class="rock"><p class="currentPlayer">Sue &#x2783;</p></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 15*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="currentPlayer">Chet &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"><p class="">[Pat] &#x2781;</p></td>
+<td class="rock"><p class="">Sue &#x2783;</p></td>
+</tr>
+</table>
+
+++++
+
+Chet rolled a [.dice]#&#x2680;#
+ +
+[rightAnswer]#&#x2714;#
+Chet correctly answered to Pop question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"><p class="currentPlayer">Chet &#x2783;</p></td>
+<td class="science"></td>
+<td class="sports"><p class="">[Pat] &#x2781;</p></td>
+<td class="rock"><p class="">Sue &#x2783;</p></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 16*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"><p class="">Chet &#x2783;</p></td>
+<td class="science"></td>
+<td class="sports"><p class="currentPlayer">[Pat] &#x2781;</p></td>
+<td class="rock"><p class="">Sue &#x2783;</p></td>
+</tr>
+</table>
+
+++++
+
+Pat rolled a [.dice]#&#x2681;#
+ and is not getting out of the penalty box +
+No question for Pat +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"><p class="">Chet &#x2783;</p></td>
+<td class="science"></td>
+<td class="sports"><p class="currentPlayer">[Pat] &#x2781;</p></td>
+<td class="rock"><p class="">Sue &#x2783;</p></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 17*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"><p class="">Chet &#x2783;</p></td>
+<td class="science"></td>
+<td class="sports"><p class="currentPlayer">[Pat] &#x2781;</p></td>
+<td class="rock"><p class="">Sue &#x2783;</p></td>
+</tr>
+</table>
+
+++++
+
+Pat rolled a [.dice]#&#x2684;#
+ and is getting out of penality box +
+[rightAnswer]#&#x2714;#
+Pat correctly answered to Rock question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="currentPlayer">Pat &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"><p class="">Chet &#x2783;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="">Sue &#x2783;</p></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 18*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="">Pat &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"><p class="">Chet &#x2783;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"><p class="currentPlayer">Sue &#x2783;</p></td>
+</tr>
+</table>
+
+++++
+
+Sue rolled a [.dice]#&#x2682;#
+ +
+[rightAnswer]#&#x2714;#
+Sue correctly answered to Sports question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"><p class="currentPlayer">Sue &#x2784;</p></td>
+<td class="rock"><p class="">Pat &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"><p class="">Chet &#x2783;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 19*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"><p class="">Sue &#x2784;</p></td>
+<td class="rock"><p class="">Pat &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"><p class="currentPlayer">Chet &#x2783;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Chet rolled a [.dice]#&#x2680;#
+ +
+[rightAnswer]#&#x2714;#
+Chet correctly answered to Science question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"><p class="">Sue &#x2784;</p></td>
+<td class="rock"><p class="">Pat &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"><p class="currentPlayer">Chet &#x2784;</p></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 20*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"><p class="">Sue &#x2784;</p></td>
+<td class="rock"><p class="currentPlayer">Pat &#x2782;</p></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"><p class="">Chet &#x2784;</p></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Pat rolled a [.dice]#&#x2680;#
+ +
+[rightAnswer]#&#x2714;#
+Pat correctly answered to Pop question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"><p class="">Sue &#x2784;</p></td>
+<td class="rock"></td>
+<td class="pop"><p class="currentPlayer">Pat &#x2783;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"><p class="">Chet &#x2784;</p></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 21*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"><p class="currentPlayer">Sue &#x2784;</p></td>
+<td class="rock"></td>
+<td class="pop"><p class="">Pat &#x2783;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"><p class="">Chet &#x2784;</p></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Sue rolled a [.dice]#&#x2681;#
+ +
+[wrongAnswer]#&#x2718;#
+Sue incorrectly answered to Pop question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"><p class="">Pat &#x2783;</p><p class="currentPlayer">[Sue] &#x2784;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"><p class="">Chet &#x2784;</p></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+*Turn 22*
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"><p class="">Pat &#x2783;</p><p class="">[Sue] &#x2784;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"><p class="currentPlayer">Chet &#x2784;</p></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+Chet rolled a [.dice]#&#x2683;#
+ +
+[rightAnswer]#&#x2714;#
+Chet correctly answered to Science question +
+[.boardTitle]
+Board at the end of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop boardHeader">0</td>
+<td class="science boardHeader">1</td>
+<td class="sports boardHeader">2</td>
+<td class="rock boardHeader">3</td>
+<td class="pop boardHeader">4</td>
+<td class="science boardHeader">5</td>
+<td class="sports boardHeader">6</td>
+<td class="rock boardHeader">7</td>
+<td class="pop boardHeader">8</td>
+<td class="science boardHeader">9</td>
+<td class="sports boardHeader">10</td>
+<td class="rock boardHeader">11</td>
+</tr>
+<tr>
+<td class="pop"></td>
+<td class="science"><p class="currentPlayer">Chet &#x2785;</p></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"><p class="">Pat &#x2783;</p><p class="">[Sue] &#x2784;</p></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+<td class="pop"></td>
+<td class="science"></td>
+<td class="sports"></td>
+<td class="rock"></td>
+</tr>
+</table>
+
+++++
+
+
+
+___
+
+Chet wins the game !!! +
+++++
+<style>
+
+p {
+    margin: 0;
+}
+
+.triviaBoard, .triviaBoard p {
+    margin:0;
+    padding: 0;
+    /*white-space: nowrap;*/
+}
+.triviaBoard td {
+    border: solid 1px white;
+    text-align:center;
+    width:5em;
+    margin:0;
+    padding: 0;
+}
+
+.triviaBoard .currentPlayer {
+    font-weight: bold;
+}
+
+.sports {
+    background-color:yellow;
+    color: black;
+}
+.pop {
+    background-color:blue;
+    color: white;
+}
+.science {
+    background-color:green;
+    color: white;
+}
+.rock {
+    background-color:red;
+    color: white;
+}
+.rightAnswer {
+    color:green;
+}
+.wrongAnswer {
+    color:red;
+}
+.dice {
+    font-size:2em;
+}
+
+.boardTitle {
+    font-color: #ba3925;
+    font-size:0.8em;
+    text-rendering: optimizeLegibility;
+    text-align: left;
+    font-family: "Noto Serif","DejaVu Serif",serif;
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.boardTitle p {
+    color: #ba3925;
+    font-size:0.8em;
+}
+</style>
+++++
