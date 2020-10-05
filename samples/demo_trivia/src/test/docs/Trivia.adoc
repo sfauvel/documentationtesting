@@ -2,7 +2,7 @@
 :nofooter:
 :stem:
 
-include::../../../readme.adoc[leveloffset=+1]
+= Trivia
 
 View source project on link:{github}/samples/demo_trivia[Github]
 
