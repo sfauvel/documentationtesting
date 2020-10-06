@@ -2,6 +2,13 @@
 
 When rolled is even, player stay in penality box.
 
+[.tableInline]
+[%autowidth, cols=3, frame=none, grid=none]
+|====
+
+a|[.tableHeader]#Start of the turn#
+
+
 [.boardTitle]
 Board at the start of the turn
 
@@ -9,40 +16,44 @@ Board at the start of the turn
 
 <table class="triviaBoard">
 <tr>
-<td class="pop boardHeader">0</td>
-<td class="science boardHeader">1</td>
-<td class="sports boardHeader">2</td>
-<td class="rock boardHeader">3</td>
-<td class="pop boardHeader">4</td>
-<td class="science boardHeader">5</td>
-<td class="sports boardHeader">6</td>
-<td class="rock boardHeader">7</td>
-<td class="pop boardHeader">8</td>
-<td class="science boardHeader">9</td>
-<td class="sports boardHeader">10</td>
-<td class="rock boardHeader">11</td>
-</tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock"><p class="currentPlayer">[Chet] </p></td></tr>
 <tr>
-<td class="pop"></td>
-<td class="science"></td>
-<td class="sports"></td>
-<td class="rock"><p class="currentPlayer">[Chet] </p></td>
-<td class="pop"></td>
-<td class="science"></td>
-<td class="sports"></td>
-<td class="rock"></td>
-<td class="pop"></td>
-<td class="science"></td>
-<td class="sports"></td>
-<td class="rock"></td>
-</tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
 </table>
 
 ++++
 
-Chet rolled a [.dice]#&#x2681;#
+
+a|Chet rolled a [.dice]#&#x2681;#
  and is not getting out of the penalty box +
-No question for Chet +
+
+
+[.boardTitle]
+Board at the after move of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock"><p class="currentPlayer">[Chet] </p></td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|No question for Chet +
+
+
 [.boardTitle]
 Board at the end of the turn
 
@@ -50,37 +61,19 @@ Board at the end of the turn
 
 <table class="triviaBoard">
 <tr>
-<td class="pop boardHeader">0</td>
-<td class="science boardHeader">1</td>
-<td class="sports boardHeader">2</td>
-<td class="rock boardHeader">3</td>
-<td class="pop boardHeader">4</td>
-<td class="science boardHeader">5</td>
-<td class="sports boardHeader">6</td>
-<td class="rock boardHeader">7</td>
-<td class="pop boardHeader">8</td>
-<td class="science boardHeader">9</td>
-<td class="sports boardHeader">10</td>
-<td class="rock boardHeader">11</td>
-</tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock"><p class="currentPlayer">[Chet] </p></td></tr>
 <tr>
-<td class="pop"></td>
-<td class="science"></td>
-<td class="sports"></td>
-<td class="rock"><p class="currentPlayer">[Chet] </p></td>
-<td class="pop"></td>
-<td class="science"></td>
-<td class="sports"></td>
-<td class="rock"></td>
-<td class="pop"></td>
-<td class="science"></td>
-<td class="sports"></td>
-<td class="rock"></td>
-</tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
 </table>
 
 ++++
 
+
+|====
 ++++
 <style>
 
@@ -94,9 +87,10 @@ p {
     /*white-space: nowrap;*/
 }
 .triviaBoard td {
-    border: solid 1px white;
+    border: solid 0px white;
     text-align:center;
     width:5em;
+    height:5em;
     margin:0;
     padding: 0;
 }
@@ -106,20 +100,24 @@ p {
 }
 
 .sports {
-    background-color:yellow;
+    /*background-color:yellow;*/
+    background-color:#f4f407;
     color: black;
 }
 .pop {
-    background-color:blue;
-    color: white;
+    /*background-color:blue;*/
+    background-color:#9e9eff;
+    color: black;
 }
 .science {
-    background-color:green;
-    color: white;
+    /*background-color:green;*/
+    background-color:#239d23;
+    color: black;
 }
 .rock {
-    background-color:red;
-    color: white;
+    /*background-color:red;*/
+    background-color:#f23939;
+    color: black;
 }
 .rightAnswer {
     color:green;
@@ -129,6 +127,7 @@ p {
 }
 .dice {
     font-size:2em;
+    margin-top:-1em;
 }
 
 .boardTitle {
@@ -144,6 +143,15 @@ p {
 .boardTitle p {
     color: #ba3925;
     font-size:0.8em;
+    display: none;
+}
+.tableHeader {
+    height:2em;
+    display: inline-block;
+}
+
+table.tableInline td.valign-top {
+    vertical-align: bottom;
 }
 </style>
 ++++

@@ -11,9 +11,10 @@ p {
     /*white-space: nowrap;*/
 }
 .triviaBoard td {
-    border: solid 1px white;
+    border: solid 0px white;
     text-align:center;
     width:5em;
+    height:5em;
     margin:0;
     padding: 0;
 }
@@ -23,20 +24,24 @@ p {
 }
 
 .sports {
-    background-color:yellow;
+    /*background-color:yellow;*/
+    background-color:#f4f407;
     color: black;
 }
 .pop {
-    background-color:blue;
-    color: white;
+    /*background-color:blue;*/
+    background-color:#9e9eff;
+    color: black;
 }
 .science {
-    background-color:green;
-    color: white;
+    /*background-color:green;*/
+    background-color:#239d23;
+    color: black;
 }
 .rock {
-    background-color:red;
-    color: white;
+    /*background-color:red;*/
+    background-color:#f23939;
+    color: black;
 }
 .rightAnswer {
     color:green;
@@ -46,6 +51,7 @@ p {
 }
 .dice {
     font-size:2em;
+    margin-top:-1em;
 }
 
 .boardTitle {
@@ -61,6 +67,15 @@ p {
 .boardTitle p {
     color: #ba3925;
     font-size:0.8em;
+    display: none;
+}
+.tableHeader {
+    height:2em;
+    display: inline-block;
+}
+
+table.tableInline td.valign-top {
+    vertical-align: bottom;
 }
 </style>
 ++++
