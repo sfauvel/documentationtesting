@@ -76,6 +76,7 @@ function generateDemo() {
     ABSOLUTE_DESTINATION_PATH=$(pwd)/$3
     pushd $1 > /dev/null
     find . -name *.png -exec cp --parents {} $ABSOLUTE_DESTINATION_PATH \;
+    find . -name *.jpg -exec cp --parents {} $ABSOLUTE_DESTINATION_PATH \;
     popd > /dev/null
 }
 
