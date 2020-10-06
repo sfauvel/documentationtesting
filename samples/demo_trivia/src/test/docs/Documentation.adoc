@@ -11,6 +11,8 @@ View source project on link:{github}/samples/demo_trivia[Github]
 
 == Legend
 
+image::animate.svg[Interactive,600,opts=interactive]
+
 === Categories
 
 The questions asked to the players are chosen from the following categories: 
