@@ -135,26 +135,31 @@ p {
     font-weight: bold;
 }
 
+.category {
+    color: black;
+    padding: 0.2em;
+    display: inline-block;
+    width: 5em;
+    text-align: center;
+}
+
 .sports {
     /*background-color:yellow;*/
     background-color:#f4f407;
-    color: black;
 }
 .pop {
     /*background-color:blue;*/
     background-color:#9e9eff;
-    color: black;
 }
 .science {
     /*background-color:green;*/
     background-color:#239d23;
-    color: black;
 }
 .rock {
     /*background-color:red;*/
     background-color:#f23939;
-    color: black;
 }
+
 .rightAnswer {
     color:green;
 }

@@ -90,12 +90,16 @@ public class MainDocumentation {
 
         final Path projectFolderPath = pathProvider.getGitRootPath().relativize(pathProvider.getProjectPath());
 
-        final String header = ":toc: left\n:nofooter:\n:stem:\n\n" +
+        final String header = getDocumentOptions() +
                 (readmePath.toFile().exists()
                 ? "include::../../../readme.adoc[leveloffset=+1]\n\n"
                 : "= " + DOCUMENTATION_TITLE + "\n\n") +
                 "View source project on link:{github}/"+projectFolderPath.toString()+"[Github]\n\n";;
         return header;
+    }
+
+    protected String getDocumentOptions() {
+        return ":toc: left\n:nofooter:\n:stem:\n\n";
     }
 
     private void writeDoc(FileWriter fileWriter, String content) throws IOException {

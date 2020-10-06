@@ -1,6 +1,9 @@
+:sectnums:
 :toc: left
 :nofooter:
 :stem:
+
+= Trivia
 
 include::../../../readme.adoc[leveloffset=+1]
 
@@ -8,20 +11,22 @@ View source project on link:{github}/samples/demo_trivia[Github]
 
 == Legend
 
+image::animate.svg[Interactive,600,opts=interactive]
+
 === Categories
 
-Game categories: 
+The questions asked to the players are chosen from the following categories: 
 
-* [pop]#Pop#
-* [science]#Science#
-* [sports]#Sports#
-* [rock]#Rock#
+* [pop category]#Pop#
+* [science category]#Science#
+* [sports category]#Sports#
+* [rock category]#Rock#
 
 === Board
 
-On the board, the current player is in bold (*Chet*, Pat) +
-A player who has a penalty has his name enclosed in square brackets ([Chet]) +
-The number of points is displayed behind the player's name (Chet &#x2783;) +
+On the board, the current player is in bold: *Chet*, Pat +
+A player who has a penalty has his name enclosed in square brackets: [Chet] +
+The number of points is displayed behind the player's name: Chet &#x2783; +
 
 == Explanations and examples
 
