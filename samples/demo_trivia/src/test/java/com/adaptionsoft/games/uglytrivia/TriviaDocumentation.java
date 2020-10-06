@@ -14,22 +14,29 @@ public class TriviaDocumentation  extends MainDocumentation {
     }
 
     @Override
+    protected String getDocumentOptions() {
+        return ":sectnums:\n" +
+                super.getDocumentOptions() +
+                "= Trivia\n\n";
+    }
+
+    @Override
     protected String getHeader() {
 
         final Game aGame = new Game();
         final String line = IntStream.range(0, 12)
                 .mapToObj(i -> aGame.category(i))
                 .distinct()
-                .map(category -> String.format("* [%s]#%s#", category.toLowerCase(), category))
+                .map(category -> String.format("* [%s category]#%s#", category.toLowerCase(), category))
                 .collect(Collectors.joining("\n"));
 
-        return super.getHeader() +
+        return  super.getHeader() +
                 "== Legend\n\n" +
-                "=== Categories\n\nGame categories: \n\n"+line+"\n\n" +
+                "=== Categories\n\nThe questions asked to the players are chosen from the following categories: \n\n"+line+"\n\n" +
                 "=== Board\n\n" +
-                "On the board, the current player is in bold (*Chet*, Pat) +\n" +
-                "A player who has a penalty has his name enclosed in square brackets ([Chet]) +\n" +
-                "The number of points is displayed behind the player's name (Chet "+ GameTest.getScore(4)+") +\n" +
+                "On the board, the current player is in bold: *Chet*, Pat +\n" +
+                "A player who has a penalty has his name enclosed in square brackets: [Chet] +\n" +
+                "The number of points is displayed behind the player's name: Chet "+ GameTest.getScore(4)+" +\n" +
                 "\n";
     }
 
