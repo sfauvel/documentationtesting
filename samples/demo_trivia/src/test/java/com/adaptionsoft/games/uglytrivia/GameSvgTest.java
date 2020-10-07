@@ -29,7 +29,7 @@ public class GameSvgTest extends ApprovalsBase {
 
     private static final int SQUARE_SIZE = 50;
     private static final int BOARD_SIZE = 12;
-    private static final String TEMPO = "1s";
+    private static final String TEMPO = "0.5s";
     private static int animationCounter = 0; // Need to be static to ensure unicity. It may needed to add class name.
     private static int boardCounter = 0; // Need to be static to ensure unicity. It may needed to add class name.
     private boolean notAWinner = true;
@@ -141,6 +141,42 @@ public class GameSvgTest extends ApprovalsBase {
         addStyleSheet();
     }
 
+    /**
+     * After moving, the player must answer a question corresponding to the category of the square where he is located.
+     * If he answers correctly, he scores a point.
+     * @throws Exception
+     */
+    @Test
+    @DisplayName("Player score")
+    public void player_scores(TestInfo testInfo) throws Exception {
+        final DocumentationNamer documentationNamer = new DocumentationNamer(getDocPath(), testInfo);
+
+        {
+            final FakeGame aGame = startGame("Chet");
+            final int currentPlayerNumber = aGame.currentPlayer;
+            final int roll = 3;
+            final Supplier<Boolean> wrongAnswer = () -> false;
+
+            aGame.ask = false;
+            displayBoard(documentationNamer, aGame,
+                    fileWriter -> displayRollDice(aGame, fileWriter, roll),
+                    fileWriter -> {
+                        displayQuestionAsked(fileWriter, aGame, (String)aGame.players.get(currentPlayerNumber), wrongAnswer);
+                    });
+
+
+        }
+        {
+            final FakeGame aGame = startGame("Chet");
+
+            final int currentPlayerNumber = aGame.currentPlayer;
+            String currentPlayer = aGame.players.get(currentPlayerNumber).toString();
+
+            displayOneTurn(aGame, currentPlayer, () -> 3, () -> false);
+        }
+        addStyleSheet();
+    }
+
     static class SvgWriter extends FileWriter {
         public SvgWriter(File file) throws IOException {
             super(file);
@@ -229,7 +265,10 @@ public class GameSvgTest extends ApprovalsBase {
     }
 
     private void displayBoard(DocumentationNamer documentationNamer, FakeGame aGame, Consumer<SvgWriter>... displayMethods) throws IOException {
+
         final String filename = "board" + (boardCounter++) + ".svg";
+        final int SVG_WIDTH = 600;
+        final int SVG_HEIGHT = 200;
 
         final Path filePath = Paths.get(documentationNamer.getSourceFilePath(), filename);
 
@@ -238,8 +277,6 @@ public class GameSvgTest extends ApprovalsBase {
         try (SvgWriter fileWriter = new SvgWriter(filePath.toFile())) {
             fileWriter.write("<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n");
 
-            final int SVG_WIDTH = 200;
-            final int SVG_HEIGHT = 200;
             fileWriter.write("<svg version=\"1.1\" " +
                     "xmlns=\"http://www.w3.org/2000/svg\" " +
                     "xmlns:xlink=\"http://www.w3.org/1999/xlink\" " +
@@ -248,9 +285,8 @@ public class GameSvgTest extends ApprovalsBase {
                     ">\n");
 
 
-            fileWriter.write("<rect x=\"0\" y=\"0\" width=\"200\" height=\"200\" fill=\"white\" stroke=\"black\" stroke-width=\"1\" />\n");
+            fileWriter.write("<rect x=\"0\" y=\"0\" width=\"" + SVG_WIDTH + "\" height=\"200\" fill=\"white\" stroke=\"black\" stroke-width=\"1\" />\n");
             fileWriter.write("");
-
 
             for (int caseNumber = 0; caseNumber < BOARD_SIZE; caseNumber++) {
                 final Position position = new Position(caseNumber);
@@ -265,7 +301,6 @@ public class GameSvgTest extends ApprovalsBase {
 
             displayText(fileWriter, "Game start !", "startGame");
             IntStream.rangeClosed(1, 6).forEach(dice -> displayText(fileWriter, dice, "dice" + dice));
-            showAndHideText(fileWriter, "startGame");
 
             for (Consumer<SvgWriter> displayMethod : displayMethods) {
                 displayMethod.accept(fileWriter);
@@ -298,23 +333,23 @@ public class GameSvgTest extends ApprovalsBase {
             fileWriter.write("</svg>\n\n");
         }
 
-        write(String.format("image:%s[width=200,height=200,opts=interactive]\n\n", filename));
+        write(String.format("image:%s[width=%d,height=200,opts=interactive]\n\n", filename, SVG_WIDTH));
 //        write(String.format("image:%s[width=200,height=200,opts=inline]\n\n", filename));
     }
 
 
-    private void showAndHideText(SvgWriter fileWriter, String question1, String text) {
+    private void showAndHideText(SvgWriter fileWriter, String text) {
         fileWriter.write("<text x=\"50%\" y=\"50%\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"Verdana\" font-size=\"25\" opacity=\"0\">" +
                 text);
 
-        showAndHideText(fileWriter, null);
+        showAndHideText(fileWriter);
 
         fileWriter.write("</text>\n");
 
     }
 
 
-    private void showAndHideText(SvgWriter fileWriter, String id) {
+    private void showAndHideText(SvgWriter fileWriter) {
         int lastAnimation;
         int currentAnimation;
 
@@ -322,17 +357,15 @@ public class GameSvgTest extends ApprovalsBase {
         animationCounter++;
         currentAnimation = animationCounter;
         fileWriter.write("<animate id=\"anim" + currentAnimation + "\"" +
-                ((id == null) ? "" : " xlink:href=\"#" + id + "\"") +
                 " begin=\"anim" + lastAnimation + ".end\"" +
-                " attributeName=\"opacity\" from=\"0\" to=\"1\" dur=\"" + TEMPO + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+                " attributeName=\"opacity\" from=\"0\" to=\"1\" dur=\"" + "0.2s" + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
 
         lastAnimation = animationCounter;
         animationCounter++;
         currentAnimation = animationCounter;
         fileWriter.write("<animate id=\"anim" + currentAnimation + "\"" +
-                ((id == null) ? "" : " xlink:href=\"#" + id + "\"") +
-                " begin=\"anim" + lastAnimation + ".end\"" +
-                " attributeName=\"opacity\" from=\"1\" to=\"0\" dur=\"" + TEMPO + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+                " begin=\"anim" + lastAnimation + ".end + " + "1s" + "\"" +
+                " attributeName=\"opacity\" from=\"1\" to=\"0\" dur=\"" + "0.2s" + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
     }
 
     private void movePlayer(SvgWriter fileWriter, final String player, int from, int to) {
@@ -373,6 +406,11 @@ public class GameSvgTest extends ApprovalsBase {
     }
 
     private void displayText(SvgWriter fileWriter, String text, String id) {
+
+//        <svg width="400" height="200" viewBox="-200 0 400 200">
+//  <text id="text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="anim15.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="anim20.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
+//</svg>
+
         fileWriter.write("<text id=\"" +
                 id +
                 "\" x=\"50%\" y=\"50%\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"Verdana\" font-size=\"25\" opacity=\"0\">" +
@@ -404,38 +442,52 @@ public class GameSvgTest extends ApprovalsBase {
         final int currentPlayerNumber = aGame.currentPlayer;
 
         aGame.ask = false;
-//        displayInLine(
-//                () -> {
-//                    write("[.tableHeader]#Start of the turn#\n");
-//                    write("\n\n");
-//                    displayPosition(aGame, "start", currentPlayerNumber);
-//                },
-//                () -> {
-//                    displayRollDice(aGame, roll);
-//                    write("\n\n");
-//                    displayPosition(aGame, "after move", currentPlayerNumber);
-//                },
-//                () -> {
-//                    displayQuestionAsked(aGame, currentPlayer, wrongAnswer);
-//                    write("\n\n");
-//                    displayPosition(aGame, "end", currentPlayerNumber);
-//                }
-//        );
+        displayInLine(
+                () -> {
+                    write("[.tableHeader]#Start of the turn#\n");
+                    write("\n\n");
+                    displayPosition(aGame, "start", currentPlayerNumber);
+                },
+                () -> {
+                    displayRollDice(aGame, roll);
+                    write("\n\n");
+                    displayPosition(aGame, "after move", currentPlayerNumber);
+                },
+                () -> {
+                    displayQuestionAsked(aGame, currentPlayer, wrongAnswer);
+                    write("\n\n");
+                    displayPosition(aGame, "end", currentPlayerNumber);
+                }
+        );
+    }
+
+    private void displayQuestionAsked(FakeGame aGame, String currentPlayer, Supplier<Boolean> wrongAnswer) {
+        if (aGame.ask) {
+            if (wrongAnswer.get()) {
+                write(String.format("[wrongAnswer]#&#x2718;#\n%s incorrectly answered to %s question +\n", currentPlayer, aGame.currentCategory()));
+                notAWinner = aGame.wrongAnswer();
+            } else {
+                write(String.format("[rightAnswer]#&#x2714;#\n%s correctly answered to %s question +\n", currentPlayer, aGame.currentCategory()));
+                notAWinner = aGame.wasCorrectlyAnswered();
+            }
+        } else {
+            write(String.format("No question for %s +\n", currentPlayer));
+        }
     }
 
     private void displayQuestionAsked(SvgWriter fileWriter, FakeGame aGame, String currentPlayer, Supplier<Boolean> wrongAnswer) {
         if (aGame.ask) {
-            showAndHideText(fileWriter, null, "Question " + aGame.currentCategory() + "...");
+            showAndHideText(fileWriter, "Question " + aGame.currentCategory() + "...");
 
             if (wrongAnswer.get()) {
-                showAndHideText(fileWriter, String.format("[wrongAnswer]#&#x2718;#\n%s incorrectly answered to %s question +\n", currentPlayer, aGame.currentCategory()));
+                showAndHideText(fileWriter, String.format("%s incorrectly answered to %s question", currentPlayer, aGame.currentCategory()));
                 notAWinner = aGame.wrongAnswer();
             } else {
-                showAndHideText(fileWriter, String.format("[rightAnswer]#&#x2714;#\n%s correctly answered to %s question +\n", currentPlayer, aGame.currentCategory()));
+                showAndHideText(fileWriter, String.format("%s correctly answered to %s question", currentPlayer, aGame.currentCategory()));
                 notAWinner = aGame.wasCorrectlyAnswered();
             }
         } else {
-            showAndHideText(fileWriter, null, String.format("No question for %s +\n", currentPlayer));
+            showAndHideText(fileWriter, String.format("No question for %s", currentPlayer));
 
         }
     }
@@ -461,7 +513,7 @@ public class GameSvgTest extends ApprovalsBase {
         final String currentPlayer = (String) aGame.players.get(currentPlayerNumber);
         final int from = aGame.places[currentPlayerNumber];
 
-        showAndHideText(fileWriter, null, currentPlayer + " rolled a " + roll);
+        showAndHideText(fileWriter, currentPlayer + " rolled a " + roll);
 
         aGame.roll(roll);
         if (wasInPenaltyBox) {
