@@ -31,32 +31,32 @@
 <text id="b0_dice4" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
 <text id="b0_dice5" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
 <text id="b0_dice6" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b0_anim41" begin="b0_anim40.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b0_anim42" begin="b0_anim41.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b0_anim46" begin="b0_anim45.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b0_anim47" begin="b0_anim46.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 4<animate id="b0_anim43" begin="b0_anim42.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b0_anim44" begin="b0_anim43.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 4<animate id="b0_anim48" begin="b0_anim47.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b0_anim49" begin="b0_anim48.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
-<animate id="b0_anim45" xlink:href="#b0_playerA" begin="b0_anim44.end" attributeName="cx" to="75" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b0_playerA" begin="b0_anim44.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate id="b0_anim46" xlink:href="#b0_playerA" begin="b0_anim45.end" attributeName="cx" to="125" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b0_playerA" begin="b0_anim45.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate id="b0_anim47" xlink:href="#b0_playerA" begin="b0_anim46.end" attributeName="cx" to="175" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b0_playerA" begin="b0_anim46.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate id="b0_anim48" xlink:href="#b0_playerA" begin="b0_anim47.end" attributeName="cx" to="175" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b0_playerA" begin="b0_anim47.end" attributeName="cy" to="75" dur="0.5s" repeatCount="1" fill="freeze"/>
-<text id="b0_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b0_anim40.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b0_anim48.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
+<animate id="b0_anim50" xlink:href="#b0_playerA" begin="b0_anim49.end" attributeName="cx" to="75" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b0_playerA" begin="b0_anim49.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate id="b0_anim51" xlink:href="#b0_playerA" begin="b0_anim50.end" attributeName="cx" to="125" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b0_playerA" begin="b0_anim50.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate id="b0_anim52" xlink:href="#b0_playerA" begin="b0_anim51.end" attributeName="cx" to="175" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b0_playerA" begin="b0_anim51.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate id="b0_anim53" xlink:href="#b0_playerA" begin="b0_anim52.end" attributeName="cx" to="175" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b0_playerA" begin="b0_anim52.end" attributeName="cy" to="75" dur="0.5s" repeatCount="1" fill="freeze"/>
+<text id="b0_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b0_anim45.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b0_anim53.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
 <rect x="0" y="0" width="800" height="200" opacity="0.1">
-  <animate id="b0_anim40" begin="click" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
-  <set begin="b0_anim40.begin" attributeName="width" to="50" repeatCount="1" fill="freeze"/>
-  <set begin="b0_anim40.begin" attributeName="height" to="50" repeatCount="1" fill="freeze"/>
-  <animate id="b0_animEnd" begin="b0_anim48.end + 1s" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
-  <set begin="b0_anim48.end + 1s" attributeName="width" to="800" repeatCount="1" fill="freeze"/>
-  <set begin="b0_anim48.end + 1s" attributeName="height" to="200" repeatCount="1" fill="freeze"/>
+  <animate id="b0_anim45" begin="click" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
+  <set begin="b0_anim45.begin" attributeName="width" to="50" repeatCount="1" fill="freeze"/>
+  <set begin="b0_anim45.begin" attributeName="height" to="50" repeatCount="1" fill="freeze"/>
+  <animate id="b0_animEnd" begin="b0_anim53.end + 1s" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
+  <set begin="b0_anim53.end + 1s" attributeName="width" to="800" repeatCount="1" fill="freeze"/>
+  <set begin="b0_anim53.end + 1s" attributeName="height" to="200" repeatCount="1" fill="freeze"/>
 </rect>
 <style>
 text {
