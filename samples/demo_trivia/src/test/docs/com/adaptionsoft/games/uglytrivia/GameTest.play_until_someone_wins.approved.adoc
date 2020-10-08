@@ -1825,5 +1825,11 @@ p {
 table.tableInline td.valign-top {
     vertical-align: bottom;
 }
+
+
+object {
+    height: unset;
+}
+
 </style>
 ++++
