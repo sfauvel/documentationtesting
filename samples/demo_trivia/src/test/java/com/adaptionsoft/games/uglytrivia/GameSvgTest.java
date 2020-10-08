@@ -67,7 +67,7 @@ public class GameSvgTest extends ApprovalsBase {
         void showAndHideTextMulti(String text);
         void movePlayer(final Game aGame, final String player, int from, int playerHighLighted);
         void displayRollDiceMulti(FakeGame aGame, int roll);
-        void displayOneTurnMulti(FakeGame aGame, String currentPlayer, Supplier<Integer> rollSupplier, Supplier<Boolean> wrongAnswer);
+        void displayQuestionAskedMulti(FakeGame aGame, String currentPlayer, Supplier<Boolean> wrongAnswer);
 
         }
 
@@ -80,7 +80,7 @@ public class GameSvgTest extends ApprovalsBase {
         }
         public void movePlayer(final Game aGame, final String player, int from, int playerHighLighted) {
             write("\n\n");
-            movePlayerSvg("playerA", 0, aGame.places[playerHighLighted]);
+            movePlayerSvg("playerA", from, aGame.places[playerHighLighted]);
         }
 
         @Override
@@ -89,9 +89,8 @@ public class GameSvgTest extends ApprovalsBase {
         }
 
         @Override
-        public void displayOneTurnMulti(FakeGame aGame, String currentPlayer, Supplier<Integer> rollSupplier, Supplier<Boolean> wrongAnswer) {
-                displayRollDiceSvg(aGame, rollSupplier.get());
-                displayQuestionAskedSvg(aGame, currentPlayer, wrongAnswer);
+        public void displayQuestionAskedMulti(FakeGame aGame, String currentPlayer, Supplier<Boolean> wrongAnswer) {
+            displayQuestionAskedSvg(aGame, currentPlayer, wrongAnswer);
         }
     }
 
@@ -113,24 +112,8 @@ public class GameSvgTest extends ApprovalsBase {
         }
 
         @Override
-        public void displayOneTurnMulti(FakeGame aGame, String currentPlayer, Supplier<Integer> rollSupplier, Supplier<Boolean> wrongAnswer) {
-            final int roll = rollSupplier.get();
-
-            final int currentPlayerNumber = aGame.currentPlayer;
-
-            aGame.ask = false;
-
-                        write("[.tableHeader]#Start of the turn#\n");
-                        write("\n\n");
-                        displayPosition(aGame, "start", currentPlayerNumber);
-
-                        displayRollDice(aGame, roll);
-                        write("\n\n");
-                        displayPosition(aGame, "after move", currentPlayerNumber);
-
-                        displayQuestionAsked(aGame, currentPlayer, wrongAnswer);
-                        write("\n\n");
-                        displayPosition(aGame, "end", currentPlayerNumber);
+        public void displayQuestionAskedMulti(FakeGame aGame, String currentPlayer, Supplier<Boolean> wrongAnswer) {
+            displayQuestionAsked(aGame, currentPlayer, wrongAnswer);
         }
     }
 
@@ -175,70 +158,33 @@ public class GameSvgTest extends ApprovalsBase {
 
                 final FakeGame aGame = startGame("Chet");
                 final int currentPlayerNumber = aGame.currentPlayer;
+                final String currentPlayer = (String) aGame.players.get(currentPlayerNumber);
+
                 displayDoc.displayMulti(aGame,
-//                        () -> {
-//                            displayDoc.showAndHideTextMulti("Start of the turn");
-//                            displayDoc.movePlayer(aGame, "playerA", 0, currentPlayerNumber);
-//
-//                        },
-//                        () -> {
-//                            int from = aGame.places[currentPlayerNumber];
-//                            displayDoc.displayRollDiceMulti(aGame, () -> 3);
-//                            displayDoc.movePlayer(aGame, "playerA", from, currentPlayerNumber);
-//                        },
-//                        () -> {
-//                            displayDoc.displayQuestionAskedSvg(aGame, currentPlayer, wrongAnswer);
-//                        }
-                        () -> displayDoc.displayOneTurnMulti(aGame, (String) aGame.players.get(currentPlayerNumber), () -> 3, () -> false)
+                        () -> {
+                            displayDoc.showAndHideTextMulti("Start of the turn");
+                            displayDoc.movePlayer(aGame, "playerA", 0, currentPlayerNumber);
+
+                        },
+                        () -> {
+                            int from = aGame.places[currentPlayerNumber];
+                            System.out.println("from(1) " + from);
+                            displayDoc.displayRollDiceMulti(aGame, 3);
+                            displayDoc.movePlayer(aGame, "playerA", from, currentPlayerNumber);
+                        },
+                        () -> {
+                            int from = aGame.places[currentPlayerNumber];
+                            System.out.println("from(2) " + from);
+                            displayDoc.displayQuestionAskedMulti(aGame, currentPlayer, () -> false);
+                            //write("\n\n");
+                            displayDoc.movePlayer(aGame, "end", from, currentPlayerNumber);
+                        }
                 );
+
 
             }
         }
 
-//        {
-//            final FakeGame aGame = startGame("Chet");
-//            final int currentPlayerNumber = aGame.currentPlayer;
-//            final int roll = 3;
-//            final Supplier<Boolean> wrongAnswer = () -> false;
-//
-//            aGame.ask = false;
-//            displayBoard(aGame,
-//                    () -> displayRollDiceSvg(aGame, roll),
-//                    () -> {
-//                        displayQuestionAskedSvg(aGame, (String) aGame.players.get(currentPlayerNumber), wrongAnswer);
-//                    });
-//
-//
-//        }
-//        {
-//            final FakeGame aGame = startGame("Chet");
-//
-//            final int currentPlayerNumber = aGame.currentPlayer;
-//            String currentPlayer = aGame.players.get(currentPlayerNumber).toString();
-//
-//            final int roll = ((Supplier<Integer>) () -> 3).get();
-//
-//            final int currentPlayerNumber1 = aGame.currentPlayer;
-//
-//            aGame.ask = false;
-//            displayInLine(
-//                    () -> {
-//                        write("[.tableHeader]#Start of the turn#\n");
-//                        write("\n\n");
-//                        displayPosition(aGame, "start", currentPlayerNumber1);
-//                    },
-//                    () -> {
-//                        displayRollDice(aGame, roll);
-//                        write("\n\n");
-//                        displayPosition(aGame, "after move", currentPlayerNumber1);
-//                    },
-//                    () -> {
-//                        displayQuestionAsked(aGame, currentPlayer, () -> false);
-//                        write("\n\n");
-//                        displayPosition(aGame, "end", currentPlayerNumber1);
-//                    }
-//            );
-//        }
         addStyleSheet();
     }
 
