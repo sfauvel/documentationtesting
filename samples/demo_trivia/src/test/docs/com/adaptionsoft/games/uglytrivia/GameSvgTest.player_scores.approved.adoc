@@ -2,7 +2,7 @@
 
 
 
-image:board0.svg[width=600,height=200,opts=interactive]
+image:board0.svg[width=800,height=200,opts=interactive]
 
 [.tableInline]
 [%autowidth, cols=3, frame=none, grid=none]

@@ -1,6 +1,6 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="200" >
-<rect x="0" y="0" width="600" height="200" fill="white" stroke="black" stroke-width="1" />
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="200" >
+<rect x="0" y="0" width="800" height="200" fill="white" stroke="black" stroke-width="1" />
 <rect x="0" y="0" width="50" height="50" fill="#239d23" stroke="black" stroke-width="1" />
 <rect x="50" y="0" width="50" height="50" fill="#f4f407" stroke="black" stroke-width="1" />
 <rect x="100" y="0" width="50" height="50" fill="#9e9eff" stroke="black" stroke-width="1" />
@@ -40,13 +40,19 @@
 <animate id="anim9" begin="anim8.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 <text id="text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="anim0.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="anim9.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
-<rect x="0" y="0" width="600" height="200" opacity="0.2">
+<rect x="0" y="0" width="800" height="200" opacity="0.2">
   <animate id="anim0" begin="click" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
   <set begin="anim0.begin" attributeName="width" to="50" repeatCount="1" fill="freeze"/>
   <set begin="anim0.begin" attributeName="height" to="50" repeatCount="1" fill="freeze"/>
   <animate id="animEnd" begin="anim9.end + 1s" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
-  <set begin="anim9.end + 1s" attributeName="width" to="600" repeatCount="1" fill="freeze"/>
+  <set begin="anim9.end + 1s" attributeName="width" to="800" repeatCount="1" fill="freeze"/>
   <set begin="anim9.end + 1s" attributeName="height" to="200" repeatCount="1" fill="freeze"/>
 </rect>
+<style>
+text {
+font-size: 30px;
+font-weight: bold;
+fill: black;
+</style>
 </svg>
 

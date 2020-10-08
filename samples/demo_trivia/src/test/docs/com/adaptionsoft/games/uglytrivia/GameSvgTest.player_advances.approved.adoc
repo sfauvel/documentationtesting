@@ -4,7 +4,7 @@
 
 == Normal move
 
-image:board1.svg[width=600,height=200,opts=interactive]
+image:board1.svg[width=800,height=200,opts=interactive]
 
 [.tableInline]
 [%autowidth, cols=2, frame=none, grid=none]
@@ -62,7 +62,7 @@ Board at the after move of the turn
 
 If he reaches the end of the board, he continues by starting from the beginning
 
-image:board2.svg[width=600,height=200,opts=interactive]
+image:board2.svg[width=800,height=200,opts=interactive]
 
 
 
