@@ -144,6 +144,7 @@ public class GameSvgTest extends ApprovalsBase {
     /**
      * After moving, the player must answer a question corresponding to the category of the square where he is located.
      * If he answers correctly, he scores a point.
+     *
      * @throws Exception
      */
     @Test
@@ -161,7 +162,7 @@ public class GameSvgTest extends ApprovalsBase {
             displayBoard(documentationNamer, aGame,
                     fileWriter -> displayRollDice(aGame, fileWriter, roll),
                     fileWriter -> {
-                        displayQuestionAsked(fileWriter, aGame, (String)aGame.players.get(currentPlayerNumber), wrongAnswer);
+                        displayQuestionAsked(fileWriter, aGame, (String) aGame.players.get(currentPlayerNumber), wrongAnswer);
                     });
 
 
@@ -267,7 +268,7 @@ public class GameSvgTest extends ApprovalsBase {
     private void displayBoard(DocumentationNamer documentationNamer, FakeGame aGame, Consumer<SvgWriter>... displayMethods) throws IOException {
 
         final String filename = "board" + (boardCounter++) + ".svg";
-        final int SVG_WIDTH = 600;
+        final int SVG_WIDTH = 800;
         final int SVG_HEIGHT = 200;
 
         final Path filePath = Paths.get(documentationNamer.getSourceFilePath(), filename);
@@ -330,6 +331,14 @@ public class GameSvgTest extends ApprovalsBase {
 //            displayQuestionAsked(fileWriter, aGame, (String) aGame.players.get(currentPlayer), () -> false);
 
 
+            fileWriter.write("<style>\n");
+            fileWriter.write("text {\n");
+            fileWriter.write("font-size: 30px;\n");
+            fileWriter.write("font-weight: bold;\n");
+            fileWriter.write("fill: black;\n");
+//            fileWriter.write("stroke: white;\n");
+//            fileWriter.write("stroke-width: 1px;\n");
+            fileWriter.write("</style>\n");
             fileWriter.write("</svg>\n\n");
         }
 
