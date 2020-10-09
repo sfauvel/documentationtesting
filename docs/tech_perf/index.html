@@ -443,22 +443,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_performance">Performance</a></li>
 <li><a href="#_performances">Performances</a></li>
-<li><a href="#_check_file_modification_with_git_after_each_test">Check file modification with git after each test.</a>
+<li><a href="#_verify_documentation_with_approvals_library">Verify documentation with <em>Approvals</em> library.</a>
 <ul class="sectlevel2">
 <li><a href="#_should_give_person_information">Should give person information</a></li>
 </ul>
 </li>
-<li><a href="#_using_junit_assertions_to_test">Using JUnit assertions to test.</a></li>
-<li><a href="#_use_git_to_check_file_modification_but_after_all_tests_the_time_shown_not_include_this_verification">Use Git to check file modification but after all tests. The time shown not include this verification.</a>
+<li><a href="#_check_file_modification_with_git_after_each_test">Check file modification with git after each test.</a>
 <ul class="sectlevel2">
 <li><a href="#_should_give_person_information_2">Should give person information</a></li>
 </ul>
 </li>
-<li><a href="#_verify_documentation_with_approvals_library">Verify documentation with <em>Approvals</em> library.</a>
+<li><a href="#_use_git_to_check_file_modification_but_after_all_tests_the_time_shown_not_include_this_verification">Use Git to check file modification but after all tests. The time shown not include this verification.</a>
 <ul class="sectlevel2">
 <li><a href="#_should_give_person_information_3">Should give person information</a></li>
 </ul>
 </li>
+<li><a href="#_using_junit_assertions_to_test">Using JUnit assertions to test.</a></li>
 </ul>
 </div>
 </div>
@@ -525,55 +525,55 @@ This step is fast, it&#8217;s just a shell script with some git commands.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Long</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndALongTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.187</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.316</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. There is only one test but it check 100 times the same case.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Long</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitWithALongTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.008</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.011</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test. There is only one test but it check 100 times the same case.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndLotOfTests_A_Test</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.356</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndLotOfTests_B_Test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.657</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndLotOfTests_B_Test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.265</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitAndLotOfTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.082</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.174</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test 1000 cases.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Many</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndManyTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.118</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.192</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100 tests are made.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Many</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitAndManyTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.01</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.024</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test 100 cases.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingApprovalsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.045</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.079</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify documentation with <em>Approvals</em> library.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitAssertingOnEachTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.202</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.309</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Check file modification with git after each test.</p></td>
 </tr>
 <tr>
@@ -585,11 +585,51 @@ This step is fast, it&#8217;s just a shell script with some git commands.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.001</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verify_documentation_with_approvals_library">Verify documentation with <em>Approvals</em> library.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Demo of a simple usage to generate documentation.</p>
+</div>
+<div class="sect2">
+<h3 id="_should_give_person_information">Should give person information</h3>
+<div class="paragraph">
+<p>With an instance of Person:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>First Name</strong>: John</p>
+</li>
+<li>
+<p><strong>Last Name</strong>: Doe</p>
+</li>
+<li>
+<p><strong>Year of birth</strong>: 1975</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Results calling methods are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>age()</strong>: 45 (<em>if we are in 2020</em>)</p>
+</li>
+<li>
+<p><strong>toString()</strong>: John Doe</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -599,7 +639,47 @@ This step is fast, it&#8217;s just a shell script with some git commands.</p>
 <p>Demo of a simple usage to generate documentation.</p>
 </div>
 <div class="sect2">
-<h3 id="_should_give_person_information">Should give person information</h3>
+<h3 id="_should_give_person_information_2">Should give person information</h3>
+<div class="paragraph">
+<p>With an instance of Person:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>First Name</strong>: John</p>
+</li>
+<li>
+<p><strong>Last Name</strong>: Doe</p>
+</li>
+<li>
+<p><strong>Year of birth</strong>: 1975</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Results calling methods are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>age()</strong>: 45 (<em>if we are in 2020</em>)</p>
+</li>
+<li>
+<p><strong>toString()</strong>: John Doe</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_use_git_to_check_file_modification_but_after_all_tests_the_time_shown_not_include_this_verification">Use Git to check file modification but after all tests. The time shown not include this verification.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Demo of a simple usage to generate documentation.</p>
+</div>
+<div class="sect2">
+<h3 id="_should_give_person_information_3">Should give person information</h3>
 <div class="paragraph">
 <p>With an instance of Person:</p>
 </div>
@@ -651,86 +731,6 @@ public static void checkPerson() {
     assertEquals(age, person.age());
     assertEquals("John Doe", person.toString());
 }</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_use_git_to_check_file_modification_but_after_all_tests_the_time_shown_not_include_this_verification">Use Git to check file modification but after all tests. The time shown not include this verification.</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Demo of a simple usage to generate documentation.</p>
-</div>
-<div class="sect2">
-<h3 id="_should_give_person_information_2">Should give person information</h3>
-<div class="paragraph">
-<p>With an instance of Person:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>First Name</strong>: John</p>
-</li>
-<li>
-<p><strong>Last Name</strong>: Doe</p>
-</li>
-<li>
-<p><strong>Year of birth</strong>: 1975</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Results calling methods are:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>age()</strong>: 45 (<em>if we are in 2020</em>)</p>
-</li>
-<li>
-<p><strong>toString()</strong>: John Doe</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_verify_documentation_with_approvals_library">Verify documentation with <em>Approvals</em> library.</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Demo of a simple usage to generate documentation.</p>
-</div>
-<div class="sect2">
-<h3 id="_should_give_person_information_3">Should give person information</h3>
-<div class="paragraph">
-<p>With an instance of Person:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>First Name</strong>: John</p>
-</li>
-<li>
-<p><strong>Last Name</strong>: Doe</p>
-</li>
-<li>
-<p><strong>Year of birth</strong>: 1975</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Results calling methods are:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>age()</strong>: 45 (<em>if we are in 2020</em>)</p>
-</li>
-<li>
-<p><strong>toString()</strong>: John Doe</p>
-</li>
-</ul>
 </div>
 </div>
 </div>

@@ -75,26 +75,16 @@ public class BasicDocumentation extends MainDocumentation {
     protected String getMethodDocumentation(String packageToScan) {
         Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
 
-//        for (Method testMethod : testMethods) {
-//            try {
-//                System.out.println(testMethod.getDeclaringClass());
-//                System.out.println(testMethod.getDeclaringClass().getAnnotation(TestCategory.class));
-//                System.out.println(testMethod.getDeclaringClass().getAnnotation(TestCategory.class).category());
-//                System.out.println(testMethod.getDeclaringClass().getAnnotation(TestCategory.class).category().equals(TestCategory.Cat.Simple));
-//            } catch(Exception e ) {
-//                throw e;
-//            }
-//        }
         Map<Class<?>, List<Method>> methodsByClass;
         try {
             methodsByClass = testMethods.stream()
-                    .filter(m -> m.getDeclaringClass().getAnnotation(TestCategory.class) != null)
-                    .filter(m -> m.getDeclaringClass().getAnnotation(TestCategory.class).category().equals(TestCategory.Cat.Simple))
+                    .filter(m -> TestCategory.Cat.Simple.equals(m.getDeclaringClass().getAnnotation(TestCategory.class).category()))
                     .collect(Collectors.groupingBy(m -> m.getDeclaringClass()));
         } catch (Exception e) {
             throw e;
         }
         String testsDocumentation = methodsByClass.entrySet().stream()
+                .sorted(Comparator.comparing(e -> e.getKey().getSimpleName()))
                 .map(e -> "== "
                         + getTestClassTitle(e)
                         + "\n" + getComment(e.getKey())
@@ -104,7 +94,6 @@ public class BasicDocumentation extends MainDocumentation {
                 )
                 .collect(Collectors.joining("\n"));
 
-        //System.out.println(testsDocumentation);
         return testsDocumentation;
     }
 
