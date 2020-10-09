@@ -30,29 +30,26 @@ public class BasicDocumentation extends MainDocumentation {
         super("Performance");
     }
 
-    private final Map<String, String> perfAttributes = new HashMap<>();
-    private String lines = "";
-
-
     @Override
     protected String getDocumentationContent(String packageToScan) {
 
+        final Map<String, String> perfAttributes = new HashMap<>();
         String lines = "";
         try {
-            lines = parseTestReport();
+            lines = parseTestReport(perfAttributes);
         } catch (Exception e) {
             new RuntimeException(e);
         }
 
-        String attributes = perfAttributes.entrySet().stream()
-                .map(entry -> String.format(":%s: %s", entry.getKey(), entry.getValue()))
-                .collect(Collectors.joining("\n"));
         final String perfAttributesFileName = "perfAttributes.adoc";
 
         try (final FileWriter fileWriter = new FileWriter(getDocRootPath().resolve(perfAttributesFileName).toFile())) {
+            String attributes = perfAttributes.entrySet().stream()
+                    .map(entry -> String.format(":%s: %s", entry.getKey(), entry.getValue()))
+                    .collect(Collectors.joining("\n"));
             fileWriter.write(attributes);
         } catch (IOException e) {
-            System.out.println("Could not write '" + perfAttributesFileName + "' file");
+            throw new RuntimeException("Could not write '" + perfAttributesFileName + "' file", e);
         }
 
         String timeFromReports = "\n[%autowidth]\n|====\n" +
@@ -117,7 +114,7 @@ public class BasicDocumentation extends MainDocumentation {
         generator.generate("org.sfvl");
     }
 
-    public String parseTestReport() throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException {
+    public String parseTestReport(Map<String, String> perfAttributes) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException {
         final PathProvider pathProvider = new PathProvider();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -140,9 +137,8 @@ public class BasicDocumentation extends MainDocumentation {
             final DisplayName annotation = testClass.getAnnotation(DisplayName.class);
             final String category = testClass.getAnnotation(TestCategory.class).category().name();
             final String attributeKey = category + "-" + testClass.getSimpleName();
-            perfAttributes.put(attributeKey, timeItem);
             lines.add("| " + category + " | " + testClass.getSimpleName() + " | {" + attributeKey + "} | " + annotation.value());
-
+            perfAttributes.put(attributeKey, timeItem);
         }
         return lines.stream()
                 .sorted()

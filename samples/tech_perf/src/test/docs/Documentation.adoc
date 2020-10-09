@@ -33,18 +33,6 @@ include::perfAttributes.adoc[]
 | Simple | UsingGitWithNoAssertOptionTest | {Simple-UsingGitWithNoAssertOptionTest} | Use Git to check file modification but after all tests. The time shown not include this verification.
 | Simple | UsingJUnitTest | {Simple-UsingJUnitTest} | Using JUnit assertions to test.
 |====
-== Use Git to check file modification but after all tests. The time shown not include this verification.
-Demo of a simple usage to generate documentation.
-
-include::org/sfvl/demo/UsingGitWithNoAssertOptionTest.should_give_person_information.approved.adoc[leveloffset=+2]
-
-
-== Verify documentation with _Approvals_ library.
-Demo of a simple usage to generate documentation.
-
-include::org/sfvl/demo/UsingApprovalsTest.should_give_person_information.approved.adoc[leveloffset=+2]
-
-
 == Check file modification with git after each test.
 Demo of a simple usage to generate documentation.
 
@@ -55,4 +43,16 @@ include::org/sfvl/demo/UsingGitAssertingOnEachTestTest.should_give_person_inform
 
 
 include::org/sfvl/demo/UsingJUnitTest.should_give_person_information.approved.adoc[leveloffset=+2]
+
+
+== Use Git to check file modification but after all tests. The time shown not include this verification.
+Demo of a simple usage to generate documentation.
+
+include::org/sfvl/demo/UsingGitWithNoAssertOptionTest.should_give_person_information.approved.adoc[leveloffset=+2]
+
+
+== Verify documentation with _Approvals_ library.
+Demo of a simple usage to generate documentation.
+
+include::org/sfvl/demo/UsingApprovalsTest.should_give_person_information.approved.adoc[leveloffset=+2]
 
