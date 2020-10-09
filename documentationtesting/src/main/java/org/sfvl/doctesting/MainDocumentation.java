@@ -23,7 +23,7 @@ import java.util.stream.Stream;
  */
 public class MainDocumentation {
 
-    private static final String PACKAGE_TO_SCAN = "org.sfvl";
+    private static final String PACKAGE_TO_SCAN = "org.sfvl.demo";
     private final String DOCUMENTATION_TITLE;
     private static final String DOCUMENTATION_FILENAME = "Documentation";
     private static final PathProvider pathProvider = new PathProvider();

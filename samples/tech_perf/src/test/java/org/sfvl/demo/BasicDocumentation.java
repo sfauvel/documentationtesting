@@ -14,6 +14,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
@@ -29,6 +30,10 @@ public class BasicDocumentation extends MainDocumentation {
         super("Performance");
     }
 
+    private final Map<String, String> perfAttributes = new HashMap<>();
+    private String lines = "";
+
+
     @Override
     protected String getDocumentationContent(String packageToScan) {
 
@@ -37,6 +42,17 @@ public class BasicDocumentation extends MainDocumentation {
             lines = parseTestReport();
         } catch (Exception e) {
             new RuntimeException(e);
+        }
+
+        String attributes = perfAttributes.entrySet().stream()
+                .map(entry -> String.format(":%s: %s", entry.getKey(), entry.getValue()))
+                .collect(Collectors.joining("\n"));
+        final String perfAttributesFileName = "perfAttributes.adoc";
+
+        try (final FileWriter fileWriter = new FileWriter(getDocRootPath().resolve(perfAttributesFileName).toFile())) {
+            fileWriter.write(attributes);
+        } catch (IOException e) {
+            System.out.println("Could not write '" + perfAttributesFileName + "' file");
         }
 
         String timeFromReports = "\n[%autowidth]\n|====\n" +
@@ -50,6 +66,7 @@ public class BasicDocumentation extends MainDocumentation {
                 "When we run all tests, this verification is done at the end by script that launch tests.\n" +
                 "To have total time using Git without verification on each test, we should add time of global checking.\n" +
                 "This step is fast, it's just a shell script with some git commands.\n" +
+                "\ninclude::" + perfAttributesFileName + "[]\n" +
                 timeFromReports;
 
         return getHeader() +
@@ -73,10 +90,11 @@ public class BasicDocumentation extends MainDocumentation {
 //        }
         Map<Class<?>, List<Method>> methodsByClass;
         try {
-         methodsByClass = testMethods.stream()
-                .filter(m -> m.getDeclaringClass().getAnnotation(TestCategory.class).category().equals(TestCategory.Cat.Simple))
-                .collect(Collectors.groupingBy(m -> m.getDeclaringClass()));
-        } catch(Exception e ) {
+            methodsByClass = testMethods.stream()
+                    .filter(m -> m.getDeclaringClass().getAnnotation(TestCategory.class) != null)
+                    .filter(m -> m.getDeclaringClass().getAnnotation(TestCategory.class).category().equals(TestCategory.Cat.Simple))
+                    .collect(Collectors.groupingBy(m -> m.getDeclaringClass()));
+        } catch (Exception e) {
             throw e;
         }
         String testsDocumentation = methodsByClass.entrySet().stream()
@@ -99,7 +117,7 @@ public class BasicDocumentation extends MainDocumentation {
         generator.generate("org.sfvl");
     }
 
-    public static String parseTestReport() throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException {
+    public String parseTestReport() throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException {
         final PathProvider pathProvider = new PathProvider();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -121,7 +139,9 @@ public class BasicDocumentation extends MainDocumentation {
             final Class<?> testClass = Class.forName(classname);
             final DisplayName annotation = testClass.getAnnotation(DisplayName.class);
             final String category = testClass.getAnnotation(TestCategory.class).category().name();
-            lines.add("| " + category + " | " + testClass.getSimpleName() + " | " + timeItem + " | " + annotation.value());
+            final String attributeKey = category + "-" + testClass.getSimpleName();
+            perfAttributes.put(attributeKey, timeItem);
+            lines.add("| " + category + " | " + testClass.getSimpleName() + " | {" + attributeKey + "} | " + annotation.value());
 
         }
         return lines.stream()
