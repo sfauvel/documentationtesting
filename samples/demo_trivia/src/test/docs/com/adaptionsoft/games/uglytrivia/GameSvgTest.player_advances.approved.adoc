@@ -20,36 +20,43 @@
 <rect x="0" y="150" width="50" height="50" fill="#239d23" stroke="black" stroke-width="1" />
 <rect x="0" y="100" width="50" height="50" fill="#f4f407" stroke="black" stroke-width="1" />
 <rect x="0" y="50" width="50" height="50" fill="#f23939" stroke="black" stroke-width="1" />
-<circle opacity="1" id="b0_playerA" cx="25" cy="25" r="15" fill="grey" stroke="black" stroke-width="1">
-<set begin="b0_animEnd.end" attributeName="cx" to="25" repeatCount="1" fill="freeze"/>
-<set begin="b0_animEnd.end" attributeName="cy" to="25" repeatCount="1" fill="freeze"/>
+<circle opacity="1" id="b1_playerA" cx="25" cy="25" r="15" fill="grey" stroke="black" stroke-width="1">
+<set begin="b1_animEnd.end" attributeName="cx" to="25" repeatCount="1" fill="freeze"/>
+<set begin="b1_animEnd.end" attributeName="cy" to="25" repeatCount="1" fill="freeze"/>
 </circle>
-<text id="b0_startGame" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Game start !</text>
-<text id="b0_dice1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">1</text>
-<text id="b0_dice2" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">2</text>
-<text id="b0_dice3" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">3</text>
-<text id="b0_dice4" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
-<text id="b0_dice5" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
-<text id="b0_dice6" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 4<animate id="b0_anim35" begin="b0_anim34.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b0_anim36" begin="b0_anim35.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text id="b1_startGame" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Game start !</text>
+<text id="b1_dice1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">1</text>
+<text id="b1_dice2" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">2</text>
+<text id="b1_dice3" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">3</text>
+<text id="b1_dice4" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
+<text id="b1_dice5" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
+<text id="b1_dice6" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b1_anim1" begin="b1_anim0.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b1_anim2" begin="b1_anim1.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
-<animate id="b0_anim37" xlink:href="#b0_playerA" begin="b0_anim36.end" attributeName="cx" to="75" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b0_playerA" begin="b0_anim36.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate id="b0_anim38" xlink:href="#b0_playerA" begin="b0_anim37.end" attributeName="cx" to="125" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b0_playerA" begin="b0_anim37.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate id="b0_anim39" xlink:href="#b0_playerA" begin="b0_anim38.end" attributeName="cx" to="175" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b0_playerA" begin="b0_anim38.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate id="b0_anim40" xlink:href="#b0_playerA" begin="b0_anim39.end" attributeName="cx" to="175" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b0_playerA" begin="b0_anim39.end" attributeName="cy" to="75" dur="0.5s" repeatCount="1" fill="freeze"/>
-<text id="b0_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b0_anim34.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b0_anim40.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 4<animate id="b1_anim3" begin="b1_anim2.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b1_anim4" begin="b1_anim3.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+</text>
+
+
+<animate id="b1_anim5" xlink:href="#b1_playerA" begin="b1_anim4.end" attributeName="cx" to="75" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b1_playerA" begin="b1_anim4.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate id="b1_anim6" xlink:href="#b1_playerA" begin="b1_anim5.end" attributeName="cx" to="125" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b1_playerA" begin="b1_anim5.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate id="b1_anim7" xlink:href="#b1_playerA" begin="b1_anim6.end" attributeName="cx" to="175" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b1_playerA" begin="b1_anim6.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate id="b1_anim8" xlink:href="#b1_playerA" begin="b1_anim7.end" attributeName="cx" to="175" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b1_playerA" begin="b1_anim7.end" attributeName="cy" to="75" dur="0.5s" repeatCount="1" fill="freeze"/>
+<text id="b1_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b1_anim0.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b1_anim8.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
 <rect x="0" y="0" width="800" height="200" opacity="0.1">
-  <animate id="b0_anim34" begin="click" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
-  <set begin="b0_anim34.begin" attributeName="width" to="50" repeatCount="1" fill="freeze"/>
-  <set begin="b0_anim34.begin" attributeName="height" to="50" repeatCount="1" fill="freeze"/>
-  <animate id="b0_animEnd" begin="b0_anim40.end + 1s" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
-  <set begin="b0_anim40.end + 1s" attributeName="width" to="800" repeatCount="1" fill="freeze"/>
-  <set begin="b0_anim40.end + 1s" attributeName="height" to="200" repeatCount="1" fill="freeze"/>
+  <animate id="b1_anim0" begin="click" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
+  <set begin="b1_anim0.begin" attributeName="width" to="50" repeatCount="1" fill="freeze"/>
+  <set begin="b1_anim0.begin" attributeName="height" to="50" repeatCount="1" fill="freeze"/>
+  <animate id="b1_animEnd" begin="b1_anim8.end + 1s" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
+  <set begin="b1_anim8.end + 1s" attributeName="width" to="800" repeatCount="1" fill="freeze"/>
+  <set begin="b1_anim8.end + 1s" attributeName="height" to="200" repeatCount="1" fill="freeze"/>
 </rect>
 <style>
 text {
@@ -89,10 +96,8 @@ Board at the start of the turn
 
 a|Chet rolled a [.dice]#&#x2683;#
  +
-
-
 [.boardTitle]
-Board at the after move of the turn
+Board at the start of the turn
 
 ++++
 
@@ -133,34 +138,41 @@ If he reaches the end of the board, he continues by starting from the beginning
 <rect x="0" y="150" width="50" height="50" fill="#239d23" stroke="black" stroke-width="1" />
 <rect x="0" y="100" width="50" height="50" fill="#f4f407" stroke="black" stroke-width="1" />
 <rect x="0" y="50" width="50" height="50" fill="#f23939" stroke="black" stroke-width="1" />
-<circle opacity="1" id="b0_playerA" cx="25" cy="125" r="15" fill="grey" stroke="black" stroke-width="1">
-<set begin="b0_animEnd.end" attributeName="cx" to="25" repeatCount="1" fill="freeze"/>
-<set begin="b0_animEnd.end" attributeName="cy" to="125" repeatCount="1" fill="freeze"/>
+<circle opacity="1" id="b2_playerA" cx="25" cy="125" r="15" fill="grey" stroke="black" stroke-width="1">
+<set begin="b2_animEnd.end" attributeName="cx" to="25" repeatCount="1" fill="freeze"/>
+<set begin="b2_animEnd.end" attributeName="cy" to="125" repeatCount="1" fill="freeze"/>
 </circle>
-<text id="b0_startGame" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Game start !</text>
-<text id="b0_dice1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">1</text>
-<text id="b0_dice2" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">2</text>
-<text id="b0_dice3" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">3</text>
-<text id="b0_dice4" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
-<text id="b0_dice5" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
-<text id="b0_dice6" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate id="b0_anim41" begin="b0_anim40.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b0_anim42" begin="b0_anim41.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text id="b2_startGame" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Game start !</text>
+<text id="b2_dice1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">1</text>
+<text id="b2_dice2" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">2</text>
+<text id="b2_dice3" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">3</text>
+<text id="b2_dice4" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
+<text id="b2_dice5" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
+<text id="b2_dice6" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b2_anim9" begin="b2_anim8.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b2_anim10" begin="b2_anim9.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
-<animate id="b0_anim43" xlink:href="#b0_playerA" begin="b0_anim42.end" attributeName="cx" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b0_playerA" begin="b0_anim42.end" attributeName="cy" to="75" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate id="b0_anim44" xlink:href="#b0_playerA" begin="b0_anim43.end" attributeName="cx" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b0_playerA" begin="b0_anim43.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate id="b0_anim45" xlink:href="#b0_playerA" begin="b0_anim44.end" attributeName="cx" to="75" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b0_playerA" begin="b0_anim44.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
-<text id="b0_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b0_anim40.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b0_anim45.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate id="b2_anim11" begin="b2_anim10.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b2_anim12" begin="b2_anim11.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+</text>
+
+
+<animate id="b2_anim13" xlink:href="#b2_playerA" begin="b2_anim12.end" attributeName="cx" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b2_playerA" begin="b2_anim12.end" attributeName="cy" to="75" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate id="b2_anim14" xlink:href="#b2_playerA" begin="b2_anim13.end" attributeName="cx" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b2_playerA" begin="b2_anim13.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate id="b2_anim15" xlink:href="#b2_playerA" begin="b2_anim14.end" attributeName="cx" to="75" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b2_playerA" begin="b2_anim14.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
+<text id="b2_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b2_anim8.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b2_anim15.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
 <rect x="0" y="0" width="800" height="200" opacity="0.1">
-  <animate id="b0_anim40" begin="click" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
-  <set begin="b0_anim40.begin" attributeName="width" to="50" repeatCount="1" fill="freeze"/>
-  <set begin="b0_anim40.begin" attributeName="height" to="50" repeatCount="1" fill="freeze"/>
-  <animate id="b0_animEnd" begin="b0_anim45.end + 1s" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
-  <set begin="b0_anim45.end + 1s" attributeName="width" to="800" repeatCount="1" fill="freeze"/>
-  <set begin="b0_anim45.end + 1s" attributeName="height" to="200" repeatCount="1" fill="freeze"/>
+  <animate id="b2_anim8" begin="click" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
+  <set begin="b2_anim8.begin" attributeName="width" to="50" repeatCount="1" fill="freeze"/>
+  <set begin="b2_anim8.begin" attributeName="height" to="50" repeatCount="1" fill="freeze"/>
+  <animate id="b2_animEnd" begin="b2_anim15.end + 1s" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
+  <set begin="b2_anim15.end + 1s" attributeName="width" to="800" repeatCount="1" fill="freeze"/>
+  <set begin="b2_anim15.end + 1s" attributeName="height" to="200" repeatCount="1" fill="freeze"/>
 </rect>
 <style>
 text {
@@ -171,10 +183,6 @@ fill: black;
 </svg>
 
 ++++
-
-
-
-If he reaches the end of the board, he continues by starting from the beginning
 
 [.tableInline]
 [%autowidth, cols=2, frame=none, grid=none]
@@ -204,10 +212,8 @@ Board at the start of the turn
 
 a|Chet rolled a [.dice]#&#x2682;#
  +
-
-
 [.boardTitle]
-Board at the after move of the turn
+Board at the start of the turn
 
 ++++
 
