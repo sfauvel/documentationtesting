@@ -11,8 +11,6 @@ View source project on link:{github}/samples/demo_trivia[Github]
 
 == Legend
 
-image::animate.svg[Interactive,600,opts=interactive]
-
 === Categories
 
 The questions asked to the players are chosen from the following categories: 
@@ -27,6 +25,17 @@ The questions asked to the players are chosen from the following categories:
 On the board, the current player is in bold: *Chet*, Pat +
 A player who has a penalty has his name enclosed in square brackets: [Chet] +
 The number of points is displayed behind the player's name: Chet &#x2783; +
+
+== Explanations and examples
+
+
+include::com/adaptionsoft/games/uglytrivia/GameSvgTest.player_advances.approved.adoc[leveloffset=+2]
+include::com/adaptionsoft/games/uglytrivia/GameSvgTest.player_scores.approved.adoc[leveloffset=+2]
+include::com/adaptionsoft/games/uglytrivia/GameSvgTest.win_the_game.approved.adoc[leveloffset=+2]
+include::com/adaptionsoft/games/uglytrivia/GameSvgTest.jail.approved.adoc[leveloffset=+2]
+include::com/adaptionsoft/games/uglytrivia/GameSvgTest.player_stay_in_penality_box.approved.adoc[leveloffset=+2]
+include::com/adaptionsoft/games/uglytrivia/GameSvgTest.play_until_someone_wins.approved.adoc[leveloffset=+2]
+
 
 == Explanations and examples
 

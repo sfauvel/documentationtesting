@@ -18,85 +18,85 @@ The first player to score 6 points wins the game.
 <rect x="0" y="150" width="50" height="50" fill="#239d23" stroke="black" stroke-width="1" />
 <rect x="0" y="100" width="50" height="50" fill="#f4f407" stroke="black" stroke-width="1" />
 <rect x="0" y="50" width="50" height="50" fill="#f23939" stroke="black" stroke-width="1" />
-<svg id="b1_playerA"><g>
+<svg id="b2_playerA" x="0" y="0"  ><g>
 <circle opacity="1" cx="25" cy="25" r="15" fill="grey" stroke="black" stroke-width="1">
 </circle>
-<text id="b1_playerA_0" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">0</text>
-<text id="b1_playerA_1" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">1</text>
-<text id="b1_playerA_2" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">2</text>
-<text id="b1_playerA_3" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">3</text>
-<text id="b1_playerA_4" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
-<text id="b1_playerA_5" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1">5</text>
-<text id="b1_playerA_6" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
-</g><set begin="b1_animEnd.end" attributeName="x" to="0" repeatCount="1" fill="freeze"/>
-<set begin="b1_animEnd.end" attributeName="y" to="0" repeatCount="1" fill="freeze"/>
+<text id="b2_playerA_0" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">0</text>
+<text id="b2_playerA_1" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">1</text>
+<text id="b2_playerA_2" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">2</text>
+<text id="b2_playerA_3" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">3</text>
+<text id="b2_playerA_4" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
+<text id="b2_playerA_5" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1">5</text>
+<text id="b2_playerA_6" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
+<rect id="b2_playerA_jail" x="8" y="8" width="34" height="34" fill=none stroke="black" stroke-width="5" opacity="0"/>
+</g><set begin="b2_animEnd.end" attributeName="x" to="0" repeatCount="1" fill="freeze"/>
+<set begin="b2_animEnd.end" attributeName="y" to="0" repeatCount="1" fill="freeze"/>
 </svg>
-<set xlink:href="#b1_playerA_0" begin="b1_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_1" begin="b1_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_2" begin="b1_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_3" begin="b1_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_4" begin="b1_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_5" begin="b1_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_6" begin="b1_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_0" begin="b1_anim0.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_1" begin="b1_anim0.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_2" begin="b1_anim0.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_3" begin="b1_anim0.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_4" begin="b1_anim0.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_5" begin="b1_anim0.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_6" begin="b1_anim0.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<text id="b1_startGame" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Game start !</text>
-<text id="b1_dice1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">1</text>
-<text id="b1_dice2" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">2</text>
-<text id="b1_dice3" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">3</text>
-<text id="b1_dice4" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
-<text id="b1_dice5" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
-<text id="b1_dice6" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b1_anim1" begin="b1_anim0.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim2" begin="b1_anim1.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_0" begin="b2_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_1" begin="b2_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_2" begin="b2_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_3" begin="b2_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_4" begin="b2_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_5" begin="b2_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_6" begin="b2_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_0" begin="b2_anim11.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_1" begin="b2_anim11.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_2" begin="b2_anim11.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_3" begin="b2_anim11.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_4" begin="b2_anim11.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_5" begin="b2_anim11.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_6" begin="b2_anim11.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_jail" begin="b2_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<text id="b2_startGame" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Game start !</text>
+<text id="b2_dice1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">1</text>
+<text id="b2_dice2" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">2</text>
+<text id="b2_dice3" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">3</text>
+<text id="b2_dice4" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
+<text id="b2_dice5" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
+<text id="b2_dice6" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b2_anim12" begin="b2_anim11.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b2_anim13" begin="b2_anim12.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
-<set begin="b1_anim2.begin" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate id="b1_anim3" begin="b1_anim2.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim4" begin="b1_anim3.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate id="b2_anim14" begin="b2_anim13.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b2_anim15" begin="b2_anim14.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
-<set begin="b1_anim4.begin" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim5" xlink:href="#b1_playerA" begin="b1_anim4.end" attributeName="x" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim4.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim6" xlink:href="#b1_playerA" begin="b1_anim5.end" attributeName="x" to="100" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim5.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim7" xlink:href="#b1_playerA" begin="b1_anim6.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim6.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate id="b1_anim8" begin="b1_anim7.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim9" begin="b1_anim8.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b2_anim16" xlink:href="#b2_playerA" begin="b2_anim15.end" attributeName="x" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b2_playerA" begin="b2_anim15.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate id="b2_anim17" xlink:href="#b2_playerA" begin="b2_anim16.end" attributeName="x" to="100" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b2_playerA" begin="b2_anim16.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate id="b2_anim18" xlink:href="#b2_playerA" begin="b2_anim17.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b2_playerA" begin="b2_anim17.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate id="b2_anim19" begin="b2_anim18.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b2_anim20" begin="b2_anim19.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Rock question<animate id="b1_anim10" begin="b1_anim9.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim11" begin="b1_anim10.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Rock question<animate id="b2_anim21" begin="b2_anim20.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b2_anim22" begin="b2_anim21.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
-<set xlink:href="#b1_playerA_0" begin="b1_anim11.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_1" begin="b1_anim11.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_2" begin="b1_anim11.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_3" begin="b1_anim11.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_4" begin="b1_anim11.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_5" begin="b1_anim11.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_6" begin="b1_anim11.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet wins the game !!!<animate id="b1_anim12" begin="b1_anim11.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim13" begin="b1_anim12.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_0" begin="b2_anim22.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_1" begin="b2_anim22.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_2" begin="b2_anim22.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_3" begin="b2_anim22.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_4" begin="b2_anim22.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_5" begin="b2_anim22.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_6" begin="b2_anim22.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b2_playerA_jail" begin="b2_anim22.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet wins the game !!!<animate id="b2_anim23" begin="b2_anim22.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b2_anim24" begin="b2_anim23.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
-<set begin="b1_anim13.begin" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<text id="b1_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b1_anim0.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b1_anim13.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
+<text id="b2_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b2_anim11.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b2_anim24.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
 <rect x="0" y="0" width="800" height="200" opacity="0.1">
-  <animate id="b1_anim0" begin="click" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
-  <set begin="b1_anim0.begin" attributeName="width" to="50" repeatCount="1" fill="freeze"/>
-  <set begin="b1_anim0.begin" attributeName="height" to="50" repeatCount="1" fill="freeze"/>
-  <animate id="b1_animEnd" begin="b1_anim13.end + 1s" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
-  <set begin="b1_anim13.end + 1s" attributeName="width" to="800" repeatCount="1" fill="freeze"/>
-  <set begin="b1_anim13.end + 1s" attributeName="height" to="200" repeatCount="1" fill="freeze"/>
+  <animate id="b2_anim11" begin="click" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
+  <set begin="b2_anim11.begin" attributeName="width" to="50" repeatCount="1" fill="freeze"/>
+  <set begin="b2_anim11.begin" attributeName="height" to="50" repeatCount="1" fill="freeze"/>
+  <animate id="b2_animEnd" begin="b2_anim24.end + 1s" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
+  <set begin="b2_anim24.end + 1s" attributeName="width" to="800" repeatCount="1" fill="freeze"/>
+  <set begin="b2_anim24.end + 1s" attributeName="height" to="200" repeatCount="1" fill="freeze"/>
 </rect>
 <style>
 text {

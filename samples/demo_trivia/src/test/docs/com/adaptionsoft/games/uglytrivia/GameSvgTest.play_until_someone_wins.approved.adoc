@@ -19,72 +19,72 @@ This is a full game from the beginning to the end when a player wins the game.
 <rect x="0" y="150" width="50" height="50" fill="#239d23" stroke="black" stroke-width="1" />
 <rect x="0" y="100" width="50" height="50" fill="#f4f407" stroke="black" stroke-width="1" />
 <rect x="0" y="50" width="50" height="50" fill="#f23939" stroke="black" stroke-width="1" />
-<svg id="b1_playerA" x="0" y="0"  ><g>
+<svg id="b8_playerA" x="0" y="0"  ><g>
 <circle opacity="1" cx="25" cy="25" r="15" fill="grey" stroke="black" stroke-width="1">
 </circle>
-<text id="b1_playerA_0" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1">0</text>
-<text id="b1_playerA_1" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">1</text>
-<text id="b1_playerA_2" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">2</text>
-<text id="b1_playerA_3" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">3</text>
-<text id="b1_playerA_4" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
-<text id="b1_playerA_5" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
-<text id="b1_playerA_6" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
-<rect id="b1_playerA_jail" x="8" y="8" width="34" height="34" fill=none stroke="black" stroke-width="5" opacity="0"/>
-</g><set begin="b1_animEnd.end" attributeName="x" to="0" repeatCount="1" fill="freeze"/>
-<set begin="b1_animEnd.end" attributeName="y" to="0" repeatCount="1" fill="freeze"/>
+<text id="b8_playerA_0" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1">0</text>
+<text id="b8_playerA_1" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">1</text>
+<text id="b8_playerA_2" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">2</text>
+<text id="b8_playerA_3" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">3</text>
+<text id="b8_playerA_4" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
+<text id="b8_playerA_5" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
+<text id="b8_playerA_6" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
+<rect id="b8_playerA_jail" x="8" y="8" width="34" height="34" fill=none stroke="black" stroke-width="5" opacity="0"/>
+</g><set begin="b8_animEnd.end" attributeName="x" to="0" repeatCount="1" fill="freeze"/>
+<set begin="b8_animEnd.end" attributeName="y" to="0" repeatCount="1" fill="freeze"/>
 </svg>
-<set xlink:href="#b1_playerA_0" begin="b1_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_1" begin="b1_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_2" begin="b1_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_3" begin="b1_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_4" begin="b1_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_5" begin="b1_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_6" begin="b1_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_0" begin="b1_anim0.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_1" begin="b1_anim0.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_2" begin="b1_anim0.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_3" begin="b1_anim0.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_4" begin="b1_anim0.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_5" begin="b1_anim0.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_6" begin="b1_anim0.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_jail" begin="b1_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<text id="b1_startGame" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Game start !</text>
-<text id="b1_dice1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">1</text>
-<text id="b1_dice2" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">2</text>
-<text id="b1_dice3" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">3</text>
-<text id="b1_dice4" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
-<text id="b1_dice5" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
-<text id="b1_dice6" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
+<set xlink:href="#b8_playerA_0" begin="b8_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_1" begin="b8_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_2" begin="b8_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_3" begin="b8_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_4" begin="b8_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_5" begin="b8_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_6" begin="b8_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_0" begin="b8_anim86.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_1" begin="b8_anim86.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_2" begin="b8_anim86.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_3" begin="b8_anim86.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_4" begin="b8_anim86.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_5" begin="b8_anim86.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_6" begin="b8_anim86.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_jail" begin="b8_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<text id="b8_startGame" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Game start !</text>
+<text id="b8_dice1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">1</text>
+<text id="b8_dice2" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">2</text>
+<text id="b8_dice3" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">3</text>
+<text id="b8_dice4" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
+<text id="b8_dice5" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
+<text id="b8_dice6" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
 *Turn 1*
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b1_anim1" begin="b1_anim0.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim2" begin="b1_anim1.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b8_anim87" begin="b8_anim86.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim88" begin="b8_anim87.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 2<animate id="b1_anim3" begin="b1_anim2.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim4" begin="b1_anim3.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 2<animate id="b8_anim89" begin="b8_anim88.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim90" begin="b8_anim89.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
-<animate id="b1_anim5" xlink:href="#b1_playerA" begin="b1_anim4.end" attributeName="x" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim4.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim6" xlink:href="#b1_playerA" begin="b1_anim5.end" attributeName="x" to="100" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim5.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Sports...<animate id="b1_anim7" begin="b1_anim6.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim8" begin="b1_anim7.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim91" xlink:href="#b8_playerA" begin="b8_anim90.end" attributeName="x" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b8_playerA" begin="b8_anim90.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim92" xlink:href="#b8_playerA" begin="b8_anim91.end" attributeName="x" to="100" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b8_playerA" begin="b8_anim91.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Sports...<animate id="b8_anim93" begin="b8_anim92.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim94" begin="b8_anim93.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Sports question<animate id="b1_anim9" begin="b1_anim8.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim10" begin="b1_anim9.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Sports question<animate id="b8_anim95" begin="b8_anim94.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim96" begin="b8_anim95.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
-<set xlink:href="#b1_playerA_0" begin="b1_anim10.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_1" begin="b1_anim10.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_2" begin="b1_anim10.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_3" begin="b1_anim10.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_4" begin="b1_anim10.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_5" begin="b1_anim10.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_6" begin="b1_anim10.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_jail" begin="b1_anim10.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_0" begin="b8_anim96.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_1" begin="b8_anim96.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_2" begin="b8_anim96.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_3" begin="b8_anim96.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_4" begin="b8_anim96.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_5" begin="b8_anim96.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_6" begin="b8_anim96.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_jail" begin="b8_anim96.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 
 
 
@@ -93,34 +93,34 @@ ___
 
 *Turn 2*
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b1_anim11" begin="b1_anim10.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim12" begin="b1_anim11.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b8_anim97" begin="b8_anim96.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim98" begin="b8_anim97.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 2<animate id="b1_anim13" begin="b1_anim12.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim14" begin="b1_anim13.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 2<animate id="b8_anim99" begin="b8_anim98.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim100" begin="b8_anim99.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
-<animate id="b1_anim15" xlink:href="#b1_playerA" begin="b1_anim14.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim14.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim16" xlink:href="#b1_playerA" begin="b1_anim15.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim15.end" attributeName="y" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Pop...<animate id="b1_anim17" begin="b1_anim16.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim18" begin="b1_anim17.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim101" xlink:href="#b8_playerA" begin="b8_anim100.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b8_playerA" begin="b8_anim100.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim102" xlink:href="#b8_playerA" begin="b8_anim101.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b8_playerA" begin="b8_anim101.end" attributeName="y" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Pop...<animate id="b8_anim103" begin="b8_anim102.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim104" begin="b8_anim103.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Pop question<animate id="b1_anim19" begin="b1_anim18.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim20" begin="b1_anim19.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Pop question<animate id="b8_anim105" begin="b8_anim104.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim106" begin="b8_anim105.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
-<set xlink:href="#b1_playerA_0" begin="b1_anim20.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_1" begin="b1_anim20.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_2" begin="b1_anim20.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_3" begin="b1_anim20.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_4" begin="b1_anim20.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_5" begin="b1_anim20.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_6" begin="b1_anim20.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_jail" begin="b1_anim20.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_0" begin="b8_anim106.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_1" begin="b8_anim106.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_2" begin="b8_anim106.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_3" begin="b8_anim106.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_4" begin="b8_anim106.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_5" begin="b8_anim106.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_6" begin="b8_anim106.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_jail" begin="b8_anim106.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 
 
 
@@ -129,32 +129,32 @@ ___
 
 *Turn 3*
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b1_anim21" begin="b1_anim20.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim22" begin="b1_anim21.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b8_anim107" begin="b8_anim106.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim108" begin="b8_anim107.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 1<animate id="b1_anim23" begin="b1_anim22.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim24" begin="b1_anim23.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 1<animate id="b8_anim109" begin="b8_anim108.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim110" begin="b8_anim109.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
-<animate id="b1_anim25" xlink:href="#b1_playerA" begin="b1_anim24.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim24.end" attributeName="y" to="100" dur="0.5s" repeatCount="1" fill="freeze"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Science...<animate id="b1_anim26" begin="b1_anim25.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim27" begin="b1_anim26.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim111" xlink:href="#b8_playerA" begin="b8_anim110.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b8_playerA" begin="b8_anim110.end" attributeName="y" to="100" dur="0.5s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Science...<animate id="b8_anim112" begin="b8_anim111.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim113" begin="b8_anim112.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Science question<animate id="b1_anim28" begin="b1_anim27.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim29" begin="b1_anim28.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Science question<animate id="b8_anim114" begin="b8_anim113.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim115" begin="b8_anim114.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
-<set xlink:href="#b1_playerA_0" begin="b1_anim29.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_1" begin="b1_anim29.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_2" begin="b1_anim29.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_3" begin="b1_anim29.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_4" begin="b1_anim29.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_5" begin="b1_anim29.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_6" begin="b1_anim29.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_jail" begin="b1_anim29.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_0" begin="b8_anim115.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_1" begin="b8_anim115.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_2" begin="b8_anim115.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_3" begin="b8_anim115.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_4" begin="b8_anim115.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_5" begin="b8_anim115.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_6" begin="b8_anim115.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_jail" begin="b8_anim115.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 
 
 
@@ -163,32 +163,32 @@ ___
 
 *Turn 4*
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b1_anim30" begin="b1_anim29.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim31" begin="b1_anim30.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b8_anim116" begin="b8_anim115.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim117" begin="b8_anim116.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 1<animate id="b1_anim32" begin="b1_anim31.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim33" begin="b1_anim32.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 1<animate id="b8_anim118" begin="b8_anim117.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim119" begin="b8_anim118.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
-<animate id="b1_anim34" xlink:href="#b1_playerA" begin="b1_anim33.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim33.end" attributeName="y" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Sports...<animate id="b1_anim35" begin="b1_anim34.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim36" begin="b1_anim35.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim120" xlink:href="#b8_playerA" begin="b8_anim119.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b8_playerA" begin="b8_anim119.end" attributeName="y" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Sports...<animate id="b8_anim121" begin="b8_anim120.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim122" begin="b8_anim121.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Sports question<animate id="b1_anim37" begin="b1_anim36.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim38" begin="b1_anim37.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Sports question<animate id="b8_anim123" begin="b8_anim122.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim124" begin="b8_anim123.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
-<set xlink:href="#b1_playerA_0" begin="b1_anim38.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_1" begin="b1_anim38.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_2" begin="b1_anim38.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_3" begin="b1_anim38.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_4" begin="b1_anim38.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_5" begin="b1_anim38.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_6" begin="b1_anim38.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_jail" begin="b1_anim38.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_0" begin="b8_anim124.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_1" begin="b8_anim124.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_2" begin="b8_anim124.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_3" begin="b8_anim124.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_4" begin="b8_anim124.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_5" begin="b8_anim124.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_6" begin="b8_anim124.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_jail" begin="b8_anim124.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 
 
 
@@ -197,34 +197,34 @@ ___
 
 *Turn 5*
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b1_anim39" begin="b1_anim38.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim40" begin="b1_anim39.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b8_anim125" begin="b8_anim124.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim126" begin="b8_anim125.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 2<animate id="b1_anim41" begin="b1_anim40.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim42" begin="b1_anim41.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 2<animate id="b8_anim127" begin="b8_anim126.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim128" begin="b8_anim127.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
-<animate id="b1_anim43" xlink:href="#b1_playerA" begin="b1_anim42.end" attributeName="x" to="100" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim42.end" attributeName="y" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim44" xlink:href="#b1_playerA" begin="b1_anim43.end" attributeName="x" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim43.end" attributeName="y" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Pop...<animate id="b1_anim45" begin="b1_anim44.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim46" begin="b1_anim45.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim129" xlink:href="#b8_playerA" begin="b8_anim128.end" attributeName="x" to="100" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b8_playerA" begin="b8_anim128.end" attributeName="y" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim130" xlink:href="#b8_playerA" begin="b8_anim129.end" attributeName="x" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b8_playerA" begin="b8_anim129.end" attributeName="y" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Pop...<animate id="b8_anim131" begin="b8_anim130.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim132" begin="b8_anim131.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Pop question<animate id="b1_anim47" begin="b1_anim46.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim48" begin="b1_anim47.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Pop question<animate id="b8_anim133" begin="b8_anim132.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim134" begin="b8_anim133.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
-<set xlink:href="#b1_playerA_0" begin="b1_anim48.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_1" begin="b1_anim48.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_2" begin="b1_anim48.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_3" begin="b1_anim48.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_4" begin="b1_anim48.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_5" begin="b1_anim48.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_6" begin="b1_anim48.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_jail" begin="b1_anim48.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_0" begin="b8_anim134.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_1" begin="b8_anim134.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_2" begin="b8_anim134.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_3" begin="b8_anim134.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_4" begin="b8_anim134.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_5" begin="b8_anim134.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_6" begin="b8_anim134.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_jail" begin="b8_anim134.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 
 
 
@@ -233,38 +233,38 @@ ___
 
 *Turn 6*
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b1_anim49" begin="b1_anim48.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim50" begin="b1_anim49.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b8_anim135" begin="b8_anim134.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim136" begin="b8_anim135.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate id="b1_anim51" begin="b1_anim50.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim52" begin="b1_anim51.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate id="b8_anim137" begin="b8_anim136.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim138" begin="b8_anim137.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
-<animate id="b1_anim53" xlink:href="#b1_playerA" begin="b1_anim52.end" attributeName="x" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim52.end" attributeName="y" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim54" xlink:href="#b1_playerA" begin="b1_anim53.end" attributeName="x" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim53.end" attributeName="y" to="100" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim55" xlink:href="#b1_playerA" begin="b1_anim54.end" attributeName="x" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim54.end" attributeName="y" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate id="b1_anim56" begin="b1_anim55.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim57" begin="b1_anim56.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim139" xlink:href="#b8_playerA" begin="b8_anim138.end" attributeName="x" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b8_playerA" begin="b8_anim138.end" attributeName="y" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim140" xlink:href="#b8_playerA" begin="b8_anim139.end" attributeName="x" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b8_playerA" begin="b8_anim139.end" attributeName="y" to="100" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim141" xlink:href="#b8_playerA" begin="b8_anim140.end" attributeName="x" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate  xlink:href="#b8_playerA" begin="b8_anim140.end" attributeName="y" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate id="b8_anim142" begin="b8_anim141.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim143" begin="b8_anim142.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Rock question<animate id="b1_anim58" begin="b1_anim57.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim59" begin="b1_anim58.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Rock question<animate id="b8_anim144" begin="b8_anim143.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim145" begin="b8_anim144.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
-<set xlink:href="#b1_playerA_0" begin="b1_anim59.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_1" begin="b1_anim59.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_2" begin="b1_anim59.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_3" begin="b1_anim59.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_4" begin="b1_anim59.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_5" begin="b1_anim59.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_6" begin="b1_anim59.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b1_playerA_jail" begin="b1_anim59.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet wins the game !!!<animate id="b1_anim60" begin="b1_anim59.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b1_anim61" begin="b1_anim60.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_0" begin="b8_anim145.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_1" begin="b8_anim145.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_2" begin="b8_anim145.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_3" begin="b8_anim145.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_4" begin="b8_anim145.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_5" begin="b8_anim145.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_6" begin="b8_anim145.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b8_playerA_jail" begin="b8_anim145.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet wins the game !!!<animate id="b8_anim146" begin="b8_anim145.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate id="b8_anim147" begin="b8_anim146.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
 
 
@@ -272,14 +272,14 @@ ___
 
 ___
 
-<text id="b1_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b1_anim0.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b1_anim61.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
+<text id="b8_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b8_anim86.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b8_anim147.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
 <rect x="0" y="0" width="800" height="200" opacity="0.1">
-  <animate id="b1_anim0" begin="click" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
-  <set begin="b1_anim0.begin" attributeName="width" to="50" repeatCount="1" fill="freeze"/>
-  <set begin="b1_anim0.begin" attributeName="height" to="50" repeatCount="1" fill="freeze"/>
-  <animate id="b1_animEnd" begin="b1_anim61.end + 1s" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
-  <set begin="b1_anim61.end + 1s" attributeName="width" to="800" repeatCount="1" fill="freeze"/>
-  <set begin="b1_anim61.end + 1s" attributeName="height" to="200" repeatCount="1" fill="freeze"/>
+  <animate id="b8_anim86" begin="click" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
+  <set begin="b8_anim86.begin" attributeName="width" to="50" repeatCount="1" fill="freeze"/>
+  <set begin="b8_anim86.begin" attributeName="height" to="50" repeatCount="1" fill="freeze"/>
+  <animate id="b8_animEnd" begin="b8_anim147.end + 1s" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
+  <set begin="b8_anim147.end + 1s" attributeName="width" to="800" repeatCount="1" fill="freeze"/>
+  <set begin="b8_anim147.end + 1s" attributeName="height" to="200" repeatCount="1" fill="freeze"/>
 </rect>
 <style>
 text {
@@ -742,1746 +742,6 @@ Board at the start of the turn
 
 ___
 
-&nbsp; +
-Players : Chet, Pat, Sue
-
-*Turn 1*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop"><p class="currentPlayer">Chet </p><p class="">Pat </p><p class="">Sue </p></td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Chet rolled a [.dice]#&#x2681;#
- +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop"><p class="">Pat </p><p class="">Sue </p></td><td class="science">&nbsp;</td><td class="sports"><p class="currentPlayer">Chet </p></td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[rightAnswer]#&#x2714;#
-Chet correctly answered to Sports question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop"><p class="">Pat </p><p class="">Sue </p></td><td class="science">&nbsp;</td><td class="sports"><p class="currentPlayer">Chet &#x2780;</p></td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 2*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop"><p class="currentPlayer">Pat </p><p class="">Sue </p></td><td class="science">&nbsp;</td><td class="sports"><p class="">Chet &#x2780;</p></td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Pat rolled a [.dice]#&#x2681;#
- +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop"><p class="">Sue </p></td><td class="science">&nbsp;</td><td class="sports"><p class="">Chet &#x2780;</p><p class="currentPlayer">Pat </p></td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[rightAnswer]#&#x2714;#
-Pat correctly answered to Sports question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop"><p class="">Sue </p></td><td class="science">&nbsp;</td><td class="sports"><p class="">Chet &#x2780;</p><p class="currentPlayer">Pat &#x2780;</p></td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 3*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop"><p class="currentPlayer">Sue </p></td><td class="science">&nbsp;</td><td class="sports"><p class="">Chet &#x2780;</p><p class="">Pat &#x2780;</p></td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Sue rolled a [.dice]#&#x2680;#
- +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science"><p class="currentPlayer">Sue </p></td><td class="sports"><p class="">Chet &#x2780;</p><p class="">Pat &#x2780;</p></td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[rightAnswer]#&#x2714;#
-Sue correctly answered to Science question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science"><p class="currentPlayer">Sue &#x2780;</p></td><td class="sports"><p class="">Chet &#x2780;</p><p class="">Pat &#x2780;</p></td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 4*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science"><p class="">Sue &#x2780;</p></td><td class="sports"><p class="currentPlayer">Chet &#x2780;</p><p class="">Pat &#x2780;</p></td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Chet rolled a [.dice]#&#x2680;#
- +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science"><p class="">Sue &#x2780;</p></td><td class="sports"><p class="">Pat &#x2780;</p></td><td class="rock"><p class="currentPlayer">Chet &#x2780;</p></td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[rightAnswer]#&#x2714;#
-Chet correctly answered to Rock question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science"><p class="">Sue &#x2780;</p></td><td class="sports"><p class="">Pat &#x2780;</p></td><td class="rock"><p class="currentPlayer">Chet &#x2781;</p></td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 5*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science"><p class="">Sue &#x2780;</p></td><td class="sports"><p class="currentPlayer">Pat &#x2780;</p></td><td class="rock"><p class="">Chet &#x2781;</p></td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Pat rolled a [.dice]#&#x2681;#
- +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science"><p class="">Sue &#x2780;</p></td><td class="sports">&nbsp;</td><td class="rock"><p class="">Chet &#x2781;</p></td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">Pat &#x2780;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[rightAnswer]#&#x2714;#
-Pat correctly answered to Pop question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science"><p class="">Sue &#x2780;</p></td><td class="sports">&nbsp;</td><td class="rock"><p class="">Chet &#x2781;</p></td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">Pat &#x2781;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 6*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science"><p class="currentPlayer">Sue &#x2780;</p></td><td class="sports">&nbsp;</td><td class="rock"><p class="">Chet &#x2781;</p></td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Pat &#x2781;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Sue rolled a [.dice]#&#x2682;#
- +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock"><p class="">Chet &#x2781;</p></td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Pat &#x2781;</p><p class="currentPlayer">Sue &#x2780;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[rightAnswer]#&#x2714;#
-Sue correctly answered to Pop question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock"><p class="">Chet &#x2781;</p></td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Pat &#x2781;</p><p class="currentPlayer">Sue &#x2781;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 7*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock"><p class="currentPlayer">Chet &#x2781;</p></td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Pat &#x2781;</p><p class="">Sue &#x2781;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Chet rolled a [.dice]#&#x2680;#
- +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">Chet &#x2781;</p><p class="">Pat &#x2781;</p><p class="">Sue &#x2781;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[wrongAnswer]#&#x2718;#
-Chet incorrectly answered to Pop question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">[Chet] &#x2781;</p><p class="">Pat &#x2781;</p><p class="">Sue &#x2781;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 8*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">[Chet] &#x2781;</p><p class="currentPlayer">Pat &#x2781;</p><p class="">Sue &#x2781;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Pat rolled a [.dice]#&#x2682;#
- +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">[Chet] &#x2781;</p><p class="">Sue &#x2781;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="currentPlayer">Pat &#x2781;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[wrongAnswer]#&#x2718;#
-Pat incorrectly answered to Rock question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">[Chet] &#x2781;</p><p class="">Sue &#x2781;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="currentPlayer">[Pat] &#x2781;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 9*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">[Chet] &#x2781;</p><p class="currentPlayer">Sue &#x2781;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">[Pat] &#x2781;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Sue rolled a [.dice]#&#x2682;#
- +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">[Chet] &#x2781;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">[Pat] &#x2781;</p><p class="currentPlayer">Sue &#x2781;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[rightAnswer]#&#x2714;#
-Sue correctly answered to Rock question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">[Chet] &#x2781;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">[Pat] &#x2781;</p><p class="currentPlayer">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 10*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">[Chet] &#x2781;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Chet rolled a [.dice]#&#x2682;#
- and is getting out of penality box +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="currentPlayer">[Chet] &#x2781;</p><p class="">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[rightAnswer]#&#x2714;#
-Chet correctly answered to Rock question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="currentPlayer">Chet &#x2782;</p><p class="">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 11*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p><p class="currentPlayer">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Pat rolled a [.dice]#&#x2681;#
- and is not getting out of the penalty box +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p><p class="currentPlayer">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|No question for Pat +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p><p class="currentPlayer">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 12*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p><p class="currentPlayer">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Pat rolled a [.dice]#&#x2681;#
- and is not getting out of the penalty box +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p><p class="currentPlayer">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|No question for Pat +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p><p class="currentPlayer">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 13*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p><p class="currentPlayer">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Pat rolled a [.dice]#&#x2682;#
- and is getting out of penality box +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports"><p class="currentPlayer">[Pat] &#x2781;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[wrongAnswer]#&#x2718;#
-Pat incorrectly answered to Sports question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports"><p class="currentPlayer">[Pat] &#x2781;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 14*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports"><p class="">[Pat] &#x2781;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p><p class="currentPlayer">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Sue rolled a [.dice]#&#x2683;#
- +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock"><p class="currentPlayer">Sue &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports"><p class="">[Pat] &#x2781;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[rightAnswer]#&#x2714;#
-Sue correctly answered to Rock question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock"><p class="currentPlayer">Sue &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports"><p class="">[Pat] &#x2781;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 15*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock"><p class="">Sue &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports"><p class="">[Pat] &#x2781;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="currentPlayer">Chet &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Chet rolled a [.dice]#&#x2680;#
- +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock"><p class="">Sue &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports"><p class="">[Pat] &#x2781;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop"><p class="currentPlayer">Chet &#x2782;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[rightAnswer]#&#x2714;#
-Chet correctly answered to Pop question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock"><p class="">Sue &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports"><p class="">[Pat] &#x2781;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop"><p class="currentPlayer">Chet &#x2783;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 16*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock"><p class="">Sue &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports"><p class="currentPlayer">[Pat] &#x2781;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop"><p class="">Chet &#x2783;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Pat rolled a [.dice]#&#x2681;#
- and is not getting out of the penalty box +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock"><p class="">Sue &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports"><p class="currentPlayer">[Pat] &#x2781;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop"><p class="">Chet &#x2783;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|No question for Pat +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock"><p class="">Sue &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports"><p class="currentPlayer">[Pat] &#x2781;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop"><p class="">Chet &#x2783;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 17*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock"><p class="">Sue &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports"><p class="currentPlayer">[Pat] &#x2781;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop"><p class="">Chet &#x2783;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Pat rolled a [.dice]#&#x2684;#
- and is getting out of penality box +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock"><p class="currentPlayer">[Pat] &#x2781;</p></td></tr>
-<tr>
-<td class="rock"><p class="">Sue &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop"><p class="">Chet &#x2783;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[rightAnswer]#&#x2714;#
-Pat correctly answered to Rock question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock"><p class="currentPlayer">Pat &#x2782;</p></td></tr>
-<tr>
-<td class="rock"><p class="">Sue &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop"><p class="">Chet &#x2783;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 18*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock"><p class="">Pat &#x2782;</p></td></tr>
-<tr>
-<td class="rock"><p class="currentPlayer">Sue &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop"><p class="">Chet &#x2783;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Sue rolled a [.dice]#&#x2682;#
- +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports"><p class="currentPlayer">Sue &#x2783;</p></td><td class="rock"><p class="">Pat &#x2782;</p></td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop"><p class="">Chet &#x2783;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[rightAnswer]#&#x2714;#
-Sue correctly answered to Sports question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports"><p class="currentPlayer">Sue &#x2784;</p></td><td class="rock"><p class="">Pat &#x2782;</p></td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop"><p class="">Chet &#x2783;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 19*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports"><p class="">Sue &#x2784;</p></td><td class="rock"><p class="">Pat &#x2782;</p></td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop"><p class="currentPlayer">Chet &#x2783;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Chet rolled a [.dice]#&#x2680;#
- +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports"><p class="">Sue &#x2784;</p></td><td class="rock"><p class="">Pat &#x2782;</p></td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science"><p class="currentPlayer">Chet &#x2783;</p></td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[rightAnswer]#&#x2714;#
-Chet correctly answered to Science question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports"><p class="">Sue &#x2784;</p></td><td class="rock"><p class="">Pat &#x2782;</p></td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science"><p class="currentPlayer">Chet &#x2784;</p></td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 20*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports"><p class="">Sue &#x2784;</p></td><td class="rock"><p class="currentPlayer">Pat &#x2782;</p></td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science"><p class="">Chet &#x2784;</p></td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Pat rolled a [.dice]#&#x2680;#
- +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports"><p class="">Sue &#x2784;</p></td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">Pat &#x2782;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science"><p class="">Chet &#x2784;</p></td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[rightAnswer]#&#x2714;#
-Pat correctly answered to Pop question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports"><p class="">Sue &#x2784;</p></td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">Pat &#x2783;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science"><p class="">Chet &#x2784;</p></td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 21*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports"><p class="currentPlayer">Sue &#x2784;</p></td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Pat &#x2783;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science"><p class="">Chet &#x2784;</p></td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Sue rolled a [.dice]#&#x2681;#
- +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Pat &#x2783;</p><p class="currentPlayer">Sue &#x2784;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science"><p class="">Chet &#x2784;</p></td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[wrongAnswer]#&#x2718;#
-Sue incorrectly answered to Pop question +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Pat &#x2783;</p><p class="currentPlayer">[Sue] &#x2784;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science"><p class="">Chet &#x2784;</p></td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-*Turn 22*
-
-[.tableInline]
-[%autowidth, cols=3, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Pat &#x2783;</p><p class="">[Sue] &#x2784;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science"><p class="currentPlayer">Chet &#x2784;</p></td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Chet rolled a [.dice]#&#x2683;#
- +
-
-
-[.boardTitle]
-Board at the after move of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science"><p class="currentPlayer">Chet &#x2784;</p></td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Pat &#x2783;</p><p class="">[Sue] &#x2784;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|[rightAnswer]#&#x2714;#
-Chet correctly answered to Science question +
-*Chet wins the game !!!* +
-
-
-[.boardTitle]
-Board at the end of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science"><p class="currentPlayer">Chet &#x2785;</p></td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Pat &#x2783;</p><p class="">[Sue] &#x2784;</p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
-
-
-___
-
-Chet wins the game !!! +
 ++++
 <style>
 
