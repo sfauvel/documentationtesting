@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public abstract class DisplayDoc {
+
+    public boolean notAWinner = true;
+
     List<List<Runnable>> displayMethodsByGroup = new ArrayList<>();
 
     abstract void text(String text);

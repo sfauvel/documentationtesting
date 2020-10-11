@@ -3,6 +3,7 @@ package com.adaptionsoft.games.uglytrivia;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.sfvl.doctesting.ApprovalsBase;
+import org.sfvl.doctesting.DocAsTestBase;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -19,13 +20,11 @@ import java.util.stream.IntStream;
 @DisplayName("Explanations and examples")
 public class GameSvgTest extends ApprovalsBase {
 
-
     private static final int SQUARE_SIZE = 50;
     private static final int BOARD_SIZE = 12;
     private static final String TEMPO = "0.5s";
     private static int animationCounter = 0; // Need to be static to ensure unicity. It may needed to add class name.
-    private static int boardCounter = 0; // Need to be static to ensure unicity. It may needed to add class name.
-    private boolean notAWinner = true;
+
 
     class FakeGame extends Game {
 
@@ -127,7 +126,14 @@ public class GameSvgTest extends ApprovalsBase {
 
     }
 
-    class DisplayDocSvg extends DisplayDoc {
+    public static class DisplayDocSvg extends DisplayDoc {
+        private DocAsTestBase docAsTest;
+        private static int boardCounter = 0; // Need to be static to ensure unicity. It may needed to add class name.
+
+        public DisplayDocSvg(DocAsTestBase docAsTest) {
+            this.docAsTest = docAsTest;
+        }
+
         @Override
         public void displaySpecificMulti(FakeGame aGame) throws IOException {
 
@@ -276,7 +282,7 @@ public class GameSvgTest extends ApprovalsBase {
 
 
         private void svgWrite(String text) {
-            write(text);
+            docAsTest.write(text);
         }
 
 
@@ -377,7 +383,7 @@ public class GameSvgTest extends ApprovalsBase {
 
         @Override
         public void move(final Game aGame, final String player, int from, int playerHighLighted) {
-            write("\n\n");
+            svgWrite("\n\n");
             // showPoints(playerHighLighted);
 
             int to = aGame.places[playerHighLighted];
@@ -525,6 +531,23 @@ public class GameSvgTest extends ApprovalsBase {
         public void displayQuestionAskedMulti(FakeGame aGame, String currentPlayer, Supplier<Boolean> wrongAnswer) {
             displayQuestionAsked(aGame, currentPlayer, wrongAnswer);
         }
+
+        private void displayQuestionAsked(FakeGame aGame, String currentPlayer, Supplier<Boolean> wrongAnswer) {
+            if (aGame.ask) {
+                if (wrongAnswer.get()) {
+                    write(String.format("[wrongAnswer]#&#x2718;#\n%s incorrectly answered to %s question +\n", currentPlayer, aGame.currentCategory()));
+                    notAWinner = aGame.wrongAnswer();
+                } else {
+                    write(String.format("[rightAnswer]#&#x2714;#\n%s correctly answered to %s question +\n", currentPlayer, aGame.currentCategory()));
+                    notAWinner = aGame.wasCorrectlyAnswered();
+                }
+            } else {
+                write(String.format("No question for %s +\n", currentPlayer));
+            }
+            if (!notAWinner) {
+                write("*" + currentPlayer + " wins the game !!!* +\n");
+            }
+        }
     }
 
     /**
@@ -538,7 +561,7 @@ public class GameSvgTest extends ApprovalsBase {
 
         {
             write("== Normal move\n\n");
-            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(), new DisplayDocHtml())) {
+            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml())) {
 
                 final FakeGame aGame = startGame("Chet");
                 final int currentPlayerNumber = aGame.currentPlayer;
@@ -558,7 +581,7 @@ public class GameSvgTest extends ApprovalsBase {
             write("\n\nIf he reaches the end of the board, he continues by starting from the beginning\n\n");
 
 
-            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(), new DisplayDocHtml())) {
+            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml())) {
 
                 final FakeGame aGame = startGame("Chet");
                 final int currentPlayerNumber = aGame.currentPlayer;
@@ -588,7 +611,7 @@ public class GameSvgTest extends ApprovalsBase {
     @DisplayName("Player score")
     public void player_scores() throws Exception {
 
-        for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(), new DisplayDocHtml())) {
+        for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml())) {
 
             final FakeGame aGame = startGame("Chet");
 
@@ -607,7 +630,7 @@ public class GameSvgTest extends ApprovalsBase {
      */
     @Test
     public void win_the_game() throws Exception {
-        for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(), new DisplayDocHtml())) {
+        for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml())) {
 
             final FakeGame aGame = startGame("Chet");
             aGame.wasCorrectlyAnswered();
@@ -634,7 +657,7 @@ public class GameSvgTest extends ApprovalsBase {
     public void jail() throws Exception {
         {
             write("== Got to jail\n\n");
-            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(), new DisplayDocHtml())) {
+            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml())) {
 
                 final FakeGame aGame = startGame("Chet");
 
@@ -646,7 +669,7 @@ public class GameSvgTest extends ApprovalsBase {
         {
             write("== Need an odd number to move\n\n");
 
-            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(), new DisplayDocHtml())) {
+            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml())) {
 
                 final FakeGame aGame = startGame("Chet");
                 aGame.roll(1);
@@ -662,7 +685,7 @@ public class GameSvgTest extends ApprovalsBase {
         {
             write("== Get out of jail\n\n");
             write("When player correctly answer to a question, he goes out of jail.\n\n");
-            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(), new DisplayDocHtml())) {
+            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml())) {
 
                 final FakeGame aGame = startGame("Chet");
                 aGame.wrongAnswer();
@@ -688,7 +711,7 @@ public class GameSvgTest extends ApprovalsBase {
         {
             write("== Need an odd number to move\n\n");
 
-            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(), new DisplayDocHtml())) {
+            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml())) {
 
                 final FakeGame aGame = startGame("Chet");
                 aGame.roll(3);
@@ -716,7 +739,7 @@ public class GameSvgTest extends ApprovalsBase {
 //        {
 //            write("&nbsp; +\n");
 //
-//            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg()/*, new DisplayDocHtml()*/)) {
+//            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this)/*, new DisplayDocHtml()*/)) {
 //
 //                final FakeGame aGame = startGame("Chet");
 //                Random rand = new Random(12345);
@@ -738,7 +761,7 @@ public class GameSvgTest extends ApprovalsBase {
         {
             write("&nbsp; +\n");
 
-            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(), new DisplayDocHtml() {
+            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml() {
                 public void displaySpecificMulti(FakeGame aGame) throws IOException {
                     displayMethodsByGroup.get(0).get(0).run();
                 }
@@ -750,14 +773,14 @@ public class GameSvgTest extends ApprovalsBase {
                 final Supplier<Integer> rollSupplier = () -> rand.nextInt(5) + 1;
                 final Supplier<Boolean> wrongAnswer = () -> rand.nextInt(9) == 7;
                 displayDoc.addAll(Arrays.asList(() -> {
-                    notAWinner = true;
+                    displayDoc.notAWinner = true;
                     int tour = 1;
                     do {
                         final List<Runnable> runnables = displayDoc.displayOneTurnMulti(aGame, rollSupplier.get(), wrongAnswer);
                         write("*Turn " + tour++ + "*\n\n");
                         displayDoc.displayGroup(aGame, runnables);
                         write("\n\n___\n\n");
-                    } while (notAWinner);
+                    } while (displayDoc.notAWinner);
                 }));
                 System.out.println("displayDoc.display(aGame);");
                 displayDoc.display(aGame);
@@ -799,22 +822,7 @@ public class GameSvgTest extends ApprovalsBase {
                 .collect(Collectors.joining("\n")));
     }
 
-    private void displayQuestionAsked(FakeGame aGame, String currentPlayer, Supplier<Boolean> wrongAnswer) {
-        if (aGame.ask) {
-            if (wrongAnswer.get()) {
-                write(String.format("[wrongAnswer]#&#x2718;#\n%s incorrectly answered to %s question +\n", currentPlayer, aGame.currentCategory()));
-                notAWinner = aGame.wrongAnswer();
-            } else {
-                write(String.format("[rightAnswer]#&#x2714;#\n%s correctly answered to %s question +\n", currentPlayer, aGame.currentCategory()));
-                notAWinner = aGame.wasCorrectlyAnswered();
-            }
-        } else {
-            write(String.format("No question for %s +\n", currentPlayer));
-        }
-        if (!notAWinner) {
-            write("*" + currentPlayer + " wins the game !!!* +\n");
-        }
-    }
+
 
 
 
