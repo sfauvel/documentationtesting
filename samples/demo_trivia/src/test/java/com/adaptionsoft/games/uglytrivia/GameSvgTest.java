@@ -56,7 +56,7 @@ public class GameSvgTest extends ApprovalsBase {
     }
 
 
-    abstract class DisplayDoc {
+    public static abstract class DisplayDoc {
         List<List<Runnable>> displayMethodsByGroup = new ArrayList<>();
 
         abstract void text(String text);
@@ -156,7 +156,36 @@ public class GameSvgTest extends ApprovalsBase {
             write("\n\n");
             // showPoints(playerHighLighted);
 
-            movePlayerSvg("playerA", from, aGame.places[playerHighLighted]);
+            int to = aGame.places[playerHighLighted];
+            if (to < from) {
+                to += BOARD_SIZE;
+            }
+            for (int i = from + 1; i <= to; i++) {
+                movePlayerSvg("playerA", new Position(i % BOARD_SIZE));
+            }
+        }
+
+        private void movePlayerSvg(final String player, Position position) {
+
+            int x = position.getX();
+            int y = position.getY();
+
+            int lastAnimation;
+            int currentAnimation;
+
+            lastAnimation = animationCounter;
+            animationCounter++;
+            currentAnimation = animationCounter;
+            svgWrite("<animate id=\"b" + boardCounter + "_anim" + currentAnimation + "\"" +
+                    " xlink:href=\"#b" + boardCounter + "_" + player + "\"" +
+                    " begin=\"b" + boardCounter + "_anim" + lastAnimation + ".end\"" +
+                    " attributeName=\"x\" to=\"" + x + "\"" +
+                    " dur=\"" + TEMPO + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+            svgWrite("<animate " +
+                    " xlink:href=\"#b" + boardCounter + "_" + player + "\"" +
+                    " begin=\"b" + boardCounter + "_anim" + lastAnimation + ".end\"" +
+                    " attributeName=\"y\" to=\"" + y + "\"" +
+                    " dur=\"" + TEMPO + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
         }
 
         public void showPoints(int player) {
@@ -166,7 +195,19 @@ public class GameSvgTest extends ApprovalsBase {
 
         @Override
         public void roll(FakeGame aGame, int roll) {
-            displayRollDiceSvgXXX(aGame, roll);
+
+            final int currentPlayerNumber = aGame.currentPlayer;
+            final boolean wasInPenaltyBox = aGame.inPenaltyBox[currentPlayerNumber];
+            final String currentPlayer = (String) aGame.players.get(currentPlayerNumber);
+            final int from = aGame.places[currentPlayerNumber];
+
+            showAndHideTextSvg(currentPlayer + " rolled a " + roll);
+
+            aGame.roll(roll);
+            if (wasInPenaltyBox) {
+                showAndHideTextSvg(aGame.isGettingOutOfPenaltyBox ? " and is getting out of penality box" : " and is not getting out of the penalty box");
+            }
+
         }
 
         @Override
@@ -195,12 +236,65 @@ public class GameSvgTest extends ApprovalsBase {
 
         @Override
         public void move(final Game aGame, final String player, int from, int playerHighLighted) {
-            displayPosition(aGame, "start", playerHighLighted);
+
+            final int columns = BOARD_SIZE;
+
+            write(String.format("[.boardTitle]\nBoard at the %s of the turn\n\n++++\n\n<table class=\"triviaBoard\">\n", "start"));
+
+            Function<Integer, String> tdPosition = position -> String.format("<td class=\"%s\">%s</td>",
+                    aGame.category(position).toLowerCase(),
+                    formatPlayers(getListPlayerAt(aGame, position, playerHighLighted), ""));
+
+            int position = 0;
+            write("<tr>\n");
+            write(tdPosition.apply(0));
+            write(tdPosition.apply(1));
+            write(tdPosition.apply(2));
+            write(tdPosition.apply(3));
+            write("</tr>\n");
+
+            write("<tr>\n");
+            write(tdPosition.apply(11));
+            write("<td>&nbsp;</td>");
+            write("<td>&nbsp;</td>");
+            write(tdPosition.apply(4));
+            write("</tr>\n");
+
+            write("<tr>\n");
+            write(tdPosition.apply(10));
+            write("<td>&nbsp;</td>");
+            write("<td>&nbsp;</td>");
+            write(tdPosition.apply(5));
+            write("</tr>\n");
+
+            write("<tr>\n");
+            write(tdPosition.apply(9));
+            write(tdPosition.apply(8));
+            write(tdPosition.apply(7));
+            write(tdPosition.apply(6));
+            write("</tr>\n");
+
+//        write("<tr>\n"+IntStream.range(0, columns)
+//                .mapToObj(String.format("<td class=\"%s\">%s</td>",
+//                        aGame.category(position).toLowerCase(),
+//                        getListPlayerAt(aGame, position, playerHighLighted).stream().collect(Collectors.joining("")))
+//                + "\n</tr>\n"));
+            write("</table>\n\n++++\n\n");
         }
 
         @Override
         public void roll(FakeGame aGame, int roll) {
-            displayRollDice(aGame, roll);
+
+            final int currentPlayerNumber = aGame.currentPlayer;
+            final boolean wasInPenaltyBox = aGame.inPenaltyBox[currentPlayerNumber];
+            final String currentPlayer = (String) aGame.players.get(currentPlayerNumber);
+
+            write(currentPlayer + " rolled a " + dice(roll));
+            aGame.roll(roll);
+            if (wasInPenaltyBox) {
+                write(aGame.isGettingOutOfPenaltyBox ? " and is getting out of penality box" : " and is not getting out of the penalty box");
+            }
+            write(" +\n");
         }
 
         @Override
@@ -697,38 +791,6 @@ public class GameSvgTest extends ApprovalsBase {
                 " attributeName=\"opacity\" from=\"1\" to=\"0\" dur=\"" + "0.2s" + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
     }
 
-    private void movePlayerSvg(final String player, int from, int to) {
-        if (to < from) {
-            to += BOARD_SIZE;
-        }
-        for (int i = from + 1; i <= to; i++) {
-            movePlayerSvg(player, new Position(i % BOARD_SIZE));
-        }
-    }
-
-    private void movePlayerSvg(final String player, Position position) {
-
-        int x = position.getX();
-        int y = position.getY();
-
-        int lastAnimation;
-        int currentAnimation;
-
-        lastAnimation = animationCounter;
-        animationCounter++;
-        currentAnimation = animationCounter;
-        svgWrite("<animate id=\"b" + boardCounter + "_anim" + currentAnimation + "\"" +
-                " xlink:href=\"#b" + boardCounter + "_" + player + "\"" +
-                " begin=\"b" + boardCounter + "_anim" + lastAnimation + ".end\"" +
-                " attributeName=\"x\" to=\"" + x + "\"" +
-                " dur=\"" + TEMPO + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
-        svgWrite("<animate " +
-                " xlink:href=\"#b" + boardCounter + "_" + player + "\"" +
-                " begin=\"b" + boardCounter + "_anim" + lastAnimation + ".end\"" +
-                " attributeName=\"y\" to=\"" + y + "\"" +
-                " dur=\"" + TEMPO + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
-    }
-
     private void displayTextSvg(int text, String id) {
         displayTextSvg(Integer.toString(text), id);
     }
@@ -757,56 +819,6 @@ public class GameSvgTest extends ApprovalsBase {
     private void addStyleSheet() throws IOException {
         write(Files.lines(Paths.get("src", "test", "resources", "style.css"))
                 .collect(Collectors.joining("\n")));
-    }
-
-    private void displayOneTurn(FakeGame aGame, String currentPlayer, Supplier<Integer> rollSupplier, Supplier<Boolean> wrongAnswer) {
-        final int roll = rollSupplier.get();
-
-        final int currentPlayerNumber = aGame.currentPlayer;
-
-        aGame.ask = false;
-        displayInLine(
-                () -> {
-                    write("[.tableHeader]#Start of the turn#\n");
-                    write("\n\n");
-                    displayPosition(aGame, "start", currentPlayerNumber);
-                },
-                () -> {
-                    displayRollDice(aGame, roll);
-                    write("\n\n");
-                    displayPosition(aGame, "after move", currentPlayerNumber);
-                },
-                () -> {
-                    displayQuestionAsked(aGame, currentPlayer, wrongAnswer);
-                    write("\n\n");
-                    displayPosition(aGame, "end", currentPlayerNumber);
-                }
-        );
-    }
-
-    private void displayOneTurnSvg(FakeGame aGame, String currentPlayer, Supplier<Integer> rollSupplier, Supplier<Boolean> wrongAnswer) throws IOException {
-        final int roll = rollSupplier.get();
-
-        final int currentPlayerNumber = aGame.currentPlayer;
-
-        aGame.ask = false;
-        displayInLine(
-                () -> {
-                    write("[.tableHeader]#Start of the turn#\n");
-                    write("\n\n");
-                    displayPosition(aGame, "start", currentPlayerNumber);
-                },
-                () -> {
-                    displayRollDice(aGame, roll);
-                    write("\n\n");
-                    displayPosition(aGame, "after move", currentPlayerNumber);
-                },
-                () -> {
-                    displayQuestionAsked(aGame, currentPlayer, wrongAnswer);
-                    write("\n\n");
-                    displayPosition(aGame, "end", currentPlayerNumber);
-                }
-        );
     }
 
     private void displayQuestionAsked(FakeGame aGame, String currentPlayer, Supplier<Boolean> wrongAnswer) {
@@ -872,179 +884,12 @@ public class GameSvgTest extends ApprovalsBase {
         }
     }
 
-    private void displayRollDice(FakeGame aGame, int roll) {
-
-        final int currentPlayerNumber = aGame.currentPlayer;
-        final boolean wasInPenaltyBox = aGame.inPenaltyBox[currentPlayerNumber];
-        final String currentPlayer = (String) aGame.players.get(currentPlayerNumber);
-
-        write(currentPlayer + " rolled a " + dice(roll));
-        aGame.roll(roll);
-        if (wasInPenaltyBox) {
-            write(aGame.isGettingOutOfPenaltyBox ? " and is getting out of penality box" : " and is not getting out of the penalty box");
-        }
-        write(" +\n");
-    }
-
-    private void displayRollDiceSvg(FakeGame aGame, int roll) {
-
-        final int currentPlayerNumber = aGame.currentPlayer;
-        final boolean wasInPenaltyBox = aGame.inPenaltyBox[currentPlayerNumber];
-        final String currentPlayer = (String) aGame.players.get(currentPlayerNumber);
-        final int from = aGame.places[currentPlayerNumber];
-
-        showAndHideTextSvg(currentPlayer + " rolled a " + roll);
-
-        aGame.roll(roll);
-        if (wasInPenaltyBox) {
-            showAndHideTextSvg(aGame.isGettingOutOfPenaltyBox ? " and is getting out of penality box" : " and is not getting out of the penalty box");
-        }
-        movePlayerSvg("playerA", from, aGame.places[currentPlayerNumber]);
-    }
-
-    private void displayRollDiceSvgXXX(FakeGame aGame, int roll) {
-
-        final int currentPlayerNumber = aGame.currentPlayer;
-        final boolean wasInPenaltyBox = aGame.inPenaltyBox[currentPlayerNumber];
-        final String currentPlayer = (String) aGame.players.get(currentPlayerNumber);
-        final int from = aGame.places[currentPlayerNumber];
-
-        showAndHideTextSvg(currentPlayer + " rolled a " + roll);
-
-        aGame.roll(roll);
-        if (wasInPenaltyBox) {
-            showAndHideTextSvg(aGame.isGettingOutOfPenaltyBox ? " and is getting out of penality box" : " and is not getting out of the penalty box");
-        }
-
-    }
-
-
-    private void displayCategories(Game aGame) {
-        final String line = IntStream.range(0, BOARD_SIZE)
-                .mapToObj(i -> aGame.category(i))
-                .distinct()
-                .map(category -> String.format("* [%s]#%s#", category.toLowerCase(), category))
-                .collect(Collectors.joining("\n"));
-
-        write("Categories :\n\n" + line + "\n\n");
-    }
-
-    private void displayPosition(Game aGame, String startOrEnd, int playerHighLighted) {
-
-        final int columns = BOARD_SIZE;
-
-        write(String.format("[.boardTitle]\nBoard at the %s of the turn\n\n++++\n\n<table class=\"triviaBoard\">\n", startOrEnd));
-
-        Function<Integer, String> tdPosition = position -> String.format("<td class=\"%s\">%s</td>",
-                aGame.category(position).toLowerCase(),
-                formatPlayers(getListPlayerAt(aGame, position, playerHighLighted), ""));
-
-        int position = 0;
-        write("<tr>\n");
-        write(tdPosition.apply(0));
-        write(tdPosition.apply(1));
-        write(tdPosition.apply(2));
-        write(tdPosition.apply(3));
-        write("</tr>\n");
-
-        write("<tr>\n");
-        write(tdPosition.apply(11));
-        write("<td>&nbsp;</td>");
-        write("<td>&nbsp;</td>");
-        write(tdPosition.apply(4));
-        write("</tr>\n");
-
-        write("<tr>\n");
-        write(tdPosition.apply(10));
-        write("<td>&nbsp;</td>");
-        write("<td>&nbsp;</td>");
-        write(tdPosition.apply(5));
-        write("</tr>\n");
-
-        write("<tr>\n");
-        write(tdPosition.apply(9));
-        write(tdPosition.apply(8));
-        write(tdPosition.apply(7));
-        write(tdPosition.apply(6));
-        write("</tr>\n");
-
-//        write("<tr>\n"+IntStream.range(0, columns)
-//                .mapToObj(String.format("<td class=\"%s\">%s</td>",
-//                        aGame.category(position).toLowerCase(),
-//                        getListPlayerAt(aGame, position, playerHighLighted).stream().collect(Collectors.joining("")))
-//                + "\n</tr>\n"));
-        write("</table>\n\n++++\n\n");
-    }
-
     private String formatPlayers(List<String> listPlayerAt, String separator) {
         if (listPlayerAt.isEmpty()) {
             return "&nbsp;";
         }
 
         return listPlayerAt.stream().collect(Collectors.joining(separator));
-    }
-
-    private void displayPositionXX(Game aGame, String startOrEnd, int playerHighLighted) throws IOException {
-//        write("[%autowidth]\n|====\n");
-        final int columns = BOARD_SIZE;
-//        write("Board :\n[cols=\"BOARD_SIZE*a\"]\n|====\n");
-//        write(IntStream.range(0, columns)
-//                .mapToObj(position -> String.format("[.%s.%s]\n%s", aGame.category(position).toLowerCase(), "boardHeader", position))
-//                .collect(Collectors.joining("\n| ", "| ", ""))
-//                + "\n"
-//        );
-//
-//        write(IntStream.range(0, columns)
-//                .mapToObj(position -> String.format("[.%s]\n%s",
-//                        aGame.category(position).toLowerCase(),
-//                        getListPlayerAt(aGame, position).stream().collect(Collectors.joining(" +\n")))+"&nbsp;\n")
-//                .collect(Collectors.joining(" | ", "| ", ""))
-//                + "\n"
-//        );
-//        write("|====\n");
-
-        write(String.format("[.boardTitle]\nBoard at the %s of the turn\n\n++++\n\n<table class=\"triviaBoard\">\n", startOrEnd));
-        write("<tr>\n" + IntStream.range(0, columns)
-                .mapToObj(position -> String.format("<td class=\"%s %s\">%s</td>", aGame.category(position).toLowerCase(), "boardHeader", position))
-                .collect(Collectors.joining("\n"))
-                + "\n</tr>\n"
-        );
-
-        write("<tr>\n" + IntStream.range(0, columns)
-                .mapToObj(position -> String.format("<td class=\"%s\">%s</td>",
-                        aGame.category(position).toLowerCase(),
-                        formatPlayers(getListPlayerAt(aGame, position, playerHighLighted), "")))
-                .collect(Collectors.joining("\n"))
-                + "\n</tr>\n"
-        );
-        write("</table>\n\n++++\n\n");
-    }
-
-    private void displayPlayers(Game aGame) throws IOException {
-        write("Players : ");
-        write(formatPlayers(aGame.players, ", ")
-                + "\n\n"
-        );
-    }
-
-    private void displayScores(Game aGame) throws IOException {
-        write("Score :\n[%autowidth]\n|====\n");
-        write("| Player " + IntStream.range(0, aGame.howManyPlayers())
-                .mapToObj(Integer::toString)
-                .collect(Collectors.joining(" | ", "| ", ""))
-                + "\n"
-        );
-        write("| Name " + aGame.players.stream()
-                .collect(Collectors.joining(" | ", "| ", ""))
-                + "\n"
-        );
-        write("| Gold " + Arrays.stream(aGame.purses)
-                .mapToObj(Integer::toString)
-                .collect(Collectors.joining(" | ", "| ", ""))
-                + "\n"
-        );
-        write("|====\n");
-
     }
 
     private List<String> getListPlayerAt(Game aGame, int position, int playerHighLighted) {
