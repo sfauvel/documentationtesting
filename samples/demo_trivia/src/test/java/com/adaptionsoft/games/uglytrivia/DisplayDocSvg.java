@@ -58,9 +58,9 @@ public class DisplayDocSvg extends DisplayDoc {
         final int firstAnimateCounter = animationCounter;
         boardCounter++;
 
-        svgWrite("++++\n\n");
+        write("++++\n\n");
 
-        svgWrite("<svg version=\"1.1\" " +
+        write("<svg version=\"1.1\" " +
                 "xmlns=\"http://www.w3.org/2000/svg\" " +
                 "xmlns:xlink=\"http://www.w3.org/1999/xlink\" " +
                 "width=\"" + SVG_WIDTH + "\" " +
@@ -68,12 +68,12 @@ public class DisplayDocSvg extends DisplayDoc {
                 ">\n");
 
 
-        svgWrite("<rect x=\"0\" y=\"0\" width=\"" + SVG_WIDTH + "\" height=\"200\" fill=\"white\" stroke=\"black\" stroke-width=\"1\" />\n");
-        svgWrite("");
+        write("<rect x=\"0\" y=\"0\" width=\"" + SVG_WIDTH + "\" height=\"200\" fill=\"white\" stroke=\"black\" stroke-width=\"1\" />\n");
+        write("");
 
         for (int caseNumber = 0; caseNumber < GameSvgTest.BOARD_SIZE; caseNumber++) {
             final Position position = new Position(caseNumber);
-            svgWrite(displayCase(position.getX(), position.getY(), aGame.category(caseNumber).toLowerCase()));
+            write(displayCase(position.getX(), position.getY(), aGame.category(caseNumber).toLowerCase()));
         }
 
         svgWritePlayer(aGame);
@@ -85,27 +85,27 @@ public class DisplayDocSvg extends DisplayDoc {
             displayMethod.run();
         }
 
-        svgWrite("<text id=\"b" + boardCounter + "_text1\" x=\"50%\" y=\"50%\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"Verdana\" font-size=\"25\" opacity=\"1\">" +
+        write("<text id=\"b" + boardCounter + "_text1\" x=\"50%\" y=\"50%\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"Verdana\" font-size=\"25\" opacity=\"1\">" +
                 "<set begin=\"b" + boardCounter + "_anim" + firstAnimateCounter + ".begin\" attributeName=\"opacity\" to=\"0\" repeatCount=\"1\" fill=\"freeze\"/>" +
                 "<set begin=\"b" + boardCounter + "_anim" + animationCounter + ".end + 1s\" attributeName=\"opacity\" to=\"1\" repeatCount=\"1\" fill=\"freeze\"/>" +
                 "Click to start" +
                 "</text>\n");
 
 
-        svgWrite("<rect x=\"0\" y=\"0\" width=\"" + SVG_WIDTH + "\" height=\"" + SVG_HEIGHT + "\" opacity=\"0.1\">\n");
-        svgWrite("  <animate id=\"b" + boardCounter + "_anim" + firstAnimateCounter + "\" begin=\"click\" attributeName=\"x\" from=\"0\" to=\"0\" dur=\"0.01s\" repeatCount=\"1\" fill=\"freeze\"/>\n");
-        svgWrite("  <set begin=\"b" + boardCounter + "_anim" + firstAnimateCounter + ".begin\" attributeName=\"width\" to=\"50\" repeatCount=\"1\" fill=\"freeze\"/>\n");
-        svgWrite("  <set begin=\"b" + boardCounter + "_anim" + firstAnimateCounter + ".begin\" attributeName=\"height\" to=\"50\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+        write("<rect x=\"0\" y=\"0\" width=\"" + SVG_WIDTH + "\" height=\"" + SVG_HEIGHT + "\" opacity=\"0.1\">\n");
+        write("  <animate id=\"b" + boardCounter + "_anim" + firstAnimateCounter + "\" begin=\"click\" attributeName=\"x\" from=\"0\" to=\"0\" dur=\"0.01s\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+        write("  <set begin=\"b" + boardCounter + "_anim" + firstAnimateCounter + ".begin\" attributeName=\"width\" to=\"50\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+        write("  <set begin=\"b" + boardCounter + "_anim" + firstAnimateCounter + ".begin\" attributeName=\"height\" to=\"50\" repeatCount=\"1\" fill=\"freeze\"/>\n");
 
-        svgWrite("  <animate id=\"b" + boardCounter + "_animEnd\" begin=\"b" + boardCounter + "_anim" + animationCounter + ".end + 1s\" attributeName=\"x\" from=\"0\" to=\"0\" dur=\"0.01s\" repeatCount=\"1\" fill=\"freeze\"/>\n");
-        svgWrite("  <set begin=\"b" + boardCounter + "_anim" + animationCounter + ".end + 1s\" attributeName=\"width\" to=\"" + SVG_WIDTH + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
-        svgWrite("  <set begin=\"b" + boardCounter + "_anim" + animationCounter + ".end + 1s\" attributeName=\"height\" to=\"" + SVG_HEIGHT + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+        write("  <animate id=\"b" + boardCounter + "_animEnd\" begin=\"b" + boardCounter + "_anim" + animationCounter + ".end + 1s\" attributeName=\"x\" from=\"0\" to=\"0\" dur=\"0.01s\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+        write("  <set begin=\"b" + boardCounter + "_anim" + animationCounter + ".end + 1s\" attributeName=\"width\" to=\"" + SVG_WIDTH + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+        write("  <set begin=\"b" + boardCounter + "_anim" + animationCounter + ".end + 1s\" attributeName=\"height\" to=\"" + SVG_HEIGHT + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
 
-        svgWrite("</rect>\n");
+        write("</rect>\n");
 
         displayStyleSvg();
-        svgWrite("</svg>\n\n");
-        svgWrite("++++\n\n");
+        write("</svg>\n\n");
+        write("++++\n\n");
 
 //        write(String.format("image:%s[width=%d,height=200,opts=interactive]\n\n", filename, SVG_WIDTH));
     }
@@ -125,14 +125,14 @@ public class DisplayDocSvg extends DisplayDoc {
 
 
     private void displayStyleSvg() {
-        svgWrite("<style>\n");
-        svgWrite("text {\n");
-        svgWrite("font-size: 30px;\n");
-        svgWrite("font-weight: bold;\n");
-        svgWrite("fill: black;\n");
+        write("<style>\n");
+        write("text {\n");
+        write("font-size: 30px;\n");
+        write("font-weight: bold;\n");
+        write("fill: black;\n");
 //            fileWriterWrite("stroke: white;\n");
 //            fileWriterWrite("stroke-width: 1px;\n");
-        svgWrite("</style>\n");
+        write("</style>\n");
     }
 
 
@@ -144,18 +144,18 @@ public class DisplayDocSvg extends DisplayDoc {
                 p);
 
         final Position position = new Position(aGame.places[aGame.currentPlayer]);
-        svgWrite("<svg id=\"b" + boardCounter + "_playerA\" x=\"" + position.getX() + "\" y=\"" + position.getY() + "\"  ><g>\n");
-        svgWrite("<circle opacity=\"1\" cx=\"" + (GameSvgTest.SQUARE_SIZE / 2) + "\" cy=\"" + (GameSvgTest.SQUARE_SIZE / 2) + "\" r=\"15\" fill=\"grey\" stroke=\"black\" stroke-width=\"1\">\n");
-        svgWrite("</circle>\n");
-        IntStream.rangeClosed(0, 6).forEach(p -> svgWrite(point.apply(p)));
+        write("<svg id=\"b" + boardCounter + "_playerA\" x=\"" + position.getX() + "\" y=\"" + position.getY() + "\"  ><g>\n");
+        write("<circle opacity=\"1\" cx=\"" + (GameSvgTest.SQUARE_SIZE / 2) + "\" cy=\"" + (GameSvgTest.SQUARE_SIZE / 2) + "\" r=\"15\" fill=\"grey\" stroke=\"black\" stroke-width=\"1\">\n");
+        write("</circle>\n");
+        IntStream.rangeClosed(0, 6).forEach(p -> write(point.apply(p)));
 
-        svgWrite(String.format("<rect id=\"b%d_playerA_jail\" x=\"8\" y=\"8\" width=\"34\" height=\"34\" fill=none stroke=\"black\" stroke-width=\"5\" opacity=\"%d\"/>\n",
+        write(String.format("<rect id=\"b%d_playerA_jail\" x=\"8\" y=\"8\" width=\"34\" height=\"34\" fill=none stroke=\"black\" stroke-width=\"5\" opacity=\"%d\"/>\n",
                 boardCounter, aGame.inPenaltyBox[aGame.currentPlayer] ? 1 : 0));
 
-        svgWrite("</g>");
-        svgWrite("<set begin=\"b" + boardCounter + "_animEnd.end\" attributeName=\"x\" to=\"" + position.getX() + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
-        svgWrite("<set begin=\"b" + boardCounter + "_animEnd.end\" attributeName=\"y\" to=\"" + position.getY() + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
-        svgWrite("</svg>\n");
+        write("</g>");
+        write("<set begin=\"b" + boardCounter + "_animEnd.end\" attributeName=\"x\" to=\"" + position.getX() + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+        write("<set begin=\"b" + boardCounter + "_animEnd.end\" attributeName=\"y\" to=\"" + position.getY() + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+        write("</svg>\n");
 
 //        fileWriterWrite("<set xlink:href=\"#b" + boardCounter + "_playerA_0\"  attributeName=\"opacity\" to=\"1\" repeatCount=\"1\" fill=\"freeze\"/>\n");
 
@@ -166,18 +166,18 @@ public class DisplayDocSvg extends DisplayDoc {
     }
 
 
-    private void svgWrite(String text) {
+    private void write(String text) {
         docAsTest.write(text);
     }
 
 
     private void showAndHideTextSvg(String text) {
-        svgWrite("<text x=\"50%\" y=\"50%\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"Verdana\" font-size=\"25\" opacity=\"0\">" +
+        write("<text x=\"50%\" y=\"50%\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"Verdana\" font-size=\"25\" opacity=\"0\">" +
                 text);
 
         showAndHideTextSvg();
 
-        svgWrite("</text>\n");
+        write("</text>\n");
 
     }
 
@@ -186,18 +186,35 @@ public class DisplayDocSvg extends DisplayDoc {
         int currentAnimation;
 
         lastAnimation = animationCounter;
-        animationCounter++;
-        currentAnimation = animationCounter;
-        svgWrite("<animate id=\"b" + boardCounter + "_anim" + currentAnimation + "\"" +
-                " begin=\"b" + boardCounter + "_anim" + lastAnimation + ".end\"" +
-                " attributeName=\"opacity\" from=\"0\" to=\"1\" dur=\"" + "0.2s" + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+        writeAnim(
+                "b" + boardCounter + "_anim" + lastAnimation + ".end",
+                "opacity",
+                "0",
+                "1",
+                "0.2s");
 
         lastAnimation = animationCounter;
+        writeAnim(
+                "b" + boardCounter + "_anim" + lastAnimation + ".end + 1s",
+                "opacity",
+                "1",
+                "0",
+                "0.2s");
+
+    }
+
+    private void writeAnim(String begin, String attribute, String from, String to, String duration) {
+
         animationCounter++;
-        currentAnimation = animationCounter;
-        svgWrite("<animate id=\"b" + boardCounter + "_anim" + currentAnimation + "\"" +
-                " begin=\"b" + boardCounter + "_anim" + lastAnimation + ".end + " + "1s" + "\"" +
-                " attributeName=\"opacity\" from=\"1\" to=\"0\" dur=\"" + "0.2s" + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+
+        String id = "b" + boardCounter + "_anim" + animationCounter;
+        write("<animate id=\"" + id + "\"" +
+                " begin=\"" + begin + "\"" +
+                " attributeName=\"" + attribute + "\"" +
+                " from=\"" + from + "\"" +
+                " to=\"" + to + "\"" +
+                " dur=\"" + duration + "\"" +
+                " repeatCount=\"1\" fill=\"freeze\"/>\n");
     }
 
     private void displayTextSvg(int text, String id) {
@@ -205,7 +222,7 @@ public class DisplayDocSvg extends DisplayDoc {
     }
 
     private void displayTextSvg(String text, String id) {
-        svgWrite("<text id=\"b" + boardCounter + "_" +
+        write("<text id=\"b" + boardCounter + "_" +
                 id +
                 "\" x=\"50%\" y=\"50%\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"Verdana\" font-size=\"25\" opacity=\"0\">" +
                 text +
@@ -240,7 +257,7 @@ public class DisplayDocSvg extends DisplayDoc {
     }
 
     private void displayPenalityBox(GameSvgTest.FakeGame aGame, String idToBegin) {
-        svgWrite(String.format("<set xlink:href=\"#b%d_playerA_jail\" begin=\"" + idToBegin + "\" attributeName=\"opacity\" to=\"%d\" repeatCount=\"1\" fill=\"freeze\"/>\n",
+        write(String.format("<set xlink:href=\"#b%d_playerA_jail\" begin=\"" + idToBegin + "\" attributeName=\"opacity\" to=\"%d\" repeatCount=\"1\" fill=\"freeze\"/>\n",
                 boardCounter,
                 aGame.inPenaltyBox[aGame.currentPlayer] ? 1 : 0));
     }
@@ -249,7 +266,7 @@ public class DisplayDocSvg extends DisplayDoc {
         for (int i = 0; i < aGame.players.size(); i++) {
             final int playerToDisplay = i;
             IntStream.rangeClosed(0, 6).forEach(p -> {
-                svgWrite(String.format("<set xlink:href=\"#b%d_playerA_%d\" begin=\"" + idToBegin + "\" attributeName=\"opacity\" to=\"%d\" repeatCount=\"1\" fill=\"freeze\"/>\n",
+                write(String.format("<set xlink:href=\"#b%d_playerA_%d\" begin=\"" + idToBegin + "\" attributeName=\"opacity\" to=\"%d\" repeatCount=\"1\" fill=\"freeze\"/>\n",
                         boardCounter,
                         p,
                         aGame.purses[playerToDisplay] == p ? 1 : 0));
@@ -270,7 +287,7 @@ public class DisplayDocSvg extends DisplayDoc {
 
     @Override
     public void move(final Game aGame, final String player, int from, int playerHighLighted) {
-        svgWrite("\n\n");
+        write("\n\n");
         // showPoints(playerHighLighted);
 
         int to = aGame.places[playerHighLighted];
@@ -293,12 +310,12 @@ public class DisplayDocSvg extends DisplayDoc {
         lastAnimation = animationCounter;
         animationCounter++;
         currentAnimation = animationCounter;
-        svgWrite("<animate id=\"b" + boardCounter + "_anim" + currentAnimation + "\"" +
+        write("<animate id=\"b" + boardCounter + "_anim" + currentAnimation + "\"" +
                 " xlink:href=\"#b" + boardCounter + "_" + player + "\"" +
                 " begin=\"b" + boardCounter + "_anim" + lastAnimation + ".end\"" +
                 " attributeName=\"x\" to=\"" + x + "\"" +
                 " dur=\"" + GameSvgTest.TEMPO + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
-        svgWrite("<animate " +
+        write("<animate " +
                 " xlink:href=\"#b" + boardCounter + "_" + player + "\"" +
                 " begin=\"b" + boardCounter + "_anim" + lastAnimation + ".end\"" +
                 " attributeName=\"y\" to=\"" + y + "\"" +
@@ -306,7 +323,7 @@ public class DisplayDocSvg extends DisplayDoc {
     }
 
     public void showPoints(int player) {
-        svgWrite("<set begin=\"b" + boardCounter + "_anim" + animationCounter + ".begin\" attributeName=\"opacity\" to=\"1\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+        write("<set begin=\"b" + boardCounter + "_anim" + animationCounter + ".begin\" attributeName=\"opacity\" to=\"1\" repeatCount=\"1\" fill=\"freeze\"/>\n");
 
     }
 
