@@ -67,13 +67,13 @@ In a game turn, the player rolls a dice and advances the number of spaces indica
 
 
 <animate id="b3_anim29" xlink:href="#b3_playerA" begin="b3_anim28.end" attributeName="x" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b3_playerA" begin="b3_anim28.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b3_playerA" begin="b3_anim28.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <animate id="b3_anim30" xlink:href="#b3_playerA" begin="b3_anim29.end" attributeName="x" to="100" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b3_playerA" begin="b3_anim29.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b3_playerA" begin="b3_anim29.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <animate id="b3_anim31" xlink:href="#b3_playerA" begin="b3_anim30.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b3_playerA" begin="b3_anim30.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b3_playerA" begin="b3_anim30.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <animate id="b3_anim32" xlink:href="#b3_playerA" begin="b3_anim31.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b3_playerA" begin="b3_anim31.end" attributeName="y" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b3_playerA" begin="b3_anim31.end" attributeName="y" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
 <text id="b3_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b3_anim24.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b3_anim32.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
 <rect x="0" y="0" width="800" height="200" opacity="0.1">
   <animate id="b3_anim24" begin="click" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
@@ -210,11 +210,11 @@ If he reaches the end of the board, he continues by starting from the beginning
 
 
 <animate id="b4_anim37" xlink:href="#b4_playerA" begin="b4_anim36.end" attributeName="x" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b4_playerA" begin="b4_anim36.end" attributeName="y" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b4_playerA" begin="b4_anim36.end" attributeName="y" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
 <animate id="b4_anim38" xlink:href="#b4_playerA" begin="b4_anim37.end" attributeName="x" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b4_playerA" begin="b4_anim37.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b4_playerA" begin="b4_anim37.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <animate id="b4_anim39" xlink:href="#b4_playerA" begin="b4_anim38.end" attributeName="x" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b4_playerA" begin="b4_anim38.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b4_playerA" begin="b4_anim38.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <text id="b4_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b4_anim32.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b4_anim39.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
 <rect x="0" y="0" width="800" height="200" opacity="0.1">
   <animate id="b4_anim32" begin="click" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>

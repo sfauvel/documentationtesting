@@ -42,13 +42,13 @@
 
 
 <animate id="b0_anim50" xlink:href="#b0_playerA" begin="b0_anim49.end" attributeName="cx" to="75" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b0_playerA" begin="b0_anim49.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b0_playerA" begin="b0_anim49.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
 <animate id="b0_anim51" xlink:href="#b0_playerA" begin="b0_anim50.end" attributeName="cx" to="125" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b0_playerA" begin="b0_anim50.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b0_playerA" begin="b0_anim50.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
 <animate id="b0_anim52" xlink:href="#b0_playerA" begin="b0_anim51.end" attributeName="cx" to="175" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b0_playerA" begin="b0_anim51.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b0_playerA" begin="b0_anim51.end" attributeName="cy" to="25" dur="0.5s" repeatCount="1" fill="freeze"/>
 <animate id="b0_anim53" xlink:href="#b0_playerA" begin="b0_anim52.end" attributeName="cx" to="175" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b0_playerA" begin="b0_anim52.end" attributeName="cy" to="75" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b0_playerA" begin="b0_anim52.end" attributeName="cy" to="75" dur="0.5s" repeatCount="1" fill="freeze"/>
 <text id="b0_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b0_anim45.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b0_anim53.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
 <rect x="0" y="0" width="800" height="200" opacity="0.1">
   <animate id="b0_anim45" begin="click" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
