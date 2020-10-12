@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
 public class DisplayDocSvg extends DisplayDoc {
     private DocAsTestBase docAsTest;
     private static int animationCounter = 0; // Need to be static to ensure unicity. It may needed to add class name.
-    private static int boardCounter = 0; // Need to be static to ensure unicity. It may needed to add class name.
+    private static String boardCounter = "0"; // Need to be static to ensure unicity. It may needed to add class name.
 
     public DisplayDocSvg(DocAsTestBase docAsTest) {
         this.docAsTest = docAsTest;
@@ -56,7 +56,7 @@ public class DisplayDocSvg extends DisplayDoc {
         final int SVG_HEIGHT = 200;
 
         final int firstAnimateCounter = animationCounter;
-        boardCounter++;
+        boardCounter = Integer.toString(Integer.valueOf(boardCounter).intValue()+1);
 
         write("++++\n\n");
         write("<svg version=\"1.1\" " +
@@ -144,7 +144,7 @@ public class DisplayDocSvg extends DisplayDoc {
 
 
     private void svgWritePlayer(GameSvgTest.FakeGame aGame) {
-        Function<Integer, String> point = p -> String.format("<text id=\"b%d_playerA_%d\" x=\"25\" y=\"25\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"Verdana\" font-size=\"25\" opacity=\"%d\">%d</text>\n",
+        Function<Integer, String> point = p -> String.format("<text id=\"b%s_playerA_%d\" x=\"25\" y=\"25\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"Verdana\" font-size=\"25\" opacity=\"%d\">%d</text>\n",
                 boardCounter,
                 p,
                 aGame.purses[aGame.currentPlayer] == p ? 1 : 0,
@@ -156,7 +156,7 @@ public class DisplayDocSvg extends DisplayDoc {
         write("</circle>\n");
         IntStream.rangeClosed(0, 6).forEach(p -> write(point.apply(p)));
 
-        write(String.format("<rect id=\"b%d_playerA_jail\" x=\"8\" y=\"8\" width=\"34\" height=\"34\" fill=none stroke=\"black\" stroke-width=\"5\" opacity=\"%d\"/>\n",
+        write(String.format("<rect id=\"b%s_playerA_jail\" x=\"8\" y=\"8\" width=\"34\" height=\"34\" fill=none stroke=\"black\" stroke-width=\"5\" opacity=\"%d\"/>\n",
                 boardCounter, aGame.inPenaltyBox[aGame.currentPlayer] ? 1 : 0));
 
         write("</g>");
@@ -173,7 +173,7 @@ public class DisplayDocSvg extends DisplayDoc {
     }
 
 
-    private void write(String text) {
+    private void write(String... text) {
         docAsTest.write(text);
     }
 
@@ -254,7 +254,7 @@ public class DisplayDocSvg extends DisplayDoc {
     }
 
     private void displayPenalityBox(GameSvgTest.FakeGame aGame, String idToBegin) {
-        write(String.format("<set xlink:href=\"#b%d_playerA_jail\" begin=\"" + idToBegin + "\" attributeName=\"opacity\" to=\"%d\" repeatCount=\"1\" fill=\"freeze\"/>\n",
+        write(String.format("<set xlink:href=\"#b%s_playerA_jail\" begin=\"" + idToBegin + "\" attributeName=\"opacity\" to=\"%d\" repeatCount=\"1\" fill=\"freeze\"/>\n",
                 boardCounter,
                 aGame.inPenaltyBox[aGame.currentPlayer] ? 1 : 0));
     }
@@ -263,7 +263,7 @@ public class DisplayDocSvg extends DisplayDoc {
         for (int i = 0; i < aGame.players.size(); i++) {
             final int playerToDisplay = i;
             IntStream.rangeClosed(0, 6).forEach(p -> {
-                write(String.format("<set xlink:href=\"#b%d_playerA_%d\" begin=\"" + idToBegin + "\" attributeName=\"opacity\" to=\"%d\" repeatCount=\"1\" fill=\"freeze\"/>\n",
+                write(String.format("<set xlink:href=\"#b%s_playerA_%d\" begin=\"" + idToBegin + "\" attributeName=\"opacity\" to=\"%d\" repeatCount=\"1\" fill=\"freeze\"/>\n",
                         boardCounter,
                         p,
                         aGame.purses[playerToDisplay] == p ? 1 : 0));
