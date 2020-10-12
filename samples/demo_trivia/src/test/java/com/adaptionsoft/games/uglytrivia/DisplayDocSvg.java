@@ -59,7 +59,6 @@ public class DisplayDocSvg extends DisplayDoc {
         boardCounter++;
 
         write("++++\n\n");
-
         write("<svg version=\"1.1\" " +
                 "xmlns=\"http://www.w3.org/2000/svg\" " +
                 "xmlns:xlink=\"http://www.w3.org/1999/xlink\" " +
@@ -93,11 +92,19 @@ public class DisplayDocSvg extends DisplayDoc {
 
 
         write("<rect x=\"0\" y=\"0\" width=\"" + SVG_WIDTH + "\" height=\"" + SVG_HEIGHT + "\" opacity=\"0.1\">\n");
-        write("  <animate id=\"b" + boardCounter + "_anim" + firstAnimateCounter + "\" begin=\"click\" attributeName=\"x\" from=\"0\" to=\"0\" dur=\"0.01s\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+        write("  " + new SvgAnimation(boardCounter)
+                .setAnimId(firstAnimateCounter)
+                .setBegin("click")
+                .setAttribute("x").setFrom("0").setTo("0")
+                .setDuration("0.01s").toSvg());
         write("  <set begin=\"b" + boardCounter + "_anim" + firstAnimateCounter + ".begin\" attributeName=\"width\" to=\"50\" repeatCount=\"1\" fill=\"freeze\"/>\n");
         write("  <set begin=\"b" + boardCounter + "_anim" + firstAnimateCounter + ".begin\" attributeName=\"height\" to=\"50\" repeatCount=\"1\" fill=\"freeze\"/>\n");
 
-        write("  <animate id=\"b" + boardCounter + "_animEnd\" begin=\"b" + boardCounter + "_anim" + animationCounter + ".end + 1s\" attributeName=\"x\" from=\"0\" to=\"0\" dur=\"0.01s\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+        write("  " + new SvgAnimation(boardCounter)
+                .setId("b" + boardCounter + "_animEnd")
+                .setBeginRelativeTo(animationCounter, "end + 1s")
+                .setAttribute("x").setFrom("0").setTo("0")
+                .setDuration("0.01s").toSvg());
         write("  <set begin=\"b" + boardCounter + "_anim" + animationCounter + ".end + 1s\" attributeName=\"width\" to=\"" + SVG_WIDTH + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
         write("  <set begin=\"b" + boardCounter + "_anim" + animationCounter + ".end + 1s\" attributeName=\"height\" to=\"" + SVG_HEIGHT + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
 
