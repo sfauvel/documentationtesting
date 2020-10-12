@@ -71,21 +71,21 @@ public class GameSvgTest extends ApprovalsBase {
             write("\n\nIf he reaches the end of the board, he continues by starting from the beginning\n\n");
 
 
-            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml(this))) {
-
-                final FakeGame aGame = startGame("Chet");
-                final int currentPlayerNumber = aGame.currentPlayer;
-                final int roll = 3;
-                aGame.roll(4);
-                aGame.roll(6);
-                displayDoc.addAll(Arrays.asList(
-                        () -> {
-                            displayDoc.text("Start of the turn");
-                            displayDoc.move(aGame, "playerA", aGame.places[currentPlayerNumber], currentPlayerNumber);
-                        },
-                        () -> displayDoc.rollAndMove(aGame, currentPlayerNumber, roll)));
-                displayDoc.display(aGame);
-            }
+//            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml(this))) {
+//
+//                final FakeGame aGame = startGame("Chet");
+//                final int currentPlayerNumber = aGame.currentPlayer;
+//                final int roll = 3;
+//                aGame.roll(4);
+//                aGame.roll(6);
+//                displayDoc.addAll(Arrays.asList(
+//                        () -> {
+//                            displayDoc.text("Start of the turn");
+//                            displayDoc.move(aGame, "playerA", aGame.places[currentPlayerNumber], currentPlayerNumber);
+//                        },
+//                        () -> displayDoc.rollAndMove(aGame, currentPlayerNumber, roll)));
+//                displayDoc.display(aGame);
+//            }
         }
 
         addStyleSheet();

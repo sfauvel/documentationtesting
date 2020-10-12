@@ -54,27 +54,27 @@ The first player to score 6 points wins the game.
 <text id="b2_dice4" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
 <text id="b2_dice5" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
 <text id="b2_dice6" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate id="b2_anim12" begin="b2_anim11.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b2_anim13" begin="b2_anim12.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate dur="0.2s" attributeName="opacity" from="0" id="b2_anim12" to="1" fill="freeze" begin="b2_anim11.end" repeatCount="1"/>
+<animate dur="0.2s" attributeName="opacity" from="1" id="b2_anim13" to="0" fill="freeze" begin="b2_anim12.end + 1s" repeatCount="1"/>
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate id="b2_anim14" begin="b2_anim13.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b2_anim15" begin="b2_anim14.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate dur="0.2s" attributeName="opacity" from="0" id="b2_anim14" to="1" fill="freeze" begin="b2_anim13.end" repeatCount="1"/>
+<animate dur="0.2s" attributeName="opacity" from="1" id="b2_anim15" to="0" fill="freeze" begin="b2_anim14.end + 1s" repeatCount="1"/>
 </text>
 
 
-<animate id="b2_anim16" xlink:href="#b2_playerA" begin="b2_anim15.end" attributeName="x" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate xlink:href="#b2_playerA" begin="b2_anim15.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate id="b2_anim17" xlink:href="#b2_playerA" begin="b2_anim16.end" attributeName="x" to="100" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate xlink:href="#b2_playerA" begin="b2_anim16.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate id="b2_anim18" xlink:href="#b2_playerA" begin="b2_anim17.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate xlink:href="#b2_playerA" begin="b2_anim17.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate id="b2_anim19" begin="b2_anim18.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b2_anim20" begin="b2_anim19.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<animate dur="0.5s" attributeName="x" id="b2_anim16" to="50" fill="freeze" begin="b2_anim15.end" xlink:href="#b2_playerA" repeatCount="1"/>
+<animate dur="0.5s" attributeName="y" to="0" fill="freeze" begin="b2_anim15.end" xlink:href="#b2_playerA" repeatCount="1"/>
+<animate dur="0.5s" attributeName="x" id="b2_anim17" to="100" fill="freeze" begin="b2_anim16.end" xlink:href="#b2_playerA" repeatCount="1"/>
+<animate dur="0.5s" attributeName="y" to="0" fill="freeze" begin="b2_anim16.end" xlink:href="#b2_playerA" repeatCount="1"/>
+<animate dur="0.5s" attributeName="x" id="b2_anim18" to="150" fill="freeze" begin="b2_anim17.end" xlink:href="#b2_playerA" repeatCount="1"/>
+<animate dur="0.5s" attributeName="y" to="0" fill="freeze" begin="b2_anim17.end" xlink:href="#b2_playerA" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate dur="0.2s" attributeName="opacity" from="0" id="b2_anim19" to="1" fill="freeze" begin="b2_anim18.end" repeatCount="1"/>
+<animate dur="0.2s" attributeName="opacity" from="1" id="b2_anim20" to="0" fill="freeze" begin="b2_anim19.end + 1s" repeatCount="1"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Rock question<animate id="b2_anim21" begin="b2_anim20.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b2_anim22" begin="b2_anim21.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Rock question<animate dur="0.2s" attributeName="opacity" from="0" id="b2_anim21" to="1" fill="freeze" begin="b2_anim20.end" repeatCount="1"/>
+<animate dur="0.2s" attributeName="opacity" from="1" id="b2_anim22" to="0" fill="freeze" begin="b2_anim21.end + 1s" repeatCount="1"/>
 </text>
 <set xlink:href="#b2_playerA_0" begin="b2_anim22.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b2_playerA_1" begin="b2_anim22.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
@@ -84,19 +84,19 @@ The first player to score 6 points wins the game.
 <set xlink:href="#b2_playerA_5" begin="b2_anim22.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b2_playerA_6" begin="b2_anim22.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b2_playerA_jail" begin="b2_anim22.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet wins the game !!!<animate id="b2_anim23" begin="b2_anim22.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
-<animate id="b2_anim24" begin="b2_anim23.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet wins the game !!!<animate dur="0.2s" attributeName="opacity" from="0" id="b2_anim23" to="1" fill="freeze" begin="b2_anim22.end" repeatCount="1"/>
+<animate dur="0.2s" attributeName="opacity" from="1" id="b2_anim24" to="0" fill="freeze" begin="b2_anim23.end + 1s" repeatCount="1"/>
 </text>
 
 
 <text id="b2_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b2_anim11.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b2_anim24.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
-<rect x="0" y="0" width="800" height="200" opacity="0.1">
-  <animate id="b2_anim11" begin="click" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
-  <set begin="b2_anim11.begin" attributeName="width" to="50" repeatCount="1" fill="freeze"/>
-  <set begin="b2_anim11.begin" attributeName="height" to="50" repeatCount="1" fill="freeze"/>
-  <animate id="b2_animEnd" begin="b2_anim24.end + 1s" attributeName="x" from="0" to="0" dur="0.01s" repeatCount="1" fill="freeze"/>
-  <set begin="b2_anim24.end + 1s" attributeName="width" to="800" repeatCount="1" fill="freeze"/>
-  <set begin="b2_anim24.end + 1s" attributeName="height" to="200" repeatCount="1" fill="freeze"/>
+<rect x="0" width="800" y="0" opacity="0.1" height="200">
+  <animate dur="0.01s" attributeName="x" from="0" id="b2_anim11" to="0" fill="freeze" begin="click" repeatCount="1"/>
+  <set attributeName="width" to="50" fill="freeze" begin="b2_anim11.begin" repeatCount="1"/>
+  <set attributeName="height" to="50" fill="freeze" begin="b2_anim11.begin" repeatCount="1"/>
+  <animate dur="0.01s" attributeName="x" from="0" id="b2_animEnd" to="0" fill="freeze" begin="b2_anim24.end + 1s" repeatCount="1"/>
+  <set attributeName="width" to="800" fill="freeze" begin="b2_anim24.end + 1s" repeatCount="1"/>
+  <set attributeName="height" to="200" fill="freeze" begin="b2_anim24.end + 1s" repeatCount="1"/>
 </rect>
 <style>
 text {

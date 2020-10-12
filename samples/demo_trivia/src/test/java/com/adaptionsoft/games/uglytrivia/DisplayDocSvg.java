@@ -5,6 +5,7 @@ import org.sfvl.doctesting.DocAsTestBase;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -92,24 +93,69 @@ public class DisplayDocSvg extends DisplayDoc {
                 "</text>\n");
 
 
-        write("<rect x=\"0\" y=\"0\" width=\"" + SVG_WIDTH + "\" height=\"" + SVG_HEIGHT + "\" opacity=\"0.1\">\n");
-        write("  " + new SvgAnimate(boardCounter)
+        final SvgRect svgRect = new SvgRect()
+                .setX("0")
+                .setY("0")
+                .setWidth(Integer.toString(SVG_WIDTH))
+                .setHeight(Integer.toString(SVG_HEIGHT))
+                .setOpacity("0.1");
+        svgRect.add(new SvgAnimate(boardCounter)
                 .setAnimId(firstAnimateCounter)
                 .setBegin("click")
                 .setAttribute("x").setFrom("0").setTo("0")
-                .setDuration("0.01s").toSvg());
-        write("  <set begin=\"b" + boardCounter + "_anim" + firstAnimateCounter + ".begin\" attributeName=\"width\" to=\"50\" repeatCount=\"1\" fill=\"freeze\"/>\n");
-        write("  <set begin=\"b" + boardCounter + "_anim" + firstAnimateCounter + ".begin\" attributeName=\"height\" to=\"50\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+                .setDuration("0.01s"));
+        svgRect.add(new SvgSet(boardCounter)
+                .setBeginRelativeTo(firstAnimateCounter, "begin")
+                .setAttribute("width").setTo("50"));
+        svgRect.add(new SvgSet(boardCounter)
+                .setBeginRelativeTo(firstAnimateCounter, "begin")
+                .setAttribute("height").setTo("50"));
 
-        write("  " + new SvgAnimate(boardCounter)
+        svgRect.add(new SvgAnimate(boardCounter)
                 .setId("b" + boardCounter + "_animEnd")
                 .setBeginRelativeTo(animationCounter, "end + 1s")
                 .setAttribute("x").setFrom("0").setTo("0")
-                .setDuration("0.01s").toSvg());
-        write("  <set begin=\"b" + boardCounter + "_anim" + animationCounter + ".end + 1s\" attributeName=\"width\" to=\"" + SVG_WIDTH + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
-        write("  <set begin=\"b" + boardCounter + "_anim" + animationCounter + ".end + 1s\" attributeName=\"height\" to=\"" + SVG_HEIGHT + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+                .setDuration("0.01s"));
 
-        write("</rect>\n");
+        svgRect.add(new SvgSet(boardCounter)
+                .setBeginRelativeTo(animationCounter, "end + 1s")
+                .setAttribute("width").setTo(SVG_WIDTH));
+        svgRect.add(new SvgSet(boardCounter)
+                .setBeginRelativeTo(animationCounter, "end + 1s")
+                .setAttribute("height").setTo(SVG_HEIGHT));
+
+        write(svgRect.toSvg());
+//        write("<rect x=\"0\" y=\"0\" width=\"" + SVG_WIDTH + "\" height=\"" + SVG_HEIGHT + "\" opacity=\"0.1\">\n");
+//        write("  " + new SvgAnimate(boardCounter)
+//                .setAnimId(firstAnimateCounter)
+//                .setBegin("click")
+//                .setAttribute("x").setFrom("0").setTo("0")
+//                .setDuration("0.01s").toSvg());
+//        write("  " + new SvgSet(boardCounter)
+//                .setBeginRelativeTo(firstAnimateCounter, "begin")
+//                .setAttribute("width").setTo("50")
+//                .toSvg());
+//        write("  " + new SvgSet(boardCounter)
+//                .setBeginRelativeTo(firstAnimateCounter, "begin")
+//                .setAttribute("height").setTo("50")
+//                .toSvg());
+//
+//        write("  " + new SvgAnimate(boardCounter)
+//                .setId("b" + boardCounter + "_animEnd")
+//                .setBeginRelativeTo(animationCounter, "end + 1s")
+//                .setAttribute("x").setFrom("0").setTo("0")
+//                .setDuration("0.01s").toSvg());
+//
+//        write("  " + new SvgSet(boardCounter)
+//                .setBeginRelativeTo(animationCounter, "end + 1s")
+//                .setAttribute("width").setTo(SVG_WIDTH)
+//                .toSvg());
+//        write("  " + new SvgSet(boardCounter)
+//                .setBeginRelativeTo(animationCounter, "end + 1s")
+//                .setAttribute("height").setTo(SVG_HEIGHT)
+//                .toSvg());
+//
+//        write("</rect>\n");
 
         displayStyleSvg();
         write("</svg>\n\n");
