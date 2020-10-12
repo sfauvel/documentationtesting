@@ -56,6 +56,7 @@ public class DisplayDocSvg extends DisplayDoc {
         final int SVG_HEIGHT = 200;
 
         final int firstAnimateCounter = animationCounter;
+        // TODO We should give name of test as id to not be impacted by the order or when not all tests are launch.
         boardCounter = Integer.toString(Integer.valueOf(boardCounter).intValue()+1);
 
         write("++++\n\n");
@@ -92,7 +93,7 @@ public class DisplayDocSvg extends DisplayDoc {
 
 
         write("<rect x=\"0\" y=\"0\" width=\"" + SVG_WIDTH + "\" height=\"" + SVG_HEIGHT + "\" opacity=\"0.1\">\n");
-        write("  " + new SvgAnimation(boardCounter)
+        write("  " + new SvgAnimate(boardCounter)
                 .setAnimId(firstAnimateCounter)
                 .setBegin("click")
                 .setAttribute("x").setFrom("0").setTo("0")
@@ -100,7 +101,7 @@ public class DisplayDocSvg extends DisplayDoc {
         write("  <set begin=\"b" + boardCounter + "_anim" + firstAnimateCounter + ".begin\" attributeName=\"width\" to=\"50\" repeatCount=\"1\" fill=\"freeze\"/>\n");
         write("  <set begin=\"b" + boardCounter + "_anim" + firstAnimateCounter + ".begin\" attributeName=\"height\" to=\"50\" repeatCount=\"1\" fill=\"freeze\"/>\n");
 
-        write("  " + new SvgAnimation(boardCounter)
+        write("  " + new SvgAnimate(boardCounter)
                 .setId("b" + boardCounter + "_animEnd")
                 .setBeginRelativeTo(animationCounter, "end + 1s")
                 .setAttribute("x").setFrom("0").setTo("0")
@@ -192,7 +193,7 @@ public class DisplayDocSvg extends DisplayDoc {
 
         int lastAnimationIndex = animationCounter;
 
-        final SvgAnimation showText = new SvgAnimation(boardCounter)
+        final SvgAnimation showText = new SvgAnimate(boardCounter)
                 .setAnimId(++animationCounter)
                 .setBeginRelativeTo(lastAnimationIndex, "end")
                 .setAttribute("opacity")
@@ -200,7 +201,7 @@ public class DisplayDocSvg extends DisplayDoc {
                 .setTo("1")
                 .setDuration("0.2s");
 
-        final SvgAnimation hideText = new SvgAnimation(boardCounter)
+        final SvgAnimation hideText = new SvgAnimate(boardCounter)
                 .setAnimId(++animationCounter)
                 .setBegin(showText.getId().get() + ".end + 1s")
                 .setAttribute("opacity")
@@ -308,7 +309,7 @@ public class DisplayDocSvg extends DisplayDoc {
 //        animationCounter++;
 //        currentAnimation = animationCounter;
 
-        write(new SvgAnimation(boardCounter)
+        write(new SvgAnimate(boardCounter)
                 .setAnimId(++animationCounter)
                 .setXlink("b" + boardCounter + "_" + player)
                 .setBeginRelativeTo(lastAnimation, "end")
@@ -317,7 +318,7 @@ public class DisplayDocSvg extends DisplayDoc {
                 .setDuration(GameSvgTest.TEMPO)
                 .toSvg());
 
-        write(new SvgAnimation(boardCounter)
+        write(new SvgAnimate(boardCounter)
                 .setXlink("b" + boardCounter + "_" + player)
                 .setBeginRelativeTo(lastAnimation, "end")
                 .setAttribute("y")
