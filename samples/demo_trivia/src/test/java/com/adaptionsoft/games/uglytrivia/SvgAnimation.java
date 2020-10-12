@@ -4,7 +4,7 @@ import java.util.Optional;
 
 class SvgAnimation {
 
-    private final int boardIndex;
+    private final String boardIndex;
     private Optional<String> id = Optional.empty();
     private Optional<String> xlink = Optional.empty();
     private String begin = null;
@@ -13,12 +13,12 @@ class SvgAnimation {
     private String to = null;
     private String duration = null;
 
-    public SvgAnimation(int boardIndex) {
+    public SvgAnimation(String boardIndex) {
         this.boardIndex = boardIndex;
     }
 
     public String getAnimId(int animationIndex) {
-        return String.format("b%d_anim%d", boardIndex, animationIndex);
+        return String.format("b%s_anim%d", boardIndex, animationIndex);
     }
 
     public Optional<String> getId() {
