@@ -2,6 +2,20 @@ package com.adaptionsoft.games.uglytrivia;
 
 import java.util.Optional;
 
+class SvgSet extends SvgAnimation {
+
+    public SvgSet(String boardIndex) {
+        super(boardIndex);
+    }
+}
+
+class SvgAnimate extends SvgAnimation {
+
+    public SvgAnimate(String boardIndex) {
+        super(boardIndex);
+    }
+}
+
 class SvgAnimation {
 
     private final String boardIndex;
