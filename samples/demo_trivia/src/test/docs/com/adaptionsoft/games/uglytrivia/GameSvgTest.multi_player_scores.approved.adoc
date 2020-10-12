@@ -62,7 +62,7 @@
 
 <set begin="b1_anim4.begin" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 <animate id="b1_anim5" xlink:href="#b1_playerA" begin="b1_anim4.end" attributeName="x" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim4.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b1_playerA" begin="b1_anim4.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Science...<animate id="b1_anim6" begin="b1_anim5.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
 <animate id="b1_anim7" begin="b1_anim6.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
@@ -91,9 +91,9 @@
 
 <set begin="b1_anim13.begin" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 <animate id="b1_anim14" xlink:href="#b1_playerA" begin="b1_anim13.end" attributeName="x" to="100" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim13.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b1_playerA" begin="b1_anim13.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <animate id="b1_anim15" xlink:href="#b1_playerA" begin="b1_anim14.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim14.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b1_playerA" begin="b1_anim14.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate id="b1_anim16" begin="b1_anim15.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
 <animate id="b1_anim17" begin="b1_anim16.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
@@ -125,7 +125,7 @@
 
 <set begin="b1_anim25.begin" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 <animate id="b1_anim26" xlink:href="#b1_playerA" begin="b1_anim25.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim25.end" attributeName="y" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b1_playerA" begin="b1_anim25.end" attributeName="y" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
 <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Pop...<animate id="b1_anim27" begin="b1_anim26.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
 <animate id="b1_anim28" begin="b1_anim27.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>

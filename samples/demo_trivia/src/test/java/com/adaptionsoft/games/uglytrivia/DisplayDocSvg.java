@@ -5,7 +5,6 @@ import org.sfvl.doctesting.DocAsTestBase;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -183,24 +182,27 @@ public class DisplayDocSvg extends DisplayDoc {
     }
 
     private void showAndHideTextSvg() {
-        int lastAnimation;
-        int currentAnimation;
 
-        lastAnimation = animationCounter;
-        writeAnim(
-                "b" + boardCounter + "_anim" + lastAnimation + ".end",
-                "opacity",
-                "0",
-                "1",
-                "0.2s");
+        int lastAnimationIndex = animationCounter;
 
-        lastAnimation = animationCounter;
-        writeAnim(
-                "b" + boardCounter + "_anim" + lastAnimation + ".end + 1s",
-                "opacity",
-                "1",
-                "0",
-                "0.2s");
+        final SvgAnimation showText = new SvgAnimation(boardCounter)
+                .setAnimId(++animationCounter)
+                .setBeginRelativeTo(lastAnimationIndex, "end")
+                .setAttribute("opacity")
+                .setFrom("0")
+                .setTo("1")
+                .setDuration("0.2s");
+
+        final SvgAnimation hideText = new SvgAnimation(boardCounter)
+                .setAnimId(++animationCounter)
+                .setBegin(showText.getId().get() + ".end + 1s")
+                .setAttribute("opacity")
+                .setFrom("1")
+                .setTo("0")
+                .setDuration("0.2s");
+
+        write(showText.toSvg());
+        write(hideText.toSvg());
 
     }
 
@@ -296,24 +298,26 @@ public class DisplayDocSvg extends DisplayDoc {
         int currentAnimation;
 
         lastAnimation = animationCounter;
-        animationCounter++;
-        currentAnimation = animationCounter;
-//        writeAnim("b" + boardCounter + "_anim" + animationCounter + ".end",
-//                "x",
-//                null,
-//                Integer.toString(x),
-//                GameSvgTest.TEMPO);
+//        animationCounter++;
+//        currentAnimation = animationCounter;
 
-        write("<animate id=\"b" + boardCounter + "_anim" + currentAnimation + "\"" +
-                " xlink:href=\"#b" + boardCounter + "_" + player + "\"" +
-                " begin=\"b" + boardCounter + "_anim" + lastAnimation + ".end\"" +
-                " attributeName=\"x\" to=\"" + x + "\"" +
-                " dur=\"" + GameSvgTest.TEMPO + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
-        write("<animate " +
-                " xlink:href=\"#b" + boardCounter + "_" + player + "\"" +
-                " begin=\"b" + boardCounter + "_anim" + lastAnimation + ".end\"" +
-                " attributeName=\"y\" to=\"" + y + "\"" +
-                " dur=\"" + GameSvgTest.TEMPO + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+        write(new SvgAnimation(boardCounter)
+                .setAnimId(++animationCounter)
+                .setXlink("b" + boardCounter + "_" + player)
+                .setBeginRelativeTo(lastAnimation, "end")
+                .setAttribute("x")
+                .setTo(Integer.toString(x))
+                .setDuration(GameSvgTest.TEMPO)
+                .toSvg());
+
+        write(new SvgAnimation(boardCounter)
+                .setXlink("b" + boardCounter + "_" + player)
+                .setBeginRelativeTo(lastAnimation, "end")
+                .setAttribute("y")
+                .setTo(Integer.toString(y))
+                .setDuration(GameSvgTest.TEMPO)
+                .toSvg());
+
 
     }
 
@@ -344,53 +348,6 @@ public class DisplayDocSvg extends DisplayDoc {
         displayQuestionAskedSvg(aGame, currentPlayer, wrongAnswer);
     }
 
-    class SvgAnimation {
-        final String id;
-        final Optional<String> xlink;
-        final String begin;
-        final String attribute;
-        final Optional<String> from;
-        final String to;
-        final String duration;
-
-        public SvgAnimation(String id, Optional<String> xlink, String begin, String attribute, Optional<String> from, String to, String duration) {
-            this.id = id;
-            this.xlink = xlink;
-            this.begin = begin;
-            this.attribute = attribute;
-            this.from = from;
-            this.to = to;
-            this.duration = duration;
-        }
-
-        public String toSvg() {
-            return "<animate id=\"" + id + "\"" +
-                    " begin=\"" + begin + "\"" +
-                    " attributeName=\"" + attribute + "\"" +
-                    from.map(value -> " from=\"" + value + "\"").orElse("") +
-                    " to=\"" + to + "\"" +
-                    " dur=\"" + duration + "\"" +
-                    " repeatCount=\"1\" fill=\"freeze\"/>\n";
-        }
-
-    }
-
-    private void writeAnim(String begin, String attribute, String from, String to, String duration) {
-
-        animationCounter++;
-
-        final SvgAnimation svgAnimation = new SvgAnimation(
-                "b" + boardCounter + "_anim" + animationCounter,
-                Optional.empty(),
-                begin,
-                attribute,
-                Optional.of(from),
-                to,
-                duration);
-
-        write(svgAnimation.toSvg());
-
-    }
 }
 
 class Position {

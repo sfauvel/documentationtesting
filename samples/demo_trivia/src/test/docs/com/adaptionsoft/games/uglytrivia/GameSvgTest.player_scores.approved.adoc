@@ -66,11 +66,11 @@ If he answers correctly, he scores a point.
 
 
 <animate id="b1_anim5" xlink:href="#b1_playerA" begin="b1_anim4.end" attributeName="x" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim4.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b1_playerA" begin="b1_anim4.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <animate id="b1_anim6" xlink:href="#b1_playerA" begin="b1_anim5.end" attributeName="x" to="100" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim5.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b1_playerA" begin="b1_anim5.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <animate id="b1_anim7" xlink:href="#b1_playerA" begin="b1_anim6.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b1_playerA" begin="b1_anim6.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b1_playerA" begin="b1_anim6.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate id="b1_anim8" begin="b1_anim7.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
 <animate id="b1_anim9" begin="b1_anim8.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>

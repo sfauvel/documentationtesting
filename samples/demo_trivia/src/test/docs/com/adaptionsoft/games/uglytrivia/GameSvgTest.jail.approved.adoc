@@ -68,11 +68,11 @@ He stays in jail until he rolls an odd number.
 
 
 <animate id="b5_anim44" xlink:href="#b5_playerA" begin="b5_anim43.end" attributeName="x" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b5_playerA" begin="b5_anim43.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b5_playerA" begin="b5_anim43.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <animate id="b5_anim45" xlink:href="#b5_playerA" begin="b5_anim44.end" attributeName="x" to="100" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b5_playerA" begin="b5_anim44.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b5_playerA" begin="b5_anim44.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <animate id="b5_anim46" xlink:href="#b5_playerA" begin="b5_anim45.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b5_playerA" begin="b5_anim45.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b5_playerA" begin="b5_anim45.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate id="b5_anim47" begin="b5_anim46.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
 <animate id="b5_anim48" begin="b5_anim47.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
@@ -274,11 +274,11 @@ Board at the start of the turn
 
 
 <animate id="b6_anim67" xlink:href="#b6_playerA" begin="b6_anim66.end" attributeName="x" to="100" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b6_playerA" begin="b6_anim66.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b6_playerA" begin="b6_anim66.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <animate id="b6_anim68" xlink:href="#b6_playerA" begin="b6_anim67.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b6_playerA" begin="b6_anim67.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b6_playerA" begin="b6_anim67.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <animate id="b6_anim69" xlink:href="#b6_playerA" begin="b6_anim68.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b6_playerA" begin="b6_anim68.end" attributeName="y" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b6_playerA" begin="b6_anim68.end" attributeName="y" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
 <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Pop...<animate id="b6_anim70" begin="b6_anim69.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
 <animate id="b6_anim71" begin="b6_anim70.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
@@ -522,11 +522,11 @@ When player correctly answer to a question, he goes out of jail.
 
 
 <animate id="b7_anim80" xlink:href="#b7_playerA" begin="b7_anim79.end" attributeName="x" to="50" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b7_playerA" begin="b7_anim79.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b7_playerA" begin="b7_anim79.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <animate id="b7_anim81" xlink:href="#b7_playerA" begin="b7_anim80.end" attributeName="x" to="100" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b7_playerA" begin="b7_anim80.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b7_playerA" begin="b7_anim80.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <animate id="b7_anim82" xlink:href="#b7_playerA" begin="b7_anim81.end" attributeName="x" to="150" dur="0.5s" repeatCount="1" fill="freeze"/>
-<animate  xlink:href="#b7_playerA" begin="b7_anim81.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
+<animate xlink:href="#b7_playerA" begin="b7_anim81.end" attributeName="y" to="0" dur="0.5s" repeatCount="1" fill="freeze"/>
 <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate id="b7_anim83" begin="b7_anim82.end" attributeName="opacity" from="0" to="1" dur="0.2s" repeatCount="1" fill="freeze"/>
 <animate id="b7_anim84" begin="b7_anim83.end + 1s" attributeName="opacity" from="1" to="0" dur="0.2s" repeatCount="1" fill="freeze"/>
 </text>
