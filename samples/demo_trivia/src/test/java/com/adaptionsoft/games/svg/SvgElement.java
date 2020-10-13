@@ -22,17 +22,21 @@ public class SvgElement<T> implements SvgSetAttr<T> {
         return Optional.ofNullable(attributes.get("id"));
     }
 
-    public T setId(String id) {
+    public T setId(final String id) {
         return set("id", id);
     }
 
-    public T set(String key, String value) {
+    public T set(final String key, final String value) {
         attributes.put(key, value);
         return myself;
     }
 
-    public T add(SvgElement element) {
+    public T add(final SvgElement element) {
         elements.add(element);
+        return myself;
+    }
+    public T addAll(final List<SvgElement> elements) {
+        this.elements.addAll(elements);
         return myself;
     }
 

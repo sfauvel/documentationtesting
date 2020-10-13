@@ -7,6 +7,7 @@ import com.adaptionsoft.games.svg.SvgSet;
 import org.sfvl.doctesting.DocAsTestBase;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Function;
@@ -61,7 +62,7 @@ public class DisplayDocSvg extends DisplayDoc {
 
         final int firstAnimateCounter = animationCounter;
         // TODO We should give name of test as id to not be impacted by the order or when not all tests are launch.
-        boardCounter = Integer.toString(Integer.valueOf(boardCounter).intValue()+1);
+        boardCounter = Integer.toString(Integer.valueOf(boardCounter).intValue() + 1);
 
         write("++++\n\n");
         write("<svg version=\"1.1\" " +
@@ -97,35 +98,31 @@ public class DisplayDocSvg extends DisplayDoc {
 
 
         final SvgRect svgRect = new SvgRect()
-                .setX("0")
-                .setY("0")
-                .setWidth(Integer.toString(SVG_WIDTH))
-                .setHeight(Integer.toString(SVG_HEIGHT))
-                .setOpacity("0.1");
-        svgRect.add(new SvgAnimate(boardCounter)
-                .setAnimId(firstAnimateCounter)
-                .setBegin("click")
-                .setAttributeName("x").setFrom("0").setTo("0")
-                .setDuration("0.01s"));
-        svgRect.add(new SvgSet(boardCounter)
-                .setBeginRelativeTo(firstAnimateCounter, "begin")
-                .setAttributeName("width").setTo("50"));
-        svgRect.add(new SvgSet(boardCounter)
-                .setBeginRelativeTo(firstAnimateCounter, "begin")
-                .setAttributeName("height").setTo("50"));
-
-        svgRect.add(new SvgAnimate(boardCounter)
-                .setId("b" + boardCounter + "_animEnd")
-                .setBeginRelativeTo(animationCounter, "end + 1s")
-                .setAttributeName("x").setFrom("0").setTo("0")
-                .setDuration("0.01s"));
-
-        svgRect.add(new SvgSet(boardCounter)
-                .setBeginRelativeTo(animationCounter, "end + 1s")
-                .setAttributeName("width").setTo(Integer.toString(SVG_WIDTH)));
-        svgRect.add(new SvgSet(boardCounter)
-                .setBeginRelativeTo(animationCounter, "end + 1s")
-                .setAttributeName("height").setTo(Integer.toString(SVG_HEIGHT)));
+                .setRect(0, 0, SVG_WIDTH, SVG_HEIGHT)
+                .setOpacity("0.1")
+                .addAll(Arrays.asList(
+                        new SvgAnimate(boardCounter)
+                                .setAnimId(firstAnimateCounter)
+                                .setBegin("click")
+                                .setAttributeName("x").setFrom("0").setTo("0")
+                                .setDuration("0.01s"),
+                        new SvgSet(boardCounter)
+                                .setBeginRelativeTo(firstAnimateCounter, "begin")
+                                .setAttributeName("width").setTo("50"),
+                        new SvgSet(boardCounter)
+                                .setBeginRelativeTo(firstAnimateCounter, "begin")
+                                .setAttributeName("height").setTo("50"),
+                        new SvgAnimate(boardCounter)
+                                .setId("b" + boardCounter + "_animEnd")
+                                .setBeginRelativeTo(animationCounter, "end + 1s")
+                                .setAttributeName("x").setFrom("0").setTo("0")
+                                .setDuration("0.01s"),
+                        new SvgSet(boardCounter)
+                                .setBeginRelativeTo(animationCounter, "end + 1s")
+                                .setAttributeName("width").setTo(SVG_WIDTH),
+                        new SvgSet(boardCounter)
+                                .setBeginRelativeTo(animationCounter, "end + 1s")
+                                .setAttributeName("height").setTo(SVG_HEIGHT)));
 
         write(svgRect.toSvg());
 //        write("<rect x=\"0\" y=\"0\" width=\"" + SVG_WIDTH + "\" height=\"" + SVG_HEIGHT + "\" opacity=\"0.1\">\n");
