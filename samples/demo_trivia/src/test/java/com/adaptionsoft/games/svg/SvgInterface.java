@@ -8,20 +8,43 @@ interface SvgSetAttr<T> {
  * https://www.w3.org/TR/SVG11/types.html#InterfaceSVGRect
  */
 interface SvgInterfaceRect<T> extends SvgSetAttr<T> {
+    default T setX(int value) {
+        return setX(Integer.toString(value));
+    }
+
     default T setX(String value) {
         return set("x", value);
+    }
+
+    default T setY(int value) {
+        return setY(Integer.toString(value));
     }
 
     default T setY(String value) {
         return set("y", value);
     }
 
+    default T setWidth(int value) {
+        return setWidth(Integer.toString(value));
+    }
+
     default T setWidth(String value) {
         return set("width", value);
     }
 
+    default T setHeight(int value) {
+        return setHeight(Integer.toString(value));
+    }
+
     default T setHeight(String value) {
         return set("height", value);
+    }
+
+    default T setRect(int x, int y, int width, int height) {
+        setX(x);
+        setY(y);
+        setWidth(width);
+        return setHeight(height);
     }
 }
 
@@ -41,39 +64,51 @@ interface SvgInterfaceTargetAttribute<T> extends SvgSetAttr<T> {
  */
 interface SvgInterfaceXLink<T> extends SvgSetAttr<T> {
     default T setXLinkHref(String value) {
-        return set("xlink:href", "#"+value);
+        return set("xlink:href", "#" + value);
     }
 }
 
 /**
  * https://www.w3.org/TR/SVG11/animate.html#ValueAttributes
- ‘calcMode’, ‘values’, ‘keyTimes’, ‘keySplines’, ‘from’, ‘to’, ‘by’
+ * ‘calcMode’, ‘values’, ‘keyTimes’, ‘keySplines’, ‘from’, ‘to’, ‘by’
  */
 interface SvgInterfaceAnimationValue<T> extends SvgSetAttr<T> {
+    default T setFrom(int value) {
+        return setFrom(Integer.toString(value));
+    }
+
     default T setFrom(String value) {
         return set("from", value);
     }
+
+    default T setTo(int value) {
+        return setTo(Integer.toString(value));
+    }
+
     default T setTo(String value) {
         return set("to", value);
     }
-
 }
 
 /**
  * https://www.w3.org/TR/SVG11/animate.html#TimingAttributes
  * ‘begin’, ‘dur’, ‘end’, ‘min’, ‘max’, ‘restart’, ‘repeatCount’, ‘repeatDur’, ‘fill’
+ *
  * @param <T>
  */
 interface SvgInterfaceAnimationTiming<T> extends SvgSetAttr<T> {
     default T setBegin(String value) {
         return set("begin", value);
     }
+
     default T setDuration(String value) {
         return set("dur", value);
     }
+
     default T setRepeatCount(String value) {
         return set("repeatCount", value);
     }
+
     default T setFill(String value) {
         return set("fill", value);
     }
