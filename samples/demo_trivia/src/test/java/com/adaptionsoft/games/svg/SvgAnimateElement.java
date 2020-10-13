@@ -11,26 +11,15 @@ public class SvgAnimateElement<T> extends SvgElement<T> implements
         SvgInterfaceXLink<T>,
         SvgInterfaceTargetAttribute<T> {
 
-    private final String boardIndex;
-
     public SvgAnimateElement(Class<T> selfType, String tag, String boardIndex) {
-        super(selfType, tag);
-        this.boardIndex = boardIndex;
+        super(selfType, tag, boardIndex);
 
         setRepeatCount("1");
         setFill("freeze");
     }
 
-    public String getAnimId(int animationIndex) {
-        return String.format("b%s_anim%d", boardIndex, animationIndex);
-    }
-
-    public T setAnimId(int animationIndex) {
-        return setId(getAnimId(animationIndex));
-    }
-
     public T setBeginRelativeTo(int animationIndex, String event) {
-        return setBegin(String.format("%s.%s", getAnimId(animationIndex), event));
+        return setBegin(String.format("%s.%s", buildId(animationIndex), event));
     }
 
 }

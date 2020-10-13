@@ -7,29 +7,43 @@ When rolled is even, player stay in penality box.
 ++++
 
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="200" >
-<rect x="0" y="0" width="800" height="200" fill="white" stroke="black" stroke-width="1" />
-<rect x="0" y="0" width="50" height="50" fill="#9e9eff" stroke="black" stroke-width="1" />
-<rect x="50" y="0" width="50" height="50" fill="#239d23" stroke="black" stroke-width="1" />
-<rect x="100" y="0" width="50" height="50" fill="#f4f407" stroke="black" stroke-width="1" />
-<rect x="150" y="0" width="50" height="50" fill="#f23939" stroke="black" stroke-width="1" />
-<rect x="150" y="50" width="50" height="50" fill="#9e9eff" stroke="black" stroke-width="1" />
-<rect x="150" y="100" width="50" height="50" fill="#239d23" stroke="black" stroke-width="1" />
-<rect x="150" y="150" width="50" height="50" fill="#f4f407" stroke="black" stroke-width="1" />
-<rect x="100" y="150" width="50" height="50" fill="#f23939" stroke="black" stroke-width="1" />
-<rect x="50" y="150" width="50" height="50" fill="#9e9eff" stroke="black" stroke-width="1" />
-<rect x="0" y="150" width="50" height="50" fill="#239d23" stroke="black" stroke-width="1" />
-<rect x="0" y="100" width="50" height="50" fill="#f4f407" stroke="black" stroke-width="1" />
-<rect x="0" y="50" width="50" height="50" fill="#f23939" stroke="black" stroke-width="1" />
+<rect fill="white" height="200" stroke="black" stroke-width="1" width="800" x="0" y="0"/>
+<rect fill="#9e9eff" height="50" stroke="black" stroke-width="1" width="50" x="0" y="0"/>
+<rect fill="#239d23" height="50" stroke="black" stroke-width="1" width="50" x="50" y="0"/>
+<rect fill="#f4f407" height="50" stroke="black" stroke-width="1" width="50" x="100" y="0"/>
+<rect fill="#f23939" height="50" stroke="black" stroke-width="1" width="50" x="150" y="0"/>
+<rect fill="#9e9eff" height="50" stroke="black" stroke-width="1" width="50" x="150" y="50"/>
+<rect fill="#239d23" height="50" stroke="black" stroke-width="1" width="50" x="150" y="100"/>
+<rect fill="#f4f407" height="50" stroke="black" stroke-width="1" width="50" x="150" y="150"/>
+<rect fill="#f23939" height="50" stroke="black" stroke-width="1" width="50" x="100" y="150"/>
+<rect fill="#9e9eff" height="50" stroke="black" stroke-width="1" width="50" x="50" y="150"/>
+<rect fill="#239d23" height="50" stroke="black" stroke-width="1" width="50" x="0" y="150"/>
+<rect fill="#f4f407" height="50" stroke="black" stroke-width="1" width="50" x="0" y="100"/>
+<rect fill="#f23939" height="50" stroke="black" stroke-width="1" width="50" x="0" y="50"/>
 <svg id="b8_playerA" x="150" y="0"  ><g>
 <circle opacity="1" cx="25" cy="25" r="15" fill="grey" stroke="black" stroke-width="1">
 </circle>
-<text id="b8_playerA_0" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1">0</text>
-<text id="b8_playerA_1" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">1</text>
-<text id="b8_playerA_2" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">2</text>
-<text id="b8_playerA_3" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">3</text>
-<text id="b8_playerA_4" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
-<text id="b8_playerA_5" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
-<text id="b8_playerA_6" x="25" y="25" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b8_playerA_0" opacity="1" text-anchor="middle" x="25" y="25">
+  0
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b8_playerA_1" opacity="0" text-anchor="middle" x="25" y="25">
+  1
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b8_playerA_2" opacity="0" text-anchor="middle" x="25" y="25">
+  2
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b8_playerA_3" opacity="0" text-anchor="middle" x="25" y="25">
+  3
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b8_playerA_4" opacity="0" text-anchor="middle" x="25" y="25">
+  4
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b8_playerA_5" opacity="0" text-anchor="middle" x="25" y="25">
+  5
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b8_playerA_6" opacity="0" text-anchor="middle" x="25" y="25">
+  6
+</text>
 <rect id="b8_playerA_jail" x="8" y="8" width="34" height="34" fill=none stroke="black" stroke-width="5" opacity="1"/>
 </g><set begin="b8_animEnd.end" attributeName="x" to="150" repeatCount="1" fill="freeze"/>
 <set begin="b8_animEnd.end" attributeName="y" to="0" repeatCount="1" fill="freeze"/>
@@ -85,7 +99,11 @@ When rolled is even, player stay in penality box.
 <set xlink:href="#b8_playerA_jail" begin="b8_anim150.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 
 
-<text id="b8_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b8_anim140.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b8_anim150.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b8_text1" opacity="1" text-anchor="middle" x="50%" y="50%">
+  <set attributeName="opacity" begin="b8_anim140.begin" fill="freeze" repeatCount="1" to="0"/>
+  <set attributeName="opacity" begin="b8_anim150.end + 1s" fill="freeze" repeatCount="1" to="1"/>
+  Click to start
+</text>
 <rect height="200" opacity="0.1" width="800" x="0" y="0">
   <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b8_anim140" repeatCount="1" to="0"/>
   <set attributeName="width" begin="b8_anim140.begin" fill="freeze" repeatCount="1" to="50"/>
