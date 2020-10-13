@@ -172,11 +172,17 @@ public class DisplayDocSvg extends DisplayDoc {
                 boardCounter, aGame.inPenaltyBox[aGame.currentPlayer] ? 1 : 0));
 
         write("</g>");
-        write("<set begin=\"b" + boardCounter + "_animEnd.end\" attributeName=\"x\" to=\"" + position.getX() + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
-        write("<set begin=\"b" + boardCounter + "_animEnd.end\" attributeName=\"y\" to=\"" + position.getY() + "\" repeatCount=\"1\" fill=\"freeze\"/>\n");
+        write(new SvgSet(boardCounter)
+                .setBegin("b" + boardCounter + "_animEnd.end")
+                .setAttributeName("x").setTo(position.getX())
+                .toSvg());
+        write(new SvgSet(boardCounter)
+                .setBegin("b" + boardCounter + "_animEnd.end")
+                .setAttributeName("y").setTo(position.getY())
+                .toSvg());
+
         write("</svg>\n");
 
-//        fileWriterWrite("<set xlink:href=\"#b" + boardCounter + "_playerA_0\"  attributeName=\"opacity\" to=\"1\" repeatCount=\"1\" fill=\"freeze\"/>\n");
 
         // Restore value at the end
         displayPoints(aGame, "b" + boardCounter + "_animEnd.end");

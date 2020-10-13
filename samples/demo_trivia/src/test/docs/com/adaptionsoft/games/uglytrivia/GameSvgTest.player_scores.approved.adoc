@@ -44,8 +44,8 @@ If he answers correctly, he scores a point.
   6
 </text>
 <rect id="b1_playerA_jail" x="8" y="8" width="34" height="34" fill=none stroke="black" stroke-width="5" opacity="0"/>
-</g><set begin="b1_animEnd.end" attributeName="x" to="0" repeatCount="1" fill="freeze"/>
-<set begin="b1_animEnd.end" attributeName="y" to="0" repeatCount="1" fill="freeze"/>
+</g><set attributeName="x" begin="b1_animEnd.end" fill="freeze" repeatCount="1" to="0"/>
+<set attributeName="y" begin="b1_animEnd.end" fill="freeze" repeatCount="1" to="0"/>
 </svg>
 <set xlink:href="#b1_playerA_0" begin="b1_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b1_playerA_1" begin="b1_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>

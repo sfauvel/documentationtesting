@@ -46,8 +46,8 @@ He stays in jail until he rolls an odd number.
   6
 </text>
 <rect id="b4_playerA_jail" x="8" y="8" width="34" height="34" fill=none stroke="black" stroke-width="5" opacity="0"/>
-</g><set begin="b4_animEnd.end" attributeName="x" to="0" repeatCount="1" fill="freeze"/>
-<set begin="b4_animEnd.end" attributeName="y" to="0" repeatCount="1" fill="freeze"/>
+</g><set attributeName="x" begin="b4_animEnd.end" fill="freeze" repeatCount="1" to="0"/>
+<set attributeName="y" begin="b4_animEnd.end" fill="freeze" repeatCount="1" to="0"/>
 </svg>
 <set xlink:href="#b4_playerA_0" begin="b4_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b4_playerA_1" begin="b4_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
@@ -238,8 +238,8 @@ Board at the start of the turn
   6
 </text>
 <rect id="b5_playerA_jail" x="8" y="8" width="34" height="34" fill=none stroke="black" stroke-width="5" opacity="1"/>
-</g><set begin="b5_animEnd.end" attributeName="x" to="50" repeatCount="1" fill="freeze"/>
-<set begin="b5_animEnd.end" attributeName="y" to="0" repeatCount="1" fill="freeze"/>
+</g><set attributeName="x" begin="b5_animEnd.end" fill="freeze" repeatCount="1" to="50"/>
+<set attributeName="y" begin="b5_animEnd.end" fill="freeze" repeatCount="1" to="0"/>
 </svg>
 <set xlink:href="#b5_playerA_0" begin="b5_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b5_playerA_1" begin="b5_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
@@ -533,8 +533,8 @@ When player correctly answer to a question, he goes out of jail.
   6
 </text>
 <rect id="b6_playerA_jail" x="8" y="8" width="34" height="34" fill=none stroke="black" stroke-width="5" opacity="1"/>
-</g><set begin="b6_animEnd.end" attributeName="x" to="0" repeatCount="1" fill="freeze"/>
-<set begin="b6_animEnd.end" attributeName="y" to="0" repeatCount="1" fill="freeze"/>
+</g><set attributeName="x" begin="b6_animEnd.end" fill="freeze" repeatCount="1" to="0"/>
+<set attributeName="y" begin="b6_animEnd.end" fill="freeze" repeatCount="1" to="0"/>
 </svg>
 <set xlink:href="#b6_playerA_0" begin="b6_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b6_playerA_1" begin="b6_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
