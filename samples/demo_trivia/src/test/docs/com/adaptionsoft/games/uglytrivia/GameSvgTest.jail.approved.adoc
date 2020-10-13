@@ -57,27 +57,27 @@ He stays in jail until he rolls an odd number.
 <text id="b4_dice4" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
 <text id="b4_dice5" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
 <text id="b4_dice6" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate dur="0.2s" attributeName="opacity" from="0" id="b4_anim33" to="1" fill="freeze" begin="b4_anim32.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b4_anim34" to="0" fill="freeze" begin="b4_anim33.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b4_anim32.end" dur="0.2s" fill="freeze" from="0" id="b4_anim33" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b4_anim33.end + 1s" dur="0.2s" fill="freeze" from="1" id="b4_anim34" repeatCount="1" to="0"/>
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate dur="0.2s" attributeName="opacity" from="0" id="b4_anim35" to="1" fill="freeze" begin="b4_anim34.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b4_anim36" to="0" fill="freeze" begin="b4_anim35.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate attributeName="opacity" begin="b4_anim34.end" dur="0.2s" fill="freeze" from="0" id="b4_anim35" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b4_anim35.end + 1s" dur="0.2s" fill="freeze" from="1" id="b4_anim36" repeatCount="1" to="0"/>
 </text>
 
 
-<animate dur="0.5s" attributeName="x" id="b4_anim37" to="50" fill="freeze" begin="b4_anim36.end" xlink:href="#b4_playerA" repeatCount="1"/>
-<animate dur="0.5s" attributeName="y" to="0" fill="freeze" begin="b4_anim36.end" xlink:href="#b4_playerA" repeatCount="1"/>
-<animate dur="0.5s" attributeName="x" id="b4_anim38" to="100" fill="freeze" begin="b4_anim37.end" xlink:href="#b4_playerA" repeatCount="1"/>
-<animate dur="0.5s" attributeName="y" to="0" fill="freeze" begin="b4_anim37.end" xlink:href="#b4_playerA" repeatCount="1"/>
-<animate dur="0.5s" attributeName="x" id="b4_anim39" to="150" fill="freeze" begin="b4_anim38.end" xlink:href="#b4_playerA" repeatCount="1"/>
-<animate dur="0.5s" attributeName="y" to="0" fill="freeze" begin="b4_anim38.end" xlink:href="#b4_playerA" repeatCount="1"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate dur="0.2s" attributeName="opacity" from="0" id="b4_anim40" to="1" fill="freeze" begin="b4_anim39.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b4_anim41" to="0" fill="freeze" begin="b4_anim40.end + 1s" repeatCount="1"/>
+<animate attributeName="x" begin="b4_anim36.end" dur="0.5s" fill="freeze" id="b4_anim37" repeatCount="1" to="50" xlink:href="#b4_playerA"/>
+<animate attributeName="y" begin="b4_anim36.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b4_playerA"/>
+<animate attributeName="x" begin="b4_anim37.end" dur="0.5s" fill="freeze" id="b4_anim38" repeatCount="1" to="100" xlink:href="#b4_playerA"/>
+<animate attributeName="y" begin="b4_anim37.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b4_playerA"/>
+<animate attributeName="x" begin="b4_anim38.end" dur="0.5s" fill="freeze" id="b4_anim39" repeatCount="1" to="150" xlink:href="#b4_playerA"/>
+<animate attributeName="y" begin="b4_anim38.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b4_playerA"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate attributeName="opacity" begin="b4_anim39.end" dur="0.2s" fill="freeze" from="0" id="b4_anim40" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b4_anim40.end + 1s" dur="0.2s" fill="freeze" from="1" id="b4_anim41" repeatCount="1" to="0"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet incorrectly answered to Rock question<animate dur="0.2s" attributeName="opacity" from="0" id="b4_anim42" to="1" fill="freeze" begin="b4_anim41.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b4_anim43" to="0" fill="freeze" begin="b4_anim42.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet incorrectly answered to Rock question<animate attributeName="opacity" begin="b4_anim41.end" dur="0.2s" fill="freeze" from="0" id="b4_anim42" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b4_anim42.end + 1s" dur="0.2s" fill="freeze" from="1" id="b4_anim43" repeatCount="1" to="0"/>
 </text>
 <set xlink:href="#b4_playerA_0" begin="b4_anim43.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b4_playerA_1" begin="b4_anim43.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
@@ -90,13 +90,13 @@ He stays in jail until he rolls an odd number.
 
 
 <text id="b4_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b4_anim32.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b4_anim43.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
-<rect x="0" width="800" y="0" opacity="0.1" height="200">
-  <animate dur="0.01s" attributeName="x" from="0" id="b4_anim32" to="0" fill="freeze" begin="click" repeatCount="1"/>
-  <set attributeName="width" to="50" fill="freeze" begin="b4_anim32.begin" repeatCount="1"/>
-  <set attributeName="height" to="50" fill="freeze" begin="b4_anim32.begin" repeatCount="1"/>
-  <animate dur="0.01s" attributeName="x" from="0" id="b4_animEnd" to="0" fill="freeze" begin="b4_anim43.end + 1s" repeatCount="1"/>
-  <set attributeName="width" to="800" fill="freeze" begin="b4_anim43.end + 1s" repeatCount="1"/>
-  <set attributeName="height" to="200" fill="freeze" begin="b4_anim43.end + 1s" repeatCount="1"/>
+<rect height="200" opacity="0.1" width="800" x="0" y="0">
+  <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b4_anim32" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b4_anim32.begin" fill="freeze" repeatCount="1" to="50"/>
+  <set attributeName="height" begin="b4_anim32.begin" fill="freeze" repeatCount="1" to="50"/>
+  <animate attributeName="x" begin="b4_anim43.end + 1s" dur="0.01s" fill="freeze" from="0" id="b4_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b4_anim43.end + 1s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b4_anim43.end + 1s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {
@@ -231,24 +231,24 @@ Board at the start of the turn
 <text id="b5_dice4" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
 <text id="b5_dice5" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
 <text id="b5_dice6" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate dur="0.2s" attributeName="opacity" from="0" id="b5_anim44" to="1" fill="freeze" begin="b5_anim43.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b5_anim45" to="0" fill="freeze" begin="b5_anim44.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b5_anim43.end" dur="0.2s" fill="freeze" from="0" id="b5_anim44" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b5_anim44.end + 1s" dur="0.2s" fill="freeze" from="1" id="b5_anim45" repeatCount="1" to="0"/>
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 2<animate dur="0.2s" attributeName="opacity" from="0" id="b5_anim46" to="1" fill="freeze" begin="b5_anim45.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b5_anim47" to="0" fill="freeze" begin="b5_anim46.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 2<animate attributeName="opacity" begin="b5_anim45.end" dur="0.2s" fill="freeze" from="0" id="b5_anim46" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b5_anim46.end + 1s" dur="0.2s" fill="freeze" from="1" id="b5_anim47" repeatCount="1" to="0"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0"> and is not getting out of the penalty box<animate dur="0.2s" attributeName="opacity" from="0" id="b5_anim48" to="1" fill="freeze" begin="b5_anim47.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b5_anim49" to="0" fill="freeze" begin="b5_anim48.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0"> and is not getting out of the penalty box<animate attributeName="opacity" begin="b5_anim47.end" dur="0.2s" fill="freeze" from="0" id="b5_anim48" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b5_anim48.end + 1s" dur="0.2s" fill="freeze" from="1" id="b5_anim49" repeatCount="1" to="0"/>
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Science...<animate dur="0.2s" attributeName="opacity" from="0" id="b5_anim50" to="1" fill="freeze" begin="b5_anim49.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b5_anim51" to="0" fill="freeze" begin="b5_anim50.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Science...<animate attributeName="opacity" begin="b5_anim49.end" dur="0.2s" fill="freeze" from="0" id="b5_anim50" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b5_anim50.end + 1s" dur="0.2s" fill="freeze" from="1" id="b5_anim51" repeatCount="1" to="0"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet incorrectly answered to Science question<animate dur="0.2s" attributeName="opacity" from="0" id="b5_anim52" to="1" fill="freeze" begin="b5_anim51.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b5_anim53" to="0" fill="freeze" begin="b5_anim52.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet incorrectly answered to Science question<animate attributeName="opacity" begin="b5_anim51.end" dur="0.2s" fill="freeze" from="0" id="b5_anim52" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b5_anim52.end + 1s" dur="0.2s" fill="freeze" from="1" id="b5_anim53" repeatCount="1" to="0"/>
 </text>
 <set xlink:href="#b5_playerA_0" begin="b5_anim53.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b5_playerA_1" begin="b5_anim53.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
@@ -260,30 +260,30 @@ Board at the start of the turn
 <set xlink:href="#b5_playerA_jail" begin="b5_anim53.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate dur="0.2s" attributeName="opacity" from="0" id="b5_anim54" to="1" fill="freeze" begin="b5_anim53.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b5_anim55" to="0" fill="freeze" begin="b5_anim54.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b5_anim53.end" dur="0.2s" fill="freeze" from="0" id="b5_anim54" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b5_anim54.end + 1s" dur="0.2s" fill="freeze" from="1" id="b5_anim55" repeatCount="1" to="0"/>
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate dur="0.2s" attributeName="opacity" from="0" id="b5_anim56" to="1" fill="freeze" begin="b5_anim55.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b5_anim57" to="0" fill="freeze" begin="b5_anim56.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate attributeName="opacity" begin="b5_anim55.end" dur="0.2s" fill="freeze" from="0" id="b5_anim56" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b5_anim56.end + 1s" dur="0.2s" fill="freeze" from="1" id="b5_anim57" repeatCount="1" to="0"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0"> and is getting out of penality box<animate dur="0.2s" attributeName="opacity" from="0" id="b5_anim58" to="1" fill="freeze" begin="b5_anim57.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b5_anim59" to="0" fill="freeze" begin="b5_anim58.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0"> and is getting out of penality box<animate attributeName="opacity" begin="b5_anim57.end" dur="0.2s" fill="freeze" from="0" id="b5_anim58" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b5_anim58.end + 1s" dur="0.2s" fill="freeze" from="1" id="b5_anim59" repeatCount="1" to="0"/>
 </text>
 
 
-<animate dur="0.5s" attributeName="x" id="b5_anim60" to="100" fill="freeze" begin="b5_anim59.end" xlink:href="#b5_playerA" repeatCount="1"/>
-<animate dur="0.5s" attributeName="y" to="0" fill="freeze" begin="b5_anim59.end" xlink:href="#b5_playerA" repeatCount="1"/>
-<animate dur="0.5s" attributeName="x" id="b5_anim61" to="150" fill="freeze" begin="b5_anim60.end" xlink:href="#b5_playerA" repeatCount="1"/>
-<animate dur="0.5s" attributeName="y" to="0" fill="freeze" begin="b5_anim60.end" xlink:href="#b5_playerA" repeatCount="1"/>
-<animate dur="0.5s" attributeName="x" id="b5_anim62" to="150" fill="freeze" begin="b5_anim61.end" xlink:href="#b5_playerA" repeatCount="1"/>
-<animate dur="0.5s" attributeName="y" to="50" fill="freeze" begin="b5_anim61.end" xlink:href="#b5_playerA" repeatCount="1"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Pop...<animate dur="0.2s" attributeName="opacity" from="0" id="b5_anim63" to="1" fill="freeze" begin="b5_anim62.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b5_anim64" to="0" fill="freeze" begin="b5_anim63.end + 1s" repeatCount="1"/>
+<animate attributeName="x" begin="b5_anim59.end" dur="0.5s" fill="freeze" id="b5_anim60" repeatCount="1" to="100" xlink:href="#b5_playerA"/>
+<animate attributeName="y" begin="b5_anim59.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b5_playerA"/>
+<animate attributeName="x" begin="b5_anim60.end" dur="0.5s" fill="freeze" id="b5_anim61" repeatCount="1" to="150" xlink:href="#b5_playerA"/>
+<animate attributeName="y" begin="b5_anim60.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b5_playerA"/>
+<animate attributeName="x" begin="b5_anim61.end" dur="0.5s" fill="freeze" id="b5_anim62" repeatCount="1" to="150" xlink:href="#b5_playerA"/>
+<animate attributeName="y" begin="b5_anim61.end" dur="0.5s" fill="freeze" repeatCount="1" to="50" xlink:href="#b5_playerA"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Pop...<animate attributeName="opacity" begin="b5_anim62.end" dur="0.2s" fill="freeze" from="0" id="b5_anim63" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b5_anim63.end + 1s" dur="0.2s" fill="freeze" from="1" id="b5_anim64" repeatCount="1" to="0"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet incorrectly answered to Pop question<animate dur="0.2s" attributeName="opacity" from="0" id="b5_anim65" to="1" fill="freeze" begin="b5_anim64.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b5_anim66" to="0" fill="freeze" begin="b5_anim65.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet incorrectly answered to Pop question<animate attributeName="opacity" begin="b5_anim64.end" dur="0.2s" fill="freeze" from="0" id="b5_anim65" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b5_anim65.end + 1s" dur="0.2s" fill="freeze" from="1" id="b5_anim66" repeatCount="1" to="0"/>
 </text>
 <set xlink:href="#b5_playerA_0" begin="b5_anim66.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b5_playerA_1" begin="b5_anim66.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
@@ -296,13 +296,13 @@ Board at the start of the turn
 
 
 <text id="b5_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b5_anim43.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b5_anim66.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
-<rect x="0" width="800" y="0" opacity="0.1" height="200">
-  <animate dur="0.01s" attributeName="x" from="0" id="b5_anim43" to="0" fill="freeze" begin="click" repeatCount="1"/>
-  <set attributeName="width" to="50" fill="freeze" begin="b5_anim43.begin" repeatCount="1"/>
-  <set attributeName="height" to="50" fill="freeze" begin="b5_anim43.begin" repeatCount="1"/>
-  <animate dur="0.01s" attributeName="x" from="0" id="b5_animEnd" to="0" fill="freeze" begin="b5_anim66.end + 1s" repeatCount="1"/>
-  <set attributeName="width" to="800" fill="freeze" begin="b5_anim66.end + 1s" repeatCount="1"/>
-  <set attributeName="height" to="200" fill="freeze" begin="b5_anim66.end + 1s" repeatCount="1"/>
+<rect height="200" opacity="0.1" width="800" x="0" y="0">
+  <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b5_anim43" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b5_anim43.begin" fill="freeze" repeatCount="1" to="50"/>
+  <set attributeName="height" begin="b5_anim43.begin" fill="freeze" repeatCount="1" to="50"/>
+  <animate attributeName="x" begin="b5_anim66.end + 1s" dur="0.01s" fill="freeze" from="0" id="b5_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b5_anim66.end + 1s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b5_anim66.end + 1s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {
@@ -508,30 +508,30 @@ When player correctly answer to a question, he goes out of jail.
 <text id="b6_dice4" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
 <text id="b6_dice5" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
 <text id="b6_dice6" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate dur="0.2s" attributeName="opacity" from="0" id="b6_anim67" to="1" fill="freeze" begin="b6_anim66.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b6_anim68" to="0" fill="freeze" begin="b6_anim67.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b6_anim66.end" dur="0.2s" fill="freeze" from="0" id="b6_anim67" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b6_anim67.end + 1s" dur="0.2s" fill="freeze" from="1" id="b6_anim68" repeatCount="1" to="0"/>
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate dur="0.2s" attributeName="opacity" from="0" id="b6_anim69" to="1" fill="freeze" begin="b6_anim68.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b6_anim70" to="0" fill="freeze" begin="b6_anim69.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate attributeName="opacity" begin="b6_anim68.end" dur="0.2s" fill="freeze" from="0" id="b6_anim69" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b6_anim69.end + 1s" dur="0.2s" fill="freeze" from="1" id="b6_anim70" repeatCount="1" to="0"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0"> and is getting out of penality box<animate dur="0.2s" attributeName="opacity" from="0" id="b6_anim71" to="1" fill="freeze" begin="b6_anim70.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b6_anim72" to="0" fill="freeze" begin="b6_anim71.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0"> and is getting out of penality box<animate attributeName="opacity" begin="b6_anim70.end" dur="0.2s" fill="freeze" from="0" id="b6_anim71" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b6_anim71.end + 1s" dur="0.2s" fill="freeze" from="1" id="b6_anim72" repeatCount="1" to="0"/>
 </text>
 
 
-<animate dur="0.5s" attributeName="x" id="b6_anim73" to="50" fill="freeze" begin="b6_anim72.end" xlink:href="#b6_playerA" repeatCount="1"/>
-<animate dur="0.5s" attributeName="y" to="0" fill="freeze" begin="b6_anim72.end" xlink:href="#b6_playerA" repeatCount="1"/>
-<animate dur="0.5s" attributeName="x" id="b6_anim74" to="100" fill="freeze" begin="b6_anim73.end" xlink:href="#b6_playerA" repeatCount="1"/>
-<animate dur="0.5s" attributeName="y" to="0" fill="freeze" begin="b6_anim73.end" xlink:href="#b6_playerA" repeatCount="1"/>
-<animate dur="0.5s" attributeName="x" id="b6_anim75" to="150" fill="freeze" begin="b6_anim74.end" xlink:href="#b6_playerA" repeatCount="1"/>
-<animate dur="0.5s" attributeName="y" to="0" fill="freeze" begin="b6_anim74.end" xlink:href="#b6_playerA" repeatCount="1"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate dur="0.2s" attributeName="opacity" from="0" id="b6_anim76" to="1" fill="freeze" begin="b6_anim75.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b6_anim77" to="0" fill="freeze" begin="b6_anim76.end + 1s" repeatCount="1"/>
+<animate attributeName="x" begin="b6_anim72.end" dur="0.5s" fill="freeze" id="b6_anim73" repeatCount="1" to="50" xlink:href="#b6_playerA"/>
+<animate attributeName="y" begin="b6_anim72.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b6_playerA"/>
+<animate attributeName="x" begin="b6_anim73.end" dur="0.5s" fill="freeze" id="b6_anim74" repeatCount="1" to="100" xlink:href="#b6_playerA"/>
+<animate attributeName="y" begin="b6_anim73.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b6_playerA"/>
+<animate attributeName="x" begin="b6_anim74.end" dur="0.5s" fill="freeze" id="b6_anim75" repeatCount="1" to="150" xlink:href="#b6_playerA"/>
+<animate attributeName="y" begin="b6_anim74.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b6_playerA"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate attributeName="opacity" begin="b6_anim75.end" dur="0.2s" fill="freeze" from="0" id="b6_anim76" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b6_anim76.end + 1s" dur="0.2s" fill="freeze" from="1" id="b6_anim77" repeatCount="1" to="0"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Rock question<animate dur="0.2s" attributeName="opacity" from="0" id="b6_anim78" to="1" fill="freeze" begin="b6_anim77.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b6_anim79" to="0" fill="freeze" begin="b6_anim78.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Rock question<animate attributeName="opacity" begin="b6_anim77.end" dur="0.2s" fill="freeze" from="0" id="b6_anim78" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b6_anim78.end + 1s" dur="0.2s" fill="freeze" from="1" id="b6_anim79" repeatCount="1" to="0"/>
 </text>
 <set xlink:href="#b6_playerA_0" begin="b6_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b6_playerA_1" begin="b6_anim79.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
@@ -544,13 +544,13 @@ When player correctly answer to a question, he goes out of jail.
 
 
 <text id="b6_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b6_anim66.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b6_anim79.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
-<rect x="0" width="800" y="0" opacity="0.1" height="200">
-  <animate dur="0.01s" attributeName="x" from="0" id="b6_anim66" to="0" fill="freeze" begin="click" repeatCount="1"/>
-  <set attributeName="width" to="50" fill="freeze" begin="b6_anim66.begin" repeatCount="1"/>
-  <set attributeName="height" to="50" fill="freeze" begin="b6_anim66.begin" repeatCount="1"/>
-  <animate dur="0.01s" attributeName="x" from="0" id="b6_animEnd" to="0" fill="freeze" begin="b6_anim79.end + 1s" repeatCount="1"/>
-  <set attributeName="width" to="800" fill="freeze" begin="b6_anim79.end + 1s" repeatCount="1"/>
-  <set attributeName="height" to="200" fill="freeze" begin="b6_anim79.end + 1s" repeatCount="1"/>
+<rect height="200" opacity="0.1" width="800" x="0" y="0">
+  <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b6_anim66" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b6_anim66.begin" fill="freeze" repeatCount="1" to="50"/>
+  <set attributeName="height" begin="b6_anim66.begin" fill="freeze" repeatCount="1" to="50"/>
+  <animate attributeName="x" begin="b6_anim79.end + 1s" dur="0.01s" fill="freeze" from="0" id="b6_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b6_anim79.end + 1s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b6_anim79.end + 1s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {

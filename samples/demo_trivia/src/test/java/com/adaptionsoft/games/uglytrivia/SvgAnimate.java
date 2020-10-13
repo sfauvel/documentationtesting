@@ -80,6 +80,7 @@ abstract class SvgElement<T> {
         }
 
         return Optional.of(attributes.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
                 .map(e -> String.format("%s=\"%s\"", e.getKey(), e.getValue()))
                 .collect(Collectors.joining(" ")));
     }
