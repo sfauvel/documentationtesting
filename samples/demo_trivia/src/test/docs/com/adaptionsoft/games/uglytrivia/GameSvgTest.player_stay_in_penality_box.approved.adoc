@@ -56,24 +56,24 @@ When rolled is even, player stay in penality box.
 <text id="b8_dice4" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
 <text id="b8_dice5" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
 <text id="b8_dice6" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate dur="0.2s" attributeName="opacity" from="0" id="b8_anim141" to="1" fill="freeze" begin="b8_anim140.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b8_anim142" to="0" fill="freeze" begin="b8_anim141.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b8_anim140.end" dur="0.2s" fill="freeze" from="0" id="b8_anim141" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b8_anim141.end + 1s" dur="0.2s" fill="freeze" from="1" id="b8_anim142" repeatCount="1" to="0"/>
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 2<animate dur="0.2s" attributeName="opacity" from="0" id="b8_anim143" to="1" fill="freeze" begin="b8_anim142.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b8_anim144" to="0" fill="freeze" begin="b8_anim143.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 2<animate attributeName="opacity" begin="b8_anim142.end" dur="0.2s" fill="freeze" from="0" id="b8_anim143" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b8_anim143.end + 1s" dur="0.2s" fill="freeze" from="1" id="b8_anim144" repeatCount="1" to="0"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0"> and is not getting out of the penalty box<animate dur="0.2s" attributeName="opacity" from="0" id="b8_anim145" to="1" fill="freeze" begin="b8_anim144.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b8_anim146" to="0" fill="freeze" begin="b8_anim145.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0"> and is not getting out of the penalty box<animate attributeName="opacity" begin="b8_anim144.end" dur="0.2s" fill="freeze" from="0" id="b8_anim145" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b8_anim145.end + 1s" dur="0.2s" fill="freeze" from="1" id="b8_anim146" repeatCount="1" to="0"/>
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate dur="0.2s" attributeName="opacity" from="0" id="b8_anim147" to="1" fill="freeze" begin="b8_anim146.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b8_anim148" to="0" fill="freeze" begin="b8_anim147.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate attributeName="opacity" begin="b8_anim146.end" dur="0.2s" fill="freeze" from="0" id="b8_anim147" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b8_anim147.end + 1s" dur="0.2s" fill="freeze" from="1" id="b8_anim148" repeatCount="1" to="0"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet incorrectly answered to Rock question<animate dur="0.2s" attributeName="opacity" from="0" id="b8_anim149" to="1" fill="freeze" begin="b8_anim148.end" repeatCount="1"/>
-<animate dur="0.2s" attributeName="opacity" from="1" id="b8_anim150" to="0" fill="freeze" begin="b8_anim149.end + 1s" repeatCount="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet incorrectly answered to Rock question<animate attributeName="opacity" begin="b8_anim148.end" dur="0.2s" fill="freeze" from="0" id="b8_anim149" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b8_anim149.end + 1s" dur="0.2s" fill="freeze" from="1" id="b8_anim150" repeatCount="1" to="0"/>
 </text>
 <set xlink:href="#b8_playerA_0" begin="b8_anim150.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b8_playerA_1" begin="b8_anim150.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
@@ -86,13 +86,13 @@ When rolled is even, player stay in penality box.
 
 
 <text id="b8_text1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="1"><set begin="b8_anim140.begin" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/><set begin="b8_anim150.end + 1s" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>Click to start</text>
-<rect x="0" width="800" y="0" opacity="0.1" height="200">
-  <animate dur="0.01s" attributeName="x" from="0" id="b8_anim140" to="0" fill="freeze" begin="click" repeatCount="1"/>
-  <set attributeName="width" to="50" fill="freeze" begin="b8_anim140.begin" repeatCount="1"/>
-  <set attributeName="height" to="50" fill="freeze" begin="b8_anim140.begin" repeatCount="1"/>
-  <animate dur="0.01s" attributeName="x" from="0" id="b8_animEnd" to="0" fill="freeze" begin="b8_anim150.end + 1s" repeatCount="1"/>
-  <set attributeName="width" to="800" fill="freeze" begin="b8_anim150.end + 1s" repeatCount="1"/>
-  <set attributeName="height" to="200" fill="freeze" begin="b8_anim150.end + 1s" repeatCount="1"/>
+<rect height="200" opacity="0.1" width="800" x="0" y="0">
+  <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b8_anim140" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b8_anim140.begin" fill="freeze" repeatCount="1" to="50"/>
+  <set attributeName="height" begin="b8_anim140.begin" fill="freeze" repeatCount="1" to="50"/>
+  <animate attributeName="x" begin="b8_anim150.end + 1s" dur="0.01s" fill="freeze" from="0" id="b8_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b8_anim150.end + 1s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b8_anim150.end + 1s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {
