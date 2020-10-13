@@ -12,10 +12,27 @@ public class SvgElement<T> implements SvgSetAttr<T> {
     protected final String tag;
     protected final List<SvgElement> elements = new ArrayList<>();
     protected final Map<String, String> attributes = new HashMap<String, String>();
+    private final Optional<String> boardIndex;
+    private Optional<String> content = Optional.empty();
 
     public SvgElement(Class<T> selfType, String tag) {
         this.myself = selfType.cast(this);
         this.tag = tag;
+        this.boardIndex = Optional.empty();
+    }
+
+    public SvgElement(Class<T> selfType, String tag, String boardIndex) {
+        this.myself = selfType.cast(this);
+        this.tag = tag;
+        this.boardIndex = Optional.of(boardIndex);
+    }
+
+    public String buildId(int animationIndex) {
+        return String.format("b%s_anim%d", boardIndex.orElseThrow(() -> new RuntimeException("No board index provided")), animationIndex);
+    }
+
+    public T setIdFromIndex(int animationIndex) {
+        return setId(buildId(animationIndex));
     }
 
     public Optional<String> getId() {
@@ -31,6 +48,10 @@ public class SvgElement<T> implements SvgSetAttr<T> {
         return myself;
     }
 
+    public T setContent(final String value) {
+        content = Optional.of(value);
+        return myself;
+    }
     public T add(final SvgElement element) {
         elements.add(element);
         return myself;
@@ -61,7 +82,7 @@ public class SvgElement<T> implements SvgSetAttr<T> {
     }
 
     protected Optional<String> getContent() {
-        if (elements.isEmpty()) {
+        if (elements.isEmpty() && !content.isPresent()) {
             return Optional.empty();
         }
 
@@ -73,7 +94,8 @@ public class SvgElement<T> implements SvgSetAttr<T> {
                 .map(SvgElement::toSvg)
                 .map(indent)
                 .map(text -> text + "\n")
-                .collect(Collectors.joining()));
+                .collect(Collectors.joining()) +
+                content.map(text -> "  " + text + "\n").orElse(""));
     }
 
 }

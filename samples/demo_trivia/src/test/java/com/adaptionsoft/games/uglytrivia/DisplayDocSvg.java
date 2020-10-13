@@ -1,9 +1,6 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import com.adaptionsoft.games.svg.SvgAnimate;
-import com.adaptionsoft.games.svg.SvgAnimateElement;
-import com.adaptionsoft.games.svg.SvgRect;
-import com.adaptionsoft.games.svg.SvgSet;
+import com.adaptionsoft.games.svg.*;
 import org.sfvl.doctesting.DocAsTestBase;
 
 import java.io.IOException;
@@ -27,17 +24,6 @@ public class DisplayDocSvg extends DisplayDoc {
     @Override
     public void displaySpecificMulti(GameSvgTest.FakeGame aGame) throws IOException {
 
-//            final List<Runnable> collect = displayMethodsByGroup.stream()
-//                    .map(methods -> new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            methods.forEach(m -> m.run());
-//                        }
-//                    })
-//                    .collect(Collectors.toList());
-//
-//            displayGroup(aGame, collect);
-
         displayBoard(aGame, displayMethodsByGroup.stream()
                 .map(methods -> new Runnable() {
                     @Override
@@ -46,13 +32,6 @@ public class DisplayDocSvg extends DisplayDoc {
                     }
                 })
                 .collect(Collectors.toList()).toArray(new Runnable[0]));
-
-
-//            displayBoard(aGame, displayMethodsByGroup.stream()
-//                    .flatMap(Collection::stream)
-//                    .collect(Collectors.toList()).toArray(new Runnable[0]));
-
-
     }
 
     private void displayBoard(GameSvgTest.FakeGame aGame, Runnable... displayMethods) throws IOException {
@@ -72,9 +51,11 @@ public class DisplayDocSvg extends DisplayDoc {
                 "height=\"" + SVG_HEIGHT + "\" " +
                 ">\n");
 
-
-        write("<rect x=\"0\" y=\"0\" width=\"" + SVG_WIDTH + "\" height=\"200\" fill=\"white\" stroke=\"black\" stroke-width=\"1\" />\n");
-        write("");
+        write(new SvgRect()
+                .setRect(0, 0, SVG_WIDTH, 200)
+                .setFill("white")
+                .setStroke("black")
+                .setStrokeWidth("1").toSvg());
 
         for (int caseNumber = 0; caseNumber < GameSvgTest.BOARD_SIZE; caseNumber++) {
             final Position position = new Position(caseNumber);
@@ -90,19 +71,29 @@ public class DisplayDocSvg extends DisplayDoc {
             displayMethod.run();
         }
 
-        write("<text id=\"b" + boardCounter + "_text1\" x=\"50%\" y=\"50%\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"Verdana\" font-size=\"25\" opacity=\"1\">" +
-                "<set begin=\"b" + boardCounter + "_anim" + firstAnimateCounter + ".begin\" attributeName=\"opacity\" to=\"0\" repeatCount=\"1\" fill=\"freeze\"/>" +
-                "<set begin=\"b" + boardCounter + "_anim" + animationCounter + ".end + 1s\" attributeName=\"opacity\" to=\"1\" repeatCount=\"1\" fill=\"freeze\"/>" +
-                "Click to start" +
-                "</text>\n");
-
+        write(new SvgText(boardCounter)
+                .setId("b" + boardCounter + "_text1")
+                .setX("50%").setY("50%")
+                .setDominantBaseline("middle").setTextAnchor("middle")
+                .setFontFamily("Verdana").setFontSize("25")
+                .setOpacity("1")
+                .addAll(Arrays.asList(
+                        new SvgSet(boardCounter)
+                                .setBeginRelativeTo(firstAnimateCounter, "begin")
+                                .setAttributeName("opacity").setTo(0),
+                        new SvgSet(boardCounter)
+                                .setBeginRelativeTo(animationCounter, "end + 1s")
+                                .setAttributeName("opacity").setTo(1)
+                ))
+                .setContent("Click to start")
+                .toSvg());
 
         final SvgRect svgRect = new SvgRect()
                 .setRect(0, 0, SVG_WIDTH, SVG_HEIGHT)
                 .setOpacity("0.1")
                 .addAll(Arrays.asList(
                         new SvgAnimate(boardCounter)
-                                .setAnimId(firstAnimateCounter)
+                                .setIdFromIndex(firstAnimateCounter)
                                 .setBegin("click")
                                 .setAttributeName("x").setFrom("0").setTo("0")
                                 .setDuration("0.01s"),
@@ -125,43 +116,10 @@ public class DisplayDocSvg extends DisplayDoc {
                                 .setAttributeName("height").setTo(SVG_HEIGHT)));
 
         write(svgRect.toSvg());
-//        write("<rect x=\"0\" y=\"0\" width=\"" + SVG_WIDTH + "\" height=\"" + SVG_HEIGHT + "\" opacity=\"0.1\">\n");
-//        write("  " + new SvgAnimate(boardCounter)
-//                .setAnimId(firstAnimateCounter)
-//                .setBegin("click")
-//                .setAttributeName("x").setFrom("0").setTo("0")
-//                .setDuration("0.01s").toSvg());
-//        write("  " + new SvgSet(boardCounter)
-//                .setBeginRelativeTo(firstAnimateCounter, "begin")
-//                .setAttributeName("width").setTo("50")
-//                .toSvg());
-//        write("  " + new SvgSet(boardCounter)
-//                .setBeginRelativeTo(firstAnimateCounter, "begin")
-//                .setAttributeName("height").setTo("50")
-//                .toSvg());
-//
-//        write("  " + new SvgAnimate(boardCounter)
-//                .setId("b" + boardCounter + "_animEnd")
-//                .setBeginRelativeTo(animationCounter, "end + 1s")
-//                .setAttributeName("x").setFrom("0").setTo("0")
-//                .setDuration("0.01s").toSvg());
-//
-//        write("  " + new SvgSet(boardCounter)
-//                .setBeginRelativeTo(animationCounter, "end + 1s")
-//                .setAttributeName("width").setTo(SVG_WIDTH)
-//                .toSvg());
-//        write("  " + new SvgSet(boardCounter)
-//                .setBeginRelativeTo(animationCounter, "end + 1s")
-//                .setAttributeName("height").setTo(SVG_HEIGHT)
-//                .toSvg());
-//
-//        write("</rect>\n");
-
         displayStyleSvg();
         write("</svg>\n\n");
         write("++++\n\n");
 
-//        write(String.format("image:%s[width=%d,height=200,opts=interactive]\n\n", filename, SVG_WIDTH));
     }
 
     private String displayCase(int x, int y, final String category) {
@@ -174,7 +132,11 @@ public class DisplayDocSvg extends DisplayDoc {
             }
 
         };
-        return String.format("<rect x=\"%d\" y=\"%d\" width=\"50\" height=\"50\" fill=\"" + categoryMap.get(category) + "\" stroke=\"black\" stroke-width=\"1\" />\n", x, y);
+        return new SvgRect()
+                .setRect(x, y, 50, 50)
+                .setFill(categoryMap.get(category).toString())
+                .setStroke("black").setStrokeWidth("1")
+                .toSvg();
     }
 
 
@@ -191,11 +153,14 @@ public class DisplayDocSvg extends DisplayDoc {
 
 
     private void svgWritePlayer(GameSvgTest.FakeGame aGame) {
-        Function<Integer, String> point = p -> String.format("<text id=\"b%s_playerA_%d\" x=\"25\" y=\"25\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"Verdana\" font-size=\"25\" opacity=\"%d\">%d</text>\n",
-                boardCounter,
-                p,
-                aGame.purses[aGame.currentPlayer] == p ? 1 : 0,
-                p);
+        Function<Integer, String> point = p -> new SvgText(boardCounter)
+                .setId(String.format("b%s_playerA_%d", boardCounter, p))
+                .setX(Integer.toString(25)).setY(Integer.toString(25))
+                .setDominantBaseline("middle").setTextAnchor("middle")
+                .setFontFamily("Verdana").setFontSize("25")
+                .setOpacity(aGame.purses[aGame.currentPlayer] == p ? "1" : "0")
+                .setContent(Integer.toString(p))
+                .toSvg();
 
         final Position position = new Position(aGame.places[aGame.currentPlayer]);
         write("<svg id=\"b" + boardCounter + "_playerA\" x=\"" + position.getX() + "\" y=\"" + position.getY() + "\"  ><g>\n");
@@ -240,7 +205,7 @@ public class DisplayDocSvg extends DisplayDoc {
         int lastAnimationIndex = animationCounter;
 
         final SvgAnimateElement showText = new SvgAnimate(boardCounter)
-                .setAnimId(++animationCounter)
+                .setIdFromIndex(++animationCounter)
                 .setBeginRelativeTo(lastAnimationIndex, "end")
                 .setAttributeName("opacity")
                 .setFrom("0")
@@ -248,7 +213,7 @@ public class DisplayDocSvg extends DisplayDoc {
                 .setDuration("0.2s");
 
         final SvgAnimateElement hideText = new SvgAnimate(boardCounter)
-                .setAnimId(++animationCounter)
+                .setIdFromIndex(++animationCounter)
                 .setBegin(showText.getId().get() + ".end + 1s")
                 .setAttributeName("opacity")
                 .setFrom("1")
@@ -356,7 +321,7 @@ public class DisplayDocSvg extends DisplayDoc {
 //        currentAnimation = animationCounter;
 
         write(new SvgAnimate(boardCounter)
-                .setAnimId(++animationCounter)
+                .setIdFromIndex(++animationCounter)
                 .setXLinkHref("b" + boardCounter + "_" + player)
                 .setBeginRelativeTo(lastAnimation, "end")
                 .setAttributeName("x")
