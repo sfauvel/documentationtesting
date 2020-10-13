@@ -6,10 +6,10 @@ package com.adaptionsoft.games.svg;
  * @param <T>
  */
 public class SvgAnimateElement<T> extends SvgElement<T> implements
-        SvgAnimationTiming<T>,
-        SvgAnimationValue<T>,
-        SvgXLink<T>,
-        SvgTargetAttribute<T> {
+        SvgInterfaceAnimationTiming<T>,
+        SvgInterfaceAnimationValue<T>,
+        SvgInterfaceXLink<T>,
+        SvgInterfaceTargetAttribute<T> {
 
     private final String boardIndex;
 
@@ -17,8 +17,8 @@ public class SvgAnimateElement<T> extends SvgElement<T> implements
         super(selfType, tag);
         this.boardIndex = boardIndex;
 
-        set("repeatCount", "1");
-        set("fill", "freeze");
+        setRepeatCount("1");
+        setFill("freeze");
     }
 
     public String getAnimId(int animationIndex) {
