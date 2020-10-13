@@ -1,5 +1,9 @@
 package com.adaptionsoft.games.uglytrivia;
 
+import com.adaptionsoft.games.svg.SvgAnimate;
+import com.adaptionsoft.games.svg.SvgAnimateElement;
+import com.adaptionsoft.games.svg.SvgRect;
+import com.adaptionsoft.games.svg.SvgSet;
 import org.sfvl.doctesting.DocAsTestBase;
 
 import java.io.IOException;
