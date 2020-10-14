@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
-@DisplayName("Explanations and examples")
+@DisplayName("Functional examples")
 public class GameTest extends ApprovalsBase {
 
 
@@ -215,7 +215,7 @@ public class GameTest extends ApprovalsBase {
      * @throws Exception
      */
     @Test
-    @DisplayName("A full game")
+    @DisplayName("Simulation of a complete game")
     public void play_until_someone_wins() throws Exception {
         write("&nbsp; +\n");
         final FakeGame aGame = startGame("Chet", "Pat", "Sue");
@@ -291,17 +291,6 @@ public class GameTest extends ApprovalsBase {
         write(" +\n");
     }
 
-
-    private void displayCategories(Game aGame) {
-        final String line = IntStream.range(0, 12)
-                .mapToObj(i -> aGame.category(i))
-                .distinct()
-                .map(category -> String.format("* [%s]#%s#", category.toLowerCase(), category))
-                .collect(Collectors.joining("\n"));
-
-        write("Categories :\n\n"+line+"\n\n");
-    }
-
     private void displayPosition(Game aGame, String startOrEnd, int playerHighLighted) {
 
         final int columns = 12;
@@ -357,41 +346,6 @@ public class GameTest extends ApprovalsBase {
         return listPlayerAt.stream().collect(Collectors.joining(separator));
     }
 
-    private void displayPositionXX(Game aGame, String startOrEnd, int playerHighLighted) throws IOException {
-//        write("[%autowidth]\n|====\n");
-        final int columns = 12;
-//        write("Board :\n[cols=\"12*a\"]\n|====\n");
-//        write(IntStream.range(0, columns)
-//                .mapToObj(position -> String.format("[.%s.%s]\n%s", aGame.category(position).toLowerCase(), "boardHeader", position))
-//                .collect(Collectors.joining("\n| ", "| ", ""))
-//                + "\n"
-//        );
-//
-//        write(IntStream.range(0, columns)
-//                .mapToObj(position -> String.format("[.%s]\n%s",
-//                        aGame.category(position).toLowerCase(),
-//                        getListPlayerAt(aGame, position).stream().collect(Collectors.joining(" +\n")))+"&nbsp;\n")
-//                .collect(Collectors.joining(" | ", "| ", ""))
-//                + "\n"
-//        );
-//        write("|====\n");
-
-        write(String.format("[.boardTitle]\nBoard at the %s of the turn\n\n++++\n\n<table class=\"triviaBoard\">\n", startOrEnd));
-        write("<tr>\n"+IntStream.range(0, columns)
-                .mapToObj(position -> String.format("<td class=\"%s %s\">%s</td>", aGame.category(position).toLowerCase(), "boardHeader", position))
-                .collect(Collectors.joining("\n"))
-                + "\n</tr>\n"
-        );
-
-        write("<tr>\n"+IntStream.range(0, columns)
-                .mapToObj(position -> String.format("<td class=\"%s\">%s</td>",
-                        aGame.category(position).toLowerCase(),
-                        formatPlayers(getListPlayerAt(aGame, position, playerHighLighted), "")))
-                .collect(Collectors.joining("\n"))
-                + "\n</tr>\n"
-        );
-        write("</table>\n\n++++\n\n");
-    }
     private void displayPlayers(Game aGame) throws IOException {
         write("Players : ");
         write(formatPlayers(aGame.players, ", ")

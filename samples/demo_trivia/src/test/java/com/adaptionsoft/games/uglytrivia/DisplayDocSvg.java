@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class DisplayDocSvg extends DisplayDoc {
+    private final String END_TEMPO = "4s";
     private DocAsTestBase docAsTest;
     private static int animationCounter = 0; // Need to be static to ensure unicity. It may needed to add class name.
     private static String boardCounter = "0"; // Need to be static to ensure unicity. It may needed to add class name.
@@ -87,7 +88,7 @@ public class DisplayDocSvg extends DisplayDoc {
                                 .setBeginRelativeTo(firstAnimateCounter, "begin")
                                 .setAttributeName("opacity").setTo(0),
                         new SvgSet(boardCounter)
-                                .setBeginRelativeTo(animationCounter, "end + 1s")
+                                .setBeginRelativeTo(animationCounter, "end + " + END_TEMPO)
                                 .setAttributeName("opacity").setTo(1)
                 ))
                 .setContent("Click to start")
@@ -110,14 +111,14 @@ public class DisplayDocSvg extends DisplayDoc {
                                 .setAttributeName("height").setTo("50"),
                         new SvgAnimate(boardCounter)
                                 .setId("b" + boardCounter + "_animEnd")
-                                .setBeginRelativeTo(animationCounter, "end + 1s")
+                                .setBeginRelativeTo(animationCounter, "end + " + END_TEMPO)
                                 .setAttributeName("x").setFrom("0").setTo("0")
                                 .setDuration("0.01s"),
                         new SvgSet(boardCounter)
-                                .setBeginRelativeTo(animationCounter, "end + 1s")
+                                .setBeginRelativeTo(animationCounter, "end + " + END_TEMPO)
                                 .setAttributeName("width").setTo(SVG_WIDTH),
                         new SvgSet(boardCounter)
-                                .setBeginRelativeTo(animationCounter, "end + 1s")
+                                .setBeginRelativeTo(animationCounter, "end + " + END_TEMPO)
                                 .setAttributeName("height").setTo(SVG_HEIGHT)));
 
         write(svgRect.toSvg());
@@ -270,7 +271,7 @@ public class DisplayDocSvg extends DisplayDoc {
     }
 
     private void displayQuestionAskedSvg(GameSvgTest.FakeGame aGame, String currentPlayer, Supplier<Boolean> wrongAnswer) {
-        System.out.println("displayQuestionAskedSvg");
+//        System.out.println("displayQuestionAskedSvg");
         if (aGame.ask) {
             showAndHideTextSvg("Question " + aGame.currentCategory() + "...");
 
@@ -278,11 +279,11 @@ public class DisplayDocSvg extends DisplayDoc {
                 showAndHideTextSvg(String.format("%s incorrectly answered to %s question", currentPlayer, aGame.currentCategory()));
 
                 notAWinner = aGame.wrongAnswer();
-                System.out.println(String.format("wrongAnswer :%s", Boolean.toString(notAWinner)));
+//                System.out.println(String.format("wrongAnswer :%s", Boolean.toString(notAWinner)));
             } else {
                 showAndHideTextSvg(String.format("%s correctly answered to %s question", currentPlayer, aGame.currentCategory()));
                 notAWinner = aGame.wasCorrectlyAnswered();
-                System.out.println(String.format("wasCorrectlyAnswered :%s", Boolean.toString(notAWinner)));
+//                System.out.println(String.format("wasCorrectlyAnswered :%s", Boolean.toString(notAWinner)));
             }
         } else {
             showAndHideTextSvg(String.format("No question for %s", currentPlayer));

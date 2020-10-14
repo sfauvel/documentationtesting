@@ -55,13 +55,13 @@ When rolled is even, player stay in penality box.
 <set xlink:href="#b9_playerChet_4" begin="b9_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b9_playerChet_5" begin="b9_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b9_playerChet_6" begin="b9_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b9_playerChet_0" begin="b9_anim346.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b9_playerChet_1" begin="b9_anim346.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b9_playerChet_2" begin="b9_anim346.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b9_playerChet_3" begin="b9_anim346.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b9_playerChet_4" begin="b9_anim346.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b9_playerChet_5" begin="b9_anim346.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b9_playerChet_6" begin="b9_anim346.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b9_playerChet_0" begin="b9_anim289.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b9_playerChet_1" begin="b9_anim289.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b9_playerChet_2" begin="b9_anim289.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b9_playerChet_3" begin="b9_anim289.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b9_playerChet_4" begin="b9_anim289.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b9_playerChet_5" begin="b9_anim289.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b9_playerChet_6" begin="b9_anim289.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b9_playerChet_jail" begin="b9_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b9_startGame" opacity="0" text-anchor="middle" x="50%" y="50%">
   Game start !
@@ -85,56 +85,56 @@ When rolled is even, player stay in penality box.
   6
 </text>
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" opacity="0" text-anchor="middle" x="50%" y="50%">
-  <animate attributeName="opacity" begin="b9_anim346.end" dur="0.2s" fill="freeze" from="0" id="b9_anim347" repeatCount="1" to="1"/>
-  <animate attributeName="opacity" begin="b9_anim347.end + 1s" dur="0.2s" fill="freeze" from="1" id="b9_anim348" repeatCount="1" to="0"/>
+  <animate attributeName="opacity" begin="b9_anim289.end" dur="0.2s" fill="freeze" from="0" id="b9_anim290" repeatCount="1" to="1"/>
+  <animate attributeName="opacity" begin="b9_anim290.end + 1s" dur="0.2s" fill="freeze" from="1" id="b9_anim291" repeatCount="1" to="0"/>
   Start of the turn
 </text>
 
 
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" opacity="0" text-anchor="middle" x="50%" y="50%">
-  <animate attributeName="opacity" begin="b9_anim348.end" dur="0.2s" fill="freeze" from="0" id="b9_anim349" repeatCount="1" to="1"/>
-  <animate attributeName="opacity" begin="b9_anim349.end + 1s" dur="0.2s" fill="freeze" from="1" id="b9_anim350" repeatCount="1" to="0"/>
+  <animate attributeName="opacity" begin="b9_anim291.end" dur="0.2s" fill="freeze" from="0" id="b9_anim292" repeatCount="1" to="1"/>
+  <animate attributeName="opacity" begin="b9_anim292.end + 1s" dur="0.2s" fill="freeze" from="1" id="b9_anim293" repeatCount="1" to="0"/>
   Chet rolled a 2
 </text>
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" opacity="0" text-anchor="middle" x="50%" y="50%">
-  <animate attributeName="opacity" begin="b9_anim350.end" dur="0.2s" fill="freeze" from="0" id="b9_anim351" repeatCount="1" to="1"/>
-  <animate attributeName="opacity" begin="b9_anim351.end + 1s" dur="0.2s" fill="freeze" from="1" id="b9_anim352" repeatCount="1" to="0"/>
+  <animate attributeName="opacity" begin="b9_anim293.end" dur="0.2s" fill="freeze" from="0" id="b9_anim294" repeatCount="1" to="1"/>
+  <animate attributeName="opacity" begin="b9_anim294.end + 1s" dur="0.2s" fill="freeze" from="1" id="b9_anim295" repeatCount="1" to="0"/>
    and is not getting out of the penalty box
 </text>
 
 
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" opacity="0" text-anchor="middle" x="50%" y="50%">
-  <animate attributeName="opacity" begin="b9_anim352.end" dur="0.2s" fill="freeze" from="0" id="b9_anim353" repeatCount="1" to="1"/>
-  <animate attributeName="opacity" begin="b9_anim353.end + 1s" dur="0.2s" fill="freeze" from="1" id="b9_anim354" repeatCount="1" to="0"/>
+  <animate attributeName="opacity" begin="b9_anim295.end" dur="0.2s" fill="freeze" from="0" id="b9_anim296" repeatCount="1" to="1"/>
+  <animate attributeName="opacity" begin="b9_anim296.end + 1s" dur="0.2s" fill="freeze" from="1" id="b9_anim297" repeatCount="1" to="0"/>
   Question Rock...
 </text>
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" opacity="0" text-anchor="middle" x="50%" y="50%">
-  <animate attributeName="opacity" begin="b9_anim354.end" dur="0.2s" fill="freeze" from="0" id="b9_anim355" repeatCount="1" to="1"/>
-  <animate attributeName="opacity" begin="b9_anim355.end + 1s" dur="0.2s" fill="freeze" from="1" id="b9_anim356" repeatCount="1" to="0"/>
+  <animate attributeName="opacity" begin="b9_anim297.end" dur="0.2s" fill="freeze" from="0" id="b9_anim298" repeatCount="1" to="1"/>
+  <animate attributeName="opacity" begin="b9_anim298.end + 1s" dur="0.2s" fill="freeze" from="1" id="b9_anim299" repeatCount="1" to="0"/>
   Chet incorrectly answered to Rock question
 </text>
-<set xlink:href="#b9_playerChet_0" begin="b9_anim356.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b9_playerChet_1" begin="b9_anim356.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b9_playerChet_2" begin="b9_anim356.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b9_playerChet_3" begin="b9_anim356.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b9_playerChet_4" begin="b9_anim356.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b9_playerChet_5" begin="b9_anim356.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b9_playerChet_6" begin="b9_anim356.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b9_playerChet_jail" begin="b9_anim356.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b9_playerChet_0" begin="b9_anim299.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b9_playerChet_1" begin="b9_anim299.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b9_playerChet_2" begin="b9_anim299.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b9_playerChet_3" begin="b9_anim299.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b9_playerChet_4" begin="b9_anim299.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b9_playerChet_5" begin="b9_anim299.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b9_playerChet_6" begin="b9_anim299.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b9_playerChet_jail" begin="b9_anim299.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 
 
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b9_text1" opacity="1" text-anchor="middle" x="50%" y="50%">
-  <set attributeName="opacity" begin="b9_anim346.begin" fill="freeze" repeatCount="1" to="0"/>
-  <set attributeName="opacity" begin="b9_anim356.end + 1s" fill="freeze" repeatCount="1" to="1"/>
+  <set attributeName="opacity" begin="b9_anim289.begin" fill="freeze" repeatCount="1" to="0"/>
+  <set attributeName="opacity" begin="b9_anim299.end + 4s" fill="freeze" repeatCount="1" to="1"/>
   Click to start
 </text>
 <rect height="200" opacity="0.1" width="800" x="0" y="0">
-  <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b9_anim346" repeatCount="1" to="0"/>
-  <set attributeName="width" begin="b9_anim346.begin" fill="freeze" repeatCount="1" to="50"/>
-  <set attributeName="height" begin="b9_anim346.begin" fill="freeze" repeatCount="1" to="50"/>
-  <animate attributeName="x" begin="b9_anim356.end + 1s" dur="0.01s" fill="freeze" from="0" id="b9_animEnd" repeatCount="1" to="0"/>
-  <set attributeName="width" begin="b9_anim356.end + 1s" fill="freeze" repeatCount="1" to="800"/>
-  <set attributeName="height" begin="b9_anim356.end + 1s" fill="freeze" repeatCount="1" to="200"/>
+  <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b9_anim289" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b9_anim289.begin" fill="freeze" repeatCount="1" to="50"/>
+  <set attributeName="height" begin="b9_anim289.begin" fill="freeze" repeatCount="1" to="50"/>
+  <animate attributeName="x" begin="b9_anim299.end + 4s" dur="0.01s" fill="freeze" from="0" id="b9_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b9_anim299.end + 4s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b9_anim299.end + 4s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {
@@ -303,6 +303,19 @@ table.tableInline td.valign-top {
 
 object {
     height: unset;
+}
+
+hr {
+    margin-top: 2em;
+    border-width: 2px 0 0;
+}
+
+h3 {
+    margin-top: 2.5em;
+}
+
+svg {
+    margin: 2em 0 2em 0;
 }
 
 </style>

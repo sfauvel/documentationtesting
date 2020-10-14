@@ -1,6 +1,5 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.sfvl.doctesting.ApprovalsBase;
@@ -13,13 +12,12 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 
-@DisplayName("Explanations and examples")
+@DisplayName("Functional examples")
 public class GameSvgTest extends ApprovalsBase {
 
     public static final int SQUARE_SIZE = 50;
     public static final int BOARD_SIZE = 12;
     public static final String TEMPO = "0.5s";
-    private List<DisplayDoc> displayDocList;
 
 
     class FakeGame extends Game {
@@ -41,11 +39,6 @@ public class GameSvgTest extends ApprovalsBase {
         return aGame;
     }
 
-    @BeforeEach
-    public void init() {
-        displayDocList = Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml(this));
-    }
-
     /**
      * In a game turn, the player rolls a dice and advances the number of spaces indicated.
      *
@@ -57,7 +50,7 @@ public class GameSvgTest extends ApprovalsBase {
 
         {
             write("== Normal move\n\n");
-            for (DisplayDoc displayDoc : displayDocList) {
+            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml(this))) {
 
                 final FakeGame aGame = startGame("Chet");
                 final int currentPlayerNumber = aGame.currentPlayer;
@@ -76,7 +69,7 @@ public class GameSvgTest extends ApprovalsBase {
 
             write("\n\nIf he reaches the end of the board, he continues by starting from the beginning\n\n");
 
-            for (DisplayDoc displayDoc : displayDocList) {
+            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml(this))) {
 
                 final FakeGame aGame = startGame("Chet");
                 final int currentPlayerNumber = aGame.currentPlayer;
@@ -107,7 +100,7 @@ public class GameSvgTest extends ApprovalsBase {
     @DisplayName("Player score")
     public void player_scores() throws Exception {
 
-        for (DisplayDoc displayDoc : displayDocList) {
+        for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml(this))) {
 
             final FakeGame aGame = startGame("Chet");
 
@@ -126,7 +119,7 @@ public class GameSvgTest extends ApprovalsBase {
      */
     @Test
     public void win_the_game() throws Exception {
-        for (DisplayDoc displayDoc : displayDocList) {
+        for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml(this))) {
 
             final FakeGame aGame = startGame("Chet");
             aGame.wasCorrectlyAnswered();
@@ -153,7 +146,7 @@ public class GameSvgTest extends ApprovalsBase {
     public void jail() throws Exception {
         {
             write("== Got to jail\n\n");
-            for (DisplayDoc displayDoc : displayDocList) {
+            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml(this))) {
 
                 final FakeGame aGame = startGame("Chet");
 
@@ -165,7 +158,7 @@ public class GameSvgTest extends ApprovalsBase {
         {
             write("== Need an odd number to move\n\n");
 
-            for (DisplayDoc displayDoc : displayDocList) {
+            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml(this))) {
 
                 final FakeGame aGame = startGame("Chet");
                 aGame.roll(1);
@@ -181,7 +174,7 @@ public class GameSvgTest extends ApprovalsBase {
         {
             write("== Get out of jail\n\n");
             write("When player correctly answer to a question, he goes out of jail.\n\n");
-            for (DisplayDoc displayDoc : displayDocList) {
+            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml(this))) {
 
                 final FakeGame aGame = startGame("Chet");
                 aGame.wrongAnswer();
@@ -207,7 +200,7 @@ public class GameSvgTest extends ApprovalsBase {
         {
             write("== Need an odd number to move\n\n");
 
-            for (DisplayDoc displayDoc : displayDocList) {
+            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml(this))) {
 
                 final FakeGame aGame = startGame("Chet");
                 aGame.roll(3);
@@ -228,7 +221,7 @@ public class GameSvgTest extends ApprovalsBase {
      * @throws Exception
      */
     @Test
-    @DisplayName("A full game")
+    @DisplayName("Simulation of a complete game")
     public void play_until_someone_wins() throws Exception {
 
         {

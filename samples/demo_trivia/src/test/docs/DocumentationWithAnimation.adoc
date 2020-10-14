@@ -26,7 +26,7 @@ On the board, the current player is in bold: *Chet*, Pat +
 A player who has a penalty has his name enclosed in square brackets: [Chet] +
 The number of points is displayed behind the player's name: Chet &#x2783; +
 
-== Explanations and examples
+== Functional examples
 
 
 include::com/adaptionsoft/games/uglytrivia/GameSvgTest.player_advances.approved.adoc[leveloffset=+2]

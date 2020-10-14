@@ -108,16 +108,16 @@ In a game turn, the player rolls a dice and advances the number of spaces indica
 <animate attributeName="y" begin="b3_anim31.end" dur="0.5s" fill="freeze" repeatCount="1" to="50" xlink:href="#b3_playerChet"/>
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b3_text1" opacity="1" text-anchor="middle" x="50%" y="50%">
   <set attributeName="opacity" begin="b3_anim24.begin" fill="freeze" repeatCount="1" to="0"/>
-  <set attributeName="opacity" begin="b3_anim32.end + 1s" fill="freeze" repeatCount="1" to="1"/>
+  <set attributeName="opacity" begin="b3_anim32.end + 4s" fill="freeze" repeatCount="1" to="1"/>
   Click to start
 </text>
 <rect height="200" opacity="0.1" width="800" x="0" y="0">
   <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b3_anim24" repeatCount="1" to="0"/>
   <set attributeName="width" begin="b3_anim24.begin" fill="freeze" repeatCount="1" to="50"/>
   <set attributeName="height" begin="b3_anim24.begin" fill="freeze" repeatCount="1" to="50"/>
-  <animate attributeName="x" begin="b3_anim32.end + 1s" dur="0.01s" fill="freeze" from="0" id="b3_animEnd" repeatCount="1" to="0"/>
-  <set attributeName="width" begin="b3_anim32.end + 1s" fill="freeze" repeatCount="1" to="800"/>
-  <set attributeName="height" begin="b3_anim32.end + 1s" fill="freeze" repeatCount="1" to="200"/>
+  <animate attributeName="x" begin="b3_anim32.end + 4s" dur="0.01s" fill="freeze" from="0" id="b3_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b3_anim32.end + 4s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b3_anim32.end + 4s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {
@@ -273,50 +273,28 @@ If he reaches the end of the board, he continues by starting from the beginning
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" opacity="0" text-anchor="middle" x="50%" y="50%">
   <animate attributeName="opacity" begin="b4_anim34.end" dur="0.2s" fill="freeze" from="0" id="b4_anim35" repeatCount="1" to="1"/>
   <animate attributeName="opacity" begin="b4_anim35.end + 1s" dur="0.2s" fill="freeze" from="1" id="b4_anim36" repeatCount="1" to="0"/>
-  Chet rolled a 4
-</text>
-
-
-<animate attributeName="x" begin="b4_anim36.end" dur="0.5s" fill="freeze" id="b4_anim37" repeatCount="1" to="150" xlink:href="#b4_playerChet"/>
-<animate attributeName="y" begin="b4_anim36.end" dur="0.5s" fill="freeze" repeatCount="1" to="100" xlink:href="#b4_playerChet"/>
-<animate attributeName="x" begin="b4_anim37.end" dur="0.5s" fill="freeze" id="b4_anim38" repeatCount="1" to="150" xlink:href="#b4_playerChet"/>
-<animate attributeName="y" begin="b4_anim37.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b4_playerChet"/>
-<animate attributeName="x" begin="b4_anim38.end" dur="0.5s" fill="freeze" id="b4_anim39" repeatCount="1" to="100" xlink:href="#b4_playerChet"/>
-<animate attributeName="y" begin="b4_anim38.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b4_playerChet"/>
-<animate attributeName="x" begin="b4_anim39.end" dur="0.5s" fill="freeze" id="b4_anim40" repeatCount="1" to="50" xlink:href="#b4_playerChet"/>
-<animate attributeName="y" begin="b4_anim39.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b4_playerChet"/>
-<text dominant-baseline="middle" font-family="Verdana" font-size="25" opacity="0" text-anchor="middle" x="50%" y="50%">
-  <animate attributeName="opacity" begin="b4_anim40.end" dur="0.2s" fill="freeze" from="0" id="b4_anim41" repeatCount="1" to="1"/>
-  <animate attributeName="opacity" begin="b4_anim41.end + 1s" dur="0.2s" fill="freeze" from="1" id="b4_anim42" repeatCount="1" to="0"/>
-  Start of the turn
-</text>
-
-
-<text dominant-baseline="middle" font-family="Verdana" font-size="25" opacity="0" text-anchor="middle" x="50%" y="50%">
-  <animate attributeName="opacity" begin="b4_anim42.end" dur="0.2s" fill="freeze" from="0" id="b4_anim43" repeatCount="1" to="1"/>
-  <animate attributeName="opacity" begin="b4_anim43.end + 1s" dur="0.2s" fill="freeze" from="1" id="b4_anim44" repeatCount="1" to="0"/>
   Chet rolled a 3
 </text>
 
 
-<animate attributeName="x" begin="b4_anim44.end" dur="0.5s" fill="freeze" id="b4_anim45" repeatCount="1" to="0" xlink:href="#b4_playerChet"/>
-<animate attributeName="y" begin="b4_anim44.end" dur="0.5s" fill="freeze" repeatCount="1" to="50" xlink:href="#b4_playerChet"/>
-<animate attributeName="x" begin="b4_anim45.end" dur="0.5s" fill="freeze" id="b4_anim46" repeatCount="1" to="0" xlink:href="#b4_playerChet"/>
-<animate attributeName="y" begin="b4_anim45.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b4_playerChet"/>
-<animate attributeName="x" begin="b4_anim46.end" dur="0.5s" fill="freeze" id="b4_anim47" repeatCount="1" to="50" xlink:href="#b4_playerChet"/>
-<animate attributeName="y" begin="b4_anim46.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b4_playerChet"/>
+<animate attributeName="x" begin="b4_anim36.end" dur="0.5s" fill="freeze" id="b4_anim37" repeatCount="1" to="0" xlink:href="#b4_playerChet"/>
+<animate attributeName="y" begin="b4_anim36.end" dur="0.5s" fill="freeze" repeatCount="1" to="50" xlink:href="#b4_playerChet"/>
+<animate attributeName="x" begin="b4_anim37.end" dur="0.5s" fill="freeze" id="b4_anim38" repeatCount="1" to="0" xlink:href="#b4_playerChet"/>
+<animate attributeName="y" begin="b4_anim37.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b4_playerChet"/>
+<animate attributeName="x" begin="b4_anim38.end" dur="0.5s" fill="freeze" id="b4_anim39" repeatCount="1" to="50" xlink:href="#b4_playerChet"/>
+<animate attributeName="y" begin="b4_anim38.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b4_playerChet"/>
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b4_text1" opacity="1" text-anchor="middle" x="50%" y="50%">
   <set attributeName="opacity" begin="b4_anim32.begin" fill="freeze" repeatCount="1" to="0"/>
-  <set attributeName="opacity" begin="b4_anim47.end + 1s" fill="freeze" repeatCount="1" to="1"/>
+  <set attributeName="opacity" begin="b4_anim39.end + 4s" fill="freeze" repeatCount="1" to="1"/>
   Click to start
 </text>
 <rect height="200" opacity="0.1" width="800" x="0" y="0">
   <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b4_anim32" repeatCount="1" to="0"/>
   <set attributeName="width" begin="b4_anim32.begin" fill="freeze" repeatCount="1" to="50"/>
   <set attributeName="height" begin="b4_anim32.begin" fill="freeze" repeatCount="1" to="50"/>
-  <animate attributeName="x" begin="b4_anim47.end + 1s" dur="0.01s" fill="freeze" from="0" id="b4_animEnd" repeatCount="1" to="0"/>
-  <set attributeName="width" begin="b4_anim47.end + 1s" fill="freeze" repeatCount="1" to="800"/>
-  <set attributeName="height" begin="b4_anim47.end + 1s" fill="freeze" repeatCount="1" to="200"/>
+  <animate attributeName="x" begin="b4_anim39.end + 4s" dur="0.01s" fill="freeze" from="0" id="b4_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b4_anim39.end + 4s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b4_anim39.end + 4s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {
@@ -328,54 +306,6 @@ fill: black;
 
 ++++
 
-[.tableInline]
-[%autowidth, cols=2, frame=none, grid=none]
-|====
-
-a|[.tableHeader]#Start of the turn#
-
-
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">Chet </p></td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-a|Chet rolled a [.dice]#&#x2683;#
- +
-[.boardTitle]
-Board at the start of the turn
-
-++++
-
-<table class="triviaBoard">
-<tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
-<tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
-<tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
-<tr>
-<td class="science">&nbsp;</td><td class="pop"><p class="currentPlayer">Chet </p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
-</table>
-
-++++
-
-
-|====
 [.tableInline]
 [%autowidth, cols=2, frame=none, grid=none]
 |====
@@ -512,6 +442,19 @@ table.tableInline td.valign-top {
 
 object {
     height: unset;
+}
+
+hr {
+    margin-top: 2em;
+    border-width: 2px 0 0;
+}
+
+h3 {
+    margin-top: 2.5em;
+}
+
+svg {
+    margin: 2em 0 2em 0;
 }
 
 </style>

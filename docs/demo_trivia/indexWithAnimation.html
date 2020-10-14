@@ -449,14 +449,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_board">2.2. Board</a></li>
 </ul>
 </li>
-<li><a href="#_explanations_and_examples">3. Explanations and examples</a>
+<li><a href="#_functional_examples">3. Functional examples</a>
 <ul class="sectlevel2">
 <li><a href="#_movements_of_a_player">3.1. Movements of a player</a></li>
 <li><a href="#_player_score">3.2. Player score</a></li>
 <li><a href="#_win_the_game">3.3. Win the game</a></li>
 <li><a href="#_jail">3.4. Jail</a></li>
 <li><a href="#_player_stay_in_penality_box">3.5. Player stay in penality box</a></li>
-<li><a href="#_a_full_game">3.6. A full game</a></li>
+<li><a href="#_simulation_of_a_complete_game">3.6. Simulation of a complete game</a></li>
 </ul>
 </li>
 </ul>
@@ -534,7 +534,7 @@ The number of points is displayed behind the player&#8217;s name: Chet &#x2783;<
 </div>
 </div>
 <div class="sect1">
-<h2 id="_explanations_and_examples">3. Explanations and examples</h2>
+<h2 id="_functional_examples">3. Functional examples</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_movements_of_a_player">3.1. Movements of a player</h3>
@@ -645,16 +645,16 @@ The number of points is displayed behind the player&#8217;s name: Chet &#x2783;<
 <animate attributeName="y" begin="b3_anim31.end" dur="0.5s" fill="freeze" repeatCount="1" to="50" xlink:href="#b3_playerChet"/>
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b3_text1" opacity="1" text-anchor="middle" x="50%" y="50%">
   <set attributeName="opacity" begin="b3_anim24.begin" fill="freeze" repeatCount="1" to="0"/>
-  <set attributeName="opacity" begin="b3_anim32.end + 1s" fill="freeze" repeatCount="1" to="1"/>
+  <set attributeName="opacity" begin="b3_anim32.end + 4s" fill="freeze" repeatCount="1" to="1"/>
   Click to start
 </text>
 <rect height="200" opacity="0.1" width="800" x="0" y="0">
   <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b3_anim24" repeatCount="1" to="0"/>
   <set attributeName="width" begin="b3_anim24.begin" fill="freeze" repeatCount="1" to="50"/>
   <set attributeName="height" begin="b3_anim24.begin" fill="freeze" repeatCount="1" to="50"/>
-  <animate attributeName="x" begin="b3_anim32.end + 1s" dur="0.01s" fill="freeze" from="0" id="b3_animEnd" repeatCount="1" to="0"/>
-  <set attributeName="width" begin="b3_anim32.end + 1s" fill="freeze" repeatCount="1" to="800"/>
-  <set attributeName="height" begin="b3_anim32.end + 1s" fill="freeze" repeatCount="1" to="200"/>
+  <animate attributeName="x" begin="b3_anim32.end + 4s" dur="0.01s" fill="freeze" from="0" id="b3_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b3_anim32.end + 4s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b3_anim32.end + 4s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {
@@ -834,16 +834,16 @@ fill: black;
 <animate attributeName="y" begin="b4_anim46.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b4_playerChet"/>
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b4_text1" opacity="1" text-anchor="middle" x="50%" y="50%">
   <set attributeName="opacity" begin="b4_anim32.begin" fill="freeze" repeatCount="1" to="0"/>
-  <set attributeName="opacity" begin="b4_anim47.end + 1s" fill="freeze" repeatCount="1" to="1"/>
+  <set attributeName="opacity" begin="b4_anim47.end + 4s" fill="freeze" repeatCount="1" to="1"/>
   Click to start
 </text>
 <rect height="200" opacity="0.1" width="800" x="0" y="0">
   <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b4_anim32" repeatCount="1" to="0"/>
   <set attributeName="width" begin="b4_anim32.begin" fill="freeze" repeatCount="1" to="50"/>
   <set attributeName="height" begin="b4_anim32.begin" fill="freeze" repeatCount="1" to="50"/>
-  <animate attributeName="x" begin="b4_anim47.end + 1s" dur="0.01s" fill="freeze" from="0" id="b4_animEnd" repeatCount="1" to="0"/>
-  <set attributeName="width" begin="b4_anim47.end + 1s" fill="freeze" repeatCount="1" to="800"/>
-  <set attributeName="height" begin="b4_anim47.end + 1s" fill="freeze" repeatCount="1" to="200"/>
+  <animate attributeName="x" begin="b4_anim47.end + 4s" dur="0.01s" fill="freeze" from="0" id="b4_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b4_anim47.end + 4s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b4_anim47.end + 4s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {
@@ -1027,6 +1027,19 @@ object {
     height: unset;
 }
 
+hr {
+    margin-top: 2em;
+    border-width: 2px 0 0;
+}
+
+h3 {
+    margin-top: 2.5em;
+}
+
+svg {
+    margin: 2em 0 2em 0;
+}
+
 </style>
 </div>
 </div>
@@ -1156,16 +1169,16 @@ If he answers correctly, he scores a point.</p>
 
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b1_text1" opacity="1" text-anchor="middle" x="50%" y="50%">
   <set attributeName="opacity" begin="b1_anim0.begin" fill="freeze" repeatCount="1" to="0"/>
-  <set attributeName="opacity" begin="b1_anim11.end + 1s" fill="freeze" repeatCount="1" to="1"/>
+  <set attributeName="opacity" begin="b1_anim11.end + 4s" fill="freeze" repeatCount="1" to="1"/>
   Click to start
 </text>
 <rect height="200" opacity="0.1" width="800" x="0" y="0">
   <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b1_anim0" repeatCount="1" to="0"/>
   <set attributeName="width" begin="b1_anim0.begin" fill="freeze" repeatCount="1" to="50"/>
   <set attributeName="height" begin="b1_anim0.begin" fill="freeze" repeatCount="1" to="50"/>
-  <animate attributeName="x" begin="b1_anim11.end + 1s" dur="0.01s" fill="freeze" from="0" id="b1_animEnd" repeatCount="1" to="0"/>
-  <set attributeName="width" begin="b1_anim11.end + 1s" fill="freeze" repeatCount="1" to="800"/>
-  <set attributeName="height" begin="b1_anim11.end + 1s" fill="freeze" repeatCount="1" to="200"/>
+  <animate attributeName="x" begin="b1_anim11.end + 4s" dur="0.01s" fill="freeze" from="0" id="b1_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b1_anim11.end + 4s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b1_anim11.end + 4s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {
@@ -1324,6 +1337,19 @@ object {
     height: unset;
 }
 
+hr {
+    margin-top: 2em;
+    border-width: 2px 0 0;
+}
+
+h3 {
+    margin-top: 2.5em;
+}
+
+svg {
+    margin: 2em 0 2em 0;
+}
+
 </style>
 </div>
 <div class="sect2">
@@ -1456,16 +1482,16 @@ object {
 
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b2_text1" opacity="1" text-anchor="middle" x="50%" y="50%">
   <set attributeName="opacity" begin="b2_anim11.begin" fill="freeze" repeatCount="1" to="0"/>
-  <set attributeName="opacity" begin="b2_anim24.end + 1s" fill="freeze" repeatCount="1" to="1"/>
+  <set attributeName="opacity" begin="b2_anim24.end + 4s" fill="freeze" repeatCount="1" to="1"/>
   Click to start
 </text>
 <rect height="200" opacity="0.1" width="800" x="0" y="0">
   <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b2_anim11" repeatCount="1" to="0"/>
   <set attributeName="width" begin="b2_anim11.begin" fill="freeze" repeatCount="1" to="50"/>
   <set attributeName="height" begin="b2_anim11.begin" fill="freeze" repeatCount="1" to="50"/>
-  <animate attributeName="x" begin="b2_anim24.end + 1s" dur="0.01s" fill="freeze" from="0" id="b2_animEnd" repeatCount="1" to="0"/>
-  <set attributeName="width" begin="b2_anim24.end + 1s" fill="freeze" repeatCount="1" to="800"/>
-  <set attributeName="height" begin="b2_anim24.end + 1s" fill="freeze" repeatCount="1" to="200"/>
+  <animate attributeName="x" begin="b2_anim24.end + 4s" dur="0.01s" fill="freeze" from="0" id="b2_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b2_anim24.end + 4s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b2_anim24.end + 4s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {
@@ -1625,6 +1651,19 @@ object {
     height: unset;
 }
 
+hr {
+    margin-top: 2em;
+    border-width: 2px 0 0;
+}
+
+h3 {
+    margin-top: 2.5em;
+}
+
+svg {
+    margin: 2em 0 2em 0;
+}
+
 </style>
 </div>
 <div class="sect2">
@@ -1755,16 +1794,16 @@ He stays in jail until he rolls an odd number.</p>
 
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b5_text1" opacity="1" text-anchor="middle" x="50%" y="50%">
   <set attributeName="opacity" begin="b5_anim47.begin" fill="freeze" repeatCount="1" to="0"/>
-  <set attributeName="opacity" begin="b5_anim58.end + 1s" fill="freeze" repeatCount="1" to="1"/>
+  <set attributeName="opacity" begin="b5_anim58.end + 4s" fill="freeze" repeatCount="1" to="1"/>
   Click to start
 </text>
 <rect height="200" opacity="0.1" width="800" x="0" y="0">
   <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b5_anim47" repeatCount="1" to="0"/>
   <set attributeName="width" begin="b5_anim47.begin" fill="freeze" repeatCount="1" to="50"/>
   <set attributeName="height" begin="b5_anim47.begin" fill="freeze" repeatCount="1" to="50"/>
-  <animate attributeName="x" begin="b5_anim58.end + 1s" dur="0.01s" fill="freeze" from="0" id="b5_animEnd" repeatCount="1" to="0"/>
-  <set attributeName="width" begin="b5_anim58.end + 1s" fill="freeze" repeatCount="1" to="800"/>
-  <set attributeName="height" begin="b5_anim58.end + 1s" fill="freeze" repeatCount="1" to="200"/>
+  <animate attributeName="x" begin="b5_anim58.end + 4s" dur="0.01s" fill="freeze" from="0" id="b5_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b5_anim58.end + 4s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b5_anim58.end + 4s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {
@@ -2046,16 +2085,16 @@ Chet incorrectly answered to Rock question<br></p>
 
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b6_text1" opacity="1" text-anchor="middle" x="50%" y="50%">
   <set attributeName="opacity" begin="b6_anim58.begin" fill="freeze" repeatCount="1" to="0"/>
-  <set attributeName="opacity" begin="b6_anim94.end + 1s" fill="freeze" repeatCount="1" to="1"/>
+  <set attributeName="opacity" begin="b6_anim94.end + 4s" fill="freeze" repeatCount="1" to="1"/>
   Click to start
 </text>
 <rect height="200" opacity="0.1" width="800" x="0" y="0">
   <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b6_anim58" repeatCount="1" to="0"/>
   <set attributeName="width" begin="b6_anim58.begin" fill="freeze" repeatCount="1" to="50"/>
   <set attributeName="height" begin="b6_anim58.begin" fill="freeze" repeatCount="1" to="50"/>
-  <animate attributeName="x" begin="b6_anim94.end + 1s" dur="0.01s" fill="freeze" from="0" id="b6_animEnd" repeatCount="1" to="0"/>
-  <set attributeName="width" begin="b6_anim94.end + 1s" fill="freeze" repeatCount="1" to="800"/>
-  <set attributeName="height" begin="b6_anim94.end + 1s" fill="freeze" repeatCount="1" to="200"/>
+  <animate attributeName="x" begin="b6_anim94.end + 4s" dur="0.01s" fill="freeze" from="0" id="b6_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b6_anim94.end + 4s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b6_anim94.end + 4s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {
@@ -2507,16 +2546,16 @@ Chet incorrectly answered to Pop question<br></p>
 
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_text1" opacity="1" text-anchor="middle" x="50%" y="50%">
   <set attributeName="opacity" begin="b7_anim94.begin" fill="freeze" repeatCount="1" to="0"/>
-  <set attributeName="opacity" begin="b7_anim143.end + 1s" fill="freeze" repeatCount="1" to="1"/>
+  <set attributeName="opacity" begin="b7_anim143.end + 4s" fill="freeze" repeatCount="1" to="1"/>
   Click to start
 </text>
 <rect height="200" opacity="0.1" width="800" x="0" y="0">
   <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b7_anim94" repeatCount="1" to="0"/>
   <set attributeName="width" begin="b7_anim94.begin" fill="freeze" repeatCount="1" to="50"/>
   <set attributeName="height" begin="b7_anim94.begin" fill="freeze" repeatCount="1" to="50"/>
-  <animate attributeName="x" begin="b7_anim143.end + 1s" dur="0.01s" fill="freeze" from="0" id="b7_animEnd" repeatCount="1" to="0"/>
-  <set attributeName="width" begin="b7_anim143.end + 1s" fill="freeze" repeatCount="1" to="800"/>
-  <set attributeName="height" begin="b7_anim143.end + 1s" fill="freeze" repeatCount="1" to="200"/>
+  <animate attributeName="x" begin="b7_anim143.end + 4s" dur="0.01s" fill="freeze" from="0" id="b7_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b7_anim143.end + 4s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b7_anim143.end + 4s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {
@@ -2858,6 +2897,19 @@ object {
     height: unset;
 }
 
+hr {
+    margin-top: 2em;
+    border-width: 2px 0 0;
+}
+
+h3 {
+    margin-top: 2.5em;
+}
+
+svg {
+    margin: 2em 0 2em 0;
+}
+
 </style>
 </div>
 </div>
@@ -2987,16 +3039,16 @@ object {
 
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b9_text1" opacity="1" text-anchor="middle" x="50%" y="50%">
   <set attributeName="opacity" begin="b9_anim346.begin" fill="freeze" repeatCount="1" to="0"/>
-  <set attributeName="opacity" begin="b9_anim356.end + 1s" fill="freeze" repeatCount="1" to="1"/>
+  <set attributeName="opacity" begin="b9_anim356.end + 4s" fill="freeze" repeatCount="1" to="1"/>
   Click to start
 </text>
 <rect height="200" opacity="0.1" width="800" x="0" y="0">
   <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b9_anim346" repeatCount="1" to="0"/>
   <set attributeName="width" begin="b9_anim346.begin" fill="freeze" repeatCount="1" to="50"/>
   <set attributeName="height" begin="b9_anim346.begin" fill="freeze" repeatCount="1" to="50"/>
-  <animate attributeName="x" begin="b9_anim356.end + 1s" dur="0.01s" fill="freeze" from="0" id="b9_animEnd" repeatCount="1" to="0"/>
-  <set attributeName="width" begin="b9_anim356.end + 1s" fill="freeze" repeatCount="1" to="800"/>
-  <set attributeName="height" begin="b9_anim356.end + 1s" fill="freeze" repeatCount="1" to="200"/>
+  <animate attributeName="x" begin="b9_anim356.end + 4s" dur="0.01s" fill="freeze" from="0" id="b9_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b9_anim356.end + 4s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b9_anim356.end + 4s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {
@@ -3155,11 +3207,24 @@ object {
     height: unset;
 }
 
+hr {
+    margin-top: 2em;
+    border-width: 2px 0 0;
+}
+
+h3 {
+    margin-top: 2.5em;
+}
+
+svg {
+    margin: 2em 0 2em 0;
+}
+
 </style>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_a_full_game">3.6. A full game</h3>
+<h3 id="_simulation_of_a_complete_game">3.6. Simulation of a complete game</h3>
 <div class="paragraph">
 <p>This is a full game from the beginning to the end when a player wins the game.</p>
 </div>
@@ -4594,16 +4659,16 @@ ___
 
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b8_text1" opacity="1" text-anchor="middle" x="50%" y="50%">
   <set attributeName="opacity" begin="b8_anim143.begin" fill="freeze" repeatCount="1" to="0"/>
-  <set attributeName="opacity" begin="b8_anim346.end + 1s" fill="freeze" repeatCount="1" to="1"/>
+  <set attributeName="opacity" begin="b8_anim346.end + 4s" fill="freeze" repeatCount="1" to="1"/>
   Click to start
 </text>
 <rect height="200" opacity="0.1" width="800" x="0" y="0">
   <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b8_anim143" repeatCount="1" to="0"/>
   <set attributeName="width" begin="b8_anim143.begin" fill="freeze" repeatCount="1" to="50"/>
   <set attributeName="height" begin="b8_anim143.begin" fill="freeze" repeatCount="1" to="50"/>
-  <animate attributeName="x" begin="b8_anim346.end + 1s" dur="0.01s" fill="freeze" from="0" id="b8_animEnd" repeatCount="1" to="0"/>
-  <set attributeName="width" begin="b8_anim346.end + 1s" fill="freeze" repeatCount="1" to="800"/>
-  <set attributeName="height" begin="b8_anim346.end + 1s" fill="freeze" repeatCount="1" to="200"/>
+  <animate attributeName="x" begin="b8_anim346.end + 4s" dur="0.01s" fill="freeze" from="0" id="b8_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b8_anim346.end + 4s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b8_anim346.end + 4s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {
@@ -5935,6 +6000,19 @@ table.tableInline td.valign-top {
 
 object {
     height: unset;
+}
+
+hr {
+    margin-top: 2em;
+    border-width: 2px 0 0;
+}
+
+h3 {
+    margin-top: 2.5em;
+}
+
+svg {
+    margin: 2em 0 2em 0;
 }
 
 </style>

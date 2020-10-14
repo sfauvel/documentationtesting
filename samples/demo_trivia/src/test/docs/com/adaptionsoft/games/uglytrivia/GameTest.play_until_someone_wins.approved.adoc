@@ -1,4 +1,4 @@
-= A full game
+= Simulation of a complete game
 
 This is a full game from the beginning to the end when a player wins the game.
 
@@ -1829,6 +1829,19 @@ table.tableInline td.valign-top {
 
 object {
     height: unset;
+}
+
+hr {
+    margin-top: 2em;
+    border-width: 2px 0 0;
+}
+
+h3 {
+    margin-top: 2.5em;
+}
+
+svg {
+    margin: 2em 0 2em 0;
 }
 
 </style>

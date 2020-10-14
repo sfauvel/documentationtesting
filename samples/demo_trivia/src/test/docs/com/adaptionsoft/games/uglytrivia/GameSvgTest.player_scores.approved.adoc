@@ -125,16 +125,16 @@ If he answers correctly, he scores a point.
 
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b1_text1" opacity="1" text-anchor="middle" x="50%" y="50%">
   <set attributeName="opacity" begin="b1_anim0.begin" fill="freeze" repeatCount="1" to="0"/>
-  <set attributeName="opacity" begin="b1_anim11.end + 1s" fill="freeze" repeatCount="1" to="1"/>
+  <set attributeName="opacity" begin="b1_anim11.end + 4s" fill="freeze" repeatCount="1" to="1"/>
   Click to start
 </text>
 <rect height="200" opacity="0.1" width="800" x="0" y="0">
   <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b1_anim0" repeatCount="1" to="0"/>
   <set attributeName="width" begin="b1_anim0.begin" fill="freeze" repeatCount="1" to="50"/>
   <set attributeName="height" begin="b1_anim0.begin" fill="freeze" repeatCount="1" to="50"/>
-  <animate attributeName="x" begin="b1_anim11.end + 1s" dur="0.01s" fill="freeze" from="0" id="b1_animEnd" repeatCount="1" to="0"/>
-  <set attributeName="width" begin="b1_anim11.end + 1s" fill="freeze" repeatCount="1" to="800"/>
-  <set attributeName="height" begin="b1_anim11.end + 1s" fill="freeze" repeatCount="1" to="200"/>
+  <animate attributeName="x" begin="b1_anim11.end + 4s" dur="0.01s" fill="freeze" from="0" id="b1_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b1_anim11.end + 4s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b1_anim11.end + 4s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {
@@ -303,6 +303,19 @@ table.tableInline td.valign-top {
 
 object {
     height: unset;
+}
+
+hr {
+    margin-top: 2em;
+    border-width: 2px 0 0;
+}
+
+h3 {
+    margin-top: 2.5em;
+}
+
+svg {
+    margin: 2em 0 2em 0;
 }
 
 </style>
