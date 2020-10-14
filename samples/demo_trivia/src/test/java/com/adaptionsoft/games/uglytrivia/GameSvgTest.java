@@ -39,7 +39,6 @@ public class GameSvgTest extends ApprovalsBase {
         return aGame;
     }
 
-
     /**
      * In a game turn, the player rolls a dice and advances the number of spaces indicated.
      *
@@ -70,22 +69,22 @@ public class GameSvgTest extends ApprovalsBase {
 
             write("\n\nIf he reaches the end of the board, he continues by starting from the beginning\n\n");
 
+            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml(this))) {
 
-//            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this), new DisplayDocHtml(this))) {
-//
-//                final FakeGame aGame = startGame("Chet");
-//                final int currentPlayerNumber = aGame.currentPlayer;
-//                final int roll = 3;
-//                aGame.roll(4);
-//                aGame.roll(6);
-//                displayDoc.addAll(Arrays.asList(
-//                        () -> {
-//                            displayDoc.text("Start of the turn");
-//                            displayDoc.move(aGame, "player" + (String)aGame.players.get(currentPlayerNumber), aGame.places[currentPlayerNumber], currentPlayerNumber);
-//                        },
-//                        () -> displayDoc.rollAndMove(aGame, currentPlayerNumber, roll)));
-//                displayDoc.display(aGame);
-//            }
+                final FakeGame aGame = startGame("Chet");
+                final int currentPlayerNumber = aGame.currentPlayer;
+                final int roll = 3;
+                aGame.roll(4);
+                aGame.roll(6);
+                displayDoc.addAll(Arrays.asList(
+                        () -> {
+                            displayDoc.text("Start of the turn");
+                            displayDoc.move(aGame, "player" + (String)aGame.players.get(currentPlayerNumber), aGame.places[currentPlayerNumber], currentPlayerNumber);
+                        },
+                        () -> displayDoc.rollAndMove(aGame, currentPlayerNumber, roll)));
+                displayDoc.display(aGame);
+            }
+
         }
 
         addStyleSheet();
@@ -214,7 +213,6 @@ public class GameSvgTest extends ApprovalsBase {
         }
 
         addStyleSheet();
-
     }
 
     /**
@@ -226,28 +224,6 @@ public class GameSvgTest extends ApprovalsBase {
     @DisplayName("A full game")
     public void play_until_someone_wins() throws Exception {
 
-//        {
-//            write("&nbsp; +\n");
-//
-//            for (DisplayDoc displayDoc : Arrays.asList(new DisplayDocSvg(this)/*, new DisplayDocHtml(this)*/)) {
-//
-//                final FakeGame aGame = startGame("Chet");
-//                Random rand = new Random(12345);
-//
-//                final Supplier<Integer> rollSupplier = () -> rand.nextInt(5) + 1;
-//                final Supplier<Boolean> wrongAnswer = () -> rand.nextInt(9) == 7;
-//                displayDoc.addAll(Arrays.asList(() -> {
-//                    notAWinner = true;
-//                    do {
-//                        final List<Runnable> runnables = displayDoc.displayOneTurnMulti(aGame, rollSupplier.get(), wrongAnswer);
-////                        displayDoc.displayGroup(aGame, runnables);
-//                        runnables.forEach(r -> r.run());
-//                    } while (notAWinner);
-//                }));
-//                System.out.println("displayDoc.display(aGame);");
-//                displayDoc.display(aGame);
-//            }
-//        }
         {
             write("&nbsp; +\n");
 
@@ -276,45 +252,13 @@ public class GameSvgTest extends ApprovalsBase {
                 displayDoc.display(aGame);
             }
         }
-//        {
-//            write("&nbsp; +\n");
-//
-//            final FakeGame aGame = startGame("Chet", "Pat", "Sue");
-//            displayPlayers(aGame);
-//
-//            Random rand = new Random(12345);
-//
-//            notAWinner = true;
-//            int tour = 1;
-//            String currentPlayer;
-//            do {
-//
-//                currentPlayer = aGame.players.get(aGame.currentPlayer).toString();
-//                write("*Turn " + tour++ + "*\n\n");
-//
-//                final Supplier<Integer> rollSupplier = () -> rand.nextInt(5) + 1;
-//                final Supplier<Boolean> wrongAnswer = () -> rand.nextInt(9) == 7;
-//
-//                displayOneTurn(aGame, currentPlayer, rollSupplier, wrongAnswer);
-//                write("\n\n___\n\n");
-//                if (!notAWinner) {
-//                    write(currentPlayer + " wins the game !!! +\n");
-//                }
-//            } while (notAWinner);
-//        }
 
         addStyleSheet();
     }
-
 
     private void addStyleSheet() throws IOException {
         write(Files.lines(Paths.get("src", "test", "resources", "style.css"))
                 .collect(Collectors.joining("\n")));
     }
-
-
-
-
-
 
 }
