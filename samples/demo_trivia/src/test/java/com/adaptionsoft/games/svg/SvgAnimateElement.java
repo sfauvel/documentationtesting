@@ -19,7 +19,7 @@ public class SvgAnimateElement<T> extends SvgElement<T> implements
     }
 
     public T setBeginRelativeTo(int animationIndex, String event) {
-        return setBegin(String.format("%s.%s", buildId(animationIndex), event));
+        return setBegin(String.format("%s.%s", buildAnimId(animationIndex), event));
     }
 
 }

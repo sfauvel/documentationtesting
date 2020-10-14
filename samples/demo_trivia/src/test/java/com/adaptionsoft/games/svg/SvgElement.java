@@ -27,12 +27,12 @@ public class SvgElement<T> implements SvgSetAttr<T> {
         this.boardIndex = Optional.of(boardIndex);
     }
 
-    public String buildId(int animationIndex) {
+    public String buildAnimId(int animationIndex) {
         return String.format("b%s_anim%d", boardIndex.orElseThrow(() -> new RuntimeException("No board index provided")), animationIndex);
     }
 
-    public T setIdFromIndex(int animationIndex) {
-        return setId(buildId(animationIndex));
+    public T setAnimIdFromIndex(int animationIndex) {
+        return setId(buildAnimId(animationIndex));
     }
 
     public Optional<String> getId() {

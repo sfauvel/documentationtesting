@@ -17,7 +17,7 @@ public class DisplayDocSvg extends DisplayDoc {
     private DocAsTestBase docAsTest;
     private static int animationCounter = 0; // Need to be static to ensure unicity. It may needed to add class name.
     private static String boardCounter = "0"; // Need to be static to ensure unicity. It may needed to add class name.
-    private static List<String> colors = Arrays.asList("blue", "yellow", "red", "green");
+    private static List<String> playerColors = Arrays.asList("blue", "yellow", "red", "green");
 
     public DisplayDocSvg(DocAsTestBase docAsTest) {
         this.docAsTest = docAsTest;
@@ -69,7 +69,7 @@ public class DisplayDocSvg extends DisplayDoc {
             svgWritePlayer(aGame, player.toString());
         }
 
-        displayTextSvg("Game start !", "startGame");
+        displayTextSvg("Game start !", Arrays.asList(), "startGame");
         IntStream.rangeClosed(1, 6).forEach(dice -> displayTextSvg(dice, "dice" + dice));
 
         for (Runnable displayMethod : displayMethods) {
@@ -98,7 +98,7 @@ public class DisplayDocSvg extends DisplayDoc {
                 .setOpacity("0.1")
                 .addAll(Arrays.asList(
                         new SvgAnimate(boardCounter)
-                                .setIdFromIndex(firstAnimateCounter)
+                                .setAnimIdFromIndex(firstAnimateCounter)
                                 .setBegin("click")
                                 .setAttributeName("x").setFrom("0").setTo("0")
                                 .setDuration("0.01s"),
@@ -173,7 +173,7 @@ public class DisplayDocSvg extends DisplayDoc {
 
         final Position position = new Position(aGame.places[aGame.currentPlayer]);
 
-        String color = colors.get(playerIndex);
+        String color = playerColors.get(playerIndex);
 
 
         write("<svg id=\"b" + boardCounter + "_player"+playerName+"\" x=\"" + position.getX() + "\" y=\"" + position.getY() + "\"  >");
@@ -182,8 +182,13 @@ public class DisplayDocSvg extends DisplayDoc {
         write("</circle>\n");
         IntStream.rangeClosed(0, 6).forEach(p -> write(point.apply(p)));
 
-        write(String.format("<rect id=\"b%s_player"+playerName+"_jail\" x=\""+ (8 + delta) +"\" y=\"" + (8 + delta) + "\" width=\"34\" height=\"34\" fill=none stroke=\""+color+"\" stroke-width=\"4\" stroke-dasharray=\"8,3\" opacity=\"%d\"/>\n",
-                boardCounter, aGame.inPenaltyBox[aGame.currentPlayer] ? 1 : 0));
+        write(new SvgRect()
+                .setId(String.format("b%s_player"+playerName+"_jail", boardCounter))
+                .setRect(8 + delta, 8 + delta, 34, 34)
+                .setFill("none")
+                .setStroke(color).setStrokeWidth("4").setStrokeDasharray("8,3")
+                .setOpacity(aGame.inPenaltyBox[aGame.currentPlayer] ? "1" : "0")
+                .toSvg());
 
         write("</g>");
         write(new SvgSet(boardCounter)
@@ -220,21 +225,11 @@ public class DisplayDocSvg extends DisplayDoc {
 
 
     private void showAndHideTextSvg(String text) {
-        write("<text x=\"50%\" y=\"50%\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"Verdana\" font-size=\"25\" opacity=\"0\">" +
-                text);
-
-        showAndHideTextSvg();
-
-        write("</text>\n");
-
-    }
-
-    private void showAndHideTextSvg() {
 
         int lastAnimationIndex = animationCounter;
 
         final SvgAnimateElement showText = new SvgAnimate(boardCounter)
-                .setIdFromIndex(++animationCounter)
+                .setAnimIdFromIndex(++animationCounter)
                 .setBeginRelativeTo(lastAnimationIndex, "end")
                 .setAttributeName("opacity")
                 .setFrom("0")
@@ -242,29 +237,36 @@ public class DisplayDocSvg extends DisplayDoc {
                 .setDuration("0.2s");
 
         final SvgAnimateElement hideText = new SvgAnimate(boardCounter)
-                .setIdFromIndex(++animationCounter)
+                .setAnimIdFromIndex(++animationCounter)
                 .setBegin(showText.getId().get() + ".end + 1s")
                 .setAttributeName("opacity")
                 .setFrom("1")
                 .setTo("0")
                 .setDuration("0.2s");
 
-        write(showText.toSvg());
-        write(hideText.toSvg());
+        displayTextSvg(text, Arrays.asList(showText, hideText));
 
     }
-
 
     private void displayTextSvg(int text, String id) {
-        displayTextSvg(Integer.toString(text), id);
+        displayTextSvg(Integer.toString(text), Arrays.asList(), id);
     }
 
-    private void displayTextSvg(String text, String id) {
-        write("<text id=\"b" + boardCounter + "_" +
-                id +
-                "\" x=\"50%\" y=\"50%\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"Verdana\" font-size=\"25\" opacity=\"0\">" +
-                text +
-                "</text>\n");
+    private void displayTextSvg(String text, List<SvgElement> elements) {
+        write(buildSvgText(text, elements).toSvg());
+    }
+    private void displayTextSvg(String text, List<SvgElement> elements, String id) {
+        write(buildSvgText(text, elements).setId("b" + boardCounter + "_" + id).toSvg());
+    }
+
+    private SvgText buildSvgText(String text, List<SvgElement> elements) {
+        return new SvgText(boardCounter)
+                .setX("50%").setY("50%")
+                .setDominantBaseline("middle").setTextAnchor("middle")
+                .setFontFamily("Verdana").setFontSize("25")
+                .setOpacity("0")
+                .setContent(text)
+                .addAll(elements);
     }
 
     private void displayQuestionAskedSvg(GameSvgTest.FakeGame aGame, String currentPlayer, Supplier<Boolean> wrongAnswer) {
@@ -355,7 +357,7 @@ public class DisplayDocSvg extends DisplayDoc {
 //        currentAnimation = animationCounter;
 
         write(new SvgAnimate(boardCounter)
-                .setIdFromIndex(++animationCounter)
+                .setAnimIdFromIndex(++animationCounter)
                 .setXLinkHref("b" + boardCounter + "_" + player)
                 .setBeginRelativeTo(lastAnimation, "end")
                 .setAttributeName("x")

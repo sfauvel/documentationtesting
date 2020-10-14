@@ -42,7 +42,7 @@ The first player to score 6 points wins the game.
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b2_playerChet_6" opacity="0" text-anchor="middle" x="20" y="20">
   6
 </text>
-<rect id="b2_playerChet_jail" x="3" y="3" width="34" height="34" fill=none stroke="blue" stroke-width="4" stroke-dasharray="8,3" opacity="0"/>
+<rect fill="none" height="34" id="b2_playerChet_jail" opacity="0" stroke="blue" stroke-dasharray="8,3" stroke-width="4" width="34" x="3" y="3"/>
 </g><set attributeName="x" begin="b2_animEnd.end" fill="freeze" repeatCount="1" to="0"/>
 <set attributeName="y" begin="b2_animEnd.end" fill="freeze" repeatCount="1" to="0"/>
 </svg>
@@ -61,20 +61,38 @@ The first player to score 6 points wins the game.
 <set xlink:href="#b2_playerChet_5" begin="b2_anim11.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b2_playerChet_6" begin="b2_anim11.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b2_playerChet_jail" begin="b2_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<text id="b2_startGame" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Game start !</text>
-<text id="b2_dice1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">1</text>
-<text id="b2_dice2" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">2</text>
-<text id="b2_dice3" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">3</text>
-<text id="b2_dice4" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">4</text>
-<text id="b2_dice5" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">5</text>
-<text id="b2_dice6" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">6</text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b2_anim11.end" dur="0.2s" fill="freeze" from="0" id="b2_anim12" repeatCount="1" to="1"/>
-<animate attributeName="opacity" begin="b2_anim12.end + 1s" dur="0.2s" fill="freeze" from="1" id="b2_anim13" repeatCount="1" to="0"/>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b2_startGame" opacity="0" text-anchor="middle" x="50%" y="50%">
+  Game start !
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b2_dice1" opacity="0" text-anchor="middle" x="50%" y="50%">
+  1
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b2_dice2" opacity="0" text-anchor="middle" x="50%" y="50%">
+  2
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b2_dice3" opacity="0" text-anchor="middle" x="50%" y="50%">
+  3
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b2_dice4" opacity="0" text-anchor="middle" x="50%" y="50%">
+  4
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b2_dice5" opacity="0" text-anchor="middle" x="50%" y="50%">
+  5
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b2_dice6" opacity="0" text-anchor="middle" x="50%" y="50%">
+  6
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" opacity="0" text-anchor="middle" x="50%" y="50%">
+  <animate attributeName="opacity" begin="b2_anim11.end" dur="0.2s" fill="freeze" from="0" id="b2_anim12" repeatCount="1" to="1"/>
+  <animate attributeName="opacity" begin="b2_anim12.end + 1s" dur="0.2s" fill="freeze" from="1" id="b2_anim13" repeatCount="1" to="0"/>
+  Start of the turn
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate attributeName="opacity" begin="b2_anim13.end" dur="0.2s" fill="freeze" from="0" id="b2_anim14" repeatCount="1" to="1"/>
-<animate attributeName="opacity" begin="b2_anim14.end + 1s" dur="0.2s" fill="freeze" from="1" id="b2_anim15" repeatCount="1" to="0"/>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" opacity="0" text-anchor="middle" x="50%" y="50%">
+  <animate attributeName="opacity" begin="b2_anim13.end" dur="0.2s" fill="freeze" from="0" id="b2_anim14" repeatCount="1" to="1"/>
+  <animate attributeName="opacity" begin="b2_anim14.end + 1s" dur="0.2s" fill="freeze" from="1" id="b2_anim15" repeatCount="1" to="0"/>
+  Chet rolled a 3
 </text>
 
 
@@ -84,11 +102,15 @@ The first player to score 6 points wins the game.
 <animate attributeName="y" begin="b2_anim16.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b2_playerChet"/>
 <animate attributeName="x" begin="b2_anim17.end" dur="0.5s" fill="freeze" id="b2_anim18" repeatCount="1" to="150" xlink:href="#b2_playerChet"/>
 <animate attributeName="y" begin="b2_anim17.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b2_playerChet"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate attributeName="opacity" begin="b2_anim18.end" dur="0.2s" fill="freeze" from="0" id="b2_anim19" repeatCount="1" to="1"/>
-<animate attributeName="opacity" begin="b2_anim19.end + 1s" dur="0.2s" fill="freeze" from="1" id="b2_anim20" repeatCount="1" to="0"/>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" opacity="0" text-anchor="middle" x="50%" y="50%">
+  <animate attributeName="opacity" begin="b2_anim18.end" dur="0.2s" fill="freeze" from="0" id="b2_anim19" repeatCount="1" to="1"/>
+  <animate attributeName="opacity" begin="b2_anim19.end + 1s" dur="0.2s" fill="freeze" from="1" id="b2_anim20" repeatCount="1" to="0"/>
+  Question Rock...
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Rock question<animate attributeName="opacity" begin="b2_anim20.end" dur="0.2s" fill="freeze" from="0" id="b2_anim21" repeatCount="1" to="1"/>
-<animate attributeName="opacity" begin="b2_anim21.end + 1s" dur="0.2s" fill="freeze" from="1" id="b2_anim22" repeatCount="1" to="0"/>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" opacity="0" text-anchor="middle" x="50%" y="50%">
+  <animate attributeName="opacity" begin="b2_anim20.end" dur="0.2s" fill="freeze" from="0" id="b2_anim21" repeatCount="1" to="1"/>
+  <animate attributeName="opacity" begin="b2_anim21.end + 1s" dur="0.2s" fill="freeze" from="1" id="b2_anim22" repeatCount="1" to="0"/>
+  Chet correctly answered to Rock question
 </text>
 <set xlink:href="#b2_playerChet_0" begin="b2_anim22.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b2_playerChet_1" begin="b2_anim22.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
@@ -98,8 +120,10 @@ The first player to score 6 points wins the game.
 <set xlink:href="#b2_playerChet_5" begin="b2_anim22.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b2_playerChet_6" begin="b2_anim22.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
 <set xlink:href="#b2_playerChet_jail" begin="b2_anim22.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet wins the game !!!<animate attributeName="opacity" begin="b2_anim22.end" dur="0.2s" fill="freeze" from="0" id="b2_anim23" repeatCount="1" to="1"/>
-<animate attributeName="opacity" begin="b2_anim23.end + 1s" dur="0.2s" fill="freeze" from="1" id="b2_anim24" repeatCount="1" to="0"/>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" opacity="0" text-anchor="middle" x="50%" y="50%">
+  <animate attributeName="opacity" begin="b2_anim22.end" dur="0.2s" fill="freeze" from="0" id="b2_anim23" repeatCount="1" to="1"/>
+  <animate attributeName="opacity" begin="b2_anim23.end + 1s" dur="0.2s" fill="freeze" from="1" id="b2_anim24" repeatCount="1" to="0"/>
+  Chet wins the game !!!
 </text>
 
 

@@ -154,6 +154,10 @@ interface SvgInterfacePresentation<T> extends SvgSetAttr<T> {
         return set("stroke", value);
     }
 
+    default T setStrokeDasharray(String value) {
+        return set("stroke-dasharray", value);
+    }
+
     default T setStrokeWidth(String value) {
         return set("stroke-width", value);
     }
