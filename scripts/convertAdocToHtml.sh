@@ -32,10 +32,11 @@ STYLE=asciidoctor.css
 
 function generateAsciidoc() {
 
-    PROJECT_PATH=$1
-    ADOC_FILE=$2
-    DESTINATION=$3
-    STYLESHEETS=${SCRIPT_PATH}/../stylesheets
+    local PROJECT_PATH=$1
+    local ADOC_FILE=$2
+    local DESTINATION=$3
+    local OUTPUT_FILE=$4
+    local STYLESHEETS=${SCRIPT_PATH}/../stylesheets
 
     # echo ------------------------------
     # echo PROJECT_PATH: $PROJECT_PATH
@@ -58,7 +59,7 @@ function generateAsciidoc() {
     	${ASCIIDOC_DOCKER_IMAGE} \
     	asciidoctor \
     	-D /destination \
-    	-o index.html \
+    	-o "$OUTPUT_FILE" \
     	-r asciidoctor-diagram \
     	-a sourcedir=${DOCKER_WORKDIR}/src/main/java \
         -a webfonts! \
@@ -71,7 +72,7 @@ function generateAsciidoc() {
 }
 
 function generateDemo() {
-    generateAsciidoc . $1/$2 $3
+    generateAsciidoc . $1/$2 $3 $4
 
     ABSOLUTE_DESTINATION_PATH=$(pwd)/$3
     pushd $1 > /dev/null
@@ -92,8 +93,10 @@ function write_result() {
 }
 
 
+OUTPUT_FILE=${4:-"index.html"}
+
 source ${SCRIPT_PATH}/loadWritingFunction.sh
 echo -n "Convert '$1/$2' to html: "
-HTML_RESULT=$(generateDemo $1 $2 $3)
+HTML_RESULT=$(generateDemo $1 $2 $3 $OUTPUT_FILE)
 write_result "$HTML_RESULT"
 

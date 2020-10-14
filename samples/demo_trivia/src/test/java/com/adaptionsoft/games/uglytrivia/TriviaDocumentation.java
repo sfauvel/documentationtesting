@@ -5,8 +5,6 @@ import org.sfvl.doctesting.MainDocumentation;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.nio.file.Files;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -14,14 +12,18 @@ import java.util.stream.IntStream;
 public class TriviaDocumentation extends MainDocumentation {
 
     public TriviaDocumentation() {
-        super("Trivia");
+        this("Trivia");
+    }
+
+    public TriviaDocumentation(String documentationTitle) {
+        super(documentationTitle);
     }
 
     @Override
     protected String getDocumentOptions() {
         return ":sectnums:\n" +
                 super.getDocumentOptions() +
-                "= Trivia\n\n";
+                "= " + DOCUMENTATION_TITLE + "\n\n";
     }
 
     @Override
@@ -58,7 +60,7 @@ public class TriviaDocumentation extends MainDocumentation {
             documentation.generate("com.adaptionsoft.games.uglytrivia");
         }
         {
-            final TriviaDocumentation documentation = new TriviaDocumentation() {
+            final TriviaDocumentation documentation = new TriviaDocumentation("Trivia with animation") {
                 @Override
                 protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
                     final Set<Method> annotatedMethod = super.getAnnotatedMethod(annotation, packageToScan);
@@ -66,15 +68,8 @@ public class TriviaDocumentation extends MainDocumentation {
                             .filter(m -> m.getDeclaringClass().equals(GameSvgTest.class))
                             .collect(Collectors.toSet());
                 }
-
-                @Override
-                protected String includeMethods(List<Method> testMethods) {
-                    return super.includeMethods(testMethods).replaceAll("include::", "include::../");
-                }
             };
-            GameTest.getScore(4);
-            Files.createDirectories(documentation.getDocRootPath().resolve("svg"));
-            documentation.generate("com.adaptionsoft.games.uglytrivia", "svg/Documentation");
+            documentation.generate("com.adaptionsoft.games.uglytrivia", "DocumentationWithAnimation");
         }
 
     }

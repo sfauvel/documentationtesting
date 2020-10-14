@@ -13,4 +13,4 @@ mvn clean install package -q
 echo -n "Build ${PROJECT_NAME}: "
 write_success "OK"
 ${SCRIPTS_PATH}/convertAdocToHtml.sh ${DOCS_PATH} Documentation.adoc ${DESTINATION_PATH}
-${SCRIPTS_PATH}/convertAdocToHtml.sh ${DOCS_PATH} svg/Documentation.adoc ${DESTINATION_PATH}/svg
+${SCRIPTS_PATH}/convertAdocToHtml.sh ${DOCS_PATH} DocumentationWithAnimation.adoc ${DESTINATION_PATH} indexWithAnimation.html

@@ -21,3 +21,7 @@ While in prison, the player cannot advance any further until he is released.
 He must answer a question correctly to be released.
 The winner is the first to score 6 points.
 |====
+
+Documentation versions:
+link:index.html[Classical],
+link:indexWithAnimation.html[With animation],
