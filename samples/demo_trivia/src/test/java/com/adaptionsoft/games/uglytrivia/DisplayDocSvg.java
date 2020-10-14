@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -16,6 +17,7 @@ public class DisplayDocSvg extends DisplayDoc {
     private DocAsTestBase docAsTest;
     private static int animationCounter = 0; // Need to be static to ensure unicity. It may needed to add class name.
     private static String boardCounter = "0"; // Need to be static to ensure unicity. It may needed to add class name.
+    private static List<String> colors = Arrays.asList("blue", "yellow", "red", "green");
 
     public DisplayDocSvg(DocAsTestBase docAsTest) {
         this.docAsTest = docAsTest;
@@ -62,7 +64,10 @@ public class DisplayDocSvg extends DisplayDoc {
             write(displayCase(position.getX(), position.getY(), aGame.category(caseNumber).toLowerCase()));
         }
 
-        svgWritePlayer(aGame);
+        for (Object player : aGame.players) {
+
+            svgWritePlayer(aGame, player.toString());
+        }
 
         displayTextSvg("Game start !", "startGame");
         IntStream.rangeClosed(1, 6).forEach(dice -> displayTextSvg(dice, "dice" + dice));
@@ -152,10 +157,14 @@ public class DisplayDocSvg extends DisplayDoc {
     }
 
 
-    private void svgWritePlayer(GameSvgTest.FakeGame aGame) {
+    private void svgWritePlayer(GameSvgTest.FakeGame aGame, String playerName) {
+
+        final int playerIndex = indexFromPlayerName(aGame, playerName).orElse(0);
+        final int delta = - 5 + playerIndex * 4;
+
         Function<Integer, String> point = p -> new SvgText(boardCounter)
-                .setId(String.format("b%s_playerA_%d", boardCounter, p))
-                .setX(Integer.toString(25)).setY(Integer.toString(25))
+                .setId(String.format("b%s_player%s_%d", boardCounter, playerName, p))
+                .setX(Integer.toString(25 + delta)).setY(Integer.toString(25 + delta))
                 .setDominantBaseline("middle").setTextAnchor("middle")
                 .setFontFamily("Verdana").setFontSize("25")
                 .setOpacity(aGame.purses[aGame.currentPlayer] == p ? "1" : "0")
@@ -163,12 +172,17 @@ public class DisplayDocSvg extends DisplayDoc {
                 .toSvg();
 
         final Position position = new Position(aGame.places[aGame.currentPlayer]);
-        write("<svg id=\"b" + boardCounter + "_playerA\" x=\"" + position.getX() + "\" y=\"" + position.getY() + "\"  ><g>\n");
-        write("<circle opacity=\"1\" cx=\"" + (GameSvgTest.SQUARE_SIZE / 2) + "\" cy=\"" + (GameSvgTest.SQUARE_SIZE / 2) + "\" r=\"15\" fill=\"grey\" stroke=\"black\" stroke-width=\"1\">\n");
+
+        String color = colors.get(playerIndex);
+
+
+        write("<svg id=\"b" + boardCounter + "_player"+playerName+"\" x=\"" + position.getX() + "\" y=\"" + position.getY() + "\"  >");
+        write("<g>\n");
+        write("<circle opacity=\"1\" cx=\"" + ((GameSvgTest.SQUARE_SIZE / 2) + delta) + "\" cy=\"" + ((GameSvgTest.SQUARE_SIZE / 2) + delta)  + "\" r=\"15\" fill=\""+color+"\" stroke=\"black\" stroke-width=\"1\">\n");
         write("</circle>\n");
         IntStream.rangeClosed(0, 6).forEach(p -> write(point.apply(p)));
 
-        write(String.format("<rect id=\"b%s_playerA_jail\" x=\"8\" y=\"8\" width=\"34\" height=\"34\" fill=none stroke=\"black\" stroke-width=\"5\" opacity=\"%d\"/>\n",
+        write(String.format("<rect id=\"b%s_player"+playerName+"_jail\" x=\""+ (8 + delta) +"\" y=\"" + (8 + delta) + "\" width=\"34\" height=\"34\" fill=none stroke=\""+color+"\" stroke-width=\"4\" stroke-dasharray=\"8,3\" opacity=\"%d\"/>\n",
                 boardCounter, aGame.inPenaltyBox[aGame.currentPlayer] ? 1 : 0));
 
         write("</g>");
@@ -188,6 +202,15 @@ public class DisplayDocSvg extends DisplayDoc {
         displayPoints(aGame, "b" + boardCounter + "_animEnd.end");
         displayPoints(aGame, "b" + boardCounter + "_anim" + animationCounter + ".end");
         displayPenalityBox(aGame, "b" + boardCounter + "_animEnd.end");
+    }
+
+    private Optional<Integer> indexFromPlayerName(GameSvgTest.FakeGame aGame, String playerName) {
+        for (int playerIndex = 0; playerIndex < aGame.players.size(); playerIndex++) {
+            if (playerName.equals((String) aGame.players.get(playerIndex))) {
+                return Optional.of(playerIndex);
+            }
+        }
+        return Optional.empty();
     }
 
 
@@ -272,17 +295,22 @@ public class DisplayDocSvg extends DisplayDoc {
     }
 
     private void displayPenalityBox(GameSvgTest.FakeGame aGame, String idToBegin) {
-        write(String.format("<set xlink:href=\"#b%s_playerA_jail\" begin=\"" + idToBegin + "\" attributeName=\"opacity\" to=\"%d\" repeatCount=\"1\" fill=\"freeze\"/>\n",
-                boardCounter,
-                aGame.inPenaltyBox[aGame.currentPlayer] ? 1 : 0));
+        for (int i = 0; i < aGame.players.size(); i++) {
+            final int playerToDisplay = i;
+            write(String.format("<set xlink:href=\"#b%s_player%s_jail\" begin=\"" + idToBegin + "\" attributeName=\"opacity\" to=\"%d\" repeatCount=\"1\" fill=\"freeze\"/>\n",
+                    boardCounter,
+                    (String) aGame.players.get(playerToDisplay),
+                    aGame.inPenaltyBox[playerToDisplay] ? 1 : 0));
+        }
     }
 
-    private void displayPoints(GameSvgTest.FakeGame aGame, String idToBegin) {
+    private void displayPoints(final GameSvgTest.FakeGame aGame, String idToBegin) {
         for (int i = 0; i < aGame.players.size(); i++) {
             final int playerToDisplay = i;
             IntStream.rangeClosed(0, 6).forEach(p -> {
-                write(String.format("<set xlink:href=\"#b%s_playerA_%d\" begin=\"" + idToBegin + "\" attributeName=\"opacity\" to=\"%d\" repeatCount=\"1\" fill=\"freeze\"/>\n",
+                write(String.format("<set xlink:href=\"#b%s_player%s_%d\" begin=\"" + idToBegin + "\" attributeName=\"opacity\" to=\"%d\" repeatCount=\"1\" fill=\"freeze\"/>\n",
                         boardCounter,
+                        (String) aGame.players.get(playerToDisplay),
                         p,
                         aGame.purses[playerToDisplay] == p ? 1 : 0));
             });
@@ -310,7 +338,7 @@ public class DisplayDocSvg extends DisplayDoc {
             to += GameSvgTest.BOARD_SIZE;
         }
         for (int i = from + 1; i <= to; i++) {
-            movePlayerSvg("playerA", new Position(i % GameSvgTest.BOARD_SIZE));
+            movePlayerSvg("player"+(String)aGame.players.get(playerHighLighted), new Position(i % GameSvgTest.BOARD_SIZE));
         }
     }
 

@@ -20,49 +20,49 @@ In a game turn, the player rolls a dice and advances the number of spaces indica
 <rect fill="#239d23" height="50" stroke="black" stroke-width="1" width="50" x="0" y="150"/>
 <rect fill="#f4f407" height="50" stroke="black" stroke-width="1" width="50" x="0" y="100"/>
 <rect fill="#f23939" height="50" stroke="black" stroke-width="1" width="50" x="0" y="50"/>
-<svg id="b3_playerA" x="0" y="0"  ><g>
-<circle opacity="1" cx="25" cy="25" r="15" fill="grey" stroke="black" stroke-width="1">
+<svg id="b3_playerChet" x="0" y="0"  ><g>
+<circle opacity="1" cx="20" cy="20" r="15" fill="blue" stroke="black" stroke-width="1">
 </circle>
-<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b3_playerA_0" opacity="1" text-anchor="middle" x="25" y="25">
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b3_playerChet_0" opacity="1" text-anchor="middle" x="20" y="20">
   0
 </text>
-<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b3_playerA_1" opacity="0" text-anchor="middle" x="25" y="25">
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b3_playerChet_1" opacity="0" text-anchor="middle" x="20" y="20">
   1
 </text>
-<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b3_playerA_2" opacity="0" text-anchor="middle" x="25" y="25">
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b3_playerChet_2" opacity="0" text-anchor="middle" x="20" y="20">
   2
 </text>
-<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b3_playerA_3" opacity="0" text-anchor="middle" x="25" y="25">
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b3_playerChet_3" opacity="0" text-anchor="middle" x="20" y="20">
   3
 </text>
-<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b3_playerA_4" opacity="0" text-anchor="middle" x="25" y="25">
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b3_playerChet_4" opacity="0" text-anchor="middle" x="20" y="20">
   4
 </text>
-<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b3_playerA_5" opacity="0" text-anchor="middle" x="25" y="25">
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b3_playerChet_5" opacity="0" text-anchor="middle" x="20" y="20">
   5
 </text>
-<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b3_playerA_6" opacity="0" text-anchor="middle" x="25" y="25">
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b3_playerChet_6" opacity="0" text-anchor="middle" x="20" y="20">
   6
 </text>
-<rect id="b3_playerA_jail" x="8" y="8" width="34" height="34" fill=none stroke="black" stroke-width="5" opacity="0"/>
+<rect id="b3_playerChet_jail" x="3" y="3" width="34" height="34" fill=none stroke="blue" stroke-width="4" stroke-dasharray="8,3" opacity="0"/>
 </g><set attributeName="x" begin="b3_animEnd.end" fill="freeze" repeatCount="1" to="0"/>
 <set attributeName="y" begin="b3_animEnd.end" fill="freeze" repeatCount="1" to="0"/>
 </svg>
-<set xlink:href="#b3_playerA_0" begin="b3_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b3_playerA_1" begin="b3_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b3_playerA_2" begin="b3_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b3_playerA_3" begin="b3_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b3_playerA_4" begin="b3_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b3_playerA_5" begin="b3_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b3_playerA_6" begin="b3_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b3_playerA_0" begin="b3_anim24.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b3_playerA_1" begin="b3_anim24.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b3_playerA_2" begin="b3_anim24.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b3_playerA_3" begin="b3_anim24.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b3_playerA_4" begin="b3_anim24.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b3_playerA_5" begin="b3_anim24.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b3_playerA_6" begin="b3_anim24.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b3_playerA_jail" begin="b3_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b3_playerChet_0" begin="b3_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b3_playerChet_1" begin="b3_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b3_playerChet_2" begin="b3_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b3_playerChet_3" begin="b3_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b3_playerChet_4" begin="b3_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b3_playerChet_5" begin="b3_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b3_playerChet_6" begin="b3_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b3_playerChet_0" begin="b3_anim24.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b3_playerChet_1" begin="b3_anim24.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b3_playerChet_2" begin="b3_anim24.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b3_playerChet_3" begin="b3_anim24.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b3_playerChet_4" begin="b3_anim24.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b3_playerChet_5" begin="b3_anim24.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b3_playerChet_6" begin="b3_anim24.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b3_playerChet_jail" begin="b3_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 <text id="b3_startGame" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Game start !</text>
 <text id="b3_dice1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">1</text>
 <text id="b3_dice2" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">2</text>
@@ -80,14 +80,14 @@ In a game turn, the player rolls a dice and advances the number of spaces indica
 </text>
 
 
-<animate attributeName="x" begin="b3_anim28.end" dur="0.5s" fill="freeze" id="b3_anim29" repeatCount="1" to="50" xlink:href="#b3_playerA"/>
-<animate attributeName="y" begin="b3_anim28.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b3_playerA"/>
-<animate attributeName="x" begin="b3_anim29.end" dur="0.5s" fill="freeze" id="b3_anim30" repeatCount="1" to="100" xlink:href="#b3_playerA"/>
-<animate attributeName="y" begin="b3_anim29.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b3_playerA"/>
-<animate attributeName="x" begin="b3_anim30.end" dur="0.5s" fill="freeze" id="b3_anim31" repeatCount="1" to="150" xlink:href="#b3_playerA"/>
-<animate attributeName="y" begin="b3_anim30.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b3_playerA"/>
-<animate attributeName="x" begin="b3_anim31.end" dur="0.5s" fill="freeze" id="b3_anim32" repeatCount="1" to="150" xlink:href="#b3_playerA"/>
-<animate attributeName="y" begin="b3_anim31.end" dur="0.5s" fill="freeze" repeatCount="1" to="50" xlink:href="#b3_playerA"/>
+<animate attributeName="x" begin="b3_anim28.end" dur="0.5s" fill="freeze" id="b3_anim29" repeatCount="1" to="50" xlink:href="#b3_playerChet"/>
+<animate attributeName="y" begin="b3_anim28.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b3_playerChet"/>
+<animate attributeName="x" begin="b3_anim29.end" dur="0.5s" fill="freeze" id="b3_anim30" repeatCount="1" to="100" xlink:href="#b3_playerChet"/>
+<animate attributeName="y" begin="b3_anim29.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b3_playerChet"/>
+<animate attributeName="x" begin="b3_anim30.end" dur="0.5s" fill="freeze" id="b3_anim31" repeatCount="1" to="150" xlink:href="#b3_playerChet"/>
+<animate attributeName="y" begin="b3_anim30.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b3_playerChet"/>
+<animate attributeName="x" begin="b3_anim31.end" dur="0.5s" fill="freeze" id="b3_anim32" repeatCount="1" to="150" xlink:href="#b3_playerChet"/>
+<animate attributeName="y" begin="b3_anim31.end" dur="0.5s" fill="freeze" repeatCount="1" to="50" xlink:href="#b3_playerChet"/>
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b3_text1" opacity="1" text-anchor="middle" x="50%" y="50%">
   <set attributeName="opacity" begin="b3_anim24.begin" fill="freeze" repeatCount="1" to="0"/>
   <set attributeName="opacity" begin="b3_anim32.end + 1s" fill="freeze" repeatCount="1" to="1"/>

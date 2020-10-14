@@ -54,7 +54,7 @@ public abstract class DisplayDoc {
         final List<Runnable> oneTurn = Arrays.asList(
                 () -> {
                     text("Start of the turn");
-                    move(aGame, "playerA", aGame.places[currentPlayerNumber], currentPlayerNumber);
+                    move(aGame, "player"+currentPlayer, aGame.places[currentPlayerNumber], currentPlayerNumber);
                 },
                 () -> rollAndMove(aGame, currentPlayerNumber, roll),
                 () -> question(aGame, currentPlayerNumber, currentPlayer, booleanSupplier));

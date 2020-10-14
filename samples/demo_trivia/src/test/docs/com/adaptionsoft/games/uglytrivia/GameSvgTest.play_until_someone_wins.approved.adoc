@@ -19,49 +19,225 @@ This is a full game from the beginning to the end when a player wins the game.
 <rect fill="#239d23" height="50" stroke="black" stroke-width="1" width="50" x="0" y="150"/>
 <rect fill="#f4f407" height="50" stroke="black" stroke-width="1" width="50" x="0" y="100"/>
 <rect fill="#f23939" height="50" stroke="black" stroke-width="1" width="50" x="0" y="50"/>
-<svg id="b7_playerA" x="0" y="0"  ><g>
-<circle opacity="1" cx="25" cy="25" r="15" fill="grey" stroke="black" stroke-width="1">
+<svg id="b7_playerChet" x="0" y="0"  ><g>
+<circle opacity="1" cx="20" cy="20" r="15" fill="blue" stroke="black" stroke-width="1">
 </circle>
-<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerA_0" opacity="1" text-anchor="middle" x="25" y="25">
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerChet_0" opacity="1" text-anchor="middle" x="20" y="20">
   0
 </text>
-<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerA_1" opacity="0" text-anchor="middle" x="25" y="25">
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerChet_1" opacity="0" text-anchor="middle" x="20" y="20">
   1
 </text>
-<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerA_2" opacity="0" text-anchor="middle" x="25" y="25">
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerChet_2" opacity="0" text-anchor="middle" x="20" y="20">
   2
 </text>
-<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerA_3" opacity="0" text-anchor="middle" x="25" y="25">
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerChet_3" opacity="0" text-anchor="middle" x="20" y="20">
   3
 </text>
-<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerA_4" opacity="0" text-anchor="middle" x="25" y="25">
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerChet_4" opacity="0" text-anchor="middle" x="20" y="20">
   4
 </text>
-<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerA_5" opacity="0" text-anchor="middle" x="25" y="25">
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerChet_5" opacity="0" text-anchor="middle" x="20" y="20">
   5
 </text>
-<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerA_6" opacity="0" text-anchor="middle" x="25" y="25">
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerChet_6" opacity="0" text-anchor="middle" x="20" y="20">
   6
 </text>
-<rect id="b7_playerA_jail" x="8" y="8" width="34" height="34" fill=none stroke="black" stroke-width="5" opacity="0"/>
+<rect id="b7_playerChet_jail" x="3" y="3" width="34" height="34" fill=none stroke="blue" stroke-width="4" stroke-dasharray="8,3" opacity="0"/>
 </g><set attributeName="x" begin="b7_animEnd.end" fill="freeze" repeatCount="1" to="0"/>
 <set attributeName="y" begin="b7_animEnd.end" fill="freeze" repeatCount="1" to="0"/>
 </svg>
-<set xlink:href="#b7_playerA_0" begin="b7_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_1" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_2" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_3" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_4" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_5" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_6" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_0" begin="b7_anim79.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_1" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_2" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_3" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_4" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_5" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_6" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_jail" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_0" begin="b7_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim79.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim79.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim79.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<svg id="b7_playerPat" x="0" y="0"  ><g>
+<circle opacity="1" cx="24" cy="24" r="15" fill="yellow" stroke="black" stroke-width="1">
+</circle>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerPat_0" opacity="1" text-anchor="middle" x="24" y="24">
+  0
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerPat_1" opacity="0" text-anchor="middle" x="24" y="24">
+  1
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerPat_2" opacity="0" text-anchor="middle" x="24" y="24">
+  2
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerPat_3" opacity="0" text-anchor="middle" x="24" y="24">
+  3
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerPat_4" opacity="0" text-anchor="middle" x="24" y="24">
+  4
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerPat_5" opacity="0" text-anchor="middle" x="24" y="24">
+  5
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerPat_6" opacity="0" text-anchor="middle" x="24" y="24">
+  6
+</text>
+<rect id="b7_playerPat_jail" x="7" y="7" width="34" height="34" fill=none stroke="yellow" stroke-width="4" stroke-dasharray="8,3" opacity="0"/>
+</g><set attributeName="x" begin="b7_animEnd.end" fill="freeze" repeatCount="1" to="0"/>
+<set attributeName="y" begin="b7_animEnd.end" fill="freeze" repeatCount="1" to="0"/>
+</svg>
+<set xlink:href="#b7_playerChet_0" begin="b7_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim79.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim79.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim79.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<svg id="b7_playerSue" x="0" y="0"  ><g>
+<circle opacity="1" cx="28" cy="28" r="15" fill="red" stroke="black" stroke-width="1">
+</circle>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerSue_0" opacity="1" text-anchor="middle" x="28" y="28">
+  0
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerSue_1" opacity="0" text-anchor="middle" x="28" y="28">
+  1
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerSue_2" opacity="0" text-anchor="middle" x="28" y="28">
+  2
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerSue_3" opacity="0" text-anchor="middle" x="28" y="28">
+  3
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerSue_4" opacity="0" text-anchor="middle" x="28" y="28">
+  4
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerSue_5" opacity="0" text-anchor="middle" x="28" y="28">
+  5
+</text>
+<text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_playerSue_6" opacity="0" text-anchor="middle" x="28" y="28">
+  6
+</text>
+<rect id="b7_playerSue_jail" x="11" y="11" width="34" height="34" fill=none stroke="red" stroke-width="4" stroke-dasharray="8,3" opacity="0"/>
+</g><set attributeName="x" begin="b7_animEnd.end" fill="freeze" repeatCount="1" to="0"/>
+<set attributeName="y" begin="b7_animEnd.end" fill="freeze" repeatCount="1" to="0"/>
+</svg>
+<set xlink:href="#b7_playerChet_0" begin="b7_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_animEnd.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim79.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim79.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim79.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim79.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_animEnd.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 <text id="b7_startGame" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Game start !</text>
 <text id="b7_dice1" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">1</text>
 <text id="b7_dice2" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">2</text>
@@ -81,24 +257,40 @@ This is a full game from the beginning to the end when a player wins the game.
 </text>
 
 
-<animate attributeName="x" begin="b7_anim83.end" dur="0.5s" fill="freeze" id="b7_anim84" repeatCount="1" to="50" xlink:href="#b7_playerA"/>
-<animate attributeName="y" begin="b7_anim83.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b7_playerA"/>
-<animate attributeName="x" begin="b7_anim84.end" dur="0.5s" fill="freeze" id="b7_anim85" repeatCount="1" to="100" xlink:href="#b7_playerA"/>
-<animate attributeName="y" begin="b7_anim84.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b7_playerA"/>
+<animate attributeName="x" begin="b7_anim83.end" dur="0.5s" fill="freeze" id="b7_anim84" repeatCount="1" to="50" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim83.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b7_playerChet"/>
+<animate attributeName="x" begin="b7_anim84.end" dur="0.5s" fill="freeze" id="b7_anim85" repeatCount="1" to="100" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim84.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b7_playerChet"/>
 <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Sports...<animate attributeName="opacity" begin="b7_anim85.end" dur="0.2s" fill="freeze" from="0" id="b7_anim86" repeatCount="1" to="1"/>
 <animate attributeName="opacity" begin="b7_anim86.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim87" repeatCount="1" to="0"/>
 </text>
 <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Sports question<animate attributeName="opacity" begin="b7_anim87.end" dur="0.2s" fill="freeze" from="0" id="b7_anim88" repeatCount="1" to="1"/>
 <animate attributeName="opacity" begin="b7_anim88.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim89" repeatCount="1" to="0"/>
 </text>
-<set xlink:href="#b7_playerA_0" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_1" begin="b7_anim89.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_2" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_3" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_4" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_5" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_6" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_jail" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim89.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim89.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim89.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim89.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 
 
 
@@ -112,29 +304,45 @@ ___
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 2<animate attributeName="opacity" begin="b7_anim91.end" dur="0.2s" fill="freeze" from="0" id="b7_anim92" repeatCount="1" to="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Pat rolled a 2<animate attributeName="opacity" begin="b7_anim91.end" dur="0.2s" fill="freeze" from="0" id="b7_anim92" repeatCount="1" to="1"/>
 <animate attributeName="opacity" begin="b7_anim92.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim93" repeatCount="1" to="0"/>
 </text>
 
 
-<animate attributeName="x" begin="b7_anim93.end" dur="0.5s" fill="freeze" id="b7_anim94" repeatCount="1" to="150" xlink:href="#b7_playerA"/>
-<animate attributeName="y" begin="b7_anim93.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b7_playerA"/>
-<animate attributeName="x" begin="b7_anim94.end" dur="0.5s" fill="freeze" id="b7_anim95" repeatCount="1" to="150" xlink:href="#b7_playerA"/>
-<animate attributeName="y" begin="b7_anim94.end" dur="0.5s" fill="freeze" repeatCount="1" to="50" xlink:href="#b7_playerA"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Pop...<animate attributeName="opacity" begin="b7_anim95.end" dur="0.2s" fill="freeze" from="0" id="b7_anim96" repeatCount="1" to="1"/>
+<animate attributeName="x" begin="b7_anim93.end" dur="0.5s" fill="freeze" id="b7_anim94" repeatCount="1" to="50" xlink:href="#b7_playerPat"/>
+<animate attributeName="y" begin="b7_anim93.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b7_playerPat"/>
+<animate attributeName="x" begin="b7_anim94.end" dur="0.5s" fill="freeze" id="b7_anim95" repeatCount="1" to="100" xlink:href="#b7_playerPat"/>
+<animate attributeName="y" begin="b7_anim94.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b7_playerPat"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Sports...<animate attributeName="opacity" begin="b7_anim95.end" dur="0.2s" fill="freeze" from="0" id="b7_anim96" repeatCount="1" to="1"/>
 <animate attributeName="opacity" begin="b7_anim96.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim97" repeatCount="1" to="0"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Pop question<animate attributeName="opacity" begin="b7_anim97.end" dur="0.2s" fill="freeze" from="0" id="b7_anim98" repeatCount="1" to="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Pat correctly answered to Sports question<animate attributeName="opacity" begin="b7_anim97.end" dur="0.2s" fill="freeze" from="0" id="b7_anim98" repeatCount="1" to="1"/>
 <animate attributeName="opacity" begin="b7_anim98.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim99" repeatCount="1" to="0"/>
 </text>
-<set xlink:href="#b7_playerA_0" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_1" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_2" begin="b7_anim99.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_3" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_4" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_5" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_6" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_jail" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim99.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim99.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim99.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim99.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 
 
 
@@ -148,27 +356,43 @@ ___
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 1<animate attributeName="opacity" begin="b7_anim101.end" dur="0.2s" fill="freeze" from="0" id="b7_anim102" repeatCount="1" to="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Sue rolled a 1<animate attributeName="opacity" begin="b7_anim101.end" dur="0.2s" fill="freeze" from="0" id="b7_anim102" repeatCount="1" to="1"/>
 <animate attributeName="opacity" begin="b7_anim102.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim103" repeatCount="1" to="0"/>
 </text>
 
 
-<animate attributeName="x" begin="b7_anim103.end" dur="0.5s" fill="freeze" id="b7_anim104" repeatCount="1" to="150" xlink:href="#b7_playerA"/>
-<animate attributeName="y" begin="b7_anim103.end" dur="0.5s" fill="freeze" repeatCount="1" to="100" xlink:href="#b7_playerA"/>
+<animate attributeName="x" begin="b7_anim103.end" dur="0.5s" fill="freeze" id="b7_anim104" repeatCount="1" to="50" xlink:href="#b7_playerSue"/>
+<animate attributeName="y" begin="b7_anim103.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b7_playerSue"/>
 <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Science...<animate attributeName="opacity" begin="b7_anim104.end" dur="0.2s" fill="freeze" from="0" id="b7_anim105" repeatCount="1" to="1"/>
 <animate attributeName="opacity" begin="b7_anim105.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim106" repeatCount="1" to="0"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Science question<animate attributeName="opacity" begin="b7_anim106.end" dur="0.2s" fill="freeze" from="0" id="b7_anim107" repeatCount="1" to="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Sue correctly answered to Science question<animate attributeName="opacity" begin="b7_anim106.end" dur="0.2s" fill="freeze" from="0" id="b7_anim107" repeatCount="1" to="1"/>
 <animate attributeName="opacity" begin="b7_anim107.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim108" repeatCount="1" to="0"/>
 </text>
-<set xlink:href="#b7_playerA_0" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_1" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_2" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_3" begin="b7_anim108.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_4" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_5" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_6" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_jail" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim108.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim108.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim108.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim108.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 
 
 
@@ -187,22 +411,38 @@ ___
 </text>
 
 
-<animate attributeName="x" begin="b7_anim112.end" dur="0.5s" fill="freeze" id="b7_anim113" repeatCount="1" to="150" xlink:href="#b7_playerA"/>
-<animate attributeName="y" begin="b7_anim112.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerA"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Sports...<animate attributeName="opacity" begin="b7_anim113.end" dur="0.2s" fill="freeze" from="0" id="b7_anim114" repeatCount="1" to="1"/>
+<animate attributeName="x" begin="b7_anim112.end" dur="0.5s" fill="freeze" id="b7_anim113" repeatCount="1" to="150" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim112.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b7_playerChet"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate attributeName="opacity" begin="b7_anim113.end" dur="0.2s" fill="freeze" from="0" id="b7_anim114" repeatCount="1" to="1"/>
 <animate attributeName="opacity" begin="b7_anim114.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim115" repeatCount="1" to="0"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Sports question<animate attributeName="opacity" begin="b7_anim115.end" dur="0.2s" fill="freeze" from="0" id="b7_anim116" repeatCount="1" to="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Rock question<animate attributeName="opacity" begin="b7_anim115.end" dur="0.2s" fill="freeze" from="0" id="b7_anim116" repeatCount="1" to="1"/>
 <animate attributeName="opacity" begin="b7_anim116.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim117" repeatCount="1" to="0"/>
 </text>
-<set xlink:href="#b7_playerA_0" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_1" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_2" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_3" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_4" begin="b7_anim117.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_5" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_6" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_jail" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim117.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim117.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim117.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim117.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 
 
 
@@ -216,29 +456,45 @@ ___
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 2<animate attributeName="opacity" begin="b7_anim119.end" dur="0.2s" fill="freeze" from="0" id="b7_anim120" repeatCount="1" to="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Pat rolled a 2<animate attributeName="opacity" begin="b7_anim119.end" dur="0.2s" fill="freeze" from="0" id="b7_anim120" repeatCount="1" to="1"/>
 <animate attributeName="opacity" begin="b7_anim120.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim121" repeatCount="1" to="0"/>
 </text>
 
 
-<animate attributeName="x" begin="b7_anim121.end" dur="0.5s" fill="freeze" id="b7_anim122" repeatCount="1" to="100" xlink:href="#b7_playerA"/>
-<animate attributeName="y" begin="b7_anim121.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerA"/>
-<animate attributeName="x" begin="b7_anim122.end" dur="0.5s" fill="freeze" id="b7_anim123" repeatCount="1" to="50" xlink:href="#b7_playerA"/>
-<animate attributeName="y" begin="b7_anim122.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerA"/>
+<animate attributeName="x" begin="b7_anim121.end" dur="0.5s" fill="freeze" id="b7_anim122" repeatCount="1" to="150" xlink:href="#b7_playerPat"/>
+<animate attributeName="y" begin="b7_anim121.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b7_playerPat"/>
+<animate attributeName="x" begin="b7_anim122.end" dur="0.5s" fill="freeze" id="b7_anim123" repeatCount="1" to="150" xlink:href="#b7_playerPat"/>
+<animate attributeName="y" begin="b7_anim122.end" dur="0.5s" fill="freeze" repeatCount="1" to="50" xlink:href="#b7_playerPat"/>
 <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Pop...<animate attributeName="opacity" begin="b7_anim123.end" dur="0.2s" fill="freeze" from="0" id="b7_anim124" repeatCount="1" to="1"/>
 <animate attributeName="opacity" begin="b7_anim124.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim125" repeatCount="1" to="0"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Pop question<animate attributeName="opacity" begin="b7_anim125.end" dur="0.2s" fill="freeze" from="0" id="b7_anim126" repeatCount="1" to="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Pat correctly answered to Pop question<animate attributeName="opacity" begin="b7_anim125.end" dur="0.2s" fill="freeze" from="0" id="b7_anim126" repeatCount="1" to="1"/>
 <animate attributeName="opacity" begin="b7_anim126.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim127" repeatCount="1" to="0"/>
 </text>
-<set xlink:href="#b7_playerA_0" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_1" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_2" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_3" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_4" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_5" begin="b7_anim127.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_6" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_jail" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim127.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim127.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim127.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim127.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
 
 
 
@@ -252,33 +508,744 @@ ___
 </text>
 
 
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate attributeName="opacity" begin="b7_anim129.end" dur="0.2s" fill="freeze" from="0" id="b7_anim130" repeatCount="1" to="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Sue rolled a 3<animate attributeName="opacity" begin="b7_anim129.end" dur="0.2s" fill="freeze" from="0" id="b7_anim130" repeatCount="1" to="1"/>
 <animate attributeName="opacity" begin="b7_anim130.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim131" repeatCount="1" to="0"/>
 </text>
 
 
-<animate attributeName="x" begin="b7_anim131.end" dur="0.5s" fill="freeze" id="b7_anim132" repeatCount="1" to="0" xlink:href="#b7_playerA"/>
-<animate attributeName="y" begin="b7_anim131.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerA"/>
-<animate attributeName="x" begin="b7_anim132.end" dur="0.5s" fill="freeze" id="b7_anim133" repeatCount="1" to="0" xlink:href="#b7_playerA"/>
-<animate attributeName="y" begin="b7_anim132.end" dur="0.5s" fill="freeze" repeatCount="1" to="100" xlink:href="#b7_playerA"/>
-<animate attributeName="x" begin="b7_anim133.end" dur="0.5s" fill="freeze" id="b7_anim134" repeatCount="1" to="0" xlink:href="#b7_playerA"/>
-<animate attributeName="y" begin="b7_anim133.end" dur="0.5s" fill="freeze" repeatCount="1" to="50" xlink:href="#b7_playerA"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate attributeName="opacity" begin="b7_anim134.end" dur="0.2s" fill="freeze" from="0" id="b7_anim135" repeatCount="1" to="1"/>
+<animate attributeName="x" begin="b7_anim131.end" dur="0.5s" fill="freeze" id="b7_anim132" repeatCount="1" to="100" xlink:href="#b7_playerSue"/>
+<animate attributeName="y" begin="b7_anim131.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b7_playerSue"/>
+<animate attributeName="x" begin="b7_anim132.end" dur="0.5s" fill="freeze" id="b7_anim133" repeatCount="1" to="150" xlink:href="#b7_playerSue"/>
+<animate attributeName="y" begin="b7_anim132.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b7_playerSue"/>
+<animate attributeName="x" begin="b7_anim133.end" dur="0.5s" fill="freeze" id="b7_anim134" repeatCount="1" to="150" xlink:href="#b7_playerSue"/>
+<animate attributeName="y" begin="b7_anim133.end" dur="0.5s" fill="freeze" repeatCount="1" to="50" xlink:href="#b7_playerSue"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Pop...<animate attributeName="opacity" begin="b7_anim134.end" dur="0.2s" fill="freeze" from="0" id="b7_anim135" repeatCount="1" to="1"/>
 <animate attributeName="opacity" begin="b7_anim135.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim136" repeatCount="1" to="0"/>
 </text>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Rock question<animate attributeName="opacity" begin="b7_anim136.end" dur="0.2s" fill="freeze" from="0" id="b7_anim137" repeatCount="1" to="1"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Sue correctly answered to Pop question<animate attributeName="opacity" begin="b7_anim136.end" dur="0.2s" fill="freeze" from="0" id="b7_anim137" repeatCount="1" to="1"/>
 <animate attributeName="opacity" begin="b7_anim137.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim138" repeatCount="1" to="0"/>
 </text>
-<set xlink:href="#b7_playerA_0" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_1" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_2" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_3" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_4" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_5" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_6" begin="b7_anim138.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
-<set xlink:href="#b7_playerA_jail" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
-<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet wins the game !!!<animate attributeName="opacity" begin="b7_anim138.end" dur="0.2s" fill="freeze" from="0" id="b7_anim139" repeatCount="1" to="1"/>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim138.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim138.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim138.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim138.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+
+
+
+
+___
+
+*Turn 7*
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b7_anim138.end" dur="0.2s" fill="freeze" from="0" id="b7_anim139" repeatCount="1" to="1"/>
 <animate attributeName="opacity" begin="b7_anim139.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim140" repeatCount="1" to="0"/>
+</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 1<animate attributeName="opacity" begin="b7_anim140.end" dur="0.2s" fill="freeze" from="0" id="b7_anim141" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim141.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim142" repeatCount="1" to="0"/>
+</text>
+
+
+<animate attributeName="x" begin="b7_anim142.end" dur="0.5s" fill="freeze" id="b7_anim143" repeatCount="1" to="150" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim142.end" dur="0.5s" fill="freeze" repeatCount="1" to="50" xlink:href="#b7_playerChet"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Pop...<animate attributeName="opacity" begin="b7_anim143.end" dur="0.2s" fill="freeze" from="0" id="b7_anim144" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim144.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim145" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet incorrectly answered to Pop question<animate attributeName="opacity" begin="b7_anim145.end" dur="0.2s" fill="freeze" from="0" id="b7_anim146" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim146.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim147" repeatCount="1" to="0"/>
+</text>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim147.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim147.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim147.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim147.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim147.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+
+
+
+
+___
+
+*Turn 8*
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b7_anim147.end" dur="0.2s" fill="freeze" from="0" id="b7_anim148" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim148.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim149" repeatCount="1" to="0"/>
+</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Pat rolled a 3<animate attributeName="opacity" begin="b7_anim149.end" dur="0.2s" fill="freeze" from="0" id="b7_anim150" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim150.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim151" repeatCount="1" to="0"/>
+</text>
+
+
+<animate attributeName="x" begin="b7_anim151.end" dur="0.5s" fill="freeze" id="b7_anim152" repeatCount="1" to="150" xlink:href="#b7_playerPat"/>
+<animate attributeName="y" begin="b7_anim151.end" dur="0.5s" fill="freeze" repeatCount="1" to="100" xlink:href="#b7_playerPat"/>
+<animate attributeName="x" begin="b7_anim152.end" dur="0.5s" fill="freeze" id="b7_anim153" repeatCount="1" to="150" xlink:href="#b7_playerPat"/>
+<animate attributeName="y" begin="b7_anim152.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerPat"/>
+<animate attributeName="x" begin="b7_anim153.end" dur="0.5s" fill="freeze" id="b7_anim154" repeatCount="1" to="100" xlink:href="#b7_playerPat"/>
+<animate attributeName="y" begin="b7_anim153.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerPat"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate attributeName="opacity" begin="b7_anim154.end" dur="0.2s" fill="freeze" from="0" id="b7_anim155" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim155.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim156" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Pat incorrectly answered to Rock question<animate attributeName="opacity" begin="b7_anim156.end" dur="0.2s" fill="freeze" from="0" id="b7_anim157" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim157.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim158" repeatCount="1" to="0"/>
+</text>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim158.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim158.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim158.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim158.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim158.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim158.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+
+
+
+
+___
+
+*Turn 9*
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b7_anim158.end" dur="0.2s" fill="freeze" from="0" id="b7_anim159" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim159.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim160" repeatCount="1" to="0"/>
+</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Sue rolled a 3<animate attributeName="opacity" begin="b7_anim160.end" dur="0.2s" fill="freeze" from="0" id="b7_anim161" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim161.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim162" repeatCount="1" to="0"/>
+</text>
+
+
+<animate attributeName="x" begin="b7_anim162.end" dur="0.5s" fill="freeze" id="b7_anim163" repeatCount="1" to="150" xlink:href="#b7_playerSue"/>
+<animate attributeName="y" begin="b7_anim162.end" dur="0.5s" fill="freeze" repeatCount="1" to="100" xlink:href="#b7_playerSue"/>
+<animate attributeName="x" begin="b7_anim163.end" dur="0.5s" fill="freeze" id="b7_anim164" repeatCount="1" to="150" xlink:href="#b7_playerSue"/>
+<animate attributeName="y" begin="b7_anim163.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerSue"/>
+<animate attributeName="x" begin="b7_anim164.end" dur="0.5s" fill="freeze" id="b7_anim165" repeatCount="1" to="100" xlink:href="#b7_playerSue"/>
+<animate attributeName="y" begin="b7_anim164.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerSue"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate attributeName="opacity" begin="b7_anim165.end" dur="0.2s" fill="freeze" from="0" id="b7_anim166" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim166.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim167" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Sue correctly answered to Rock question<animate attributeName="opacity" begin="b7_anim167.end" dur="0.2s" fill="freeze" from="0" id="b7_anim168" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim168.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim169" repeatCount="1" to="0"/>
+</text>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim169.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim169.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim169.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim169.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim169.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim169.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+
+
+
+
+___
+
+*Turn 10*
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b7_anim169.end" dur="0.2s" fill="freeze" from="0" id="b7_anim170" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim170.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim171" repeatCount="1" to="0"/>
+</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate attributeName="opacity" begin="b7_anim171.end" dur="0.2s" fill="freeze" from="0" id="b7_anim172" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim172.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim173" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0"> and is getting out of penality box<animate attributeName="opacity" begin="b7_anim173.end" dur="0.2s" fill="freeze" from="0" id="b7_anim174" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim174.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim175" repeatCount="1" to="0"/>
+</text>
+
+
+<animate attributeName="x" begin="b7_anim175.end" dur="0.5s" fill="freeze" id="b7_anim176" repeatCount="1" to="150" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim175.end" dur="0.5s" fill="freeze" repeatCount="1" to="100" xlink:href="#b7_playerChet"/>
+<animate attributeName="x" begin="b7_anim176.end" dur="0.5s" fill="freeze" id="b7_anim177" repeatCount="1" to="150" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim176.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerChet"/>
+<animate attributeName="x" begin="b7_anim177.end" dur="0.5s" fill="freeze" id="b7_anim178" repeatCount="1" to="100" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim177.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerChet"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate attributeName="opacity" begin="b7_anim178.end" dur="0.2s" fill="freeze" from="0" id="b7_anim179" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim179.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim180" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Rock question<animate attributeName="opacity" begin="b7_anim180.end" dur="0.2s" fill="freeze" from="0" id="b7_anim181" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim181.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim182" repeatCount="1" to="0"/>
+</text>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim182.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim182.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim182.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim182.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim182.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+
+
+
+
+___
+
+*Turn 11*
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b7_anim182.end" dur="0.2s" fill="freeze" from="0" id="b7_anim183" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim183.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim184" repeatCount="1" to="0"/>
+</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Pat rolled a 2<animate attributeName="opacity" begin="b7_anim184.end" dur="0.2s" fill="freeze" from="0" id="b7_anim185" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim185.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim186" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0"> and is not getting out of the penalty box<animate attributeName="opacity" begin="b7_anim186.end" dur="0.2s" fill="freeze" from="0" id="b7_anim187" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim187.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim188" repeatCount="1" to="0"/>
+</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate attributeName="opacity" begin="b7_anim188.end" dur="0.2s" fill="freeze" from="0" id="b7_anim189" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim189.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim190" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Pat correctly answered to Rock question<animate attributeName="opacity" begin="b7_anim190.end" dur="0.2s" fill="freeze" from="0" id="b7_anim191" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim191.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim192" repeatCount="1" to="0"/>
+</text>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim192.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim192.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim192.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim192.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim192.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+
+
+
+
+___
+
+*Turn 12*
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b7_anim192.end" dur="0.2s" fill="freeze" from="0" id="b7_anim193" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim193.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim194" repeatCount="1" to="0"/>
+</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Sue rolled a 3<animate attributeName="opacity" begin="b7_anim194.end" dur="0.2s" fill="freeze" from="0" id="b7_anim195" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim195.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim196" repeatCount="1" to="0"/>
+</text>
+
+
+<animate attributeName="x" begin="b7_anim196.end" dur="0.5s" fill="freeze" id="b7_anim197" repeatCount="1" to="50" xlink:href="#b7_playerSue"/>
+<animate attributeName="y" begin="b7_anim196.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerSue"/>
+<animate attributeName="x" begin="b7_anim197.end" dur="0.5s" fill="freeze" id="b7_anim198" repeatCount="1" to="0" xlink:href="#b7_playerSue"/>
+<animate attributeName="y" begin="b7_anim197.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerSue"/>
+<animate attributeName="x" begin="b7_anim198.end" dur="0.5s" fill="freeze" id="b7_anim199" repeatCount="1" to="0" xlink:href="#b7_playerSue"/>
+<animate attributeName="y" begin="b7_anim198.end" dur="0.5s" fill="freeze" repeatCount="1" to="100" xlink:href="#b7_playerSue"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Sports...<animate attributeName="opacity" begin="b7_anim199.end" dur="0.2s" fill="freeze" from="0" id="b7_anim200" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim200.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim201" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Sue incorrectly answered to Sports question<animate attributeName="opacity" begin="b7_anim201.end" dur="0.2s" fill="freeze" from="0" id="b7_anim202" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim202.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim203" repeatCount="1" to="0"/>
+</text>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim203.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim203.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim203.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim203.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim203.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim203.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+
+
+
+
+___
+
+*Turn 13*
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b7_anim203.end" dur="0.2s" fill="freeze" from="0" id="b7_anim204" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim204.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim205" repeatCount="1" to="0"/>
+</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 4<animate attributeName="opacity" begin="b7_anim205.end" dur="0.2s" fill="freeze" from="0" id="b7_anim206" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim206.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim207" repeatCount="1" to="0"/>
+</text>
+
+
+<animate attributeName="x" begin="b7_anim207.end" dur="0.5s" fill="freeze" id="b7_anim208" repeatCount="1" to="50" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim207.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerChet"/>
+<animate attributeName="x" begin="b7_anim208.end" dur="0.5s" fill="freeze" id="b7_anim209" repeatCount="1" to="0" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim208.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerChet"/>
+<animate attributeName="x" begin="b7_anim209.end" dur="0.5s" fill="freeze" id="b7_anim210" repeatCount="1" to="0" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim209.end" dur="0.5s" fill="freeze" repeatCount="1" to="100" xlink:href="#b7_playerChet"/>
+<animate attributeName="x" begin="b7_anim210.end" dur="0.5s" fill="freeze" id="b7_anim211" repeatCount="1" to="0" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim210.end" dur="0.5s" fill="freeze" repeatCount="1" to="50" xlink:href="#b7_playerChet"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate attributeName="opacity" begin="b7_anim211.end" dur="0.2s" fill="freeze" from="0" id="b7_anim212" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim212.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim213" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Rock question<animate attributeName="opacity" begin="b7_anim213.end" dur="0.2s" fill="freeze" from="0" id="b7_anim214" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim214.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim215" repeatCount="1" to="0"/>
+</text>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim215.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim215.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim215.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim215.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim215.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim215.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+
+
+
+
+___
+
+*Turn 14*
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b7_anim215.end" dur="0.2s" fill="freeze" from="0" id="b7_anim216" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim216.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim217" repeatCount="1" to="0"/>
+</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Pat rolled a 1<animate attributeName="opacity" begin="b7_anim217.end" dur="0.2s" fill="freeze" from="0" id="b7_anim218" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim218.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim219" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0"> and is getting out of penality box<animate attributeName="opacity" begin="b7_anim219.end" dur="0.2s" fill="freeze" from="0" id="b7_anim220" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim220.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim221" repeatCount="1" to="0"/>
+</text>
+
+
+<animate attributeName="x" begin="b7_anim221.end" dur="0.5s" fill="freeze" id="b7_anim222" repeatCount="1" to="50" xlink:href="#b7_playerPat"/>
+<animate attributeName="y" begin="b7_anim221.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerPat"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Pop...<animate attributeName="opacity" begin="b7_anim222.end" dur="0.2s" fill="freeze" from="0" id="b7_anim223" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim223.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim224" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Pat correctly answered to Pop question<animate attributeName="opacity" begin="b7_anim224.end" dur="0.2s" fill="freeze" from="0" id="b7_anim225" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim225.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim226" repeatCount="1" to="0"/>
+</text>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim226.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim226.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim226.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim226.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim226.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+
+
+
+
+___
+
+*Turn 15*
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b7_anim226.end" dur="0.2s" fill="freeze" from="0" id="b7_anim227" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim227.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim228" repeatCount="1" to="0"/>
+</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Sue rolled a 2<animate attributeName="opacity" begin="b7_anim228.end" dur="0.2s" fill="freeze" from="0" id="b7_anim229" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim229.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim230" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0"> and is not getting out of the penalty box<animate attributeName="opacity" begin="b7_anim230.end" dur="0.2s" fill="freeze" from="0" id="b7_anim231" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim231.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim232" repeatCount="1" to="0"/>
+</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Sports...<animate attributeName="opacity" begin="b7_anim232.end" dur="0.2s" fill="freeze" from="0" id="b7_anim233" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim233.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim234" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Sue correctly answered to Sports question<animate attributeName="opacity" begin="b7_anim234.end" dur="0.2s" fill="freeze" from="0" id="b7_anim235" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim235.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim236" repeatCount="1" to="0"/>
+</text>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim236.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim236.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim236.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim236.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim236.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+
+
+
+
+___
+
+*Turn 16*
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b7_anim236.end" dur="0.2s" fill="freeze" from="0" id="b7_anim237" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim237.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim238" repeatCount="1" to="0"/>
+</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 5<animate attributeName="opacity" begin="b7_anim238.end" dur="0.2s" fill="freeze" from="0" id="b7_anim239" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim239.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim240" repeatCount="1" to="0"/>
+</text>
+
+
+<animate attributeName="x" begin="b7_anim240.end" dur="0.5s" fill="freeze" id="b7_anim241" repeatCount="1" to="0" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim240.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b7_playerChet"/>
+<animate attributeName="x" begin="b7_anim241.end" dur="0.5s" fill="freeze" id="b7_anim242" repeatCount="1" to="50" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim241.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b7_playerChet"/>
+<animate attributeName="x" begin="b7_anim242.end" dur="0.5s" fill="freeze" id="b7_anim243" repeatCount="1" to="100" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim242.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b7_playerChet"/>
+<animate attributeName="x" begin="b7_anim243.end" dur="0.5s" fill="freeze" id="b7_anim244" repeatCount="1" to="150" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim243.end" dur="0.5s" fill="freeze" repeatCount="1" to="0" xlink:href="#b7_playerChet"/>
+<animate attributeName="x" begin="b7_anim244.end" dur="0.5s" fill="freeze" id="b7_anim245" repeatCount="1" to="150" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim244.end" dur="0.5s" fill="freeze" repeatCount="1" to="50" xlink:href="#b7_playerChet"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Pop...<animate attributeName="opacity" begin="b7_anim245.end" dur="0.2s" fill="freeze" from="0" id="b7_anim246" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim246.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim247" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Pop question<animate attributeName="opacity" begin="b7_anim247.end" dur="0.2s" fill="freeze" from="0" id="b7_anim248" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim248.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim249" repeatCount="1" to="0"/>
+</text>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim249.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim249.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim249.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim249.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim249.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+
+
+
+
+___
+
+*Turn 17*
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b7_anim249.end" dur="0.2s" fill="freeze" from="0" id="b7_anim250" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim250.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim251" repeatCount="1" to="0"/>
+</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Pat rolled a 2<animate attributeName="opacity" begin="b7_anim251.end" dur="0.2s" fill="freeze" from="0" id="b7_anim252" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim252.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim253" repeatCount="1" to="0"/>
+</text>
+
+
+<animate attributeName="x" begin="b7_anim253.end" dur="0.5s" fill="freeze" id="b7_anim254" repeatCount="1" to="0" xlink:href="#b7_playerPat"/>
+<animate attributeName="y" begin="b7_anim253.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerPat"/>
+<animate attributeName="x" begin="b7_anim254.end" dur="0.5s" fill="freeze" id="b7_anim255" repeatCount="1" to="0" xlink:href="#b7_playerPat"/>
+<animate attributeName="y" begin="b7_anim254.end" dur="0.5s" fill="freeze" repeatCount="1" to="100" xlink:href="#b7_playerPat"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Sports...<animate attributeName="opacity" begin="b7_anim255.end" dur="0.2s" fill="freeze" from="0" id="b7_anim256" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim256.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim257" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Pat correctly answered to Sports question<animate attributeName="opacity" begin="b7_anim257.end" dur="0.2s" fill="freeze" from="0" id="b7_anim258" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim258.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim259" repeatCount="1" to="0"/>
+</text>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim259.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim259.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim259.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim259.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim259.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+
+
+
+
+___
+
+*Turn 18*
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b7_anim259.end" dur="0.2s" fill="freeze" from="0" id="b7_anim260" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim260.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim261" repeatCount="1" to="0"/>
+</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Sue rolled a 4<animate attributeName="opacity" begin="b7_anim261.end" dur="0.2s" fill="freeze" from="0" id="b7_anim262" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim262.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim263" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0"> and is not getting out of the penalty box<animate attributeName="opacity" begin="b7_anim263.end" dur="0.2s" fill="freeze" from="0" id="b7_anim264" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim264.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim265" repeatCount="1" to="0"/>
+</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Sports...<animate attributeName="opacity" begin="b7_anim265.end" dur="0.2s" fill="freeze" from="0" id="b7_anim266" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim266.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim267" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Sue correctly answered to Sports question<animate attributeName="opacity" begin="b7_anim267.end" dur="0.2s" fill="freeze" from="0" id="b7_anim268" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim268.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim269" repeatCount="1" to="0"/>
+</text>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim269.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim269.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim269.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim269.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim269.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+
+
+
+
+___
+
+*Turn 19*
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Start of the turn<animate attributeName="opacity" begin="b7_anim269.end" dur="0.2s" fill="freeze" from="0" id="b7_anim270" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim270.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim271" repeatCount="1" to="0"/>
+</text>
+
+
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet rolled a 3<animate attributeName="opacity" begin="b7_anim271.end" dur="0.2s" fill="freeze" from="0" id="b7_anim272" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim272.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim273" repeatCount="1" to="0"/>
+</text>
+
+
+<animate attributeName="x" begin="b7_anim273.end" dur="0.5s" fill="freeze" id="b7_anim274" repeatCount="1" to="150" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim273.end" dur="0.5s" fill="freeze" repeatCount="1" to="100" xlink:href="#b7_playerChet"/>
+<animate attributeName="x" begin="b7_anim274.end" dur="0.5s" fill="freeze" id="b7_anim275" repeatCount="1" to="150" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim274.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerChet"/>
+<animate attributeName="x" begin="b7_anim275.end" dur="0.5s" fill="freeze" id="b7_anim276" repeatCount="1" to="100" xlink:href="#b7_playerChet"/>
+<animate attributeName="y" begin="b7_anim275.end" dur="0.5s" fill="freeze" repeatCount="1" to="150" xlink:href="#b7_playerChet"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Question Rock...<animate attributeName="opacity" begin="b7_anim276.end" dur="0.2s" fill="freeze" from="0" id="b7_anim277" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim277.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim278" repeatCount="1" to="0"/>
+</text>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet correctly answered to Rock question<animate attributeName="opacity" begin="b7_anim278.end" dur="0.2s" fill="freeze" from="0" id="b7_anim279" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim279.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim280" repeatCount="1" to="0"/>
+</text>
+<set xlink:href="#b7_playerChet_0" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_1" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_2" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_3" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_4" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_5" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_6" begin="b7_anim280.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_0" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_1" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_2" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_3" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_4" begin="b7_anim280.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_5" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_6" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_0" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_1" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_2" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_3" begin="b7_anim280.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_4" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_5" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_6" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerChet_jail" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerPat_jail" begin="b7_anim280.end" attributeName="opacity" to="0" repeatCount="1" fill="freeze"/>
+<set xlink:href="#b7_playerSue_jail" begin="b7_anim280.end" attributeName="opacity" to="1" repeatCount="1" fill="freeze"/>
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Verdana" font-size="25" opacity="0">Chet wins the game !!!<animate attributeName="opacity" begin="b7_anim280.end" dur="0.2s" fill="freeze" from="0" id="b7_anim281" repeatCount="1" to="1"/>
+<animate attributeName="opacity" begin="b7_anim281.end + 1s" dur="0.2s" fill="freeze" from="1" id="b7_anim282" repeatCount="1" to="0"/>
 </text>
 
 
@@ -288,16 +1255,16 @@ ___
 
 <text dominant-baseline="middle" font-family="Verdana" font-size="25" id="b7_text1" opacity="1" text-anchor="middle" x="50%" y="50%">
   <set attributeName="opacity" begin="b7_anim79.begin" fill="freeze" repeatCount="1" to="0"/>
-  <set attributeName="opacity" begin="b7_anim140.end + 1s" fill="freeze" repeatCount="1" to="1"/>
+  <set attributeName="opacity" begin="b7_anim282.end + 1s" fill="freeze" repeatCount="1" to="1"/>
   Click to start
 </text>
 <rect height="200" opacity="0.1" width="800" x="0" y="0">
   <animate attributeName="x" begin="click" dur="0.01s" fill="freeze" from="0" id="b7_anim79" repeatCount="1" to="0"/>
   <set attributeName="width" begin="b7_anim79.begin" fill="freeze" repeatCount="1" to="50"/>
   <set attributeName="height" begin="b7_anim79.begin" fill="freeze" repeatCount="1" to="50"/>
-  <animate attributeName="x" begin="b7_anim140.end + 1s" dur="0.01s" fill="freeze" from="0" id="b7_animEnd" repeatCount="1" to="0"/>
-  <set attributeName="width" begin="b7_anim140.end + 1s" fill="freeze" repeatCount="1" to="800"/>
-  <set attributeName="height" begin="b7_anim140.end + 1s" fill="freeze" repeatCount="1" to="200"/>
+  <animate attributeName="x" begin="b7_anim282.end + 1s" dur="0.01s" fill="freeze" from="0" id="b7_animEnd" repeatCount="1" to="0"/>
+  <set attributeName="width" begin="b7_anim282.end + 1s" fill="freeze" repeatCount="1" to="800"/>
+  <set attributeName="height" begin="b7_anim282.end + 1s" fill="freeze" repeatCount="1" to="200"/>
 </rect>
 <style>
 text {
@@ -325,7 +1292,7 @@ Board at the start of the turn
 
 <table class="triviaBoard">
 <tr>
-<td class="pop"><p class="currentPlayer">Chet </p></td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<td class="pop"><p class="currentPlayer">Chet </p><p class="">Pat </p><p class="">Sue </p></td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
 <tr>
 <td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
 <tr>
@@ -346,7 +1313,7 @@ Board at the start of the turn
 
 <table class="triviaBoard">
 <tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports"><p class="currentPlayer">Chet </p></td><td class="rock">&nbsp;</td></tr>
+<td class="pop"><p class="">Pat </p><p class="">Sue </p></td><td class="science">&nbsp;</td><td class="sports"><p class="currentPlayer">Chet </p></td><td class="rock">&nbsp;</td></tr>
 <tr>
 <td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
 <tr>
@@ -367,7 +1334,7 @@ Board at the start of the turn
 
 <table class="triviaBoard">
 <tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports"><p class="currentPlayer">Chet &#x2780;</p></td><td class="rock">&nbsp;</td></tr>
+<td class="pop"><p class="">Pat </p><p class="">Sue </p></td><td class="science">&nbsp;</td><td class="sports"><p class="currentPlayer">Chet &#x2780;</p></td><td class="rock">&nbsp;</td></tr>
 <tr>
 <td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
 <tr>
@@ -400,7 +1367,7 @@ Board at the start of the turn
 
 <table class="triviaBoard">
 <tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports"><p class="currentPlayer">Chet &#x2780;</p></td><td class="rock">&nbsp;</td></tr>
+<td class="pop"><p class="currentPlayer">Pat </p><p class="">Sue </p></td><td class="science">&nbsp;</td><td class="sports"><p class="">Chet &#x2780;</p></td><td class="rock">&nbsp;</td></tr>
 <tr>
 <td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
 <tr>
@@ -412,7 +1379,7 @@ Board at the start of the turn
 ++++
 
 
-a|Chet rolled a [.dice]#&#x2681;#
+a|Pat rolled a [.dice]#&#x2681;#
  +
 [.boardTitle]
 Board at the start of the turn
@@ -421,9 +1388,9 @@ Board at the start of the turn
 
 <table class="triviaBoard">
 <tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<td class="pop"><p class="">Sue </p></td><td class="science">&nbsp;</td><td class="sports"><p class="">Chet &#x2780;</p><p class="currentPlayer">Pat </p></td><td class="rock">&nbsp;</td></tr>
 <tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">Chet &#x2780;</p></td></tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
 <tr>
 <td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
 <tr>
@@ -434,7 +1401,7 @@ Board at the start of the turn
 
 
 a|[rightAnswer]#&#x2714;#
-Chet correctly answered to Pop question +
+Pat correctly answered to Sports question +
 [.boardTitle]
 Board at the start of the turn
 
@@ -442,9 +1409,9 @@ Board at the start of the turn
 
 <table class="triviaBoard">
 <tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<td class="pop"><p class="">Sue </p></td><td class="science">&nbsp;</td><td class="sports"><p class="">Chet &#x2780;</p><p class="currentPlayer">Pat &#x2780;</p></td><td class="rock">&nbsp;</td></tr>
 <tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">Chet &#x2781;</p></td></tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
 <tr>
 <td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
 <tr>
@@ -475,9 +1442,9 @@ Board at the start of the turn
 
 <table class="triviaBoard">
 <tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<td class="pop"><p class="currentPlayer">Sue </p></td><td class="science">&nbsp;</td><td class="sports"><p class="">Chet &#x2780;</p><p class="">Pat &#x2780;</p></td><td class="rock">&nbsp;</td></tr>
 <tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">Chet &#x2781;</p></td></tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
 <tr>
 <td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
 <tr>
@@ -487,7 +1454,7 @@ Board at the start of the turn
 ++++
 
 
-a|Chet rolled a [.dice]#&#x2680;#
+a|Sue rolled a [.dice]#&#x2680;#
  +
 [.boardTitle]
 Board at the start of the turn
@@ -496,11 +1463,11 @@ Board at the start of the turn
 
 <table class="triviaBoard">
 <tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<td class="pop">&nbsp;</td><td class="science"><p class="currentPlayer">Sue </p></td><td class="sports"><p class="">Chet &#x2780;</p><p class="">Pat &#x2780;</p></td><td class="rock">&nbsp;</td></tr>
 <tr>
 <td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
 <tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science"><p class="currentPlayer">Chet &#x2781;</p></td></tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
 <tr>
 <td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
 </table>
@@ -509,7 +1476,7 @@ Board at the start of the turn
 
 
 a|[rightAnswer]#&#x2714;#
-Chet correctly answered to Science question +
+Sue correctly answered to Science question +
 [.boardTitle]
 Board at the start of the turn
 
@@ -517,11 +1484,11 @@ Board at the start of the turn
 
 <table class="triviaBoard">
 <tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<td class="pop">&nbsp;</td><td class="science"><p class="currentPlayer">Sue &#x2780;</p></td><td class="sports"><p class="">Chet &#x2780;</p><p class="">Pat &#x2780;</p></td><td class="rock">&nbsp;</td></tr>
 <tr>
 <td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
 <tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science"><p class="currentPlayer">Chet &#x2782;</p></td></tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
 <tr>
 <td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
 </table>
@@ -550,11 +1517,11 @@ Board at the start of the turn
 
 <table class="triviaBoard">
 <tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<td class="pop">&nbsp;</td><td class="science"><p class="">Sue &#x2780;</p></td><td class="sports"><p class="currentPlayer">Chet &#x2780;</p><p class="">Pat &#x2780;</p></td><td class="rock">&nbsp;</td></tr>
 <tr>
 <td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
 <tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science"><p class="currentPlayer">Chet &#x2782;</p></td></tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
 <tr>
 <td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
 </table>
@@ -571,20 +1538,20 @@ Board at the start of the turn
 
 <table class="triviaBoard">
 <tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<td class="pop">&nbsp;</td><td class="science"><p class="">Sue &#x2780;</p></td><td class="sports"><p class="">Pat &#x2780;</p></td><td class="rock"><p class="currentPlayer">Chet &#x2780;</p></td></tr>
 <tr>
 <td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
 <tr>
 <td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
 <tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports"><p class="currentPlayer">Chet &#x2782;</p></td></tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
 </table>
 
 ++++
 
 
 a|[rightAnswer]#&#x2714;#
-Chet correctly answered to Sports question +
+Chet correctly answered to Rock question +
 [.boardTitle]
 Board at the start of the turn
 
@@ -592,13 +1559,13 @@ Board at the start of the turn
 
 <table class="triviaBoard">
 <tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<td class="pop">&nbsp;</td><td class="science"><p class="">Sue &#x2780;</p></td><td class="sports"><p class="">Pat &#x2780;</p></td><td class="rock"><p class="currentPlayer">Chet &#x2781;</p></td></tr>
 <tr>
 <td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
 <tr>
 <td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
 <tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports"><p class="currentPlayer">Chet &#x2783;</p></td></tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
 </table>
 
 ++++
@@ -625,19 +1592,19 @@ Board at the start of the turn
 
 <table class="triviaBoard">
 <tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<td class="pop">&nbsp;</td><td class="science"><p class="">Sue &#x2780;</p></td><td class="sports"><p class="currentPlayer">Pat &#x2780;</p></td><td class="rock"><p class="">Chet &#x2781;</p></td></tr>
 <tr>
 <td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
 <tr>
 <td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
 <tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports"><p class="currentPlayer">Chet &#x2783;</p></td></tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
 </table>
 
 ++++
 
 
-a|Chet rolled a [.dice]#&#x2681;#
+a|Pat rolled a [.dice]#&#x2681;#
  +
 [.boardTitle]
 Board at the start of the turn
@@ -646,20 +1613,20 @@ Board at the start of the turn
 
 <table class="triviaBoard">
 <tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<td class="pop">&nbsp;</td><td class="science"><p class="">Sue &#x2780;</p></td><td class="sports">&nbsp;</td><td class="rock"><p class="">Chet &#x2781;</p></td></tr>
 <tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">Pat &#x2780;</p></td></tr>
 <tr>
 <td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
 <tr>
-<td class="science">&nbsp;</td><td class="pop"><p class="currentPlayer">Chet &#x2783;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
 </table>
 
 ++++
 
 
 a|[rightAnswer]#&#x2714;#
-Chet correctly answered to Pop question +
+Pat correctly answered to Pop question +
 [.boardTitle]
 Board at the start of the turn
 
@@ -667,13 +1634,13 @@ Board at the start of the turn
 
 <table class="triviaBoard">
 <tr>
-<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<td class="pop">&nbsp;</td><td class="science"><p class="">Sue &#x2780;</p></td><td class="sports">&nbsp;</td><td class="rock"><p class="">Chet &#x2781;</p></td></tr>
 <tr>
-<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">Pat &#x2781;</p></td></tr>
 <tr>
 <td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
 <tr>
-<td class="science">&nbsp;</td><td class="pop"><p class="currentPlayer">Chet &#x2784;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
 </table>
 
 ++++
@@ -700,13 +1667,988 @@ Board at the start of the turn
 
 <table class="triviaBoard">
 <tr>
+<td class="pop">&nbsp;</td><td class="science"><p class="currentPlayer">Sue &#x2780;</p></td><td class="sports">&nbsp;</td><td class="rock"><p class="">Chet &#x2781;</p></td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Pat &#x2781;</p></td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|Sue rolled a [.dice]#&#x2682;#
+ +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock"><p class="">Chet &#x2781;</p></td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Pat &#x2781;</p><p class="currentPlayer">Sue &#x2780;</p></td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|[rightAnswer]#&#x2714;#
+Sue correctly answered to Pop question +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock"><p class="">Chet &#x2781;</p></td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Pat &#x2781;</p><p class="currentPlayer">Sue &#x2781;</p></td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+|====
+
+
+___
+
+*Turn 7*
+
+[.tableInline]
+[%autowidth, cols=3, frame=none, grid=none]
+|====
+
+a|[.tableHeader]#Start of the turn#
+
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock"><p class="currentPlayer">Chet &#x2781;</p></td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Pat &#x2781;</p><p class="">Sue &#x2781;</p></td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|Chet rolled a [.dice]#&#x2680;#
+ +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">Chet &#x2781;</p><p class="">Pat &#x2781;</p><p class="">Sue &#x2781;</p></td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|[wrongAnswer]#&#x2718;#
+Chet incorrectly answered to Pop question +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">[Chet] &#x2781;</p><p class="">Pat &#x2781;</p><p class="">Sue &#x2781;</p></td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+|====
+
+
+___
+
+*Turn 8*
+
+[.tableInline]
+[%autowidth, cols=3, frame=none, grid=none]
+|====
+
+a|[.tableHeader]#Start of the turn#
+
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">[Chet] &#x2781;</p><p class="currentPlayer">Pat &#x2781;</p><p class="">Sue &#x2781;</p></td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|Pat rolled a [.dice]#&#x2682;#
+ +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">[Chet] &#x2781;</p><p class="">Sue &#x2781;</p></td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="currentPlayer">Pat &#x2781;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|[wrongAnswer]#&#x2718;#
+Pat incorrectly answered to Rock question +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">[Chet] &#x2781;</p><p class="">Sue &#x2781;</p></td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="currentPlayer">[Pat] &#x2781;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+|====
+
+
+___
+
+*Turn 9*
+
+[.tableInline]
+[%autowidth, cols=3, frame=none, grid=none]
+|====
+
+a|[.tableHeader]#Start of the turn#
+
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">[Chet] &#x2781;</p><p class="currentPlayer">Sue &#x2781;</p></td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">[Pat] &#x2781;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|Sue rolled a [.dice]#&#x2682;#
+ +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">[Chet] &#x2781;</p></td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">[Pat] &#x2781;</p><p class="currentPlayer">Sue &#x2781;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|[rightAnswer]#&#x2714;#
+Sue correctly answered to Rock question +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">[Chet] &#x2781;</p></td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">[Pat] &#x2781;</p><p class="currentPlayer">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+|====
+
+
+___
+
+*Turn 10*
+
+[.tableInline]
+[%autowidth, cols=3, frame=none, grid=none]
+|====
+
+a|[.tableHeader]#Start of the turn#
+
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">[Chet] &#x2781;</p></td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|Chet rolled a [.dice]#&#x2682;#
+ and is getting out of penality box +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
 <td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
 <tr>
 <td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
 <tr>
 <td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
 <tr>
-<td class="science">&nbsp;</td><td class="pop"><p class="currentPlayer">Chet &#x2784;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="currentPlayer">[Chet] &#x2781;</p><p class="">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|[rightAnswer]#&#x2714;#
+Chet correctly answered to Rock question +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="currentPlayer">Chet &#x2782;</p><p class="">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+|====
+
+
+___
+
+*Turn 11*
+
+[.tableInline]
+[%autowidth, cols=3, frame=none, grid=none]
+|====
+
+a|[.tableHeader]#Start of the turn#
+
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p><p class="currentPlayer">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|Pat rolled a [.dice]#&#x2681;#
+ and is not getting out of the penalty box +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p><p class="currentPlayer">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|[rightAnswer]#&#x2714;#
+Pat correctly answered to Rock question +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p><p class="currentPlayer">[Pat] &#x2781;</p><p class="">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+|====
+
+
+___
+
+*Turn 12*
+
+[.tableInline]
+[%autowidth, cols=3, frame=none, grid=none]
+|====
+
+a|[.tableHeader]#Start of the turn#
+
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p><p class="">[Pat] &#x2781;</p><p class="currentPlayer">Sue &#x2782;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|Sue rolled a [.dice]#&#x2682;#
+ +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports"><p class="currentPlayer">Sue &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p><p class="">[Pat] &#x2781;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|[wrongAnswer]#&#x2718;#
+Sue incorrectly answered to Sports question +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports"><p class="currentPlayer">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">Chet &#x2782;</p><p class="">[Pat] &#x2781;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+|====
+
+
+___
+
+*Turn 13*
+
+[.tableInline]
+[%autowidth, cols=3, frame=none, grid=none]
+|====
+
+a|[.tableHeader]#Start of the turn#
+
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports"><p class="">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="currentPlayer">Chet &#x2782;</p><p class="">[Pat] &#x2781;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|Chet rolled a [.dice]#&#x2683;#
+ +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock"><p class="currentPlayer">Chet &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports"><p class="">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">[Pat] &#x2781;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|[rightAnswer]#&#x2714;#
+Chet correctly answered to Rock question +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock"><p class="currentPlayer">Chet &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports"><p class="">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="">[Pat] &#x2781;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+|====
+
+
+___
+
+*Turn 14*
+
+[.tableInline]
+[%autowidth, cols=3, frame=none, grid=none]
+|====
+
+a|[.tableHeader]#Start of the turn#
+
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock"><p class="">Chet &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports"><p class="">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="currentPlayer">[Pat] &#x2781;</p></td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|Pat rolled a [.dice]#&#x2680;#
+ and is getting out of penality box +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock"><p class="">Chet &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports"><p class="">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop"><p class="currentPlayer">[Pat] &#x2781;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|[rightAnswer]#&#x2714;#
+Pat correctly answered to Pop question +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock"><p class="">Chet &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports"><p class="">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop"><p class="currentPlayer">Pat &#x2782;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+|====
+
+
+___
+
+*Turn 15*
+
+[.tableInline]
+[%autowidth, cols=3, frame=none, grid=none]
+|====
+
+a|[.tableHeader]#Start of the turn#
+
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock"><p class="">Chet &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports"><p class="currentPlayer">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop"><p class="">Pat &#x2782;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|Sue rolled a [.dice]#&#x2681;#
+ and is not getting out of the penalty box +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock"><p class="">Chet &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports"><p class="currentPlayer">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop"><p class="">Pat &#x2782;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|[rightAnswer]#&#x2714;#
+Sue correctly answered to Sports question +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock"><p class="">Chet &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports"><p class="currentPlayer">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop"><p class="">Pat &#x2782;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+|====
+
+
+___
+
+*Turn 16*
+
+[.tableInline]
+[%autowidth, cols=3, frame=none, grid=none]
+|====
+
+a|[.tableHeader]#Start of the turn#
+
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock"><p class="currentPlayer">Chet &#x2783;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<tr>
+<td class="sports"><p class="">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop"><p class="">Pat &#x2782;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|Chet rolled a [.dice]#&#x2684;#
+ +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">Chet &#x2783;</p></td></tr>
+<tr>
+<td class="sports"><p class="">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop"><p class="">Pat &#x2782;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|[rightAnswer]#&#x2714;#
+Chet correctly answered to Pop question +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">Chet &#x2784;</p></td></tr>
+<tr>
+<td class="sports"><p class="">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop"><p class="">Pat &#x2782;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+|====
+
+
+___
+
+*Turn 17*
+
+[.tableInline]
+[%autowidth, cols=3, frame=none, grid=none]
+|====
+
+a|[.tableHeader]#Start of the turn#
+
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Chet &#x2784;</p></td></tr>
+<tr>
+<td class="sports"><p class="">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop"><p class="currentPlayer">Pat &#x2782;</p></td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|Pat rolled a [.dice]#&#x2681;#
+ +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Chet &#x2784;</p></td></tr>
+<tr>
+<td class="sports"><p class="currentPlayer">Pat &#x2782;</p><p class="">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|[rightAnswer]#&#x2714;#
+Pat correctly answered to Sports question +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Chet &#x2784;</p></td></tr>
+<tr>
+<td class="sports"><p class="currentPlayer">Pat &#x2783;</p><p class="">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+|====
+
+
+___
+
+*Turn 18*
+
+[.tableInline]
+[%autowidth, cols=3, frame=none, grid=none]
+|====
+
+a|[.tableHeader]#Start of the turn#
+
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Chet &#x2784;</p></td></tr>
+<tr>
+<td class="sports"><p class="">Pat &#x2783;</p><p class="currentPlayer">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|Sue rolled a [.dice]#&#x2683;#
+ and is not getting out of the penalty box +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Chet &#x2784;</p></td></tr>
+<tr>
+<td class="sports"><p class="">Pat &#x2783;</p><p class="currentPlayer">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+a|[rightAnswer]#&#x2714;#
+Sue correctly answered to Sports question +
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="">Chet &#x2784;</p></td></tr>
+<tr>
+<td class="sports"><p class="">Pat &#x2783;</p><p class="currentPlayer">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+</table>
+
+++++
+
+
+|====
+
+
+___
+
+*Turn 19*
+
+[.tableInline]
+[%autowidth, cols=3, frame=none, grid=none]
+|====
+
+a|[.tableHeader]#Start of the turn#
+
+
+[.boardTitle]
+Board at the start of the turn
+
+++++
+
+<table class="triviaBoard">
+<tr>
+<td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
+<tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop"><p class="currentPlayer">Chet &#x2784;</p></td></tr>
+<tr>
+<td class="sports"><p class="">Pat &#x2783;</p><p class="">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
 </table>
 
 ++++
@@ -723,11 +2665,11 @@ Board at the start of the turn
 <tr>
 <td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
 <tr>
-<td class="rock"><p class="currentPlayer">Chet &#x2784;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
 <tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<td class="sports"><p class="">Pat &#x2783;</p><p class="">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
 <tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="currentPlayer">Chet &#x2784;</p></td><td class="sports">&nbsp;</td></tr>
 </table>
 
 ++++
@@ -745,11 +2687,11 @@ Board at the start of the turn
 <tr>
 <td class="pop">&nbsp;</td><td class="science">&nbsp;</td><td class="sports">&nbsp;</td><td class="rock">&nbsp;</td></tr>
 <tr>
-<td class="rock"><p class="currentPlayer">Chet &#x2785;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
+<td class="rock">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="pop">&nbsp;</td></tr>
 <tr>
-<td class="sports">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
+<td class="sports"><p class="">Pat &#x2783;</p><p class="">[Sue] &#x2782;</p></td><td>&nbsp;</td><td>&nbsp;</td><td class="science">&nbsp;</td></tr>
 <tr>
-<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock">&nbsp;</td><td class="sports">&nbsp;</td></tr>
+<td class="science">&nbsp;</td><td class="pop">&nbsp;</td><td class="rock"><p class="currentPlayer">Chet &#x2785;</p></td><td class="sports">&nbsp;</td></tr>
 </table>
 
 ++++

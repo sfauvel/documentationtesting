@@ -59,7 +59,7 @@ public class GameSvgTest extends ApprovalsBase {
                 displayDoc.addAll(Arrays.asList(
                         () -> {
                             displayDoc.text("Start of the turn");
-                            displayDoc.move(aGame, "playerA", aGame.places[currentPlayerNumber], currentPlayerNumber);
+                            displayDoc.move(aGame, "player" + (String)aGame.players.get(currentPlayerNumber), aGame.places[currentPlayerNumber], currentPlayerNumber);
                         },
                         () -> displayDoc.rollAndMove(aGame, currentPlayerNumber, roll)));
                 displayDoc.display(aGame);
@@ -81,7 +81,7 @@ public class GameSvgTest extends ApprovalsBase {
 //                displayDoc.addAll(Arrays.asList(
 //                        () -> {
 //                            displayDoc.text("Start of the turn");
-//                            displayDoc.move(aGame, "playerA", aGame.places[currentPlayerNumber], currentPlayerNumber);
+//                            displayDoc.move(aGame, "player" + (String)aGame.players.get(currentPlayerNumber), aGame.places[currentPlayerNumber], currentPlayerNumber);
 //                        },
 //                        () -> displayDoc.rollAndMove(aGame, currentPlayerNumber, roll)));
 //                displayDoc.display(aGame);
@@ -257,7 +257,7 @@ public class GameSvgTest extends ApprovalsBase {
                 }
             })) {
 
-                final FakeGame aGame = startGame("Chet");
+                final FakeGame aGame = startGame("Chet", "Pat", "Sue");
                 Random rand = new Random(12345);
 
                 final Supplier<Integer> rollSupplier = () -> rand.nextInt(5) + 1;
