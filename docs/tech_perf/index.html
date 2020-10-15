@@ -491,6 +491,21 @@ With Approvals, preformance is less good (but may be optimized).
 This approach is clearly slower than using Junit, but difference is not really signifiant unless there is a lot a tests.
 We execute 1000 tests in less than 1 second.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The examples shown here are generated from the source code.
+They therefore represent the behavior of the application at any times.
+Non regression, as for it, is ensured by checking the absence of change in this document.
+Learn more here <a href="https://sfauvel.github.io/documentationtesting" class="bare">https://sfauvel.github.io/documentationtesting</a>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>View source project on <a href="https://github.com/sfauvel/documentationtesting/tree/master/samples/tech_perf">Github</a></p>
 </div>
@@ -525,67 +540,67 @@ This step is fast, it&#8217;s just a shell script with some git commands.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Long</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndALongTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.199</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.186</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. There is only one test but it check 100 times the same case.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Long</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitWithALongTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.007</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.009</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test. There is only one test but it check 100 times the same case.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndLotOfTests_A_Test</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.331</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.392</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndLotOfTests_B_Test</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.608</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.612</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitAndLotOfTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.083</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.108</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test 1000 cases.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Many</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndManyTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.119</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.101</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100 tests are made.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Many</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitAndManyTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.01</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.013</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test 100 cases.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingApprovalsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.041</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.04</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify documentation with <em>Approvals</em> library.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitAssertingOnEachTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.192</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.173</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Check file modification with git after each test.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.006</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.004</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.001</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test.</p></td>
 </tr>
 </tbody>

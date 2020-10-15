@@ -12,6 +12,7 @@ set ADOC_FILE=%2
 set DOC_DESTINATION_PATH=%3
 
 set REPO_GITHUB=https://github.com/sfauvel/documentationtesting
+set GITHUB_PAGES=https://sfauvel.github.io/documentationtesting
 
 REM Styles come from : https://github.com/darshandsoni/asciidoctor-skins
 REM set STYLE=adoc-readthedocs.css
@@ -51,7 +52,8 @@ docker run -it ^
     -a webfonts! ^
     -a stylesheet=/stylesheets/%STYLE% ^
     --attribute htmlOutput="html" ^
-    --attribute github="%REPO_GITHUB%/tree/master" ^
+    --attribute github-repo="%REPO_GITHUB%/tree/master" ^
+    --attribute github-pages="%GITHUB_PAGES%" ^
     --attribute rootpath="%DOCKER_WORKDIR%" ^
     %ADOC_FILE%
 

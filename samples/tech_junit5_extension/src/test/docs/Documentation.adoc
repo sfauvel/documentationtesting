@@ -4,7 +4,12 @@
 
 = JUnit5 extension
 
-View source project on link:{github}/samples/tech_junit5_extension[Github]
+NOTE: The examples shown here are generated from the source code.
+They therefore represent the behavior of the application at any times.
+Non regression, as for it, is ensured by checking the absence of change in this document.
+Learn more here link:{github-pages}[]
+
+View source project on link:{github-repo}/samples/tech_junit5_extension[Github]
 
 == DemoTest
 Demo of a simple usage to generate documentation.

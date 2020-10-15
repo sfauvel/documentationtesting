@@ -22,6 +22,7 @@ then
 fi
 
 REPO_GITHUB=https://github.com/sfauvel/documentationtesting
+GITHUB_PAGES=https://sfauvel.github.io/documentationtesting
 DOCKER_WORKDIR=/documents
 DOC_PATH=docs
 SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
@@ -65,7 +66,8 @@ function generateAsciidoc() {
         -a webfonts! \
         -a stylesheet=/stylesheets/${STYLE} \
     	--attribute htmlOutput="html" \
-    	--attribute github="${REPO_GITHUB}/tree/master" \
+    	--attribute github-repo="${REPO_GITHUB}/tree/master" \
+      --attribute github-pages="${GITHUB_PAGES}" \
     	--attribute rootpath="${DOCKER_WORKDIR}" \
     	${ADOC_FILE}
 

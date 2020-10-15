@@ -92,7 +92,7 @@ public class MainDocumentation {
                 (readmePath.toFile().exists()
                         ? "include::../../../readme.adoc[leveloffset=+1]\n\n"
                         : "= " + DOCUMENTATION_TITLE + "\n\n") +
-                "View source project on link:{github}/" + projectFolderPath.toString() + "[Github]\n\n";
+                "View source project on link:{github-repo}/" + projectFolderPath.toString() + "[Github]\n\n";
         ;
         return header;
     }
