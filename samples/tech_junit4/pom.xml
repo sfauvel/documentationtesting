@@ -15,10 +15,10 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
-        <junit.version>4.12</junit.version>
-        <qdox.version>2.0-M10</qdox.version>
-        <reflections.version>0.9.11</reflections.version>
-        <approvaltests.version>4.0.2</approvaltests.version>
+        <junit.version>4.13.1</junit.version>
+        <qdox.version>2.0.0</qdox.version>
+        <reflections.version>0.9.12</reflections.version>
+        <approvaltests.version>9.3.0</approvaltests.version>
     </properties>
 
     <build>
