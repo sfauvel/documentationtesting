@@ -3,6 +3,7 @@
 
 Imagine that your tests are as readable as documentation and that they look like this
 
+[.INLINE-BLOCK]
 ====
 *Tennis*
 
@@ -28,8 +29,10 @@ endif::[]
 ====
 
 ifndef::env-github[]
+[.INLINE-BLOCK]
 or like that
 
+[.INLINE-BLOCK]
 ====
 *Game of life*
 
@@ -137,6 +140,16 @@ td .content .alive p {
 
 ====
 endif::[]
+
+
+++++
+<style>
+.INLINE-BLOCK {
+    display: inline-block;
+    margin-right: 1em;
+}
+</style>
+++++
 
 This is what this project offers you to set up.
 
