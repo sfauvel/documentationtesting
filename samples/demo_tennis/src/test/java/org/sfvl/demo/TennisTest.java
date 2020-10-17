@@ -2,7 +2,10 @@ package org.sfvl.demo;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.sfvl.doctesting.ApprovalsBase;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.DocWriter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +15,16 @@ import java.util.stream.Collectors;
  * We will display a tennis score.
  */
 @DisplayName(value="Scores examples")
-public class TennisTest extends ApprovalsBase {
+public class TennisTest {
+
+    private final DocWriter docWriter = new DocWriter();
+    @RegisterExtension
+    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+
+    private void write(String... texts) {
+        docWriter.write(texts);
+    }
+
 
     static class TennisRecorder extends Tennis {
         List<String> points = new ArrayList<>();

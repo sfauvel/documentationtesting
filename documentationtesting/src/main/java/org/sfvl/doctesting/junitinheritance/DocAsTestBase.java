@@ -1,25 +1,20 @@
-package org.sfvl.doctesting;
+package org.sfvl.doctesting.junitinheritance;
 
-import com.thoughtworks.qdox.JavaProjectBuilder;
 import com.thoughtworks.qdox.model.JavaClass;
-import com.thoughtworks.qdox.model.JavaMethod;
-import com.thoughtworks.qdox.model.JavaType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.TestInfo;
+import org.sfvl.doctesting.CodeExtractor;
+import org.sfvl.doctesting.DocumentationNamer;
+import org.sfvl.doctesting.PathProvider;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public abstract class DocAsTestBase {
     protected static final PathProvider pathBuidler = new PathProvider();
     protected StringBuffer sb = new StringBuffer();
-    private static JavaProjectBuilder builder;
 
     /**
      * Return the name to use as title from a test method .
@@ -42,33 +37,6 @@ public abstract class DocAsTestBase {
         } else {
             return displayName;
         }
-    }
-
-    /**
-     * Init JavaProjectBuilder it's a bit long (more than 100ms).
-     * We init it only once to avoid this low performances.
-     */
-    static {
-        if (builder == null) {
-            builder = new JavaProjectBuilder();
-            builder.addSourceTree(new File("src/main/java"));
-            builder.addSourceTree(new File("src/test/java"));
-        }
-    }
-
-    protected String getComment(Class<?> clazz, String methodName) {
-        return getComment(clazz, methodName, Collections.emptyList());
-    }
-
-    protected String getComment(Class<?> clazz, String methodName, List<JavaType> argumentList) {
-        JavaClass javaClass = builder.getClassByName(clazz.getCanonicalName());
-
-        JavaMethod method = javaClass.getMethod(methodName, argumentList, false);
-        while (method == null && javaClass.getSuperJavaClass() != null) {
-            javaClass = javaClass.getSuperJavaClass();
-            method = javaClass.getMethod(methodName, argumentList, false);
-        }
-        return Optional.ofNullable(method).map(c -> c.getComment()).orElse("");
     }
 
     /**
@@ -101,12 +69,12 @@ public abstract class DocAsTestBase {
     }
 
     protected String buildContent(TestInfo testInfo) {
-        final JavaClass testInfoJavaClass = builder.getClassByName(TestInfo.class.getCanonicalName());
-        final String comment1 = getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName());
-        final String comment2 = getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName(), Arrays.asList(testInfoJavaClass));
+        final JavaClass testInfoJavaClass = CodeExtractor.getBuilder().getClassByName(TestInfo.class.getCanonicalName());
+        final String comment1 = CodeExtractor.getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName());
+        final String comment2 = CodeExtractor.getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName(), Arrays.asList(testInfoJavaClass));
         return String.join("\n\n",
                 "= " + formatTitle(testInfo),
-                getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName()),
+                CodeExtractor.getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName()),
                 sb.toString());
     }
 }

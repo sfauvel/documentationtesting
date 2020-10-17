@@ -191,7 +191,7 @@ But, this information still needs to be checked.
 You want to create your own Java project to try this approach.
 The only module you need is `documentationtestesting` one.
 
-Start by writing a test that inherits from `org.sfvl.doctesting.ApprovalsBase`.
+Start by writing a test that inherits from `org.sfvl.doctesting.junitinheritance.ApprovalsBase`.
 
 Use `write` method to write all you want to be in documentation.
 It should be at least input and output.

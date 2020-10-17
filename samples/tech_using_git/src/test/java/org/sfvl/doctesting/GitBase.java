@@ -5,6 +5,7 @@ import org.eclipse.jgit.api.Status;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
+import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
 
 import java.io.BufferedWriter;
 import java.io.File;

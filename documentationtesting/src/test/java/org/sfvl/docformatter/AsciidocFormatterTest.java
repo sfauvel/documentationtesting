@@ -8,7 +8,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
-import org.sfvl.doctesting.ApprovalsBase;
+import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.doctesting.CodeExtractor;
+import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.DocWriter;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,9 +34,16 @@ import java.util.stream.Collectors;
  * - the asciidoc text generated
  */
 @DisplayName("Asciidoctor formatter")
-public class AsciidocFormatterTest extends ApprovalsBase {
+public class AsciidocFormatterTest {
     private static AsciidocFormatter formatter = new AsciidocFormatter();
     private String output;
+
+    @RegisterExtension
+    ApprovalsExtension extension = new ApprovalsExtension(new DocWriter());
+
+    public void write(String... texts) {
+        extension.getDocWriter().write(texts);
+    }
 
     @Retention(RetentionPolicy.RUNTIME)
     public @interface TestOption {
@@ -177,7 +187,7 @@ public class AsciidocFormatterTest extends ApprovalsBase {
 
         annotation.map(TestOption::includeMethodDoc)
                 .filter(name -> !name.isEmpty())
-                .map(methodName -> getComment(AsciidocFormatter.class, methodName))
+                .map(methodName -> CodeExtractor.getComment(AsciidocFormatter.class, methodName))
                 .ifPresent(doc -> write(doc + "\n"));
 
         write("\n[red]##_Usage_##\n[source,java,indent=0]\n----\n");
@@ -232,7 +242,7 @@ public class AsciidocFormatterTest extends ApprovalsBase {
 
         final String canonicalName = this.getClass().getPackage().getName();
         final String pathName = canonicalName.toString().replace('.', '/');
-        final Path filePath = getDocPath().resolve(pathName).resolve(fileName);
+        final Path filePath = extension.getDocPath().resolve(pathName).resolve(fileName);
 
         filePath.getParent().toFile().mkdirs();
         try (FileWriter writerInclude = new FileWriter(filePath.toFile())) {

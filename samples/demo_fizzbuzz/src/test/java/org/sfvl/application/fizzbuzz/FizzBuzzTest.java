@@ -1,7 +1,7 @@
 package org.sfvl.application.fizzbuzz;
 
 import org.junit.jupiter.api.Test;
-import org.sfvl.doctesting.ApprovalsBase;
+import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 import org.sfvl.application.FizzBuzz;
 
 import java.util.stream.Collectors;

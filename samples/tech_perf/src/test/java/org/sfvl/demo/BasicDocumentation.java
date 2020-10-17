@@ -3,7 +3,7 @@ package org.sfvl.demo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.sfvl.Person;
-import org.sfvl.doctesting.DocAsTestBase;
+import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
 import org.sfvl.doctesting.MainDocumentation;
 import org.sfvl.doctesting.PathProvider;
 import org.w3c.dom.NamedNodeMap;

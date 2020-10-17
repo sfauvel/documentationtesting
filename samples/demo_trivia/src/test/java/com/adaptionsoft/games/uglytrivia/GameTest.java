@@ -2,7 +2,7 @@ package com.adaptionsoft.games.uglytrivia;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.sfvl.doctesting.ApprovalsBase;
+import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 
 import java.io.IOException;
 import java.nio.file.Files;

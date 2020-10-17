@@ -2,7 +2,7 @@ package org.sfvl.demo;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.sfvl.doctesting.SelectableBase;
+import org.sfvl.doctesting.junitinheritance.SelectableBase;
 
 /**
  * Demo of a simple usage to generate documentation.

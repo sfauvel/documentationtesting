@@ -1,21 +1,34 @@
-package org.sfvl.doctesting;
+package org.sfvl.doctesting.junitinheritance;
 
 import com.thoughtworks.qdox.JavaProjectBuilder;
 import com.thoughtworks.qdox.model.JavaClass;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.mockito.Mockito;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.AsciidocFormatterTest.TestOption;
 import org.sfvl.docformatter.Formatter;
+import org.sfvl.doctesting.CodeExtractor;
+import org.sfvl.doctesting.DocumentationNamer;
+import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.DocWriter;
+import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-class DocAsTestBaseTest extends ApprovalsBase {
+class DocAsTestBaseTest {
+
+    @RegisterExtension
+    ApprovalsExtension extension = new ApprovalsExtension(new DocWriter());
+
+    public void write(String... texts) {
+        extension.getDocWriter().write(texts);
+    }
 
     private static Formatter formatter = new AsciidocFormatter();
     DocAsTestBase docAsTest = new DocAsTestBase() {
@@ -42,7 +55,7 @@ class DocAsTestBaseTest extends ApprovalsBase {
         final JavaClass classByName = builder.getClassByName(TestInfo.class.getCanonicalName());
         annotation.map(TestOption::includeMethodDoc)
                 .filter(name -> !name.isEmpty())
-                .map(methodName -> getComment(DocAsTestBase.class, methodName, Arrays.asList(testInfoJavaClass)))
+                .map(methodName -> CodeExtractor.getComment(DocAsTestBase.class, methodName, Arrays.asList(testInfoJavaClass)))
                 .ifPresent(doc -> write(doc + "\n"));
 
 

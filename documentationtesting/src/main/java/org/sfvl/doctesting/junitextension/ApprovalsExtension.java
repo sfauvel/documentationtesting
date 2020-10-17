@@ -18,14 +18,22 @@ import java.util.Arrays;
  *
  * It checks that everything written during test is identical to the approved content.
  */
-public class ApprovalsExtension implements AfterEachCallback {
+public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallback {
 
     private static final PathProvider pathBuidler = new PathProvider();
+    private T docWriter;
+
+    public ApprovalsExtension(T docWriter) {
+        this.docWriter = docWriter;
+    }
+
+    public T getDocWriter() {
+        return docWriter;
+    }
 
     @Override
     public void afterEach(ExtensionContext extensionContext) throws Exception {
-        final DocWriter writer = getWriter(extensionContext);
-        String content = writer.formatOutput(extensionContext.getDisplayName(), extensionContext.getTestMethod().get());
+        String content = getDocWriter().formatOutput(extensionContext.getDisplayName(), extensionContext.getTestMethod().get());
 
         final DocumentationNamer documentationNamer = new DocumentationNamer(getDocPath(), extensionContext.getTestMethod().get());
         ApprovalNamer approvalNamer = new ApprovalNamer() {
@@ -47,21 +55,11 @@ public class ApprovalsExtension implements AfterEachCallback {
                 Approvals.getReporter());
     }
 
-    protected DocWriter getWriter(ExtensionContext extensionContext) throws Exception {
-        final Object obj = extensionContext.getTestInstance().get();
-
-        Field writerField = Arrays.stream(obj.getClass().getFields())
-                .filter(f -> DocWriter.class.isAssignableFrom(f.getType()))
-                .findFirst().get();
-
-        return (DocWriter) writerField.get(obj);
-    }
-
     /**
      * Give path where docs are generated.
      * @return
      */
-    protected Path getDocPath() {
+    public Path getDocPath() {
         return pathBuidler.getProjectPath().resolve(Paths.get( "src", "test", "docs"));
     }
 

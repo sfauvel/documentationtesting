@@ -1,7 +1,7 @@
 package com.adaptionsoft.games.uglytrivia;
 
 import com.adaptionsoft.games.svg.*;
-import org.sfvl.doctesting.DocAsTestBase;
+import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
 
 import java.io.IOException;
 import java.util.Arrays;

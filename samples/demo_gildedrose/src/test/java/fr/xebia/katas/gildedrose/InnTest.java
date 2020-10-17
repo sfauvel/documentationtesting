@@ -6,7 +6,7 @@ import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
 import org.knowm.xchart.style.Styler;
-import org.sfvl.doctesting.ApprovalsBase;
+import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 
 import java.io.IOException;
 import java.nio.file.Path;

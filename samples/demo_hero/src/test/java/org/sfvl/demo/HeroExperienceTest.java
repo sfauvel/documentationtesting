@@ -3,7 +3,7 @@ package org.sfvl.demo;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.sfvl.doctesting.ApprovalsBase;
+import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;

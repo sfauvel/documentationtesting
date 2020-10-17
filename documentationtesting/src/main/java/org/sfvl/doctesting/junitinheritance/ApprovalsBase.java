@@ -1,17 +1,9 @@
-package org.sfvl.doctesting;
+package org.sfvl.doctesting.junitinheritance;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import org.sfvl.doctesting.DocumentationNamer;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
