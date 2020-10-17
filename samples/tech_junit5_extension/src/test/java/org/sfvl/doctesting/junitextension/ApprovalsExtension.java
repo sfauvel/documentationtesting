@@ -4,7 +4,6 @@ import org.approvaltests.Approvals;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.jupiter.api.extension.AfterEachCallback;
-import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.sfvl.doctesting.DocumentationNamer;
 import org.sfvl.doctesting.PathProvider;
@@ -19,26 +18,13 @@ import java.util.Arrays;
  *
  * It checks that everything written during test is identical to the approved content.
  */
-public class ApprovalsExtension implements BeforeEachCallback, AfterEachCallback {
+public class ApprovalsExtension implements AfterEachCallback {
 
     private static final PathProvider pathBuidler = new PathProvider();
 
-    private Writer writer = null;
-
-    @Override
-    public void beforeEach(ExtensionContext extensionContext) throws Exception {
-        final Object obj = extensionContext.getTestInstance().get();
-
-        Field writerField = Arrays.stream(obj.getClass().getFields())
-                .filter(f -> Writer.class.isAssignableFrom(f.getType()))
-                .findFirst().get();
-
-        writer = (Writer) writerField.get(obj);
-    }
-
     @Override
     public void afterEach(ExtensionContext extensionContext) throws Exception {
-
+        final Writer writer = getWriter(extensionContext);
         String content = writer.formatOutput(extensionContext.getDisplayName(), extensionContext.getTestMethod().get());
 
         final DocumentationNamer documentationNamer = new DocumentationNamer(getDocPath(), extensionContext.getTestMethod().get());
@@ -59,6 +45,16 @@ public class ApprovalsExtension implements BeforeEachCallback, AfterEachCallback
                 new ApprovalTextWriter(content, "adoc"),
                 approvalNamer,
                 Approvals.getReporter());
+    }
+
+    protected Writer getWriter(ExtensionContext extensionContext) throws Exception {
+        final Object obj = extensionContext.getTestInstance().get();
+
+        Field writerField = Arrays.stream(obj.getClass().getFields())
+                .filter(f -> Writer.class.isAssignableFrom(f.getType()))
+                .findFirst().get();
+
+        return (Writer) writerField.get(obj);
     }
 
     /**
