@@ -74,7 +74,7 @@ public class MainDocumentation {
                 .sorted(Comparator.comparing(e -> e.getKey().getSimpleName()))
                 .map(e -> "== "
                         + getTestClassTitle(e)
-                        + "\n" + getComment(e.getKey())
+                        + "\n" + CodeExtractor.getComment(e.getKey())
                         + "\n\n"
                         + includeMethods(e.getValue())
                         + "\n\n"
@@ -139,7 +139,7 @@ public class MainDocumentation {
 
     private Stream<Method> getMethodsInOrder(List<Method> testMethods) {
         Map<String, Method> methodsByName = testMethods.stream().collect(Collectors.toMap(
-                m -> m.getName(),
+                Method::getName,
                 m -> m
         ));
 
@@ -156,11 +156,7 @@ public class MainDocumentation {
     }
 
     protected String getComment(Class<?> clazz) {
-        JavaProjectBuilder builder = createJavaProjectBuilderWithTestPath();
-
-        JavaClass javaClass = builder.getClassByName(clazz.getCanonicalName());
-
-        return Optional.ofNullable(javaClass.getComment()).orElse("");
+         return CodeExtractor.getComment(clazz);
     }
 
     protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
