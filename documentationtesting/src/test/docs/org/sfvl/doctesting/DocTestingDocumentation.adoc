@@ -19,7 +19,7 @@ include::junitextension/ApprovalsExtensionTest.using_extension.approved.adoc[lev
 
 
 == CodeExtractorTest
-
+Extract information from code.
 
 include::CodeExtractorTest.extract_class_comment.approved.adoc[leveloffset=+2]
 include::CodeExtractorTest.extract_method_comment.approved.adoc[leveloffset=+2]

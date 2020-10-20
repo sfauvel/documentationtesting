@@ -13,7 +13,14 @@ Learn more here link:{github-pages}[]
 View source project on link:{github-repo}/documentationtesting[Github]
 
 == Asciidoctor formatter
+`AsciidocFormatter` provides high level methods to generate asciidoc text.
 
+Each section of this documentation explain one method of the `AsciidocFormatter`.
+For each method, we describe:
+
+- how it can be uses in code
+- what the asciidoc generated will look like at the end (except when it's not possible)
+- the asciidoc text generated
 
 include::AsciidocFormatterTest.should_format_standard_option.approved.adoc[leveloffset=+2]
 include::AsciidocFormatterTest.should_format_table_of_content.approved.adoc[leveloffset=+2]
