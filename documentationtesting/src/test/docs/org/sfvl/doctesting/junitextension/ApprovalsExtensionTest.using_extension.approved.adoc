@@ -1,0 +1,5 @@
+= Using extension
+
+
+
+include::MyTest.testA.approved.adoc[]

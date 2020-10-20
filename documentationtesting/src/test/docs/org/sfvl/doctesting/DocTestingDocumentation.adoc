@@ -1,0 +1,38 @@
+:source-highlighter: rouge
+:toc: left
+:nofooter:
+:stem:
+
+= Documentation
+
+NOTE: The examples shown here are generated from the source code.
+They therefore represent the behavior of the application at any times.
+Non regression, as for it, is ensured by checking the absence of change in this document.
+Learn more here link:{github-pages}[]
+
+View source project on link:{github-repo}/documentationtesting[Github]
+
+== ApprovalsExtensionTest
+
+
+include::junitextension/ApprovalsExtensionTest.using_extension.approved.adoc[leveloffset=+2]
+
+
+== CodeExtractorTest
+
+
+include::CodeExtractorTest.extract_class_comment.approved.adoc[leveloffset=+2]
+include::CodeExtractorTest.extract_method_comment.approved.adoc[leveloffset=+2]
+
+
+== DocAsTestBaseTest
+
+
+include::junitinheritance/DocAsTestBaseTest.title.approved.adoc[leveloffset=+2]
+
+
+== MyTest
+
+
+
+

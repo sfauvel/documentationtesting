@@ -1,11 +1,8 @@
-package org.sfvl.docformatter;
-
-import org.sfvl.doctesting.MainDocumentation;
+package org.sfvl.doctesting;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 
-public class FormatterDocumentation extends MainDocumentation {
+public class DocTestingDocumentation extends MainDocumentation {
 
     @Override
     protected String getHeader() {
@@ -13,7 +10,7 @@ public class FormatterDocumentation extends MainDocumentation {
     }
 
     public static void main(String... args) throws IOException {
-        final FormatterDocumentation generator = new FormatterDocumentation();
+        final DocTestingDocumentation generator = new DocTestingDocumentation();
 
         generator.generate();
     }

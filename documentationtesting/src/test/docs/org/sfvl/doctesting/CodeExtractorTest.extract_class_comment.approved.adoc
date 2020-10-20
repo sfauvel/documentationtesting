@@ -1,0 +1,14 @@
+= Extract class comment
+
+
+
+[source, java]
+----
+include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=classWithComment]
+----
+
+..Comment extracted from class
+----
+Comment of the class.
+----
+

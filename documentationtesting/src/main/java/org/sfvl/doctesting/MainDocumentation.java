@@ -14,7 +14,10 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,29 +31,42 @@ public class MainDocumentation {
     private static final String DOCUMENTATION_FILENAME = "Documentation";
     private static final PathProvider pathProvider = new PathProvider();
     private final Path docRootPath;
+    private Path docFilePath;
 
     public MainDocumentation() {
         this("Documentation");
     }
 
     public MainDocumentation(String documentationTitle) {
-        DOCUMENTATION_TITLE = documentationTitle;
-        docRootPath = pathProvider.getProjectPath().resolve(Paths.get("src", "test", "docs"));
+        this(documentationTitle, Paths.get("src", "test", "docs"));
+    }
+
+    public MainDocumentation(String documentationTitle, Path docRootPath) {
+        this.DOCUMENTATION_TITLE = documentationTitle;
+        this.docRootPath = pathProvider.getProjectPath().resolve(docRootPath);
     }
 
     public Path getDocRootPath() {
         return docRootPath;
     }
 
+
+    public void generate() throws IOException {
+        final String packageToScan = getClass().getPackage().getName();
+        final String documentationFilename = getClass().getSimpleName();
+        final String replace = packageToScan.replace(".", "/");
+        generate(packageToScan, Paths.get(replace).resolve(documentationFilename).toString());
+    }
+
     protected void generate(String packageToScan) throws IOException {
         generate(packageToScan, DOCUMENTATION_FILENAME);
     }
 
-    protected void generate(String packageToScan, String documentationFilename) throws IOException {
+    public void generate(String packageToScan, String documentationFilename) throws IOException {
+        docFilePath = docRootPath.resolve(documentationFilename + ".adoc");
         final String content = getDocumentationContent(packageToScan);
 
-        Path path = docRootPath.resolve(documentationFilename + ".adoc");
-        try (FileWriter fileWriter = new FileWriter(path.toFile())) {
+        try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
             writeDoc(fileWriter, content);
         }
     }
@@ -132,7 +148,10 @@ public class MainDocumentation {
 
         return getMethodsInOrder(testMethods)
                 .map(m -> new DocumentationNamer(docRootPath, m))
-                .map(m -> docRootPath.relativize(Paths.get(m.getSourceFilePath())) + "/" + m.getApprovalName() + ".approved.adoc")
+                .map(m -> {
+                    final String filename = m.getApprovalName() + ".approved.adoc";
+                    return docFilePath.getParent().relativize(Paths.get(m.getSourceFilePath())).resolve(filename);
+                })
                 .map(m -> "include::" + m + "[leveloffset=+2]")
                 .collect(Collectors.joining("\n"));
     }
@@ -156,7 +175,7 @@ public class MainDocumentation {
     }
 
     protected String getComment(Class<?> clazz) {
-         return CodeExtractor.getComment(clazz);
+        return CodeExtractor.getComment(clazz);
     }
 
     protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
@@ -175,4 +194,5 @@ public class MainDocumentation {
     public static void main(String... args) throws IOException {
         new MainDocumentation().generate(PACKAGE_TO_SCAN);
     }
+
 }

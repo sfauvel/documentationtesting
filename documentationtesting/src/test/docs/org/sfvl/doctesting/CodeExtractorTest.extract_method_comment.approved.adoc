@@ -1,0 +1,19 @@
+= Extract method comment
+
+
+
+[source, java]
+----
+include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=classWithComment]
+----
+
+.From method without arguments.
+----
+Comment of the method without parameters.
+----
+
+.From method with parameters.
+----
+Comment from the method with parameters.
+----
+

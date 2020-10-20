@@ -1,0 +1,34 @@
+:source-highlighter: rouge
+:toc: left
+:nofooter:
+:stem:
+
+= Documentation
+
+NOTE: The examples shown here are generated from the source code.
+They therefore represent the behavior of the application at any times.
+Non regression, as for it, is ensured by checking the absence of change in this document.
+Learn more here link:{github-pages}[]
+
+View source project on link:{github-repo}/documentationtesting[Github]
+
+== Asciidoctor formatter
+
+
+include::AsciidocFormatterTest.should_format_standard_option.approved.adoc[leveloffset=+2]
+include::AsciidocFormatterTest.should_format_table_of_content.approved.adoc[leveloffset=+2]
+include::AsciidocFormatterTest.should_format_title.approved.adoc[leveloffset=+2]
+include::AsciidocFormatterTest.should_format_warning.approved.adoc[leveloffset=+2]
+include::AsciidocFormatterTest.should_format_paragraph.approved.adoc[leveloffset=+2]
+include::AsciidocFormatterTest.should_format_description.approved.adoc[leveloffset=+2]
+include::AsciidocFormatterTest.should_format_definition.approved.adoc[leveloffset=+2]
+include::AsciidocFormatterTest.should_format_anchorLink.approved.adoc[leveloffset=+2]
+include::AsciidocFormatterTest.should_format_link.approved.adoc[leveloffset=+2]
+include::AsciidocFormatterTest.should_format_one_list_item.approved.adoc[leveloffset=+2]
+include::AsciidocFormatterTest.should_format_list.approved.adoc[leveloffset=+2]
+include::AsciidocFormatterTest.should_format_empty_list.approved.adoc[leveloffset=+2]
+include::AsciidocFormatterTest.should_format_source_code.approved.adoc[leveloffset=+2]
+include::AsciidocFormatterTest.should_format_include.approved.adoc[leveloffset=+2]
+include::AsciidocFormatterTest.should_format_table.approved.adoc[leveloffset=+2]
+include::AsciidocFormatterTest.should_format_table_with_header.approved.adoc[leveloffset=+2]
+
