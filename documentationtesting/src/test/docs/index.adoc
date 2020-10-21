@@ -2,7 +2,7 @@
 :nofooter:
 :stem:
 
-= Documentation
+= Documentation testing
 
 NOTE: The examples shown here are generated from the source code.
 They therefore represent the behavior of the application at any times.
@@ -11,6 +11,7 @@ Learn more here link:{github-pages}[]
 
 View source project on link:{github-repo}/documentationtesting[Github]
 
-link:org/sfvl/doctesting/Documentation.html[]
+link:org/sfvl/doctesting/DocTestingDocumentation.html[DocTestingDocumentation]
 
-link:org/sfvl/docFormatter/Documentation.html[]
+link:org/sfvl/docformatter/FormatterDocumentation.html[FormatterDocumentation]
+

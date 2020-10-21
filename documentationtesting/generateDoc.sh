@@ -8,4 +8,12 @@ DESTINATION_PATH=../docs/${PROJECT_NAME}
 
 mvn clean install package -q
 
-${SCRIPTS_PATH}/convertAdocToHtml.sh ${DOCS_PATH} Documentation.adoc ${DESTINATION_PATH}
+for DOC_FILE in $(find ${DOCS_PATH} -name *.adoc)
+do
+  ASCIIDOC_NAME=${DOC_FILE##*/}
+  HTMLDOC_NAME=${ASCIIDOC_NAME/.adoc/.html}
+  ASCIIDOC_PATH=${DESTINATION_PATH}$(dirname ${DOC_FILE})
+  ASCIIDOC_PATH=${ASCIIDOC_PATH/$DOCS_PATH/}
+  ROOT_PATH=$(dirname ${DOC_FILE})
+  ${SCRIPTS_PATH}/convertAdocToHtml.sh  ${ROOT_PATH} ${ASCIIDOC_NAME} ${ASCIIDOC_PATH} ${HTMLDOC_NAME}
+done
