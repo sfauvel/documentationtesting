@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Extract code from class</title>
+<title>Extract code from method</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -438,15 +438,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Extract code from class</h1>
+<h1>Extract code from method</h1>
 </div>
 <div id="content">
 <div class="paragraph">
-<p>To extract code of a class</p>
+<p>To extract code of a method</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.getCode(SimpleClass.class);</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.extractMethodBody(SimpleClass.class, "simpleMethod");</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -462,13 +462,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">Source code extracted</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class SimpleClass {
-
-    public int simpleMethod() {
-
-        return 0;
-    }
-
+<pre class="highlight"><code class="language-java" data-lang="java">{
+    return 0;
 }</code></pre>
 </div>
 </div>

@@ -22,16 +22,39 @@ class CodeExtractorTest {
 
 
         docWriter.write("To extract code of a class",
-                includeSourceWithTag("CodeExtractor_getCode"), "", "");
+                includeSourceWithTag("CodeExtractor_extract_code_from_class_getCode"), "", "");
 
 
         docWriter.write(".Source code from file",
-                includeSourceWithTag("classToExtract"),
+                includeSourceWithTag("classToExtract", SimpleClass.class),
                 "", "");
 
-        // tag::CodeExtractor_getCode[]
+        // tag::CodeExtractor_extract_code_from_class_getCode[]
         String code = CodeExtractor.getCode(SimpleClass.class);
-        // end::CodeExtractor_getCode[]
+        // end::CodeExtractor_extract_code_from_class_getCode[]
+
+        docWriter.write(".Source code extracted",
+                "[source, java]",
+                "----", "",
+                code,
+                "----","");
+    }
+
+    @Test
+    public void extract_code_from_method() {
+
+
+        docWriter.write("To extract code of a method",
+                includeSourceWithTag("CodeExtractor_extract_code_from_method_getCode"), "", "");
+
+
+        docWriter.write(".Source code from file",
+                includeSourceWithTag("classToExtract", SimpleClass.class),
+                "", "");
+
+        // tag::CodeExtractor_extract_code_from_method_getCode[]
+        String code = CodeExtractor.extractMethodBody(SimpleClass.class, "simpleMethod");
+        // end::CodeExtractor_extract_code_from_method_getCode[]
 
         docWriter.write(".Source code extracted",
                 "[source, java]",
@@ -73,11 +96,16 @@ class CodeExtractorTest {
 
 
     public String includeSourceWithTag(String tag) {
+        final Class<? extends CodeExtractorTest> aClass = getClass();
+        return includeSourceWithTag(tag, aClass);
+    }
+
+    public String includeSourceWithTag(String tag, Class<?> aClass) {
         return String.join("\n",
                 "[source, java, indent=0]",
                 "----",
                 String.format("include::../../../../java/%s.java[tag=%s]",
-                        getClass().getName().replace(".", "/"),
+                        aClass.getName().replace(".", "/"),
                         tag),
                 "----");
     }
@@ -106,11 +134,3 @@ class ClassWithCommentToExtract {
 
 }
 // end::classWithComment[]
-
-// tag::classToExtract[]
-class SimpleClass {
-    public int simpleMethod() {
-        return 0;
-    }
-}
-// end::classToExtract[]

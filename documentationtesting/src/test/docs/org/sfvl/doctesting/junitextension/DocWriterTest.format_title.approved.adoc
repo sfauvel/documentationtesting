@@ -1,0 +1,20 @@
+= Format title
+
+
+
+When display name is different from test method name, displayName is used as title.
+****
+= My title
+
+
+
+
+****
+When display name is the same as test method name, name is reformatted.
+****
+= Format title
+
+
+
+
+****

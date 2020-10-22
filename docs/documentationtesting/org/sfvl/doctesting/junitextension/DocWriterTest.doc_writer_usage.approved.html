@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Extract code from class</title>
+<title>DocWriter usage</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -438,44 +438,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Extract code from class</h1>
+<h1>DocWriter usage</h1>
 </div>
 <div id="content">
+<div class="listingblock">
+<div class="title">DocWriter usage</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">final DocWriter docWriterForTest = new DocWriter();
+docWriterForTest.write("Some text added to show DocWriter output.");
+final String output = docWriterForTest.formatOutput("My title", getClass().getMethods()[0]);</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>To extract code of a class</p>
+<p>Output provided</p>
 </div>
-<div class="listingblock">
+<div class="sidebarblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.getCode(SimpleClass.class);</code></pre>
+<div class="paragraph">
+<p>= My title</p>
 </div>
+<div class="paragraph">
+<p>Some text added to show DocWriter output.</p>
 </div>
-<div class="listingblock">
-<div class="title">Source code from file</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class SimpleClass {
-    public int simpleMethod() {
-        return 0;
-    }
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Source code extracted</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class SimpleClass {
-
-    public int simpleMethod() {
-
-        return 0;
-    }
-
-}</code></pre>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-22 21:27:56 UTC
+Last updated 2020-10-22 21:55:40 UTC
 </div>
 </div>
 </body>
