@@ -49,4 +49,9 @@ public class CodeExtractor {
         }
         return Optional.ofNullable(method).map(c -> c.getComment()).orElse("");
     }
+
+    public static String getCode(Class<?> clazz) {
+        JavaClass javaClass = builder.getClassByName(clazz.getCanonicalName());
+        return javaClass.getCodeBlock().replace("\t", "    ");
+    }
 }

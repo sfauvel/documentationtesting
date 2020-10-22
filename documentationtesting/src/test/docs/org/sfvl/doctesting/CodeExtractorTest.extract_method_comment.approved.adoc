@@ -2,7 +2,7 @@
 
 
 
-[source, java]
+[source, java, indent=0]
 ----
 include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=classWithComment]
 ----

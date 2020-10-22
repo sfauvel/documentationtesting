@@ -2,4 +2,17 @@
 
 
 
+This is an example of ApprovalsExtension usage.
+
+You have to write a class and add RegisterExtension annotation on an attribute
+This extension will check that content of DocWriter has not changed since the last time.
+DocWriter passed to the ApprovalsExtension is used to indicated what we want to write to the output..Test example using ApprovalExtension
+[source, java, indent=0]
+----
+include::../../../../../java/org/sfvl/doctesting/junitextension/ApprovalsExtensionTest.java[tag=MyTest]
+----
+
+When executing test method testA, a file MyTest.testA.approved.adoc is generated and contains the following text
+----
 include::MyTest.testA.approved.adoc[]
+----

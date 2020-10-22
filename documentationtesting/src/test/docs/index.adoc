@@ -2,16 +2,18 @@
 :nofooter:
 :stem:
 
-= Documentation testing
+include::../../../readme.adoc[leveloffset=+1]
 
 NOTE: The examples shown here are generated from the source code.
 They therefore represent the behavior of the application at any times.
-Non regression, as for it, is ensured by checking the absence of change in this document.
+Non regression is ensured by checking the absence of change in this document.
 Learn more here link:{github-pages}[]
 
-View source project on link:{github-repo}/documentationtesting[Github]
+View source of project on link:{github-repo}/documentationtesting[Github]
 
-link:org/sfvl/doctesting/DocTestingDocumentation.html[DocTestingDocumentation]
+This project is composed of two main packages.
 
-link:org/sfvl/docformatter/FormatterDocumentation.html[FormatterDocumentation]
-
+* link:org/sfvl/doctesting/DocTestingDocumentation.html[org.sfvl.doctesting]
+: Tools to make test validating generated files.
+* link:org/sfvl/docformatter/FormatterDocumentation.html[org.sfvl.docformatter]
+: Utilities to format documentation.

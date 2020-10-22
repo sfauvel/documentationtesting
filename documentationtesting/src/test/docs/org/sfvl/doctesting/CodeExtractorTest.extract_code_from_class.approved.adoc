@@ -1,0 +1,30 @@
+= Extract code from class
+
+
+
+To extract code of a class
+[source, java, indent=0]
+----
+include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=CodeExtractor_getCode]
+----
+
+.Source code from file
+[source, java, indent=0]
+----
+include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=classToExtract]
+----
+
+.Source code extracted
+[source, java]
+----
+
+class SimpleClass {
+
+    public int simpleMethod() {
+    
+        return 0;
+    }
+
+}
+
+----

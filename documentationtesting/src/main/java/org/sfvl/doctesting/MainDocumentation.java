@@ -104,26 +104,21 @@ public class MainDocumentation {
     protected String getHeader() {
         final Path readmePath = pathProvider.getProjectPath().resolve(Paths.get("readme.adoc"));
 
-        final Path projectFolderPath = pathProvider.getGitRootPath().relativize(pathProvider.getProjectPath());
-
         final String header = getDocumentOptions() +
                 (readmePath.toFile().exists()
                         ? "include::../../../readme.adoc[leveloffset=+1]\n\n"
                         : "= " + DOCUMENTATION_TITLE + "\n\n") +
-                explanation() +
-                "View source project on link:{github-repo}/" + projectFolderPath.toString() + "[Github]\n\n";
-        ;
+                generalInformation();
         return header;
     }
 
-    private String explanation() {
-
-        final Path relativizeToRoot = pathProvider.getProjectPath().relativize(pathProvider.getGitRootPath());
-
+    protected String generalInformation() {
+        final Path projectFolderPath = pathProvider.getGitRootPath().relativize(pathProvider.getProjectPath());
         return "NOTE: The examples shown here are generated from the source code.\n" +
                 "They therefore represent the behavior of the application at any times.\n" +
-                "Non regression, as for it, is ensured by checking the absence of change in this document.\n" +
-                "Learn more here link:{github-pages}[]\n\n";
+                "Non regression is ensured by checking the absence of change in this document.\n" +
+                "Learn more here link:{github-pages}[]\n\n" +
+                "View source of project on link:{github-repo}/" + projectFolderPath.toString() + "[Github]\n\n";
     }
 
     protected String getDocumentOptions() {

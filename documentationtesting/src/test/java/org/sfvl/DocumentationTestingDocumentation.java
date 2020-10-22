@@ -14,14 +14,15 @@ public class DocumentationTestingDocumentation extends MainDocumentation {
 
     @Override
     protected String getMethodDocumentation(String packageToScan) {
-        return linkToClass(DocTestingDocumentation.class) +
-                linkToClass(FormatterDocumentation.class);
+        return  "This project is composed of two main packages.\n\n" +
+                "* "+linkToClass(DocTestingDocumentation.class)+": Tools to make test validating generated files.\n" +
+                "* "+linkToClass(FormatterDocumentation.class)+": Utilities to format documentation.";
     }
 
     private String linkToClass(Class<?> clazz) {
-        return String.format("link:%s.html[%s]\n\n",
+        return String.format("link:%s.html[%s]\n",
                 clazz.getName().replace(".", "/"),
-                clazz.getSimpleName());
+                clazz.getPackage().getName());
     }
 
     public static void main(String... args) throws IOException {

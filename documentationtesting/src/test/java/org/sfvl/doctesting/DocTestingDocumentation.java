@@ -6,7 +6,10 @@ public class DocTestingDocumentation extends MainDocumentation {
 
     @Override
     protected String getHeader() {
-        return ":source-highlighter: rouge\n" + super.getHeader();
+        return ":source-highlighter: rouge\n" +
+                getDocumentOptions() +
+                "= " + DOCUMENTATION_TITLE + "\n\n" +
+                generalInformation();
     }
 
     public static void main(String... args) throws IOException {

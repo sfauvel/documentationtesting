@@ -441,14 +441,44 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Using extension</h1>
 </div>
 <div id="content">
-<h1 id="_testa" class="sect0">TestA</h1>
 <div class="paragraph">
-<p>In my test</p>
+<p>This is an example of ApprovalsExtension usage.</p>
+</div>
+<div class="paragraph">
+<p>You have to write a class and add RegisterExtension annotation on an attribute
+This extension will check that content of DocWriter has not changed since the last time.
+DocWriter passed to the ApprovalsExtension is used to indicated what we want to write to the output..Test example using ApprovalExtension</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">class MyTest {
+    private final DocWriter docWriter = new DocWriter();
+    @RegisterExtension
+    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+
+    @Test
+    public void testA() {
+        docWriter.write("In my *test*");
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When executing test method testA, a file MyTest.testA.approved.adoc is generated and contains the following text</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>= TestA
+
+
+
+In my *test*</pre>
+</div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-19 19:45:28 UTC
+Last updated 2020-10-22 10:24:22 UTC
 </div>
 </div>
 </body>
