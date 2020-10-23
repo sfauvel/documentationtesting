@@ -30,9 +30,9 @@ class DocWriterTest {
     public void doc_writer_usage(TestInfo testInfo) throws NoSuchMethodException {
 
         // tag::doc_writer_usage[]
-        final DocWriter docWriterForTest = new DocWriter();
-        docWriterForTest.write("Some text added to show DocWriter output.");
-        final String output = docWriterForTest.formatOutput("My title", getClass().getMethods()[0]);
+        final DocWriter writer = new DocWriter();
+        writer.write("Some text added to show DocWriter output.");
+        final String output = writer.formatOutput("My title", getClass().getMethods()[0]);
         // end::doc_writer_usage[]
 
         docWriter.write(".DocWriter usage",
@@ -52,20 +52,51 @@ class DocWriterTest {
         final String name = testMethod.getName();
 
         {
-            final DocWriter docWriterForTest = new DocWriter();
-            final String output = docWriterForTest.formatOutput("My title", testMethod);
+            docWriter.write("When display name is different from test method name, displayName is used as title.", "", "");
 
-            docWriter.write("When display name is different from test method name, displayName is used as title.",
-                    "****", output, "****", "");
+            writeFormatOutput("My title", testMethod);
         }
 
         {
-            final DocWriter docWriterForTest = new DocWriter();
-            final String output = docWriterForTest.formatOutput(testMethod.getName()+"()", testMethod);
+            docWriter.write("When display name is the same as test method name, name is reformatted.", "", "");
 
-            docWriter.write("When display name is the same as test method name, name is reformatted.",
-                    "****", output, "****",  "");
+            writeFormatOutput(testMethod.getName() + "()", testMethod);
         }
+    }
+
+    /**
+     * Comment used as method description.
+     */
+    public void myMethod() {
+
+    }
+
+    @Test
+    @DisplayName("Add description")
+    public void add_description_using_comment(TestInfo testInfo) throws NoSuchMethodException {
+        final String name = FindLambdaMethod.getName(MyTestWithComment::testA);
+        final Method testMethod = MyTestWithComment.class.getMethod(name);
+
+        docWriter.write("When test method had a comment, it's written after title.", "", "");
+
+        final DocWriter docWriterForTest = new DocWriter();
+        final String output = docWriterForTest.formatOutput(name+"()", testMethod);
+
+        docWriter.write(".Test example with comment on method",
+                includeSourceWithTag(MyTestWithComment.class.getSimpleName()),
+                "", "");
+
+        docWriter.write("****", output, "****", "");
+    }
+
+    public void writeFormatOutput(String displayName, Method testMethod) {
+        final DocWriter docWriterForTest = new DocWriter();
+        final String output = docWriterForTest.formatOutput(displayName, testMethod);
+
+        docWriter.write(String.format("Calling formatOutput with DisplayName=\"%s\" and Method=%s provides",
+                displayName, testMethod.getName()),"");
+
+        docWriter.write("****", output, "****", "");
     }
 
     public String includeSourceWithTag(String tag) {
@@ -80,3 +111,21 @@ class DocWriterTest {
 
 
 }
+
+// tag::MyTestWithComment[]
+class MyTestWithComment {
+    private final DocWriter docWriter = new DocWriter();
+    @RegisterExtension
+    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+
+    /**
+     * To decribe a method, you can add a comment.
+     * It will be added under title.
+     */
+    @Test
+    public void testA() {
+        docWriter.write("In my *test*");
+    }
+
+}
+// end::MyTestWithComment[]

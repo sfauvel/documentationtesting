@@ -6,10 +6,10 @@ include::../../../readme.adoc[leveloffset=+1]
 
 NOTE: The examples shown here are generated from the source code.
 They therefore represent the behavior of the application at any times.
-Non regression, as for it, is ensured by checking the absence of change in this document.
+Non regression is ensured by checking the absence of change in this document.
 Learn more here link:{github-pages}[]
 
-View source project on link:{github-repo}/samples/tech_using_asciidoctorj[Github]
+View source of project on link:{github-repo}/samples/tech_using_asciidoctorj[Github]
 
 == DemoTest
 Demo of a simple usage to generate documentation.

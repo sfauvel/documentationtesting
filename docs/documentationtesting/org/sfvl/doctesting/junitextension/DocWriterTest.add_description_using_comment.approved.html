@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Tennis</title>
+<title>Add description</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -436,329 +436,50 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body class="article">
 <div id="header">
-<div id="toc" class="toc2">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_tennis">Tennis</a></li>
-<li><a href="#_scores_examples">Scores examples</a>
-<ul class="sectlevel2">
-<li><a href="#_start_of_the_game">Start of the game</a></li>
-<li><a href="#_player_a_win_one_point">Player A win one point</a></li>
-<li><a href="#_player_b_win_one_point">Player B win one point</a></li>
-<li><a href="#_player_a_win_two_points">Player A win two points</a></li>
-<li><a href="#_player_b_win_two_points">Player B win two points</a></li>
-<li><a href="#_both_players_win_some_points">Both players win some points</a></li>
-</ul>
-</li>
-</ul>
-</div>
+<h1>Add description</h1>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="_tennis">Tennis</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>From: <a href="http://codingdojo.org/kata/Tennis/" class="bare">http://codingdojo.org/kata/Tennis/</a></p>
+<p>When test method had a comment, it&#8217;s written after title.</p>
 </div>
-<div class="paragraph">
-<p>About this Kata</p>
-</div>
-<div class="paragraph">
-<p>This Kata is about implementing a simple tennis game. I came up with it while thinking about Wii tennis, where they have simplified tennis, so each set is one game.</p>
-</div>
-<div class="paragraph">
-<p>The scoring system is rather simple:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Each player can have either of these points in one game 0 15 30 40</p>
-</li>
-<li>
-<p>If you have 40 and you win the ball you win the game, however there are special rules.</p>
-</li>
-<li>
-<p>If both have 40 the players are deuce.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha">
-<li>
-<p>If the game is in deuce, the winner of a ball will have advantage and game ball.</p>
-</li>
-<li>
-<p>If the player with advantage wins the ball he wins the game.</p>
-</li>
-<li>
-<p>If the player without advantage wins they are back at deuce.</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Alternate description of the rules per Wikipedia: <a href="http://en.wikipedia.org/wiki/Tennis#Scoring" class="bare">http://en.wikipedia.org/wiki/Tennis#Scoring</a></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-The examples shown here are generated from the source code.
-They therefore represent the behavior of the application at any times.
-Non regression is ensured by checking the absence of change in this document.
-Learn more here <a href="https://sfauvel.github.io/documentationtesting" class="bare">https://sfauvel.github.io/documentationtesting</a>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>View source of project on <a href="https://github.com/sfauvel/documentationtesting/tree/master/samples/demo_tennis">Github</a></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_scores_examples">Scores examples</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>We will display a tennis score.</p>
-</div>
-<div class="sect2">
-<h3 id="_start_of_the_game">Start of the game</h3>
-<div class="paragraph">
-<p>At the beginning, score is 0 / 0.</p>
-</div>
-<table class="tableblock frame-all grid-all stripes-none fit-content">
-<colgroup>
-<col>
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Player A</p></td>
-<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><strong>0 - 0</strong></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Player B</p></td>
-</tr>
-</tbody>
-</table>
-<style>
-table.tableblock.grid-all {
-    border-collapse: collapse;
-}
-table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr > .tableblock:last-child {
-    border: 1px solid #dddddd;
-}
-</style>
-</div>
-<div class="sect2">
-<h3 id="_player_a_win_one_point">Player A win one point</h3>
-<div class="paragraph">
-<p>When player A win one point, score is 15 / 0.</p>
-</div>
-<table class="tableblock frame-all grid-all stripes-none fit-content">
-<colgroup>
-<col>
-<col>
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Player A</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2714;</p></td>
-<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><strong>15 - 0</strong></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Player B</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-<style>
-table.tableblock.grid-all {
-    border-collapse: collapse;
-}
-table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr > .tableblock:last-child {
-    border: 1px solid #dddddd;
-}
-</style>
-</div>
-<div class="sect2">
-<h3 id="_player_b_win_one_point">Player B win one point</h3>
-<div class="paragraph">
-<p>When player B win one point, score is 0 / 15.</p>
-</div>
-<table class="tableblock frame-all grid-all stripes-none fit-content">
-<colgroup>
-<col>
-<col>
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Player A</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><strong>0 - 15</strong></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Player B</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2714;</p></td>
-</tr>
-</tbody>
-</table>
-<style>
-table.tableblock.grid-all {
-    border-collapse: collapse;
-}
-table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr > .tableblock:last-child {
-    border: 1px solid #dddddd;
-}
-</style>
-</div>
-<div class="sect2">
-<h3 id="_player_a_win_two_points">Player A win two points</h3>
-<div class="paragraph">
-<p>When player A win two points, score is 30 / 0.</p>
-</div>
-<table class="tableblock frame-all grid-all stripes-none fit-content">
-<colgroup>
-<col>
-<col>
-<col>
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Player A</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2714;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2714;</p></td>
-<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><strong>30 - 0</strong></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Player B</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-<style>
-table.tableblock.grid-all {
-    border-collapse: collapse;
-}
-table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr > .tableblock:last-child {
-    border: 1px solid #dddddd;
-}
-</style>
-</div>
-<div class="sect2">
-<h3 id="_player_b_win_two_points">Player B win two points</h3>
-<div class="paragraph">
-<p>When player B win two points, score is 0 / 30.</p>
-</div>
-<table class="tableblock frame-all grid-all stripes-none fit-content">
-<colgroup>
-<col>
-<col>
-<col>
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Player A</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><strong>0 - 30</strong></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Player B</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2714;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2714;</p></td>
-</tr>
-</tbody>
-</table>
-<style>
-table.tableblock.grid-all {
-    border-collapse: collapse;
-}
-table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr > .tableblock:last-child {
-    border: 1px solid #dddddd;
-}
-</style>
-</div>
-<div class="sect2">
-<h3 id="_both_players_win_some_points">Both players win some points</h3>
-<div class="paragraph">
-<p>When player A win 2 points and player B win 3 points, score is 30 / 40.</p>
-</div>
-<table class="tableblock frame-all grid-all stripes-none fit-content">
-<colgroup>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Player A</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2714;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2714;</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><strong>30 - 40</strong></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Player B</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2714;</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2714;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#x2714;</p></td>
-</tr>
-</tbody>
-</table>
-<style>
-table.tableblock.grid-all {
-    border-collapse: collapse;
-}
-table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr > .tableblock:last-child {
-    border: 1px solid #dddddd;
-}
-</style>
-</div>
-</div>
-</div>
-</div>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-})
-MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
-  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
-      data.math.root.display = "block"
+<div class="listingblock">
+<div class="title">Test example with comment on method</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">class MyTestWithComment {
+    private final DocWriter docWriter = new DocWriter();
+    @RegisterExtension
+    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+
+    /**
+     * To decribe a method, you can add a comment.
+     * It will be added under title.
+     */
+    @Test
+    public void testA() {
+        docWriter.write("In my *test*");
     }
-    return data
-  })
-})
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+
+}</code></pre>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>= TestA</p>
+</div>
+<div class="paragraph">
+<p>To decribe a method, you can add a comment.
+It will be added under title.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2020-10-23 22:43:59 UTC
+</div>
+</div>
 </body>
 </html>

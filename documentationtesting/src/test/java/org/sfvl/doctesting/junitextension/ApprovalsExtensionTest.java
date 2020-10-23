@@ -39,7 +39,7 @@ class ApprovalsExtensionTest {
                 includeSourceWithTag(testClass.getSimpleName()),
                 "", "");
 
-        final String testMethod = "testA";
+        final String testMethod = FindLambdaMethod.getName(MyTest::testA);
         final String filename = testClass.getSimpleName() + "." + testMethod + ".approved.adoc";
         write("When executing test method " + testMethod + ", a file " + filename + " is generated and contains the following text",
                 "----",
@@ -60,7 +60,7 @@ class ApprovalsExtensionTest {
                 includeSourceWithTag(testClass.getSimpleName()),
                 "", "");
 
-        final String testMethod = "testA";
+        final String testMethod = FindLambdaMethod.getName(MyTest::testA);
         final String filename = testClass.getSimpleName() + "." + testMethod + ".approved.adoc";
         write("Generated file with DisplayName content as title",
                 "----",
@@ -101,6 +101,7 @@ class MyTest {
     public void testA() {
         docWriter.write("In my *test*");
     }
+
 }
 // end::MyTest[]
 
