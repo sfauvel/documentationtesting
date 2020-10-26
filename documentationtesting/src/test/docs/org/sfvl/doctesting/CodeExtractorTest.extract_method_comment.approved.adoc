@@ -5,9 +5,21 @@
 include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=classWithComment]
 ----
 
+To extract comment of a method
+[source, java, indent=0]
+----
+include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=CodeExtractor_extract_method_comment]
+----
+
 .From method without arguments.
 ----
 Comment of the method without parameters.
+----
+
+To extract comment of a method with parameters
+[source, java, indent=0]
+----
+include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=CodeExtractor_extract_comment_from_method_with_parameters]
 ----
 
 .From method with parameters.

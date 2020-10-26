@@ -12,9 +12,11 @@ import com.thoughtworks.qdox.model.JavaType;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class CodeExtractor {
     static JavaProjectBuilder builder;
@@ -88,4 +90,9 @@ public class CodeExtractor {
         return javaCode.toString();
     }
 
+    public static List<JavaType> getJavaClasses(Class<?>... classes) {
+        return Arrays.stream(classes)
+                .map(clazz -> getBuilder().getClassByName(clazz.getCanonicalName()))
+                .collect(Collectors.toList());
+    }
 }
