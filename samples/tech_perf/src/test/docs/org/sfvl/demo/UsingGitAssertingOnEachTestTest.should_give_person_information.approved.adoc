@@ -1,7 +1,5 @@
 = Should give person information
 
-
-
 With an instance of Person:
 
 * *First Name*: John

@@ -1,13 +1,11 @@
 = Standard options
 
-
-
-Standard option to add at the begining of the document.
+Optional[Standard option to add at the begining of the document.
 (link:https://asciidoctor.org/docs/user-manual/#builtin-attributes[Description from asciidoctor Documentation])
 
 - *sourcedir*: Path to locate source files.
 - *source-highlighter*: Source code highlighter to use.
-- *docinfo*:
+- *docinfo*:]
 
 [red]##_Usage_##
 [source,java,indent=0]

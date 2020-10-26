@@ -1,7 +1,5 @@
 = Using displayName
 
-
-
 You can use DisplayName annotation to customize test title.Test example using DisplayName
 [source, java, indent=0]
 ----

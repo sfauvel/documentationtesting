@@ -1,7 +1,5 @@
 = Add description
 
-
-
 When test method had a comment, it's written after title.
 
 .Test example with comment on method

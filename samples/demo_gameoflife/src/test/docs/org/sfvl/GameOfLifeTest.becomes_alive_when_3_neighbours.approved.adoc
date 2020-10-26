@@ -1,7 +1,5 @@
 = Becomes alive when 3 neighbours
 
-
-
 [cols="1a,1a,1a", width=4em, frame=none, grid=none]
 |====
 | [.gameOfLife]

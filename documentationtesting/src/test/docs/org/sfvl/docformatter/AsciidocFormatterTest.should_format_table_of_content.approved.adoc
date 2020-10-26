@@ -1,8 +1,6 @@
 = Table of content
 
 
-
-
 [red]##_Usage_##
 [source,java,indent=0]
 ----

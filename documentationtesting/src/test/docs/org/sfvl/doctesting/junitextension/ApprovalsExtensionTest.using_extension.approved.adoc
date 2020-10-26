@@ -1,7 +1,5 @@
 = Using extension
 
-
-
 This is an example of ApprovalsExtension usage.
 
 You have to write a class and add RegisterExtension annotation on an attribute

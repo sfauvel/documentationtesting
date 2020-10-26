@@ -1,7 +1,5 @@
 = Extract code from class
 
-
-
 To extract code of a class
 [source, java, indent=0]
 ----

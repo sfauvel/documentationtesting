@@ -1,7 +1,5 @@
 = DocWriter usage
 
-
-
 .DocWriter usage
 [source, java, indent=0]
 ----
@@ -12,8 +10,6 @@ include::../../../../../java/org/sfvl/doctesting/junitextension/DocWriterTest.ja
 Output provided
 ****
 = My title
-
-
 
 Some text added to show DocWriter output.
 ****

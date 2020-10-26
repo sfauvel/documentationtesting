@@ -10,6 +10,7 @@ import com.thoughtworks.qdox.model.JavaMethod;
 import com.thoughtworks.qdox.model.JavaType;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
@@ -40,11 +41,15 @@ public class CodeExtractor {
         return Optional.ofNullable(javaClass.getComment()).orElse("");
     }
 
-    public static String getComment(Class<?> clazz, String methodName) {
+    public static Optional<String> getComment(Method testMethod) {
+        return getComment(testMethod.getDeclaringClass(), testMethod.getName());
+    }
+
+    public static Optional<String> getComment(Class<?> clazz, String methodName) {
         return getComment(clazz, methodName, Collections.emptyList());
     }
 
-    public static String getComment(Class<?> clazz, String methodName, List<JavaType> argumentList) {
+    public static Optional<String> getComment(Class<?> clazz, String methodName, List<JavaType> argumentList) {
         JavaClass javaClass = builder.getClassByName(clazz.getCanonicalName());
 
         JavaMethod method = javaClass.getMethod(methodName, argumentList, false);
@@ -52,7 +57,7 @@ public class CodeExtractor {
             javaClass = javaClass.getSuperJavaClass();
             method = javaClass.getMethod(methodName, argumentList, false);
         }
-        return Optional.ofNullable(method).map(c -> c.getComment()).orElse("");
+        return Optional.ofNullable(method).map(c -> c.getComment());
     }
 
     public static String getCode(Class<?> clazz) {
@@ -82,4 +87,5 @@ public class CodeExtractor {
         }, null);
         return javaCode.toString();
     }
+
 }

@@ -1,7 +1,5 @@
 = Sample output
 
-
-
 1 +
 2 +
 Fizz +

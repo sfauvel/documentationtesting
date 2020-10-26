@@ -77,13 +77,13 @@ class CodeExtractorTest {
         docWriter.write(includeSourceWithTag("classWithComment"), "", "");
 
         format_comment_extracted("From method without arguments.",
-                CodeExtractor.getComment(ClassWithCommentToExtract.class, "methodWithoutParameters"));
+                CodeExtractor.getComment(ClassWithCommentToExtract.class, "methodWithoutParameters").orElse(""));
 
         final JavaClass intJavaClass = CodeExtractor.getBuilder().getClassByName(int.class.getCanonicalName());
         final JavaClass stringJavaClass = CodeExtractor.getBuilder().getClassByName(String.class.getCanonicalName());
         format_comment_extracted("From method with parameters.",
                 CodeExtractor.getComment(ClassWithCommentToExtract.class, "methodWithParameters",
-                        Arrays.asList(intJavaClass, stringJavaClass)));
+                        Arrays.asList(intJavaClass, stringJavaClass)).orElse(""));
     }
 
     public void format_comment_extracted(String description, String commentExtracted) {

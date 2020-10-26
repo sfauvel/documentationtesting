@@ -1,7 +1,5 @@
 = Rules
 
-
-
 At each step in time, the following transitions occur: 
 
 . Any live cell with *0, 1 live neighbours* dies, as if by underpopulation. 

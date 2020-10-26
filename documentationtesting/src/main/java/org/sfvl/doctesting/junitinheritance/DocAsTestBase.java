@@ -70,11 +70,12 @@ public abstract class DocAsTestBase {
 
     protected String buildContent(TestInfo testInfo) {
         final JavaClass testInfoJavaClass = CodeExtractor.getBuilder().getClassByName(TestInfo.class.getCanonicalName());
-        final String comment1 = CodeExtractor.getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName());
-        final String comment2 = CodeExtractor.getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName(), Arrays.asList(testInfoJavaClass));
-        return String.join("\n\n",
-                "= " + formatTitle(testInfo),
-                CodeExtractor.getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName()),
+        final String comment1 = CodeExtractor.getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName()).orElse("");
+        final String comment2 = CodeExtractor.getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName(), Arrays.asList(testInfoJavaClass)).orElse("");
+        return String.join("",
+                "= " + formatTitle(testInfo) + "\n\n",
+                CodeExtractor.getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName())
+                        .map(comment -> comment + "\n\n").orElse(""),
                 sb.toString());
     }
 }

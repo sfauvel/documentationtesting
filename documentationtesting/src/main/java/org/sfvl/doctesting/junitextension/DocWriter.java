@@ -1,15 +1,9 @@
 package org.sfvl.doctesting.junitextension;
 
-import com.thoughtworks.qdox.JavaProjectBuilder;
-import com.thoughtworks.qdox.model.JavaClass;
-import com.thoughtworks.qdox.model.JavaMethod;
 import org.sfvl.doctesting.CodeExtractor;
 
-import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class DocWriter {
@@ -28,9 +22,9 @@ public class DocWriter {
 
 
     public String formatOutput(String displayName, Method testMethod) {
-        return  String.join("\n\n",
-                "= " + formatTitle(displayName, testMethod.getName()),
-                getComment(testMethod),
+        return  String.join("",
+                "= " + formatTitle(displayName, testMethod.getName()) + "\n\n",
+                CodeExtractor.getComment(testMethod).map(comment -> comment + "\n\n").orElse(""),
                 read());
     }
 
@@ -49,11 +43,6 @@ public class DocWriter {
         } else {
             return displayName;
         }
-    }
-
-    private String getComment(Method testMethod) {
-        final String comment = CodeExtractor.getComment(testMethod.getDeclaringClass(), testMethod.getName());
-        return Optional.ofNullable(comment).orElse("");
     }
 
 }
