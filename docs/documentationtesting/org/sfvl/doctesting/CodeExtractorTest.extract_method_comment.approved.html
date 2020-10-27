@@ -465,10 +465,27 @@ class ClassWithCommentToExtract {
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>To extract comment of a method</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">final Optional&lt;String&gt; comment = CodeExtractor.getComment(ClassWithCommentToExtract.class, "methodWithoutParameters");</code></pre>
+</div>
+</div>
 <div class="listingblock">
 <div class="title">From method without arguments.</div>
 <div class="content">
 <pre>Comment of the method without parameters.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To extract comment of a method with parameters</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">final Optional&lt;String&gt; comment = CodeExtractor.getComment(ClassWithCommentToExtract.class, "methodWithParameters",
+        CodeExtractor.getJavaClasses(int.class, String.class));</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -480,7 +497,7 @@ class ClassWithCommentToExtract {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-26 22:36:27 UTC
+Last updated 2020-10-26 23:26:58 UTC
 </div>
 </div>
 </body>

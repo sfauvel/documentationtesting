@@ -454,6 +454,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_extract_code_from_method">Extract code from method</a></li>
 <li><a href="#_extract_class_comment">Extract class comment</a></li>
 <li><a href="#_extract_method_comment">Extract method comment</a></li>
+<li><a href="#_extract_method_comment_using_method_object">Extract method comment using method object</a></li>
 </ul>
 </li>
 <li><a href="#_docastestbasetest">DocAsTestBaseTest</a>
@@ -710,16 +711,75 @@ In my *test*</pre>
 <span class="o">}</span></code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>To extract comment of a method</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">ClassWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"methodWithoutParameters"</span><span class="o">);</span></code></pre>
+</div>
+</div>
 <div class="listingblock">
 <div class="title">From method without arguments.</div>
 <div class="content">
 <pre>Comment of the method without parameters.</pre>
 </div>
 </div>
+<div class="paragraph">
+<p>To extract comment of a method with parameters</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">ClassWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"methodWithParameters"</span><span class="o">,</span>
+        <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getJavaClasses</span><span class="o">(</span><span class="kt">int</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">));</span></code></pre>
+</div>
+</div>
 <div class="listingblock">
 <div class="title">From method with parameters.</div>
 <div class="content">
 <pre>Comment from the method with parameters.</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_extract_method_comment_using_method_object">Extract method comment using method object</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
+ * Comment of the class.
+ */</span>
+<span class="kd">class</span> <span class="nc">ClassWithCommentToExtract</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Comment of the method without parameters.
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodWithoutParameters</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Comment from the method with parameters.
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodWithParameters</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To extract comment of a method using method object</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">methodWithComment</span> <span class="o">=</span> <span class="nc">ClassWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"methodWithoutParameters"</span><span class="o">);</span>
+<span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">methodWithComment</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">From method.</div>
+<div class="content">
+<pre>Comment of the method without parameters.</pre>
 </div>
 </div>
 </div>
