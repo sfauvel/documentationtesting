@@ -41,21 +41,3 @@ include::junitextension/DocWriterTest.doc_writer_usage.approved.adoc[leveloffset
 include::junitextension/DocWriterTest.format_title.approved.adoc[leveloffset=+2]
 include::junitextension/DocWriterTest.add_description_using_comment.approved.adoc[leveloffset=+2]
 
-
-== MyTest
-
-
-include::junitextension/MyTest.testA.approved.adoc[leveloffset=+2]
-
-
-== MyTestWithComment
-
-
-include::junitextension/MyTestWithComment.testA.approved.adoc[leveloffset=+2]
-
-
-== Title for the document
-
-
-include::junitextension/UsingDisplayNameTest.testA.approved.adoc[leveloffset=+2]
-

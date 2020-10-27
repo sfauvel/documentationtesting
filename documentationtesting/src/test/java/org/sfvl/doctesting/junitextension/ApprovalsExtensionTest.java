@@ -7,6 +7,7 @@ import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
+import org.sfvl.doctesting.NotIncludeToDoc;
 
 import static org.junit.platform.engine.discovery.DiscoverySelectors.selectClass;
 
@@ -92,6 +93,7 @@ class ApprovalsExtensionTest {
 
 }
 
+@NotIncludeToDoc
 // tag::MyTest[]
 class MyTest {
     private final DocWriter docWriter = new DocWriter();
@@ -106,6 +108,7 @@ class MyTest {
 }
 // end::MyTest[]
 
+@NotIncludeToDoc
 // tag::UsingDisplayNameTest[]
 @DisplayName("Title for the document")
 class UsingDisplayNameTest {

@@ -3,8 +3,13 @@ package org.sfvl;
 import org.sfvl.docformatter.FormatterDocumentation;
 import org.sfvl.doctesting.DocTestingDocumentation;
 import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.NotIncludeToDoc;
 
 import java.io.IOException;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class DocumentationTestingDocumentation extends MainDocumentation {
 

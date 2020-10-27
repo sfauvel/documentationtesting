@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.doctesting.NotIncludeToDoc;
 
 import java.lang.reflect.Method;
 
@@ -112,6 +113,7 @@ class DocWriterTest {
 
 }
 
+@NotIncludeToDoc
 // tag::MyTestWithComment[]
 class MyTestWithComment {
     private final DocWriter docWriter = new DocWriter();

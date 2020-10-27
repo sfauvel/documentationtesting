@@ -233,6 +233,7 @@ class CodeExtractorTest {
 
 }
 
+@NotIncludeToDoc
 // tag::classWithComment[]
 
 /**
