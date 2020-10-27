@@ -5,25 +5,46 @@
 include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=classWithComment]
 ----
 
-To extract comment of a method
+How to extract comment of a method
 [source, java, indent=0]
 ----
-include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=CodeExtractor_extract_method_comment]
-----
+        final Optional<String> comment = CodeExtractor.getComment(ClassWithCommentToExtract.class, "methodWithoutParameters");
 
+----
 .From method without arguments.
 ----
 Comment of the method without parameters.
 ----
 
-To extract comment of a method with parameters
+How to extract comment of a method with parameters
 [source, java, indent=0]
 ----
-include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=CodeExtractor_extract_comment_from_method_with_parameters]
-----
+        final Optional<String> comment = CodeExtractor.getComment(ClassWithCommentToExtract.class, "methodWithParameters", CodeExtractor.getJavaClasses(int.class, String.class));
 
+----
 .From method with parameters.
 ----
 Comment from the method with parameters.
 ----
 
+How to extract comment of a method using Method object
+[source, java, indent=0]
+----
+        final Method methodWithComment = ClassWithCommentToExtract.class.getMethod("methodWithoutParameters");
+        final Optional<String> comment = CodeExtractor.getComment(methodWithComment);
+
+----
+.From method
+----
+Comment of the method without parameters.
+----
+
+++++
+<style>
+.inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++

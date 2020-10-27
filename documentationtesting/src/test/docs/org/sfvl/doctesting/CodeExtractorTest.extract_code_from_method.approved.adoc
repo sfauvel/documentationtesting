@@ -1,22 +1,32 @@
 = Extract code from method
 
-To extract code of a method
+.How to extract code of a method
 [source, java, indent=0]
 ----
-include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=CodeExtractor_extract_code_from_method_getCode]
-----
+    String code = CodeExtractor.extractMethodBody(SimpleClass.class, "simpleMethod");
 
+----
+[.inline]
 .Source code from file
 [source, java, indent=0]
 ----
 include::../../../../java/org/sfvl/doctesting/SimpleClass.java[tag=classToExtract]
 ----
 
+[.inline]
 .Source code extracted
-[source, java]
+[source, java, indent=0]
 ----
-
 {
     return 0;
 }
 ----
+++++
+<style>
+.inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++

@@ -39,6 +39,32 @@ public class FindLambdaMethod {
         return createMethodNameFromSuperConsumer(consumer);
     }
 
+    public static <T1> String getClassName( SerializableConsumer<T1> consumer) {
+        SerializedLambda serializedLambda = getSerializedLambda(consumer);
+        return serializedLambda.getImplClass();
+    }
+
+    public static <T1> Method getMethod( SerializableConsumer<T1> lambda) {
+        SerializedLambda serializedLambda = getSerializedLambda(lambda);
+        final String className = serializedLambda.getImplClass().replace("/", ".");
+        final String methodName = serializedLambda.getImplMethodName();
+
+        final Class<?> aClass;
+        try {
+            aClass = Class.forName(className);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            return aClass.getMethod(methodName);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
     private static String createMethodNameFromSuperConsumer(Serializable lambda) {
         SerializedLambda serializedLambda = getSerializedLambda(lambda);
         return serializedLambda.getImplMethodName();
