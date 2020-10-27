@@ -466,7 +466,7 @@ class ClassWithCommentToExtract {
 </div>
 </div>
 <div class="paragraph">
-<p>To extract comment of a method</p>
+<p>How to extract comment of a method</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -480,12 +480,11 @@ class ClassWithCommentToExtract {
 </div>
 </div>
 <div class="paragraph">
-<p>To extract comment of a method with parameters</p>
+<p>How to extract comment of a method with parameters</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">final Optional&lt;String&gt; comment = CodeExtractor.getComment(ClassWithCommentToExtract.class, "methodWithParameters",
-        CodeExtractor.getJavaClasses(int.class, String.class));</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">final Optional&lt;String&gt; comment = CodeExtractor.getComment(ClassWithCommentToExtract.class, "methodWithParameters", CodeExtractor.getJavaClasses(int.class, String.class));</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -494,10 +493,32 @@ class ClassWithCommentToExtract {
 <pre>Comment from the method with parameters.</pre>
 </div>
 </div>
+<div class="paragraph">
+<p>How to extract comment of a method using Method object</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">final Method methodWithComment = ClassWithCommentToExtract.class.getMethod("methodWithoutParameters");
+final Optional&lt;String&gt; comment = CodeExtractor.getComment(methodWithComment);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">From method</div>
+<div class="content">
+<pre>Comment of the method without parameters.</pre>
+</div>
+</div>
+<style>
+.inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-26 23:26:58 UTC
+Last updated 2020-10-27 22:06:35 UTC
 </div>
 </div>
 </body>

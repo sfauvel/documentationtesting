@@ -441,16 +441,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Extract code from class</h1>
 </div>
 <div id="content">
-<div class="paragraph">
-<p>To extract code of a class</p>
-</div>
 <div class="listingblock">
+<div class="title">How to extract code of a class</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java"></code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.getCode(SimpleClass.class);</code></pre>
 </div>
 </div>
-<div class="listingblock">
-<div class="title">Source code from file</div>
+<div class="listingblock inline">
+<div class="title">Source code to extract</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">class SimpleClass {
     public int simpleMethod() {
@@ -459,7 +457,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 }</code></pre>
 </div>
 </div>
-<div class="listingblock">
+<div class="listingblock inline">
 <div class="title">Source code extracted</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">class SimpleClass {
@@ -472,10 +470,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 }</code></pre>
 </div>
 </div>
+<style>
+.inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-27 08:42:29 UTC
+Last updated 2020-10-27 22:20:58 UTC
 </div>
 </div>
 </body>

@@ -20,7 +20,7 @@ include::junitextension/ApprovalsExtensionTest.using_displayName.approved.adoc[l
 
 
 == CodeExtractor
-
+Extract information from code.
 
 include::CodeExtractorTest.extract_code_from_class.approved.adoc[leveloffset=+2]
 include::CodeExtractorTest.extract_code_from_method.approved.adoc[leveloffset=+2]

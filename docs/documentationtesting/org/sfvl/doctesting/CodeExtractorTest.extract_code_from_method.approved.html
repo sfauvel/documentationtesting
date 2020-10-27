@@ -441,15 +441,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Extract code from method</h1>
 </div>
 <div id="content">
-<div class="paragraph">
-<p>To extract code of a method</p>
-</div>
 <div class="listingblock">
+<div class="title">How to extract code of a method</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.extractMethodBody(SimpleClass.class, "simpleMethod");</code></pre>
 </div>
 </div>
-<div class="listingblock">
+<div class="listingblock inline">
 <div class="title">Source code from file</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">class SimpleClass {
@@ -459,7 +457,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 }</code></pre>
 </div>
 </div>
-<div class="listingblock">
+<div class="listingblock inline">
 <div class="title">Source code extracted</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">{
@@ -467,10 +465,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 }</code></pre>
 </div>
 </div>
+<style>
+.inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-26 22:36:27 UTC
+Last updated 2020-10-27 22:20:58 UTC
 </div>
 </div>
 </body>

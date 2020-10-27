@@ -442,6 +442,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="listingblock">
+<div class="title">How to extract comment of a class</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">final String comment = CodeExtractor.getComment(ClassWithCommentToExtract.class);</code></pre>
+</div>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">/**
  * Comment of the class.
@@ -466,15 +472,22 @@ class ClassWithCommentToExtract {
 </div>
 </div>
 <div class="listingblock">
-<div class="title">.Comment extracted from class</div>
+<div class="title">Comment extracted from class</div>
 <div class="content">
 <pre>Comment of the class.</pre>
 </div>
 </div>
+<style>
+.inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-26 22:36:27 UTC
+Last updated 2020-10-27 22:20:58 UTC
 </div>
 </div>
 </body>
