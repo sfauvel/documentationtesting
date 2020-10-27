@@ -33,7 +33,8 @@ class ApprovalsExtensionTest {
                 "",
                 "You have to write a class and add RegisterExtension annotation on an attribute",
                 "This extension will check that content of DocWriter has not changed since the last time.",
-                "DocWriter passed to the ApprovalsExtension is used to indicated what we want to write to the output.");
+                "DocWriter passed to the ApprovalsExtension is used to indicated what we want to write to the output.",
+                "","");
 
         write(".Test example using ApprovalExtension",
                 includeSourceWithTag(testClass.getSimpleName()),
