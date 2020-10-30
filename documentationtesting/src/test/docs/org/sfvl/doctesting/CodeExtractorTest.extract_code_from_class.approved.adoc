@@ -3,36 +3,42 @@
 .How to extract code of a class
 [source, java, indent=0]
 ----
-    String code = CodeExtractor.getCode(SimpleClass.class);
+        String code = CodeExtractor.classSource(SimpleClass.class);
 
 ----
+
 [.inline]
+====
 .Source code to extract
 [source, java, indent=0]
 ----
 include::../../../../java/org/sfvl/doctesting/SimpleClass.java[tag=classToExtract]
 ----
+====
 
 [.inline]
+====
 .Source code extracted
 [source, java, indent=0]
 ----
 class SimpleClass {
-
     public int simpleMethod() {
-    
         return 0;
     }
-
 }
-
 ----
+====
 ++++
 <style>
 .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
+}
+#content {
+   max-width: unset;
+   padding-left: 5%;
+   padding-right: 5%;
 }
 </style>
 ++++

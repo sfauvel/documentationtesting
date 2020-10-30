@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Anchor</title>
+<title>Find method name</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -438,36 +438,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Anchor</h1>
+<h1>Find method name</h1>
 </div>
 <div id="content">
 <div class="paragraph">
-<p><span class="red"><em>Usage</em></span></p>
+<p>It&#8217;s possible to extract method name from a method reference.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.anchorLink("AnchorExample", "This is a link to anoter place");</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">String methodName = FindLambdaMethod.getName(FindLambdaMethodTest::myMethod);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><span class="red"><em>Render</em></span></p>
-</div>
-<div class="paragraph">
-<p><a href="#anchorexample">This is a link to anoter place</a></p>
-</div>
-<div class="paragraph">
-<p><span class="red"><em>Asciidoc generated</em></span></p>
+<p>Method name: <strong>myMethod</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>&lt;&lt;anchorexample,This is a link to anoter place&gt;&gt;</pre>
+<pre class="highlight"><code class="language-java" data-lang="java">String methodName = FindLambdaMethod.getName(FindLambdaMethodTest::methodWithOneParameter);</code></pre>
 </div>
 </div>
-<hr>
+<div class="paragraph">
+<p>Method name: <strong>methodWithOneParameter</strong></p>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-29 22:52:34 UTC
+Last updated 2020-10-30 22:10:49 UTC
 </div>
 </div>
 </body>

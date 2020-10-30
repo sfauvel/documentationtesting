@@ -4,7 +4,11 @@
 [red]##_Usage_##
 [source,java,indent=0]
 ----
-    output = formatter.sourceCode("public int add(int a, int b) {\n" + "   int result = a + b;\n" + "   return result;\n" + "}");
+        output = formatter.sourceCode(
+                "public int add(int a, int b) {\n" +
+                        "   int result = a + b;\n" +
+                        "   return result;\n" +
+                        "}");
 ----
 
 [red]##_Render_##

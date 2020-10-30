@@ -441,6 +441,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Extract method comment</h1>
 </div>
 <div id="content">
+<div class="exampleblock inline">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">/**
@@ -465,18 +467,27 @@ class ClassWithCommentToExtract {
 }</code></pre>
 </div>
 </div>
+</div>
+</div>
 <div class="paragraph">
 <p>How to extract comment of a method</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">final Optional&lt;String&gt; comment = CodeExtractor.getComment(ClassWithCommentToExtract.class, "methodWithoutParameters");</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">final Optional&lt;String&gt; comment = CodeExtractor.getComment(
+        ClassWithCommentToExtract.class,
+        "methodWithoutParameters"
+);</code></pre>
 </div>
 </div>
+<div class="exampleblock inline">
+<div class="content">
 <div class="listingblock">
 <div class="title">From method without arguments.</div>
 <div class="content">
 <pre>Comment of the method without parameters.</pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -484,13 +495,21 @@ class ClassWithCommentToExtract {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">final Optional&lt;String&gt; comment = CodeExtractor.getComment(ClassWithCommentToExtract.class, "methodWithParameters", CodeExtractor.getJavaClasses(int.class, String.class));</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">final Optional&lt;String&gt; comment = CodeExtractor.getComment(
+        ClassWithCommentToExtract.class,
+        "methodWithParameters",
+        CodeExtractor.getJavaClasses(int.class, String.class)
+);</code></pre>
 </div>
 </div>
+<div class="exampleblock inline">
+<div class="content">
 <div class="listingblock">
 <div class="title">From method with parameters.</div>
 <div class="content">
 <pre>Comment from the method with parameters.</pre>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -502,10 +521,33 @@ class ClassWithCommentToExtract {
 final Optional&lt;String&gt; comment = CodeExtractor.getComment(methodWithComment);</code></pre>
 </div>
 </div>
+<div class="exampleblock inline">
+<div class="content">
 <div class="listingblock">
 <div class="title">From method</div>
 <div class="content">
 <pre>Comment of the method without parameters.</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>How to extract comment of a method with parameters using Method object</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">final Method methodWithComment = ClassWithCommentToExtract.class.getMethod("methodWithParameters", int.class, String.class);
+final Optional&lt;String&gt; comment = CodeExtractor.getComment(methodWithComment);</code></pre>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">From method</div>
+<div class="content">
+<pre>Comment from the method with parameters.</pre>
+</div>
+</div>
 </div>
 </div>
 <style>
@@ -514,11 +556,16 @@ final Optional&lt;String&gt; comment = CodeExtractor.getComment(methodWithCommen
    vertical-align: top;
    margin-right: 2em;
 }
+#content {
+   max-width: unset;
+   padding-left: 5%;
+   padding-right: 5%;
+}
 </style>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-27 22:06:35 UTC
+Last updated 2020-10-30 16:50:08 UTC
 </div>
 </div>
 </body>

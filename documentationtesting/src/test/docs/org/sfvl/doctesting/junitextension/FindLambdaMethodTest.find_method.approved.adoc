@@ -1,0 +1,18 @@
+= Find method
+
+It's possible to extract method from a method reference.
+
+[source, java, indent=0]
+----
+            Method method = FindLambdaMethod.getMethod(FindLambdaMethodTest::myMethod);
+            String methodName = method.getName();
+
+----
+Method name: *myMethod*
+[source, java, indent=0]
+----
+            Method method = FindLambdaMethod.getMethod(FindLambdaMethodTest::methodWithOneParameter);
+            String methodName = method.getName();
+
+----
+Method name: *methodWithOneParameter*

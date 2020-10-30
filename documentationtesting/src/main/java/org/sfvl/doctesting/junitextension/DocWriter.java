@@ -6,6 +6,9 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+/**
+ * This object is used to store the text that need to be write to the final document.
+ */
 public class DocWriter {
     private StringBuffer sb = new StringBuffer();
 

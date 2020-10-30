@@ -441,12 +441,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>DocWriter usage</h1>
 </div>
 <div id="content">
+<div class="paragraph">
+<p>DocWriter is just a buffer.
+Everything wrote in DocWriter will be returned when asking for output.
+A title is add to the output.</p>
+</div>
 <div class="listingblock">
 <div class="title">DocWriter usage</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">final DocWriter writer = new DocWriter();
-writer.write("Some text added to show DocWriter output.");
-final String output = writer.formatOutput("My title", getClass().getMethods()[0]);</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">final DocWriter doc = new DocWriter();
+doc.write("Some text added to show DocWriter output.");
+final String output = doc.formatOutput(
+        "My title",
+        getClass().getMethod("doc_writer_usage", TestInfo.class)
+);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -458,6 +466,11 @@ final String output = writer.formatOutput("My title", getClass().getMethods()[0]
 <p>= My title</p>
 </div>
 <div class="paragraph">
+<p>DocWriter is just a buffer.
+Everything wrote in DocWriter will be returned when asking for output.
+A title is add to the output.</p>
+</div>
+<div class="paragraph">
 <p>Some text added to show DocWriter output.</p>
 </div>
 </div>
@@ -465,7 +478,7 @@ final String output = writer.formatOutput("My title", getClass().getMethods()[0]
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-26 22:36:27 UTC
+Last updated 2020-10-30 08:14:18 UTC
 </div>
 </div>
 </body>

@@ -4,7 +4,8 @@
 [red]##_Usage_##
 [source,java,indent=0]
 ----
-    output = formatter.listItem("First") + formatter.listItem("Second");
+        output = formatter.listItem("First")
+                + formatter.listItem("Second");
 ----
 
 [red]##_Render_##

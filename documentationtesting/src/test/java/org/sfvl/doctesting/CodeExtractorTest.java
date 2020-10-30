@@ -18,18 +18,35 @@ import java.util.Optional;
 @DisplayName(value = "CodeExtractor")
 class CodeExtractorTest {
 
-    private final DocWriter docWriter = new DocWriter();
+    class CodeExtractorWriter extends DocWriter {
+        void writeInline(String... texts) {
+            write(
+                    "", "[.inline]",
+                    "====",
+                    String.join("\n", texts),
+                    "====",
+                    "");
+
+        }
+    }
+
+    private final CodeExtractorWriter doc = new CodeExtractorWriter();
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    ApprovalsExtension extension = new ApprovalsExtension(doc);
 
     @AfterEach
     public void addSyle() {
-        docWriter.write("++++",
+        doc.write("++++",
                 "<style>",
                 ".inline {",
                 "   display: inline-block;",
                 "   vertical-align: top;",
                 "   margin-right: 2em;",
+                "}",
+                "#content {",
+                "   max-width: unset;",
+                "   padding-left: 5%;",
+                "   padding-right: 5%;",
                 "}",
                 "</style>",
                 "++++");
@@ -41,23 +58,22 @@ class CodeExtractorTest {
     public void extract_code_from_class(TestInfo testInfo) {
 
         // >>>
-        String code = CodeExtractor.getCode(SimpleClass.class);
+        String code = CodeExtractor.classSource(SimpleClass.class);
         // <<<
 
-        docWriter.write(".How to extract code of a class",
-//                extractSourceCode(CodeExtractorTest::extract_code_from_class),
-                extractSourceCode(testInfo),
+        doc.write(".How to extract code of a class",
+                extractMarkedCode(testInfo),
                 "");
 
-        docWriter.write("[.inline]",
+        doc.writeInline(
                 ".Source code to extract",
-                includeSourceWithTag("classToExtract", SimpleClass.class),
-                "", "");
+                includeSourceWithTag("classToExtract", SimpleClass.class)
+        );
 
-        docWriter.write("[.inline]",
+        doc.writeInline(
                 ".Source code extracted",
                 formatSourceCode(code)
-                , "");
+        );
     }
 
     @Test
@@ -68,46 +84,119 @@ class CodeExtractorTest {
         String code = CodeExtractor.extractMethodBody(SimpleClass.class, "simpleMethod");
         // <<<
 
-        docWriter.write(".How to extract code of a method",
-                extractSourceCode(testInfo),
+        doc.write(".How to extract code of a method",
+                extractMarkedCode(testInfo),
                 "");
 
-        docWriter.write("[.inline]",
+        doc.writeInline(
                 ".Source code from file",
-                includeSourceWithTag("classToExtract", SimpleClass.class),
-                "", "");
+                includeSourceWithTag("classToExtract", SimpleClass.class)
+        );
 
-        docWriter.write("[.inline]",
+        doc.writeInline(
                 ".Source code extracted",
-                formatSourceCode(code),
-                "");
+                formatSourceCode(code)
+        );
+    }
+
+    /**
+     * To extract a part of a method, you can write a comment with a specific value
+     * that indicate beginining of the code to extract.
+     * Another comment with a specific value indicate the end of the code.
+     *
+     * @param testInfo
+     */
+    @Test
+    @DisplayName(value = "Extract a part of code from method")
+    public void extract_part_of_code_from_method(TestInfo testInfo) {
+        {
+            // >>>1
+            String code = CodeExtractor.extractPartOfMethod(SimpleClassA.class, "methodWithCodeToExtract", "");
+            // <<<1
+
+            doc.write(".How to extract part of a method code",
+                    extractMarkedCode(testInfo, "1"),
+                    "");
+
+            doc.writeInline(
+                    ".Source code from file",
+                    formatSourceCode(CodeExtractor.classSource(SimpleClassA.class))
+            );
+
+            doc.writeInline(
+                    ".Source code extracted",
+                    formatSourceCode(code)
+            );
+        }
+        {
+            // >>>2
+            final Method method = FindLambdaMethod.getMethod(SimpleClassA::methodWithCodeToExtract);
+            String code = CodeExtractor.extractPartOfMethod(method);
+            // <<<2
+
+            doc.write(".How to extract part of a method code using Method object",
+                    extractMarkedCode(testInfo, "2"),
+                    "");
+
+            doc.writeInline(
+                    ".Source code extracted",
+                    formatSourceCode(code)
+            );
+        }
+
+        {
+            // >>>3
+            final Method method = FindLambdaMethod.getMethod(SimpleClassB::methodWithCodeToExtract);
+            String codePart1 = CodeExtractor.extractPartOfMethod(method, "Part1");
+            String codePart2 = CodeExtractor.extractPartOfMethod(method, "Part2");
+            // <<<3
+
+            doc.write("You can have several part identify by a text that you pass as argument " +
+                    "to the extraction function", "", "");
+            doc.write(".How to extract part of a method",
+                    extractMarkedCode(testInfo, "3"),
+                    "");
+
+            doc.writeInline(
+                    ".Source code from file",
+                    formatSourceCode(CodeExtractor.classSource(SimpleClassB.class)));
+
+            doc.writeInline(
+                    ".Source code Part 1 extracted",
+                    formatSourceCode(codePart1),
+                    ".Source code Part 2 extracted",
+                    formatSourceCode(codePart2));
+
+
+        }
     }
 
     @Test
     @DisplayName(value = "Extract class comment")
     public void extract_class_comment(TestInfo testInfo) {
-        docWriter.write(".How to extract comment of a class",
-                extractSourceCode(testInfo),
+        doc.write(
+                ".How to extract comment of a class",
+                extractMarkedCode(testInfo),
                 "");
 
         // >>>
         final String comment = CodeExtractor.getComment(ClassWithCommentToExtract.class);
         // <<<
 
-        docWriter.write(includeSourceWithTag("classWithComment"), "", "");
+        doc.writeInline(includeSourceWithTag("classWithComment"), "", "");
 
-        format_comment_extracted("Comment extracted from class",
+        formatCommentExtracted("Comment extracted from class",
                 comment);
     }
 
     @Test
     @DisplayName(value = "Extract method comment")
     public void extract_method_comment(TestInfo testInfo) throws NoSuchMethodException {
-        docWriter.write(includeSourceWithTag("classWithComment"), "", "");
+        doc.writeInline(includeSourceWithTag("classWithComment"), "", "");
 
         {
-            docWriter.write("How to extract comment of a method",
-                    extractSourceCode(testInfo, "1"),
+            doc.write("How to extract comment of a method",
+                    extractMarkedCode(testInfo, "1"),
                     "");
 
             // >>>1
@@ -117,12 +206,12 @@ class CodeExtractorTest {
             );
             // <<<1
 
-            format_comment_extracted("From method without arguments.",
+            formatCommentExtracted("From method without arguments.",
                     comment.orElse(""));
         }
         {
-            docWriter.write("How to extract comment of a method with parameters",
-                    extractSourceCode(testInfo, "2"),
+            doc.write("How to extract comment of a method with parameters",
+                    extractMarkedCode(testInfo, "2"),
                     "");
 
             // >>>2
@@ -133,12 +222,12 @@ class CodeExtractorTest {
             );
             // <<<2
 
-            format_comment_extracted("From method with parameters.",
+            formatCommentExtracted("From method with parameters.",
                     comment.orElse(""));
         }
         {
-            docWriter.write("How to extract comment of a method using Method object",
-                    extractSourceCode(testInfo, "3"),
+            doc.write("How to extract comment of a method using Method object",
+                    extractMarkedCode(testInfo, "3"),
                     "");
 
             // >>>3
@@ -146,61 +235,31 @@ class CodeExtractorTest {
             final Optional<String> comment = CodeExtractor.getComment(methodWithComment);
             // <<<3
 
-            format_comment_extracted("From method",
+            formatCommentExtracted("From method",
+                    comment.orElse(""));
+        }
+
+        {
+            doc.write("How to extract comment of a method with parameters using Method object",
+                    extractMarkedCode(testInfo, "4"),
+                    "");
+
+            // >>>4
+            final Method methodWithComment = ClassWithCommentToExtract.class.getMethod("methodWithParameters", int.class, String.class);
+            final Optional<String> comment = CodeExtractor.getComment(methodWithComment);
+            // <<<4
+
+            formatCommentExtracted("From method",
                     comment.orElse(""));
         }
     }
 
-    private <T> String extractSourceCode(FindLambdaMethod.SerializableConsumer<T> lambda) {
-        return formatSourceCode(extractCodeBetween(lambda));
+    private String extractMarkedCode(TestInfo testInfo) {
+        return formatSourceCode(CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get()));
     }
 
-    private String extractSourceCode(TestInfo testInfo) {
-        return formatSourceCode(extractCodeBetween(testInfo.getTestMethod().get()));
-    }
-    private String extractSourceCode(TestInfo testInfo, String suffix) {
-        return formatSourceCode(extractCodeBetween(testInfo.getTestMethod().get(), suffix));
-    }
-
-    public <T> String extractCodeBetween(FindLambdaMethod.SerializableConsumer<T> lambda) {
-
-        final Method method = FindLambdaMethod.getMethod(lambda);
-        return extractCodeBetween(method);
-    }
-
-    public String extractCodeBetween(Method method) {
-        return extractCodeBetween(method, "");
-    }
-
-    public String extractCodeBetween(Method method, String suffix) {
-        final String source = CodeExtractor.extractMethodBody(method.getDeclaringClass(), method.getName());
-//        final String s = CodeExtractor.extractMethodBody(aClass,//CodeExtractorTest.class,
-//                FindLambdaMethod.getName(extract_code_from_class));
-        return extractCodeBetween(source, ">>>"+ suffix, "<<<"+ suffix);
-    }
-
-    public String extractCodeBetween(String source, String begin, String end) {
-        // Not compatible with JDK1.8
-//                return s.lines()
-//                .dropWhile(line -> line.contains("//"+ " tag::"))
-//                .takeWhile(line -> line.contains("//"+ " end::"))
-//                .collect(Collectors.joining("\n"));
-
-        StringBuffer buffer = new StringBuffer();
-        boolean inTag = false;
-        for (String s1 : source.split("\n")) {
-
-            if (s1.contains("// " + end)) {
-                inTag = false;
-            }
-            if (inTag) {
-                buffer.append(s1 + "\n");
-            }
-            if (s1.contains("// " + begin)) {
-                inTag = true;
-            }
-        }
-        return buffer.toString();
+    private String extractMarkedCode(TestInfo testInfo, String suffix) {
+        return formatSourceCode(CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get(), suffix));
     }
 
     private <T> String formatSourceCode(String source) {
@@ -211,14 +270,13 @@ class CodeExtractorTest {
                 "----");
     }
 
-    public void format_comment_extracted(String description, String commentExtracted) {
-        docWriter.write(
+    public void formatCommentExtracted(String description, String commentExtracted) {
+        doc.writeInline(
                 "." + description,
                 "----",
                 commentExtracted,
-                "----", "", "");
+                "----", "");
     }
-
 
     public String includeSourceWithTag(String tag) {
         final Class<? extends CodeExtractorTest> aClass = getClass();

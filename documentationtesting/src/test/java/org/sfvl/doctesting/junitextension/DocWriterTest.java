@@ -31,13 +31,17 @@ class DocWriterTest {
     public void doc_writer_usage(TestInfo testInfo) throws NoSuchMethodException {
 
         // tag::doc_writer_usage[]
-        final DocWriter writer = new DocWriter();
-        writer.write("Some text added to show DocWriter output.");
-        final String output = writer.formatOutput("My title", getClass().getMethods()[0]);
+        final DocWriter doc = new DocWriter();
+        doc.write("Some text added to show DocWriter output.");
+        final String output = doc.formatOutput(
+                "My title",
+                getClass().getMethod("doc_writer_usage", TestInfo.class)
+        );
         // end::doc_writer_usage[]
 
         docWriter.write(".DocWriter usage",
                 includeSourceWithTag("doc_writer_usage"),
+                //CodeExtractor.extractPartOfMethod()
                 "", "");
 
         docWriter.write("",
@@ -81,7 +85,7 @@ class DocWriterTest {
         docWriter.write("When test method had a comment, it's written after title.", "", "");
 
         final DocWriter docWriterForTest = new DocWriter();
-        final String output = docWriterForTest.formatOutput(name+"()", testMethod);
+        final String output = docWriterForTest.formatOutput(name + "()", testMethod);
 
         docWriter.write(".Test example with comment on method",
                 includeSourceWithTag(MyTestWithComment.class.getSimpleName()),
@@ -95,7 +99,7 @@ class DocWriterTest {
         final String output = docWriterForTest.formatOutput(displayName, testMethod);
 
         docWriter.write(String.format("Calling formatOutput with DisplayName=\"%s\" and Method=%s provides",
-                displayName, testMethod.getName()),"");
+                displayName, testMethod.getName()), "");
 
         docWriter.write("****", output, "****", "");
     }

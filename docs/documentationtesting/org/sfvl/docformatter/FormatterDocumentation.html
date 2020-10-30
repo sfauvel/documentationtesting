@@ -642,7 +642,9 @@ There is no line break when text is rendered in HTML.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">paragraph</span><span class="o">(</span><span class="s">"We write some sentences."</span><span class="o">,</span> <span class="s">"Each of them are in is own line in asciidoc text."</span><span class="o">,</span> <span class="s">"They are in a same paragraph at the end."</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">paragraph</span><span class="o">(</span><span class="s">"We write some sentences."</span><span class="o">,</span>
+        <span class="s">"Each of them are in is own line in asciidoc text."</span><span class="o">,</span>
+        <span class="s">"They are in a same paragraph at the end."</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -781,7 +783,8 @@ They are in a same paragraph at the end.</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">listItem</span><span class="o">(</span><span class="s">"First"</span><span class="o">)</span> <span class="o">+</span> <span class="n">formatter</span><span class="o">.</span><span class="na">listItem</span><span class="o">(</span><span class="s">"Second"</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">listItem</span><span class="o">(</span><span class="s">"First"</span><span class="o">)</span>
+        <span class="o">+</span> <span class="n">formatter</span><span class="o">.</span><span class="na">listItem</span><span class="o">(</span><span class="s">"Second"</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -876,7 +879,11 @@ They are in a same paragraph at the end.</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">sourceCode</span><span class="o">(</span><span class="s">"public int add(int a, int b) {\n"</span> <span class="o">+</span> <span class="s">"   int result = a + b;\n"</span> <span class="o">+</span> <span class="s">"   return result;\n"</span> <span class="o">+</span> <span class="s">"}"</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">sourceCode</span><span class="o">(</span>
+        <span class="s">"public int add(int a, int b) {\n"</span> <span class="o">+</span>
+                <span class="s">"   int result = a + b;\n"</span> <span class="o">+</span>
+                <span class="s">"   return result;\n"</span> <span class="o">+</span>
+                <span class="s">"}"</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -941,7 +948,11 @@ public int add(int a, int b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">table</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"A"</span><span class="o">,</span> <span class="s">"B"</span><span class="o">,</span> <span class="s">"C"</span><span class="o">),</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"x"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">,</span> <span class="s">"z"</span><span class="o">),</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"1"</span><span class="o">,</span> <span class="s">"2"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">)));</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">table</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"A"</span><span class="o">,</span> <span class="s">"B"</span><span class="o">,</span> <span class="s">"C"</span><span class="o">),</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"x"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">,</span> <span class="s">"z"</span><span class="o">),</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"1"</span><span class="o">,</span> <span class="s">"2"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">)</span>
+<span class="o">));</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -992,7 +1003,11 @@ public int add(int a, int b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">tableWithHeader</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"A"</span><span class="o">,</span> <span class="s">"B"</span><span class="o">,</span> <span class="s">"C"</span><span class="o">),</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"x"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">,</span> <span class="s">"z"</span><span class="o">),</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"1"</span><span class="o">,</span> <span class="s">"2"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">)));</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">tableWithHeader</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"A"</span><span class="o">,</span> <span class="s">"B"</span><span class="o">,</span> <span class="s">"C"</span><span class="o">),</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"x"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">,</span> <span class="s">"z"</span><span class="o">),</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"1"</span><span class="o">,</span> <span class="s">"2"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">)</span>
+<span class="o">));</span></code></pre>
 </div>
 </div>
 <div class="paragraph">

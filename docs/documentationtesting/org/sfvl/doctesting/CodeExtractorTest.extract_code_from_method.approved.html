@@ -447,7 +447,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.extractMethodBody(SimpleClass.class, "simpleMethod");</code></pre>
 </div>
 </div>
-<div class="listingblock inline">
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
 <div class="title">Source code from file</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">class SimpleClass {
@@ -457,12 +459,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 }</code></pre>
 </div>
 </div>
-<div class="listingblock inline">
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
 <div class="title">Source code extracted</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">{
-    return 0;
-}</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">return 0;</code></pre>
+</div>
+</div>
 </div>
 </div>
 <style>
@@ -471,11 +477,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
    vertical-align: top;
    margin-right: 2em;
 }
+#content {
+   max-width: unset;
+   padding-left: 5%;
+   padding-right: 5%;
+}
 </style>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-27 22:20:58 UTC
+Last updated 2020-10-30 13:01:02 UTC
 </div>
 </div>
 </body>

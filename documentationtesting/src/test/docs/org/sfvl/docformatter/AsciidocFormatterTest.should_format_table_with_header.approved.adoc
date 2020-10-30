@@ -4,7 +4,11 @@
 [red]##_Usage_##
 [source,java,indent=0]
 ----
-    output = formatter.tableWithHeader(Arrays.asList(Arrays.asList("A", "B", "C"), Arrays.asList("x", "y", "z"), Arrays.asList("1", "2", "3")));
+        output = formatter.tableWithHeader(Arrays.asList(
+                Arrays.asList("A", "B", "C"),
+                Arrays.asList("x", "y", "z"),
+                Arrays.asList("1", "2", "3")
+        ));
 ----
 
 [red]##_Render_##

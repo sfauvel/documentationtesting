@@ -10,7 +10,7 @@ Optional[Standard option to add at the begining of the document.
 [red]##_Usage_##
 [source,java,indent=0]
 ----
-    output = formatter.standardOptions();
+        output = formatter.standardOptions();
 ----
 
 [red]##_Asciidoc generated_##

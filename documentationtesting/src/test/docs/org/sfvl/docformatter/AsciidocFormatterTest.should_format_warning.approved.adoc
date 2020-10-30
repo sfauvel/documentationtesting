@@ -4,7 +4,7 @@
 [red]##_Usage_##
 [source,java,indent=0]
 ----
-    output = formatter.warning("Take care of that");
+        output = formatter.warning("Take care of that");
 ----
 
 [red]##_Render_##

@@ -4,7 +4,7 @@
 [red]##_Usage_##
 [source,java,indent=0]
 ----
-    output = formatter.tableOfContent(3);
+        output = formatter.tableOfContent(3);
 ----
 
 [red]##_Asciidoc generated_##

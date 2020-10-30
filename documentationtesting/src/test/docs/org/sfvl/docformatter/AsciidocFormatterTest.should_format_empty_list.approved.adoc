@@ -6,7 +6,7 @@ When no items, listItems method return an empty string.
 [red]##_Usage_##
 [source,java,indent=0]
 ----
-    output = formatter.listItems();
+        output = formatter.listItems();
 ----
 
 [red]##_Asciidoc generated_##

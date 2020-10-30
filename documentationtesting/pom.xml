@@ -17,7 +17,7 @@
         <qdox.version>2.0-M10</qdox.version>
         <reflections.version>0.9.11</reflections.version>
         <approvaltests.version>4.0.2</approvaltests.version>
-        <javaparser.version>3.14.5</javaparser.version>
+        <javaparser.version>3.16.2</javaparser.version>
     </properties>
 
    <build>

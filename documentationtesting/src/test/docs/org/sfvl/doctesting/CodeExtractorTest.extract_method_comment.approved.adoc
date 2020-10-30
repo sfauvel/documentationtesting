@@ -1,50 +1,95 @@
 = Extract method comment
 
+
+[.inline]
+====
 [source, java, indent=0]
 ----
 include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=classWithComment]
 ----
 
+
+====
 How to extract comment of a method
 [source, java, indent=0]
 ----
-        final Optional<String> comment = CodeExtractor.getComment(ClassWithCommentToExtract.class, "methodWithoutParameters");
+            final Optional<String> comment = CodeExtractor.getComment(
+                    ClassWithCommentToExtract.class,
+                    "methodWithoutParameters"
+            );
 
 ----
+
+[.inline]
+====
 .From method without arguments.
 ----
 Comment of the method without parameters.
 ----
 
+====
 How to extract comment of a method with parameters
 [source, java, indent=0]
 ----
-        final Optional<String> comment = CodeExtractor.getComment(ClassWithCommentToExtract.class, "methodWithParameters", CodeExtractor.getJavaClasses(int.class, String.class));
+            final Optional<String> comment = CodeExtractor.getComment(
+                    ClassWithCommentToExtract.class,
+                    "methodWithParameters",
+                    CodeExtractor.getJavaClasses(int.class, String.class)
+            );
 
 ----
+
+[.inline]
+====
 .From method with parameters.
 ----
 Comment from the method with parameters.
 ----
 
+====
 How to extract comment of a method using Method object
 [source, java, indent=0]
 ----
-        final Method methodWithComment = ClassWithCommentToExtract.class.getMethod("methodWithoutParameters");
-        final Optional<String> comment = CodeExtractor.getComment(methodWithComment);
+            final Method methodWithComment = ClassWithCommentToExtract.class.getMethod("methodWithoutParameters");
+            final Optional<String> comment = CodeExtractor.getComment(methodWithComment);
 
 ----
+
+[.inline]
+====
 .From method
 ----
 Comment of the method without parameters.
 ----
 
+====
+How to extract comment of a method with parameters using Method object
+[source, java, indent=0]
+----
+            final Method methodWithComment = ClassWithCommentToExtract.class.getMethod("methodWithParameters", int.class, String.class);
+            final Optional<String> comment = CodeExtractor.getComment(methodWithComment);
+
+----
+
+[.inline]
+====
+.From method
+----
+Comment from the method with parameters.
+----
+
+====
 ++++
 <style>
 .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
+}
+#content {
+   max-width: unset;
+   padding-left: 5%;
+   padding-right: 5%;
 }
 </style>
 ++++

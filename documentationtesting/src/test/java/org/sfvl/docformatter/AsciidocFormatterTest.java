@@ -191,7 +191,7 @@ public class AsciidocFormatterTest {
                 .ifPresent(doc -> write(doc + "\n"));
 
         write("\n[red]##_Usage_##\n[source,java,indent=0]\n----\n");
-        write(extractMethodBody(testinfo));
+        write(extractMethod(testinfo));
 
         write("\n----\n");
 
@@ -207,35 +207,16 @@ public class AsciidocFormatterTest {
         write("\n___\n");
     }
 
-    public String extractMethodBody(TestInfo testinfo) {
-        final String body = extractMethodBody(this.getClass(), testinfo.getTestMethod().get().getName());
+    public String extractMethod(TestInfo testinfo) {
+        final String body = extractMethod(this.getClass(), testinfo.getTestMethod().get().getName());
         final String[] split = body.split("\n");
         final String bodyFormatted = Arrays.stream(Arrays.copyOfRange(split, 1, split.length - 1))
                 .collect(Collectors.joining("\n"));
         return bodyFormatted;
     }
 
-    private String extractMethodBody(Class classWithFormula, String methodName) {
-        SourceRoot sourceRoot = new SourceRoot(Paths.get("src/test/java"));
-
-        CompilationUnit cu = sourceRoot.parse(
-                classWithFormula.getPackage().getName(),
-                classWithFormula.getSimpleName() + ".java");
-
-        StringBuffer javaCode = new StringBuffer();
-        cu.accept(new VoidVisitorAdapter<StringBuffer>() {
-            @Override
-            public void visit(MethodDeclaration n, StringBuffer arg) {
-                if (methodName.equals(n.getNameAsString())) {
-                    final String str = n.getBody()
-                            .map(body -> body.toString())
-                            .orElse("");
-                    javaCode.append(str);
-
-                }
-            }
-        }, null);
-        return javaCode.toString();
+    private String extractMethod(Class classWithFormula, String methodName) {
+        return CodeExtractor.extractMethodBody(classWithFormula, methodName);
     }
 
     public void writeAFile(String fileName, String text) throws IOException {

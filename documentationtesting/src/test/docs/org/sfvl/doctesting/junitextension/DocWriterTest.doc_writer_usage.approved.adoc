@@ -1,5 +1,9 @@
 = DocWriter usage
 
+DocWriter is just a buffer.
+Everything wrote in DocWriter will be returned when asking for output.
+A title is add to the output.
+
 .DocWriter usage
 [source, java, indent=0]
 ----
@@ -10,6 +14,10 @@ include::../../../../../java/org/sfvl/doctesting/junitextension/DocWriterTest.ja
 Output provided
 ****
 = My title
+
+DocWriter is just a buffer.
+Everything wrote in DocWriter will be returned when asking for output.
+A title is add to the output.
 
 Some text added to show DocWriter output.
 ****
