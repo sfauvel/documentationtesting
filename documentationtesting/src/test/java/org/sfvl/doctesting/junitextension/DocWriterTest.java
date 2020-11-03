@@ -52,8 +52,8 @@ class DocWriterTest {
 
     @Test
     @DisplayName("Format title")
-    public void format_title(TestInfo testInfo) throws NoSuchMethodException {
-        final Method testMethod = testInfo.getTestMethod().get();
+    public void format_title() {
+        final Method testMethod = FindLambdaMethod.getMethod(DocWriterTest::format_title);
         final String name = testMethod.getName();
 
         {
@@ -67,6 +67,16 @@ class DocWriterTest {
 
             writeFormatOutput(testMethod.getName() + "()", testMethod);
         }
+
+        {
+            docWriter.write("Test method could have TestInfo parameter.", "", "");
+
+            final Method testMethodWithTestInfo = FindLambdaMethod.getMethod(DocWriterTest::test_method_with_test_info);
+            writeFormatOutput(testMethodWithTestInfo.getName() + "(TestInfo)", testMethodWithTestInfo);
+        }
+    }
+
+    public void test_method_with_test_info(TestInfo testInfo)  {
     }
 
     /**

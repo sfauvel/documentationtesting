@@ -16,3 +16,11 @@ Calling formatOutput with DisplayName="format_title()" and Method=format_title p
 
 
 ****
+Test method could have TestInfo parameter.
+
+Calling formatOutput with DisplayName="test_method_with_test_info(TestInfo)" and Method=test_method_with_test_info provides
+****
+= Test method with test info
+
+
+****

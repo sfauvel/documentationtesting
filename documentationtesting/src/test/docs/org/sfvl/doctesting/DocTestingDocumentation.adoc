@@ -14,32 +14,18 @@ View source of project on link:{github-repo}/documentationtesting[Github]
 
 
 
-== Extract information from method reference
-
-FindLambdaMethod class provides tools to find reference method name.
-
-include::junitextension/FindLambdaMethodTest.find_method_name.approved.adoc[leveloffset=+2]
-include::junitextension/FindLambdaMethodTest.find_method.approved.adoc[leveloffset=+2]
-
 == MainDocumentationTest
 
 
 
 include::MainDocumentationTest.document_structure.approved.adoc[leveloffset=+2]
 
-== DocWriter
+== Extract information from method reference
 
+FindLambdaMethod class provides tools to find reference method name.
 
-
-include::junitextension/DocWriterTest.doc_writer_usage.approved.adoc[leveloffset=+2]
-include::junitextension/DocWriterTest.format_title.approved.adoc[leveloffset=+2]
-include::junitextension/DocWriterTest.add_description_using_comment.approved.adoc[leveloffset=+2]
-
-== DocAsTestBaseTest
-
-
-
-include::junitinheritance/DocAsTestBaseTest.title.approved.adoc[leveloffset=+2]
+include::junitextension/FindLambdaMethodTest.find_method_name.approved.adoc[leveloffset=+2]
+include::junitextension/FindLambdaMethodTest.find_method.approved.adoc[leveloffset=+2]
 
 == CodeExtractor
 
@@ -50,6 +36,20 @@ include::CodeExtractorTest.extract_code_from_method.approved.adoc[leveloffset=+2
 include::CodeExtractorTest.extract_part_of_code_from_method.approved.adoc[leveloffset=+2]
 include::CodeExtractorTest.extract_class_comment.approved.adoc[leveloffset=+2]
 include::CodeExtractorTest.extract_method_comment.approved.adoc[leveloffset=+2]
+
+== DocAsTestBaseTest
+
+
+
+include::junitinheritance/DocAsTestBaseTest.title.approved.adoc[leveloffset=+2]
+
+== DocWriter
+
+
+
+include::junitextension/DocWriterTest.doc_writer_usage.approved.adoc[leveloffset=+2]
+include::junitextension/DocWriterTest.format_title.approved.adoc[leveloffset=+2]
+include::junitextension/DocWriterTest.add_description_using_comment.approved.adoc[leveloffset=+2]
 
 == ApprovalsExtension
 

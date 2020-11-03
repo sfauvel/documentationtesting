@@ -26,7 +26,7 @@ public class DocWriter {
 
     public String formatOutput(String displayName, Method testMethod) {
         return  String.join("",
-                "= " + formatTitle(displayName, testMethod.getName()) + "\n\n",
+                "= " + formatTitle(displayName, testMethod) + "\n\n",
                 CodeExtractor.getComment(testMethod).map(comment -> comment + "\n\n").orElse(""),
                 read());
     }
@@ -39,8 +39,12 @@ public class DocWriter {
      * @param methodName
      * @return
      */
-    private String formatTitle(String displayName, String methodName) {
-        if (displayName.equals(methodName+"()")) {
+    private String formatTitle(String displayName, Method method) {
+        final String parameters = Arrays.stream(method.getParameterTypes())
+                .map(Class::getSimpleName)
+                .collect(Collectors.joining(","));
+        String methodName=method.getName();
+        if (displayName.equals(methodName+"(" + parameters + ")")) {
             String title = methodName.replace("_", " ");
             return title.substring(0, 1).toUpperCase() + title.substring(1);
         } else {

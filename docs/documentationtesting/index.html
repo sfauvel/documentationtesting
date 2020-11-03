@@ -448,27 +448,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_title_for_this_test_2">Title for this test</a></li>
 </ul>
 </li>
+<li><a href="#_maindocumentationtest">MainDocumentationTest</a>
+<ul class="sectlevel2">
+<li><a href="#_document_structure">Document structure</a></li>
+</ul>
+</li>
+<li><a href="#_mytest">MyTest</a>
+<ul class="sectlevel2">
+<li><a href="#_testa">TestA</a></li>
+</ul>
+</li>
+<li><a href="#_inmaindocbistest">InMainDocBisTest</a>
+<ul class="sectlevel2">
+<li><a href="#_title_for_this_test_3">Title for this test</a></li>
+</ul>
+</li>
 <li><a href="#_extract_information_from_method_reference">Extract information from method reference</a>
 <ul class="sectlevel2">
 <li><a href="#_find_method_name">Find method name</a></li>
 <li><a href="#_find_method">Find method</a></li>
 </ul>
 </li>
-<li><a href="#_maindocumentationtest">MainDocumentationTest</a>
+<li><a href="#_title_for_the_document_2">Title for the document</a>
 <ul class="sectlevel2">
-<li><a href="#_document_structuretestinfo">document_structure(TestInfo)</a></li>
-</ul>
-</li>
-<li><a href="#_docwriter">DocWriter</a>
-<ul class="sectlevel2">
-<li><a href="#_docwriter_usage">DocWriter usage</a></li>
-<li><a href="#_format_title">Format title</a></li>
-<li><a href="#_add_description">Add description</a></li>
-</ul>
-</li>
-<li><a href="#_docastestbasetest">DocAsTestBaseTest</a>
-<ul class="sectlevel2">
-<li><a href="#_formatted_title">Formatted title</a></li>
+<li><a href="#_title_for_this_test_4">Title for this test</a></li>
 </ul>
 </li>
 <li><a href="#_codeextractor">CodeExtractor</a>
@@ -486,24 +489,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_using_displayname">Using displayName</a></li>
 </ul>
 </li>
+<li><a href="#_docastestbasetest">DocAsTestBaseTest</a>
+<ul class="sectlevel2">
+<li><a href="#_formatted_title">Formatted title</a></li>
+</ul>
+</li>
 <li><a href="#_mytestwithcomment">MyTestWithComment</a>
 <ul class="sectlevel2">
-<li><a href="#_testa">TestA</a></li>
-</ul>
-</li>
-<li><a href="#_inmaindocbistest">InMainDocBisTest</a>
-<ul class="sectlevel2">
-<li><a href="#_title_for_this_test_3">Title for this test</a></li>
-</ul>
-</li>
-<li><a href="#_title_for_the_document_2">Title for the document</a>
-<ul class="sectlevel2">
-<li><a href="#_title_for_this_test_4">Title for this test</a></li>
-</ul>
-</li>
-<li><a href="#_mytest">MyTest</a>
-<ul class="sectlevel2">
 <li><a href="#_testa_2">TestA</a></li>
+</ul>
+</li>
+<li><a href="#_docwriter">DocWriter</a>
+<ul class="sectlevel2">
+<li><a href="#_docwriter_usage">DocWriter usage</a></li>
+<li><a href="#_format_title">Format title</a></li>
+<li><a href="#_add_description">Add description</a></li>
 </ul>
 </li>
 <li><a href="#_asciidoctor_formatter">Asciidoctor formatter</a>
@@ -577,64 +577,10 @@ Learn more here <a href="https://sfauvel.github.io/documentationtesting" class="
 </div>
 </div>
 <div class="sect1">
-<h2 id="_extract_information_from_method_reference">Extract information from method reference</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>FindLambdaMethod class provides tools to find reference method name.</p>
-</div>
-<div class="sect2">
-<h3 id="_find_method_name">Find method name</h3>
-<div class="paragraph">
-<p>It&#8217;s possible to extract method name from a method reference.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">String methodName = FindLambdaMethod.getName(FindLambdaMethodTest::myMethod);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Method name: <strong>myMethod</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">String methodName = FindLambdaMethod.getName(FindLambdaMethodTest::methodWithOneParameter);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Method name: <strong>methodWithOneParameter</strong></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_find_method">Find method</h3>
-<div class="paragraph">
-<p>It&#8217;s possible to extract method from a method reference.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">Method method = FindLambdaMethod.getMethod(FindLambdaMethodTest::myMethod);
-String methodName = method.getName();</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Method name: <strong>myMethod</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">Method method = FindLambdaMethod.getMethod(FindLambdaMethodTest::methodWithOneParameter);
-String methodName = method.getName();</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Method name: <strong>methodWithOneParameter</strong></p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_maindocumentationtest">MainDocumentationTest</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_document_structuretestinfo">document_structure(TestInfo)</h3>
+<h3 id="_document_structure">Document structure</h3>
 <div class="paragraph">
 <p>Documentation is composed with the header following by each test classes documentation.</p>
 </div>
@@ -759,159 +705,89 @@ class InMainDocBisTest {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_docwriter">DocWriter</h2>
+<h2 id="_mytest">MyTest</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_docwriter_usage">DocWriter usage</h3>
+<h3 id="_testa">TestA</h3>
 <div class="paragraph">
-<p>DocWriter is just a buffer.
-Everything wrote in DocWriter will be returned when asking for output.
-A title is add to the output.</p>
-</div>
-<div class="listingblock">
-<div class="title">DocWriter usage</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">final DocWriter doc = new DocWriter();
-doc.write("Some text added to show DocWriter output.");
-final String output = doc.formatOutput(
-        "My title",
-        getClass().getMethod("doc_writer_usage", TestInfo.class)
-);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Output provided</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p>= My title</p>
-</div>
-<div class="paragraph">
-<p>DocWriter is just a buffer.
-Everything wrote in DocWriter will be returned when asking for output.
-A title is add to the output.</p>
-</div>
-<div class="paragraph">
-<p>Some text added to show DocWriter output.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_format_title">Format title</h3>
-<div class="paragraph">
-<p>When display name is different from test method name, displayName is used as title.</p>
-</div>
-<div class="paragraph">
-<p>Calling formatOutput with DisplayName="My title" and Method=format_title provides</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p>= My title</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>When display name is the same as test method name, name is reformatted.</p>
-</div>
-<div class="paragraph">
-<p>Calling formatOutput with DisplayName="format_title()" and Method=format_title provides</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p>= Format title</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_add_description">Add description</h3>
-<div class="paragraph">
-<p>When test method had a comment, it&#8217;s written after title.</p>
-</div>
-<div class="listingblock">
-<div class="title">Test example with comment on method</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class MyTestWithComment {
-    private final DocWriter docWriter = new DocWriter();
-    @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
-
-    /**
-     * To decribe a method, you can add a comment.
-     * It will be added under title.
-     */
-    @Test
-    public void testA() {
-        docWriter.write("In my *test*");
-    }
-
-}</code></pre>
-</div>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p>= TestA</p>
-</div>
-<div class="paragraph">
-<p>To decribe a method, you can add a comment.
-It will be added under title.</p>
-</div>
-</div>
+<p>In my <strong>test</strong></p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_docastestbasetest">DocAsTestBaseTest</h2>
+<h2 id="_inmaindocbistest">InMainDocBisTest</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_formatted_title">Formatted title</h3>
+<h3 id="_title_for_this_test_3">Title for this test</h3>
 <div class="paragraph">
-<p>Optional[Return the name to use as title from a test method .
-It returns the value specified with <em>DisplayName</em> annotation.
-If annotation is not present, this is the method name that will be returned
-after some test formatting (remove '_', uppercase first letter).</p>
+<p>In my <strong>test</strong></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_extract_information_from_method_reference">Extract information from method reference</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>FindLambdaMethod class provides tools to find reference method name.</p>
+</div>
+<div class="sect2">
+<h3 id="_find_method_name">Find method name</h3>
+<div class="paragraph">
+<p>It&#8217;s possible to extract method name from a method reference.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">String methodName = FindLambdaMethod.getName(FindLambdaMethodTest::myMethod);</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>It&#8217;s based on value return by <em>displayName</em> method.
-It returns either DisplayName annotation value or method name.]</p>
+<p>Method name: <strong>myMethod</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Display name</th>
-<th class="tableblock halign-left valign-top">Method name</th>
-<th class="tableblock halign-left valign-top">Title</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Get display name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Get display name</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title()</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Simple method to format title</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">display_name_is_not_method_name()</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">display_name_is_not_method_name()</p></td>
-</tr>
-</tbody>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">String methodName = FindLambdaMethod.getName(FindLambdaMethodTest::methodWithOneParameter);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Method name: <strong>methodWithOneParameter</strong></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_find_method">Find method</h3>
+<div class="paragraph">
+<p>It&#8217;s possible to extract method from a method reference.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">Method method = FindLambdaMethod.getMethod(FindLambdaMethodTest::myMethod);
+String methodName = method.getName();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Method name: <strong>myMethod</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">Method method = FindLambdaMethod.getMethod(FindLambdaMethodTest::methodWithOneParameter);
+String methodName = method.getName();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Method name: <strong>methodWithOneParameter</strong></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_title_for_the_document_2">Title for the document</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_title_for_this_test_4">Title for this test</h3>
+<div class="paragraph">
+<p>In my <strong>test</strong></p>
+</div>
 </div>
 </div>
 </div>
@@ -1412,10 +1288,59 @@ In my *test*</pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_docastestbasetest">DocAsTestBaseTest</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_formatted_title">Formatted title</h3>
+<div class="paragraph">
+<p>Optional[Return the name to use as title from a test method .
+It returns the value specified with <em>DisplayName</em> annotation.
+If annotation is not present, this is the method name that will be returned
+after some test formatting (remove '_', uppercase first letter).</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s based on value return by <em>displayName</em> method.
+It returns either DisplayName annotation value or method name.]</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Display name</th>
+<th class="tableblock halign-left valign-top">Method name</th>
+<th class="tableblock halign-left valign-top">Title</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Get display name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Get display name</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title()</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Simple method to format title</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">display_name_is_not_method_name()</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">display_name_is_not_method_name()</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_mytestwithcomment">MyTestWithComment</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_testa">TestA</h3>
+<h3 id="_testa_2">TestA</h3>
 <div class="paragraph">
 <p>To decribe a method, you can add a comment.
 It will be added under title.</p>
@@ -1427,34 +1352,122 @@ It will be added under title.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_inmaindocbistest">InMainDocBisTest</h2>
+<h2 id="_docwriter">DocWriter</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_title_for_this_test_3">Title for this test</h3>
+<h3 id="_docwriter_usage">DocWriter usage</h3>
 <div class="paragraph">
-<p>In my <strong>test</strong></p>
+<p>DocWriter is just a buffer.
+Everything wrote in DocWriter will be returned when asking for output.
+A title is add to the output.</p>
+</div>
+<div class="listingblock">
+<div class="title">DocWriter usage</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">final DocWriter doc = new DocWriter();
+doc.write("Some text added to show DocWriter output.");
+final String output = doc.formatOutput(
+        "My title",
+        getClass().getMethod("doc_writer_usage", TestInfo.class)
+);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output provided</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>= My title</p>
+</div>
+<div class="paragraph">
+<p>DocWriter is just a buffer.
+Everything wrote in DocWriter will be returned when asking for output.
+A title is add to the output.</p>
+</div>
+<div class="paragraph">
+<p>Some text added to show DocWriter output.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_title_for_the_document_2">Title for the document</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_title_for_this_test_4">Title for this test</h3>
+<h3 id="_format_title">Format title</h3>
 <div class="paragraph">
-<p>In my <strong>test</strong></p>
+<p>When display name is different from test method name, displayName is used as title.</p>
+</div>
+<div class="paragraph">
+<p>Calling formatOutput with DisplayName="My title" and Method=format_title provides</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>= My title</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>When display name is the same as test method name, name is reformatted.</p>
+</div>
+<div class="paragraph">
+<p>Calling formatOutput with DisplayName="format_title()" and Method=format_title provides</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>= Format title</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Test method could have TestInfo parameter.</p>
+</div>
+<div class="paragraph">
+<p>Calling formatOutput with DisplayName="test_method_with_test_info(TestInfo)" and Method=test_method_with_test_info provides</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>= Test method with test info</p>
 </div>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_mytest">MyTest</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_testa_2">TestA</h3>
+<h3 id="_add_description">Add description</h3>
 <div class="paragraph">
-<p>In my <strong>test</strong></p>
+<p>When test method had a comment, it&#8217;s written after title.</p>
+</div>
+<div class="listingblock">
+<div class="title">Test example with comment on method</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">class MyTestWithComment {
+    private final DocWriter docWriter = new DocWriter();
+    @RegisterExtension
+    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+
+    /**
+     * To decribe a method, you can add a comment.
+     * It will be added under title.
+     */
+    @Test
+    public void testA() {
+        docWriter.write("In my *test*");
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>= TestA</p>
+</div>
+<div class="paragraph">
+<p>To decribe a method, you can add a comment.
+It will be added under title.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
