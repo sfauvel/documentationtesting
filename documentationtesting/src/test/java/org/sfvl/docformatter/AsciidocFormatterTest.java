@@ -1,9 +1,5 @@
 package org.sfvl.docformatter;
 
-import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import com.github.javaparser.utils.SourceRoot;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,6 +7,7 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.CodeExtractor;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.junitextension.DocWriter;
 
 import java.io.FileWriter;
@@ -18,14 +15,11 @@ import java.io.IOException;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * `AsciidocFormatter` provides high level methods to generate asciidoc text.
- *
  * Each section of this documentation explain one method of the `AsciidocFormatter`.
  * For each method, we describe:
  *
@@ -34,6 +28,7 @@ import java.util.stream.Collectors;
  * - the asciidoc text generated
  */
 @DisplayName("Asciidoctor formatter")
+@ClassToDocument(clazz = AsciidocFormatter.class)
 public class AsciidocFormatterTest {
     private static AsciidocFormatter formatter = new AsciidocFormatter();
     private String output;
@@ -229,5 +224,14 @@ public class AsciidocFormatterTest {
         try (FileWriter writerInclude = new FileWriter(filePath.toFile())) {
             writerInclude.write(text);
         }
+    }
+
+    public static void main(String... args) {
+        final String comment = CodeExtractor.getComment(AsciidocFormatterTest.class);
+        System.out.println(comment);
+
+
+        final Optional<String> commentx = CodeExtractor.getComment(AsciidocFormatterTest.class, "standardOptions");
+        System.out.println(commentx.orElse("No comment"));
     }
 }

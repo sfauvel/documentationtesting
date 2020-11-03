@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * `AsciidocFormatter` provides high level methods to generate asciidoc text.
+ */
 public class AsciidocFormatter implements Formatter {
     /**
      * Standard option to add at the begining of the document.

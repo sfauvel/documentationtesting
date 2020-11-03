@@ -11,7 +11,10 @@ Learn more here link:{github-pages}[]
 
 View source of project on link:{github-repo}/samples/demo_hero[Github]
 
+
+
 == HeroExperienceTest
+
 We show different approach to test writing a documentation.
 We start with a typical characterization test that produced a file using for non regression with `approvals`.
 After, we explore other way to produce a readable document.
@@ -25,4 +28,3 @@ include::org/sfvl/demo/HeroExperienceTest.should_gainxp_and_levelup_bounded_full
 include::org/sfvl/demo/HeroExperienceTest.should_show_when_gainxp.approved.adoc[leveloffset=+2]
 include::org/sfvl/demo/HeroExperienceTest.experience_points_needed_to_go_to_the_next_level.approved.adoc[leveloffset=+2]
 include::org/sfvl/demo/HeroExperienceTest.experience_points_needed_to_go_to_the_next_level_with_boost_equals_1.approved.adoc[leveloffset=+2]
-

@@ -107,7 +107,7 @@ public class FindLambdaMethod {
         }
 
 //        try {
-            final List<Method> methods = Arrays.stream(aClass.getMethods())
+            final List<Method> methods = Arrays.stream(aClass.getDeclaredMethods())
                     .filter(m -> m.getName().equals(methodName))
                     .collect(Collectors.toList());
 

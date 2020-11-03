@@ -31,7 +31,10 @@ On the board, the current player is in bold: *Chet*, Pat +
 A player who has a penalty has his name enclosed in square brackets: [Chet] +
 The number of points is displayed behind the player's name: Chet &#x2783; +
 
+
+
 == Functional examples
+
 
 
 include::com/adaptionsoft/games/uglytrivia/GameTest.player_advances.approved.adoc[leveloffset=+2]
@@ -40,4 +43,3 @@ include::com/adaptionsoft/games/uglytrivia/GameTest.win_the_game.approved.adoc[l
 include::com/adaptionsoft/games/uglytrivia/GameTest.jail.approved.adoc[leveloffset=+2]
 include::com/adaptionsoft/games/uglytrivia/GameTest.player_stay_in_penality_box.approved.adoc[leveloffset=+2]
 include::com/adaptionsoft/games/uglytrivia/GameTest.play_until_someone_wins.approved.adoc[leveloffset=+2]
-

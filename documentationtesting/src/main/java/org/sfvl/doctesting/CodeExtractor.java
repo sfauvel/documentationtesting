@@ -35,9 +35,10 @@ public class CodeExtractor {
      */
     static {
         if (builder == null) {
+            final PathProvider pathProvider = new PathProvider();
             builder = new JavaProjectBuilder();
-            builder.addSourceTree(new File("src/main/java"));
-            builder.addSourceTree(new File("src/test/java"));
+            builder.addSourceTree(pathProvider.getProjectPath().resolve(Paths.get("src/main/java")).toFile());
+            builder.addSourceTree(pathProvider.getProjectPath().resolve(Paths.get("src/test/java")).toFile());
         }
     }
 
@@ -103,6 +104,7 @@ public class CodeExtractor {
 
     public static class CodeExtractorVisitor extends VoidVisitorAdapter<StringBuffer> {
         final CompilationUnit cu;
+
         public CodeExtractorVisitor(Class<?> classToExtract) {
             SourceRoot sourceRoot = new SourceRoot(Paths.get("src/test/java"));
 
@@ -188,4 +190,5 @@ public class CodeExtractor {
         }
         return buffer.toString();
     }
+
 }

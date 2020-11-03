@@ -11,9 +11,11 @@ Learn more here link:{github-pages}[]
 
 View source of project on link:{github-repo}/samples/tech_junit5_extension[Github]
 
+
+
 == DemoTest
+
 Demo of a simple usage to generate documentation.
 
 include::org/sfvl/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+2]
 include::org/sfvl/demo/DemoTest.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+2]
-

@@ -12,14 +12,37 @@ Learn more here link:{github-pages}[]
 
 View source of project on link:{github-repo}/documentationtesting[Github]
 
-== ApprovalsExtension
 
 
-include::junitextension/ApprovalsExtensionTest.using_extension.approved.adoc[leveloffset=+2]
-include::junitextension/ApprovalsExtensionTest.using_displayName.approved.adoc[leveloffset=+2]
+== Extract information from method reference
 
+FindLambdaMethod class provides tools to find reference method name.
+
+include::junitextension/FindLambdaMethodTest.find_method_name.approved.adoc[leveloffset=+2]
+include::junitextension/FindLambdaMethodTest.find_method.approved.adoc[leveloffset=+2]
+
+== MainDocumentationTest
+
+
+
+include::MainDocumentationTest.document_structure.approved.adoc[leveloffset=+2]
+
+== DocWriter
+
+
+
+include::junitextension/DocWriterTest.doc_writer_usage.approved.adoc[leveloffset=+2]
+include::junitextension/DocWriterTest.format_title.approved.adoc[leveloffset=+2]
+include::junitextension/DocWriterTest.add_description_using_comment.approved.adoc[leveloffset=+2]
+
+== DocAsTestBaseTest
+
+
+
+include::junitinheritance/DocAsTestBaseTest.title.approved.adoc[leveloffset=+2]
 
 == CodeExtractor
+
 Extract information from code.
 
 include::CodeExtractorTest.extract_code_from_class.approved.adoc[leveloffset=+2]
@@ -28,24 +51,13 @@ include::CodeExtractorTest.extract_part_of_code_from_method.approved.adoc[levelo
 include::CodeExtractorTest.extract_class_comment.approved.adoc[leveloffset=+2]
 include::CodeExtractorTest.extract_method_comment.approved.adoc[leveloffset=+2]
 
+== ApprovalsExtension
 
-== DocAsTestBaseTest
+JUnit5 extension that verify written document matches with approved one.
 
-
-include::junitinheritance/DocAsTestBaseTest.title.approved.adoc[leveloffset=+2]
-
-
-== DocWriter
+It checks that everything written during test is identical to the approved content.
 
 
-include::junitextension/DocWriterTest.doc_writer_usage.approved.adoc[leveloffset=+2]
-include::junitextension/DocWriterTest.format_title.approved.adoc[leveloffset=+2]
-include::junitextension/DocWriterTest.add_description_using_comment.approved.adoc[leveloffset=+2]
 
-
-== Extract information from method reference
-FindLambdaMethod class provides tools to find reference method name.
-
-include::junitextension/FindLambdaMethodTest.find_method_name.approved.adoc[leveloffset=+2]
-include::junitextension/FindLambdaMethodTest.find_method.approved.adoc[leveloffset=+2]
-
+include::junitextension/ApprovalsExtensionTest.using_extension.approved.adoc[leveloffset=+2]
+include::junitextension/ApprovalsExtensionTest.using_displayName.approved.adoc[leveloffset=+2]

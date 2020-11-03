@@ -12,6 +12,7 @@ import org.sfvl.doctesting.NotIncludeToDoc;
 import static org.junit.platform.engine.discovery.DiscoverySelectors.selectClass;
 
 @DisplayName("ApprovalsExtension")
+@ClassToDocument(clazz = ApprovalsExtension.class)
 class ApprovalsExtensionTest {
 
     private final DocWriter docWriter = new DocWriter();

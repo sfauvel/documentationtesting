@@ -3,13 +3,9 @@ package org.sfvl;
 import org.sfvl.docformatter.FormatterDocumentation;
 import org.sfvl.doctesting.DocTestingDocumentation;
 import org.sfvl.doctesting.MainDocumentation;
-import org.sfvl.doctesting.NotIncludeToDoc;
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.nio.file.Path;
 
 public class DocumentationTestingDocumentation extends MainDocumentation {
 
@@ -18,10 +14,10 @@ public class DocumentationTestingDocumentation extends MainDocumentation {
     }
 
     @Override
-    protected String getMethodDocumentation(String packageToScan) {
-        return  "This project is composed of two main packages.\n\n" +
-                "* "+linkToClass(DocTestingDocumentation.class)+": Tools to make test validating generated files.\n" +
-                "* "+linkToClass(FormatterDocumentation.class)+": Utilities to format documentation.";
+    protected String getMethodDocumentation(String packageToScan, Path docFilePath) {
+        return "This project is composed of two main packages.\n\n" +
+                "* " + linkToClass(DocTestingDocumentation.class) + ": Tools to make test validating generated files.\n" +
+                "* " + linkToClass(FormatterDocumentation.class) + ": Utilities to format documentation.";
     }
 
     private String linkToClass(Class<?> clazz) {

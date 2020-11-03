@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 
 /**
- * Base class for test.
+ * JUnit5 extension that verify written document matches with approved one.
  *
  * It checks that everything written during test is identical to the approved content.
  */

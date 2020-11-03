@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
+import org.sfvl.doctesting.junitextension.ClassToDocument;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,10 +15,9 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,7 +31,6 @@ public class MainDocumentation {
     private static final String DOCUMENTATION_FILENAME = "Documentation";
     private static final PathProvider pathProvider = new PathProvider();
     private final Path docRootPath;
-    private Path docFilePath;
 
     public MainDocumentation() {
         this("Documentation");
@@ -63,23 +62,63 @@ public class MainDocumentation {
     }
 
     public void generate(String packageToScan, String documentationFilename) throws IOException {
-        docFilePath = docRootPath.resolve(documentationFilename + ".adoc");
-        final String content = getDocumentationContent(packageToScan);
+        final Path docFilePath = docRootPath.resolve(documentationFilename + ".adoc");
+        final String content = getDocumentationContent(packageToScan, docFilePath);
 
         try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
             writeDoc(fileWriter, content);
         }
     }
 
-    protected String getDocumentationContent(String packageToScan) {
-        final String testsDocumentation = getMethodDocumentation(packageToScan);
+    private <K, V> String mapToString(Map<K, V> map, Function<Map.Entry<K, V>, List<String>> transform, String delimiter) {
 
-        final String header = getHeader();
-
-        return header + testsDocumentation;
+        return map.entrySet().stream()
+                .map(transform)
+                .flatMap(Collection::stream)
+                .collect(Collectors.joining(delimiter)
+                );
     }
 
-    protected String getMethodDocumentation(String packageToScan) {
+    private <K, V> String mapToString(Map<K, V> map, BiFunction<K, V, String> transform, String delimiter) {
+
+        return map.entrySet().stream()
+                .map(e -> transform.apply(e.getKey(), e.getValue()))
+                .collect(Collectors.joining(delimiter)
+                );
+    }
+
+    /**
+     * Documentation is composed with the header following by each test classes documentation.
+     *
+     * A class documentation is composed with a title and a description.
+     * Each test method has created a file which is included  to document the class.
+     *
+     * You can overwrite methods to modify document generated.
+     * @param packageToScan
+     * @param docFilePath
+     * @return
+     */
+    protected String getDocumentationContent(String packageToScan, Path docFilePath) {
+
+        Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
+        final Map<Class<?>, List<Method>> methodsByClass = testMethods.stream()
+                .collect(Collectors.groupingBy(Method::getDeclaringClass));
+
+        BiFunction<Class<?>, List<Method>, String> documentClass = (clazz, methods) ->
+                String.join("\n\n",
+                        "== " + getTestClassTitle(clazz),
+                        getDescription(clazz),
+                        includeMethods(methods, docFilePath)
+                );
+
+        return String.join("\n\n",
+                getHeader(),
+                mapToString(methodsByClass, documentClass, "\n\n")
+        );
+
+    }
+
+    protected String getMethodDocumentation(String packageToScan, Path docFilePath) {
         Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
 
         final Map<Class<?>, List<Method>> methodsByClass = testMethods.stream().collect(Collectors.groupingBy(
@@ -90,15 +129,28 @@ public class MainDocumentation {
                 .sorted(Comparator.comparing(e -> e.getKey().getSimpleName()))
                 .map(e -> "== "
                         + getTestClassTitle(e)
-                        + "\n" + CodeExtractor.getComment(e.getKey())
+                        + "\n" + getDescription(e.getKey())
                         + "\n\n"
-                        + includeMethods(e.getValue())
+                        + includeMethods(e.getValue(), docFilePath)
                         + "\n\n"
                 )
                 .collect(Collectors.joining("\n"));
 
-        //System.out.println(testsDocumentation);
         return testsDocumentation;
+    }
+
+    protected String getDescription(Class<?> classToDocument) {
+        List<String> description = new ArrayList<>();
+
+        final ClassToDocument annotation = classToDocument.getAnnotation(ClassToDocument.class);
+        if (annotation != null) {
+            final Class<?> clazz = annotation.clazz();
+            final String comment = CodeExtractor.getComment(clazz);
+            description.add(comment);
+        }
+        description.add(CodeExtractor.getComment(classToDocument));
+        return description.stream()
+                .collect(Collectors.joining("\n\n"));
     }
 
     protected String getHeader() {
@@ -130,7 +182,10 @@ public class MainDocumentation {
     }
 
     protected String getTestClassTitle(Map.Entry<Class<?>, List<Method>> e) {
-        Class<?> testClass = e.getKey();
+        return getTestClassTitle(e.getKey());
+    }
+
+    protected String getTestClassTitle(Class<?> testClass) {
         DisplayName annotation = testClass.getAnnotation(DisplayName.class);
         if (annotation != null) {
             return annotation.value();
@@ -139,16 +194,18 @@ public class MainDocumentation {
         }
     }
 
-    protected String includeMethods(List<Method> testMethods) {
+    protected String includeMethods(List<Method> testMethods, Path docFilePath) {
 
         return getMethodsInOrder(testMethods)
                 .map(m -> new DocumentationNamer(docRootPath, m))
-                .map(m -> {
-                    final String filename = m.getApprovalName() + ".approved.adoc";
-                    return docFilePath.getParent().relativize(Paths.get(m.getSourceFilePath())).resolve(filename);
-                })
+                .map(m -> getRelativizedPath(m, docFilePath))
                 .map(m -> "include::" + m + "[leveloffset=+2]")
                 .collect(Collectors.joining("\n"));
+    }
+
+    protected Path getRelativizedPath(DocumentationNamer m, Path docFilePath) {
+        final String filename = m.getApprovalName() + ".approved.adoc";
+        return docFilePath.getParent().relativize(Paths.get(m.getSourceFilePath())).resolve(filename);
     }
 
     private Stream<Method> getMethodsInOrder(List<Method> testMethods) {

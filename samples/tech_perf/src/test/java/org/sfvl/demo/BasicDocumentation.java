@@ -3,9 +3,9 @@ package org.sfvl.demo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.sfvl.Person;
-import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
 import org.sfvl.doctesting.MainDocumentation;
 import org.sfvl.doctesting.PathProvider;
+import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
@@ -31,7 +31,7 @@ public class BasicDocumentation extends MainDocumentation {
     }
 
     @Override
-    protected String getDocumentationContent(String packageToScan) {
+    protected String getDocumentationContent(String packageToScan, Path docFilePath) {
 
         final Map<String, String> perfAttributes = new HashMap<>();
         String lines = "";
@@ -68,11 +68,11 @@ public class BasicDocumentation extends MainDocumentation {
 
         return getHeader() +
                 perfDocumentation +
-                getMethodDocumentation(packageToScan);
+                getMethodDocumentation(packageToScan, docFilePath);
     }
 
     @Override
-    protected String getMethodDocumentation(String packageToScan) {
+    protected String getMethodDocumentation(String packageToScan, Path docFilePath) {
         Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
 
         Map<Class<?>, List<Method>> methodsByClass;
@@ -89,7 +89,7 @@ public class BasicDocumentation extends MainDocumentation {
                         + getTestClassTitle(e)
                         + "\n" + getComment(e.getKey())
                         + "\n\n"
-                        + includeMethods(e.getValue())
+                        + includeMethods(e.getValue(), docFilePath)
                         + "\n\n"
                 )
                 .collect(Collectors.joining("\n"));
