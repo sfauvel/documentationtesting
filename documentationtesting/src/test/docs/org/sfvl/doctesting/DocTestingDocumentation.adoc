@@ -14,18 +14,16 @@ View source of project on link:{github-repo}/documentationtesting[Github]
 
 
 
-== MainDocumentationTest
+== ApprovalsExtension
+
+JUnit5 extension that verify written document matches with approved one.
+
+It checks that everything written during test is identical to the approved content.
 
 
 
-include::MainDocumentationTest.document_structure.approved.adoc[leveloffset=+2]
-
-== Extract information from method reference
-
-FindLambdaMethod class provides tools to find reference method name.
-
-include::junitextension/FindLambdaMethodTest.find_method_name.approved.adoc[leveloffset=+2]
-include::junitextension/FindLambdaMethodTest.find_method.approved.adoc[leveloffset=+2]
+include::junitextension/ApprovalsExtensionTest.using_extension.approved.adoc[leveloffset=+2]
+include::junitextension/ApprovalsExtensionTest.using_displayName.approved.adoc[leveloffset=+2]
 
 == CodeExtractor
 
@@ -51,13 +49,16 @@ include::junitextension/DocWriterTest.doc_writer_usage.approved.adoc[leveloffset
 include::junitextension/DocWriterTest.format_title.approved.adoc[leveloffset=+2]
 include::junitextension/DocWriterTest.add_description_using_comment.approved.adoc[leveloffset=+2]
 
-== ApprovalsExtension
+== Extract information from method reference
 
-JUnit5 extension that verify written document matches with approved one.
+FindLambdaMethod class provides tools to find reference method name.
 
-It checks that everything written during test is identical to the approved content.
+include::junitextension/FindLambdaMethodTest.find_method_name.approved.adoc[leveloffset=+2]
+include::junitextension/FindLambdaMethodTest.find_method.approved.adoc[leveloffset=+2]
+
+== MainDocumentationTest
 
 
 
-include::junitextension/ApprovalsExtensionTest.using_extension.approved.adoc[leveloffset=+2]
-include::junitextension/ApprovalsExtensionTest.using_displayName.approved.adoc[leveloffset=+2]
+include::MainDocumentationTest.document_structure.approved.adoc[leveloffset=+2]
+include::MainDocumentationTest.select_methods_to_add.approved.adoc[leveloffset=+2]

@@ -79,10 +79,22 @@ public class MainDocumentation {
                 );
     }
 
-    private <K, V> String mapToString(Map<K, V> map, BiFunction<K, V, String> transform, String delimiter) {
+    private <K, V> String mapToString(Map<K, V> map, BiFunction<K, V, String> transform, String delimiter, Comparator<Map.Entry<K, V>> comparator) {
+        return streamToString(
+                map.entrySet().stream().sorted(comparator),
+                transform,
+                delimiter);
+    }
 
-        return map.entrySet().stream()
-                .map(e -> transform.apply(e.getKey(), e.getValue()))
+    private <K, V> String mapToString(Map<K, V> map, BiFunction<K, V, String> transform, String delimiter) {
+        return streamToString(
+                map.entrySet().stream(),
+                transform,
+                delimiter);
+    }
+
+    private <K, V> String streamToString(Stream<Map.Entry<K, V>> stream, BiFunction<K, V, String> transform, String delimiter) {
+        return stream.map(e -> transform.apply(e.getKey(), e.getValue()))
                 .collect(Collectors.joining(delimiter)
                 );
     }
@@ -94,12 +106,19 @@ public class MainDocumentation {
      * Each test method has created a file which is included  to document the class.
      *
      * You can overwrite methods to modify document generated.
+     *
      * @param packageToScan
      * @param docFilePath
      * @return
      */
     protected String getDocumentationContent(String packageToScan, Path docFilePath) {
+        return String.join("\n\n",
+                getHeader(),
+                getMethodDocumentation(packageToScan, docFilePath)
+        );
+    }
 
+    protected String getMethodDocumentation(String packageToScan, Path docFilePath) {
         Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
         final Map<Class<?>, List<Method>> methodsByClass = testMethods.stream()
                 .collect(Collectors.groupingBy(Method::getDeclaringClass));
@@ -111,32 +130,7 @@ public class MainDocumentation {
                         includeMethods(methods, docFilePath)
                 );
 
-        return String.join("\n\n",
-                getHeader(),
-                mapToString(methodsByClass, documentClass, "\n\n")
-        );
-
-    }
-
-    protected String getMethodDocumentation(String packageToScan, Path docFilePath) {
-        Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
-
-        final Map<Class<?>, List<Method>> methodsByClass = testMethods.stream().collect(Collectors.groupingBy(
-                m -> m.getDeclaringClass()
-        ));
-
-        String testsDocumentation = methodsByClass.entrySet().stream()
-                .sorted(Comparator.comparing(e -> e.getKey().getSimpleName()))
-                .map(e -> "== "
-                        + getTestClassTitle(e)
-                        + "\n" + getDescription(e.getKey())
-                        + "\n\n"
-                        + includeMethods(e.getValue(), docFilePath)
-                        + "\n\n"
-                )
-                .collect(Collectors.joining("\n"));
-
-        return testsDocumentation;
+        return mapToString(methodsByClass, documentClass, "\n\n", Comparator.comparing(e -> e.getKey().getSimpleName()));
     }
 
     protected String getDescription(Class<?> classToDocument) {

@@ -1,0 +1,36 @@
+= Select methods to add
+
+
+.MainDocumentation methods overwritten
+[source, java, indent=0]
+----
+
+            @Override
+            protected String getMethodDocumentation(String packageToScan, Path docFilePath) {
+                return "== A specific documentation\n\n"
+                        + "My description without included any test documentation.";
+            }
+
+
+----
+.Custom document generated
+----
+:toc: left
+:nofooter:
+:stem:
+
+\include::../../../readme.adoc[leveloffset=+1]
+
+NOTE: The examples shown here are generated from the source code.
+They therefore represent the behavior of the application at any times.
+Non regression is ensured by checking the absence of change in this document.
+Learn more here link:{github-pages}[]
+
+View source of project on link:{github-repo}/documentationtesting[Github]
+
+
+
+== A specific documentation
+
+My description without included any test documentation.
+----
