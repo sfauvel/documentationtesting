@@ -1,10 +1,10 @@
 package org.sfvl.application.fizzbuzz;
 
-import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.DemoDocumentation;
 
 import java.io.IOException;
 
-public class FizzBuzzDocumentation extends MainDocumentation {
+public class FizzBuzzDocumentation extends DemoDocumentation {
 
     public FizzBuzzDocumentation() {
         super("FizzBuzz");

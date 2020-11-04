@@ -1,10 +1,10 @@
 package org.sfvl.demo;
 
-import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.DemoDocumentation;
 
 import java.io.IOException;
 
-public class BasicDocumentation extends MainDocumentation {
+public class BasicDocumentation extends DemoDocumentation {
 
     public BasicDocumentation() {
         super("JUnit5 extension");

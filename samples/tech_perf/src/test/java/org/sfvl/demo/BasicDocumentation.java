@@ -3,7 +3,7 @@ package org.sfvl.demo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.sfvl.Person;
-import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.DemoDocumentation;
 import org.sfvl.doctesting.PathProvider;
 import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
 import org.w3c.dom.NamedNodeMap;
@@ -24,7 +24,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class BasicDocumentation extends MainDocumentation {
+public class BasicDocumentation extends DemoDocumentation {
 
     public BasicDocumentation() {
         super("Performance");

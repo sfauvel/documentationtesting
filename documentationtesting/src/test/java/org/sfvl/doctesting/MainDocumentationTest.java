@@ -36,6 +36,11 @@ class MainDocumentationTest {
         }
 
         @Override
+        protected String generalInformation() {
+            return "";
+        }
+
+        @Override
         protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
             return new HashSet(methods);
         }

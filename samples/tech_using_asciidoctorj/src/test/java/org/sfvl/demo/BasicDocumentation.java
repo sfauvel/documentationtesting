@@ -4,7 +4,7 @@ import org.asciidoctor.Asciidoctor;
 import org.asciidoctor.OptionsBuilder;
 import org.asciidoctor.SafeMode;
 import org.asciidoctor.jruby.AsciiDocDirectoryWalker;
-import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.DemoDocumentation;
 import org.sfvl.doctesting.PathProvider;
 
 import java.io.File;
@@ -18,7 +18,7 @@ import static org.asciidoctor.Asciidoctor.Factory.create;
 /**
  * Generate documentation and convert it to html using asciidoctorj.
  */
-public class BasicDocumentation extends MainDocumentation {
+public class BasicDocumentation extends DemoDocumentation {
 
     public BasicDocumentation() {
         super("Asciidoctorj");

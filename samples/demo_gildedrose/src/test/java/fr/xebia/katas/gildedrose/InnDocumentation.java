@@ -1,10 +1,10 @@
 package fr.xebia.katas.gildedrose;
 
-import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.DemoDocumentation;
 
 import java.io.IOException;
 
-public class InnDocumentation extends MainDocumentation {
+public class InnDocumentation extends DemoDocumentation {
     public InnDocumentation() {
         super("Gilded Rose");
     }

@@ -1,12 +1,12 @@
 package org.sfvl;
 
-import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.DemoDocumentation;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class GameOfLifeDocumentation extends MainDocumentation {
+public class GameOfLifeDocumentation extends DemoDocumentation {
 
     public GameOfLifeDocumentation() {
         super("Game of life");

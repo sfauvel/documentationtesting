@@ -48,6 +48,12 @@ public class MainDocumentation {
     public Path getDocRootPath() {
         return docRootPath;
     }
+    public Path getGitRootPath() {
+        return pathProvider.getGitRootPath();
+    }
+    public Path getProjectPath() {
+        return pathProvider.getProjectPath();
+    }
 
 
     public void generate() throws IOException {
@@ -159,12 +165,7 @@ public class MainDocumentation {
     }
 
     protected String generalInformation() {
-        final Path projectFolderPath = pathProvider.getGitRootPath().relativize(pathProvider.getProjectPath());
-        return "NOTE: The examples shown here are generated from the source code.\n" +
-                "They therefore represent the behavior of the application at any times.\n" +
-                "Non regression is ensured by checking the absence of change in this document.\n" +
-                "Learn more here link:{github-pages}[]\n\n" +
-                "View source of project on link:{github-repo}/" + projectFolderPath.toString() + "[Github]\n\n";
+        return "";
     }
 
     protected String getDocumentOptions() {

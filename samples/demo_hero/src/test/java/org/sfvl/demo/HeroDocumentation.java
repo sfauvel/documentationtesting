@@ -1,10 +1,10 @@
 package org.sfvl.demo;
 
-import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.DemoDocumentation;
 
 import java.io.IOException;
 
-public class HeroDocumentation extends MainDocumentation {
+public class HeroDocumentation extends DemoDocumentation {
 
     public HeroDocumentation() {
         super("Hero");

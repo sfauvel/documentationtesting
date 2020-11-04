@@ -1,6 +1,6 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.DemoDocumentation;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class TriviaDocumentation extends MainDocumentation {
+public class TriviaDocumentation extends DemoDocumentation {
 
     public TriviaDocumentation() {
         this("Trivia");

@@ -1,10 +1,10 @@
 package org.sfvl.demo;
 
-import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.DemoDocumentation;
 
 import java.io.IOException;
 
-public class TennisDocumentation extends MainDocumentation {
+public class TennisDocumentation extends DemoDocumentation {
 
     public TennisDocumentation() {
         super("Tennis");
