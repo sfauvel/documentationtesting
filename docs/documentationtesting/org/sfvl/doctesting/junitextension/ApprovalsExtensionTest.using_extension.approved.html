@@ -442,15 +442,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="paragraph">
-<p>This is an example of ApprovalsExtension usage.</p>
+<p>This is an example of <code>ApprovalsExtension</code> usage.</p>
 </div>
 <div class="paragraph">
-<p>You have to write a class and add RegisterExtension annotation on an attribute
-This extension will check that content of DocWriter has not changed since the last time.
-DocWriter passed to the ApprovalsExtension is used to indicated what we want to write to the output.</p>
+<p>You have to write a class and add <code>RegisterExtension</code> annotation on an attribute
+This extension will check that content of <code>DocWriter</code> has not changed since the last time.
+<code>DocWriter</code> passed to the <code>ApprovalsExtension</code> is used to indicated what we want to write to the output.</p>
 </div>
 <div class="listingblock">
-<div class="title">Test example using ApprovalExtension</div>
+<div class="title">Test example using <code>ApprovalsExtension</code></div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">class MyTest {
     private final DocWriter docWriter = new DocWriter();
@@ -458,7 +458,7 @@ DocWriter passed to the ApprovalsExtension is used to indicated what we want to 
     ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
     @Test
-    public void testA() {
+    public void test_A() {
         docWriter.write("In my *test*");
     }
 
@@ -466,19 +466,23 @@ DocWriter passed to the ApprovalsExtension is used to indicated what we want to 
 </div>
 </div>
 <div class="paragraph">
-<p>When executing test method testA, a file MyTest.testA.approved.adoc is generated and contains the following text</p>
+<p>When executing test method <code>test_A</code>, a file <code>MyTest.test_A.approved.adoc</code> is generated and contains the following text</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>= TestA
+<pre>= Test A
 
 In my *test*</pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Filename and title come from method name.
+The chapter content contains what was written using <code>DocWriter</code></p>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-27 22:42:36 UTC
+Last updated 2020-11-04 20:21:22 UTC
 </div>
 </div>
 </body>

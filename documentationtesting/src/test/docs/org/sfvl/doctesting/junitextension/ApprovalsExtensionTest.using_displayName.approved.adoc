@@ -8,5 +8,5 @@ include::../../../../../java/org/sfvl/doctesting/junitextension/ApprovalsExtensi
 
 Generated file with DisplayName content as title
 ----
-include::UsingDisplayNameTest.testA.approved.adoc[]
+include::UsingDisplayNameTest.test_A.approved.adoc[]
 ----

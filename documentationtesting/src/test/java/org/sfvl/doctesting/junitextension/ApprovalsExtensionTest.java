@@ -23,31 +23,31 @@ class ApprovalsExtensionTest {
         docWriter.write(texts);
     }
 
-//    SummaryGeneratingListener listener = new SummaryGeneratingListener();
-
     @Test
     public void using_extension() {
         final Class<?> testClass = MyTest.class;
 
         runTestClass(testClass);
 
-        write("This is an example of ApprovalsExtension usage.",
+        write("This is an example of `" + ApprovalsExtension.class.getSimpleName() + "` usage.",
                 "",
-                "You have to write a class and add RegisterExtension annotation on an attribute",
-                "This extension will check that content of DocWriter has not changed since the last time.",
-                "DocWriter passed to the ApprovalsExtension is used to indicated what we want to write to the output.",
+                "You have to write a class and add `" + RegisterExtension.class.getSimpleName() + "` annotation on an attribute",
+                "This extension will check that content of `" + DocWriter.class.getSimpleName() + "` has not changed since the last time.",
+                "`" + DocWriter.class.getSimpleName() + "` passed to the `" + ApprovalsExtension.class.getSimpleName() + "` is used to indicated what we want to write to the output.",
                 "","");
 
-        write(".Test example using ApprovalExtension",
+        write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`",
                 includeSourceWithTag(testClass.getSimpleName()),
                 "", "");
 
-        final String testMethod = FindLambdaMethod.getName(MyTest::testA);
+        final String testMethod = FindLambdaMethod.getName(MyTest::test_A);
         final String filename = testClass.getSimpleName() + "." + testMethod + ".approved.adoc";
-        write("When executing test method " + testMethod + ", a file " + filename + " is generated and contains the following text",
+        write("When executing test method `" + testMethod + "`, a file `" + filename + "` is generated and contains the following text",
                 "----",
                 "include::" + filename + "[]",
-                "----");
+                "----",
+                "Filename and title come from method name.",
+                "The chapter content contains what was written using `" + DocWriter.class.getSimpleName() + "`");
 
     }
 
@@ -63,7 +63,7 @@ class ApprovalsExtensionTest {
                 includeSourceWithTag(testClass.getSimpleName()),
                 "", "");
 
-        final String testMethod = FindLambdaMethod.getName(MyTest::testA);
+        final String testMethod = FindLambdaMethod.getName(UsingDisplayNameTest::test_A);
         final String filename = testClass.getSimpleName() + "." + testMethod + ".approved.adoc";
         write("Generated file with DisplayName content as title",
                 "----",
@@ -102,7 +102,7 @@ class MyTest {
     ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
     @Test
-    public void testA() {
+    public void test_A() {
         docWriter.write("In my *test*");
     }
 
@@ -119,7 +119,7 @@ class UsingDisplayNameTest {
 
     @Test
     @DisplayName("Title for this test")
-    public void testA() {
+    public void test_A() {
         docWriter.write("In my *test*");
     }
 }

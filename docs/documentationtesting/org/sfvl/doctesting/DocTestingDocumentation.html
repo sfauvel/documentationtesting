@@ -497,15 +497,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_using_extension">Using extension</h3>
 <div class="paragraph">
-<p>This is an example of ApprovalsExtension usage.</p>
+<p>This is an example of <code>ApprovalsExtension</code> usage.</p>
 </div>
 <div class="paragraph">
-<p>You have to write a class and add RegisterExtension annotation on an attribute
-This extension will check that content of DocWriter has not changed since the last time.
-DocWriter passed to the ApprovalsExtension is used to indicated what we want to write to the output.</p>
+<p>You have to write a class and add <code>RegisterExtension</code> annotation on an attribute
+This extension will check that content of <code>DocWriter</code> has not changed since the last time.
+<code>DocWriter</code> passed to the <code>ApprovalsExtension</code> is used to indicated what we want to write to the output.</p>
 </div>
 <div class="listingblock">
-<div class="title">Test example using ApprovalExtension</div>
+<div class="title">Test example using <code>ApprovalsExtension</code></div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">MyTest</span> <span class="o">{</span>
     <span class="kd">private</span> <span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">docWriter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">();</span>
@@ -513,7 +513,7 @@ DocWriter passed to the ApprovalsExtension is used to indicated what we want to 
     <span class="nc">ApprovalsExtension</span> <span class="n">extension</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ApprovalsExtension</span><span class="o">(</span><span class="n">docWriter</span><span class="o">);</span>
 
     <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testA</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
         <span class="n">docWriter</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
     <span class="o">}</span>
 
@@ -521,14 +521,18 @@ DocWriter passed to the ApprovalsExtension is used to indicated what we want to 
 </div>
 </div>
 <div class="paragraph">
-<p>When executing test method testA, a file MyTest.testA.approved.adoc is generated and contains the following text</p>
+<p>When executing test method <code>test_A</code>, a file <code>MyTest.test_A.approved.adoc</code> is generated and contains the following text</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>= TestA
+<pre>= Test A
 
 In my *test*</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Filename and title come from method name.
+The chapter content contains what was written using <code>DocWriter</code></p>
 </div>
 </div>
 <div class="sect2">
@@ -546,7 +550,7 @@ In my *test*</pre>
 
     <span class="nd">@Test</span>
     <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Title for this test"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testA</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
         <span class="n">docWriter</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
