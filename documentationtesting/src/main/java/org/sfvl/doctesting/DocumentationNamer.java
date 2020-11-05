@@ -5,6 +5,9 @@ import org.junit.jupiter.api.TestInfo;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Class to define documentation file name from a test method.
@@ -24,9 +27,20 @@ public class DocumentationNamer {
     }
 
     public String getApprovalName() {
-        return String.join(".",
-                testMethod.getDeclaringClass().getSimpleName(),
-                testMethod.getName());
+
+        final List<String> classesTree = new ArrayList<String>();
+
+        final Class<?> declaringClass = testMethod.getDeclaringClass();
+        classesTree.add(0, declaringClass.getSimpleName());
+
+        Class<?> enclosingClass = declaringClass.getEnclosingClass();
+        while (enclosingClass != null) {
+            classesTree.add(0, enclosingClass.getSimpleName());
+            enclosingClass = enclosingClass.getEnclosingClass();
+        }
+
+        classesTree.add(testMethod.getName());
+        return classesTree.stream().collect(Collectors.joining("."));
     }
 
     public String getSourceFilePath() {

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Extract class comment</title>
+<title>Adding 3 simple numbers</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -438,105 +438,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Extract class comment</h1>
+<h1>Adding 3 simple numbers</h1>
 </div>
 <div id="content">
-<div class="listingblock">
-<div class="title">How to extract comment of a class</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">final String comment = CodeExtractor.getComment(ClassWithCommentToExtract.class);</code></pre>
+<div class="paragraph">
+<p>2 + 3 + 4 = 9</p>
 </div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">/**
- * Comment of the class.
- */
-class ClassWithCommentToExtract {
-
-    /**
-     * Comment of the method without parameters.
-     */
-    public void methodWithoutParameters() {
-
-    }
-
-    /**
-     * Comment from the method with parameters.
-     */
-    public void methodWithParameters(int id, String name) {
-
-    }
-
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Comment extracted from class</div>
-<div class="content">
-<pre>Comment of the class.</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">How to extract comment of a class</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">final String comment = CodeExtractor.getComment(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);</code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">/**
- * Comment of the class.
- */
-class ClassNestedWithCommentToExtract {
-
-    /**
-     * Comment of the subclass.
-     */
-    class SubClassNestedWithCommentToExtract {
-
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Comment extracted from class</div>
-<div class="content">
-<pre>Comment of the subclass.</pre>
-</div>
-</div>
-</div>
-</div>
-<style>
-.inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-#content {
-   max-width: unset;
-   padding-left: 5%;
-   padding-right: 5%;
-}
-</style>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-05 12:34:13 UTC
+Last updated 2020-11-04 22:51:23 UTC
 </div>
 </div>
 </body>

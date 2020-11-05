@@ -446,6 +446,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_using_extension">Using extension</a></li>
 <li><a href="#_using_displayname">Using displayName</a></li>
+<li><a href="#_nested_class">Nested class</a></li>
+<li><a href="#_documentation">Documentation</a></li>
 </ul>
 </li>
 <li><a href="#_codeextractor">CodeExtractor</a>
@@ -455,6 +457,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_extract_a_part_of_code_from_method">Extract a part of code from method</a></li>
 <li><a href="#_extract_class_comment">Extract class comment</a></li>
 <li><a href="#_extract_method_comment">Extract method comment</a></li>
+</ul>
+</li>
+<li><a href="#_demonestedtest_2">DemoNestedTest</a>
+<ul class="sectlevel2">
+<li><a href="#_adding_2">Adding</a></li>
+<li><a href="#_multiply_2">Multiply</a></li>
 </ul>
 </li>
 <li><a href="#_docastestbasetest">DocAsTestBaseTest</a>
@@ -564,6 +572,145 @@ The chapter content contains what was written using <code>DocWriter</code></p>
 <pre>= Title for this test
 
 In my *test*</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nested_class">Nested class</h3>
+<div class="paragraph">
+<p>Nested class can be used to organize tests.
+Each nested class create a nested title.</p>
+</div>
+<div class="paragraph">
+<p><code>ApprovalsExtension</code> must be register on each test when <code>̀DocWriter</code> could be declare once on enclosing class..Test example using nested class</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
+ * Demo of a simple usage to generate documentation.
+ */</span>
+<span class="nd">@NotIncludeToDoc</span>
+<span class="kd">class</span> <span class="nc">DemoNestedTest</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * Document of Addition operations.
+     */</span>
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">Adding</span> <span class="o">{</span>
+        <span class="nd">@RegisterExtension</span>
+        <span class="nc">ApprovalsExtension</span> <span class="n">extension</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ApprovalsExtension</span><span class="o">(</span><span class="n">writer</span><span class="o">);</span>
+
+        <span class="nd">@Test</span>
+        <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Adding 2 simple numbers"</span><span class="o">)</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_be_5_when_adding_2_and_3</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">writer</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d + %d = %d"</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="o">));</span>
+        <span class="o">}</span>
+
+        <span class="cm">/**
+         * A nested test.
+         */</span>
+        <span class="nd">@Test</span>
+        <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Adding 3 simple numbers"</span><span class="o">)</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_be_9_when_adding_2_3_and_4</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">writer</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d + %d + %d = %d"</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">Multiply</span> <span class="o">{</span>
+        <span class="nd">@RegisterExtension</span>
+        <span class="nc">ApprovalsExtension</span> <span class="n">extension</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ApprovalsExtension</span><span class="o">(</span><span class="n">writer</span><span class="o">);</span>
+
+        <span class="nd">@Test</span>
+        <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Multiply 2 simple numbers"</span><span class="o">)</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_be_12_when_multiply_4_and_3</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">writer</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d * %d = %d"</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">3</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Generated files in <code>org/sfvl/doctesting/junitextension</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc</p>
+</li>
+<li>
+<p>DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc</p>
+</li>
+<li>
+<p>DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Document generated</div>
+<div class="content">
+<pre>:toc: left
+:nofooter:
+:stem:
+
+= Documentation
+
+
+
+== DemoNestedTest
+
+Demo of a simple usage to generate documentation.
+
+=== Adding
+
+Document of Addition operations.
+
+include::DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+3]
+include::DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+3]
+
+=== Multiply
+
+
+
+include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+3]</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_documentation">Documentation</h3>
+<div class="sect3">
+<h4 id="_demonestedtest">DemoNestedTest</h4>
+<div class="paragraph">
+<div class="title">final rendeering</div>
+<p>Demo of a simple usage to generate documentation.</p>
+</div>
+<div class="sect4">
+<h5 id="_adding">Adding</h5>
+<div class="paragraph">
+<p>Document of Addition operations.</p>
+</div>
+<div class="sect5">
+<h6 id="_adding_2_simple_numbers">Adding 2 simple numbers</h6>
+<div class="paragraph">
+<p>2 + 3 = 5</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_adding_3_simple_numbers">Adding 3 simple numbers</h6>
+<div class="paragraph">
+<p>2 + 3 + 4 = 9</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_multiply">Multiply</h5>
+<div class="sect5">
+<h6 id="_multiply_2_simple_numbers">Multiply 2 simple numbers</h6>
+<div class="paragraph">
+<p>4 * 3 = 12</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -846,6 +993,42 @@ Another comment with a specific value indicate the end of the code.</p>
 </div>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">How to extract comment of a class</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">ClassNestedWithCommentToExtract</span><span class="o">.</span><span class="na">SubClassNestedWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
+ * Comment of the class.
+ */</span>
+<span class="kd">class</span> <span class="nc">ClassNestedWithCommentToExtract</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Comment of the subclass.
+     */</span>
+    <span class="kd">class</span> <span class="nc">SubClassNestedWithCommentToExtract</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">Comment extracted from class</div>
+<div class="content">
+<pre>Comment of the subclass.</pre>
+</div>
+</div>
+</div>
+</div>
 <style>
 .inline {
    display: inline-block;
@@ -982,6 +1165,41 @@ Another comment with a specific value indicate the end of the code.</p>
    padding-right: 5%;
 }
 </style>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_demonestedtest_2">DemoNestedTest</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Demo of a simple usage to generate documentation.</p>
+</div>
+<div class="sect2">
+<h3 id="_adding_2">Adding</h3>
+<div class="paragraph">
+<p>Document of Addition operations.</p>
+</div>
+<div class="sect3">
+<h4 id="_adding_2_simple_numbers_2">Adding 2 simple numbers</h4>
+<div class="paragraph">
+<p>2 + 3 = 5</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_adding_3_simple_numbers_2">Adding 3 simple numbers</h4>
+<div class="paragraph">
+<p>2 + 3 + 4 = 9</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_multiply_2">Multiply</h3>
+<div class="sect3">
+<h4 id="_multiply_2_simple_numbers_2">Multiply 2 simple numbers</h4>
+<div class="paragraph">
+<p>4 * 3 = 12</p>
+</div>
+</div>
 </div>
 </div>
 </div>

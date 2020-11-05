@@ -1,0 +1,24 @@
+:toc: left
+:nofooter:
+:stem:
+
+= Documentation
+
+
+
+== DemoNestedTest
+
+Demo of a simple usage to generate documentation.
+
+== Multiply
+
+
+
+include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]
+
+== Adding
+
+
+
+include::DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+2]
+include::DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+2]

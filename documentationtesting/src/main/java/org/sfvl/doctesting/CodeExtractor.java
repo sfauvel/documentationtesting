@@ -47,7 +47,7 @@ public class CodeExtractor {
     }
 
     public static String getComment(Class<?> clazz) {
-        JavaClass javaClass = builder.getClassByName(clazz.getCanonicalName());
+        JavaClass javaClass = builder.getClassByName(clazz.getName());
 
         return Optional.ofNullable(javaClass.getComment()).orElse("");
     }

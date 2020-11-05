@@ -48,9 +48,11 @@ public class MainDocumentation {
     public Path getDocRootPath() {
         return docRootPath;
     }
+
     public Path getGitRootPath() {
         return pathProvider.getGitRootPath();
     }
+
     public Path getProjectPath() {
         return pathProvider.getProjectPath();
     }
@@ -124,19 +126,52 @@ public class MainDocumentation {
         );
     }
 
+    private Class<?> getFirstEnclosingClass(Method method) {
+
+        Class<?> firstEnclosingClass = method.getDeclaringClass();
+        while (firstEnclosingClass.getEnclosingClass() != null) {
+            firstEnclosingClass = firstEnclosingClass.getEnclosingClass();
+        }
+        return firstEnclosingClass;
+    }
+
+    private Class<?> getFirstEnclosingClassBefore(Method method, Class<?> clazz) {
+        Class<?> firstEnclosingClass = method.getDeclaringClass();
+        while (firstEnclosingClass.getEnclosingClass() != null && firstEnclosingClass.getEnclosingClass() != clazz) {
+            firstEnclosingClass = firstEnclosingClass.getEnclosingClass();
+        }
+        return firstEnclosingClass;
+
+    }
+
+    // TODO rename this  method. It extract content but there is already a getDocumentationContent
     protected String getMethodDocumentation(String packageToScan, Path docFilePath) {
         Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
         final Map<Class<?>, List<Method>> methodsByClass = testMethods.stream()
-                .collect(Collectors.groupingBy(Method::getDeclaringClass));
+                .collect(Collectors.groupingBy(this::getFirstEnclosingClass));
 
-        BiFunction<Class<?>, List<Method>, String> documentClass = (clazz, methods) ->
-                String.join("\n\n",
-                        "== " + getTestClassTitle(clazz),
-                        getDescription(clazz),
-                        includeMethods(methods, docFilePath)
-                );
+
+        BiFunction<Class<?>, List<Method>, String> documentClass = (clazz, methods) -> getClassDocumentation(clazz, methods, docFilePath, 2);
 
         return mapToString(methodsByClass, documentClass, "\n\n", Comparator.comparing(e -> e.getKey().getSimpleName()));
+    }
+
+    private String getClassDocumentation(Class<?> clazz, List<Method> methods, Path docFilePath, int depth) {
+        final Map<Class<?>, List<Method>> methodsByClass = methods.stream()
+                .collect(Collectors.groupingBy(method -> getFirstEnclosingClassBefore(method, clazz)));
+
+        String content = (methodsByClass.size() == 1)
+                ? includeMethods(methods, docFilePath, depth)
+                :  methodsByClass.entrySet().stream()
+                // TODO We have to sort by position in file like methods and not by name.
+                .sorted(Comparator.comparing(e -> e.getKey().getSimpleName()))
+                .map(e -> getClassDocumentation(e.getKey(), e.getValue(), docFilePath, depth + 1))
+                .collect(Collectors.joining("\n\n"));
+
+        return String.join("\n\n",
+                new String(new char[depth]).replace("\0", "=") + " " + getTestClassTitle(clazz),
+                getDescription(clazz),
+                content);
     }
 
     protected String getDescription(Class<?> classToDocument) {
@@ -190,11 +225,15 @@ public class MainDocumentation {
     }
 
     protected String includeMethods(List<Method> testMethods, Path docFilePath) {
+        return includeMethods(testMethods, docFilePath, 2);
+    }
+
+    protected String includeMethods(List<Method> testMethods, Path docFilePath, final int leveloffset) {
 
         return getMethodsInOrder(testMethods)
                 .map(m -> new DocumentationNamer(docRootPath, m))
                 .map(m -> getRelativizedPath(m, docFilePath))
-                .map(m -> "include::" + m + "[leveloffset=+2]")
+                .map(m -> String.format("include::%s[leveloffset=+%d]", m, leveloffset))
                 .collect(Collectors.joining("\n"));
     }
 
@@ -212,7 +251,7 @@ public class MainDocumentation {
         JavaProjectBuilder builder = createJavaProjectBuilderWithTestPath();
 
         Method firstMethod = testMethods.get(0);
-        JavaClass javaClass = builder.getClassByName(firstMethod.getDeclaringClass().getCanonicalName());
+        JavaClass javaClass = builder.getClassByName(firstMethod.getDeclaringClass().getName());
 
         return javaClass.getMethods().stream()
                 .filter(m -> methodsByName.containsKey(m.getName()))

@@ -1,0 +1,49 @@
+= Nested class
+
+Nested class can be used to organize tests.
+Each nested class create a nested title.
+
+`ApprovalsExtension` must be register on each test when `̀DocWriter` could be declare once on enclosing class..Test example using nested class
+[source, java, indent=0]
+----
+include::../../../../../java/org/sfvl/doctesting/junitextension/ApprovalsExtensionTest.java[tag=DemoNestedTest]
+----
+
+Generated files in `org/sfvl/doctesting/junitextension`:
+
+* DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc
+
+* DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc
+
+* DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc
+
+.Document generated
+----
+:toc: left
+:nofooter:
+:stem:
+
+= Documentation
+
+
+
+== DemoNestedTest
+
+Demo of a simple usage to generate documentation.
+
+=== Adding
+
+Document of Addition operations.
+
+\include::DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+3]
+\include::DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+3]
+
+=== Multiply
+
+
+
+\include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+3]
+----
+
+.final rendeering
+include::DemoNestedTest.adoc[]

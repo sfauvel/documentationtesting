@@ -1,0 +1,3 @@
+= Multiply 2 simple numbers
+
+4 * 3 = 12

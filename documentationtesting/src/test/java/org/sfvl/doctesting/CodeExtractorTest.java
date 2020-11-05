@@ -174,19 +174,38 @@ class CodeExtractorTest {
     @Test
     @DisplayName(value = "Extract class comment")
     public void extract_class_comment(TestInfo testInfo) {
-        doc.write(
-                ".How to extract comment of a class",
-                extractMarkedCode(testInfo),
-                "");
+        {
+            doc.write(
+                    ".How to extract comment of a class",
+                    extractMarkedCode(testInfo, "1"),
+                    "");
 
-        // >>>
-        final String comment = CodeExtractor.getComment(ClassWithCommentToExtract.class);
-        // <<<
 
-        doc.writeInline(includeSourceWithTag("classWithComment"), "", "");
+            // >>>1
+            final String comment = CodeExtractor.getComment(ClassWithCommentToExtract.class);
+            // <<<1
 
-        formatCommentExtracted("Comment extracted from class",
-                comment);
+            doc.writeInline(includeSourceWithTag("classWithComment"), "", "");
+
+            formatCommentExtracted("Comment extracted from class",
+                    comment);
+        }
+        {
+            doc.write(
+                    ".How to extract comment of a class",
+                    extractMarkedCode(testInfo, "2"),
+                    "");
+
+
+            // >>>2
+            final String comment = CodeExtractor.getComment(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);
+            // <<<2
+
+            doc.writeInline(includeSourceWithTag("classNestedWithCommentToExtract"), "", "");
+
+            formatCommentExtracted("Comment extracted from class",
+                    comment);
+        }
     }
 
     @Test
@@ -315,3 +334,21 @@ class ClassWithCommentToExtract {
 
 }
 // end::classWithComment[]
+
+
+@NotIncludeToDoc
+// tag::classNestedWithCommentToExtract[]
+
+/**
+ * Comment of the class.
+ */
+class ClassNestedWithCommentToExtract {
+
+    /**
+     * Comment of the subclass.
+     */
+    class SubClassNestedWithCommentToExtract {
+
+    }
+}
+// end::classNestedWithCommentToExtract[]
