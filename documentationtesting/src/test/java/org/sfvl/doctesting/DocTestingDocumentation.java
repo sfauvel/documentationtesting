@@ -16,11 +16,23 @@ public class DocTestingDocumentation extends MainDocumentation {
                 generalInformation();
     }
 
+    public boolean toBeInclude(Class<?> clazz) {
+        if (clazz == null) {
+            return true;
+        }
+        return !clazz.isAnnotationPresent(NotIncludeToDoc.class)
+                && toBeInclude(clazz.getDeclaringClass());
+
+    }
+    public boolean toBeInclude(Method method) {
+        return !method.isAnnotationPresent(NotIncludeToDoc.class)
+            && toBeInclude(method.getDeclaringClass());
+    }
+
     @Override
     protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
         return super.getAnnotatedMethod(annotation, packageToScan).stream()
-                .filter(m -> !(m.isAnnotationPresent(NotIncludeToDoc.class)
-                        || m.getDeclaringClass().isAnnotationPresent(NotIncludeToDoc.class)))
+                .filter(this::toBeInclude)
                 .collect(Collectors.toSet());
     }
 
