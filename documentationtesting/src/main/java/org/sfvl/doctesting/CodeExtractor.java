@@ -12,16 +12,12 @@ import com.thoughtworks.qdox.model.JavaClass;
 import com.thoughtworks.qdox.model.JavaMethod;
 import com.thoughtworks.qdox.model.JavaType;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CodeExtractor {
@@ -100,6 +96,32 @@ public class CodeExtractor {
     public static String extractMethodBody(Class<?> classToExtract, String methodToExtract) {
         String code = methodSource(classToExtract, methodToExtract);
         return code.substring(code.indexOf("{") + 1, code.lastIndexOf("}"));
+    }
+
+    public static List<Class<?>> enclosingClasses(Class<?> clazz) {
+        final ArrayList<Class<?>> classes = new ArrayList<>();
+        Class<?> enclosingClass = clazz;
+        do {
+            classes.add(0, enclosingClass);
+            enclosingClass = enclosingClass.getEnclosingClass();
+        } while (enclosingClass != null);
+        return classes;
+    }
+
+    public static Class<?> getFirstEnclosingClassBefore(Method method, Class<?> clazzBefore) {
+        return getFirstEnclosingClassBefore(method.getDeclaringClass(), clazzBefore);
+
+    }
+
+    public static Class<?> getFirstEnclosingClassBefore(Class<?> clazz, Class<?> clazzBefore) {
+        if (clazz.equals(clazzBefore)) {
+            return clazz;
+        }
+        Class<?> firstEnclosingClass = clazz;
+        while (firstEnclosingClass.getEnclosingClass() != null && !firstEnclosingClass.getEnclosingClass().equals(clazzBefore)) {
+            firstEnclosingClass = firstEnclosingClass.getEnclosingClass();
+        }
+        return firstEnclosingClass;
     }
 
     public static class CodeExtractorVisitor extends VoidVisitorAdapter<StringBuffer> {

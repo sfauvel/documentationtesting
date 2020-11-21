@@ -11,6 +11,8 @@ import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 
 import java.lang.reflect.Method;
 import java.util.Optional;
+import java.util.function.BiConsumer;
+import java.util.stream.Collectors;
 
 /**
  * Extract information from code.
@@ -271,6 +273,73 @@ class CodeExtractorTest {
             formatCommentExtracted("From method",
                     comment.orElse(""));
         }
+    }
+
+    @Test
+    public void extract_enclosing_classes(TestInfo testInfo) throws NoSuchMethodException {
+        {
+            final Class<?> clazz = CodeExtractorTest.class;
+            doc.write("[%autowidth]", "Class list of `" + clazz.getCanonicalName() + "` give :",
+                    "",
+                    "[%autowidth]",
+                    "|====",
+                    CodeExtractor.enclosingClasses(clazz).stream()
+                            .map(Class::getSimpleName)
+                            .collect(Collectors.joining(" | ", "| ", "")),
+                    "|====",
+                    "", ""
+            );
+        }
+        {
+            final Class<?> clazz = MyClass.MySubClass.ASubClassOfMySubClass.class;
+            doc.write("Class list of `" + clazz.getCanonicalName() + "` give :",
+                    "",
+                    "[%autowidth]",
+                    "|====",
+                    CodeExtractor.enclosingClasses(clazz).stream()
+                            .map(Class::getSimpleName)
+                            .collect(Collectors.joining(" | ", "| ", "")),
+                    "|====",
+                    "", ""
+            );
+        }
+
+    }
+
+    @Test
+    public void extract_first_enclosing_classes_before_another(TestInfo testInfo) throws NoSuchMethodException {
+
+        BiConsumer<Class<?>, Class<?>> write_enclosing = (clazz, clazzBefore) -> {
+            doc.write(String.format("First class of `%s` before `%s` give :",
+                    clazz.getSimpleName(),
+                    (clazzBefore == null ? "null" : clazzBefore.getSimpleName())
+                    ),
+                    "",
+                    "`*" + CodeExtractor.getFirstEnclosingClassBefore(clazz, clazzBefore).getSimpleName() + "*`",
+                    "", ""
+            );
+        };
+
+        final Class<?> fromClass = MyClass.MySubClass.ASubClassOfMySubClass.class;
+        doc.write("Extract from class `" + fromClass.getName()
+                + "` using `" + "CodeExtractor.getFirstEnclosingClassBefore" + "`\n\n");
+
+        write_enclosing.accept(
+                fromClass,
+                MyClass.MySubClass.ASubClassOfMySubClass.class);
+
+        write_enclosing.accept(
+                fromClass,
+                MyClass.MySubClass.class);
+
+
+        write_enclosing.accept(
+                fromClass,
+                MyClass.class);
+
+        write_enclosing.accept(
+                fromClass,
+                null);
     }
 
     private String extractMarkedCode(TestInfo testInfo) {

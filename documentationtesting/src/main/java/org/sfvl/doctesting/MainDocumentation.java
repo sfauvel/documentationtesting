@@ -126,30 +126,12 @@ public class MainDocumentation {
         );
     }
 
-    private Class<?> getFirstEnclosingClass(Method method) {
-
-        Class<?> firstEnclosingClass = method.getDeclaringClass();
-        while (firstEnclosingClass.getEnclosingClass() != null) {
-            firstEnclosingClass = firstEnclosingClass.getEnclosingClass();
-        }
-        return firstEnclosingClass;
-    }
-
-    private Class<?> getFirstEnclosingClassBefore(Method method, Class<?> clazz) {
-        Class<?> firstEnclosingClass = method.getDeclaringClass();
-        while (firstEnclosingClass.getEnclosingClass() != null && firstEnclosingClass.getEnclosingClass() != clazz) {
-            firstEnclosingClass = firstEnclosingClass.getEnclosingClass();
-        }
-        return firstEnclosingClass;
-
-    }
-
     // TODO rename this  method. It extract content but there is already a getDocumentationContent
     protected String getMethodDocumentation(String packageToScan, Path docFilePath) {
         Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
-        final Map<Class<?>, List<Method>> methodsByClass = testMethods.stream()
-                .collect(Collectors.groupingBy(this::getFirstEnclosingClass));
 
+        final Map<Class<?>, List<Method>> methodsByClass = testMethods.stream()
+                .collect(Collectors.groupingBy(method -> CodeExtractor.getFirstEnclosingClassBefore(method, null)));
 
         BiFunction<Class<?>, List<Method>, String> documentClass = (clazz, methods) -> getClassDocumentation(clazz, methods, docFilePath, 2);
 
@@ -158,7 +140,7 @@ public class MainDocumentation {
 
     private String getClassDocumentation(Class<?> clazz, List<Method> methods, Path docFilePath, int depth) {
         final Map<Class<?>, List<Method>> methodsByClass = methods.stream()
-                .collect(Collectors.groupingBy(method -> getFirstEnclosingClassBefore(method, clazz)));
+                .collect(Collectors.groupingBy(method -> CodeExtractor.getFirstEnclosingClassBefore(method, clazz)));
 
         String content = (methodsByClass.size() == 1)
                 ? includeMethods(methods, docFilePath, depth)

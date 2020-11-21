@@ -1,0 +1,34 @@
+= Extract first enclosing classes before another
+
+Extract from class `org.sfvl.doctesting.MyClass$MySubClass$ASubClassOfMySubClass` using `CodeExtractor.getFirstEnclosingClassBefore`
+
+First class of `ASubClassOfMySubClass` before `ASubClassOfMySubClass` give :
+
+`*ASubClassOfMySubClass*`
+
+First class of `ASubClassOfMySubClass` before `MySubClass` give :
+
+`*ASubClassOfMySubClass*`
+
+First class of `ASubClassOfMySubClass` before `MyClass` give :
+
+`*MySubClass*`
+
+First class of `ASubClassOfMySubClass` before `null` give :
+
+`*MyClass*`
+
+++++
+<style>
+.inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+#content {
+   max-width: unset;
+   padding-left: 5%;
+   padding-right: 5%;
+}
+</style>
+++++

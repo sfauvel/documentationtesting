@@ -1,0 +1,31 @@
+= Extract enclosing classes
+
+[%autowidth]
+Class list of `org.sfvl.doctesting.CodeExtractorTest` give :
+
+[%autowidth]
+|====
+| CodeExtractorTest
+|====
+
+Class list of `org.sfvl.doctesting.MyClass.MySubClass.ASubClassOfMySubClass` give :
+
+[%autowidth]
+|====
+| MyClass | MySubClass | ASubClassOfMySubClass
+|====
+
+++++
+<style>
+.inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+#content {
+   max-width: unset;
+   padding-left: 5%;
+   padding-right: 5%;
+}
+</style>
+++++
