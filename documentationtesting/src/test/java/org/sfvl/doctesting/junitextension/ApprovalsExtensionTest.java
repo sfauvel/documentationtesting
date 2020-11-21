@@ -139,6 +139,9 @@ class ApprovalsExtensionTest {
         write("", "", ".final rendeering",
                 "include::" + testClass.getSimpleName() + ".adoc[]"
         );
+
+        write("", "", "This result is obtains from the source code", "");
+        write(this.includeSourceWithTag(testClass.getSimpleName()));
     }
 
 
