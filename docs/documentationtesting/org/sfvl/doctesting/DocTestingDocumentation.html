@@ -712,56 +712,6 @@ include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ado
 <div class="paragraph">
 <p>4 * 3 = 12</p>
 </div>
-<div class="paragraph">
-<p>This result is obtains from the source code</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
- * Demo of a simple usage to generate documentation.
- */</span>
-<span class="nd">@NotIncludeToDoc</span>
-<span class="kd">class</span> <span class="nc">DemoNestedTest</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">();</span>
-
-    <span class="cm">/**
-     * Document of Addition operations.
-     */</span>
-    <span class="nd">@Nested</span>
-    <span class="kd">class</span> <span class="nc">Adding</span> <span class="o">{</span>
-        <span class="nd">@RegisterExtension</span>
-        <span class="nc">ApprovalsExtension</span> <span class="n">extension</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ApprovalsExtension</span><span class="o">(</span><span class="n">writer</span><span class="o">);</span>
-
-        <span class="nd">@Test</span>
-        <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Adding 2 simple numbers"</span><span class="o">)</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_be_5_when_adding_2_and_3</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">writer</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d + %d = %d"</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="o">));</span>
-        <span class="o">}</span>
-
-        <span class="cm">/**
-         * A nested test.
-         */</span>
-        <span class="nd">@Test</span>
-        <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Adding 3 simple numbers"</span><span class="o">)</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_be_9_when_adding_2_3_and_4</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">writer</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d + %d + %d = %d"</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="o">));</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Nested</span>
-    <span class="kd">class</span> <span class="nc">Multiply</span> <span class="o">{</span>
-        <span class="nd">@RegisterExtension</span>
-        <span class="nc">ApprovalsExtension</span> <span class="n">extension</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ApprovalsExtension</span><span class="o">(</span><span class="n">writer</span><span class="o">);</span>
-
-        <span class="nd">@Test</span>
-        <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Multiply 2 simple numbers"</span><span class="o">)</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_be_12_when_multiply_4_and_3</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">writer</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d * %d = %d"</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">3</span><span class="o">));</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
 </div>
 </div>
 </div>

@@ -577,56 +577,6 @@ include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ado
 <div class="paragraph">
 <p>4 * 3 = 12</p>
 </div>
-<div class="paragraph">
-<p>This result is obtains from the source code</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">/**
- * Demo of a simple usage to generate documentation.
- */
-@NotIncludeToDoc
-class DemoNestedTest {
-    private final DocWriter writer = new DocWriter();
-
-    /**
-     * Document of Addition operations.
-     */
-    @Nested
-    class Adding {
-        @RegisterExtension
-        ApprovalsExtension extension = new ApprovalsExtension(writer);
-
-        @Test
-        @DisplayName("Adding 2 simple numbers")
-        public void should_be_5_when_adding_2_and_3() {
-            writer.write(String.format("%d + %d = %d", 2, 3, 2 + 3));
-        }
-
-        /**
-         * A nested test.
-         */
-        @Test
-        @DisplayName("Adding 3 simple numbers")
-        public void should_be_9_when_adding_2_3_and_4() {
-            writer.write(String.format("%d + %d + %d = %d", 2, 3, 4, 2 + 3 + 4));
-        }
-    }
-
-    @Nested
-    class Multiply {
-        @RegisterExtension
-        ApprovalsExtension extension = new ApprovalsExtension(writer);
-
-        @Test
-        @DisplayName("Multiply 2 simple numbers")
-        public void should_be_12_when_multiply_4_and_3() {
-            writer.write(String.format("%d * %d = %d", 4, 3, 4 * 3));
-        }
-    }
-}</code></pre>
-</div>
-</div>
 </div>
 </div>
 </div>
