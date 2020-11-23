@@ -42,7 +42,7 @@ class ApprovalsExtensionTest {
 
         write("This is an example of `" + ApprovalsExtension.class.getSimpleName() + "` usage.",
                 "",
-                "You have to write a class and add `" + RegisterExtension.class.getSimpleName() + "` annotation on an attribute",
+                "You have to write a class and add `" + RegisterExtension.class.getSimpleName() + "` annotation on an attribute.",
                 "This extension will check that content of `" + DocWriter.class.getSimpleName() + "` has not changed since the last time.",
                 "`" + DocWriter.class.getSimpleName() + "` passed to the `" + ApprovalsExtension.class.getSimpleName() + "` is used to indicated what we want to write to the output.",
                 "", "");
@@ -111,8 +111,8 @@ class ApprovalsExtensionTest {
         final MainDocumentation mainDocumentation = new MainDocumentation() {
             @Override
             protected String getHeader() {
-                return getDocumentOptions() +
-                        "= " + DOCUMENTATION_TITLE + "\n\n";
+                return joinParagraph(getDocumentOptions(),
+                        "= " + DOCUMENTATION_TITLE);
             }
 
             @Override

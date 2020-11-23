@@ -5,8 +5,6 @@
 
 = Documentation
 
-
-
 == ApprovalsExtension
 
 JUnit5 extension that verify written document matches with approved one.
@@ -33,13 +31,9 @@ include::CodeExtractorTest.extract_first_enclosing_classes_before_another.approv
 
 == DocAsTestBaseTest
 
-
-
 include::junitinheritance/DocAsTestBaseTest.title.approved.adoc[leveloffset=+2]
 
 == DocWriter
-
-
 
 include::junitextension/DocWriterTest.doc_writer_usage.approved.adoc[leveloffset=+2]
 include::junitextension/DocWriterTest.format_title.approved.adoc[leveloffset=+2]
@@ -53,8 +47,6 @@ include::junitextension/FindLambdaMethodTest.find_method_name.approved.adoc[leve
 include::junitextension/FindLambdaMethodTest.find_method.approved.adoc[leveloffset=+2]
 
 == MainDocumentationTest
-
-
 
 include::MainDocumentationTest.document_structure.approved.adoc[leveloffset=+2]
 include::MainDocumentationTest.select_methods_to_add.approved.adoc[leveloffset=+2]

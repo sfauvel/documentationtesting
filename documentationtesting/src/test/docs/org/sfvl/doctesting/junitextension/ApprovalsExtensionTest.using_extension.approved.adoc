@@ -2,7 +2,7 @@
 
 This is an example of `ApprovalsExtension` usage.
 
-You have to write a class and add `RegisterExtension` annotation on an attribute
+You have to write a class and add `RegisterExtension` annotation on an attribute.
 This extension will check that content of `DocWriter` has not changed since the last time.
 `DocWriter` passed to the `ApprovalsExtension` is used to indicated what we want to write to the output.
 

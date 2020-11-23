@@ -150,10 +150,10 @@ public class MainDocumentation {
                 .map(e -> getClassDocumentation(e.getKey(), e.getValue(), docFilePath, depth + 1))
                 .collect(Collectors.joining("\n\n"));
 
-        return String.join("\n\n",
-                new String(new char[depth]).replace("\0", "=") + " " + getTestClassTitle(clazz),
-                getDescription(clazz),
-                content);
+        return joinParagraph(
+                        new String(new char[depth]).replace("\0", "=") + " " + getTestClassTitle(clazz),
+                        getDescription(clazz),
+                        content);
     }
 
     protected String getDescription(Class<?> classToDocument) {
@@ -173,11 +173,12 @@ public class MainDocumentation {
     protected String getHeader() {
         final Path readmePath = pathProvider.getProjectPath().resolve(Paths.get("readme.adoc"));
 
-        final String header = getDocumentOptions() +
+        final String header = joinParagraph(
+                getDocumentOptions(),
                 (readmePath.toFile().exists()
-                        ? "include::../../../readme.adoc[leveloffset=+1]\n\n"
-                        : "= " + DOCUMENTATION_TITLE + "\n\n") +
-                generalInformation();
+                        ? "include::../../../readme.adoc[leveloffset=+1]"
+                        : "= " + DOCUMENTATION_TITLE),
+                generalInformation());
         return header;
     }
 
@@ -186,7 +187,7 @@ public class MainDocumentation {
     }
 
     protected String getDocumentOptions() {
-        return ":toc: left\n:nofooter:\n:stem:\n\n";
+        return ":toc: left\n:nofooter:\n:stem:";
     }
 
     private void writeDoc(FileWriter fileWriter, String content) throws IOException {
@@ -257,6 +258,13 @@ public class MainDocumentation {
         final Path testPath = pathProvider.getProjectPath().resolve(Paths.get("src", "test", "java"));
         builder.addSourceTree(testPath.toFile());
         return builder;
+    }
+
+    protected String joinParagraph(String... paragraph) {
+        return Arrays.stream(paragraph)
+                .filter(Objects::nonNull)
+                .filter(t -> !t.trim().isEmpty())
+                .collect(Collectors.joining("\n\n"));
     }
 
     public static void main(String... args) throws IOException {

@@ -504,7 +504,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>This is an example of <code>ApprovalsExtension</code> usage.</p>
 </div>
 <div class="paragraph">
-<p>You have to write a class and add <code>RegisterExtension</code> annotation on an attribute
+<p>You have to write a class and add <code>RegisterExtension</code> annotation on an attribute.
 This extension will check that content of <code>DocWriter</code> has not changed since the last time.
 <code>DocWriter</code> passed to the <code>ApprovalsExtension</code> is used to indicated what we want to write to the output.</p>
 </div>
@@ -652,8 +652,6 @@ Each nested class create a nested title.</p>
 
 = Documentation
 
-
-
 == DemoNestedTest
 
 Demo of a simple usage to generate documentation.
@@ -666,8 +664,6 @@ include::DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc[lev
 include::DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+3]
 
 === Multiply
-
-
 
 include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+3]</pre>
 </div>
@@ -1499,11 +1495,7 @@ Each test method has created a file which is included  to document the class.</p
 
 include::../../../readme.adoc[leveloffset=+1]
 
-
-
 == InMainDocBisTest
-
-
 
 include::docs/org/sfvl/doctesting/InMainDocBisTest.testX.approved.adoc[leveloffset=+2]
 
@@ -1614,8 +1606,6 @@ include::InMainDocTest.testB.approved.adoc[leveloffset=+2]</pre>
 :stem:
 
 include::../../../readme.adoc[leveloffset=+1]
-
-
 
 == A specific documentation
 

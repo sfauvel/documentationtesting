@@ -15,11 +15,7 @@ You can overwrite methods to modify document generated.
 
 \include::../../../readme.adoc[leveloffset=+1]
 
-
-
 == InMainDocBisTest
-
-
 
 \include::docs/org/sfvl/doctesting/InMainDocBisTest.testX.approved.adoc[leveloffset=+2]
 

@@ -10,10 +10,10 @@ public class FormatterDocumentation extends MainDocumentation {
 
     @Override
     protected String getHeader() {
-        return ":source-highlighter: rouge\n" +
-                getDocumentOptions() +
-                "= " + DOCUMENTATION_TITLE + "\n\n" +
-                generalInformation();
+        return joinParagraph(
+                ":source-highlighter: rouge\n" + getDocumentOptions(),
+                "= " + DOCUMENTATION_TITLE,
+                generalInformation());
     }
 
     public static void main(String... args) throws IOException {
