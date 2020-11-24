@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Add description</title>
+<title>Formatted title</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -438,47 +438,59 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Add description</h1>
+<h1>Formatted title</h1>
 </div>
 <div id="content">
 <div class="paragraph">
-<p>When test method had a comment, it&#8217;s written after title.</p>
-</div>
-<div class="listingblock">
-<div class="title">Test example with comment on method</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class MyTestWithComment {
-    private final DocWriter docWriter = new DocWriter();
-    @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
-
-    /**
-     * To decribe a method, you can add a comment.
-     * It will be added under title.
-     */
-    @Test
-    public void testA() {
-        docWriter.write("In my *test*");
-    }
-
-}</code></pre>
-</div>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p>= TestA</p>
+<p>Return the name to use as title from a test method.
+It returns the value specified with <em>DisplayName</em> annotation.
+If annotation is not present, this is the method name that will be returned
+after some test formatting (remove '_', uppercase first letter).</p>
 </div>
 <div class="paragraph">
-<p>To decribe a method, you can add a comment.
-It will be added under title.</p>
+<p>It&#8217;s based on value return by <em>displayName</em> method.
+It returns either DisplayName annotation value or method name.</p>
 </div>
-</div>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Display name</th>
+<th class="tableblock halign-left valign-top">Method name</th>
+<th class="tableblock halign-left valign-top">Title</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Get display name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Get display name</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title()</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Simple method to format title</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">display_name_is_not_method_name()</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">display_name_is_not_method_name()</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">test_method_with_test_info(TestInfo)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">test_method_with_test_info</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Test method with test info</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-26 22:36:27 UTC
+Last updated 2020-11-23 23:38:25 UTC
 </div>
 </div>
 </body>

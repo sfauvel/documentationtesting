@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.CodeExtractor;
+import org.sfvl.doctesting.DocWriter;
 
 import java.lang.reflect.Method;
 

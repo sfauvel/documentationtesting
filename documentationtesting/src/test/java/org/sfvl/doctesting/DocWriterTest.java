@@ -1,12 +1,23 @@
-package org.sfvl.doctesting.junitextension;
+package org.sfvl.doctesting;
 
+import com.thoughtworks.qdox.JavaProjectBuilder;
+import com.thoughtworks.qdox.model.JavaClass;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.doctesting.NotIncludeToDoc;
+import org.mockito.Mockito;
+import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.docformatter.AsciidocFormatterTest;
+import org.sfvl.docformatter.Formatter;
+import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 @DisplayName("DocWriter")
 class DocWriterTest {
@@ -124,7 +135,53 @@ class DocWriterTest {
                 "----");
     }
 
+    public void simple_method_to_format_title() {
 
+    }
+
+    @Test
+    @AsciidocFormatterTest.TestOption(includeMethodDoc = "formatTitle")
+    @DisplayName("Formatted title")
+    public void title(TestInfo testinfo) throws NoSuchMethodException {
+        JavaProjectBuilder builder = new JavaProjectBuilder();
+        final JavaClass stringClass = builder.getClassByName(String.class.getCanonicalName());
+        final JavaClass methodClass = builder.getClassByName(Method.class.getCanonicalName());
+
+        final Optional<AsciidocFormatterTest.TestOption> annotation = Optional.ofNullable(testinfo.getTestMethod()
+                .get()
+                .getAnnotation(AsciidocFormatterTest.TestOption.class));
+        annotation.map(AsciidocFormatterTest.TestOption::includeMethodDoc)
+                .filter(name -> !name.isEmpty())
+                .map(methodName -> CodeExtractor.getComment(DocWriter.class, methodName, Arrays.asList(stringClass, methodClass)))
+                .ifPresent(doc -> write(doc.get() + "\n"));
+
+
+        final Method method = FindLambdaMethod.getMethod(DocWriterTest::simple_method_to_format_title);
+        final Method method_with_test_info = FindLambdaMethod.getMethod(DocWriterTest::test_method_with_test_info);
+
+        List<List<? extends Object>> table = new ArrayList<>();
+        table.add(Arrays.asList("Display name", "Method name", "Title"));
+        table.add(getFormatTitleLine("Get display name", method));
+        table.add(getFormatTitleLine("simple_method_to_format_title()", method));
+        table.add(getFormatTitleLine("display_name_is_not_method_name()", method));
+        table.add(getFormatTitleLine("test_method_with_test_info(TestInfo)", method_with_test_info));
+
+        write(new AsciidocFormatter().tableWithHeader(table));
+    }
+
+    public List<String> getFormatTitleLine(TestInfo testInfo) {
+        return getFormatTitleLine(
+                testInfo.getDisplayName(),
+                testInfo.getTestMethod().get()
+        );
+    }
+    public List<String> getFormatTitleLine(String displayName, Method method) {
+        return Arrays.asList(
+                displayName,
+                method.getName(),
+                new DocWriter().formatTitle(displayName, method)
+        );
+    }
 }
 
 @NotIncludeToDoc

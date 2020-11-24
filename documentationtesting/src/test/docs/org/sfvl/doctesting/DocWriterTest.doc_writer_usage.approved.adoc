@@ -7,7 +7,7 @@ A title is add to the output.
 .DocWriter usage
 [source, java, indent=0]
 ----
-include::../../../../../java/org/sfvl/doctesting/junitextension/DocWriterTest.java[tag=doc_writer_usage]
+include::../../../../../java/org/sfvl/doctesting/DocWriterTest.java[tag=doc_writer_usage]
 ----
 
 

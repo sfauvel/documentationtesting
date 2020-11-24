@@ -8,6 +8,7 @@ import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
+import org.sfvl.doctesting.DocWriter;
 import org.sfvl.doctesting.MainDocumentation;
 import org.sfvl.doctesting.NotIncludeToDoc;
 

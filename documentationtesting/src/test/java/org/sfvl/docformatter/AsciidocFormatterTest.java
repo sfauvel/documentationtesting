@@ -8,7 +8,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.CodeExtractor;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
-import org.sfvl.doctesting.junitextension.DocWriter;
+import org.sfvl.doctesting.DocWriter;
 
 import java.io.FileWriter;
 import java.io.IOException;

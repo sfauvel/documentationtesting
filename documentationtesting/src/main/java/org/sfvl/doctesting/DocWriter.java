@@ -1,4 +1,4 @@
-package org.sfvl.doctesting.junitextension;
+package org.sfvl.doctesting;
 
 import org.sfvl.doctesting.CodeExtractor;
 
@@ -32,14 +32,19 @@ public class DocWriter {
     }
 
     /**
-     * Return name specified in DisplayName annotation.
+     * Return the name to use as title from a test method.
+     * It returns the value specified with _DisplayName_ annotation.
      * If annotation is not present, this is the method name that will be returned
      * after some test formatting (remove '_', uppercase first letter).
+     *
+     * It's based on value return by _displayName_ method.
+     * It returns either DisplayName annotation value or method name.
+     *
      * @param displayName
      * @param methodName
      * @return
      */
-    private String formatTitle(String displayName, Method method) {
+    public String formatTitle(String displayName, Method method) {
         final String parameters = Arrays.stream(method.getParameterTypes())
                 .map(Class::getSimpleName)
                 .collect(Collectors.joining(","));

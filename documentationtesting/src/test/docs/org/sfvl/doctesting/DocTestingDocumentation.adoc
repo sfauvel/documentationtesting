@@ -29,15 +29,12 @@ include::CodeExtractorTest.extract_method_comment.approved.adoc[leveloffset=+2]
 include::CodeExtractorTest.extract_enclosing_classes.approved.adoc[leveloffset=+2]
 include::CodeExtractorTest.extract_first_enclosing_classes_before_another.approved.adoc[leveloffset=+2]
 
-== DocAsTestBaseTest
-
-include::junitinheritance/DocAsTestBaseTest.title.approved.adoc[leveloffset=+2]
-
 == DocWriter
 
-include::junitextension/DocWriterTest.doc_writer_usage.approved.adoc[leveloffset=+2]
-include::junitextension/DocWriterTest.format_title.approved.adoc[leveloffset=+2]
-include::junitextension/DocWriterTest.add_description_using_comment.approved.adoc[leveloffset=+2]
+include::DocWriterTest.doc_writer_usage.approved.adoc[leveloffset=+2]
+include::DocWriterTest.format_title.approved.adoc[leveloffset=+2]
+include::DocWriterTest.add_description_using_comment.approved.adoc[leveloffset=+2]
+include::DocWriterTest.title.approved.adoc[leveloffset=+2]
 
 == Extract information from method reference
 

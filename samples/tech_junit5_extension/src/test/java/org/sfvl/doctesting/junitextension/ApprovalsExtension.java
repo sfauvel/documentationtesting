@@ -5,6 +5,7 @@ import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
+import org.sfvl.doctesting.DocWriter;
 import org.sfvl.doctesting.DocumentationNamer;
 import org.sfvl.doctesting.PathProvider;
 

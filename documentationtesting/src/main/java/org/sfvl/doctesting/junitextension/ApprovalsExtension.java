@@ -5,13 +5,12 @@ import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
+import org.sfvl.doctesting.DocWriter;
 import org.sfvl.doctesting.DocumentationNamer;
 import org.sfvl.doctesting.PathProvider;
 
-import java.lang.reflect.Field;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 /**
  * JUnit5 extension that verify written document matches with approved one.

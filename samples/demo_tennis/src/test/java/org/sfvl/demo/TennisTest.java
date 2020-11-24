@@ -2,10 +2,9 @@ package org.sfvl.demo;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.DocWriter;
+import org.sfvl.doctesting.DocWriter;
 
 import java.util.ArrayList;
 import java.util.List;

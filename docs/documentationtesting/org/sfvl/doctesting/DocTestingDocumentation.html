@@ -461,16 +461,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_extract_first_enclosing_classes_before_another">Extract first enclosing classes before another</a></li>
 </ul>
 </li>
-<li><a href="#_docastestbasetest">DocAsTestBaseTest</a>
-<ul class="sectlevel2">
-<li><a href="#_formatted_title">Formatted title</a></li>
-</ul>
-</li>
 <li><a href="#_docwriter">DocWriter</a>
 <ul class="sectlevel2">
 <li><a href="#_docwriter_usage">DocWriter usage</a></li>
 <li><a href="#_format_title">Format title</a></li>
 <li><a href="#_add_description">Add description</a></li>
+<li><a href="#_formatted_title">Formatted title</a></li>
 </ul>
 </li>
 <li><a href="#_extract_information_from_method_reference">Extract information from method reference</a>
@@ -1248,55 +1244,6 @@ Another comment with a specific value indicate the end of the code.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_docastestbasetest">DocAsTestBaseTest</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_formatted_title">Formatted title</h3>
-<div class="paragraph">
-<p>Optional[Return the name to use as title from a test method .
-It returns the value specified with <em>DisplayName</em> annotation.
-If annotation is not present, this is the method name that will be returned
-after some test formatting (remove '_', uppercase first letter).</p>
-</div>
-<div class="paragraph">
-<p>It&#8217;s based on value return by <em>displayName</em> method.
-It returns either DisplayName annotation value or method name.]</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Display name</th>
-<th class="tableblock halign-left valign-top">Method name</th>
-<th class="tableblock halign-left valign-top">Title</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Get display name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Get display name</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title()</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Simple method to format title</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">display_name_is_not_method_name()</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">display_name_is_not_method_name()</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_docwriter">DocWriter</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -1309,12 +1256,7 @@ A title is add to the output.</p>
 <div class="listingblock">
 <div class="title">DocWriter usage</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">();</span>
-<span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"Some text added to show DocWriter output."</span><span class="o">);</span>
-<span class="kd">final</span> <span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span>
-        <span class="s">"My title"</span><span class="o">,</span>
-        <span class="n">getClass</span><span class="o">().</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doc_writer_usage"</span><span class="o">,</span> <span class="nc">TestInfo</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-<span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Unresolved</span> <span class="n">directive</span> <span class="n">in</span> <span class="nc">DocWriterTest</span><span class="o">.</span><span class="na">doc_writer_usage</span><span class="o">.</span><span class="na">approved</span><span class="o">.</span><span class="na">adoc</span> <span class="o">-</span> <span class="nl">include:</span><span class="o">:../../../../../</span><span class="n">java</span><span class="o">/</span><span class="n">org</span><span class="o">/</span><span class="n">sfvl</span><span class="o">/</span><span class="n">doctesting</span><span class="o">/</span><span class="nc">DocWriterTest</span><span class="o">.</span><span class="na">java</span><span class="o">[</span><span class="n">tag</span><span class="o">=</span><span class="n">doc_writer_usage</span><span class="o">]</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1386,21 +1328,7 @@ A title is add to the output.</p>
 <div class="listingblock">
 <div class="title">Test example with comment on method</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">MyTestWithComment</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">docWriter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">();</span>
-    <span class="nd">@RegisterExtension</span>
-    <span class="nc">ApprovalsExtension</span> <span class="n">extension</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ApprovalsExtension</span><span class="o">(</span><span class="n">docWriter</span><span class="o">);</span>
-
-    <span class="cm">/**
-     * To decribe a method, you can add a comment.
-     * It will be added under title.
-     */</span>
-    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testA</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">docWriter</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
-    <span class="o">}</span>
-
-<span class="o">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Unresolved</span> <span class="n">directive</span> <span class="n">in</span> <span class="nc">DocWriterTest</span><span class="o">.</span><span class="na">add_description_using_comment</span><span class="o">.</span><span class="na">approved</span><span class="o">.</span><span class="na">adoc</span> <span class="o">-</span> <span class="nl">include:</span><span class="o">:../../../../../</span><span class="n">java</span><span class="o">/</span><span class="n">org</span><span class="o">/</span><span class="n">sfvl</span><span class="o">/</span><span class="n">doctesting</span><span class="o">/</span><span class="nc">DocWriterTest</span><span class="o">.</span><span class="na">java</span><span class="o">[</span><span class="n">tag</span><span class="o">=</span><span class="nc">MyTestWithComment</span><span class="o">]</span></code></pre>
 </div>
 </div>
 <div class="sidebarblock">
@@ -1414,6 +1342,55 @@ It will be added under title.</p>
 </div>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_formatted_title">Formatted title</h3>
+<div class="paragraph">
+<p>Return the name to use as title from a test method.
+It returns the value specified with <em>DisplayName</em> annotation.
+If annotation is not present, this is the method name that will be returned
+after some test formatting (remove '_', uppercase first letter).</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s based on value return by <em>displayName</em> method.
+It returns either DisplayName annotation value or method name.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Display name</th>
+<th class="tableblock halign-left valign-top">Method name</th>
+<th class="tableblock halign-left valign-top">Title</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Get display name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Get display name</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title()</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Simple method to format title</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">display_name_is_not_method_name()</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">display_name_is_not_method_name()</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">test_method_with_test_info(TestInfo)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">test_method_with_test_info</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Test method with test info</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>

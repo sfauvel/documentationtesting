@@ -6,16 +6,16 @@ import org.junit.jupiter.api.TestInfo;
 import org.sfvl.doctesting.CodeExtractor;
 import org.sfvl.doctesting.DocumentationNamer;
 import org.sfvl.doctesting.PathProvider;
+import org.sfvl.doctesting.DocWriter;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public abstract class DocAsTestBase {
     protected static final PathProvider pathBuidler = new PathProvider();
-    protected StringBuffer sb = new StringBuffer();
 
+    DocWriter writer = new DocWriter();
     /**
      * Return the name to use as title from a test method .
      * It returns the value specified with _DisplayName_ annotation.
@@ -29,14 +29,7 @@ public abstract class DocAsTestBase {
      * @return
      */
     protected String formatTitle(TestInfo testInfo) {
-        String displayName = testInfo.getDisplayName();
-        String methodName = testInfo.getTestMethod().get().getName();
-        if (displayName.equals(methodName + "()")) {
-            String title = methodName.replace("_", " ");
-            return title.substring(0, 1).toUpperCase() + title.substring(1);
-        } else {
-            return displayName;
-        }
+        return writer.formatTitle(testInfo.getDisplayName(), testInfo.getTestMethod().get());
     }
 
     /**
@@ -65,17 +58,11 @@ public abstract class DocAsTestBase {
      * @param texts
      */
     public void write(String... texts) {
-        sb.append(Arrays.stream(texts).collect(Collectors.joining("\n")));
+        writer.write(texts);
     }
 
     protected String buildContent(TestInfo testInfo) {
         final JavaClass testInfoJavaClass = CodeExtractor.getBuilder().getClassByName(TestInfo.class.getCanonicalName());
-        final String comment1 = CodeExtractor.getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName()).orElse("");
-        final String comment2 = CodeExtractor.getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName(), Arrays.asList(testInfoJavaClass)).orElse("");
-        return String.join("",
-                "= " + formatTitle(testInfo) + "\n\n",
-                CodeExtractor.getComment(testInfo.getTestClass().get(), testInfo.getTestMethod().get().getName())
-                        .map(comment -> comment + "\n\n").orElse(""),
-                sb.toString());
+        return writer.formatOutput(testInfo.getDisplayName(), testInfo.getTestMethod().get());
     }
 }

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Format title</title>
+<title>DocWriter usage</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -438,52 +438,42 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Format title</h1>
+<h1>DocWriter usage</h1>
 </div>
 <div id="content">
 <div class="paragraph">
-<p>When display name is different from test method name, displayName is used as title.</p>
+<p>DocWriter is just a buffer.
+Everything wrote in DocWriter will be returned when asking for output.
+A title is add to the output.</p>
+</div>
+<div class="listingblock">
+<div class="title">DocWriter usage</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">Unresolved directive in DocWriterTest.doc_writer_usage.approved.adoc - include::../../../../../java/org/sfvl/doctesting/DocWriterTest.java[tag=doc_writer_usage]</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Calling formatOutput with DisplayName="My title" and Method=format_title provides</p>
+<p>Output provided</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
 <p>= My title</p>
 </div>
-</div>
+<div class="paragraph">
+<p>DocWriter is just a buffer.
+Everything wrote in DocWriter will be returned when asking for output.
+A title is add to the output.</p>
 </div>
 <div class="paragraph">
-<p>When display name is the same as test method name, name is reformatted.</p>
-</div>
-<div class="paragraph">
-<p>Calling formatOutput with DisplayName="format_title()" and Method=format_title provides</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p>= Format title</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Test method could have TestInfo parameter.</p>
-</div>
-<div class="paragraph">
-<p>Calling formatOutput with DisplayName="test_method_with_test_info(TestInfo)" and Method=test_method_with_test_info provides</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p>= Test method with test info</p>
+<p>Some text added to show DocWriter output.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-03 23:21:57 UTC
+Last updated 2020-11-23 22:40:53 UTC
 </div>
 </div>
 </body>
