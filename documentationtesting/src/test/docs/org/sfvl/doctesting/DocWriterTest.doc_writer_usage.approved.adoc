@@ -5,10 +5,13 @@ Everything wrote in DocWriter will be returned when asking for output.
 A title is add to the output.
 
 .DocWriter usage
-[source, java, indent=0]
-----
-include::../../../../../java/org/sfvl/doctesting/DocWriterTest.java[tag=doc_writer_usage]
-----
+        final DocWriter doc = new DocWriter();
+        doc.write("Some text added to show DocWriter output.");
+        final String output = doc.formatOutput(
+                "My title",
+                getClass().getMethod("doc_writer_usage", TestInfo.class)
+        );
+
 
 
 Output provided

@@ -6,10 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.mockito.Mockito;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.AsciidocFormatterTest;
-import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 
@@ -18,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @DisplayName("DocWriter")
 class DocWriterTest {
@@ -41,18 +41,17 @@ class DocWriterTest {
     @DisplayName("DocWriter usage")
     public void doc_writer_usage(TestInfo testInfo) throws NoSuchMethodException {
 
-        // tag::doc_writer_usage[]
+        // >>>
         final DocWriter doc = new DocWriter();
         doc.write("Some text added to show DocWriter output.");
         final String output = doc.formatOutput(
                 "My title",
                 getClass().getMethod("doc_writer_usage", TestInfo.class)
         );
-        // end::doc_writer_usage[]
+        // <<<
 
         docWriter.write(".DocWriter usage",
-                includeSourceWithTag("doc_writer_usage"),
-                //CodeExtractor.extractPartOfMethod()
+                CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get()),
                 "", "");
 
         docWriter.write("",
@@ -109,6 +108,7 @@ class DocWriterTest {
         final String output = docWriterForTest.formatOutput(name + "()", testMethod);
 
         docWriter.write(".Test example with comment on method",
+  //              CodeExtractor.classSource(MyTestWithComment.class),
                 includeSourceWithTag(MyTestWithComment.class.getSimpleName()),
                 "", "");
 
@@ -126,10 +126,15 @@ class DocWriterTest {
     }
 
     public String includeSourceWithTag(String tag) {
+        final int nb_folder = this.getClass().getPackage().getName().split("\\.").length + 1;
+        final String rootPath = IntStream.range(0, nb_folder)
+                .mapToObj(i -> "..")
+                .collect(Collectors.joining("/"));
+        
         return String.join("\n",
                 "[source, java, indent=0]",
                 "----",
-                String.format("include::../../../../../java/%s.java[tag=%s]",
+                String.format("include::"+rootPath+"/java/%s.java[tag=%s]",
                         getClass().getName().replace(".", "/"),
                         tag),
                 "----");
@@ -182,23 +187,25 @@ class DocWriterTest {
                 new DocWriter().formatTitle(displayName, method)
         );
     }
-}
 
-@NotIncludeToDoc
+    @NotIncludeToDoc
 // tag::MyTestWithComment[]
-class MyTestWithComment {
-    private final DocWriter docWriter = new DocWriter();
-    @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    private static class MyTestWithComment {
+        private final DocWriter docWriter = new DocWriter();
+        @RegisterExtension
+        ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
-    /**
-     * To decribe a method, you can add a comment.
-     * It will be added under title.
-     */
-    @Test
-    public void testA() {
-        docWriter.write("In my *test*");
+        /**
+         * To decribe a method, you can add a comment.
+         * It will be added under title.
+         */
+        @Test
+        public void testA() {
+            docWriter.write("In my *test*");
+        }
+
     }
-
-}
 // end::MyTestWithComment[]
+}
+
+
