@@ -5,7 +5,7 @@
 ====
 [source, java, indent=0]
 ----
-include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=classWithComment]
+include::../../../../java/org/sfvl/doctesting/ClassWithCommentToExtract.java[tag=ClassWithCommentToExtract]
 ----
 
 
@@ -43,7 +43,7 @@ How to extract comment of a method with parameters
 ====
 .From method with parameters.
 ----
-Comment from the method with parameters.
+Comment of the method with two parameters.
 ----
 
 ====
@@ -75,7 +75,7 @@ How to extract comment of a method with parameters using Method object
 ====
 .From method
 ----
-Comment from the method with parameters.
+Comment of the method with two parameters.
 ----
 
 ====

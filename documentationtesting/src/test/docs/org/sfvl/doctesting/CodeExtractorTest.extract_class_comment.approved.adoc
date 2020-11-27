@@ -11,7 +11,7 @@
 ====
 [source, java, indent=0]
 ----
-include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=classWithComment]
+include::../../../../java/org/sfvl/doctesting/ClassWithCommentToExtract.java[tag=ClassWithCommentToExtract]
 ----
 
 
@@ -25,10 +25,35 @@ Comment of the class.
 ----
 
 ====
-.How to extract comment of a subclass
+.How to extract comment of a nested class
 [source, java, indent=0]
 ----
-            final String comment = CodeExtractor.getComment(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);
+            final String comment = CodeExtractor.getComment(CodeExtractorTest.NestedClass.class);
+
+----
+
+[.inline]
+====
+[source, java, indent=0]
+----
+include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=NestedClass]
+----
+
+
+====
+
+[.inline]
+====
+.Comment extracted from class
+----
+Comment of the nested class of CodeExtractorTest.
+----
+
+====
+.How to extract comment of class that is not the main class of his file.
+[source, java, indent=0]
+----
+            final String comment = CodeExtractor.getComment(ClassNestedWithCommentToExtract.class);
 
 ----
 
@@ -46,7 +71,7 @@ include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=classNe
 ====
 .Comment extracted from class
 ----
-Comment of the subclass.
+Comment of the class.
 ----
 
 ====

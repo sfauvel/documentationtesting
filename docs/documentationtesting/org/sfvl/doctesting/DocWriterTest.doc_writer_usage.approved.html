@@ -446,10 +446,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 Everything wrote in DocWriter will be returned when asking for output.
 A title is add to the output.</p>
 </div>
-<div class="listingblock">
+<div class="literalblock">
 <div class="title">DocWriter usage</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">Unresolved directive in DocWriterTest.doc_writer_usage.approved.adoc - include::../../../../../java/org/sfvl/doctesting/DocWriterTest.java[tag=doc_writer_usage]</code></pre>
+<pre>final DocWriter doc = new DocWriter();
+doc.write("Some text added to show DocWriter output.");
+final String output = doc.formatOutput(
+        "My title",
+        getClass().getMethod("doc_writer_usage", TestInfo.class)
+);</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -473,7 +478,7 @@ A title is add to the output.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-23 22:40:53 UTC
+Last updated 2020-11-24 23:01:36 UTC
 </div>
 </div>
 </body>

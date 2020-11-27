@@ -445,26 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">/**
- * Comment of the class.
- */
-class ClassWithCommentToExtract {
-
-    /**
-     * Comment of the method without parameters.
-     */
-    public void methodWithoutParameters() {
-
-    }
-
-    /**
-     * Comment from the method with parameters.
-     */
-    public void methodWithParameters(int id, String name) {
-
-    }
-
-}</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java"></code></pre>
 </div>
 </div>
 </div>
@@ -507,7 +488,7 @@ class ClassWithCommentToExtract {
 <div class="listingblock">
 <div class="title">From method with parameters.</div>
 <div class="content">
-<pre>Comment from the method with parameters.</pre>
+<pre>Comment of the method with two parameters.</pre>
 </div>
 </div>
 </div>
@@ -545,7 +526,26 @@ final Optional&lt;String&gt; comment = CodeExtractor.getComment(methodWithCommen
 <div class="listingblock">
 <div class="title">From method</div>
 <div class="content">
-<pre>Comment from the method with parameters.</pre>
+<pre>Comment of the method with two parameters.</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>How to extract comment of a method of an inner class</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">final Method methodWithComment = FindLambdaMethod.getMethod(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract::methodInSubClass);
+final Optional&lt;String&gt; comment = CodeExtractor.getComment(methodWithComment);</code></pre>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">From method</div>
+<div class="content">
+<pre>Method comment in an inner class.</pre>
 </div>
 </div>
 </div>
@@ -565,7 +565,7 @@ final Optional&lt;String&gt; comment = CodeExtractor.getComment(methodWithCommen
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-30 16:50:08 UTC
+Last updated 2020-11-27 23:17:19 UTC
 </div>
 </div>
 </body>

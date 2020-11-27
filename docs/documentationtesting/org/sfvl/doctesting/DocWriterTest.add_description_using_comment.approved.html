@@ -447,7 +447,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">Test example with comment on method</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">Unresolved directive in DocWriterTest.add_description_using_comment.approved.adoc - include::../../../../../java/org/sfvl/doctesting/DocWriterTest.java[tag=MyTestWithComment]</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">private static class MyTestWithComment {
+    private final DocWriter docWriter = new DocWriter();
+    @RegisterExtension
+    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+
+    /**
+     * To decribe a method, you can add a comment.
+     * It will be added under title.
+     */
+    @Test
+    public void testA() {
+        docWriter.write("In my *test*");
+    }
+
+}</code></pre>
 </div>
 </div>
 <div class="sidebarblock">
@@ -464,7 +478,7 @@ It will be added under title.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-23 22:40:53 UTC
+Last updated 2020-11-26 23:05:23 UTC
 </div>
 </div>
 </body>

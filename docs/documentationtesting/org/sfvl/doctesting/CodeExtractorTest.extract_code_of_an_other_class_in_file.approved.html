@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Documentation</title>
+<title>Extract code of an other class in file</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -436,91 +436,98 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body class="article">
 <div id="header">
-<h1>Documentation</h1>
-<div id="toc" class="toc2">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_demonestedtest">DemoNestedTest</a></li>
-<li><a href="#_multiply">Multiply</a>
-<ul class="sectlevel2">
-<li><a href="#_multiply_2_simple_numbers">Multiply 2 simple numbers</a></li>
-</ul>
-</li>
-<li><a href="#_adding">Adding</a>
-<ul class="sectlevel2">
-<li><a href="#_adding_2_simple_numbers">Adding 2 simple numbers</a></li>
-<li><a href="#_adding_3_simple_numbers">Adding 3 simple numbers</a></li>
-</ul>
-</li>
-</ul>
-</div>
+<h1>Extract code of an other class in file</h1>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="_demonestedtest">DemoNestedTest</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Demo of a simple usage to generate documentation.</p>
+<p>It&#8217;s not possible to extract code of a non public class because it&#8217;s not possible to determine source file.
+To be able to extract it, we have to explicitly give source file.</p>
+</div>
+<div class="listingblock">
+<div class="title">How to extract code of a non public class</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.classSource(CodeExtractorTest.class, ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);</code></pre>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_multiply">Multiply</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_multiply_2_simple_numbers">Multiply 2 simple numbers</h3>
-<div class="paragraph">
-<p>4 * 3 = 12</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_adding">Adding</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_adding_2_simple_numbers">Adding 2 simple numbers</h3>
-<div class="paragraph">
-<p>2 + 3 = 5</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_adding_3_simple_numbers">Adding 3 simple numbers</h3>
-<div class="paragraph">
-<p>A nested test.</p>
-</div>
-<div class="paragraph">
-<p>2 + 3 + 4 = 9</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-})
-MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
-  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
-      data.math.root.display = "block"
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">Source code to extract</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">/**
+ * Comment of the class.
+ */
+@NotIncludeToDoc
+class ClassNestedWithCommentToExtract {
+
+    /**
+     * Comment of the subclass.
+     */
+    class SubClassNestedWithCommentToExtract {
+        /**
+         * Method comment in an inner class.
+         */
+        @Test
+        public void methodInSubClass() {
+            System.out.println("My method");
+        }
     }
-    return data
-  })
-})
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">Source code extracted</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">class SubClassNestedWithCommentToExtract {
+    /**
+     * Method comment in an inner class.
+     */
+    @Test
+    public void methodInSubClass() {
+        System.out.println("My method");
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Non public class in a file could not be retrieve without giving main class of the file containing searching class.</p>
+</div>
+<div class="listingblock">
+<div class="title">This code does not work and throw an exception</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.classSource(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);</code></pre>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+java.nio.file.NoSuchFileException: src/test/java/org/sfvl/doctesting/ClassNestedWithCommentToExtract.java
+</div>
+</div>
+<style>
+.inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+#content {
+   max-width: unset;
+   padding-left: 5%;
+   padding-right: 5%;
+}
+</style>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2020-11-27 20:43:26 UTC
+</div>
+</div>
 </body>
 </html>

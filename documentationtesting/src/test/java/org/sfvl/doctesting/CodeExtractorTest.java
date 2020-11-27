@@ -254,6 +254,22 @@ class CodeExtractorTest {
         }
     }
 
+    // tag::NestedClass[]
+    /**
+     * Comment of the nested class of CodeExtractorTest.
+     */
+    @NotIncludeToDoc
+    class NestedClass {
+        /**
+         * Method comment in an inner class.
+         */
+        @Test
+        public void methodInSubClass() {
+            System.out.println("My method");
+        }
+    }
+    // end::NestedClass[]
+
     @Test
     @DisplayName(value = "Extract class comment")
     public void extract_class_comment(TestInfo testInfo) {
@@ -267,21 +283,36 @@ class CodeExtractorTest {
             final String comment = CodeExtractor.getComment(ClassWithCommentToExtract.class);
             // <<<1
 
-            doc.writeInline(includeSourceWithTag("classWithComment"), "", "");
+            doc.writeInline(includeSourceWithTag("ClassWithCommentToExtract", ClassWithCommentToExtract.class), "", "");
 
             formatCommentExtracted("Comment extracted from class",
                     comment);
         }
         {
             doc.write(
-                    ".How to extract comment of a subclass",
+                    ".How to extract comment of a nested class",
                     extractMarkedCode(testInfo, "2"),
                     "");
 
-
             // >>>2
-            final String comment = CodeExtractor.getComment(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);
+            final String comment = CodeExtractor.getComment(CodeExtractorTest.NestedClass.class);
             // <<<2
+
+            doc.writeInline(includeSourceWithTag(NestedClass.class.getSimpleName()), "", "");
+
+            formatCommentExtracted("Comment extracted from class",
+                    comment);
+        }
+        {
+            doc.write(
+                    ".How to extract comment of class that is not the main class of his file.",
+                    extractMarkedCode(testInfo, "3"),
+                    "");
+
+
+            // >>>3
+            final String comment = CodeExtractor.getComment(ClassNestedWithCommentToExtract.class);
+            // <<<3
 
             doc.writeInline(includeSourceWithTag("classNestedWithCommentToExtract"), "", "");
 
@@ -293,7 +324,7 @@ class CodeExtractorTest {
     @Test
     @DisplayName(value = "Extract method comment")
     public void extract_method_comment(TestInfo testInfo) throws NoSuchMethodException {
-        doc.writeInline(includeSourceWithTag("classWithComment"), "", "");
+        doc.writeInline(includeSourceWithTag(ClassWithCommentToExtract.class.getSimpleName(), ClassWithCommentToExtract.class), "", "");
 
         {
             doc.write("How to extract comment of a method",
@@ -474,38 +505,12 @@ class CodeExtractorTest {
 
 }
 
-@NotIncludeToDoc
-// tag::classWithComment[]
-
-/**
- * Comment of the class.
- */
-class ClassWithCommentToExtract {
-
-    /**
-     * Comment of the method without parameters.
-     */
-    public void methodWithoutParameters() {
-
-    }
-
-    /**
-     * Comment from the method with parameters.
-     */
-    public void methodWithParameters(int id, String name) {
-
-    }
-
-}
-// end::classWithComment[]
-
-
-@NotIncludeToDoc
 // tag::classNestedWithCommentToExtract[]
 
 /**
  * Comment of the class.
  */
+@NotIncludeToDoc
 class ClassNestedWithCommentToExtract {
 
     /**
