@@ -1,4 +1,4 @@
-= Extract code from class
+= Extract code of a class
 
 .How to extract code of a class
 [source, java, indent=0]

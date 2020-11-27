@@ -79,6 +79,22 @@ Comment from the method with parameters.
 ----
 
 ====
+How to extract comment of a method of an inner class
+[source, java, indent=0]
+----
+            final Method methodWithComment = FindLambdaMethod.getMethod(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract::methodInSubClass);
+            final Optional<String> comment = CodeExtractor.getComment(methodWithComment);
+
+----
+
+[.inline]
+====
+.From method
+----
+Method comment in an inner class.
+----
+
+====
 ++++
 <style>
 .inline {

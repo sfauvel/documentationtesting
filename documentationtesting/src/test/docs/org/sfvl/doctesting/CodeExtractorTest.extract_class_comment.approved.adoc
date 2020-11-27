@@ -25,7 +25,7 @@ Comment of the class.
 ----
 
 ====
-.How to extract comment of a class
+.How to extract comment of a subclass
 [source, java, indent=0]
 ----
             final String comment = CodeExtractor.getComment(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);

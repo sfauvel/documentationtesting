@@ -1,5 +1,6 @@
 package org.sfvl.doctesting;
 
+import com.github.javaparser.ParseProblemException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -55,8 +56,7 @@ class CodeExtractorTest {
     }
 
     @Test
-    @DisplayName(value = "Extract code from class")
-    public void extract_code_from_class(TestInfo testInfo) {
+    public void extract_code_of_a_class(TestInfo testInfo) {
 
         // >>>
         String code = CodeExtractor.classSource(SimpleClass.class);
@@ -75,6 +75,88 @@ class CodeExtractorTest {
                 ".Source code extracted",
                 formatSourceCode(code)
         );
+    }
+
+    // tag::innerClassToExtract[]
+    class SimpleInnerClass {
+        public int simpleMethod() {
+            return 0;
+        }
+    }
+    // end::innerClassToExtract[]
+
+    @Test
+    public void extract_code_of_an_inner_class(TestInfo testInfo) {
+
+        // >>>
+        String code = CodeExtractor.classSource(CodeExtractorTest.SimpleInnerClass.class);
+        // <<<
+
+        doc.write(".How to extract code of an inner class",
+                extractMarkedCode(testInfo),
+                "");
+
+        doc.writeInline(
+                ".Source code to extract",
+                includeSourceWithTag("innerClassToExtract", CodeExtractorTest.class)
+        );
+
+        doc.writeInline(
+                ".Source code extracted",
+                formatSourceCode(code)
+        );
+    }
+
+    @Test
+    public void extract_code_of_an_other_class_in_file(TestInfo testInfo) {
+        {
+            // >>>1
+            String code = CodeExtractor.classSource(CodeExtractorTest.class, ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);
+            // <<<1
+
+            doc.write("It's not possible to extract code of a non public class because it's not possible to determine source file.",
+                    "To be able to extract it, we have to explicitly give source file.", "", "");
+            doc.write(".How to extract code of a non public class",
+                    extractMarkedCode(testInfo, "1"),
+                    "");
+
+            doc.writeInline(
+                    ".Source code to extract",
+                    includeSourceWithTag("classNestedWithCommentToExtract", CodeExtractorTest.class)
+            );
+
+            doc.writeInline(
+                    ".Source code extracted",
+                    formatSourceCode(code)
+            );
+        }
+        {
+            try {
+                // >>>2
+                String code = CodeExtractor.classSource(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);
+                // <<<2
+
+                doc.writeInline(
+                        ".Source code extracted",
+                        formatSourceCode(code)
+                );
+            } catch (ParseProblemException e) {
+                doc.write("Non public class in a file could not be retrieve without giving main class of the file containing searching class.", "", "");
+
+                doc.write(".This code does not work and throw an exception",
+                        extractMarkedCode(testInfo, "2"),
+                        "");
+
+                doc.writeInline(
+                        ".Exception thrown",
+                        "++++",
+                        e.getProblems().stream()
+                                .map(c -> c.getCause().map(Throwable::toString).orElse("??"))
+                                .collect(Collectors.joining("\n")),
+                        "++++",
+                        "", "");
+            }
+        }
     }
 
     @Test
@@ -181,7 +263,6 @@ class CodeExtractorTest {
                     extractMarkedCode(testInfo, "1"),
                     "");
 
-
             // >>>1
             final String comment = CodeExtractor.getComment(ClassWithCommentToExtract.class);
             // <<<1
@@ -193,7 +274,7 @@ class CodeExtractorTest {
         }
         {
             doc.write(
-                    ".How to extract comment of a class",
+                    ".How to extract comment of a subclass",
                     extractMarkedCode(testInfo, "2"),
                     "");
 
@@ -268,6 +349,21 @@ class CodeExtractorTest {
             final Method methodWithComment = ClassWithCommentToExtract.class.getMethod("methodWithParameters", int.class, String.class);
             final Optional<String> comment = CodeExtractor.getComment(methodWithComment);
             // <<<4
+
+            formatCommentExtracted("From method",
+                    comment.orElse(""));
+        }
+
+        {
+            doc.write("How to extract comment of a method of an inner class",
+                    extractMarkedCode(testInfo, "5"),
+                    "");
+
+
+            // >>>5
+            final Method methodWithComment = FindLambdaMethod.getMethod(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract::methodInSubClass);
+            final Optional<String> comment = CodeExtractor.getComment(methodWithComment);
+            // <<<5
 
             formatCommentExtracted("From method",
                     comment.orElse(""));
@@ -416,7 +512,13 @@ class ClassNestedWithCommentToExtract {
      * Comment of the subclass.
      */
     class SubClassNestedWithCommentToExtract {
-
+        /**
+         * Method comment in an inner class.
+         */
+        @Test
+        public void methodInSubClass() {
+            System.out.println("My method");
+        }
     }
 }
 // end::classNestedWithCommentToExtract[]

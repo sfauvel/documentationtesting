@@ -1,0 +1,44 @@
+= Extract code of an inner class
+
+.How to extract code of an inner class
+[source, java, indent=0]
+----
+        String code = CodeExtractor.classSource(CodeExtractorTest.SimpleInnerClass.class);
+
+----
+
+[.inline]
+====
+.Source code to extract
+[source, java, indent=0]
+----
+include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=innerClassToExtract]
+----
+====
+
+[.inline]
+====
+.Source code extracted
+[source, java, indent=0]
+----
+    class SimpleInnerClass {
+        public int simpleMethod() {
+            return 0;
+        }
+    }
+----
+====
+++++
+<style>
+.inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+#content {
+   max-width: unset;
+   padding-left: 5%;
+   padding-right: 5%;
+}
+</style>
+++++

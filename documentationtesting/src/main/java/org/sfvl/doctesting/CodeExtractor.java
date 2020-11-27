@@ -61,7 +61,7 @@ public class CodeExtractor {
     }
 
     public static Optional<String> getComment(Class<?> clazz, String methodName, List<JavaType> argumentList) {
-        JavaClass javaClass = builder.getClassByName(clazz.getCanonicalName());
+        JavaClass javaClass = builder.getClassByName(clazz.getName());
 
         JavaMethod method = javaClass.getMethod(methodName, argumentList, false);
         while (method == null && javaClass.getSuperJavaClass() != null) {
@@ -72,11 +72,18 @@ public class CodeExtractor {
     }
 
     public static String classSource(Class<?> classToExtract) {
-        return new CodeExtractorVisitor(classToExtract) {
+        return classSource(classToExtract, classToExtract);
+    }
+
+    public static String classSource(Class<?> classToIdentifySourceFile, Class<?> classToExtract) {
+        return new CodeExtractorVisitor(classToIdentifySourceFile) {
+
             @Override
             public void visit(ClassOrInterfaceDeclaration n, StringBuffer buffer) {
-                if (classToExtract.getName().equals(n.getFullyQualifiedName().get())) {
+                if (classToExtract.getCanonicalName().equals(n.getFullyQualifiedName().get())) {
                     buffer.append(extractRange(classToExtract, n));
+                } else {
+                    super.visit(n, buffer);
                 }
             }
         }.source();
@@ -126,14 +133,19 @@ public class CodeExtractor {
 
     public static class CodeExtractorVisitor extends VoidVisitorAdapter<StringBuffer> {
         final CompilationUnit cu;
+        private final Package classPackage;
+        private final Class<?> classToDetermineFile;
+        private final Path sourcePath;
 
         public CodeExtractorVisitor(Class<?> classToExtract) {
-            SourceRoot sourceRoot = new SourceRoot(Paths.get("src/test/java"));
+            sourcePath = Paths.get("src/test/java");
+            classToDetermineFile = getFirstEnclosingClassBefore(classToExtract, null);
+            classPackage = classToExtract.getPackage();
 
+            SourceRoot sourceRoot = new SourceRoot(sourcePath);
             cu = sourceRoot.parse(
-                    classToExtract.getPackage().getName(),
-                    classToExtract.getSimpleName() + ".java");
-
+                    classPackage.getName(),
+                    classToDetermineFile.getSimpleName() + ".java");
         }
 
         public String source() {
@@ -143,9 +155,9 @@ public class CodeExtractor {
         }
 
         public String extractRange(Class<?> classToExtract, NodeWithRange<?> n) {
-            return extractFromFile(n, Paths.get("src/test/java",
-                    classToExtract.getPackage().getName().replace(".", "/"),
-                    classToExtract.getSimpleName() + ".java"));
+            return extractFromFile(n, sourcePath.resolve(Paths.get(
+                    classPackage.getName().replace(".", "/"),
+                    classToDetermineFile.getSimpleName() + ".java")));
             // With parser, some comments disappeared and code is reformatted.
 //                    final String str = n.getBody()
 //                            .map(body -> body.toString())
@@ -163,7 +175,8 @@ public class CodeExtractor {
                         .skip(begin.line - 1)
                         .limit(end.line - begin.line + 1)
                         .collect(Collectors.joining("\n"));
-                return code.substring(begin.column - 1);
+                // Keep first characters to not remove indentation.
+                return code; //code.substring(begin.column - 1);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

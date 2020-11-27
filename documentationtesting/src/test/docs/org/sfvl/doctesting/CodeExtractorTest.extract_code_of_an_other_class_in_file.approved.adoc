@@ -1,0 +1,69 @@
+= Extract code of an other class in file
+
+It's not possible to extract code of a non public class because it's not possible to determine source file.
+To be able to extract it, we have to explicitly give source file.
+
+.How to extract code of a non public class
+[source, java, indent=0]
+----
+            String code = CodeExtractor.classSource(CodeExtractorTest.class, ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);
+
+----
+
+[.inline]
+====
+.Source code to extract
+[source, java, indent=0]
+----
+include::../../../../java/org/sfvl/doctesting/CodeExtractorTest.java[tag=classNestedWithCommentToExtract]
+----
+====
+
+[.inline]
+====
+.Source code extracted
+[source, java, indent=0]
+----
+    class SubClassNestedWithCommentToExtract {
+        /**
+         * Method comment in an inner class.
+         */
+        @Test
+        public void methodInSubClass() {
+            System.out.println("My method");
+        }
+    }
+----
+====
+Non public class in a file could not be retrieve without giving main class of the file containing searching class.
+
+.This code does not work and throw an exception
+[source, java, indent=0]
+----
+                String code = CodeExtractor.classSource(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);
+
+----
+
+[.inline]
+====
+.Exception thrown
+++++
+java.nio.file.NoSuchFileException: src/test/java/org/sfvl/doctesting/ClassNestedWithCommentToExtract.java
+++++
+
+
+====
+++++
+<style>
+.inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+#content {
+   max-width: unset;
+   padding-left: 5%;
+   padding-right: 5%;
+}
+</style>
+++++
