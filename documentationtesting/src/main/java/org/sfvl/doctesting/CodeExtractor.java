@@ -89,6 +89,10 @@ public class CodeExtractor {
         }.source();
     }
 
+    public static String methodSource(Method methodToExtract) {
+        return methodSource(methodToExtract.getDeclaringClass(), methodToExtract.getName());
+    }
+
     public static String methodSource(Class<?> classToExtract, String methodToExtract) {
         return new CodeExtractorVisitor(classToExtract) {
             @Override

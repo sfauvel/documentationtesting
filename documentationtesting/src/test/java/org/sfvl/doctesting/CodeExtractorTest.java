@@ -163,14 +163,31 @@ class CodeExtractorTest {
     @Test
     @DisplayName(value = "Extract code from method")
     public void extract_code_from_method(TestInfo testInfo) {
-
-        // >>>
-        String code = CodeExtractor.extractMethodBody(SimpleClass.class, "simpleMethod");
-        // <<<
+        String codeWithClassAndMethodName;
+        {
+            // >>>1
+            String code = CodeExtractor.methodSource(SimpleClass.class, "simpleMethod");
+            // <<<1
+            codeWithClassAndMethodName = code;
+        }
+        String codeWithMethod;
+        {
+            // >>>2
+            final Method method = FindLambdaMethod.getMethod(SimpleClass::simpleMethod);
+            String code = CodeExtractor.methodSource(method);
+            // <<<2
+            codeWithMethod = code;
+        }
 
         doc.write(".How to extract code of a method",
-                extractMarkedCode(testInfo),
+                extractMarkedCode(testInfo, "1"),
                 "");
+
+        if (codeWithMethod.equals(codeWithClassAndMethodName)) {
+            doc.write("or",
+                    extractMarkedCode(testInfo, "3"),
+                    "");
+        }
 
         doc.writeInline(
                 ".Source code from file",
@@ -179,8 +196,46 @@ class CodeExtractorTest {
 
         doc.writeInline(
                 ".Source code extracted",
-                formatSourceCode(code)
+                formatSourceCode(codeWithClassAndMethodName)
         );
+
+        if (!codeWithMethod.equals(codeWithClassAndMethodName)) {
+
+
+            doc.write(".How to extract code of a method using method Object",
+                    extractMarkedCode(testInfo, "2"),
+                    "");
+
+            doc.writeInline(
+                    ".Source code from file",
+                    includeSourceWithTag("classToExtract", SimpleClass.class)
+            );
+
+            doc.writeInline(
+                    ".Source code extracted using method",
+                    formatSourceCode(codeWithMethod)
+            );
+        }
+
+        {
+            // >>>3
+            String code = CodeExtractor.extractMethodBody(SimpleClass.class, "simpleMethod");
+            // <<<3
+
+            doc.write(".How to extract body of a method",
+                    extractMarkedCode(testInfo, "3"),
+                    "");
+
+            doc.writeInline(
+                    ".Source code from file",
+                    includeSourceWithTag("classToExtract", SimpleClass.class)
+            );
+
+            doc.writeInline(
+                    ".Source code extracted",
+                    formatSourceCode(code)
+            );
+        }
     }
 
     /**
@@ -204,7 +259,8 @@ class CodeExtractorTest {
 
             doc.writeInline(
                     ".Source code from file",
-                    formatSourceCode(CodeExtractor.classSource(SimpleClassA.class))
+                    formatSourceCode(CodeExtractor.extractMethodBody(SimpleClassA.class, "methodWithCodeToExtract"))
+//                    formatSourceCode(CodeExtractor.classSource(SimpleClassA.class))
             );
 
             doc.writeInline(

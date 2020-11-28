@@ -3,7 +3,39 @@
 .How to extract code of a method
 [source, java, indent=0]
 ----
-        String code = CodeExtractor.extractMethodBody(SimpleClass.class, "simpleMethod");
+            String code = CodeExtractor.methodSource(SimpleClass.class, "simpleMethod");
+
+----
+
+[.inline]
+====
+.Source code from file
+[source, java, indent=0]
+----
+include::../../../../java/org/sfvl/doctesting/sample/SimpleClass.java[tag=classToExtract]
+----
+====
+
+[.inline]
+====
+.Source code extracted
+[source, java, indent=0]
+----
+    public int simpleMethod() {
+        return 0;
+    }
+----
+====
+.How to extract code of a method
+[source, java, indent=0]
+----
+            String code = CodeExtractor.methodSource(FindLambdaMethod.getMethod(SimpleClass::simpleMethod));
+
+----
+.How to extract body of a method
+[source, java, indent=0]
+----
+            String code = CodeExtractor.extractMethodBody(SimpleClass.class, "simpleMethod");
 
 ----
 
