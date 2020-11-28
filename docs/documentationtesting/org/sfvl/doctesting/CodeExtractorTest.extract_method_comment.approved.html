@@ -445,7 +445,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java"></code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">/**
+ * Comment of the class.
+ */
+public class ClassWithCommentToExtract {
+
+    /**
+     * Comment of the method without parameters.
+     */
+    public void methodWithoutParameters() {
+
+    }
+
+    /**
+     * Comment of the method with two parameters.
+     */
+    public void methodWithParameters(int id, String name) {
+
+    }
+
+}</code></pre>
 </div>
 </div>
 </div>
@@ -565,7 +584,7 @@ final Optional&lt;String&gt; comment = CodeExtractor.getComment(methodWithCommen
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-27 23:17:19 UTC
+Last updated 2020-11-28 21:08:28 UTC
 </div>
 </div>
 </body>

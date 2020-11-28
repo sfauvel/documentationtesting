@@ -449,7 +449,16 @@ Another comment with a specific value indicate the end of the code.</p>
 <div class="listingblock">
 <div class="title">How to extract part of a method code</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.extractPartOfMethod(SimpleClassA.class, "methodWithCodeToExtract", "");</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">Method method = FindLambdaMethod.getMethod(ClassWithMethodToExtract::methodWithOnePartToExtract);
+String code = CodeExtractor.extractPartOfMethod(method);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.extractPartOfMethod(ClassWithMethodToExtract.class, "methodWithOnePartToExtract");</code></pre>
 </div>
 </div>
 <div class="exampleblock inline">
@@ -457,14 +466,12 @@ Another comment with a specific value indicate the end of the code.</p>
 <div class="listingblock">
 <div class="title">Source code from file</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">public class SimpleClassA {
-    public void methodWithCodeToExtract() {
-        int i = 0;
-        // &gt;&gt;&gt;
-        int j = i;
-        // &lt;&lt;&lt;
-        int k = i + j;
-    }
+<pre class="highlight"><code class="language-java" data-lang="java">public void methodWithOnePartToExtract() {
+    int i = 0;
+    // &gt;&gt;&gt;
+    int j = i;
+    // &lt;&lt;&lt;
+    int k = i + j;
 }</code></pre>
 </div>
 </div>
@@ -480,30 +487,15 @@ Another comment with a specific value indicate the end of the code.</p>
 </div>
 </div>
 </div>
-<div class="listingblock">
-<div class="title">How to extract part of a method code using Method object</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">final Method method = FindLambdaMethod.getMethod(SimpleClassA::methodWithCodeToExtract);
-String code = CodeExtractor.extractPartOfMethod(method);</code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code extracted</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">int j = i;</code></pre>
-</div>
-</div>
-</div>
-</div>
 <div class="paragraph">
-<p>You can have several part identify by a text that you pass as argument to the extraction function</p>
+<p>You can have several part identify by a text that you pass as argument to the function extracting the code.
+You can have several part identified by the same text.
+In that case, all parts matching the text will be returned.</p>
 </div>
 <div class="listingblock">
 <div class="title">How to extract part of a method</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">final Method method = FindLambdaMethod.getMethod(SimpleClassB::methodWithCodeToExtract);
+<pre class="highlight"><code class="language-java" data-lang="java">Method method = FindLambdaMethod.getMethod(ClassWithMethodToExtract::methodWithSeveralPartsToExtract);
 String codePart1 = CodeExtractor.extractPartOfMethod(method, "Part1");
 String codePart2 = CodeExtractor.extractPartOfMethod(method, "Part2");</code></pre>
 </div>
@@ -513,24 +505,22 @@ String codePart2 = CodeExtractor.extractPartOfMethod(method, "Part2");</code></p
 <div class="listingblock">
 <div class="title">Source code from file</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">public class SimpleClassB {
-    public int methodWithCodeToExtract(int value) {
-        // &gt;&gt;&gt;Part1
-        int square = value * value;
-        // &lt;&lt;&lt;Part1
+<pre class="highlight"><code class="language-java" data-lang="java">public int methodWithSeveralPartsToExtract(int value) {
+    // &gt;&gt;&gt;Part1
+    int square = value * value;
+    // &lt;&lt;&lt;Part1
 
-        // &gt;&gt;&gt;Part2
-        final String text = String.format(
-                "square(%d)=%d",
-                value,
-                square);
-        System.out.println(text);
-        // &lt;&lt;&lt;Part2
+    // &gt;&gt;&gt;Part2
+    final String text = String.format(
+            "square(%d)=%d",
+            value,
+            square);
+    System.out.println(text);
+    // &lt;&lt;&lt;Part2
 
-        // &gt;&gt;&gt;Part1
-        return square;
-        // &lt;&lt;&lt;Part1
-    }
+    // &gt;&gt;&gt;Part1
+    return square;
+    // &lt;&lt;&lt;Part1
 }</code></pre>
 </div>
 </div>
@@ -572,7 +562,7 @@ System.out.println(text);</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-30 12:24:22 UTC
+Last updated 2020-11-28 22:55:10 UTC
 </div>
 </div>
 </body>

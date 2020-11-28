@@ -728,7 +728,7 @@ include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ado
 <div class="listingblock">
 <div class="title">Source code to extract</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">SimpleClass</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleClass</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
     <span class="o">}</span>
@@ -742,7 +742,7 @@ include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ado
 <div class="listingblock">
 <div class="title">Source code extracted</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">SimpleClass</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleClass</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
     <span class="o">}</span>
@@ -900,8 +900,53 @@ java.nio.file.NoSuchFileException: src/test/java/org/sfvl/doctesting/ClassNested
 </div>
 <div class="sect2">
 <h3 id="_extract_code_from_method">Extract code from method</h3>
+<div class="paragraph">
+<p>Method source code can be retrived from his method object or from his class and his method name.
+It&#8217;s also possible to retrieve only the method body.</p>
+</div>
 <div class="listingblock">
 <div class="title">How to extract code of a method</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">methodSource</span><span class="o">(</span><span class="nc">SimpleClass</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"simpleMethod"</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">SimpleClass:</span><span class="o">:</span><span class="n">simpleMethod</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">methodSource</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">Source code from file</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleClass</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">Source code extracted</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">How to extract body of a method</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractMethodBody</span><span class="o">(</span><span class="nc">SimpleClass</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"simpleMethod"</span><span class="o">);</span></code></pre>
 </div>
@@ -911,7 +956,7 @@ java.nio.file.NoSuchFileException: src/test/java/org/sfvl/doctesting/ClassNested
 <div class="listingblock">
 <div class="title">Source code from file</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">SimpleClass</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleClass</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
         <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
     <span class="o">}</span>
@@ -953,7 +998,16 @@ Another comment with a specific value indicate the end of the code.</p>
 <div class="listingblock">
 <div class="title">How to extract part of a method code</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfMethod</span><span class="o">(</span><span class="nc">SimpleClassA</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"methodWithCodeToExtract"</span><span class="o">,</span> <span class="s">""</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">ClassWithMethodToExtract:</span><span class="o">:</span><span class="n">methodWithOnePartToExtract</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfMethod</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfMethod</span><span class="o">(</span><span class="nc">ClassWithMethodToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"methodWithOnePartToExtract"</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="exampleblock inline">
@@ -961,14 +1015,12 @@ Another comment with a specific value indicate the end of the code.</p>
 <div class="listingblock">
 <div class="title">Source code from file</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleClassA</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodWithCodeToExtract</span><span class="o">()</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-        <span class="c1">// &gt;&gt;&gt;</span>
-        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-        <span class="c1">// &lt;&lt;&lt;</span>
-        <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">;</span>
-    <span class="o">}</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodWithOnePartToExtract</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="c1">// &gt;&gt;&gt;</span>
+    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+    <span class="c1">// &lt;&lt;&lt;</span>
+    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">;</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -984,30 +1036,15 @@ Another comment with a specific value indicate the end of the code.</p>
 </div>
 </div>
 </div>
-<div class="listingblock">
-<div class="title">How to extract part of a method code using Method object</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">SimpleClassA:</span><span class="o">:</span><span class="n">methodWithCodeToExtract</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfMethod</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span></code></pre>
-</div>
-</div>
-</div>
-</div>
 <div class="paragraph">
-<p>You can have several part identify by a text that you pass as argument to the extraction function</p>
+<p>You can have several part identify by a text that you pass as argument to the function extracting the code.
+You can have several part identified by the same text.
+In that case, all parts matching the text will be returned.</p>
 </div>
 <div class="listingblock">
 <div class="title">How to extract part of a method</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">SimpleClassB:</span><span class="o">:</span><span class="n">methodWithCodeToExtract</span><span class="o">);</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">ClassWithMethodToExtract:</span><span class="o">:</span><span class="n">methodWithSeveralPartsToExtract</span><span class="o">);</span>
 <span class="nc">String</span> <span class="n">codePart1</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfMethod</span><span class="o">(</span><span class="n">method</span><span class="o">,</span> <span class="s">"Part1"</span><span class="o">);</span>
 <span class="nc">String</span> <span class="n">codePart2</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfMethod</span><span class="o">(</span><span class="n">method</span><span class="o">,</span> <span class="s">"Part2"</span><span class="o">);</span></code></pre>
 </div>
@@ -1017,24 +1054,22 @@ Another comment with a specific value indicate the end of the code.</p>
 <div class="listingblock">
 <div class="title">Source code from file</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleClassB</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">methodWithCodeToExtract</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// &gt;&gt;&gt;Part1</span>
-        <span class="kt">int</span> <span class="n">square</span> <span class="o">=</span> <span class="n">value</span> <span class="o">*</span> <span class="n">value</span><span class="o">;</span>
-        <span class="c1">// &lt;&lt;&lt;Part1</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">methodWithSeveralPartsToExtract</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// &gt;&gt;&gt;Part1</span>
+    <span class="kt">int</span> <span class="n">square</span> <span class="o">=</span> <span class="n">value</span> <span class="o">*</span> <span class="n">value</span><span class="o">;</span>
+    <span class="c1">// &lt;&lt;&lt;Part1</span>
 
-        <span class="c1">// &gt;&gt;&gt;Part2</span>
-        <span class="kd">final</span> <span class="nc">String</span> <span class="n">text</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span>
-                <span class="s">"square(%d)=%d"</span><span class="o">,</span>
-                <span class="n">value</span><span class="o">,</span>
-                <span class="n">square</span><span class="o">);</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
-        <span class="c1">// &lt;&lt;&lt;Part2</span>
+    <span class="c1">// &gt;&gt;&gt;Part2</span>
+    <span class="kd">final</span> <span class="nc">String</span> <span class="n">text</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span>
+            <span class="s">"square(%d)=%d"</span><span class="o">,</span>
+            <span class="n">value</span><span class="o">,</span>
+            <span class="n">square</span><span class="o">);</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
+    <span class="c1">// &lt;&lt;&lt;Part2</span>
 
-        <span class="c1">// &gt;&gt;&gt;Part1</span>
-        <span class="k">return</span> <span class="n">square</span><span class="o">;</span>
-        <span class="c1">// &lt;&lt;&lt;Part1</span>
-    <span class="o">}</span>
+    <span class="c1">// &gt;&gt;&gt;Part1</span>
+    <span class="k">return</span> <span class="n">square</span><span class="o">;</span>
+    <span class="c1">// &lt;&lt;&lt;Part1</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -1219,7 +1254,26 @@ Another comment with a specific value indicate the end of the code.</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
+ * Comment of the class.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClassWithCommentToExtract</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Comment of the method without parameters.
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodWithoutParameters</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Comment of the method with two parameters.
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodWithParameters</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+<span class="o">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -1353,7 +1407,7 @@ Another comment with a specific value indicate the end of the code.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Class list of <code>org.sfvl.doctesting.MyClass.MySubClass.ASubClassOfMySubClass</code> give :</p>
+<p>Class list of <code>org.sfvl.doctesting.sample.MyClass.MySubClass.ASubClassOfMySubClass</code> give :</p>
 </div>
 <table class="tableblock frame-all grid-all fit-content">
 <colgroup>
@@ -1385,7 +1439,7 @@ Another comment with a specific value indicate the end of the code.</p>
 <div class="sect2">
 <h3 id="_extract_first_enclosing_classes_before_another">Extract first enclosing classes before another</h3>
 <div class="paragraph">
-<p>Extract from class <code>org.sfvl.doctesting.MyClass$MySubClass$ASubClassOfMySubClass</code> using <code>CodeExtractor.getFirstEnclosingClassBefore</code></p>
+<p>Extract from class <code>org.sfvl.doctesting.sample.MyClass$MySubClass$ASubClassOfMySubClass</code> using <code>CodeExtractor.getFirstEnclosingClassBefore</code></p>
 </div>
 <div class="paragraph">
 <p>First class of <code>ASubClassOfMySubClass</code> before <code>ASubClassOfMySubClass</code> give :</p>

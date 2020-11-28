@@ -441,8 +441,53 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Extract code from method</h1>
 </div>
 <div id="content">
+<div class="paragraph">
+<p>Method source code can be retrived from his method object or from his class and his method name.
+It&#8217;s also possible to retrieve only the method body.</p>
+</div>
 <div class="listingblock">
 <div class="title">How to extract code of a method</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.methodSource(SimpleClass.class, "simpleMethod");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">Method method = FindLambdaMethod.getMethod(SimpleClass::simpleMethod);
+String code = CodeExtractor.methodSource(method);</code></pre>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">Source code from file</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public class SimpleClass {
+    public int simpleMethod() {
+        return 0;
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">Source code extracted</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public int simpleMethod() {
+    return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">How to extract body of a method</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.extractMethodBody(SimpleClass.class, "simpleMethod");</code></pre>
 </div>
@@ -452,7 +497,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">Source code from file</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class SimpleClass {
+<pre class="highlight"><code class="language-java" data-lang="java">public class SimpleClass {
     public int simpleMethod() {
         return 0;
     }
@@ -486,7 +531,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-30 13:01:02 UTC
+Last updated 2020-11-28 22:54:19 UTC
 </div>
 </div>
 </body>
