@@ -163,6 +163,10 @@ class CodeExtractorTest {
     @Test
     @DisplayName(value = "Extract code from method")
     public void extract_code_from_method(TestInfo testInfo) {
+        doc.write("Method source code can be retrived from his method object or from his class and his method name.",
+                "It's also possible to retrieve only the method body.",
+                "", "");
+
         String codeWithClassAndMethodName;
         {
             // >>>1

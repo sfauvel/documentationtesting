@@ -1,9 +1,18 @@
 = Extract code from method
 
+Method source code can be retrived from his method object or from his class and his method name.
+It's also possible to retrieve only the method body.
+
 .How to extract code of a method
 [source, java, indent=0]
 ----
             String code = CodeExtractor.methodSource(SimpleClass.class, "simpleMethod");
+
+----
+or
+[source, java, indent=0]
+----
+            String code = CodeExtractor.extractMethodBody(SimpleClass.class, "simpleMethod");
 
 ----
 
@@ -26,12 +35,6 @@ include::../../../../java/org/sfvl/doctesting/sample/SimpleClass.java[tag=classT
     }
 ----
 ====
-.How to extract code of a method
-[source, java, indent=0]
-----
-            String code = CodeExtractor.methodSource(FindLambdaMethod.getMethod(SimpleClass::simpleMethod));
-
-----
 .How to extract body of a method
 [source, java, indent=0]
 ----
