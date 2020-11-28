@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.sample.ClassWithCommentToExtract;
+import org.sfvl.doctesting.sample.MyClass;
 
 import java.lang.reflect.Method;
 import java.util.Optional;

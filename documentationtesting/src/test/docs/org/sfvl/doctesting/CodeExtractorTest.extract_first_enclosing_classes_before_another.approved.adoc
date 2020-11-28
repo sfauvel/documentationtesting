@@ -1,6 +1,6 @@
 = Extract first enclosing classes before another
 
-Extract from class `org.sfvl.doctesting.MyClass$MySubClass$ASubClassOfMySubClass` using `CodeExtractor.getFirstEnclosingClassBefore`
+Extract from class `org.sfvl.doctesting.sample.MyClass$MySubClass$ASubClassOfMySubClass` using `CodeExtractor.getFirstEnclosingClassBefore`
 
 First class of `ASubClassOfMySubClass` before `ASubClassOfMySubClass` give :
 

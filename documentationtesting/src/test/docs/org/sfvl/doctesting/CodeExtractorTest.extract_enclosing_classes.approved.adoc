@@ -8,7 +8,7 @@ Class list of `org.sfvl.doctesting.CodeExtractorTest` give :
 | CodeExtractorTest
 |====
 
-Class list of `org.sfvl.doctesting.MyClass.MySubClass.ASubClassOfMySubClass` give :
+Class list of `org.sfvl.doctesting.sample.MyClass.MySubClass.ASubClassOfMySubClass` give :
 
 [%autowidth]
 |====
