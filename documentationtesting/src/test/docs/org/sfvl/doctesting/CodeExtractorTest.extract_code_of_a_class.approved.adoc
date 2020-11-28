@@ -12,7 +12,7 @@
 .Source code to extract
 [source, java, indent=0]
 ----
-include::../../../../java/org/sfvl/doctesting/SimpleClass.java[tag=classToExtract]
+include::../../../../java/org/sfvl/doctesting/sample/SimpleClass.java[tag=classToExtract]
 ----
 ====
 
@@ -21,7 +21,7 @@ include::../../../../java/org/sfvl/doctesting/SimpleClass.java[tag=classToExtrac
 .Source code extracted
 [source, java, indent=0]
 ----
-class SimpleClass {
+public class SimpleClass {
     public int simpleMethod() {
         return 0;
     }

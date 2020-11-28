@@ -1,4 +1,4 @@
-package org.sfvl.doctesting;
+package org.sfvl.doctesting.sample;
 
 public class SimpleClassA {
     public void methodWithCodeToExtract() {

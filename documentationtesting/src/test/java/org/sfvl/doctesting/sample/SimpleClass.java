@@ -1,7 +1,7 @@
-package org.sfvl.doctesting;
+package org.sfvl.doctesting.sample;
 
 // tag::classToExtract[]
-class SimpleClass {
+public class SimpleClass {
     public int simpleMethod() {
         return 0;
     }
