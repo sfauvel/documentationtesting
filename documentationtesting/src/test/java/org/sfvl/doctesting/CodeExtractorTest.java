@@ -589,7 +589,6 @@ class CodeExtractorTest {
 /**
  * Comment of the class.
  */
-@NotIncludeToDoc
 class ClassNestedWithCommentToExtract {
 
     /**
