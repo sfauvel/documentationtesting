@@ -177,7 +177,7 @@ class CodeExtractorTest {
         String codeWithMethod;
         {
             // >>>2
-            final Method method = FindLambdaMethod.getMethod(SimpleClass::simpleMethod);
+            Method method = FindLambdaMethod.getMethod(SimpleClass::simpleMethod);
             String code = CodeExtractor.methodSource(method);
             // <<<2
             codeWithMethod = code;
@@ -189,7 +189,7 @@ class CodeExtractorTest {
 
         if (codeWithMethod.equals(codeWithClassAndMethodName)) {
             doc.write("or",
-                    extractMarkedCode(testInfo, "3"),
+                    extractMarkedCode(testInfo, "2"),
                     "");
         }
 
@@ -253,65 +253,83 @@ class CodeExtractorTest {
     @DisplayName(value = "Extract a part of code from method")
     public void extract_part_of_code_from_method(TestInfo testInfo) {
         {
-            // >>>1
-            String code = CodeExtractor.extractPartOfMethod(SimpleClassA.class, "methodWithCodeToExtract", "");
-            // <<<1
-
+            String codeFromMethod;
+            {
+                // >>>1
+                Method method = FindLambdaMethod.getMethod(ClassWithMethodToExtract::methodWithOnePartToExtract);
+                String code = CodeExtractor.extractPartOfMethod(method);
+                // <<<1
+                codeFromMethod = code;
+            }
+            String codeFromClassAndMethodName;
+            {
+                // >>>2
+                String code = CodeExtractor.extractPartOfMethod(ClassWithMethodToExtract.class, "methodWithOnePartToExtract");
+                // <<<2
+                codeFromClassAndMethodName = code;
+            }
             doc.write(".How to extract part of a method code",
                     extractMarkedCode(testInfo, "1"),
                     "");
 
+            if (codeFromMethod.equals(codeFromClassAndMethodName)) {
+                doc.write("or",
+                        extractMarkedCode(testInfo, "2"),
+                        "");
+            }
+
+            Method method = FindLambdaMethod.getMethod(ClassWithMethodToExtract::methodWithOnePartToExtract);
             doc.writeInline(
                     ".Source code from file",
-                    formatSourceCode(CodeExtractor.extractMethodBody(SimpleClassA.class, "methodWithCodeToExtract"))
-//                    formatSourceCode(CodeExtractor.classSource(SimpleClassA.class))
+                    formatSourceCode(CodeExtractor.methodSource(method))
             );
 
             doc.writeInline(
                     ".Source code extracted",
-                    formatSourceCode(code)
+                    formatSourceCode(codeFromMethod)
             );
+
+            if (!codeFromMethod.equals(codeFromClassAndMethodName)) {
+                doc.write(".How to extract code of a method using class and method name",
+                        extractMarkedCode(testInfo, "2"),
+                        "");
+
+                doc.writeInline(
+                        ".Source code from file",
+                        formatSourceCode(CodeExtractor.methodSource(method))
+                );
+
+                doc.writeInline(
+                        ".Source code extracted using class and method name",
+                        formatSourceCode(codeFromClassAndMethodName)
+                );
+            }
         }
-        {
-            // >>>2
-            final Method method = FindLambdaMethod.getMethod(SimpleClassA::methodWithCodeToExtract);
-            String code = CodeExtractor.extractPartOfMethod(method);
-            // <<<2
-
-            doc.write(".How to extract part of a method code using Method object",
-                    extractMarkedCode(testInfo, "2"),
-                    "");
-
-            doc.writeInline(
-                    ".Source code extracted",
-                    formatSourceCode(code)
-            );
-        }
-
         {
             // >>>3
-            final Method method = FindLambdaMethod.getMethod(SimpleClassB::methodWithCodeToExtract);
+            Method method = FindLambdaMethod.getMethod(ClassWithMethodToExtract::methodWithSeveralPartsToExtract);
             String codePart1 = CodeExtractor.extractPartOfMethod(method, "Part1");
             String codePart2 = CodeExtractor.extractPartOfMethod(method, "Part2");
             // <<<3
 
             doc.write("You can have several part identify by a text that you pass as argument " +
-                    "to the extraction function", "", "");
+                    "to the function extracting the code.",
+                    "You can have several part identified by the same text.",
+                    "In that case, all parts matching the text will be returned.",
+                    "", "");
             doc.write(".How to extract part of a method",
                     extractMarkedCode(testInfo, "3"),
                     "");
 
             doc.writeInline(
                     ".Source code from file",
-                    formatSourceCode(CodeExtractor.classSource(SimpleClassB.class)));
+                    formatSourceCode(CodeExtractor.methodSource(method)));
 
             doc.writeInline(
                     ".Source code Part 1 extracted",
                     formatSourceCode(codePart1),
                     ".Source code Part 2 extracted",
                     formatSourceCode(codePart2));
-
-
         }
     }
 

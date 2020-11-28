@@ -12,7 +12,8 @@ It's also possible to retrieve only the method body.
 or
 [source, java, indent=0]
 ----
-            String code = CodeExtractor.extractMethodBody(SimpleClass.class, "simpleMethod");
+            Method method = FindLambdaMethod.getMethod(SimpleClass::simpleMethod);
+            String code = CodeExtractor.methodSource(method);
 
 ----
 

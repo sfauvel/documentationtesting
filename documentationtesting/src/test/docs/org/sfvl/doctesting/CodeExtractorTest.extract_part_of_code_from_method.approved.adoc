@@ -7,7 +7,14 @@ Another comment with a specific value indicate the end of the code.
 .How to extract part of a method code
 [source, java, indent=0]
 ----
-            String code = CodeExtractor.extractPartOfMethod(SimpleClassA.class, "methodWithCodeToExtract", "");
+                Method method = FindLambdaMethod.getMethod(ClassWithMethodToExtract::methodWithOnePartToExtract);
+                String code = CodeExtractor.extractPartOfMethod(method);
+
+----
+or
+[source, java, indent=0]
+----
+                String code = CodeExtractor.extractPartOfMethod(ClassWithMethodToExtract.class, "methodWithOnePartToExtract");
 
 ----
 
@@ -16,15 +23,13 @@ Another comment with a specific value indicate the end of the code.
 .Source code from file
 [source, java, indent=0]
 ----
-public class SimpleClassA {
-    public void methodWithCodeToExtract() {
+    public void methodWithOnePartToExtract() {
         int i = 0;
         // >>>
         int j = i;
         // <<<
         int k = i + j;
     }
-}
 ----
 ====
 
@@ -37,29 +42,14 @@ public class SimpleClassA {
 
 ----
 ====
-.How to extract part of a method code using Method object
-[source, java, indent=0]
-----
-            final Method method = FindLambdaMethod.getMethod(SimpleClassA::methodWithCodeToExtract);
-            String code = CodeExtractor.extractPartOfMethod(method);
-
-----
-
-[.inline]
-====
-.Source code extracted
-[source, java, indent=0]
-----
-        int j = i;
-
-----
-====
-You can have several part identify by a text that you pass as argument to the extraction function
+You can have several part identify by a text that you pass as argument to the function extracting the code.
+You can have several part identified by the same text.
+In that case, all parts matching the text will be returned.
 
 .How to extract part of a method
 [source, java, indent=0]
 ----
-            final Method method = FindLambdaMethod.getMethod(SimpleClassB::methodWithCodeToExtract);
+            Method method = FindLambdaMethod.getMethod(ClassWithMethodToExtract::methodWithSeveralPartsToExtract);
             String codePart1 = CodeExtractor.extractPartOfMethod(method, "Part1");
             String codePart2 = CodeExtractor.extractPartOfMethod(method, "Part2");
 
@@ -70,8 +60,7 @@ You can have several part identify by a text that you pass as argument to the ex
 .Source code from file
 [source, java, indent=0]
 ----
-public class SimpleClassB {
-    public int methodWithCodeToExtract(int value) {
+    public int methodWithSeveralPartsToExtract(int value) {
         // >>>Part1
         int square = value * value;
         // <<<Part1
@@ -88,7 +77,6 @@ public class SimpleClassB {
         return square;
         // <<<Part1
     }
-}
 ----
 ====
 

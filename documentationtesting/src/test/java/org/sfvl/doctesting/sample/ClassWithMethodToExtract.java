@@ -1,7 +1,15 @@
 package org.sfvl.doctesting.sample;
 
-public class SimpleClassB {
-    public int methodWithCodeToExtract(int value) {
+public class ClassWithMethodToExtract {
+    public void methodWithOnePartToExtract() {
+        int i = 0;
+        // >>>
+        int j = i;
+        // <<<
+        int k = i + j;
+    }
+
+    public int methodWithSeveralPartsToExtract(int value) {
         // >>>Part1
         int square = value * value;
         // <<<Part1

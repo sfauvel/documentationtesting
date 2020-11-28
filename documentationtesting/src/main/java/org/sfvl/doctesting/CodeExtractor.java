@@ -202,6 +202,10 @@ public class CodeExtractor {
         return extractPartOfMethod(method.getDeclaringClass(), method.getName(), suffix);
     }
 
+    public static String extractPartOfMethod(Class<?> clazz, String methodName) {
+        return extractPartOfMethod(clazz, methodName, "");
+    }
+
     public static String extractPartOfMethod(Class<?> clazz, String methodName, String suffix) {
         final String source = CodeExtractor.extractMethodBody(clazz, methodName);
         return extractCodeBetween(source, TAG_BEGIN + suffix, TAG_END + suffix);

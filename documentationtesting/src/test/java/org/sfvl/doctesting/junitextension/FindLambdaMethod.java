@@ -78,7 +78,7 @@ public class FindLambdaMethod {
 //            final Object capturedArg = serializedLambda.getCapturedArg(i);
 //            System.out.println(capturedArg);
 //        }
-        //(Lorg/sfvl/doctesting/SimpleClassB;Ljava/lang/Integer;)V
+        //(Lorg/sfvl/doctesting/SimpleClass;Ljava/lang/Integer;)V
         final Pattern compile = Pattern.compile("L.*?;");
         final Matcher matcher = compile.matcher(instantiatedMethodType);
         List<Class<?>> args = new ArrayList<>();
