@@ -26,7 +26,9 @@ public class DocWriter {
 
     public String formatOutput(String displayName, Method testMethod) {
         return  String.join("",
-                "= " + formatTitle(displayName, testMethod) + "\n\n",
+                "= " + formatTitle(displayName, testMethod) + "\n",
+                //String.format("// %s.%s\n", testMethod.getDeclaringClass().getCanonicalName(), testMethod.getName()),
+                "\n",
                 CodeExtractor.getComment(testMethod).map(comment -> comment + "\n\n").orElse(""),
                 read());
     }

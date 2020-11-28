@@ -1,4 +1,4 @@
-package org.sfvl.doctesting;
+package org.sfvl.doctesting.sample;
 
 // tag::ClassWithCommentToExtract[]
 /**
