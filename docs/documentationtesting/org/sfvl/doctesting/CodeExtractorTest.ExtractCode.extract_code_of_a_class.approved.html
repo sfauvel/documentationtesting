@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Extract code of an other class in file</title>
+<title>Extract code of a class</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -438,17 +438,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Extract code of an other class in file</h1>
+<h1>Extract code of a class</h1>
 </div>
 <div id="content">
-<div class="paragraph">
-<p>It&#8217;s not possible to extract code of a non public class because it&#8217;s not possible to determine source file.
-To be able to extract it, we have to explicitly give source file.</p>
-</div>
 <div class="listingblock">
-<div class="title">How to extract code of a non public class</div>
+<div class="title">How to extract code of a class</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.classSource(CodeExtractorTest.class, ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.classSource(SimpleClass.class);</code></pre>
 </div>
 </div>
 <div class="exampleblock inline">
@@ -456,23 +452,9 @@ To be able to extract it, we have to explicitly give source file.</p>
 <div class="listingblock">
 <div class="title">Source code to extract</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">/**
- * Comment of the class.
- */
-@NotIncludeToDoc
-class ClassNestedWithCommentToExtract {
-
-    /**
-     * Comment of the subclass.
-     */
-    class SubClassNestedWithCommentToExtract {
-        /**
-         * Method comment in an inner class.
-         */
-        @Test
-        public void methodInSubClass() {
-            System.out.println("My method");
-        }
+<pre class="highlight"><code class="language-java" data-lang="java">public class SimpleClass {
+    public int simpleMethod() {
+        return 0;
     }
 }</code></pre>
 </div>
@@ -484,31 +466,13 @@ class ClassNestedWithCommentToExtract {
 <div class="listingblock">
 <div class="title">Source code extracted</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class SubClassNestedWithCommentToExtract {
-    /**
-     * Method comment in an inner class.
-     */
-    @Test
-    public void methodInSubClass() {
-        System.out.println("My method");
+<pre class="highlight"><code class="language-java" data-lang="java">public class SimpleClass {
+    public int simpleMethod() {
+        return 0;
     }
 }</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="paragraph">
-<p>Non public class in a file could not be retrieve without giving main class of the file containing searching class.</p>
-</div>
-<div class="listingblock">
-<div class="title">This code does not work and throw an exception</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.classSource(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);</code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-java.nio.file.NoSuchFileException: src/test/java/org/sfvl/doctesting/ClassNestedWithCommentToExtract.java
 </div>
 </div>
 <style>
@@ -526,7 +490,7 @@ java.nio.file.NoSuchFileException: src/test/java/org/sfvl/doctesting/ClassNested
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-27 20:43:26 UTC
+Last updated 2020-12-03 22:34:57 UTC
 </div>
 </div>
 </body>

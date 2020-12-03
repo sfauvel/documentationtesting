@@ -447,20 +447,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_using_extension">Using extension</a></li>
 <li><a href="#_using_displayname">Using displayName</a></li>
 <li><a href="#_nested_class">Nested class</a></li>
-<li><a href="#_documentation">Documentation</a></li>
+<li><a href="#_documentation">Documentation</a>
+<ul class="sectlevel3">
+<li><a href="#_demonestedtest">DemoNestedTest</a>
+<ul class="sectlevel4">
+<li><a href="#_adding">Adding</a></li>
+<li><a href="#_multiply">Multiply</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_codeextractor">CodeExtractor</a>
 <ul class="sectlevel2">
+<li><a href="#_extract_code">Extract code</a>
+<ul class="sectlevel3">
 <li><a href="#_extract_code_of_a_class">Extract code of a class</a></li>
 <li><a href="#_extract_code_of_an_inner_class">Extract code of an inner class</a></li>
 <li><a href="#_extract_code_of_an_other_class_in_file">Extract code of an other class in file</a></li>
 <li><a href="#_extract_code_from_method">Extract code from method</a></li>
 <li><a href="#_extract_a_part_of_code_from_method">Extract a part of code from method</a></li>
-<li><a href="#_extract_class_comment">Extract class comment</a></li>
-<li><a href="#_extract_method_comment">Extract method comment</a></li>
 <li><a href="#_extract_enclosing_classes">Extract enclosing classes</a></li>
 <li><a href="#_extract_first_enclosing_classes_before_another">Extract first enclosing classes before another</a></li>
+</ul>
+</li>
+<li><a href="#_extract_comment">Extract comment</a>
+<ul class="sectlevel3">
+<li><a href="#_extract_class_comment">Extract class comment</a></li>
+<li><a href="#_extract_method_comment">Extract method comment</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_docwriter">DocWriter</a>
@@ -713,10 +730,13 @@ include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ado
 <h2 id="_codeextractor">CodeExtractor</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Extract information from code.</p>
+<p>It is often useful to retrieve information from the source code itself.
+This class provides utilities to extract pieces of code or comments.</p>
 </div>
 <div class="sect2">
-<h3 id="_extract_code_of_a_class">Extract code of a class</h3>
+<h3 id="_extract_code">Extract code</h3>
+<div class="sect3">
+<h4 id="_extract_code_of_a_class">Extract code of a class</h4>
 <div class="listingblock">
 <div class="title">How to extract code of a class</div>
 <div class="content">
@@ -764,8 +784,8 @@ include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ado
 }
 </style>
 </div>
-<div class="sect2">
-<h3 id="_extract_code_of_an_inner_class">Extract code of an inner class</h3>
+<div class="sect3">
+<h4 id="_extract_code_of_an_inner_class">Extract code of an inner class</h4>
 <div class="listingblock">
 <div class="title">How to extract code of an inner class</div>
 <div class="content">
@@ -813,8 +833,8 @@ include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ado
 }
 </style>
 </div>
-<div class="sect2">
-<h3 id="_extract_code_of_an_other_class_in_file">Extract code of an other class in file</h3>
+<div class="sect3">
+<h4 id="_extract_code_of_an_other_class_in_file">Extract code of an other class in file</h4>
 <div class="paragraph">
 <p>It&#8217;s not possible to extract code of a non public class because it&#8217;s not possible to determine source file.
 To be able to extract it, we have to explicitly give source file.</p>
@@ -830,10 +850,10 @@ To be able to extract it, we have to explicitly give source file.</p>
 <div class="listingblock">
 <div class="title">Source code to extract</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@NotIncludeToDoc</span>
+<span class="cm">/**
  * Comment of the class.
  */</span>
-<span class="nd">@NotIncludeToDoc</span>
 <span class="kd">class</span> <span class="nc">ClassNestedWithCommentToExtract</span> <span class="o">{</span>
 
     <span class="cm">/**
@@ -898,8 +918,8 @@ java.nio.file.NoSuchFileException: src/test/java/org/sfvl/doctesting/ClassNested
 }
 </style>
 </div>
-<div class="sect2">
-<h3 id="_extract_code_from_method">Extract code from method</h3>
+<div class="sect3">
+<h4 id="_extract_code_from_method">Extract code from method</h4>
 <div class="paragraph">
 <p>Method source code can be retrived from his method object or from his class and his method name.
 It&#8217;s also possible to retrieve only the method body.</p>
@@ -988,8 +1008,8 @@ It&#8217;s also possible to retrieve only the method body.</p>
 }
 </style>
 </div>
-<div class="sect2">
-<h3 id="_extract_a_part_of_code_from_method">Extract a part of code from method</h3>
+<div class="sect3">
+<h4 id="_extract_a_part_of_code_from_method">Extract a part of code from method</h4>
 <div class="paragraph">
 <p>To extract a part of a method, you can write a comment with a specific value
 that indicate beginining of the code to extract.
@@ -1109,8 +1129,98 @@ In that case, all parts matching the text will be returned.</p>
 }
 </style>
 </div>
+<div class="sect3">
+<h4 id="_extract_enclosing_classes">Extract enclosing classes</h4>
+<div class="paragraph">
+<p>Class list of <code>org.sfvl.doctesting.CodeExtractorTest</code> give :</p>
+</div>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CodeExtractorTest</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Class list of <code>org.sfvl.doctesting.sample.MyClass.MySubClass.ASubClassOfMySubClass</code> give :</p>
+</div>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MyClass</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MySubClass</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ASubClassOfMySubClass</p></td>
+</tr>
+</tbody>
+</table>
+<style>
+.inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+#content {
+   max-width: unset;
+   padding-left: 5%;
+   padding-right: 5%;
+}
+</style>
+</div>
+<div class="sect3">
+<h4 id="_extract_first_enclosing_classes_before_another">Extract first enclosing classes before another</h4>
+<div class="paragraph">
+<p>Extract from class <code>org.sfvl.doctesting.sample.MyClass$MySubClass$ASubClassOfMySubClass</code> using <code>CodeExtractor.getFirstEnclosingClassBefore</code></p>
+</div>
+<div class="paragraph">
+<p>First class of <code>ASubClassOfMySubClass</code> before <code>ASubClassOfMySubClass</code> give :</p>
+</div>
+<div class="paragraph">
+<p><code><strong>ASubClassOfMySubClass</strong></code></p>
+</div>
+<div class="paragraph">
+<p>First class of <code>ASubClassOfMySubClass</code> before <code>MySubClass</code> give :</p>
+</div>
+<div class="paragraph">
+<p><code><strong>ASubClassOfMySubClass</strong></code></p>
+</div>
+<div class="paragraph">
+<p>First class of <code>ASubClassOfMySubClass</code> before <code>MyClass</code> give :</p>
+</div>
+<div class="paragraph">
+<p><code><strong>MySubClass</strong></code></p>
+</div>
+<div class="paragraph">
+<p>First class of <code>ASubClassOfMySubClass</code> before <code>null</code> give :</p>
+</div>
+<div class="paragraph">
+<p><code><strong>MyClass</strong></code></p>
+</div>
+<style>
+.inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+#content {
+   max-width: unset;
+   padding-left: 5%;
+   padding-right: 5%;
+}
+</style>
+</div>
+</div>
 <div class="sect2">
-<h3 id="_extract_class_comment">Extract class comment</h3>
+<h3 id="_extract_comment">Extract comment</h3>
+<div class="sect3">
+<h4 id="_extract_class_comment">Extract class comment</h4>
 <div class="listingblock">
 <div class="title">How to extract comment of a class</div>
 <div class="content">
@@ -1202,10 +1312,10 @@ In that case, all parts matching the text will be returned.</p>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@NotIncludeToDoc</span>
+<span class="cm">/**
  * Comment of the class.
  */</span>
-<span class="nd">@NotIncludeToDoc</span>
 <span class="kd">class</span> <span class="nc">ClassNestedWithCommentToExtract</span> <span class="o">{</span>
 
     <span class="cm">/**
@@ -1248,8 +1358,8 @@ In that case, all parts matching the text will be returned.</p>
 }
 </style>
 </div>
-<div class="sect2">
-<h3 id="_extract_method_comment">Extract method comment</h3>
+<div class="sect3">
+<h4 id="_extract_method_comment">Extract method comment</h4>
 <div class="exampleblock inline">
 <div class="content">
 <div class="listingblock">
@@ -1391,92 +1501,6 @@ In that case, all parts matching the text will be returned.</p>
 }
 </style>
 </div>
-<div class="sect2">
-<h3 id="_extract_enclosing_classes">Extract enclosing classes</h3>
-<div class="paragraph">
-<p>Class list of <code>org.sfvl.doctesting.CodeExtractorTest</code> give :</p>
-</div>
-<table class="tableblock frame-all grid-all fit-content">
-<colgroup>
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CodeExtractorTest</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Class list of <code>org.sfvl.doctesting.sample.MyClass.MySubClass.ASubClassOfMySubClass</code> give :</p>
-</div>
-<table class="tableblock frame-all grid-all fit-content">
-<colgroup>
-<col>
-<col>
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MyClass</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MySubClass</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ASubClassOfMySubClass</p></td>
-</tr>
-</tbody>
-</table>
-<style>
-.inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-#content {
-   max-width: unset;
-   padding-left: 5%;
-   padding-right: 5%;
-}
-</style>
-</div>
-<div class="sect2">
-<h3 id="_extract_first_enclosing_classes_before_another">Extract first enclosing classes before another</h3>
-<div class="paragraph">
-<p>Extract from class <code>org.sfvl.doctesting.sample.MyClass$MySubClass$ASubClassOfMySubClass</code> using <code>CodeExtractor.getFirstEnclosingClassBefore</code></p>
-</div>
-<div class="paragraph">
-<p>First class of <code>ASubClassOfMySubClass</code> before <code>ASubClassOfMySubClass</code> give :</p>
-</div>
-<div class="paragraph">
-<p><code><strong>ASubClassOfMySubClass</strong></code></p>
-</div>
-<div class="paragraph">
-<p>First class of <code>ASubClassOfMySubClass</code> before <code>MySubClass</code> give :</p>
-</div>
-<div class="paragraph">
-<p><code><strong>ASubClassOfMySubClass</strong></code></p>
-</div>
-<div class="paragraph">
-<p>First class of <code>ASubClassOfMySubClass</code> before <code>MyClass</code> give :</p>
-</div>
-<div class="paragraph">
-<p><code><strong>MySubClass</strong></code></p>
-</div>
-<div class="paragraph">
-<p>First class of <code>ASubClassOfMySubClass</code> before <code>null</code> give :</p>
-</div>
-<div class="paragraph">
-<p><code><strong>MyClass</strong></code></p>
-</div>
-<style>
-.inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-#content {
-   max-width: unset;
-   padding-left: 5%;
-   padding-right: 5%;
-}
-</style>
 </div>
 </div>
 </div>

@@ -3,7 +3,7 @@
 .How to extract comment of a class
 [source, java, indent=0]
 ----
-            final String comment = CodeExtractor.getComment(ClassWithCommentToExtract.class);
+                final String comment = CodeExtractor.getComment(ClassWithCommentToExtract.class);
 
 ----
 
@@ -28,7 +28,7 @@ Comment of the class.
 .How to extract comment of a nested class
 [source, java, indent=0]
 ----
-            final String comment = CodeExtractor.getComment(CodeExtractorTest.NestedClass.class);
+                final String comment = CodeExtractor.getComment(CodeExtractorTest.NestedClass.class);
 
 ----
 
@@ -53,7 +53,7 @@ Comment of the nested class of CodeExtractorTest.
 .How to extract comment of class that is not the main class of his file.
 [source, java, indent=0]
 ----
-            final String comment = CodeExtractor.getComment(ClassNestedWithCommentToExtract.class);
+                final String comment = CodeExtractor.getComment(ClassNestedWithCommentToExtract.class);
 
 ----
 

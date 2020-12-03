@@ -6,7 +6,7 @@ To be able to extract it, we have to explicitly give source file.
 .How to extract code of a non public class
 [source, java, indent=0]
 ----
-            String code = CodeExtractor.classSource(CodeExtractorTest.class, ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);
+                String code = CodeExtractor.classSource(CodeExtractorTest.class, ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);
 
 ----
 
@@ -40,7 +40,7 @@ Non public class in a file could not be retrieve without giving main class of th
 .This code does not work and throw an exception
 [source, java, indent=0]
 ----
-                String code = CodeExtractor.classSource(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);
+                    String code = CodeExtractor.classSource(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);
 
 ----
 

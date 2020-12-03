@@ -11,7 +11,7 @@ public class DocTestingDocumentation extends MainDocumentation {
     @Override
     protected String getHeader() {
         return joinParagraph(
-                ":source-highlighter: rouge\n" + getDocumentOptions(),
+                ":source-highlighter: rouge\n" + getDocumentOptions() + "\n:toclevels: 4",
                 "= " + DOCUMENTATION_TITLE,
                 generalInformation());
     }

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Extract a part of code from method</title>
+<title>Extract code of an inner class</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -438,40 +438,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Extract a part of code from method</h1>
+<h1>Extract code of an inner class</h1>
 </div>
 <div id="content">
-<div class="paragraph">
-<p>To extract a part of a method, you can write a comment with a specific value
-that indicate beginining of the code to extract.
-Another comment with a specific value indicate the end of the code.</p>
-</div>
 <div class="listingblock">
-<div class="title">How to extract part of a method code</div>
+<div class="title">How to extract code of an inner class</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">Method method = FindLambdaMethod.getMethod(ClassWithMethodToExtract::methodWithOnePartToExtract);
-String code = CodeExtractor.extractPartOfMethod(method);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.extractPartOfMethod(ClassWithMethodToExtract.class, "methodWithOnePartToExtract");</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.classSource(CodeExtractorTest.SimpleInnerClass.class);</code></pre>
 </div>
 </div>
 <div class="exampleblock inline">
 <div class="content">
 <div class="listingblock">
-<div class="title">Source code from file</div>
+<div class="title">Source code to extract</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">public void methodWithOnePartToExtract() {
-    int i = 0;
-    // &gt;&gt;&gt;
-    int j = i;
-    // &lt;&lt;&lt;
-    int k = i + j;
+<pre class="highlight"><code class="language-java" data-lang="java">class SimpleInnerClass {
+    public int simpleMethod() {
+        return 0;
+    }
 }</code></pre>
 </div>
 </div>
@@ -482,67 +466,11 @@ String code = CodeExtractor.extractPartOfMethod(method);</code></pre>
 <div class="listingblock">
 <div class="title">Source code extracted</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">int j = i;</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>You can have several part identify by a text that you pass as argument to the function extracting the code.
-You can have several part identified by the same text.
-In that case, all parts matching the text will be returned.</p>
-</div>
-<div class="listingblock">
-<div class="title">How to extract part of a method</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">Method method = FindLambdaMethod.getMethod(ClassWithMethodToExtract::methodWithSeveralPartsToExtract);
-String codePart1 = CodeExtractor.extractPartOfMethod(method, "Part1");
-String codePart2 = CodeExtractor.extractPartOfMethod(method, "Part2");</code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code from file</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">public int methodWithSeveralPartsToExtract(int value) {
-    // &gt;&gt;&gt;Part1
-    int square = value * value;
-    // &lt;&lt;&lt;Part1
-
-    // &gt;&gt;&gt;Part2
-    final String text = String.format(
-            "square(%d)=%d",
-            value,
-            square);
-    System.out.println(text);
-    // &lt;&lt;&lt;Part2
-
-    // &gt;&gt;&gt;Part1
-    return square;
-    // &lt;&lt;&lt;Part1
+<pre class="highlight"><code class="language-java" data-lang="java">class SimpleInnerClass {
+    public int simpleMethod() {
+        return 0;
+    }
 }</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code Part 1 extracted</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">int square = value * value;
-return square;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Source code Part 2 extracted</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">final String text = String.format(
-        "square(%d)=%d",
-        value,
-        square);
-System.out.println(text);</code></pre>
 </div>
 </div>
 </div>
@@ -562,7 +490,7 @@ System.out.println(text);</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-28 22:55:10 UTC
+Last updated 2020-12-03 22:49:46 UTC
 </div>
 </div>
 </body>

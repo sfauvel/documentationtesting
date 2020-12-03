@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Extract class comment</title>
+<title>Extract first enclosing classes before another</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -438,132 +438,35 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Extract class comment</h1>
+<h1>Extract first enclosing classes before another</h1>
 </div>
 <div id="content">
-<div class="listingblock">
-<div class="title">How to extract comment of a class</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">final String comment = CodeExtractor.getComment(ClassWithCommentToExtract.class);</code></pre>
+<div class="paragraph">
+<p>Extract from class <code>org.sfvl.doctesting.sample.MyClass$MySubClass$ASubClassOfMySubClass</code> using <code>CodeExtractor.getFirstEnclosingClassBefore</code></p>
 </div>
+<div class="paragraph">
+<p>First class of <code>ASubClassOfMySubClass</code> before <code>ASubClassOfMySubClass</code> give :</p>
 </div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">/**
- * Comment of the class.
- */
-public class ClassWithCommentToExtract {
-
-    /**
-     * Comment of the method without parameters.
-     */
-    public void methodWithoutParameters() {
-
-    }
-
-    /**
-     * Comment of the method with two parameters.
-     */
-    public void methodWithParameters(int id, String name) {
-
-    }
-
-}</code></pre>
+<div class="paragraph">
+<p><code><strong>ASubClassOfMySubClass</strong></code></p>
 </div>
+<div class="paragraph">
+<p>First class of <code>ASubClassOfMySubClass</code> before <code>MySubClass</code> give :</p>
 </div>
+<div class="paragraph">
+<p><code><strong>ASubClassOfMySubClass</strong></code></p>
 </div>
+<div class="paragraph">
+<p>First class of <code>ASubClassOfMySubClass</code> before <code>MyClass</code> give :</p>
 </div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Comment extracted from class</div>
-<div class="content">
-<pre>Comment of the class.</pre>
+<div class="paragraph">
+<p><code><strong>MySubClass</strong></code></p>
 </div>
+<div class="paragraph">
+<p>First class of <code>ASubClassOfMySubClass</code> before <code>null</code> give :</p>
 </div>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">How to extract comment of a nested class</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">final String comment = CodeExtractor.getComment(CodeExtractorTest.NestedClass.class);</code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">/**
- * Comment of the nested class of CodeExtractorTest.
- */
-@NotIncludeToDoc
-class NestedClass {
-    /**
-     * Method comment in an inner class.
-     */
-    @Test
-    public void methodInSubClass() {
-        System.out.println("My method");
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Comment extracted from class</div>
-<div class="content">
-<pre>Comment of the nested class of CodeExtractorTest.</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">How to extract comment of class that is not the main class of his file.</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">final String comment = CodeExtractor.getComment(ClassNestedWithCommentToExtract.class);</code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">/**
- * Comment of the class.
- */
-@NotIncludeToDoc
-class ClassNestedWithCommentToExtract {
-
-    /**
-     * Comment of the subclass.
-     */
-    class SubClassNestedWithCommentToExtract {
-        /**
-         * Method comment in an inner class.
-         */
-        @Test
-        public void methodInSubClass() {
-            System.out.println("My method");
-        }
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Comment extracted from class</div>
-<div class="content">
-<pre>Comment of the class.</pre>
-</div>
-</div>
-</div>
+<div class="paragraph">
+<p><code><strong>MyClass</strong></code></p>
 </div>
 <style>
 .inline {
@@ -580,7 +483,7 @@ class ClassNestedWithCommentToExtract {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-28 21:08:42 UTC
+Last updated 2020-12-03 22:49:46 UTC
 </div>
 </div>
 </body>

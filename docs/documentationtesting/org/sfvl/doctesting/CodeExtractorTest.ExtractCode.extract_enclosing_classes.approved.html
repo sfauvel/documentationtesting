@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Extract code of an inner class</title>
+<title>Extract enclosing classes</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -438,43 +438,39 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Extract code of an inner class</h1>
+<h1>Extract enclosing classes</h1>
 </div>
 <div id="content">
-<div class="listingblock">
-<div class="title">How to extract code of an inner class</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.classSource(CodeExtractorTest.SimpleInnerClass.class);</code></pre>
+<div class="paragraph">
+<p>Class list of <code>org.sfvl.doctesting.CodeExtractorTest</code> give :</p>
 </div>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CodeExtractorTest</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Class list of <code>org.sfvl.doctesting.sample.MyClass.MySubClass.ASubClassOfMySubClass</code> give :</p>
 </div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code to extract</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class SimpleInnerClass {
-    public int simpleMethod() {
-        return 0;
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code extracted</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class SimpleInnerClass {
-    public int simpleMethod() {
-        return 0;
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MyClass</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MySubClass</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ASubClassOfMySubClass</p></td>
+</tr>
+</tbody>
+</table>
 <style>
 .inline {
    display: inline-block;
@@ -490,7 +486,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-24 22:44:22 UTC
+Last updated 2020-12-03 22:49:46 UTC
 </div>
 </div>
 </body>

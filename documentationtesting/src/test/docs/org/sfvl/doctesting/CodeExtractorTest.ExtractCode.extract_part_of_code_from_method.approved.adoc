@@ -7,14 +7,14 @@ Another comment with a specific value indicate the end of the code.
 .How to extract part of a method code
 [source, java, indent=0]
 ----
-                Method method = FindLambdaMethod.getMethod(ClassWithMethodToExtract::methodWithOnePartToExtract);
-                String code = CodeExtractor.extractPartOfMethod(method);
+                    Method method = FindLambdaMethod.getMethod(ClassWithMethodToExtract::methodWithOnePartToExtract);
+                    String code = CodeExtractor.extractPartOfMethod(method);
 
 ----
 or
 [source, java, indent=0]
 ----
-                String code = CodeExtractor.extractPartOfMethod(ClassWithMethodToExtract.class, "methodWithOnePartToExtract");
+                    String code = CodeExtractor.extractPartOfMethod(ClassWithMethodToExtract.class, "methodWithOnePartToExtract");
 
 ----
 
@@ -49,9 +49,9 @@ In that case, all parts matching the text will be returned.
 .How to extract part of a method
 [source, java, indent=0]
 ----
-            Method method = FindLambdaMethod.getMethod(ClassWithMethodToExtract::methodWithSeveralPartsToExtract);
-            String codePart1 = CodeExtractor.extractPartOfMethod(method, "Part1");
-            String codePart2 = CodeExtractor.extractPartOfMethod(method, "Part2");
+                Method method = FindLambdaMethod.getMethod(ClassWithMethodToExtract::methodWithSeveralPartsToExtract);
+                String codePart1 = CodeExtractor.extractPartOfMethod(method, "Part1");
+                String codePart2 = CodeExtractor.extractPartOfMethod(method, "Part2");
 
 ----
 

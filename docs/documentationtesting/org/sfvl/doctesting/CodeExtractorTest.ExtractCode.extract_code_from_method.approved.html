@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Extract enclosing classes</title>
+<title>Extract code from method</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -438,39 +438,84 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Extract enclosing classes</h1>
+<h1>Extract code from method</h1>
 </div>
 <div id="content">
 <div class="paragraph">
-<p>Class list of <code>org.sfvl.doctesting.CodeExtractorTest</code> give :</p>
+<p>Method source code can be retrived from his method object or from his class and his method name.
+It&#8217;s also possible to retrieve only the method body.</p>
 </div>
-<table class="tableblock frame-all grid-all fit-content">
-<colgroup>
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CodeExtractorTest</p></td>
-</tr>
-</tbody>
-</table>
+<div class="listingblock">
+<div class="title">How to extract code of a method</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.methodSource(SimpleClass.class, "simpleMethod");</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Class list of <code>org.sfvl.doctesting.sample.MyClass.MySubClass.ASubClassOfMySubClass</code> give :</p>
+<p>or</p>
 </div>
-<table class="tableblock frame-all grid-all fit-content">
-<colgroup>
-<col>
-<col>
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MyClass</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MySubClass</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ASubClassOfMySubClass</p></td>
-</tr>
-</tbody>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">Method method = FindLambdaMethod.getMethod(SimpleClass::simpleMethod);
+String code = CodeExtractor.methodSource(method);</code></pre>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">Source code from file</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public class SimpleClass {
+    public int simpleMethod() {
+        return 0;
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">Source code extracted</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public int simpleMethod() {
+    return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">How to extract body of a method</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.extractMethodBody(SimpleClass.class, "simpleMethod");</code></pre>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">Source code from file</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public class SimpleClass {
+    public int simpleMethod() {
+        return 0;
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">Source code extracted</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">return 0;</code></pre>
+</div>
+</div>
+</div>
+</div>
 <style>
 .inline {
    display: inline-block;
@@ -486,7 +531,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-28 21:13:01 UTC
+Last updated 2020-12-03 22:49:46 UTC
 </div>
 </div>
 </body>
