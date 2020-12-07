@@ -1,3 +1,4 @@
+[#org_sfvl_GameOfLifeTest_die_when_less_than_2_neighbours]
 = Die when less than 2 neighbours
 
 With less than 2 neighbours, cell die on the next generation.

@@ -1,3 +1,4 @@
+[#com_adaptionsoft_games_uglytrivia_GameSvgTest_player_advances]
 = Movements of a player
 
 In a game turn, the player rolls a dice and advances the number of spaces indicated.

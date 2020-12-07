@@ -1,3 +1,4 @@
+[#org_sfvl_demo_TennisTest_start_of_the_game]
 = Start of the game
 
 At the beginning, score is 0 / 0.

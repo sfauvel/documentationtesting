@@ -1,3 +1,4 @@
+[#org_sfvl_application_fizzbuzz_FizzBuzzTest_sample_output]
 = Sample output
 
 1 +

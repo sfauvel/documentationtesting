@@ -1,3 +1,4 @@
+[#org_sfvl_demo_HeroExperienceTest_should_gainxp]
 = Should gainxp
 
 We generate a lot of heros and values used to update hero during test.

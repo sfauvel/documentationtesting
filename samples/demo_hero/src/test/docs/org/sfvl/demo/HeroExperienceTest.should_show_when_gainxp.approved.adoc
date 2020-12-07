@@ -1,3 +1,4 @@
+[#org_sfvl_demo_HeroExperienceTest_should_show_when_gainxp]
 = Should show when gainxp
 
 With some experience, hero will pass a new level.

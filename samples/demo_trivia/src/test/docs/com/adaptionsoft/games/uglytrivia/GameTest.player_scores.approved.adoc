@@ -1,3 +1,4 @@
+[#com_adaptionsoft_games_uglytrivia_GameTest_player_scores]
 = Player scores
 
 After moving, the player must answer a question corresponding to the category of the square where he is located.

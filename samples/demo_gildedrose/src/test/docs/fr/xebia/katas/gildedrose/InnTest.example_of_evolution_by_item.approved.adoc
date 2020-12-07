@@ -1,3 +1,4 @@
+[#fr_xebia_katas_gildedrose_InnTest_example_of_evolution_by_item]
 = Example of evolution by item
 
 

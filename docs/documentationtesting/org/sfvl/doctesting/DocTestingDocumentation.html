@@ -438,16 +438,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Documentation</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_documentation">Documentation</a>
 <ul class="sectlevel1">
 <li><a href="#_approvalsextension">ApprovalsExtension</a>
 <ul class="sectlevel2">
-<li><a href="#_using_extension">Using extension</a></li>
-<li><a href="#_using_displayname">Using displayName</a></li>
-<li><a href="#_nested_class">Nested class</a></li>
-<li><a href="#_documentation">Documentation</a>
+<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_extension">Using extension</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_displayName">Using displayName</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_nested_class">Nested class</a></li>
+<li><a href="#_documentation_2">Documentation</a>
 <ul class="sectlevel3">
 <li><a href="#_demonestedtest">DemoNestedTest</a>
 <ul class="sectlevel4">
@@ -463,47 +464,57 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_extract_code">Extract code</a>
 <ul class="sectlevel3">
-<li><a href="#_extract_code_of_a_class">Extract code of a class</a></li>
-<li><a href="#_extract_code_of_an_inner_class">Extract code of an inner class</a></li>
-<li><a href="#_extract_code_of_an_other_class_in_file">Extract code of an other class in file</a></li>
-<li><a href="#_extract_code_from_method">Extract code from method</a></li>
-<li><a href="#_extract_a_part_of_code_from_method">Extract a part of code from method</a></li>
-<li><a href="#_extract_enclosing_classes">Extract enclosing classes</a></li>
-<li><a href="#_extract_first_enclosing_classes_before_another">Extract first enclosing classes before another</a></li>
+<li><a href="#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_code_of_a_class">Extract code of a class</a></li>
+<li><a href="#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_code_of_an_inner_class">Extract code of an inner class</a></li>
+<li><a href="#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_code_of_an_other_class_in_file">Extract code of an other class in file</a></li>
+<li><a href="#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_code_from_method">Extract code from method</a></li>
+<li><a href="#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_part_of_code_from_method">Extract a part of code from method</a></li>
+<li><a href="#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_enclosing_classes">Extract enclosing classes</a></li>
+<li><a href="#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_first_enclosing_classes_before_another">Extract first enclosing classes before another</a></li>
 </ul>
 </li>
 <li><a href="#_extract_comment">Extract comment</a>
 <ul class="sectlevel3">
-<li><a href="#_extract_class_comment">Extract class comment</a></li>
-<li><a href="#_extract_method_comment">Extract method comment</a></li>
+<li><a href="#org_sfvl_doctesting_CodeExtractorTest_ExtractComment_extract_class_comment">Extract class comment</a></li>
+<li><a href="#org_sfvl_doctesting_CodeExtractorTest_ExtractComment_extract_method_comment">Extract method comment</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#_docwriter">DocWriter</a>
 <ul class="sectlevel2">
-<li><a href="#_docwriter_usage">DocWriter usage</a></li>
-<li><a href="#_format_title">Format title</a></li>
-<li><a href="#_add_description">Add description</a></li>
-<li><a href="#_formatted_title">Formatted title</a></li>
+<li><a href="#org_sfvl_doctesting_DocWriterTest_doc_writer_usage">DocWriter usage</a></li>
+<li><a href="#org_sfvl_doctesting_DocWriterTest_format_title">Format title</a></li>
+<li><a href="#org_sfvl_doctesting_DocWriterTest_add_description_using_comment">Add description</a></li>
+<li><a href="#org_sfvl_doctesting_DocWriterTest_title">Formatted title</a></li>
 </ul>
 </li>
 <li><a href="#_extract_information_from_method_reference">Extract information from method reference</a>
 <ul class="sectlevel2">
-<li><a href="#_find_method_name">Find method name</a></li>
-<li><a href="#_find_method">Find method</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_FindLambdaMethodTest_find_method_name">Find method name</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_FindLambdaMethodTest_find_method">Find method</a></li>
 </ul>
 </li>
 <li><a href="#_maindocumentationtest">MainDocumentationTest</a>
 <ul class="sectlevel2">
-<li><a href="#_document_structure">Document structure</a></li>
-<li><a href="#_select_methods_to_add">Select methods to add</a></li>
+<li><a href="#org_sfvl_doctesting_MainDocumentationTest_document_structure">Document structure</a></li>
+<li><a href="#org_sfvl_doctesting_MainDocumentationTest_select_methods_to_add">Select methods to add</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
+<style>
+#content {
+   max-width: unset;
+   padding-left: 5%;
+   padding-right: 5%;
+}
+</style>
+<h1 id="_documentation" class="sect0">Documentation</h1>
 <div class="sect1">
 <h2 id="_approvalsextension">ApprovalsExtension</h2>
 <div class="sectionbody">
@@ -514,7 +525,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>It checks that everything written during test is identical to the approved content.</p>
 </div>
 <div class="sect2">
-<h3 id="_using_extension">Using extension</h3>
+<h3 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_extension">Using extension</h3>
 <div class="paragraph">
 <p>This is an example of <code>ApprovalsExtension</code> usage.</p>
 </div>
@@ -544,7 +555,8 @@ This extension will check that content of <code>DocWriter</code> has not changed
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>= Test A
+<pre>[#org_sfvl_doctesting_junitextension_MyTest_test_A]
+= Test A
 
 In my *test*</pre>
 </div>
@@ -555,7 +567,7 @@ The chapter content contains what was written using <code>DocWriter</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_using_displayname">Using displayName</h3>
+<h3 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_displayName">Using displayName</h3>
 <div class="paragraph">
 <p>You can use DisplayName annotation to customize test title.Test example using DisplayName</p>
 </div>
@@ -580,14 +592,15 @@ The chapter content contains what was written using <code>DocWriter</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>= Title for this test
+<pre>[#org_sfvl_doctesting_junitextension_UsingDisplayNameTest_test_A]
+= Title for this test
 
 In my *test*</pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_nested_class">Nested class</h3>
+<h3 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_nested_class">Nested class</h3>
 <div class="paragraph">
 <p>Nested class can be used to organize tests.
 Each nested class create a nested title.</p>
@@ -685,11 +698,11 @@ include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ado
 </div>
 </div>
 <div class="sect2">
-<h3 id="_documentation">Documentation</h3>
+<h3 id="_documentation_2">Documentation</h3>
 <div class="sect3">
 <h4 id="_demonestedtest">DemoNestedTest</h4>
 <div class="paragraph">
-<div class="title">final rendeering</div>
+<div class="title">final rendering</div>
 <p>Demo of a simple usage to generate documentation.</p>
 </div>
 <div class="sect4">
@@ -698,13 +711,13 @@ include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ado
 <p>Document of Addition operations.</p>
 </div>
 <div class="sect5">
-<h6 id="_adding_2_simple_numbers">Adding 2 simple numbers</h6>
+<h6 id="org_sfvl_doctesting_junitextension_DemoNestedTest_Adding_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h6>
 <div class="paragraph">
 <p>2 + 3 = 5</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_adding_3_simple_numbers">Adding 3 simple numbers</h6>
+<h6 id="org_sfvl_doctesting_junitextension_DemoNestedTest_Adding_should_be_9_when_adding_2_3_and_4">Adding 3 simple numbers</h6>
 <div class="paragraph">
 <p>A nested test.</p>
 </div>
@@ -716,7 +729,7 @@ include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ado
 <div class="sect4">
 <h5 id="_multiply">Multiply</h5>
 <div class="sect5">
-<h6 id="_multiply_2_simple_numbers">Multiply 2 simple numbers</h6>
+<h6 id="org_sfvl_doctesting_junitextension_DemoNestedTest_Multiply_should_be_12_when_multiply_4_and_3">Multiply 2 simple numbers</h6>
 <div class="paragraph">
 <p>4 * 3 = 12</p>
 </div>
@@ -736,7 +749,7 @@ This class provides utilities to extract pieces of code or comments.</p>
 <div class="sect2">
 <h3 id="_extract_code">Extract code</h3>
 <div class="sect3">
-<h4 id="_extract_code_of_a_class">Extract code of a class</h4>
+<h4 id="org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_code_of_a_class">Extract code of a class</h4>
 <div class="listingblock">
 <div class="title">How to extract code of a class</div>
 <div class="content">
@@ -772,20 +785,15 @@ This class provides utilities to extract pieces of code or comments.</p>
 </div>
 </div>
 <style>
-.inline {
+#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_code_of_a_class ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
-#content {
-   max-width: unset;
-   padding-left: 5%;
-   padding-right: 5%;
-}
 </style>
 </div>
 <div class="sect3">
-<h4 id="_extract_code_of_an_inner_class">Extract code of an inner class</h4>
+<h4 id="org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_code_of_an_inner_class">Extract code of an inner class</h4>
 <div class="listingblock">
 <div class="title">How to extract code of an inner class</div>
 <div class="content">
@@ -821,20 +829,15 @@ This class provides utilities to extract pieces of code or comments.</p>
 </div>
 </div>
 <style>
-.inline {
+#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_code_of_an_inner_class ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
-#content {
-   max-width: unset;
-   padding-left: 5%;
-   padding-right: 5%;
-}
 </style>
 </div>
 <div class="sect3">
-<h4 id="_extract_code_of_an_other_class_in_file">Extract code of an other class in file</h4>
+<h4 id="org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_code_of_an_other_class_in_file">Extract code of an other class in file</h4>
 <div class="paragraph">
 <p>It&#8217;s not possible to extract code of a non public class because it&#8217;s not possible to determine source file.
 To be able to extract it, we have to explicitly give source file.</p>
@@ -906,20 +909,15 @@ java.nio.file.NoSuchFileException: src/test/java/org/sfvl/doctesting/ClassNested
 </div>
 </div>
 <style>
-.inline {
+#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_code_of_an_other_class_in_file ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
-#content {
-   max-width: unset;
-   padding-left: 5%;
-   padding-right: 5%;
-}
 </style>
 </div>
 <div class="sect3">
-<h4 id="_extract_code_from_method">Extract code from method</h4>
+<h4 id="org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_code_from_method">Extract code from method</h4>
 <div class="paragraph">
 <p>Method source code can be retrived from his method object or from his class and his method name.
 It&#8217;s also possible to retrieve only the method body.</p>
@@ -996,20 +994,15 @@ It&#8217;s also possible to retrieve only the method body.</p>
 </div>
 </div>
 <style>
-.inline {
+#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_code_from_method ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
-#content {
-   max-width: unset;
-   padding-left: 5%;
-   padding-right: 5%;
-}
 </style>
 </div>
 <div class="sect3">
-<h4 id="_extract_a_part_of_code_from_method">Extract a part of code from method</h4>
+<h4 id="org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_part_of_code_from_method">Extract a part of code from method</h4>
 <div class="paragraph">
 <p>To extract a part of a method, you can write a comment with a specific value
 that indicate beginining of the code to extract.
@@ -1117,20 +1110,15 @@ In that case, all parts matching the text will be returned.</p>
 </div>
 </div>
 <style>
-.inline {
+#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_part_of_code_from_method ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
-#content {
-   max-width: unset;
-   padding-left: 5%;
-   padding-right: 5%;
-}
 </style>
 </div>
 <div class="sect3">
-<h4 id="_extract_enclosing_classes">Extract enclosing classes</h4>
+<h4 id="org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_enclosing_classes">Extract enclosing classes</h4>
 <div class="paragraph">
 <p>Class list of <code>org.sfvl.doctesting.CodeExtractorTest</code> give :</p>
 </div>
@@ -1162,20 +1150,15 @@ In that case, all parts matching the text will be returned.</p>
 </tbody>
 </table>
 <style>
-.inline {
+#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_enclosing_classes ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
-#content {
-   max-width: unset;
-   padding-left: 5%;
-   padding-right: 5%;
-}
 </style>
 </div>
 <div class="sect3">
-<h4 id="_extract_first_enclosing_classes_before_another">Extract first enclosing classes before another</h4>
+<h4 id="org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_first_enclosing_classes_before_another">Extract first enclosing classes before another</h4>
 <div class="paragraph">
 <p>Extract from class <code>org.sfvl.doctesting.sample.MyClass$MySubClass$ASubClassOfMySubClass</code> using <code>CodeExtractor.getFirstEnclosingClassBefore</code></p>
 </div>
@@ -1204,15 +1187,10 @@ In that case, all parts matching the text will be returned.</p>
 <p><code><strong>MyClass</strong></code></p>
 </div>
 <style>
-.inline {
+#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_first_enclosing_classes_before_another ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
-}
-#content {
-   max-width: unset;
-   padding-left: 5%;
-   padding-right: 5%;
 }
 </style>
 </div>
@@ -1220,7 +1198,7 @@ In that case, all parts matching the text will be returned.</p>
 <div class="sect2">
 <h3 id="_extract_comment">Extract comment</h3>
 <div class="sect3">
-<h4 id="_extract_class_comment">Extract class comment</h4>
+<h4 id="org_sfvl_doctesting_CodeExtractorTest_ExtractComment_extract_class_comment">Extract class comment</h4>
 <div class="listingblock">
 <div class="title">How to extract comment of a class</div>
 <div class="content">
@@ -1346,20 +1324,15 @@ In that case, all parts matching the text will be returned.</p>
 </div>
 </div>
 <style>
-.inline {
+#org_sfvl_doctesting_CodeExtractorTest_ExtractComment_extract_class_comment ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
-#content {
-   max-width: unset;
-   padding-left: 5%;
-   padding-right: 5%;
-}
 </style>
 </div>
 <div class="sect3">
-<h4 id="_extract_method_comment">Extract method comment</h4>
+<h4 id="org_sfvl_doctesting_CodeExtractorTest_ExtractComment_extract_method_comment">Extract method comment</h4>
 <div class="exampleblock inline">
 <div class="content">
 <div class="listingblock">
@@ -1489,15 +1462,10 @@ In that case, all parts matching the text will be returned.</p>
 </div>
 </div>
 <style>
-.inline {
+#org_sfvl_doctesting_CodeExtractorTest_ExtractComment_extract_method_comment ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
-}
-#content {
-   max-width: unset;
-   padding-left: 5%;
-   padding-right: 5%;
 }
 </style>
 </div>
@@ -1508,7 +1476,7 @@ In that case, all parts matching the text will be returned.</p>
 <h2 id="_docwriter">DocWriter</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_docwriter_usage">DocWriter usage</h3>
+<h3 id="org_sfvl_doctesting_DocWriterTest_doc_writer_usage">DocWriter usage</h3>
 <div class="paragraph">
 <p>DocWriter is just a buffer.
 Everything wrote in DocWriter will be returned when asking for output.
@@ -1530,7 +1498,7 @@ final String output = doc.formatOutput(
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="paragraph">
+<div id="org_sfvl_doctesting_DocWriterTest_doc_writer_usage" class="paragraph">
 <p>= My title</p>
 </div>
 <div class="paragraph">
@@ -1545,7 +1513,7 @@ A title is add to the output.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_format_title">Format title</h3>
+<h3 id="org_sfvl_doctesting_DocWriterTest_format_title">Format title</h3>
 <div class="paragraph">
 <p>When display name is different from test method name, displayName is used as title.</p>
 </div>
@@ -1554,7 +1522,7 @@ A title is add to the output.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="paragraph">
+<div id="org_sfvl_doctesting_DocWriterTest_format_title" class="paragraph">
 <p>= My title</p>
 </div>
 </div>
@@ -1567,7 +1535,7 @@ A title is add to the output.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="paragraph">
+<div id="org_sfvl_doctesting_DocWriterTest_format_title" class="paragraph">
 <p>= Format title</p>
 </div>
 </div>
@@ -1580,14 +1548,14 @@ A title is add to the output.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="paragraph">
+<div id="org_sfvl_doctesting_DocWriterTest_test_method_with_test_info" class="paragraph">
 <p>= Test method with test info</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_description">Add description</h3>
+<h3 id="org_sfvl_doctesting_DocWriterTest_add_description_using_comment">Add description</h3>
 <div class="paragraph">
 <p>When test method had a comment, it&#8217;s written after title.</p>
 </div>
@@ -1613,7 +1581,7 @@ A title is add to the output.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="paragraph">
+<div id="org_sfvl_doctesting_DocWriterTest_MyTestWithComment_testA" class="paragraph">
 <p>= TestA</p>
 </div>
 <div class="paragraph">
@@ -1624,7 +1592,7 @@ It will be added under title.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_formatted_title">Formatted title</h3>
+<h3 id="org_sfvl_doctesting_DocWriterTest_title">Formatted title</h3>
 <div class="paragraph">
 <p>Return the name to use as title from a test method.
 It returns the value specified with <em>DisplayName</em> annotation.
@@ -1681,7 +1649,7 @@ It returns either DisplayName annotation value or method name.</p>
 <p>FindLambdaMethod class provides tools to find reference method name.</p>
 </div>
 <div class="sect2">
-<h3 id="_find_method_name">Find method name</h3>
+<h3 id="org_sfvl_doctesting_junitextension_FindLambdaMethodTest_find_method_name">Find method name</h3>
 <div class="paragraph">
 <p>It&#8217;s possible to extract method name from a method reference.</p>
 </div>
@@ -1703,7 +1671,7 @@ It returns either DisplayName annotation value or method name.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_find_method">Find method</h3>
+<h3 id="org_sfvl_doctesting_junitextension_FindLambdaMethodTest_find_method">Find method</h3>
 <div class="paragraph">
 <p>It&#8217;s possible to extract method from a method reference.</p>
 </div>
@@ -1732,7 +1700,7 @@ It returns either DisplayName annotation value or method name.</p>
 <h2 id="_maindocumentationtest">MainDocumentationTest</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_document_structure">Document structure</h3>
+<h3 id="org_sfvl_doctesting_MainDocumentationTest_document_structure">Document structure</h3>
 <div class="paragraph">
 <p>Documentation is composed with the header following by each test classes documentation.</p>
 </div>
@@ -1844,7 +1812,7 @@ include::InMainDocTest.testB.approved.adoc[leveloffset=+2]</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_select_methods_to_add">Select methods to add</h3>
+<h3 id="org_sfvl_doctesting_MainDocumentationTest_select_methods_to_add">Select methods to add</h3>
 <div class="listingblock">
 <div class="title">MainDocumentation methods overwritten</div>
 <div class="content">

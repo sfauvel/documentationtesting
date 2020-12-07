@@ -1,3 +1,4 @@
+[#com_adaptionsoft_games_uglytrivia_GameTest_play_until_someone_wins]
 = Simulation of a complete game
 
 This is a full game from the beginning to the end when a player wins the game.
