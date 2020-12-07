@@ -1,3 +1,4 @@
+[#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_first_enclosing_classes_before_another]
 = Extract first enclosing classes before another
 
 Extract from class `org.sfvl.doctesting.sample.MyClass$MySubClass$ASubClassOfMySubClass` using `CodeExtractor.getFirstEnclosingClassBefore`
@@ -20,15 +21,10 @@ First class of `ASubClassOfMySubClass` before `null` give :
 
 ++++
 <style>
-.inline {
+#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_first_enclosing_classes_before_another ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
-}
-#content {
-   max-width: unset;
-   padding-left: 5%;
-   padding-right: 5%;
 }
 </style>
 ++++

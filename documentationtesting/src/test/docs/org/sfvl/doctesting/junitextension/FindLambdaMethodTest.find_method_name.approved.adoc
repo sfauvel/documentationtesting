@@ -1,3 +1,4 @@
+[#org_sfvl_doctesting_junitextension_FindLambdaMethodTest_find_method_name]
 = Find method name
 
 It's possible to extract method name from a method reference.

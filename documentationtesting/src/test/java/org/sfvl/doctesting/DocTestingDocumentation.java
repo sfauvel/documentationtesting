@@ -10,8 +10,19 @@ public class DocTestingDocumentation extends MainDocumentation {
 
     @Override
     protected String getHeader() {
+        String style = String.join("\n", "++++",
+                "<style>",
+                "#content {",
+                "   max-width: unset;",
+                "   padding-left: 5%;",
+                "   padding-right: 5%;",
+                "}",
+                "</style>",
+                "++++");
+
         return joinParagraph(
                 ":source-highlighter: rouge\n" + getDocumentOptions() + "\n:toclevels: 4",
+                style,
                 "= " + DOCUMENTATION_TITLE,
                 generalInformation());
     }

@@ -1,3 +1,4 @@
+[#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_displayName]
 = Using displayName
 
 You can use DisplayName annotation to customize test title.Test example using DisplayName

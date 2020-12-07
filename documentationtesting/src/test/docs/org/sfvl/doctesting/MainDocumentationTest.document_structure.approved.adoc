@@ -1,3 +1,4 @@
+[#org_sfvl_doctesting_MainDocumentationTest_document_structure]
 = Document structure
 
 Documentation is composed with the header following by each test classes documentation.

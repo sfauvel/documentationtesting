@@ -1,3 +1,4 @@
+[#org_sfvl_doctesting_DocWriterTest_title]
 = Formatted title
 
 Return the name to use as title from a test method.

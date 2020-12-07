@@ -1,3 +1,4 @@
+[#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_extension]
 = Using extension
 
 This is an example of `ApprovalsExtension` usage.

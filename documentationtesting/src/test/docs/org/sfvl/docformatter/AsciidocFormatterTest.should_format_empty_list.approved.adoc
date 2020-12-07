@@ -1,3 +1,4 @@
+[#org_sfvl_docformatter_AsciidocFormatterTest_should_format_empty_list]
 = Empty list
 
 When no items, listItems method return an empty string.

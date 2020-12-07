@@ -1,3 +1,4 @@
+[#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_code_of_an_other_class_in_file]
 = Extract code of an other class in file
 
 It's not possible to extract code of a non public class because it's not possible to determine source file.
@@ -55,15 +56,10 @@ java.nio.file.NoSuchFileException: src/test/java/org/sfvl/doctesting/ClassNested
 ====
 ++++
 <style>
-.inline {
+#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_code_of_an_other_class_in_file ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
-}
-#content {
-   max-width: unset;
-   padding-left: 5%;
-   padding-right: 5%;
 }
 </style>
 ++++

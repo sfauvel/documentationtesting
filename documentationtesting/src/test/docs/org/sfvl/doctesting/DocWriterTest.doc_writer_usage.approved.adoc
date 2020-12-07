@@ -1,3 +1,4 @@
+[#org_sfvl_doctesting_DocWriterTest_doc_writer_usage]
 = DocWriter usage
 
 DocWriter is just a buffer.
@@ -16,6 +17,7 @@ A title is add to the output.
 
 Output provided
 ****
+[#org_sfvl_doctesting_DocWriterTest_doc_writer_usage]
 = My title
 
 DocWriter is just a buffer.

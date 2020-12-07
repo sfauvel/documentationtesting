@@ -1,3 +1,4 @@
+[#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_part_of_code_from_method]
 = Extract a part of code from method
 
 To extract a part of a method, you can write a comment with a specific value
@@ -102,15 +103,10 @@ In that case, all parts matching the text will be returned.
 ====
 ++++
 <style>
-.inline {
+#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_part_of_code_from_method ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
-}
-#content {
-   max-width: unset;
-   padding-left: 5%;
-   padding-right: 5%;
 }
 </style>
 ++++

@@ -1,3 +1,4 @@
+[#org_sfvl_doctesting_DocWriterTest_add_description_using_comment]
 = Add description
 
 When test method had a comment, it's written after title.
@@ -9,6 +10,7 @@ include::../../../../java/org/sfvl/doctesting/DocWriterTest.java[tag=MyTestWithC
 ----
 
 ****
+[#org_sfvl_doctesting_DocWriterTest_MyTestWithComment_testA]
 = TestA
 
 To decribe a method, you can add a comment.

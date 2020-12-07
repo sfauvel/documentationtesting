@@ -1,3 +1,4 @@
+[#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_code_of_a_class]
 = Extract code of a class
 
 .How to extract code of a class
@@ -30,15 +31,10 @@ public class SimpleClass {
 ====
 ++++
 <style>
-.inline {
+#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_code_of_a_class ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
-}
-#content {
-   max-width: unset;
-   padding-left: 5%;
-   padding-right: 5%;
 }
 </style>
 ++++

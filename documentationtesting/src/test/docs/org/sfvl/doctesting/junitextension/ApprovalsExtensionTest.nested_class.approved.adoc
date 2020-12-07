@@ -1,3 +1,4 @@
+[#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_nested_class]
 = Nested class
 
 Nested class can be used to organize tests.
@@ -41,5 +42,5 @@ Document of Addition operations.
 \include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+3]
 ----
 
-.final rendeering
+.final rendering
 include::DemoNestedTest.adoc[]

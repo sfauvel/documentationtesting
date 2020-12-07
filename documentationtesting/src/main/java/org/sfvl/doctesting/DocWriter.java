@@ -1,7 +1,5 @@
 package org.sfvl.doctesting;
 
-import org.sfvl.doctesting.CodeExtractor;
-
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -23,14 +21,23 @@ public class DocWriter {
         return sb.toString();
     }
 
-
     public String formatOutput(String displayName, Method testMethod) {
-        return  String.join("",
+        return String.join("",
+                String.format("[#%s]", titleId(testMethod)),
+                "\n",
                 "= " + formatTitle(displayName, testMethod) + "\n",
                 //String.format("// %s.%s\n", testMethod.getDeclaringClass().getCanonicalName(), testMethod.getName()),
                 "\n",
                 CodeExtractor.getComment(testMethod).map(comment -> comment + "\n\n").orElse(""),
                 read());
+    }
+
+    public String titleId(Method testMethod) {
+        return String.format("%s_%s",
+                testMethod.getDeclaringClass().getName()
+                        .replace(".", "_")
+                        .replace("$", "_"),
+                testMethod.getName());
     }
 
     /**
@@ -50,8 +57,8 @@ public class DocWriter {
         final String parameters = Arrays.stream(method.getParameterTypes())
                 .map(Class::getSimpleName)
                 .collect(Collectors.joining(","));
-        String methodName=method.getName();
-        if (displayName.equals(methodName+"(" + parameters + ")")) {
+        String methodName = method.getName();
+        if (displayName.equals(methodName + "(" + parameters + ")")) {
             String title = methodName.replace("_", " ");
             return title.substring(0, 1).toUpperCase() + title.substring(1);
         } else {

@@ -34,18 +34,17 @@ class CodeExtractorTest {
     private final CodeExtractorWriter doc = new CodeExtractorWriter();
 
     @AfterEach
-    public void addSyle() {
+    public void addSyle(TestInfo testInfo) {
+        final String title = "_" + doc.formatTitle(testInfo.getDisplayName(), testInfo.getTestMethod().get())
+                .replaceAll(" ", "_")
+                .toLowerCase();
+        // Id automatically added when toc is activate but not on H1 title so we add one.
         doc.write("++++",
                 "<style>",
-                ".inline {",
+                "#" + doc.titleId(testInfo.getTestMethod().get()) + " ~ .inline {",
                 "   display: inline-block;",
                 "   vertical-align: top;",
                 "   margin-right: 2em;",
-                "}",
-                "#content {",
-                "   max-width: unset;",
-                "   padding-left: 5%;",
-                "   padding-right: 5%;",
                 "}",
                 "</style>",
                 "++++");

@@ -1,3 +1,4 @@
+[#org_sfvl_docformatter_AsciidocFormatterTest_should_format_standard_option]
 = Standard options
 
 Optional[Standard option to add at the begining of the document.

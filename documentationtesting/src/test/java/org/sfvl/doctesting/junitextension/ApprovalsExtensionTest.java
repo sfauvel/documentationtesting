@@ -137,7 +137,7 @@ class ApprovalsExtensionTest {
                         .replaceAll("\\ninclude::", "\n\\\\include::"),
                 "----");
 
-        write("", "", ".final rendeering",
+        write("", "", ".final rendering",
                 "include::" + testClass.getSimpleName() + ".adoc[]"
         );
 

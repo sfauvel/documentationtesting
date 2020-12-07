@@ -1,3 +1,4 @@
+[#org_sfvl_doctesting_junitextension_FindLambdaMethodTest_find_method]
 = Find method
 
 It's possible to extract method from a method reference.
