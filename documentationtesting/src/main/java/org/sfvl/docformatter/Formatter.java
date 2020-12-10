@@ -44,4 +44,6 @@ public interface Formatter {
 
     Source source(String s);
 
+    SourceCodeBuilder sourceCodeBuilder();
+
 }

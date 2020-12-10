@@ -156,5 +156,50 @@ public class AsciidocFormatter implements Formatter {
     private String formatLink(String id) {
         return id.replaceAll("[\\.$\\: #]", "_").toLowerCase();
     }
+
+    @Override
+    public SourceCodeBuilder sourceCodeBuilder() {
+        return new AsciidocSourceCodeBuilder();
+    }
+
+    public  static class AsciidocSourceCodeBuilder implements SourceCodeBuilder {
+        private String title;
+        private String language;
+        private int indent;
+        private String source;
+
+        @Override
+        public SourceCodeBuilder title(String title) {
+            this.title = title;
+            return this;
+        }
+
+        @Override
+        public SourceCodeBuilder language(String language) {
+            this.language = language;
+            return this;
+        }
+
+        @Override
+        public SourceCodeBuilder indent(int indent) {
+            this.indent = indent;
+            return this;
+        }
+
+        @Override
+        public SourceCodeBuilder source(String source) {
+            this.source = source;
+            return this;
+        }
+
+        @Override
+        public String build() {
+            AsciidocFormatter formatter = new AsciidocFormatter();
+
+            return String.format(".%s%s",
+                    title,
+                    formatter.block("----", String.format("source,%s,indent=%d", language, indent), source));
+        }
+    }
 }
 

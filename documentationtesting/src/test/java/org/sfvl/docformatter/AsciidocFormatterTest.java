@@ -146,6 +146,22 @@ public class AsciidocFormatterTest {
     }
 
     @Test
+    @DisplayName("Source code using a builder")
+    public void should_format_source_code_with_a_builder() {
+        output = formatter.sourceCodeBuilder()
+                .title("Source code")
+                .language("groovy")
+                .indent(4)
+                .source(
+                "public int add(int a, int b) {\n" +
+                        "   int result = a + b;\n" +
+                        "   return result;\n" +
+                        "}")
+                .build()
+                ;
+    }
+
+    @Test
     @DisplayName("Include another file")
     public void should_format_include() throws IOException {
         final String fileToInclude = "tmp/anotherFile.adoc";
