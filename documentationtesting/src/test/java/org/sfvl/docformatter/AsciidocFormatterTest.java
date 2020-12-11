@@ -148,9 +148,8 @@ public class AsciidocFormatterTest {
     @Test
     @DisplayName("Source code using a builder")
     public void should_format_source_code_with_a_builder() {
-        output = formatter.sourceCodeBuilder()
+        output = formatter.sourceCodeBuilder("groovy")
                 .title("Source code")
-                .language("groovy")
                 .indent(4)
                 .source(
                 "public int add(int a, int b) {\n" +
@@ -159,6 +158,19 @@ public class AsciidocFormatterTest {
                         "}")
                 .build()
                 ;
+    }
+
+    @Test
+    @DisplayName("Source code using a minimal builder")
+    public void should_format_source_code_with_a_minimal_builder() {
+        output = formatter.sourceCodeBuilder()
+                .source(
+                        "public int add(int a, int b) {\n" +
+                                "   int result = a + b;\n" +
+                                "   return result;\n" +
+                                "}")
+                .build()
+        ;
     }
 
     @Test

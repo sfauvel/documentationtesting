@@ -5,9 +5,8 @@
 [red]##_Usage_##
 [source,java,indent=0]
 ----
-        output = formatter.sourceCodeBuilder()
+        output = formatter.sourceCodeBuilder("groovy")
                 .title("Source code")
-                .language("groovy")
                 .indent(4)
                 .source(
                 "public int add(int a, int b) {\n" +
@@ -29,7 +28,6 @@ public int add(int a, int b) {
 }
 ----
 
-
 [red]##_Asciidoc generated_##
 ------
 .Source code
@@ -40,7 +38,6 @@ public int add(int a, int b) {
    return result;
 }
 ----
-
 ------
 
 ___

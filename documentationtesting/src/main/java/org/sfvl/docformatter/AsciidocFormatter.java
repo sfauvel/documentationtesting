@@ -1,7 +1,6 @@
 package org.sfvl.docformatter;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -162,44 +161,84 @@ public class AsciidocFormatter implements Formatter {
         return new AsciidocSourceCodeBuilder();
     }
 
-    public  static class AsciidocSourceCodeBuilder implements SourceCodeBuilder {
-        private String title;
-        private String language;
-        private int indent;
-        private String source;
+    @Override
+    public SourceCodeBuilder sourceCodeBuilder(String language) {
+        return new AsciidocSourceCodeBuilder(language);
+    }
 
-        @Override
-        public SourceCodeBuilder title(String title) {
-            this.title = title;
-            return this;
+    public static abstract class AsciidocBlockBuilder<T> implements BlockBuilder<T> {
+        private final T myself;
+        protected final String delimiter;
+        protected Optional<String> title = Optional.empty();
+        protected String content = "";
+        protected final Map<String, String> mapOptions = new LinkedHashMap<>();
+
+        public AsciidocBlockBuilder(Class<T> selfType, String delimiter) {
+            this.myself = selfType.cast(this);
+            this.delimiter = delimiter;
         }
 
         @Override
-        public SourceCodeBuilder language(String language) {
-            this.language = language;
-            return this;
+        public T title(String title) {
+            this.title = Optional.ofNullable(title);
+            return myself;
         }
 
         @Override
-        public SourceCodeBuilder indent(int indent) {
-            this.indent = indent;
-            return this;
+        public T content(String content) {
+            this.content = content;
+            return myself;
         }
 
-        @Override
-        public SourceCodeBuilder source(String source) {
-            this.source = source;
-            return this;
+        protected T withOption(String option) {
+            return withOption(option, null);
+        }
+
+        protected T withOption(String option, String value) {
+            mapOptions.put(option, value);
+            return myself;
         }
 
         @Override
         public String build() {
             AsciidocFormatter formatter = new AsciidocFormatter();
 
-            return String.format(".%s%s",
-                    title,
-                    formatter.block("----", String.format("source,%s,indent=%d", language, indent), source));
+            return String.format("%s%s%s",
+                    title.map(t -> "." + t + "\n").orElse(""),
+                    buildOptions() + "\n",
+                    String.format("%s\n%s\n%s", delimiter, content, delimiter));
         }
+
+        private String buildOptions() {
+            return mapOptions.entrySet().stream()
+                    .map(e -> e.getKey() + Optional.ofNullable(e.getValue()).map(v -> "=" + v).orElse(""))
+                    .collect(Collectors.joining(",", "[", "]"));
+        }
+    }
+
+    public static class AsciidocSourceCodeBuilder extends AsciidocBlockBuilder<SourceCodeBuilder>
+            implements SourceCodeBuilder {
+
+        public AsciidocSourceCodeBuilder() {
+            this(null);
+        }
+
+        public AsciidocSourceCodeBuilder(String language) {
+            super(SourceCodeBuilder.class, "----");
+            withOption("source"+Optional.ofNullable(language).map(t -> ","+t).orElse(""));
+            withOption("indent", "0");
+        }
+
+        @Override
+        public SourceCodeBuilder indent(int indent) {
+            return withOption("indent", Integer.toString(indent));
+        }
+
+        @Override
+        public SourceCodeBuilder source(String source) {
+            return content(source);
+        }
+
     }
 }
 
