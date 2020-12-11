@@ -203,7 +203,11 @@ public class MainDocumentation {
         if (annotation != null) {
             return annotation.value();
         } else {
-            return testClass.getSimpleName();
+            final String name = testClass.getSimpleName();
+            return name.substring(0,1) +
+                    name.substring(1)
+                            .replaceAll("([A-Z])", " $1")
+                            .toLowerCase();
         }
     }
 

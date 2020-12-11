@@ -62,7 +62,7 @@ FindLambdaMethod class provides tools to find reference method name.
 include::junitextension/FindLambdaMethodTest.find_method_name.approved.adoc[leveloffset=+2]
 include::junitextension/FindLambdaMethodTest.find_method.approved.adoc[leveloffset=+2]
 
-== MainDocumentationTest
+== Main documentation test
 
 include::MainDocumentationTest.document_structure.approved.adoc[leveloffset=+2]
 include::MainDocumentationTest.select_methods_to_add.approved.adoc[leveloffset=+2]

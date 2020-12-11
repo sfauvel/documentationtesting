@@ -4,7 +4,7 @@
 
 = Documentation
 
-== DemoNestedTest
+== Demo nested test
 
 Demo of a simple usage to generate documentation.
 
