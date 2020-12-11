@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Documentation testing</title>
+<title>Define a custom style</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -436,67 +436,53 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body id="org_sfvl_howto_UseYourOwnStyle_define_a_custom_style" class="article">
 <div id="header">
-<div id="toc" class="toc2">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_documentation_testing">Documentation testing</a></li>
-</ul>
-</div>
+<h1>Define a custom style</h1>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="_documentation_testing">Documentation testing</h2>
-<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Asciidoc content</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">++++
+&lt;style&gt;
+.withColor {
+   color: blue;
+}
+&lt;/style&gt;
+++++
+
+This text should be black.
+
+[withColor]#This text shoud be blue.#
+
+This text is not anymore blue.</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 1. Content rendering</div>
+<div class="content">
+<style>
+.withColor {
+   color: blue;
+}
+</style>
 <div class="paragraph">
-<p>This project provides tools to start a project using documentation as validation.</p>
+<p>This text should be black.</p>
 </div>
 <div class="paragraph">
-<p>This project is composed of two main packages.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="org/sfvl/doctesting/DocTestingDocumentation.html">org.sfvl.doctesting</a>
-: Tools to make test validating generated files.</p>
-</li>
-<li>
-<p><a href="org/sfvl/docformatter/FormatterDocumentation.html">org.sfvl.docformatter</a>
-: Utilities to format documentation.</p>
-</li>
-</ul>
+<p><span class="withColor">This text shoud be blue.</span></p>
 </div>
 <div class="paragraph">
-<p>Section <a href="org/sfvl/howto/HowToDocumentation.html">org.sfvl.howto</a>
- shows how to do some common needs.</p>
+<p>This text is not anymore blue.</p>
 </div>
 </div>
 </div>
 </div>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-})
-MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
-  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
-      data.math.root.display = "block"
-    }
-    return data
-  })
-})
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+<div id="footer-text">
+Last updated 2020-12-11 20:44:15 UTC
+</div>
+</div>
 </body>
 </html>

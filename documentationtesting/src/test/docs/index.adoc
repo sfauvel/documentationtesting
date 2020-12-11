@@ -10,3 +10,6 @@ This project is composed of two main packages.
 : Tools to make test validating generated files.
 * link:org/sfvl/docformatter/FormatterDocumentation.html[org.sfvl.docformatter]
 : Utilities to format documentation.
+
+Section link:org/sfvl/howto/HowToDocumentation.html[org.sfvl.howto]
+ shows how to do some common needs.

@@ -457,6 +457,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_list">Full list</a></li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_empty_list">Empty list</a></li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_source_code">Source code</a></li>
+<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_block">Block</a></li>
+<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_source_code_with_a_builder">Source code using a builder</a></li>
+<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_source_code_with_a_minimal_builder">Source code using a minimal builder</a></li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_include">Include another file</a></li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_table">Table</a></li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_table_with_header">Table with header</a></li>
@@ -881,6 +884,135 @@ They are in a same paragraph at the end.</pre>
 <div class="listingblock">
 <div class="content">
 <pre>[source,java,indent=0]
+----
+public int add(int a, int b) {
+   int result = a + b;
+   return result;
+}
+----</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_block">Block</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">blockBuilder</span><span class="o">(</span><span class="s">"===="</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">title</span><span class="o">(</span><span class="s">"Simple block"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">content</span><span class="o">(</span><span class="s">"Into the block"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 1. Simple block</div>
+<div class="content">
+<div class="paragraph">
+<p>Into the block</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>.Simple block
+====
+Into the block
+====</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_source_code_with_a_builder">Source code using a builder</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">sourceCodeBuilder</span><span class="o">(</span><span class="s">"groovy"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">title</span><span class="o">(</span><span class="s">"Source code"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">indent</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">source</span><span class="o">(</span>
+        <span class="s">"public int add(int a, int b) {\n"</span> <span class="o">+</span>
+                <span class="s">"   int result = a + b;\n"</span> <span class="o">+</span>
+                <span class="s">"   return result;\n"</span> <span class="o">+</span>
+                <span class="s">"}"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+        <span class="o">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="listingblock">
+<div class="title">Source code</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="groovy">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+       <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
+       <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+    <span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>.Source code
+[source,groovy,indent=4]
+----
+public int add(int a, int b) {
+   int result = a + b;
+   return result;
+}
+----</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_source_code_with_a_minimal_builder">Source code using a minimal builder</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">sourceCodeBuilder</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">source</span><span class="o">(</span>
+                <span class="s">"public int add(int a, int b) {\n"</span> <span class="o">+</span>
+                        <span class="s">"   int result = a + b;\n"</span> <span class="o">+</span>
+                        <span class="s">"   return result;\n"</span> <span class="o">+</span>
+                        <span class="s">"}"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+<span class="o">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>public int add(int a, int b) {
+   int result = a + b;
+   return result;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[source,indent=0]
 ----
 public int add(int a, int b) {
    int result = a + b;

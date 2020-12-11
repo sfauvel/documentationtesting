@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Documentation testing</title>
+<title>Documentation</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -438,42 +438,282 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
+<h1>Documentation</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_documentation_testing">Documentation testing</a></li>
+<li><a href="#_useyourownstyle">UseYourOwnStyle</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_howto_UseYourOwnStyle_define_a_custom_style">Define a custom style</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_documentation_testing">Documentation testing</h2>
+<h2 id="_useyourownstyle">UseYourOwnStyle</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This project provides tools to start a project using documentation as validation.</p>
+<p>To have specific style in some chapter, you can use HTML style directly in your Asciidoc files.</p>
 </div>
 <div class="paragraph">
-<p>This project is composed of two main packages.</p>
+<p>You need to encapsulate it between ++++ and &lt;style&gt; balise.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="org/sfvl/doctesting/DocTestingDocumentation.html">org.sfvl.doctesting</a>
-: Tools to make test validating generated files.</p>
-</li>
-<li>
-<p><a href="org/sfvl/docformatter/FormatterDocumentation.html">org.sfvl.docformatter</a>
-: Utilities to format documentation.</p>
-</li>
-</ul>
+<div class="sect2">
+<h3 id="org_sfvl_howto_UseYourOwnStyle_define_a_custom_style">Define a custom style</h3>
+<div class="listingblock">
+<div class="title">Asciidoc content</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="html">++++
+<span class="nt">&lt;style&gt;</span>
+<span class="nc">.withColor</span> <span class="p">{</span>
+   <span class="nl">color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+++++
+
+This text should be black.
+
+[withColor]#This text shoud be blue.#
+
+This text is not anymore blue.</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 1. Content rendering</div>
+<div class="content">
+<style>
+.withColor {
+   color: blue;
+}
+</style>
+<div class="paragraph">
+<p>This text should be black.</p>
 </div>
 <div class="paragraph">
-<p>Section <a href="org/sfvl/howto/HowToDocumentation.html">org.sfvl.howto</a>
- shows how to do some common needs.</p>
+<p><span class="withColor">This text shoud be blue.</span></p>
+</div>
+<div class="paragraph">
+<p>This text is not anymore blue.</p>
 </div>
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge .cm {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cp {
+  color: #999999;
+  font-weight: bold;
+}
+pre.rouge .c1 {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+pre.rouge .gd {
+  color: #000000;
+  background-color: #ffdddd;
+}
+pre.rouge .ge {
+  color: #000000;
+  font-style: italic;
+}
+pre.rouge .gr {
+  color: #aa0000;
+}
+pre.rouge .gh {
+  color: #999999;
+}
+pre.rouge .gi {
+  color: #000000;
+  background-color: #ddffdd;
+}
+pre.rouge .go {
+  color: #888888;
+}
+pre.rouge .gp {
+  color: #555555;
+}
+pre.rouge .gs {
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #aaaaaa;
+}
+pre.rouge .gt {
+  color: #aa0000;
+}
+pre.rouge .kc {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kd {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kn {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kp {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kr {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kt {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .k, pre.rouge .kv {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .mf {
+  color: #009999;
+}
+pre.rouge .mh {
+  color: #009999;
+}
+pre.rouge .il {
+  color: #009999;
+}
+pre.rouge .mi {
+  color: #009999;
+}
+pre.rouge .mo {
+  color: #009999;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+  color: #009999;
+}
+pre.rouge .sb {
+  color: #d14;
+}
+pre.rouge .sc {
+  color: #d14;
+}
+pre.rouge .sd {
+  color: #d14;
+}
+pre.rouge .s2 {
+  color: #d14;
+}
+pre.rouge .se {
+  color: #d14;
+}
+pre.rouge .sh {
+  color: #d14;
+}
+pre.rouge .si {
+  color: #d14;
+}
+pre.rouge .sx {
+  color: #d14;
+}
+pre.rouge .sr {
+  color: #009926;
+}
+pre.rouge .s1 {
+  color: #d14;
+}
+pre.rouge .ss {
+  color: #990073;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
+  color: #d14;
+}
+pre.rouge .na {
+  color: #008080;
+}
+pre.rouge .bp {
+  color: #999999;
+}
+pre.rouge .nb {
+  color: #0086B3;
+}
+pre.rouge .nc {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .no {
+  color: #008080;
+}
+pre.rouge .nd {
+  color: #3c5d5d;
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #800080;
+}
+pre.rouge .ne {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nn {
+  color: #555555;
+}
+pre.rouge .nt {
+  color: #000080;
+}
+pre.rouge .vc {
+  color: #008080;
+}
+pre.rouge .vg {
+  color: #008080;
+}
+pre.rouge .vi {
+  color: #008080;
+}
+pre.rouge .nv, pre.rouge .vm {
+  color: #008080;
+}
+pre.rouge .ow {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .o {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .w {
+  color: #bbbbbb;
+}
+pre.rouge {
+  background-color: #f8f8f8;
+}
+</style>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Documentation testing</title>
+<title>Source code using a builder</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -436,67 +436,61 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_source_code_with_a_builder" class="article">
 <div id="header">
-<div id="toc" class="toc2">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_documentation_testing">Documentation testing</a></li>
-</ul>
-</div>
+<h1>Source code using a builder</h1>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="_documentation_testing">Documentation testing</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>This project provides tools to start a project using documentation as validation.</p>
+<p><span class="red"><em>Usage</em></span></p>
 </div>
-<div class="paragraph">
-<p>This project is composed of two main packages.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.sourceCodeBuilder("groovy")
+        .title("Source code")
+        .indent(4)
+        .source(
+        "public int add(int a, int b) {\n" +
+                "   int result = a + b;\n" +
+                "   return result;\n" +
+                "}")
+        .build()
+        ;</code></pre>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="org/sfvl/doctesting/DocTestingDocumentation.html">org.sfvl.doctesting</a>
-: Tools to make test validating generated files.</p>
-</li>
-<li>
-<p><a href="org/sfvl/docformatter/FormatterDocumentation.html">org.sfvl.docformatter</a>
-: Utilities to format documentation.</p>
-</li>
-</ul>
 </div>
 <div class="paragraph">
-<p>Section <a href="org/sfvl/howto/HowToDocumentation.html">org.sfvl.howto</a>
- shows how to do some common needs.</p>
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="listingblock">
+<div class="title">Source code</div>
+<div class="content">
+<pre class="highlight"><code class="language-groovy" data-lang="groovy">    public int add(int a, int b) {
+       int result = a + b;
+       return result;
+    }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>.Source code
+[source,groovy,indent=4]
+----
+public int add(int a, int b) {
+   int result = a + b;
+   return result;
+}
+----</pre>
 </div>
 </div>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-})
-MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
-  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
-      data.math.root.display = "block"
-    }
-    return data
-  })
-})
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<hr>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2020-12-11 08:28:05 UTC
+</div>
+</div>
 </body>
 </html>
