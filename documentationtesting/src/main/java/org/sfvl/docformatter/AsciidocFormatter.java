@@ -157,6 +157,11 @@ public class AsciidocFormatter implements Formatter {
     }
 
     @Override
+    public BlockBuilder blockBuilder(String delimiter) {
+        return new AsciidocBlockBuilder(delimiter);
+    }
+
+    @Override
     public SourceCodeBuilder sourceCodeBuilder() {
         return new AsciidocSourceCodeBuilder();
     }
@@ -166,14 +171,21 @@ public class AsciidocFormatter implements Formatter {
         return new AsciidocSourceCodeBuilder(language);
     }
 
-    public static abstract class AsciidocBlockBuilder<T> implements BlockBuilder<T> {
+    public static class AsciidocBlockBuilder extends AsciidocGenericBlockBuilder<BlockBuilder>
+            implements BlockBuilder {
+
+        public AsciidocBlockBuilder(String delimiter) {
+            super(BlockBuilder.class, delimiter);
+        }
+    }
+    public static class AsciidocGenericBlockBuilder<T> implements GenericBlockBuilder<T> {
         private final T myself;
         protected final String delimiter;
         protected Optional<String> title = Optional.empty();
         protected String content = "";
         protected final Map<String, String> mapOptions = new LinkedHashMap<>();
 
-        public AsciidocBlockBuilder(Class<T> selfType, String delimiter) {
+        public AsciidocGenericBlockBuilder(Class<T> selfType, String delimiter) {
             this.myself = selfType.cast(this);
             this.delimiter = delimiter;
         }
@@ -202,21 +214,23 @@ public class AsciidocFormatter implements Formatter {
         @Override
         public String build() {
             AsciidocFormatter formatter = new AsciidocFormatter();
-
             return String.format("%s%s%s",
                     title.map(t -> "." + t + "\n").orElse(""),
-                    buildOptions() + "\n",
+                    buildOptions().map(opt -> opt + "\n").orElse(""),
                     String.format("%s\n%s\n%s", delimiter, content, delimiter));
         }
 
-        private String buildOptions() {
-            return mapOptions.entrySet().stream()
+        private Optional<String> buildOptions() {
+            if (mapOptions.isEmpty()) {
+                return Optional.empty();
+            }
+            return Optional.of(mapOptions.entrySet().stream()
                     .map(e -> e.getKey() + Optional.ofNullable(e.getValue()).map(v -> "=" + v).orElse(""))
-                    .collect(Collectors.joining(",", "[", "]"));
+                    .collect(Collectors.joining(",", "[", "]")));
         }
     }
 
-    public static class AsciidocSourceCodeBuilder extends AsciidocBlockBuilder<SourceCodeBuilder>
+    public static class AsciidocSourceCodeBuilder extends AsciidocGenericBlockBuilder<SourceCodeBuilder>
             implements SourceCodeBuilder {
 
         public AsciidocSourceCodeBuilder() {

@@ -146,6 +146,15 @@ public class AsciidocFormatterTest {
     }
 
     @Test
+    @DisplayName("Block")
+    public void should_format_block() {
+        output = formatter.blockBuilder("====")
+                .title("Simple block")
+                .content("Into the block")
+                .build();
+    }
+
+    @Test
     @DisplayName("Source code using a builder")
     public void should_format_source_code_with_a_builder() {
         output = formatter.sourceCodeBuilder("groovy")
