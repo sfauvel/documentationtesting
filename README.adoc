@@ -139,8 +139,6 @@ td .content .alive p {
 ++++
 
 ====
-endif::[]
-
 
 ++++
 <style>
@@ -150,6 +148,7 @@ endif::[]
 }
 </style>
 ++++
+endif::[]
 
 This is what this project offers you to set up.
 
