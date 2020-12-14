@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -60,8 +62,15 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
                 delegate.report(received, approved);
 
 
-                System.out.println(received);
+                System.out.println(approved);
                 System.out.println("*****************************************************************");
+                try {
+                    Files.lines(Paths.get(approved)).forEach(System.out::println);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("*****************************************************************");
+                System.out.println(received);
                 try {
                     Files.lines(Paths.get(received)).forEach(System.out::println);
                 } catch (IOException e) {
@@ -69,6 +78,18 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
                 }
                 System.out.println("*****************************************************************");
 
+                try {
+                    final List<String> approvedLines = Files.lines(Paths.get(approved)).collect(Collectors.toList());
+                    final List<String> receivedLines = Files.lines(Paths.get(approved)).collect(Collectors.toList());
+
+                    for (int lineNumber = 0; lineNumber < approvedLines.size(); lineNumber++) {
+                        if (!approvedLines.get(lineNumber).equals(receivedLines.get(lineNumber))) {
+                            System.out.println(String.format("%d: %s", lineNumber, receivedLines.get(lineNumber)));
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         };
 
