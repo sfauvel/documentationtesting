@@ -1,6 +1,7 @@
 package org.sfvl.doctesting.junitextension;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.jupiter.api.extension.AfterEachCallback;
@@ -9,8 +10,11 @@ import org.sfvl.doctesting.DocWriter;
 import org.sfvl.doctesting.DocumentationNamer;
 import org.sfvl.doctesting.PathProvider;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 /**
  * JUnit5 extension that verify written document matches with approved one.
@@ -48,10 +52,30 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
             }
         };
 
+        final ApprovalFailureReporter approvalFailureReporter = new ApprovalFailureReporter() {
+            ApprovalFailureReporter delegate = Approvals.getReporter();
+
+            @Override
+            public void report(String received, String approved) {
+                delegate.report(received, approved);
+
+
+                System.out.println(received);
+                System.out.println("*****************************************************************");
+                try {
+                    Files.lines(Paths.get(received)).forEach(System.out::println);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("*****************************************************************");
+
+            }
+        };
+
         Approvals.verify(
                 new ApprovalTextWriter(content, "adoc"),
                 approvalNamer,
-                Approvals.getReporter());
+                approvalFailureReporter);
     }
 
     /**
