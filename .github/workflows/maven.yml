@@ -23,6 +23,8 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file documentationtesting/pom.xml
     - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
       env:
         GITHUB_TOKEN: ${{ github.token }}
+      run: mvn --batch-mode deploy --file documentationtesting/pom.xml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

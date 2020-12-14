@@ -20,6 +20,14 @@
         <javaparser.version>3.16.2</javaparser.version>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/sfauvel/documentationtesting</url>
+        </repository>
+    </distributionManagement>
+
    <build>
         <plugins>
             <plugin>
