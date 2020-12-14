@@ -80,7 +80,7 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
 
                 try {
                     final List<String> approvedLines = Files.lines(Paths.get(approved)).collect(Collectors.toList());
-                    final List<String> receivedLines = Files.lines(Paths.get(approved)).collect(Collectors.toList());
+                    final List<String> receivedLines = Files.lines(Paths.get(received)).collect(Collectors.toList());
 
                     for (int lineNumber = 0; lineNumber < approvedLines.size(); lineNumber++) {
                         if (!approvedLines.get(lineNumber).equals(receivedLines.get(lineNumber))) {
@@ -90,6 +90,8 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                System.out.println("*****************************************************************");
+
             }
         };
 
