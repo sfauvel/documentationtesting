@@ -106,6 +106,7 @@ class ApprovalsExtensionTest {
                         .map(file -> file.getFileName().toString())
                         .filter(filename -> filename.startsWith(DemoNestedTest.class.getSimpleName() + "."))
                         .filter((filename -> filename.endsWith(".approved.adoc")))
+                        .sorted()
                         .map(filename -> "* " + filename)
                         .collect(Collectors.joining("\n\n")));
 
