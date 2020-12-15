@@ -36,9 +36,9 @@ jobs:
     #    uses: qcastel/github-actions-maven-cmd@master
     #    run: mvn -B package --file documentationtesting/pom.xml
     - name: Publish JAR
-        run: mvn -B release:prepare release:perform --file documentationtesting/pom.xml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: mvn -B release:prepare release:perform --file documentationtesting/pom.xml
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     #- name: Release
     #    uses: qcastel/github-actions-maven-release@master
     #    with:
