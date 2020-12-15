@@ -18,6 +18,7 @@
         <reflections.version>0.9.11</reflections.version>
         <approvaltests.version>4.0.2</approvaltests.version>
         <javaparser.version>3.16.2</javaparser.version>
+        <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
     </properties>
 
     <distributionManagement>
@@ -27,7 +28,12 @@
             <url>https://maven.pkg.github.com/sfauvel/documentationtesting</url>
         </repository>
     </distributionManagement>
-
+    <scm>
+        <connection>scm:git:ssh://git@github.com:sfauvel/documentationtesting.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:sfauvel/documentationtesting.git</developerConnection>
+        <url>git@github.com:idhub-io/idhub-api.git</url>
+        <tag>HEAD</tag>
+    </scm>
    <build>
         <plugins>
             <plugin>
@@ -38,6 +44,11 @@
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven-release-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
