@@ -29,8 +29,8 @@
         </repository>
     </distributionManagement>
     <scm>
-        <connection>scm:git:ssh://git@github.com:sfauvel/documentationtesting.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:sfauvel/documentationtesting.git</developerConnection>
+        <connection>scm:git:https://github.com/sfauvel/documentationtesting.git</connection>
+        <developerConnection>scm:git:https://github.com/sfauvel/documentationtesting.git</developerConnection>
         <url>git@github.com:idhub-io/idhub-api.git</url>
         <tag>HEAD</tag>
     </scm>
