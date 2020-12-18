@@ -13,7 +13,7 @@ View source of project on link:{github-repo}/samples/tech_junit5_extension[Githu
 
 
 
-== DemoTest
+== Demo test
 
 Demo of a simple usage to generate documentation.
 

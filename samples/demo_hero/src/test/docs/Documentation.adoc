@@ -13,7 +13,7 @@ View source of project on link:{github-repo}/samples/demo_hero[Github]
 
 
 
-== HeroExperienceTest
+== Hero experience test
 
 We show different approach to test writing a documentation.
 We start with a typical characterization test that produced a file using for non regression with `approvals`.

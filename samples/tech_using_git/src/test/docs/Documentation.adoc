@@ -13,7 +13,7 @@ View source of project on link:{github-repo}/samples/tech_using_git[Github]
 
 
 
-== DemoTest
+== Demo test
 
 Demo of a simple usage to generate documentation.
 
