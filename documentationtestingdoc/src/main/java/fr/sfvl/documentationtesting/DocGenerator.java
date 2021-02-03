@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class DocGenerator {
     private final Formatter formatter;
     private final Path docPath;
-    private final String docName = "demo.adoc";
+    private final String docName = "index.adoc";
 
     public DocGenerator(Formatter formatter) {
         this.formatter = formatter;
@@ -68,8 +68,8 @@ public class DocGenerator {
         Files.createDirectories(docPath);
 
         generateDocFile(docName, doc);
-        generateDocFile("demo_list.adoc", "\n=== Documentation produced\n\n" + demos);
-        generateDocFile("tech_list.adoc", "\n=== Technical alternatives\n\n" + demos_tech);
+        generateDocFile("demo_list.adoc", "\n= Documentation produced\n\n" + demos);
+        generateDocFile("tech_list.adoc", "\n= Technical alternatives\n\n" + demos_tech);
 
     }
 
