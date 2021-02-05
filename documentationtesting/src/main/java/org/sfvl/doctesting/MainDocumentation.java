@@ -26,7 +26,6 @@ import java.util.stream.Stream;
  */
 public class MainDocumentation {
 
-    private static final String PACKAGE_TO_SCAN = "org.sfvl";
     protected final String DOCUMENTATION_TITLE;
     private static final String DOCUMENTATION_FILENAME = "Documentation";
     private static final PathProvider pathProvider = new PathProvider();
@@ -269,10 +268,6 @@ public class MainDocumentation {
                 .filter(Objects::nonNull)
                 .filter(t -> !t.trim().isEmpty())
                 .collect(Collectors.joining("\n\n"));
-    }
-
-    public static void main(String... args) throws IOException {
-        new MainDocumentation().generate(PACKAGE_TO_SCAN);
     }
 
 }
