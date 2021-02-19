@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Using Git</title>
+<title>Best practices</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -436,84 +436,50 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body class="article">
 <div id="header">
-<h1>Using Git</h1>
-<div id="toc" class="toc2">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_demo_test">Demo test</a>
-<ul class="sectlevel2">
-<li><a href="#org_sfvl_demo_DemoTest_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</a></li>
-</ul>
+<h1>Best practices</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_naming">Naming</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Thinks as documentation and chapters, not as test.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Do not use <code>Test</code> but chapter name
+DefineATitle and not DefineTitleTest</p>
+</li>
+<li>
+<p>Same for methods</p>
 </li>
 </ul>
 </div>
 </div>
-<div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-The examples shown here are generated from the source code.
-They therefore represent the behavior of the application at any times.
-Non regression is ensured by checking the absence of change in this document.
-Learn more here <a href="https://sfauvel.github.io/documentationtesting" class="bare">https://sfauvel.github.io/documentationtesting</a>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>View source of project on <a href="https://github.com/sfauvel/documentationtesting/tree/master/samples/tech_using_git">Github</a></p>
-</div>
-</div>
 </div>
 <div class="sect1">
-<h2 id="_demo_test">Demo test</h2>
+<h2 id="_chapter_content">Chapter content</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Demo of a simple usage to generate documentation.</p>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_demo_DemoTest_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h3>
-<div class="paragraph">
-<p>When adding two simple numbers, the java operator '+' should return the sum of them.</p>
+<p>Try to show what is the output, not only what you want as output.</p>
 </div>
 <div class="paragraph">
-<p>2 + 3 = 5</p>
+<p>Do it as if you don&#8217;t know what output is.</p>
+</div>
+<div class="paragraph">
+<p>That means you have to display what the output return when it&#8217;s what you expect as well as when it&#8217;s not what you expect.
+This is a real difference with classical tests where there is only one path.</p>
 </div>
 </div>
 </div>
 </div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-02-03 21:50:14 UTC
 </div>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-})
-MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
-  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
-      data.math.root.display = "block"
-    }
-    return data
-  })
-})
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</div>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Using Git</title>
+<title>Ways to implement</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -436,84 +436,104 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body class="article">
 <div id="header">
-<h1>Using Git</h1>
-<div id="toc" class="toc2">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_demo_test">Demo test</a>
-<ul class="sectlevel2">
-<li><a href="#org_sfvl_demo_DemoTest_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</a></li>
-</ul>
-</li>
-</ul>
-</div>
+<h1>Ways to implement</h1>
 </div>
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-The examples shown here are generated from the source code.
-They therefore represent the behavior of the application at any times.
-Non regression is ensured by checking the absence of change in this document.
-Learn more here <a href="https://sfauvel.github.io/documentationtesting" class="bare">https://sfauvel.github.io/documentationtesting</a>
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>We just need to check that there is no difference in documents generated.
+There is several ways to do that.</p>
 </div>
 <div class="paragraph">
-<p>View source of project on <a href="https://github.com/sfauvel/documentationtesting/tree/master/samples/tech_using_git">Github</a></p>
+<p>Global process is decomposed in 3 steps.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Module</th>
+<th class="tableblock halign-left valign-top">Need</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generate documentation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">source code, *.adoc writer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check there is no difference</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">file comparator, *.adoc</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generate Html from asciiddoc files</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">asciidoc, *.adoc</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Generate documentation not required any framework.
+The only need is writing files containing what we need to check.
+There is no constraint about language used to generate files.
+Using xUnit simplify this but it&#8217;s not required.
+We can create one file by test using method name and run it with tools already provided in IDE.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_demo_test">Demo test</h2>
+<h2 id="_identify_modified_files">Identify modified files</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_git_version">Git version</h3>
 <div class="paragraph">
-<p>Demo of a simple usage to generate documentation.</p>
+<p>Git is made to check modification between files on disk and files in repository.
+So, we just have to generated files and ask to git if there is a difference with his version.</p>
+</div>
+<div class="paragraph">
+<p>We can call <code>git status</code> to see files that has changed.
+To provide a simple output, a script <code>checkDocInFolder.sh</code> verify all differences compare to staged files in git.</p>
+</div>
+<div class="paragraph">
+<p>The advantage is that it check all files in doc folder: missing files (because a test was removed), images and main documentation that include all others.</p>
+</div>
+<div class="paragraph">
+<p>We also can add a verification after each test to verify the test from IDE.
+It&#8217;s done in Java with JUnit 5 in methods annotated <code>@AfterEach</code> using JGit for example.</p>
+</div>
+<div class="paragraph">
+<p>When you want to approve a file, you just have to staged it.</p>
+</div>
+<div class="paragraph">
+<p>Using git involves to staged approved files.</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="org_sfvl_demo_DemoTest_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h3>
+<h3 id="_approvals_version">Approvals version</h3>
 <div class="paragraph">
-<p>When adding two simple numbers, the java operator '+' should return the sum of them.</p>
+<p>Approvals is a library to make golden master (<a href="https://github.com/approvals" class="bare">https://github.com/approvals</a>).
+Using it, each test produce a <code>.received</code> file.
+It is compared with a <code>.approved</code> file with the same name.
+The test fail if there is a difference.</p>
 </div>
 <div class="paragraph">
-<p>2 + 3 = 5</p>
+<p>The method is simple, produce files easy to compare and is integrated to the test lifecycle.
+Inconvenient is that the library is specific to a language and need to be available for it.
+There is also some difficulties to well identify tests that were deleted or renamed.
+It&#8217;s also could be difficult to check other files generated like images.</p>
 </div>
 </div>
 </div>
 </div>
 </div>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-})
-MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
-  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
-      data.math.root.display = "block"
-    }
-    return data
-  })
-})
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-02-03 21:50:14 UTC
+</div>
+</div>
 </body>
 </html>

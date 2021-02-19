@@ -168,12 +168,19 @@ Full project documentation is here: https://sfauvel.github.io/documentationtesti
 
 == Examples
 
-Several examples are provided to show how we can use it and what it can produce.
-
+Several
 ifdef::fulldoc[]
-include::./documentationtestingdoc/target/classes/docs/demo_list.adoc[]
-include::./documentationtestingdoc/target/classes/docs/tech_list.adoc[]
-endif::[]
+link:samples.html[examples]
+endif::fulldoc[]
+ifndef::fulldoc[]
+examples
+endif::fulldoc[]
+are provided to show how we can use it and what it can produce.
+
+//ifdef::fulldoc[]
+//include::./documentationtestingdoc/target/classes/docs/demo_list.adoc[]
+//include::./documentationtestingdoc/target/classes/docs/tech_list.adoc[]
+//endif::[]
 
 == What does it change
 

@@ -14,7 +14,15 @@
 </style>
 ++++
 
-= Documentation
+= Document testing tool
+
+This document describes usage of classes to create test from generated documentation.
+
+* <<ApprovalsExtension>>: JUnit extension to check document.
+
+* <<DocWriter>>: Store document before writting it.
+
+* <<CodeExtractor>>: Help to extract information from code.
 
 == ApprovalsExtension
 

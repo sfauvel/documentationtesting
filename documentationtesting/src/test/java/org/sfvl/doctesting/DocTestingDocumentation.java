@@ -1,5 +1,7 @@
 package org.sfvl.doctesting;
 
+import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -23,8 +25,17 @@ public class DocTestingDocumentation extends MainDocumentation {
         return joinParagraph(
                 ":source-highlighter: rouge\n" + getDocumentOptions() + "\n:toclevels: 4",
                 style,
-                "= " + DOCUMENTATION_TITLE,
+                "= Document testing tool",
                 generalInformation());
+    }
+
+    @Override
+    protected String generalInformation() {
+        return joinParagraph(super.generalInformation(),
+                "This document describes usage of classes to create test from generated documentation.",
+                "* <<" + ApprovalsExtension.class.getSimpleName() + ">>: JUnit extension to check document.",
+                "* <<" + DocWriter.class.getSimpleName() + ">>: Store document before writting it.",
+                "* <<" + CodeExtractor.class.getSimpleName() + ">>: Help to extract information from code.");
     }
 
     public boolean toBeInclude(Class<?> clazz) {
