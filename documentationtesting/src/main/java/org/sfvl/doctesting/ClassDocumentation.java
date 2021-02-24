@@ -1,8 +1,5 @@
 package org.sfvl.doctesting;
 
-import com.thoughtworks.qdox.JavaProjectBuilder;
-import com.thoughtworks.qdox.model.JavaClass;
-import com.thoughtworks.qdox.model.JavaModel;
 import org.junit.jupiter.api.DisplayName;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
@@ -14,7 +11,6 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ClassDocumentation {
 
@@ -80,16 +76,17 @@ public class ClassDocumentation {
     }
 
     protected String getTestClassTitle(Class<?> testClass) {
-        DisplayName annotation = testClass.getAnnotation(DisplayName.class);
-        if (annotation != null) {
-            return annotation.value();
-        } else {
-            final String name = testClass.getSimpleName();
-            return name.substring(0,1) +
-                    name.substring(1)
-                            .replaceAll("([A-Z])", " $1")
-                            .toLowerCase();
-        }
+        return Optional.ofNullable(testClass.getAnnotation(DisplayName.class))
+                .map(DisplayName::value)
+                .orElse(formatClassNameToTitle(testClass));
+    }
+
+    private String formatClassNameToTitle(Class<?> testClass) {
+        final String name = testClass.getSimpleName();
+        return name.substring(0, 1) +
+                name.substring(1)
+                        .replaceAll("([A-Z])", " $1")
+                        .toLowerCase();
     }
 
     protected String includeMethods(List<Method> testMethods, Path docFilePath) {
@@ -100,7 +97,7 @@ public class ClassDocumentation {
     protected String includeMethods(List<Method> testMethods, Function<Method, Path> targetPathName, final int levelOffset) {
         final Function<Path, String> includeWithOffset = path -> formatter.include(path.toString(), levelOffset).trim();
         // Trim because formatter add some line breaks (it may not add those line breaks)
-        return getMethodsInOrder(testMethods)
+        return MethodsOrder.sort(testMethods)
                 .map(targetPathName)
                 .map(includeWithOffset)
                 .collect(Collectors.joining("\n"));
@@ -109,31 +106,6 @@ public class ClassDocumentation {
     protected Path getRelativizedPath(DocumentationNamer m, Path docFilePath) {
         final String filename = m.getApprovalName() + ".approved.adoc";
         return docFilePath.getParent().relativize(Paths.get(m.getSourceFilePath())).resolve(filename);
-    }
-
-    private Stream<Method> getMethodsInOrder(List<Method> testMethods) {
-        Map<String, Method> methodsByName = testMethods.stream().collect(Collectors.toMap(
-                Method::getName,
-                m -> m
-        ));
-
-        JavaProjectBuilder builder = createJavaProjectBuilderWithTestPath();
-
-        Method firstMethod = testMethods.get(0);
-        JavaClass javaClass = builder.getClassByName(firstMethod.getDeclaringClass().getName());
-
-        return javaClass.getMethods().stream()
-                .filter(m -> methodsByName.containsKey(m.getName()))
-                .sorted(Comparator.comparingInt(JavaModel::getLineNumber))
-                .map(m -> methodsByName.get(m.getName()));
-    }
-
-    private JavaProjectBuilder createJavaProjectBuilderWithTestPath() {
-        JavaProjectBuilder builder = new JavaProjectBuilder();
-
-        final Path testPath = pathProvider.getProjectPath().resolve(Paths.get("src", "test", "java"));
-        builder.addSourceTree(testPath.toFile());
-        return builder;
     }
 
     protected String joinParagraph(String... paragraph) {
