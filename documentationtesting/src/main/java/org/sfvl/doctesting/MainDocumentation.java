@@ -1,13 +1,8 @@
 package org.sfvl.doctesting;
 
-import com.thoughtworks.qdox.JavaProjectBuilder;
-import com.thoughtworks.qdox.model.JavaClass;
-import com.thoughtworks.qdox.model.JavaModel;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
-import org.sfvl.doctesting.junitextension.ClassToDocument;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,7 +19,7 @@ import java.util.stream.Stream;
 /**
  * Generate a main documentation to group all test documentations.
  */
-public class MainDocumentation {
+public class MainDocumentation extends ClassDocumentation {
 
     protected final String DOCUMENTATION_TITLE;
     private static final String DOCUMENTATION_FILENAME = "Documentation";
@@ -127,46 +122,21 @@ public class MainDocumentation {
 
     // TODO rename this  method. It extract content but there is already a getDocumentationContent
     protected String getMethodDocumentation(String packageToScan, Path docFilePath) {
+        final int title_depth = 2;
+        return getMethodDocumentation(packageToScan, docFilePath, title_depth);
+    }
+
+    protected String getMethodDocumentation(String packageToScan, Path docFilePath, int title_depth) {
         Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
 
         final Map<Class<?>, List<Method>> methodsByClass = testMethods.stream()
                 .collect(Collectors.groupingBy(method -> CodeExtractor.getFirstEnclosingClassBefore(method, null)));
 
-        BiFunction<Class<?>, List<Method>, String> documentClass = (clazz, methods) -> getClassDocumentation(clazz, methods, docFilePath, 2);
+        BiFunction<Class<?>, List<Method>, String> documentClass = (clazz, methods) -> {
+            return getClassDocumentation(clazz, methods, m -> getRelativizedPath(new DocumentationNamer(this.docRootPath, m), docFilePath), title_depth);
+        };
 
         return mapToString(methodsByClass, documentClass, "\n\n", Comparator.comparing(e -> e.getKey().getSimpleName()));
-    }
-
-    private String getClassDocumentation(Class<?> clazz, List<Method> methods, Path docFilePath, int depth) {
-        final Map<Class<?>, List<Method>> methodsByClass = methods.stream()
-                .collect(Collectors.groupingBy(method -> CodeExtractor.getFirstEnclosingClassBefore(method, clazz)));
-
-        String content = (methodsByClass.size() == 1)
-                ? includeMethods(methods, docFilePath, depth)
-                :  methodsByClass.entrySet().stream()
-                // TODO We have to sort by position in file like methods and not by name.
-                .sorted(Comparator.comparing(e -> e.getKey().getSimpleName()))
-                .map(e -> getClassDocumentation(e.getKey(), e.getValue(), docFilePath, depth + 1))
-                .collect(Collectors.joining("\n\n"));
-
-        return joinParagraph(
-                        new String(new char[depth]).replace("\0", "=") + " " + getTestClassTitle(clazz),
-                        getDescription(clazz),
-                        content);
-    }
-
-    protected String getDescription(Class<?> classToDocument) {
-        List<String> description = new ArrayList<>();
-
-        final ClassToDocument annotation = classToDocument.getAnnotation(ClassToDocument.class);
-        if (annotation != null) {
-            final Class<?> clazz = annotation.clazz();
-            final String comment = CodeExtractor.getComment(clazz);
-            description.add(comment);
-        }
-        description.add(CodeExtractor.getComment(classToDocument));
-        return description.stream()
-                .collect(Collectors.joining("\n\n"));
     }
 
     protected String getHeader() {
@@ -193,59 +163,6 @@ public class MainDocumentation {
         fileWriter.write(content);
     }
 
-    protected String getTestClassTitle(Map.Entry<Class<?>, List<Method>> e) {
-        return getTestClassTitle(e.getKey());
-    }
-
-    protected String getTestClassTitle(Class<?> testClass) {
-        DisplayName annotation = testClass.getAnnotation(DisplayName.class);
-        if (annotation != null) {
-            return annotation.value();
-        } else {
-            final String name = testClass.getSimpleName();
-            return name.substring(0,1) +
-                    name.substring(1)
-                            .replaceAll("([A-Z])", " $1")
-                            .toLowerCase();
-        }
-    }
-
-    protected String includeMethods(List<Method> testMethods, Path docFilePath) {
-        return includeMethods(testMethods, docFilePath, 2);
-    }
-
-    protected String includeMethods(List<Method> testMethods, Path docFilePath, final int leveloffset) {
-
-        return getMethodsInOrder(testMethods)
-                .map(m -> new DocumentationNamer(docRootPath, m))
-                .map(m -> getRelativizedPath(m, docFilePath))
-                .map(m -> String.format("include::%s[leveloffset=+%d]", m, leveloffset))
-                .collect(Collectors.joining("\n"));
-    }
-
-    protected Path getRelativizedPath(DocumentationNamer m, Path docFilePath) {
-        final String filename = m.getApprovalName() + ".approved.adoc";
-        return docFilePath.getParent().relativize(Paths.get(m.getSourceFilePath())).resolve(filename);
-    }
-
-    private Stream<Method> getMethodsInOrder(List<Method> testMethods) {
-        Map<String, Method> methodsByName = testMethods.stream().collect(Collectors.toMap(
-                Method::getName,
-                m -> m
-        ));
-
-        JavaProjectBuilder builder = createJavaProjectBuilderWithTestPath();
-
-        Method firstMethod = testMethods.get(0);
-        JavaClass javaClass = builder.getClassByName(firstMethod.getDeclaringClass().getName());
-
-        return javaClass.getMethods().stream()
-                .filter(m -> methodsByName.containsKey(m.getName()))
-                .sorted(Comparator.comparingInt(JavaModel::getLineNumber))
-                .map(m -> methodsByName.get(m.getName()));
-
-    }
-
     protected String getComment(Class<?> clazz) {
         return CodeExtractor.getComment(clazz);
     }
@@ -253,21 +170,6 @@ public class MainDocumentation {
     protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
         Reflections reflections = new Reflections(packageToScan, new MethodAnnotationsScanner());
         return reflections.getMethodsAnnotatedWith(annotation);
-    }
-
-    private JavaProjectBuilder createJavaProjectBuilderWithTestPath() {
-        JavaProjectBuilder builder = new JavaProjectBuilder();
-
-        final Path testPath = pathProvider.getProjectPath().resolve(Paths.get("src", "test", "java"));
-        builder.addSourceTree(testPath.toFile());
-        return builder;
-    }
-
-    protected String joinParagraph(String... paragraph) {
-        return Arrays.stream(paragraph)
-                .filter(Objects::nonNull)
-                .filter(t -> !t.trim().isEmpty())
-                .collect(Collectors.joining("\n\n"));
     }
 
 }
