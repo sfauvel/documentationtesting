@@ -18,23 +18,18 @@ You can overwrite methods to modify document generated.
 
 == In main doc bis test
 
-\include::docs/org/sfvl/doctesting/InMainDocBisTest.testX.approved.adoc[leveloffset=+2]
+\include::InMainDocBisTest.testX.approved.adoc[leveloffset=+2]
 
 == Title for the document
 
 Class comment is added to description.
 
-\include::docs/org/sfvl/doctesting/InMainDocTest.testA.approved.adoc[leveloffset=+2]
-\include::docs/org/sfvl/doctesting/InMainDocTest.testB.approved.adoc[leveloffset=+2]
+\include::InMainDocTest.testA.approved.adoc[leveloffset=+2]
+\include::InMainDocTest.testB.approved.adoc[leveloffset=+2]
 ----
 .MainDocumentation methods overwritten
 [source, java, indent=0]
 ----
-            @Override
-            protected Path getRelativizedPath(DocumentationNamer m, Path docFilePath) {
-                return m.getFilePath().getFileName();
-            }
-
             @Override
             protected String getTestClassTitle(Class<?> clazz) {
                 return "from getTestClassTitle method " + clazz.getSimpleName();

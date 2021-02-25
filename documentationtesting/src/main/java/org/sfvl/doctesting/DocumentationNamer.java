@@ -53,4 +53,10 @@ public class DocumentationNamer {
     public Path getFilePath() {
         return Paths.get(getSourceFilePath(), getApprovalName()+".approved.adoc");
     }
+
+    public Path getApprovedPath(Path docFilePath) {
+        final Path fileName = getFilePath().getFileName();
+        final Path resolve = docFilePath.getParent().relativize(Paths.get(getSourceFilePath())).resolve(fileName);
+        return resolve;
+    }
 }

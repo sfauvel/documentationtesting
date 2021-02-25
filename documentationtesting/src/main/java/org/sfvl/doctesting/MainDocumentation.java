@@ -3,6 +3,7 @@ package org.sfvl.doctesting;
 import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
+import org.sfvl.docformatter.Formatter;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -35,6 +36,15 @@ public class MainDocumentation extends ClassDocumentation {
     }
 
     public MainDocumentation(String documentationTitle, Path docRootPath) {
+        this.DOCUMENTATION_TITLE = documentationTitle;
+        this.docRootPath = pathProvider.getProjectPath().resolve(docRootPath);
+    }
+
+    public MainDocumentation(String documentationTitle,
+                             Path docRootPath,
+                             Function<Method, DocumentationNamer> documentationNamerBuilder,
+                             Formatter formatter) {
+        super(documentationNamerBuilder, formatter);
         this.DOCUMENTATION_TITLE = documentationTitle;
         this.docRootPath = pathProvider.getProjectPath().resolve(docRootPath);
     }
@@ -133,7 +143,7 @@ public class MainDocumentation extends ClassDocumentation {
                 .collect(Collectors.groupingBy(method -> CodeExtractor.getFirstEnclosingClassBefore(method, null)));
 
         BiFunction<Class<?>, List<Method>, String> documentClass = (clazz, methods) -> {
-            return getClassDocumentation(clazz, methods, m -> getRelativizedPath(new DocumentationNamer(this.docRootPath, m), docFilePath), title_depth);
+            return getClassDocumentation(clazz, methods, m -> documentationNamerBuilder.apply(m).getApprovedPath(docFilePath), title_depth);
         };
 
         return mapToString(methodsByClass, documentClass, "\n\n", Comparator.comparing(e -> e.getKey().getSimpleName()));

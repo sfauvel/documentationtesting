@@ -16,8 +16,8 @@ public class ClassDocumentation {
 
     private final Formatter formatter;
     public Function<Method, Path> targetName;
-    public final Path docRootPath;
     private static final PathProvider pathProvider = new PathProvider();
+    protected Function<Method, DocumentationNamer> documentationNamerBuilder;
 
     public ClassDocumentation() {
         this(Paths.get("src", "test", "docs"));
@@ -28,8 +28,13 @@ public class ClassDocumentation {
     }
 
     public ClassDocumentation(Path docRootPath, Formatter formatter) {
-        this.docRootPath = pathProvider.getProjectPath().resolve(docRootPath);
+        this(m -> new DocumentationNamer(pathProvider.getProjectPath().resolve(docRootPath), m),
+                formatter);
+    }
+
+    public ClassDocumentation(Function<Method, DocumentationNamer> documentationNamerBuilder, Formatter formatter) {
         this.formatter = formatter;
+        this.documentationNamerBuilder = documentationNamerBuilder;
     }
 
     public String getClassDocumentation(Class<?> clazz, List<Method> methods, Function<Method, Path> targetName, int depth) {
@@ -90,7 +95,7 @@ public class ClassDocumentation {
     }
 
     protected String includeMethods(List<Method> testMethods, Path docFilePath) {
-        Function<Method, Path> targetName = m -> getRelativizedPath(new DocumentationNamer(this.docRootPath, m), docFilePath);
+        Function<Method, Path> targetName = m -> documentationNamerBuilder.apply(m).getApprovedPath(docFilePath);
         return includeMethods(testMethods, targetName, 2);
     }
 
@@ -101,11 +106,6 @@ public class ClassDocumentation {
                 .map(targetPathName)
                 .map(includeWithOffset)
                 .collect(Collectors.joining("\n"));
-    }
-
-    protected Path getRelativizedPath(DocumentationNamer m, Path docFilePath) {
-        final String filename = m.getApprovalName() + ".approved.adoc";
-        return docFilePath.getParent().relativize(Paths.get(m.getSourceFilePath())).resolve(filename);
     }
 
     protected String joinParagraph(String... paragraph) {
