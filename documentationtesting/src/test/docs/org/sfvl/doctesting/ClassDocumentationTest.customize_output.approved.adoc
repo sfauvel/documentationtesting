@@ -1,0 +1,41 @@
+[#org_sfvl_doctesting_ClassDocumentationTest_customize_output]
+= Customize output
+
+
+
+.Default document generated
+[source,indent=0]
+----
+= Title for the document
+
+Class comment is added to description.
+
+
+\include::testA.approved.adoc[leveloffset=+1]
+\include::testB.approved.adoc[leveloffset=+1]
+----
+.ClassDocumentation methods overwritten
+[source,java,indent=0]
+----
+            @Override
+            protected String getTestClassTitle(Class<?> clazz) {
+                return "from getTestClassTitle method " + clazz.getSimpleName();
+            }
+
+            @Override
+            protected String getDescription(Class<?> classToDocument) {
+                return "from getDescription method " + classToDocument.getSimpleName();
+            }
+
+----
+.Custom document generated
+[source,indent=0]
+----
+= from getTestClassTitle method InMainDocTest
+
+from getDescription method InMainDocTest
+
+
+\include::testA.approved.adoc[leveloffset=+1]
+\include::testB.approved.adoc[leveloffset=+1]
+----

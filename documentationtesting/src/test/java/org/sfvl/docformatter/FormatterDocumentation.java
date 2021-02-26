@@ -3,14 +3,13 @@ package org.sfvl.docformatter;
 import org.sfvl.doctesting.MainDocumentation;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 
 public class FormatterDocumentation extends MainDocumentation {
 
 
     @Override
     protected String getHeader() {
-        return joinParagraph(
+        return formatter.paragraphSuite(
                 ":source-highlighter: rouge\n" + getDocumentOptions(),
                 "= " + DOCUMENTATION_TITLE,
                 generalInformation());

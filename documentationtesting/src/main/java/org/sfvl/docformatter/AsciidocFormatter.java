@@ -46,6 +46,14 @@ public class AsciidocFormatter implements Formatter {
     }
 
     @Override
+    public String paragraphSuite(String... paragraph) {
+        return Arrays.stream(paragraph)
+                .filter(Objects::nonNull)
+                .filter(t -> !t.trim().isEmpty())
+                .collect(Collectors.joining("\n\n"));
+    }
+
+    @Override
     public String tableOfContent() {
         return tableOfContent(4);
     }

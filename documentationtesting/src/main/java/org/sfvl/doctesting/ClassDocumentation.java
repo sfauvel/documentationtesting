@@ -9,32 +9,30 @@ import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+/**
+ * Generate a documentation of a test class aggregating approved method files.
+ */
 public class ClassDocumentation {
 
-    private final Formatter formatter;
-    public Function<Method, Path> targetName;
     private static final PathProvider pathProvider = new PathProvider();
-    protected Function<Method, DocumentationNamer> documentationNamerBuilder;
+
+    protected final Formatter formatter;
+    public Function<Method, Path> targetName;
+    protected final BiFunction<Method, Path, Path> methodToPath;
 
     public ClassDocumentation() {
-        this(Paths.get("src", "test", "docs"));
+        this((m, p) -> new DocumentationNamer(pathProvider.getProjectPath().resolve(Paths.get("src", "test", "docs")), m).getApprovedPath(p),
+                        new AsciidocFormatter());
     }
 
-    public ClassDocumentation(Path docRootPath) {
-        this(docRootPath, new AsciidocFormatter());
-    }
-
-    public ClassDocumentation(Path docRootPath, Formatter formatter) {
-        this(m -> new DocumentationNamer(pathProvider.getProjectPath().resolve(docRootPath), m),
-                formatter);
-    }
-
-    public ClassDocumentation(Function<Method, DocumentationNamer> documentationNamerBuilder, Formatter formatter) {
+    public ClassDocumentation(BiFunction<Method, Path, Path> methodToPath, Formatter formatter) {
         this.formatter = formatter;
-        this.documentationNamerBuilder = documentationNamerBuilder;
+        this.methodToPath = methodToPath;
     }
 
     public String getClassDocumentation(Class<?> clazz, List<Method> methods, Function<Method, Path> targetName, int depth) {
@@ -46,7 +44,7 @@ public class ClassDocumentation {
                 ? includeMethods(methods, targetName, depth)
                 : formatClasses(targetName, depth, methodsByClass);
 
-        return joinParagraph(
+        return formatter.paragraphSuite(
                 getTitle(clazz, depth),
                 getDescription(clazz),
                 content);
@@ -60,12 +58,8 @@ public class ClassDocumentation {
                 .collect(Collectors.joining("\n\n"));
     }
 
-    public String getTitle(Class<?> clazz, int depth) {
-        return new String(new char[depth]).replace("\0", "=") + " " + getTestClassTitle(clazz);
-    }
-
     protected String getDescription(Class<?> classToDocument) {
-        return joinParagraph(
+        return formatter.paragraphSuite(
                 relatedClassDescription(classToDocument).orElse(""),
                 CodeExtractor.getComment(classToDocument));
     }
@@ -76,8 +70,8 @@ public class ClassDocumentation {
                 .map(CodeExtractor::getComment);
     }
 
-    protected String getTestClassTitle(Map.Entry<Class<?>, List<Method>> e) {
-        return getTestClassTitle(e.getKey());
+    public String getTitle(Class<?> clazz, int depth) {
+        return new String(new char[depth]).replace("\0", "=") + " " + getTestClassTitle(clazz);
     }
 
     protected String getTestClassTitle(Class<?> testClass) {
@@ -95,24 +89,27 @@ public class ClassDocumentation {
     }
 
     protected String includeMethods(List<Method> testMethods, Path docFilePath) {
-        Function<Method, Path> targetName = m -> documentationNamerBuilder.apply(m).getApprovedPath(docFilePath);
+        Function<Method, Path> targetName = m -> methodToPath.apply(m, docFilePath);
+
         return includeMethods(testMethods, targetName, 2);
     }
 
     protected String includeMethods(List<Method> testMethods, Function<Method, Path> targetPathName, final int levelOffset) {
-        final Function<Path, String> includeWithOffset = path -> formatter.include(path.toString(), levelOffset).trim();
-        // Trim because formatter add some line breaks (it may not add those line breaks)
-        return MethodsOrder.sort(testMethods)
+        final Stream<Path> pathToMethods = MethodsOrder.sort(testMethods)
+                .peek(m -> System.out.println("Before " + m.getName()))
                 .map(targetPathName)
-                .map(includeWithOffset)
-                .collect(Collectors.joining("\n"));
+                .peek(p -> System.out.println("After:" + p.toString()));
+
+
+        return includeMethods(pathToMethods, levelOffset);
     }
 
-    protected String joinParagraph(String... paragraph) {
-        return Arrays.stream(paragraph)
-                .filter(Objects::nonNull)
-                .filter(t -> !t.trim().isEmpty())
-                .collect(Collectors.joining("\n\n"));
+    private String includeMethods(Stream<Path> pathToMethods, int levelOffset) {
+        final Function<Path, String> includeWithOffset = path -> formatter.include(path.toString(), levelOffset).trim();
+        // Trim because formatter add some line breaks (it may not add those line breaks)
+        return pathToMethods
+                .map(includeWithOffset)
+                .collect(Collectors.joining("\n"));
     }
 
 }

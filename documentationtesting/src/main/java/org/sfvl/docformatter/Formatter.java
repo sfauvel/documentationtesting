@@ -1,6 +1,9 @@
 package org.sfvl.docformatter;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public interface Formatter {
 
@@ -11,6 +14,8 @@ public interface Formatter {
     String description(String description);
 
     String paragraph(String... content);
+
+    String paragraphSuite(String... paragraph);
 
     String tableOfContent();
 

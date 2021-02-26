@@ -3,12 +3,14 @@ package org.sfvl.doctesting;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -31,6 +33,12 @@ class MainDocumentationTest {
         private final List<Method> methods;
 
         public DocumentationOnSpecificMethods(List<Method> methods) {
+            super("Documentation",
+                    Paths.get("src", "test", "docs"),
+                    (m, p) -> {
+                        return new DocumentationNamer(Paths.get(""), m).getFilePath().getFileName();
+                    },
+                    new AsciidocFormatter());
             this.methods = methods;
         }
 
@@ -60,11 +68,6 @@ class MainDocumentationTest {
         final MainDocumentation customDocumentation = new DocumentationOnSpecificMethods(methodsToDocument) {
 
             // >>>1
-            @Override
-            protected Path getRelativizedPath(DocumentationNamer m, Path docFilePath) {
-                return m.getFilePath().getFileName();
-            }
-
             @Override
             protected String getTestClassTitle(Class<?> clazz) {
                 return "from getTestClassTitle method " + clazz.getSimpleName();

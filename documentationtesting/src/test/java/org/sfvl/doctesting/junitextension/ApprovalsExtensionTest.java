@@ -81,8 +81,6 @@ class ApprovalsExtensionTest {
                 "----",
                 "include::" + filename + "[]",
                 "----");
-
-
     }
 
     @Test
@@ -113,7 +111,7 @@ class ApprovalsExtensionTest {
         final MainDocumentation mainDocumentation = new MainDocumentation() {
             @Override
             protected String getHeader() {
-                return joinParagraph(getDocumentOptions(),
+                return formatter.paragraphSuite(getDocumentOptions(),
                         "= " + DOCUMENTATION_TITLE);
             }
 
@@ -138,8 +136,19 @@ class ApprovalsExtensionTest {
                         .replaceAll("\\ninclude::", "\n\\\\include::"),
                 "----");
 
-        write("", "", ".final rendering",
-                "include::" + testClass.getSimpleName() + ".adoc[]"
+        String style = "++++\n" +
+                "<style>\n" +
+                ".adocRendering {\n" +
+                "    padding: 1em;\n" +
+                "    background: #fffef7;\n" +
+                "    border-color: #e0e0dc;\n" +
+                "    -webkit-box-shadow: 0 1px 4px #e0e0dc;\n" +
+                "    box-shadow: 0 1px 4px #e0e0dc;\n" +
+                "}\n" +
+                "</style>\n" +
+                "++++";
+        write("", "", style, "", "_final rendering_", "[.adocRendering]",
+                "include::" + testClass.getSimpleName() + ".adoc[leveloffset=+1]"
         );
 
     }

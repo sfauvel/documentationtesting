@@ -42,9 +42,9 @@ public class MainDocumentation extends ClassDocumentation {
 
     public MainDocumentation(String documentationTitle,
                              Path docRootPath,
-                             Function<Method, DocumentationNamer> documentationNamerBuilder,
+                             BiFunction<Method, Path, Path> methodToPath,
                              Formatter formatter) {
-        super(documentationNamerBuilder, formatter);
+        super(methodToPath, formatter);
         this.DOCUMENTATION_TITLE = documentationTitle;
         this.docRootPath = pathProvider.getProjectPath().resolve(docRootPath);
     }
@@ -143,7 +143,7 @@ public class MainDocumentation extends ClassDocumentation {
                 .collect(Collectors.groupingBy(method -> CodeExtractor.getFirstEnclosingClassBefore(method, null)));
 
         BiFunction<Class<?>, List<Method>, String> documentClass = (clazz, methods) -> {
-            return getClassDocumentation(clazz, methods, m -> documentationNamerBuilder.apply(m).getApprovedPath(docFilePath), title_depth);
+            return getClassDocumentation(clazz, methods, m -> methodToPath.apply(m, docFilePath), title_depth);
         };
 
         return mapToString(methodsByClass, documentClass, "\n\n", Comparator.comparing(e -> e.getKey().getSimpleName()));
@@ -152,7 +152,7 @@ public class MainDocumentation extends ClassDocumentation {
     protected String getHeader() {
         final Path readmePath = pathProvider.getProjectPath().resolve(Paths.get("readme.adoc"));
 
-        final String header = joinParagraph(
+        final String header = formatter.paragraphSuite(
                 getDocumentOptions(),
                 (readmePath.toFile().exists()
                         ? "include::../../../readme.adoc[leveloffset=+1]"

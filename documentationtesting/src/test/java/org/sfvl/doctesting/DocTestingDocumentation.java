@@ -22,7 +22,7 @@ public class DocTestingDocumentation extends MainDocumentation {
                 "</style>",
                 "++++");
 
-        return joinParagraph(
+        return formatter.paragraphSuite(
                 ":source-highlighter: rouge\n" + getDocumentOptions() + "\n:toclevels: 4",
                 style,
                 "= Document testing tool",
@@ -31,7 +31,7 @@ public class DocTestingDocumentation extends MainDocumentation {
 
     @Override
     protected String generalInformation() {
-        return joinParagraph(super.generalInformation(),
+        return formatter.paragraphSuite(super.generalInformation(),
                 "This document describes usage of classes to create test from generated documentation.",
                 "* <<" + ApprovalsExtension.class.getSimpleName() + ">>: JUnit extension to check document.",
                 "* <<" + DocWriter.class.getSimpleName() + ">>: Store document before writting it.",
