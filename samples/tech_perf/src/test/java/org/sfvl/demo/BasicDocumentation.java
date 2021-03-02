@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.sfvl.Person;
 import org.sfvl.doctesting.DemoDocumentation;
+import org.sfvl.doctesting.DocumentationNamer;
 import org.sfvl.doctesting.PathProvider;
 import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
 import org.w3c.dom.NamedNodeMap;
@@ -85,13 +86,12 @@ public class BasicDocumentation extends DemoDocumentation {
         }
         String testsDocumentation = methodsByClass.entrySet().stream()
                 .sorted(Comparator.comparing(e -> e.getKey().getSimpleName()))
-                .map(e -> "== "
-                        + getTestClassTitle(e)
-                        + "\n" + getComment(e.getKey())
-                        + "\n\n"
-                        + includeMethods(e.getValue(), docFilePath)
-                        + "\n\n"
-                )
+                .map(e -> super.getClassDocumentation(
+                        e.getKey(),
+                        e.getValue(),
+                        m -> new DocumentationNamer(Paths.get("src", "test", "docs"), m).getApprovedPath(Paths.get("src", "test", "docs")),
+                        2
+                ))
                 .collect(Collectors.joining("\n"));
 
         return testsDocumentation;

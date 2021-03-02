@@ -1,6 +1,7 @@
 package org.sfvl.doctesting;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
@@ -11,6 +12,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -22,17 +24,31 @@ public class ClassDocumentation {
     private static final PathProvider pathProvider = new PathProvider();
 
     protected final Formatter formatter;
-    public Function<Method, Path> targetName;
     protected final BiFunction<Method, Path, Path> methodToPath;
+    private final Predicate<Method> methodFilter;
 
     public ClassDocumentation() {
         this((m, p) -> new DocumentationNamer(pathProvider.getProjectPath().resolve(Paths.get("src", "test", "docs")), m).getApprovedPath(p),
-                        new AsciidocFormatter());
+                new AsciidocFormatter());
     }
 
     public ClassDocumentation(BiFunction<Method, Path, Path> methodToPath, Formatter formatter) {
+        this(formatter, methodToPath, m -> m.isAnnotationPresent(Test.class));
+    }
+
+    public ClassDocumentation(Formatter formatter, BiFunction<Method, Path, Path> methodToPath, Predicate<Method> methodFilter) {
         this.formatter = formatter;
         this.methodToPath = methodToPath;
+        this.methodFilter = methodFilter;
+    }
+
+    public String getClassDocumentation(Class<?> clazz) {
+        return getClassDocumentation(clazz,
+                Arrays.stream(clazz.getDeclaredMethods())
+                        .filter(methodFilter)
+                        .collect(Collectors.toList()),
+                m -> Paths.get(new DocumentationNamer(Paths.get("src", "test", "docs"), m).getApprovalFileName()),
+                1);
     }
 
     public String getClassDocumentation(Class<?> clazz, List<Method> methods, Function<Method, Path> targetName, int depth) {
@@ -88,18 +104,15 @@ public class ClassDocumentation {
                         .toLowerCase();
     }
 
-    protected String includeMethods(List<Method> testMethods, Path docFilePath) {
+    private String includeMethods(List<Method> testMethods, Path docFilePath) {
         Function<Method, Path> targetName = m -> methodToPath.apply(m, docFilePath);
 
         return includeMethods(testMethods, targetName, 2);
     }
 
-    protected String includeMethods(List<Method> testMethods, Function<Method, Path> targetPathName, final int levelOffset) {
+    private String includeMethods(List<Method> testMethods, Function<Method, Path> targetPathName, final int levelOffset) {
         final Stream<Path> pathToMethods = MethodsOrder.sort(testMethods)
-                .peek(m -> System.out.println("Before " + m.getName()))
-                .map(targetPathName)
-                .peek(p -> System.out.println("After:" + p.toString()));
-
+                .map(targetPathName);
 
         return includeMethods(pathToMethods, levelOffset);
     }

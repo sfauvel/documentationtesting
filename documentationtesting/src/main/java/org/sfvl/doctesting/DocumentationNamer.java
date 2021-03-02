@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,20 +44,38 @@ public class DocumentationNamer {
         return classesTree.stream().collect(Collectors.joining("."));
     }
 
+    public String getApprovalFileName() {
+        return getApprovalName() + ".approved.adoc";
+    }
+
     public String getSourceFilePath() {
-        String canonicalName = testMethod.getDeclaringClass().getPackage().getName();
-        String pathName = canonicalName.toString().replace('.', '/');
+        final Class<?> declaringClass = testMethod.getDeclaringClass();
+        Path pathName = toPath(declaringClass.getPackage());
 
         return docRootPath.resolve(pathName) + "/";
     }
 
     public Path getFilePath() {
-        return Paths.get(getSourceFilePath(), getApprovalName()+".approved.adoc");
+        return Paths.get(getSourceFilePath(), getApprovalFileName());
     }
 
     public Path getApprovedPath(Path docFilePath) {
         final Path fileName = getFilePath().getFileName();
-        final Path resolve = docFilePath.getParent().relativize(Paths.get(getSourceFilePath())).resolve(fileName);
+        final Path resolve = docFilePath.relativize(Paths.get(getSourceFilePath())).resolve(fileName);
         return resolve;
+    }
+
+    public static Path toPath(Class<?> aClass) {
+        return toPath(aClass, "", "");
+    }
+
+    public static Path toPath(Class<?> aClass, String prefix, String suffix) {
+        return toPath(aClass.getPackage()).resolve(prefix + aClass.getSimpleName() + suffix);
+    }
+
+    public static Path toPath(Package aPackage) {
+        return Arrays.stream(aPackage.getName().split("\\."))
+                .map(Paths::get)
+                .reduce(Paths.get(""), Path::resolve);
     }
 }

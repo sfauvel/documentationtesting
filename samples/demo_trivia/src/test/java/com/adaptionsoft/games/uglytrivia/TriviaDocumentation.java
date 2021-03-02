@@ -21,7 +21,7 @@ public class TriviaDocumentation extends DemoDocumentation {
 
     @Override
     protected String getDocumentOptions() {
-        return joinParagraph(
+        return formatter.paragraphSuite(
                 ":sectnums:\n" + super.getDocumentOptions(),
                 "= " + DOCUMENTATION_TITLE);
     }

@@ -48,10 +48,6 @@ class ClassDocumentationTest {
             this.methods = methods;
         }
 
-        @Override
-        protected String includeMethods(List<Method> testMethods, Function<Method, Path> targetPathName, int levelOffset) {
-            return escapeIncludeInstruction(super.includeMethods(testMethods, targetPathName, levelOffset));
-        }
     }
 
     @Test
@@ -195,7 +191,7 @@ class ClassDocumentationTest {
         doc.write("",
                 formatter.sourceCodeBuilder()
                         .title("Default document generated")
-                        .content(defaultContent)
+                        .content(escapeIncludeInstruction(defaultContent))
                         .build());
 
         doc.write("",
@@ -207,7 +203,7 @@ class ClassDocumentationTest {
         doc.write("",
                 formatter.sourceCodeBuilder()
                         .title("Custom document generated")
-                        .content(customContent)
+                        .content(escapeIncludeInstruction(customContent))
                         .build());
     }
 

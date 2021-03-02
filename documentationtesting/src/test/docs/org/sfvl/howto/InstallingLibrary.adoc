@@ -1,0 +1,7 @@
+:toc: left
+:nofooter:
+:stem:
+
+= Installing Documentation testing
+
+To be written

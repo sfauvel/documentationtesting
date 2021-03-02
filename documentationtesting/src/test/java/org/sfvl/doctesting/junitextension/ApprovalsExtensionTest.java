@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.platform.engine.discovery.DiscoverySelectors.selectClass;
 
-@DisplayName("ApprovalsExtension")
+@DisplayName("Approvals extension")
 @ClassToDocument(clazz = ApprovalsExtension.class)
 class ApprovalsExtensionTest {
 
@@ -94,7 +94,7 @@ class ApprovalsExtensionTest {
         final Class<?> testClass = DemoNestedTest.class;
         runTestClass(testClass);
 
-        write(".Test example using nested class",
+        write("", "", ".Test example using nested class",
                 includeSourceWithTag(testClass.getSimpleName()),
                 "", "");
 

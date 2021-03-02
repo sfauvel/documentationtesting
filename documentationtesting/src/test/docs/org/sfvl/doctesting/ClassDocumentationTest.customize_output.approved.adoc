@@ -10,7 +10,6 @@
 
 Class comment is added to description.
 
-
 \include::testA.approved.adoc[leveloffset=+1]
 \include::testB.approved.adoc[leveloffset=+1]
 ----
@@ -34,7 +33,6 @@ Class comment is added to description.
 = from getTestClassTitle method InMainDocTest
 
 from getDescription method InMainDocTest
-
 
 \include::testA.approved.adoc[leveloffset=+1]
 \include::testB.approved.adoc[leveloffset=+1]

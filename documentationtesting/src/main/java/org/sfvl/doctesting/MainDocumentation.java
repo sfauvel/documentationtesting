@@ -64,9 +64,7 @@ public class MainDocumentation extends ClassDocumentation {
 
     public void generate() throws IOException {
         final String packageToScan = getClass().getPackage().getName();
-        final String documentationFilename = getClass().getSimpleName();
-        final String replace = packageToScan.replace(".", "/");
-        generate(packageToScan, Paths.get(replace).resolve(documentationFilename).toString());
+        generate(packageToScan, DocumentationNamer.toPath(getClass()).toString());
     }
 
     protected void generate(String packageToScan) throws IOException {
@@ -75,7 +73,7 @@ public class MainDocumentation extends ClassDocumentation {
 
     public void generate(String packageToScan, String documentationFilename) throws IOException {
         final Path docFilePath = docRootPath.resolve(documentationFilename + ".adoc");
-        final String content = getDocumentationContent(packageToScan, docFilePath);
+        final String content = getDocumentationContent(packageToScan, docFilePath.getParent());
 
         try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
             writeDoc(fileWriter, content);

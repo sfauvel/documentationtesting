@@ -4,7 +4,9 @@
 Nested class can be used to organize tests.
 Each nested class create a nested title.
 
-`ApprovalsExtension` must be register on each test when `̀DocWriter` could be declare once on enclosing class..Test example using nested class
+`ApprovalsExtension` must be register on each test when `̀DocWriter` could be declare once on enclosing class.
+
+.Test example using nested class
 [source, java, indent=0]
 ----
 include::../../../../../java/org/sfvl/doctesting/junitextension/ApprovalsExtensionTest.java[tag=DemoNestedTest]
@@ -42,5 +44,18 @@ Document of Addition operations.
 \include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+3]
 ----
 
-.final rendering
-include::DemoNestedTest.adoc[]
+++++
+<style>
+.adocRendering {
+    padding: 1em;
+    background: #fffef7;
+    border-color: #e0e0dc;
+    -webkit-box-shadow: 0 1px 4px #e0e0dc;
+    box-shadow: 0 1px 4px #e0e0dc;
+}
+</style>
+++++
+
+_final rendering_
+[.adocRendering]
+include::DemoNestedTest.adoc[leveloffset=+1]

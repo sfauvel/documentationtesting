@@ -8,7 +8,7 @@ public class HowToDocumentation extends MainDocumentation {
 
     @Override
     protected String getHeader() {
-        return joinParagraph(
+        return formatter.paragraphSuite(
                 ":source-highlighter: rouge\n" + getDocumentOptions(),
                 "= " + DOCUMENTATION_TITLE,
                 generalInformation());
