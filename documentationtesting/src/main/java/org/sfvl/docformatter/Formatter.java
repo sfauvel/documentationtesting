@@ -1,9 +1,6 @@
 package org.sfvl.docformatter;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public interface Formatter {
 
@@ -30,6 +27,7 @@ public interface Formatter {
     String sourceCode(String source);
 
     String include(String filename);
+
     String include(String filename, int offset);
 
     String warning(String message);
@@ -41,6 +39,7 @@ public interface Formatter {
     String anchorLink(String id, String visibleText);
 
     String table(List<List<? extends Object>> data);
+
     String tableWithHeader(List<List<? extends Object>> asList);
 
     String image(String filename);
@@ -52,6 +51,7 @@ public interface Formatter {
     BlockBuilder blockBuilder(String delimiter);
 
     SourceCodeBuilder sourceCodeBuilder();
+
     SourceCodeBuilder sourceCodeBuilder(String language);
 
 }
