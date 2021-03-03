@@ -29,12 +29,14 @@ public class BasicDocumentation extends DemoDocumentation {
         try (Asciidoctor asciidoctor = create()) {
             final AsciiDocDirectoryWalker files = new AsciiDocDirectoryWalker(getDocRootPath().toString());
             for (File asciidocFile : files) {
-                final Path outputPath = getOutputPath(outputProjectDocsPath, asciidocFile);
-                Files.createDirectories(outputPath);
-                asciidoctor.convertFile(asciidocFile,
-                        OptionsBuilder.options()
-                                .safe(SafeMode.UNSAFE)
-                                .toDir(outputPath.toFile()));
+                if (asciidocFile.toString().endsWith(".approved.adoc")) {
+                    final Path outputPath = getOutputPath(outputProjectDocsPath, asciidocFile);
+                    Files.createDirectories(outputPath);
+                    asciidoctor.convertFile(asciidocFile,
+                            OptionsBuilder.options()
+                                    .safe(SafeMode.UNSAFE)
+                                    .toDir(outputPath.toFile()));
+                }
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

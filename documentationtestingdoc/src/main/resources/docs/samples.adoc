@@ -1,3 +1,4 @@
+:nofooter:
 = Samples
 
 include::./demo_list.adoc[leveloffset=+1]

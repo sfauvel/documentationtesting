@@ -39,25 +39,20 @@ include::perfAttributes.adoc[]
 | Simple | UsingJUnitTest | {Simple-UsingJUnitTest} | Using JUnit assertions to test.
 |====
 == Verify documentation with _Approvals_ library.
+
 Demo of a simple usage to generate documentation.
 
 include::org/sfvl/demo/UsingApprovalsTest.should_give_person_information.approved.adoc[leveloffset=+2]
-
-
 == Check file modification with git after each test.
+
 Demo of a simple usage to generate documentation.
 
 include::org/sfvl/demo/UsingGitAssertingOnEachTestTest.should_give_person_information.approved.adoc[leveloffset=+2]
-
-
 == Use Git to check file modification but after all tests. The time shown not include this verification.
+
 Demo of a simple usage to generate documentation.
 
 include::org/sfvl/demo/UsingGitWithNoAssertOptionTest.should_give_person_information.approved.adoc[leveloffset=+2]
-
-
 == Using JUnit assertions to test.
 
-
 include::org/sfvl/demo/UsingJUnitTest.should_give_person_information.approved.adoc[leveloffset=+2]
-
