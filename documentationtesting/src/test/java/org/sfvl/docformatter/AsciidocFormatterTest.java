@@ -88,6 +88,16 @@ public class AsciidocFormatterTest {
                 "They are in a same paragraph at the end.");
     }
 
+    /**
+     * Join paragraph with enough line break to separate them.
+     */
+    @Test
+    @DisplayName("Suite of paragraphs")
+    public void should_format_suite_of_paragraphs() {
+        output = formatter.paragraphSuite("My first paragraph.",
+                "The second paragraph with a blank line before to separate from the first one.");
+    }
+
     @Test
     @DisplayName("Description")
     public void should_format_description() {
