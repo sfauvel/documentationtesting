@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+oldstate="$(set +o)"
 set -euo pipefail
 
 source ./scripts/loadWritingFunction.sh
@@ -30,6 +31,15 @@ while getopts ":hm:g" opt; do
        ;;
    esac
 done
+
+function restore_shell_options() {
+  set +u
+  HISTIGNORE_BACKUP="$HISTIGNORE"
+  set -u
+  HISTIGNORE='set [\+\-]o *'
+  eval "$oldstate"
+  HISTIGNORE="$HISTIGNORE_BACKUP"
+}
 
 function generate_docs() {
   ALL_DEMOS=$1
@@ -80,3 +90,5 @@ fi
 set -u
 
 generate_docs "$MODULES"
+
+restore_shell_options
