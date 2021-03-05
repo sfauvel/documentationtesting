@@ -127,7 +127,9 @@ class DocWriterTest {
 
     public void writeFormatOutput(String displayName, Method testMethod) {
         final DocWriter docWriterForTest = new DocWriter();
-        final String output = docWriterForTest.formatOutput(displayName, testMethod);
+        final String output = docWriterForTest.formatOutput(displayName, testMethod)
+                .replaceAll("(^)\\[#", "//[#")
+                .replaceAll("\\n\\[#", "\n//[#");
 
         docWriter.write(String.format("Calling formatOutput with DisplayName=\"%s\" and Method=%s provides",
                 displayName, testMethod.getName()), "");
