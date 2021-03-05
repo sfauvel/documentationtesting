@@ -30,6 +30,16 @@ class DocWriterTest {
     }
 
     /**
+     * This method shows what kind of output is provided.
+     *
+     * @param testInfo
+     */
+    @DisplayName("Method to make a demo")
+    public void method_demo(TestInfo testInfo) {
+
+    }
+
+    /**
      * DocWriter is just a buffer.
      * Everything wrote in DocWriter will be returned when asking for output.
      * A title is add to the output.
@@ -46,7 +56,7 @@ class DocWriterTest {
         doc.write("Some text added to show DocWriter output.");
         final String output = doc.formatOutput(
                 "My title",
-                getClass().getMethod("doc_writer_usage", TestInfo.class)
+                getClass().getMethod("method_demo", TestInfo.class)
         );
         // <<<
 

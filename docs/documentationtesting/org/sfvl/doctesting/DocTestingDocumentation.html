@@ -1684,7 +1684,7 @@ A title is add to the output.</p>
 doc.write("Some text added to show DocWriter output.");
 final String output = doc.formatOutput(
         "My title",
-        getClass().getMethod("doc_writer_usage", TestInfo.class)
+        getClass().getMethod("method_demo", TestInfo.class)
 );</pre>
 </div>
 </div>
@@ -1693,13 +1693,11 @@ final String output = doc.formatOutput(
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div id="org_sfvl_doctesting_DocWriterTest_doc_writer_usage" class="paragraph">
+<div id="org_sfvl_doctesting_DocWriterTest_method_demo" class="paragraph">
 <p>= My title</p>
 </div>
 <div class="paragraph">
-<p>DocWriter is just a buffer.
-Everything wrote in DocWriter will be returned when asking for output.
-A title is add to the output.</p>
+<p>This method shows what kind of output is provided.</p>
 </div>
 <div class="paragraph">
 <p>Some text added to show DocWriter output.</p>

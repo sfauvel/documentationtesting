@@ -3,7 +3,7 @@
 :nofooter:
 :stem:
 
-= Documentation
+= How to
 
 == Use your own style
 

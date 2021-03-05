@@ -1,9 +1,8 @@
-:source-highlighter: rouge
 :toc: left
 :nofooter:
 :stem:
 
-= Documentation
+include::../../../readme.adoc[leveloffset=+1]
 
 == Asciidoctor formatter
 
@@ -21,6 +20,7 @@ include::AsciidocFormatterTest.should_format_table_of_content.approved.adoc[leve
 include::AsciidocFormatterTest.should_format_title.approved.adoc[leveloffset=+2]
 include::AsciidocFormatterTest.should_format_warning.approved.adoc[leveloffset=+2]
 include::AsciidocFormatterTest.should_format_paragraph.approved.adoc[leveloffset=+2]
+include::AsciidocFormatterTest.should_format_suite_of_paragraphs.approved.adoc[leveloffset=+2]
 include::AsciidocFormatterTest.should_format_description.approved.adoc[leveloffset=+2]
 include::AsciidocFormatterTest.should_format_definition.approved.adoc[leveloffset=+2]
 include::AsciidocFormatterTest.should_format_anchorLink.approved.adoc[leveloffset=+2]

@@ -80,6 +80,22 @@ public class MainDocumentation extends ClassDocumentation {
         }
     }
 
+    protected void generate(Class<?> classToGenerate) throws IOException {
+        final Path docFilePath = docRootPath.resolve(DocumentationNamer.toPath(this.getClass(), "", ".adoc"));
+
+        final DocWriter doc = new DocWriter();
+        doc.write(":source-highlighter: rouge",
+                getDocumentOptions(),
+                "",
+                new ClassDocumentation().getClassDocumentation(classToGenerate));
+
+        final String content = doc.read();
+
+        try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
+            fileWriter.write(content);
+        }
+    }
+
     private <K, V> String mapToString(Map<K, V> map, Function<Map.Entry<K, V>, List<String>> transform, String delimiter) {
 
         return map.entrySet().stream()

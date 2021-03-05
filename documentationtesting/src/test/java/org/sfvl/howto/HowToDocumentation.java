@@ -5,6 +5,9 @@ import org.sfvl.doctesting.MainDocumentation;
 import java.io.IOException;
 
 public class HowToDocumentation extends MainDocumentation {
+    public HowToDocumentation() {
+        super("How to");
+    }
 
     @Override
     protected String getHeader() {
