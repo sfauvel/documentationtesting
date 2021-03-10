@@ -66,4 +66,7 @@ public class DocWriter {
         }
     }
 
+    public void reset() {
+        sb = new StringBuffer();
+    }
 }

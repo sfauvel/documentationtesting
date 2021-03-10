@@ -1,13 +1,12 @@
 package org.sfvl.doctesting.junitextension;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
+import org.sfvl.doctesting.ClassDocumentation;
 import org.sfvl.doctesting.DocWriter;
 import org.sfvl.doctesting.MainDocumentation;
 import org.sfvl.doctesting.NotIncludeToDoc;
@@ -27,9 +26,9 @@ import static org.junit.platform.engine.discovery.DiscoverySelectors.selectClass
 @ClassToDocument(clazz = ApprovalsExtension.class)
 class ApprovalsExtensionTest {
 
-    private final DocWriter docWriter = new DocWriter();
+    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
     private void write(String... texts) {
         docWriter.write(texts);
@@ -152,6 +151,46 @@ class ApprovalsExtensionTest {
         );
 
     }
+    
+    @Test
+    public void document_with_all_tests_in_a_testclass() throws IOException {
+        write("At the end of a test, a file is created including file generated on each test.",
+                "",
+                "`" + ApprovalsExtension.class.getSimpleName() + "` must be static to be able to run `" + AfterAll.class.getSimpleName() + "` callback.");
+
+        final Class<?> testClass = MyTest.class;
+        runTestClass(testClass);
+
+        write("", "", ".Test example used to generate class document",
+                includeSourceWithTag(testClass.getSimpleName()),
+                "", "");
+
+        final Path generatedFilePath = Paths.get("", getClass().getPackage().getName().split("\\."));
+        final Path documentationPath = extension.getDocPath().resolve(generatedFilePath).resolve(testClass.getSimpleName() + ".adoc");
+
+        write("", "", ".Document generated",
+                "----",
+                Files.lines(documentationPath)
+                        .collect(Collectors.joining("\n"))
+                        .replaceAll("\\ninclude::", "\n\\\\include::"),
+                "----");
+
+        String style = "++++\n" +
+                "<style>\n" +
+                ".adocRendering {\n" +
+                "    padding: 1em;\n" +
+                "    background: #fffef7;\n" +
+                "    border-color: #e0e0dc;\n" +
+                "    -webkit-box-shadow: 0 1px 4px #e0e0dc;\n" +
+                "    box-shadow: 0 1px 4px #e0e0dc;\n" +
+                "}\n" +
+                "</style>\n" +
+                "++++";
+        write("", "", style, "", "_final rendering_", "[.adocRendering]",
+                "include::" + testClass.getSimpleName() + ".adoc[leveloffset=+1]"
+        );
+
+    }
 
 
     public void runTestClass(Class<?> testClass) {
@@ -179,9 +218,9 @@ class ApprovalsExtensionTest {
 @NotIncludeToDoc
 // tag::MyTest[]
 class MyTest {
-    private final DocWriter docWriter = new DocWriter();
+    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
     @Test
     public void test_A() {

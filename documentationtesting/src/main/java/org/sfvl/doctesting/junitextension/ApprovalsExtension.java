@@ -4,26 +4,28 @@ import org.approvaltests.Approvals;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
+import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
+import org.sfvl.doctesting.ClassDocumentation;
 import org.sfvl.doctesting.DocWriter;
 import org.sfvl.doctesting.DocumentationNamer;
 import org.sfvl.doctesting.PathProvider;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * JUnit5 extension that verify written document matches with approved one.
  *
  * It checks that everything written during test is identical to the approved content.
  */
-public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallback {
+public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallback, AfterAllCallback {
 
     private static final PathProvider pathBuidler = new PathProvider();
     private T docWriter;
@@ -37,8 +39,21 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
     }
 
     @Override
+    public void afterAll(ExtensionContext extensionContext) throws Exception {
+        final ClassDocumentation classDocumentation = new ClassDocumentation();
+        final Class<?> clazz = extensionContext.getTestClass().get();
+        final String content = classDocumentation.getClassDocumentation(clazz);
+
+        final Path docFilePath = getDocPath().resolve(DocumentationNamer.toPath(clazz, "", ".adoc"));
+        try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
+            fileWriter.write(content);
+        }
+    }
+
+    @Override
     public void afterEach(ExtensionContext extensionContext) throws Exception {
         String content = getDocWriter().formatOutput(extensionContext.getDisplayName(), extensionContext.getTestMethod().get());
+        getDocWriter().reset();
 
         final DocumentationNamer documentationNamer = new DocumentationNamer(getDocPath(), extensionContext.getTestMethod().get());
         ApprovalNamer approvalNamer = new ApprovalNamer() {
