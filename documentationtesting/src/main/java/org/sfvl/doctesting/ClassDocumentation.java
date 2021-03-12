@@ -1,6 +1,7 @@
 package org.sfvl.doctesting;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
@@ -37,14 +38,14 @@ public class ClassDocumentation {
     }
 
     public ClassDocumentation(BiFunction<Method, Path, Path> methodToPath, Formatter formatter) {
-        this(formatter, methodToPath, m -> m.isAnnotationPresent(Test.class));
+        this(formatter, methodToPath, m -> m.isAnnotationPresent(Test.class), c -> c.isAnnotationPresent(Nested.class));
     }
 
-    public ClassDocumentation(Formatter formatter, BiFunction<Method, Path, Path> methodToPath, Predicate<Method> methodFilter) {
+    public ClassDocumentation(Formatter formatter, BiFunction<Method, Path, Path> methodToPath, Predicate<Method> methodFilter, Predicate<Class> classFilter) {
         this.formatter = formatter;
         this.methodToPath = methodToPath;
         this.methodFilter = methodFilter;
-        this.classFilter = c -> true;
+        this.classFilter = classFilter;
     }
 
     public String getClassDocumentation(Class<?> clazz) {

@@ -5,13 +5,3 @@ include::ClassesOrderTest.in_order.approved.adoc[leveloffset=+1]
 include::ClassesOrderTest.filter_methods_and_classes.approved.adoc[leveloffset=+1]
 
 include::ClassesOrderTest.nested_class_using_outer_method.approved.adoc[leveloffset=+1]
-
-== My class
-
-=== My sub class a
-
-=== My sub class b
-
-== My class with only sub class externe
-
-=== My sub class a
