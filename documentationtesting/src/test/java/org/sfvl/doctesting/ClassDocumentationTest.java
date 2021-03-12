@@ -318,6 +318,14 @@ class ClassDocumentationTest_DemoNestedTest {
         }
     }
 
+    /**
+     * A method between two nested classes is between those classes in final documentatiton.
+     */
+    @Test
+    public void method_between_two_nested_classes() {
+        writer.write("This is the documentation generated in test");
+    }
+
     @Nested
     class Multiply {
         @Test

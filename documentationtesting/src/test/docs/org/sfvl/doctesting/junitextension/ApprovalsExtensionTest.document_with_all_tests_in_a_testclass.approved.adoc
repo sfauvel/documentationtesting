@@ -18,7 +18,6 @@ include::../../../../../java/org/sfvl/doctesting/junitextension/ApprovalsExtensi
 = My test
 
 \include::MyTest.test_A.approved.adoc[leveloffset=+1]
-
 ----
 
 ++++

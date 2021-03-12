@@ -9,7 +9,10 @@ import org.sfvl.doctesting.junitextension.ClassToDocument;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -47,18 +50,56 @@ public class ClassDocumentation {
     }
 
     public String getClassDocumentation(Class<?> clazz, int depth) {
-        final Stream<Class> declaredClasses = ClassesOrder.sort(Arrays.asList(clazz.getDeclaredClasses()));
 
-        return getClassDocumentation(clazz,
-                Arrays.stream(clazz.getDeclaredMethods())
-                        .filter(methodFilter)
-                        .collect(Collectors.toList()),
-                m -> Paths.get(new DocumentationNamer(Paths.get("src", "test", "docs"), m).getApprovalFileName()),
-                depth)
-                + "\n\n"
-                + declaredClasses
-                .map(c -> getClassDocumentation(c, depth + 1))
-                .collect(Collectors.joining("\n"));
+        return getMyClassDocumentation(clazz, depth);
+
+//        final Stream<Class> declaredClasses = ClassesOrder.sort(Arrays.asList(clazz.getDeclaredClasses()));
+//
+//        return getClassDocumentation(clazz,
+//                Arrays.stream(clazz.getDeclaredMethods())
+//                        .filter(methodFilter)
+//                        .collect(Collectors.toList()),
+//                m -> Paths.get(new DocumentationNamer(Paths.get("src", "test", "docs"), m).getApprovalFileName()),
+//                depth)
+//                + "\n\n"
+//                + declaredClasses
+//                .map(c -> getClassDocumentation(c, depth + 1))
+//                .collect(Collectors.joining("\n"));
+    }
+
+    private String getMyClassDocumentation(Class<?> clazz, int depth) {
+        final ClassesOrder classesOrder = new ClassesOrder();
+        final Stream<ClassesOrder.EncapsulateDeclared> declaredInOrder = classesOrder.getDeclaredInOrder(
+                clazz,
+                m->m.isAnnotationPresent(Test.class),
+                c->true);
+
+        return getMyClassDocumentation(clazz, depth, declaredInOrder.collect(Collectors.toList()));
+    }
+    private String getMyClassDocumentation(Class<?> clazz, int depth, List<ClassesOrder.EncapsulateDeclared> encapsulatedDeclarations) {
+        final Function<Method, Path> methodToPath = m -> Paths.get(new DocumentationNamer(Paths.get("src", "test", "docs"), m).getApprovalFileName());
+        // Trim because formatter add some line breaks (it may not add those line breaks)
+        final Function<Path, String> includeWithOffset = path -> formatter.include(path.toString(), depth).trim();
+
+        String content = encapsulatedDeclarations.stream()
+                .map(encapsulateDeclared -> {
+                    if (encapsulateDeclared instanceof ClassesOrder.EncapsulateDeclaredMethod) {
+                        final Method encapsulatedMethod = ((ClassesOrder.EncapsulateDeclaredMethod) encapsulateDeclared).getEncapsulatedMethod();
+
+                        final Path methodPath = methodToPath.apply(encapsulatedMethod);
+                        return includeWithOffset.apply(methodPath);
+                    }
+                    if (encapsulateDeclared instanceof ClassesOrder.EncapsulateDeclaredClass) {
+                        final Class<?> encapsulatedClass = ((ClassesOrder.EncapsulateDeclaredClass) encapsulateDeclared).getEncapsulatedClass();
+                        return getMyClassDocumentation(encapsulatedClass, depth+1);
+                    }
+                    return "";
+                }).collect(Collectors.joining("\n\n"));
+
+        return formatter.paragraphSuite(
+                getTitle(clazz, depth),
+                getDescription(clazz),
+                content);
     }
 
     public String getClassDocumentation(Class<?> clazz, List<Method> methods, Function<Method, Path> targetName, int depth) {

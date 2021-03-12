@@ -5,7 +5,9 @@ JUnit5 extension that verify written document matches with approved one.
 It checks that everything written during test is identical to the approved content.
 
 include::ApprovalsExtensionTest.using_extension.approved.adoc[leveloffset=+1]
-include::ApprovalsExtensionTest.using_displayName.approved.adoc[leveloffset=+1]
-include::ApprovalsExtensionTest.nested_class.approved.adoc[leveloffset=+1]
-include::ApprovalsExtensionTest.document_with_all_tests_in_a_testclass.approved.adoc[leveloffset=+1]
 
+include::ApprovalsExtensionTest.using_displayName.approved.adoc[leveloffset=+1]
+
+include::ApprovalsExtensionTest.nested_class.approved.adoc[leveloffset=+1]
+
+include::ApprovalsExtensionTest.document_with_all_tests_in_a_testclass.approved.adoc[leveloffset=+1]

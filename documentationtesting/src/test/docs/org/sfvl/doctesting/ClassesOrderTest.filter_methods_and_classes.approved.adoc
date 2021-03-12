@@ -1,0 +1,34 @@
+[#org_sfvl_doctesting_ClassesOrderTest_filter_methods_and_classes]
+= Filter methods and classes
+
+We can give filters to select methods and classes to return.
+
+* method_1
+* MySubClassB
+
+.Test example using
+[source,java,indent=0]
+----
+    class MyClass {
+
+        public void method_1() {
+        }
+
+        class MySubClassA {
+            public void method_A_1() {
+            }
+        }
+
+        public void method_2() {
+        }
+
+        class MySubClassB {
+            public void method_B_1() {
+            }
+        }
+
+        public void method_3() {
+        }
+    }
+----
+
