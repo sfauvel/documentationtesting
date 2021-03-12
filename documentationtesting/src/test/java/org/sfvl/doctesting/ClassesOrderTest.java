@@ -1,6 +1,7 @@
 package org.sfvl.doctesting;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
@@ -17,19 +18,29 @@ class ClassesOrderTest {
 
 
     @Test
-    public void in_order() {
-        final Class<?> testClass = MyClass.class;
-
-        final ClassesOrder classesOrder = new ClassesOrder();
-        final Stream<ClassesOrder.EncapsulateDeclared> declaredInOrder = classesOrder.getDeclaredInOrder(testClass);
+    public void in_order(TestInfo testInfo) {
+        // >>>
+        Class<?> testClass = MyClass.class;
+        Stream<ClassesOrder.EncapsulateDeclared> declaredInOrder
+                = new ClassesOrder().getDeclaredInOrder(testClass);
+        // <<<
 
         final AsciidocFormatter formatter = new AsciidocFormatter();
 
         doc.write("We retrieve names of methods and nested classes in the same order they appear in source file.", "");
+        doc.write("",
+                formatter.sourceCodeBuilder("java")
+                        .title("Get declared methods and classes in order")
+                        .source(CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get()))
+                        .build());
+
         final List<String> items = declaredInOrder
                 .map(ClassesOrder.EncapsulateDeclared::getName)
                 .collect(Collectors.toList());
-        doc.write(formatter.listItems(items.toArray(new String[0])));
+
+        doc.write("",
+                "Only methods and classes directly under the class passed in parameter are returned.",
+                formatter.listItems(items.toArray(new String[0])));
 
         doc.write("", "",
                 formatter.sourceCodeBuilder("java")

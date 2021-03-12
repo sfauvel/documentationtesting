@@ -3,6 +3,16 @@
 
 We retrieve names of methods and nested classes in the same order they appear in source file.
 
+.Get declared methods and classes in order
+[source,java,indent=0]
+----
+        Class<?> testClass = MyClass.class;
+        Stream<ClassesOrder.EncapsulateDeclared> declaredInOrder
+                = new ClassesOrder().getDeclaredInOrder(testClass);
+
+----
+Only methods and classes directly under the class passed in parameter are returned.
+
 * method_1
 * MySubClassA
 * method_2
