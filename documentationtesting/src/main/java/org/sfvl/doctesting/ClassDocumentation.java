@@ -29,6 +29,7 @@ public class ClassDocumentation {
     protected final Formatter formatter;
     protected final BiFunction<Method, Path, Path> methodToPath;
     private final Predicate<Method> methodFilter;
+    private final Predicate<Class> classFilter;
 
     public ClassDocumentation() {
         this((m, p) -> new DocumentationNamer(pathProvider.getProjectPath().resolve(Paths.get("src", "test", "docs")), m).getApprovedPath(p),
@@ -43,6 +44,7 @@ public class ClassDocumentation {
         this.formatter = formatter;
         this.methodToPath = methodToPath;
         this.methodFilter = methodFilter;
+        this.classFilter = c -> true;
     }
 
     public String getClassDocumentation(Class<?> clazz) {
@@ -69,10 +71,11 @@ public class ClassDocumentation {
 
     private String getMyClassDocumentation(Class<?> clazz, int depth) {
         final ClassesOrder classesOrder = new ClassesOrder();
+
         final Stream<ClassesOrder.EncapsulateDeclared> declaredInOrder = classesOrder.getDeclaredInOrder(
                 clazz,
-                m->m.isAnnotationPresent(Test.class),
-                c->true);
+                this.methodFilter,
+                classFilter);
 
         return getMyClassDocumentation(clazz, depth, declaredInOrder.collect(Collectors.toList()));
     }
