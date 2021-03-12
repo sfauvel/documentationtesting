@@ -43,12 +43,22 @@ public class ClassDocumentation {
     }
 
     public String getClassDocumentation(Class<?> clazz) {
+        return getClassDocumentation(clazz, 1);
+    }
+
+    public String getClassDocumentation(Class<?> clazz, int depth) {
+        final Stream<Class> declaredClasses = ClassesOrder.sort(Arrays.asList(clazz.getDeclaredClasses()));
+
         return getClassDocumentation(clazz,
                 Arrays.stream(clazz.getDeclaredMethods())
                         .filter(methodFilter)
                         .collect(Collectors.toList()),
                 m -> Paths.get(new DocumentationNamer(Paths.get("src", "test", "docs"), m).getApprovalFileName()),
-                1);
+                depth)
+                + "\n\n"
+                + declaredClasses
+                .map(c -> getClassDocumentation(c, depth + 1))
+                .collect(Collectors.joining("\n"));
     }
 
     public String getClassDocumentation(Class<?> clazz, List<Method> methods, Function<Method, Path> targetName, int depth) {

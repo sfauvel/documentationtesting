@@ -7,6 +7,7 @@ import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.platform.commons.support.ModifierSupport;
 import org.sfvl.doctesting.ClassDocumentation;
 import org.sfvl.doctesting.DocWriter;
 import org.sfvl.doctesting.DocumentationNamer;
@@ -37,14 +38,18 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
     public T getDocWriter() {
         return docWriter;
     }
-
+    private boolean isNestedClass(Class<?> currentClass) {
+        return !ModifierSupport.isStatic(currentClass) && currentClass.isMemberClass();
+    }
     @Override
     public void afterAll(ExtensionContext extensionContext) throws Exception {
+        if (isNestedClass(extensionContext.getTestClass().get())) {
+            return;
+        }
         final ClassDocumentation classDocumentation = new ClassDocumentation();
         final Class<?> clazz = extensionContext.getTestClass().get();
         final String content = classDocumentation.getClassDocumentation(clazz);
-
-        final Path docFilePath = getDocPath().resolve(DocumentationNamer.toPath(clazz, "", ".adoc"));
+        final Path docFilePath = getDocPath().resolve(DocumentationNamer.toPath(clazz,"", ".adoc"));
         try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
             fileWriter.write(content);
         }

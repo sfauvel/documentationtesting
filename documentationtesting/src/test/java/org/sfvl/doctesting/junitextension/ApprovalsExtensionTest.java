@@ -1,12 +1,15 @@
 package org.sfvl.doctesting.junitextension;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
-import org.sfvl.doctesting.ClassDocumentation;
 import org.sfvl.doctesting.DocWriter;
 import org.sfvl.doctesting.MainDocumentation;
 import org.sfvl.doctesting.NotIncludeToDoc;
@@ -151,7 +154,7 @@ class ApprovalsExtensionTest {
         );
 
     }
-    
+
     @Test
     public void document_with_all_tests_in_a_testclass() throws IOException {
         write("At the end of a test, a file is created including file generated on each test.",
@@ -220,7 +223,7 @@ class ApprovalsExtensionTest {
 class MyTest {
     private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static final ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
     @Test
     public void test_A() {
@@ -234,9 +237,9 @@ class MyTest {
 // tag::UsingDisplayNameTest[]
 @DisplayName("Title for the document")
 class UsingDisplayNameTest {
-    private final DocWriter docWriter = new DocWriter();
+    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static final ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
     @Test
     @DisplayName("Title for this test")
@@ -253,15 +256,16 @@ class UsingDisplayNameTest {
  */
 @NotIncludeToDoc
 class DemoNestedTest {
-    private final DocWriter writer = new DocWriter();
+    private static final DocWriter writer = new DocWriter();
+
+    @RegisterExtension
+    static final ApprovalsExtension extension = new ApprovalsExtension(writer);
 
     /**
      * Document of Addition operations.
      */
     @Nested
     class Adding {
-        @RegisterExtension
-        ApprovalsExtension extension = new ApprovalsExtension(writer);
 
         @Test
         @DisplayName("Adding 2 simple numbers")
@@ -281,9 +285,6 @@ class DemoNestedTest {
 
     @Nested
     class Multiply {
-        @RegisterExtension
-        ApprovalsExtension extension = new ApprovalsExtension(writer);
-
         @Test
         @DisplayName("Multiply 2 simple numbers")
         public void should_be_12_when_multiply_4_and_3() {
