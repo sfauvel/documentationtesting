@@ -7,9 +7,9 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 
 @NotIncludeToDoc
 class InMainDocBisTest {
-    private final DocWriter docWriter = new DocWriter();
+    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
     @Test
     @DisplayName("Title for this test")

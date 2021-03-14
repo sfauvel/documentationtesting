@@ -1,0 +1,7 @@
+= Extract information from method reference
+
+FindLambdaMethod class provides tools to find reference method name.
+
+include::FindLambdaMethodTest.find_method_name.approved.adoc[leveloffset=+1]
+
+include::FindLambdaMethodTest.find_method.approved.adoc[leveloffset=+1]

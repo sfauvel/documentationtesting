@@ -146,7 +146,7 @@ public class MainDocumentation extends ClassDocumentation {
 
     // TODO rename this  method. It extract content but there is already a getDocumentationContent
     protected String getMethodDocumentation(String packageToScan, Path docFilePath) {
-        final int title_depth = 2;
+        final int title_depth = 0;
         return getMethodDocumentation(packageToScan, docFilePath, title_depth);
     }
 
@@ -156,11 +156,21 @@ public class MainDocumentation extends ClassDocumentation {
         final Map<Class<?>, List<Method>> methodsByClass = testMethods.stream()
                 .collect(Collectors.groupingBy(method -> CodeExtractor.getFirstEnclosingClassBefore(method, null)));
 
-        BiFunction<Class<?>, List<Method>, String> documentClass = (clazz, methods) -> {
-            return getClassDocumentation(clazz, methods, m -> methodToPath.apply(m, docFilePath), title_depth);
-        };
+//        BiFunction<Class<?>, List<Method>, String> documentClass = (clazz, methods) -> {
+//            return getClassDocumentation(clazz, methods, m -> methodToPath.apply(m, docFilePath), title_depth);
+//        };
+//
+//        return mapToString(methodsByClass, documentClass, "\n\n", Comparator.comparing(e -> e.getKey().getSimpleName()));
 
-        return mapToString(methodsByClass, documentClass, "\n\n", Comparator.comparing(e -> e.getKey().getSimpleName()));
+        final Set<Class<?>> classes = methodsByClass.keySet();
+        return classes.stream()
+                .sorted(Comparator.comparing(Class::getSimpleName))
+//                .map(c -> getClassDocumentation(c, title_depth))
+                .map(c -> c.getName().replaceFirst("^"+this.getClass().getPackage().getName()+".", "")
+                        .replaceAll("\\.", "/"))
+                .map(s -> formatter.include(s+".adoc", title_depth+1))
+                .collect(Collectors.joining("\n\n"));
+
     }
 
     protected String getHeader() {

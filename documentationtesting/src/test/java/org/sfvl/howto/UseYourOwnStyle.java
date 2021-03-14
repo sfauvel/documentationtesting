@@ -14,9 +14,9 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
  */
 public class UseYourOwnStyle {
 
-    private final DocWriter doc = new DocWriter();
+    private static final DocWriter doc = new DocWriter();
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(doc);
+    static ApprovalsExtension extension = new ApprovalsExtension(doc);
 
     private final AsciidocFormatter formatter = new AsciidocFormatter();
 

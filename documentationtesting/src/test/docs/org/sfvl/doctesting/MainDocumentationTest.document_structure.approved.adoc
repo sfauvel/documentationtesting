@@ -16,16 +16,13 @@ You can overwrite methods to modify document generated.
 
 \include::../../../readme.adoc[leveloffset=+1]
 
-== In main doc bis test
 
-\include::InMainDocBisTest.testX.approved.adoc[leveloffset=+2]
+\include::InMainDocBisTest.adoc[leveloffset=+1]
 
-== Title for the document
 
-Class comment is added to description.
 
-\include::InMainDocTest.testA.approved.adoc[leveloffset=+2]
-\include::InMainDocTest.testB.approved.adoc[leveloffset=+2]
+\include::InMainDocTest.adoc[leveloffset=+1]
+
 ----
 .MainDocumentation methods overwritten
 [source, java, indent=0]
@@ -50,27 +47,22 @@ Class comment is added to description.
 ----
 from getHeader method
 
-== from getTestClassTitle method InMainDocBisTest
 
-from getDescription method InMainDocBisTest
+\include::InMainDocBisTest.adoc[leveloffset=+1]
 
-\include::InMainDocBisTest.testX.approved.adoc[leveloffset=+2]
 
-== from getTestClassTitle method InMainDocTest
 
-from getDescription method InMainDocTest
+\include::InMainDocTest.adoc[leveloffset=+1]
 
-\include::InMainDocTest.testA.approved.adoc[leveloffset=+2]
-\include::InMainDocTest.testB.approved.adoc[leveloffset=+2]
 ----
 .Test class used to in this examples
 [source, java, indent=0]
 ----
 @DisplayName("Title for the document")
 class InMainDocTest {
-    private final DocWriter docWriter = new DocWriter();
+    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
     @Test
     @DisplayName("Title for this test")
@@ -86,9 +78,9 @@ class InMainDocTest {
 }
 
 class InMainDocBisTest {
-    private final DocWriter docWriter = new DocWriter();
+    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
     @Test
     @DisplayName("Title for this test")

@@ -21,9 +21,9 @@ import java.util.stream.IntStream;
 
 @DisplayName("DocWriter")
 class DocWriterTest {
-    private final DocWriter docWriter = new DocWriter();
+    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
     private void write(String... texts) {
         docWriter.write(texts);
@@ -203,9 +203,9 @@ class DocWriterTest {
     @NotIncludeToDoc
 // tag::MyTestWithComment[]
     private static class MyTestWithComment {
-        private final DocWriter docWriter = new DocWriter();
+        private static final DocWriter docWriter = new DocWriter();
         @RegisterExtension
-        ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+        static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
         /**
          * To decribe a method, you can add a comment.

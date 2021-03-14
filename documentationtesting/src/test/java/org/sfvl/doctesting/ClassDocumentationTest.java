@@ -23,9 +23,9 @@ import java.util.stream.Collectors;
 class ClassDocumentationTest {
 
     private final Formatter formatter = new AsciidocFormatter();
-    private final DocWriter doc = new DocWriter();
+    private static final DocWriter doc = new DocWriter();
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(doc);
+    static ApprovalsExtension extension = new ApprovalsExtension(doc);
 
     final List<Method> methodsToDocument = Arrays.asList(
             FindLambdaMethod.getMethod(InMainDocTest::testA),

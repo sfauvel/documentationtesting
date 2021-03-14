@@ -10,9 +10,9 @@ import java.nio.file.Paths;
 
 @DisplayName("Documentation Namer")
 class DocumentationNamerTest {
-    private final DocWriter doc = new DocWriter();
+    private static final DocWriter doc = new DocWriter();
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(doc);
+    static ApprovalsExtension extension = new ApprovalsExtension(doc);
 
     /**
      * DocumentNamer build names and paths from a method.

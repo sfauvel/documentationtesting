@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @DisplayName(value = "CodeExtractor")
 class CodeExtractorTest {
 
-    class CodeExtractorWriter extends DocWriter {
+    static class CodeExtractorWriter extends DocWriter {
         void writeInline(String... texts) {
             write(
                     "", "[.inline]",
@@ -31,7 +31,10 @@ class CodeExtractorTest {
         }
     }
 
-    private final CodeExtractorWriter doc = new CodeExtractorWriter();
+    private static final CodeExtractorWriter doc = new CodeExtractorWriter();
+
+    @RegisterExtension
+    static ApprovalsExtension extension = new ApprovalsExtension(doc);
 
     @AfterEach
     public void addSyle(TestInfo testInfo) {
@@ -62,8 +65,6 @@ class CodeExtractorTest {
     @Nested
     @DisplayName(value = "Extract code")
     class ExtractCode {
-        @RegisterExtension
-        ApprovalsExtension extension = new ApprovalsExtension(doc);
 
         @Test
         public void extract_code_of_a_class(TestInfo testInfo) {
@@ -421,8 +422,6 @@ class CodeExtractorTest {
     @Nested
     @DisplayName(value = "Extract comment")
     class ExtractComment {
-        @RegisterExtension
-        ApprovalsExtension extension = new ApprovalsExtension(doc);
 
         @Test
         @DisplayName(value = "Extract class comment")

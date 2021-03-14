@@ -48,9 +48,9 @@ An include instruction is added for each method specified.
  */
 @DisplayName("Title for the document")
 class InMainDocTest {
-    private final DocWriter docWriter = new DocWriter();
+    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
     @Test
     @DisplayName("Title for this test")

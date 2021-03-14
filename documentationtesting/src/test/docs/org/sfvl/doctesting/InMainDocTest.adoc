@@ -1,0 +1,7 @@
+= Title for the document
+
+Class comment is added to description.
+
+include::InMainDocTest.testA.approved.adoc[leveloffset=+1]
+
+include::InMainDocTest.testB.approved.adoc[leveloffset=+1]

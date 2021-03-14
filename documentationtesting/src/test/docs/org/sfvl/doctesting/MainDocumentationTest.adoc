@@ -1,0 +1,5 @@
+= Main documentation test
+
+include::MainDocumentationTest.document_structure.approved.adoc[leveloffset=+1]
+
+include::MainDocumentationTest.select_methods_to_add.approved.adoc[leveloffset=+1]

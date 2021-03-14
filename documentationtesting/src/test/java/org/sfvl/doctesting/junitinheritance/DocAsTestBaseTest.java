@@ -8,7 +8,7 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 class DocAsTestBaseTest {
 
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(new DocWriter());
+    static ApprovalsExtension extension = new ApprovalsExtension(new DocWriter());
 
     DocAsTestBase docAsTest = new DocAsTestBase() {
         @Override

@@ -34,7 +34,7 @@ public class AsciidocFormatterTest {
     private String output;
 
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(new DocWriter());
+    static ApprovalsExtension extension = new ApprovalsExtension(new DocWriter());
 
     public void write(String... texts) {
         extension.getDocWriter().write(texts);

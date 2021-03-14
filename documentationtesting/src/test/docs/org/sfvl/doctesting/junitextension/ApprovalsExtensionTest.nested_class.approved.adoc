@@ -28,20 +28,8 @@ Generated files in `org/sfvl/doctesting/junitextension`:
 
 = Documentation
 
-== Demo nested test
 
-Demo of a simple usage to generate documentation.
-
-=== Adding
-
-Document of Addition operations.
-
-\include::DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+3]
-\include::DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+3]
-
-=== Multiply
-
-\include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+3]
+\include::DemoNestedTest.adoc[leveloffset=+1]
 ----
 
 ++++
