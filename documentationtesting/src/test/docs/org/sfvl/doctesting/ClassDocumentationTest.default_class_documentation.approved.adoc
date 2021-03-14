@@ -7,8 +7,9 @@
 [source,java,indent=0]
 ----
         final ClassDocumentation defaultDocumentation = new ClassDocumentation(
-                (m, p) -> p,
-                new AsciidocFormatter());
+                new AsciidocFormatter(),
+                (m, p) -> p
+        );
 
         final String defaultContent = defaultDocumentation.getClassDocumentation(
                 InMainDocTest.class,                                     // <1>

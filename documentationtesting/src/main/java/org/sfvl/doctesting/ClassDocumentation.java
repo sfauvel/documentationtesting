@@ -33,11 +33,11 @@ public class ClassDocumentation {
     private final Predicate<Class> classFilter;
 
     public ClassDocumentation() {
-        this((m, p) -> new DocumentationNamer(pathProvider.getProjectPath().resolve(Paths.get("src", "test", "docs")), m).getApprovedPath(p),
-                new AsciidocFormatter());
+        this(new AsciidocFormatter(), (m, p) -> new DocumentationNamer(pathProvider.getProjectPath().resolve(Paths.get("src", "test", "docs")), m).getApprovedPath(p)
+        );
     }
 
-    public ClassDocumentation(BiFunction<Method, Path, Path> methodToPath, Formatter formatter) {
+    public ClassDocumentation(Formatter formatter, BiFunction<Method, Path, Path> methodToPath) {
         this(formatter, methodToPath, m -> m.isAnnotationPresent(Test.class), c -> c.isAnnotationPresent(Nested.class));
     }
 
@@ -55,19 +55,6 @@ public class ClassDocumentation {
     public String getClassDocumentation(Class<?> clazz, int depth) {
 
         return getMyClassDocumentation(clazz, depth);
-
-//        final Stream<Class> declaredClasses = ClassesOrder.sort(Arrays.asList(clazz.getDeclaredClasses()));
-//
-//        return getClassDocumentation(clazz,
-//                Arrays.stream(clazz.getDeclaredMethods())
-//                        .filter(methodFilter)
-//                        .collect(Collectors.toList()),
-//                m -> Paths.get(new DocumentationNamer(Paths.get("src", "test", "docs"), m).getApprovalFileName()),
-//                depth)
-//                + "\n\n"
-//                + declaredClasses
-//                .map(c -> getClassDocumentation(c, depth + 1))
-//                .collect(Collectors.joining("\n"));
     }
 
     private String getMyClassDocumentation(Class<?> clazz, int depth) {

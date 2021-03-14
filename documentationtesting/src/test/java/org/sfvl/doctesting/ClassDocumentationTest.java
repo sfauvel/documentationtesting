@@ -38,11 +38,11 @@ class ClassDocumentationTest {
         private final List<Method> methods;
 
         public DocumentationOnSpecificMethods(List<Method> methods) {
-            super((m, p) -> {
+            super(new AsciidocFormatter(), (m, p) -> {
                         System.out.println("Transform: " + m.getName() + " to " + Paths.get(m.getName() + ".approved.adoc").toString());
                         return Paths.get(m.getName() + ".approved.adoc");
-                    },
-                    new AsciidocFormatter());
+                    }
+            );
             this.methods = methods;
         }
 
@@ -54,8 +54,9 @@ class ClassDocumentationTest {
 
         // >>>1
         final ClassDocumentation defaultDocumentation = new ClassDocumentation(
-                (m, p) -> p,
-                new AsciidocFormatter());
+                new AsciidocFormatter(),
+                (m, p) -> p
+        );
 
         final String defaultContent = defaultDocumentation.getClassDocumentation(
                 InMainDocTest.class,                                     // <1>
@@ -108,8 +109,9 @@ class ClassDocumentationTest {
 
         // >>>1
         final ClassDocumentation defaultDocumentation = new ClassDocumentation(
-                (m, p) -> p,
-                new AsciidocFormatter());
+                new AsciidocFormatter(),
+                (m, p) -> p
+        );
 
         final String defaultContent = defaultDocumentation.getClassDocumentation(
                 InMainDocTest.class,
@@ -211,8 +213,9 @@ class ClassDocumentationTest {
 
         // >>>1
         final ClassDocumentation defaultDocumentation = new ClassDocumentation(
-                (m, p) -> p,
-                new AsciidocFormatter());
+                new AsciidocFormatter(),
+                (m, p) -> p
+        );
 
         final Class<?> testClass = ClassDocumentationTest_DemoNestedTest.class;
         final String defaultContent = defaultDocumentation.getClassDocumentation(testClass);

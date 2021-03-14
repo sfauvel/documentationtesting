@@ -44,7 +44,7 @@ public class MainDocumentation extends ClassDocumentation {
                              Path docRootPath,
                              BiFunction<Method, Path, Path> methodToPath,
                              Formatter formatter) {
-        super(methodToPath, formatter);
+        super(formatter, methodToPath);
         this.DOCUMENTATION_TITLE = documentationTitle;
         this.docRootPath = pathProvider.getProjectPath().resolve(docRootPath);
     }
