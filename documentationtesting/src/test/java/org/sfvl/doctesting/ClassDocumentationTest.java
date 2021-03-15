@@ -57,12 +57,9 @@ class ClassDocumentationTest {
                 new AsciidocFormatter(),
                 (m, p) -> p
         );
-
         final String defaultContent = defaultDocumentation.getClassDocumentation(
-                InMainDocTest.class,                                     // <1>
-                Arrays.asList(InMainDocTest.class.getDeclaredMethods()), // <2>
-                m -> Paths.get(m.getName() + ".approved.adoc"),     // <3>
-                1);                                                // <4>
+                InMainDocTest.class                                              // <1>
+        );
         // <<<1
 
         Method method = Arrays.stream(ClassDocumentation.class.getDeclaredMethods())
@@ -78,9 +75,6 @@ class ClassDocumentationTest {
                         .build(),
                 "",
                 "<1> Class to document",
-                "<2> Methods to include to the documentation",
-                "<3> Mapping from the method name to the file name to include",
-                "<4> Title depth",
                 "");
 
         doc.write("",
@@ -115,9 +109,7 @@ class ClassDocumentationTest {
 
         final String defaultContent = defaultDocumentation.getClassDocumentation(
                 InMainDocTest.class,
-                Collections.emptyList(),
-                m -> Paths.get(m.getName() + ".approved.adoc"),
-                3);                                                // <1>
+                3);   // <1>
         // <<<1
 
         doc.write(formatter.sourceCodeBuilder("java")
@@ -169,18 +161,9 @@ class ClassDocumentationTest {
             }
             // <<<1
         };
+        final String customContent = customDocumentation.getClassDocumentation(InMainDocTest.class);
 
-        final String customContent = customDocumentation.getClassDocumentation(
-                InMainDocTest.class,
-                Arrays.asList(InMainDocTest.class.getDeclaredMethods().clone()),
-                m -> Paths.get(m.getName() + ".approved.adoc"),
-                1);
-
-        final String defaultContent = defaultDocumentation.getClassDocumentation(
-                InMainDocTest.class,
-                Arrays.asList(InMainDocTest.class.getDeclaredMethods().clone()),
-                m -> Paths.get(m.getName() + ".approved.adoc"),
-                1);
+        final String defaultContent = defaultDocumentation.getClassDocumentation(InMainDocTest.class);
 
         Method method = Arrays.stream(ClassDocumentation.class.getDeclaredMethods())
                 .filter(m -> m.getName().equals("getClassDocumentation"))

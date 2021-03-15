@@ -146,12 +146,6 @@ public class ClassDocumentation {
                         .toLowerCase();
     }
 
-    private String includeMethods(List<Method> testMethods, Path docFilePath) {
-        Function<Method, Path> targetName = m -> methodToPath.apply(m, docFilePath);
-
-        return includeMethods(testMethods, targetName, 2);
-    }
-
     private String includeMethods(List<Method> testMethods, Function<Method, Path> targetPathName, final int levelOffset) {
         final Stream<Path> pathToMethods = MethodsOrder.sort(testMethods)
                 .map(targetPathName);

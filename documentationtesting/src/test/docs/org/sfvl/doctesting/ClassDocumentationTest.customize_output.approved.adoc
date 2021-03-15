@@ -10,8 +10,9 @@
 
 Class comment is added to description.
 
-\include::testA.approved.adoc[leveloffset=+1]
-\include::testB.approved.adoc[leveloffset=+1]
+\include::InMainDocTest.testA.approved.adoc[leveloffset=+1]
+
+\include::InMainDocTest.testB.approved.adoc[leveloffset=+1]
 ----
 .ClassDocumentation methods overwritten
 [source,java,indent=0]
@@ -34,6 +35,7 @@ Class comment is added to description.
 
 from getDescription method InMainDocTest
 
-\include::testA.approved.adoc[leveloffset=+1]
-\include::testB.approved.adoc[leveloffset=+1]
+\include::InMainDocTest.testA.approved.adoc[leveloffset=+1]
+
+\include::InMainDocTest.testB.approved.adoc[leveloffset=+1]
 ----
