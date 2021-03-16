@@ -10,9 +10,7 @@ import org.sfvl.doctesting.junitextension.ClassToDocument;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -33,8 +31,12 @@ public class ClassDocumentation {
     private final Predicate<Class> classFilter;
 
     public ClassDocumentation() {
-        this(new AsciidocFormatter(), (m, p) -> new DocumentationNamer(pathProvider.getProjectPath().resolve(Paths.get("src", "test", "docs")), m).getApprovedPath(p)
+        this(new AsciidocFormatter(),
+                (m, p) -> new DocumentationNamer(Paths.get(""), m)
+                        .getApprovedPath(DocumentationNamer.toPath(m.getDeclaringClass().getPackage()))
         );
+
+
     }
 
     public ClassDocumentation(Formatter formatter, BiFunction<Method, Path, Path> methodToPath) {
@@ -54,10 +56,6 @@ public class ClassDocumentation {
 
     public String getClassDocumentation(Class<?> clazz, int depth) {
 
-        return getMyClassDocumentation(clazz, depth);
-    }
-
-    private String getMyClassDocumentation(Class<?> clazz, int depth) {
         final ClassesOrder classesOrder = new ClassesOrder();
 
         final Stream<ClassesOrder.EncapsulateDeclared> declaredInOrder = classesOrder.getDeclaredInOrder(
@@ -65,10 +63,10 @@ public class ClassDocumentation {
                 this.methodFilter,
                 classFilter);
 
-        return getMyClassDocumentation(clazz, depth, declaredInOrder.collect(Collectors.toList()));
+        return getClassDocumentation(clazz, depth, declaredInOrder.collect(Collectors.toList()));
     }
-    private String getMyClassDocumentation(Class<?> clazz, int depth, List<ClassesOrder.EncapsulateDeclared> encapsulatedDeclarations) {
-        final Function<Method, Path> methodToPath = m -> Paths.get(new DocumentationNamer(Paths.get("src", "test", "docs"), m).getApprovalFileName());
+
+    private String getClassDocumentation(Class<?> clazz, int depth, List<ClassesOrder.EncapsulateDeclared> encapsulatedDeclarations) {
         // Trim because formatter add some line breaks (it may not add those line breaks)
         final Function<Path, String> includeWithOffset = path -> formatter.include(path.toString(), depth).trim();
 
@@ -76,13 +74,12 @@ public class ClassDocumentation {
                 .map(encapsulateDeclared -> {
                     if (encapsulateDeclared instanceof ClassesOrder.EncapsulateDeclaredMethod) {
                         final Method encapsulatedMethod = ((ClassesOrder.EncapsulateDeclaredMethod) encapsulateDeclared).getEncapsulatedMethod();
-
-                        final Path methodPath = methodToPath.apply(encapsulatedMethod);
+                        final Path methodPath = methodToPath.apply(encapsulatedMethod, Paths.get(""));
                         return includeWithOffset.apply(methodPath);
                     }
                     if (encapsulateDeclared instanceof ClassesOrder.EncapsulateDeclaredClass) {
                         final Class<?> encapsulatedClass = ((ClassesOrder.EncapsulateDeclaredClass) encapsulateDeclared).getEncapsulatedClass();
-                        return getMyClassDocumentation(encapsulatedClass, depth+1);
+                        return getClassDocumentation(encapsulatedClass, depth + 1);
                     }
                     return "";
                 }).collect(Collectors.joining("\n\n"));
@@ -91,29 +88,6 @@ public class ClassDocumentation {
                 getTitle(clazz, depth),
                 getDescription(clazz),
                 content);
-    }
-
-    public String getClassDocumentation(Class<?> clazz, List<Method> methods, Function<Method, Path> targetName, int depth) {
-
-        final Map<Class<?>, List<Method>> methodsByClass = methods.stream()
-                .collect(Collectors.groupingBy(method -> CodeExtractor.getFirstEnclosingClassBefore(method, clazz)));
-
-        String content = (methodsByClass.size() == 1)
-                ? includeMethods(methods, targetName, depth)
-                : formatClasses(targetName, depth, methodsByClass);
-
-        return formatter.paragraphSuite(
-                getTitle(clazz, depth),
-                getDescription(clazz),
-                content);
-    }
-
-    private String formatClasses(Function<Method, Path> targetName, int depth, Map<Class<?>, List<Method>> methodsByClass) {
-        return methodsByClass.entrySet().stream()
-                // TODO We have to sort by position in file like methods and not by name.
-                .sorted(Comparator.comparing(e -> e.getKey().getSimpleName()))
-                .map(e -> getClassDocumentation(e.getKey(), e.getValue(), targetName, depth + 1))
-                .collect(Collectors.joining("\n\n"));
     }
 
     protected String getDescription(Class<?> classToDocument) {
@@ -144,21 +118,6 @@ public class ClassDocumentation {
                 name.substring(1)
                         .replaceAll("([A-Z])", " $1")
                         .toLowerCase();
-    }
-
-    private String includeMethods(List<Method> testMethods, Function<Method, Path> targetPathName, final int levelOffset) {
-        final Stream<Path> pathToMethods = MethodsOrder.sort(testMethods)
-                .map(targetPathName);
-
-        return includeMethods(pathToMethods, levelOffset);
-    }
-
-    private String includeMethods(Stream<Path> pathToMethods, int levelOffset) {
-        final Function<Path, String> includeWithOffset = path -> formatter.include(path.toString(), levelOffset).trim();
-        // Trim because formatter add some line breaks (it may not add those line breaks)
-        return pathToMethods
-                .map(includeWithOffset)
-                .collect(Collectors.joining("\n"));
     }
 
 }

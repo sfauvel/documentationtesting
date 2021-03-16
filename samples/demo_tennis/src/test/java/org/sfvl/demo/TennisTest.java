@@ -16,9 +16,9 @@ import java.util.stream.Collectors;
 @DisplayName(value="Scores examples")
 public class TennisTest {
 
-    private final DocWriter docWriter = new DocWriter();
+    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
     private void write(String... texts) {
         docWriter.write(texts);

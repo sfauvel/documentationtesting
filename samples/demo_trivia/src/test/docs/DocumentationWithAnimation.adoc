@@ -33,11 +33,5 @@ The number of points is displayed behind the player's name: Chet &#x2783; +
 
 
 
-== Functional examples
 
-include::com/adaptionsoft/games/uglytrivia/GameSvgTest.player_advances.approved.adoc[leveloffset=+2]
-include::com/adaptionsoft/games/uglytrivia/GameSvgTest.player_scores.approved.adoc[leveloffset=+2]
-include::com/adaptionsoft/games/uglytrivia/GameSvgTest.win_the_game.approved.adoc[leveloffset=+2]
-include::com/adaptionsoft/games/uglytrivia/GameSvgTest.jail.approved.adoc[leveloffset=+2]
-include::com/adaptionsoft/games/uglytrivia/GameSvgTest.player_stay_in_penality_box.approved.adoc[leveloffset=+2]
-include::com/adaptionsoft/games/uglytrivia/GameSvgTest.play_until_someone_wins.approved.adoc[leveloffset=+2]
+include::com/adaptionsoft/games/uglytrivia/GameSvgTest.adoc[leveloffset=+1]

@@ -17,11 +17,11 @@ You can overwrite methods to modify document generated.
 \include::../../../readme.adoc[leveloffset=+1]
 
 
-\include::InMainDocBisTest.adoc[leveloffset=+1]
+\include::org/sfvl/doctesting/InMainDocBisTest.adoc[leveloffset=+1]
 
 
 
-\include::InMainDocTest.adoc[leveloffset=+1]
+\include::org/sfvl/doctesting/InMainDocTest.adoc[leveloffset=+1]
 
 ----
 .MainDocumentation methods overwritten
@@ -48,11 +48,11 @@ You can overwrite methods to modify document generated.
 from getHeader method
 
 
-\include::InMainDocBisTest.adoc[leveloffset=+1]
+\include::org/sfvl/doctesting/InMainDocBisTest.adoc[leveloffset=+1]
 
 
 
-\include::InMainDocTest.adoc[leveloffset=+1]
+\include::org/sfvl/doctesting/InMainDocTest.adoc[leveloffset=+1]
 
 ----
 .Test class used to in this examples

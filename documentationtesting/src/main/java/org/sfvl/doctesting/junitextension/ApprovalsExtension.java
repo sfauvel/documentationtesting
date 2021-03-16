@@ -43,13 +43,13 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
     }
     @Override
     public void afterAll(ExtensionContext extensionContext) throws Exception {
-        if (isNestedClass(extensionContext.getTestClass().get())) {
+        final Class<?> currentClass = extensionContext.getTestClass().get();
+        if (isNestedClass(currentClass)) {
             return;
         }
         final ClassDocumentation classDocumentation = new ClassDocumentation();
-        final Class<?> clazz = extensionContext.getTestClass().get();
-        final String content = classDocumentation.getClassDocumentation(clazz);
-        final Path docFilePath = getDocPath().resolve(DocumentationNamer.toPath(clazz,"", ".adoc"));
+        final String content = classDocumentation.getClassDocumentation(currentClass);
+        final Path docFilePath = getDocPath().resolve(DocumentationNamer.toPath(currentClass,"", ".adoc"));
         try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
             fileWriter.write(content);
         }

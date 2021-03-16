@@ -1,21 +1,22 @@
 package org.sfvl.doctesting.junitinheritance;
 
 import com.thoughtworks.qdox.model.JavaClass;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.TestInfo;
-import org.sfvl.doctesting.CodeExtractor;
-import org.sfvl.doctesting.DocumentationNamer;
-import org.sfvl.doctesting.PathProvider;
-import org.sfvl.doctesting.DocWriter;
+import org.junit.platform.commons.support.ModifierSupport;
+import org.sfvl.doctesting.*;
 
+import java.io.FileWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 public abstract class DocAsTestBase {
     protected static final PathProvider pathBuidler = new PathProvider();
 
     DocWriter writer = new DocWriter();
+    private static Path DOC_PATH = Paths.get("src", "test", "docs");
+
     /**
      * Return the name to use as title from a test method .
      * It returns the value specified with _DisplayName_ annotation.
@@ -38,7 +39,25 @@ public abstract class DocAsTestBase {
      * @return
      */
     protected Path getDocPath() {
-        return ApprovalsBase.pathBuidler.getProjectPath().resolve(Paths.get("src", "test", "docs"));
+        return ApprovalsBase.pathBuidler.getProjectPath().resolve(DOC_PATH);
+    }
+
+    private static boolean isNestedClass(Class<?> currentClass) {
+        return !ModifierSupport.isStatic(currentClass) && currentClass.isMemberClass();
+    }
+
+    @AfterAll
+    public static void afterAll(TestInfo testInfo) throws Exception {
+        final Class<?> clazz = testInfo.getTestClass().get();
+        if (isNestedClass(clazz)) {
+            return;
+        }
+        final ClassDocumentation classDocumentation = new ClassDocumentation();
+        final String content = classDocumentation.getClassDocumentation(clazz);
+        final Path docFilePath = DOC_PATH.resolve(DocumentationNamer.toPath(clazz, "", ".adoc"));
+        try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
+            fileWriter.write(content);
+        }
     }
 
     @AfterEach

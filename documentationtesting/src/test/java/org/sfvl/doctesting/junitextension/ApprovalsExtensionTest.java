@@ -128,7 +128,7 @@ class ApprovalsExtensionTest {
             }
         };
 
-        final String documentationFilename = this.getClass().getPackage().getName().replace(".", "/") + "/" + testClass.getSimpleName();
+        final String documentationFilename = this.getClass().getPackage().getName().replace(".", "/") + "/" + "MainDoc"+ testClass.getSimpleName();
         mainDocumentation.generate(this.getClass().getPackage().getName(), documentationFilename);
 
         write("", "", ".Document generated",

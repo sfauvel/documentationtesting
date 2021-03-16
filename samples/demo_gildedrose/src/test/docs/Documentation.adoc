@@ -13,6 +13,5 @@ View source of project on link:{github-repo}/samples/demo_gildedrose[Github]
 
 
 
-== Inn test
 
-include::fr/xebia/katas/gildedrose/InnTest.example_of_evolution_by_item.approved.adoc[leveloffset=+2]
+include::fr/xebia/katas/gildedrose/InnTest.adoc[leveloffset=+1]

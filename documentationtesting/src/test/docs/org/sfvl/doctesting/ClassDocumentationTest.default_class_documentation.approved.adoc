@@ -6,10 +6,7 @@
 .Code used
 [source,java,indent=0]
 ----
-        final ClassDocumentation defaultDocumentation = new ClassDocumentation(
-                new AsciidocFormatter(),
-                (m, p) -> p
-        );
+        final ClassDocumentation defaultDocumentation = new ClassDocumentation();
         final String defaultContent = defaultDocumentation.getClassDocumentation(
                 InMainDocTest.class                                              // <1>
         );

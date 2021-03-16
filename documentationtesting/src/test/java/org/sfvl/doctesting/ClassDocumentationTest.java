@@ -27,36 +27,12 @@ class ClassDocumentationTest {
     @RegisterExtension
     static ApprovalsExtension extension = new ApprovalsExtension(doc);
 
-    final List<Method> methodsToDocument = Arrays.asList(
-            FindLambdaMethod.getMethod(InMainDocTest::testA),
-            FindLambdaMethod.getMethod(InMainDocTest::testB),
-            FindLambdaMethod.getMethod(InMainDocBisTest::testX)
-    );
-
-    static class DocumentationOnSpecificMethods extends ClassDocumentation {
-
-        private final List<Method> methods;
-
-        public DocumentationOnSpecificMethods(List<Method> methods) {
-            super(new AsciidocFormatter(), (m, p) -> {
-                        System.out.println("Transform: " + m.getName() + " to " + Paths.get(m.getName() + ".approved.adoc").toString());
-                        return Paths.get(m.getName() + ".approved.adoc");
-                    }
-            );
-            this.methods = methods;
-        }
-
-    }
-
     @Test
     @DisplayName(value = "Default test class documentation")
     public void default_class_documentation(TestInfo testInfo) throws IOException {
 
         // >>>1
-        final ClassDocumentation defaultDocumentation = new ClassDocumentation(
-                new AsciidocFormatter(),
-                (m, p) -> p
-        );
+        final ClassDocumentation defaultDocumentation = new ClassDocumentation();
         final String defaultContent = defaultDocumentation.getClassDocumentation(
                 InMainDocTest.class                                              // <1>
         );
@@ -102,10 +78,7 @@ class ClassDocumentationTest {
     public void title_level(TestInfo testInfo) throws IOException {
 
         // >>>1
-        final ClassDocumentation defaultDocumentation = new ClassDocumentation(
-                new AsciidocFormatter(),
-                (m, p) -> p
-        );
+        final ClassDocumentation defaultDocumentation = new ClassDocumentation();
 
         final String defaultContent = defaultDocumentation.getClassDocumentation(
                 InMainDocTest.class,
@@ -145,9 +118,9 @@ class ClassDocumentationTest {
     @Test
     public void customize_output(TestInfo testInfo) {
 
-        final ClassDocumentation defaultDocumentation = new DocumentationOnSpecificMethods(methodsToDocument);
+        final ClassDocumentation defaultDocumentation = new ClassDocumentation();
 
-        final ClassDocumentation customDocumentation = new DocumentationOnSpecificMethods(methodsToDocument) {
+        final ClassDocumentation customDocumentation = new ClassDocumentation() {
 
             // >>>1
             @Override
@@ -195,10 +168,7 @@ class ClassDocumentationTest {
     public void nested_class_documentation(TestInfo testInfo) throws IOException {
 
         // >>>1
-        final ClassDocumentation defaultDocumentation = new ClassDocumentation(
-                new AsciidocFormatter(),
-                (m, p) -> p
-        );
+        final ClassDocumentation defaultDocumentation = new ClassDocumentation();
 
         final Class<?> testClass = ClassDocumentationTest_DemoNestedTest.class;
         final String defaultContent = defaultDocumentation.getClassDocumentation(testClass);
@@ -256,19 +226,7 @@ class ClassDocumentationTest_DemoNestedTest {
     private static final DocWriter writer = new DocWriter();
 
     @RegisterExtension
-    static final ApprovalsExtension extension = new ApprovalsExtension(writer) {
-        @Override
-        public void afterEach(ExtensionContext extensionContext) throws Exception {
-            System.out.println("DemoNestedTest.afterEach " + extensionContext.getTestMethod().get().getName());
-            System.out.println(getDocWriter().formatOutput("Test", extensionContext.getTestMethod().get()));
-            super.afterEach(extensionContext);
-        }
-    };
-
-    @AfterAll
-    public static void afterAll() {
-        System.out.println("DemoNestedTest.afterAll");
-    }
+    static final ApprovalsExtension extension = new ApprovalsExtension(writer);
 
     /**
      * Document of Addition operations.
