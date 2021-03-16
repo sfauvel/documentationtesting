@@ -937,6 +937,9 @@ include::InMainDocTest.testB.approved.adoc[leveloffset=+3]</code></pre>
 </div>
 <div class="sect2">
 <h3 id="org_sfvl_doctesting_ClassDocumentationTest_customize_output">Customize output</h3>
+<div class="paragraph">
+<p>Title and description could be changed by overriding the appropriate methods.</p>
+</div>
 <div class="listingblock">
 <div class="title">Default document generated</div>
 <div class="content">
@@ -953,22 +956,22 @@ include::InMainDocTest.testB.approved.adoc[leveloffset=+1]</code></pre>
 <div class="title">ClassDocumentation methods overwritten</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nd">@Override</span>
-<span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getTestClassTitle</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">clazz</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="s">"from getTestClassTitle method "</span> <span class="o">+</span> <span class="n">clazz</span><span class="o">.</span><span class="na">getSimpleName</span><span class="o">();</span>
+<span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getTestClassTitle</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">classToDocument</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="s">"Title from getTestClassTitle method "</span> <span class="o">+</span> <span class="n">classToDocument</span><span class="o">.</span><span class="na">getSimpleName</span><span class="o">();</span>
 <span class="o">}</span>
 
 <span class="nd">@Override</span>
 <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getDescription</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">classToDocument</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="s">"from getDescription method "</span> <span class="o">+</span> <span class="n">classToDocument</span><span class="o">.</span><span class="na">getSimpleName</span><span class="o">();</span>
+    <span class="k">return</span> <span class="s">"Description from getDescription method "</span> <span class="o">+</span> <span class="n">classToDocument</span><span class="o">.</span><span class="na">getSimpleName</span><span class="o">();</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Custom document generated</div>
 <div class="content">
-<pre class="rouge highlight"><code>= from getTestClassTitle method InMainDocTest
+<pre class="rouge highlight"><code>= Title from getTestClassTitle method InMainDocTest
 
-from getDescription method InMainDocTest
+Description from getDescription method InMainDocTest
 
 include::InMainDocTest.testA.approved.adoc[leveloffset=+1]
 
@@ -1026,19 +1029,7 @@ include::ClassDocumentationTest_DemoNestedTest.Multiply.should_be_12_when_multip
     <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">();</span>
 
     <span class="nd">@RegisterExtension</span>
-    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">extension</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ApprovalsExtension</span><span class="o">(</span><span class="n">writer</span><span class="o">)</span> <span class="o">{</span>
-<span class="c1">//        @Override</span>
-<span class="c1">//        public void afterEach(ExtensionContext extensionContext) throws Exception {</span>
-<span class="c1">//            System.out.println("DemoNestedTest.afterEach " + extensionContext.getTestMethod().get().getName());</span>
-<span class="c1">//            System.out.println(getDocWriter().formatOutput("Test", extensionContext.getTestMethod().get()));</span>
-<span class="c1">//            super.afterEach(extensionContext);</span>
-<span class="c1">//        }</span>
-    <span class="o">};</span>
-
-<span class="c1">//    @AfterAll</span>
-<span class="c1">//    public static void afterAll() {</span>
-<span class="c1">//        System.out.println("DemoNestedTest.afterAll");</span>
-<span class="c1">//    }</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">extension</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ApprovalsExtension</span><span class="o">(</span><span class="n">writer</span><span class="o">);</span>
 
     <span class="cm">/**
      * Document of Addition operations.

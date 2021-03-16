@@ -35,9 +35,7 @@ class MainDocumentationTest {
         public DocumentationOnSpecificMethods(List<Method> methods) {
             super("Documentation",
                     Paths.get("src", "test", "docs"),
-                    (m, p) -> {
-                        return new DocumentationNamer(Paths.get(""), m).getFilePath().getFileName();
-                    },
+                    m -> new DocumentationNamer(Paths.get(""), m).getFilePath().getFileName(),
                     new AsciidocFormatter());
             this.methods = methods;
         }

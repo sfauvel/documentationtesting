@@ -12,7 +12,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -26,22 +25,21 @@ public class ClassDocumentation {
     private static final PathProvider pathProvider = new PathProvider();
 
     protected final Formatter formatter;
-    protected final BiFunction<Method, Path, Path> methodToPath;
+    protected final Function<Method, Path> methodToPath;
     private final Predicate<Method> methodFilter;
     private final Predicate<Class> classFilter;
 
     public ClassDocumentation() {
-        this(new AsciidocFormatter(),
-                (m, p) -> new DocumentationNamer(Paths.get(""), m)
-                        .getApprovedPath(DocumentationNamer.toPath(m.getDeclaringClass().getPackage()))
+        this(
+                new AsciidocFormatter(),
+                m -> new DocumentationNamer(Paths.get(""), m)
+                        .getApprovedPath(DocumentationNamer.toPath(m.getDeclaringClass().getPackage())),
+                m -> m.isAnnotationPresent(Test.class),
+                c -> c.isAnnotationPresent(Nested.class)
         );
     }
 
-    public ClassDocumentation(Formatter formatter, BiFunction<Method, Path, Path> methodToPath) {
-        this(formatter, methodToPath, m -> m.isAnnotationPresent(Test.class), c -> c.isAnnotationPresent(Nested.class));
-    }
-
-    public ClassDocumentation(Formatter formatter, BiFunction<Method, Path, Path> methodToPath, Predicate<Method> methodFilter, Predicate<Class> classFilter) {
+    public ClassDocumentation(Formatter formatter, Function<Method, Path> methodToPath, Predicate<Method> methodFilter, Predicate<Class> classFilter) {
         this.formatter = formatter;
         this.methodToPath = methodToPath;
         this.methodFilter = methodFilter;
@@ -72,7 +70,7 @@ public class ClassDocumentation {
                 .map(encapsulateDeclared -> {
                     if (encapsulateDeclared instanceof ClassesOrder.EncapsulateDeclaredMethod) {
                         final Method encapsulatedMethod = ((ClassesOrder.EncapsulateDeclaredMethod) encapsulateDeclared).getEncapsulatedMethod();
-                        final Path methodPath = methodToPath.apply(encapsulatedMethod, Paths.get(""));
+                        final Path methodPath = methodToPath.apply(encapsulatedMethod);
                         return includeWithOffset.apply(methodPath);
                     }
                     if (encapsulateDeclared instanceof ClassesOrder.EncapsulateDeclaredClass) {

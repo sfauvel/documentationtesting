@@ -91,7 +91,7 @@ public class BasicDocumentation extends DemoDocumentation {
                 .sorted(Comparator.comparing(e -> e.getKey().getSimpleName()))
                 .map(e -> {
                     return new ClassDocumentation(new AsciidocFormatter(),
-                            (m, p) -> new DocumentationNamer(getDocRootPath(), m)
+                            m -> new DocumentationNamer(getDocRootPath(), m)
                                     .getApprovedPath(getDocRootPath()),
                             m -> e.getValue().contains(m),
                             c -> c.isAnnotationPresent(Nested.class)

@@ -552,6 +552,9 @@ include::InMainDocTest.testB.approved.adoc[leveloffset=+3]</code></pre>
 <div class="sect1">
 <h2 id="org_sfvl_doctesting_ClassDocumentationTest_customize_output">Customize output</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Title and description could be changed by overriding the appropriate methods.</p>
+</div>
 <div class="listingblock">
 <div class="title">Default document generated</div>
 <div class="content">
@@ -568,22 +571,22 @@ include::InMainDocTest.testB.approved.adoc[leveloffset=+1]</code></pre>
 <div class="title">ClassDocumentation methods overwritten</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">@Override
-protected String getTestClassTitle(Class&lt;?&gt; clazz) {
-    return "from getTestClassTitle method " + clazz.getSimpleName();
+protected String getTestClassTitle(Class&lt;?&gt; classToDocument) {
+    return "Title from getTestClassTitle method " + classToDocument.getSimpleName();
 }
 
 @Override
 protected String getDescription(Class&lt;?&gt; classToDocument) {
-    return "from getDescription method " + classToDocument.getSimpleName();
+    return "Description from getDescription method " + classToDocument.getSimpleName();
 }</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Custom document generated</div>
 <div class="content">
-<pre class="highlight"><code>= from getTestClassTitle method InMainDocTest
+<pre class="highlight"><code>= Title from getTestClassTitle method InMainDocTest
 
-from getDescription method InMainDocTest
+Description from getDescription method InMainDocTest
 
 include::InMainDocTest.testA.approved.adoc[leveloffset=+1]
 
@@ -643,19 +646,7 @@ class ClassDocumentationTest_DemoNestedTest {
     private static final DocWriter writer = new DocWriter();
 
     @RegisterExtension
-    static final ApprovalsExtension extension = new ApprovalsExtension(writer) {
-//        @Override
-//        public void afterEach(ExtensionContext extensionContext) throws Exception {
-//            System.out.println("DemoNestedTest.afterEach " + extensionContext.getTestMethod().get().getName());
-//            System.out.println(getDocWriter().formatOutput("Test", extensionContext.getTestMethod().get()));
-//            super.afterEach(extensionContext);
-//        }
-    };
-
-//    @AfterAll
-//    public static void afterAll() {
-//        System.out.println("DemoNestedTest.afterAll");
-//    }
+    static final ApprovalsExtension extension = new ApprovalsExtension(writer);
 
     /**
      * Document of Addition operations.
@@ -715,7 +706,7 @@ class ClassDocumentationTest_DemoNestedTest {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-03-16 12:24:09 UTC
+Last updated 2021-03-16 22:31:53 UTC
 </div>
 </div>
 </body>

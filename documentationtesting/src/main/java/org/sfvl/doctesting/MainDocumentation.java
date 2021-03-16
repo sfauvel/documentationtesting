@@ -1,5 +1,6 @@
 package org.sfvl.doctesting;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
@@ -42,9 +43,9 @@ public class MainDocumentation extends ClassDocumentation {
 
     public MainDocumentation(String documentationTitle,
                              Path docRootPath,
-                             BiFunction<Method, Path, Path> methodToPath,
+                             Function<Method, Path> methodToPath,
                              Formatter formatter) {
-        super(formatter, methodToPath);
+        super(formatter, methodToPath, m -> m.isAnnotationPresent(Test.class), c -> c.isAnnotationPresent(Nested.class));
         this.DOCUMENTATION_TITLE = documentationTitle;
         this.docRootPath = pathProvider.getProjectPath().resolve(docRootPath);
     }
