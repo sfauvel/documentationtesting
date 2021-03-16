@@ -124,13 +124,13 @@ class ClassDocumentationTest {
 
             // >>>1
             @Override
-            protected String getTestClassTitle(Class<?> clazz) {
-                return "from getTestClassTitle method " + clazz.getSimpleName();
+            protected String getTestClassTitle(Class<?> classToDocument) {
+                return "Title from getTestClassTitle method " + classToDocument.getSimpleName();
             }
 
             @Override
             protected String getDescription(Class<?> classToDocument) {
-                return "from getDescription method " + classToDocument.getSimpleName();
+                return "Description from getDescription method " + classToDocument.getSimpleName();
             }
             // <<<1
         };
@@ -138,11 +138,7 @@ class ClassDocumentationTest {
 
         final String defaultContent = defaultDocumentation.getClassDocumentation(InMainDocTest.class);
 
-        Method method = Arrays.stream(ClassDocumentation.class.getDeclaredMethods())
-                .filter(m -> m.getName().equals("getClassDocumentation"))
-                .findFirst().get();
-
-        doc.write(CodeExtractor.getComment(method).orElse(""), "");
+        doc.write("Title and description could be changed by overriding the appropriate methods.", "");
 
         doc.write("",
                 formatter.sourceCodeBuilder()

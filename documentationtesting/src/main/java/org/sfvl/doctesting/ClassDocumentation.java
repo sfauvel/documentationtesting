@@ -35,8 +35,6 @@ public class ClassDocumentation {
                 (m, p) -> new DocumentationNamer(Paths.get(""), m)
                         .getApprovedPath(DocumentationNamer.toPath(m.getDeclaringClass().getPackage()))
         );
-
-
     }
 
     public ClassDocumentation(Formatter formatter, BiFunction<Method, Path, Path> methodToPath) {
