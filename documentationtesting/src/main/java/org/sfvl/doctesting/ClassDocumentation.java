@@ -69,12 +69,12 @@ public class ClassDocumentation {
         String content = encapsulatedDeclarations.stream()
                 .map(encapsulateDeclared -> {
                     if (encapsulateDeclared instanceof ClassesOrder.EncapsulateDeclaredMethod) {
-                        final Method encapsulatedMethod = ((ClassesOrder.EncapsulateDeclaredMethod) encapsulateDeclared).getEncapsulatedMethod();
+                        final Method encapsulatedMethod = (Method) encapsulateDeclared.getEncapsulatedObject();
                         final Path methodPath = methodToPath.apply(encapsulatedMethod);
                         return includeWithOffset.apply(methodPath);
                     }
                     if (encapsulateDeclared instanceof ClassesOrder.EncapsulateDeclaredClass) {
-                        final Class<?> encapsulatedClass = ((ClassesOrder.EncapsulateDeclaredClass) encapsulateDeclared).getEncapsulatedClass();
+                        final Class<?> encapsulatedClass = (Class<?>) encapsulateDeclared.getEncapsulatedObject();
                         return getClassDocumentation(encapsulatedClass, depth + 1);
                     }
                     return "";

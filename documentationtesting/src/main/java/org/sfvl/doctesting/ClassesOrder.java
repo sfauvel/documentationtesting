@@ -24,116 +24,63 @@ class ClassesOrder {
         }
     }
 
-    public static Stream<Class> sort(List<Class> testClasses) {
-        return new ClassesOrder().getClassesInOrder(testClasses);
-    }
-
-    public Stream<Class> getClassesInOrder(List<Class> testClasses) {
-        if (testClasses.isEmpty()) {
-            return Stream.empty();
-        }
-
-        Map<String, Class> classesByName = testClasses.stream().collect(Collectors.toMap(
-                Class::getSimpleName,
-                m -> m
-        ));
-
-        final Class enclosingClass = testClasses.get(0).getEnclosingClass();
-        JavaClass javaClass = builder.getClassByName(enclosingClass.getName());
-        final List<JavaClass> nestedClasses = javaClass.getNestedClasses();
-        nestedClasses.sort(Comparator.comparingInt(JavaModel::getLineNumber));
-
-        return nestedClasses.stream().map(c -> {
-            return classesByName.get(c.getSimpleName());
-        });
-
-    }
-
-    public Stream<Method> getMethodsInOrder(List<Method> testMethods) {
-        Map<String, Method> methodsByName = testMethods.stream().collect(Collectors.toMap(
-                Method::getName,
-                m -> m
-        ));
-
-        JavaProjectBuilder builder = createJavaProjectBuilderWithTestPath();
-
-        Method firstMethod = testMethods.get(0);
-        JavaClass javaClass = builder.getClassByName(firstMethod.getDeclaringClass().getName());
-
-        return javaClass.getMethods().stream()
-                .filter(m -> methodsByName.containsKey(m.getName()))
-                .sorted(Comparator.comparingInt(JavaModel::getLineNumber))
-                .map(m -> methodsByName.get(m.getName()));
-    }
-
-    interface EncapsulateDeclared {
-        JavaModel getEncapsulatedModel();
+    public static interface EncapsulateDeclared<T> {
+        JavaModel getJavaModel();
 
         int getLineNumber();
 
         String getName();
+
+        T getEncapsulatedObject();
     }
 
-    class EncapsulateDeclaredClass implements EncapsulateDeclared {
+    public abstract static class EncapsulateJavaModel<T, J extends JavaModel> implements EncapsulateDeclared<T> {
+        private final T encapsulatedObject;
+        private final J javaModel;
 
-        private final Class<?> encapsulatedClass;
-        private final JavaClass javaClass;
+        public EncapsulateJavaModel(T encapsulatedObject, J javaModel) {
+            this.encapsulatedObject = encapsulatedObject;
+            this.javaModel = javaModel;
+        }
 
+        public T getEncapsulatedObject() {
+            return encapsulatedObject;
+        }
+
+        @Override
+        public J getJavaModel() {
+            return javaModel;
+        }
+
+        @Override
+        public int getLineNumber() {
+            return javaModel.getLineNumber();
+        }
+
+
+    }
+
+    public static class EncapsulateDeclaredClass extends EncapsulateJavaModel<Class<?>, JavaClass> {
         public EncapsulateDeclaredClass(Class<?> encapsulatedClass) {
-            this.encapsulatedClass = encapsulatedClass;
-            javaClass = builder.getClassByName(encapsulatedClass.getName());
+            super(encapsulatedClass, builder.getClassByName(encapsulatedClass.getName()));
         }
-
-        public Class<?> getEncapsulatedClass() {
-            return encapsulatedClass;
-        }
-
-        @Override
-        public JavaModel getEncapsulatedModel() {
-            return javaClass;
-        }
-
-        @Override
-        public int getLineNumber() {
-            return javaClass.getLineNumber();
-        }
-
         @Override
         public String getName() {
-            return javaClass.getName();
+            return getJavaModel().getName();
         }
     }
 
-    class EncapsulateDeclaredMethod implements EncapsulateDeclared {
-
-        private final Method encapsulatedMethod;
-        private final JavaMethod javaMethod;
-
+    public static class EncapsulateDeclaredMethod extends EncapsulateJavaModel<Method, JavaMethod> {
         public EncapsulateDeclaredMethod(Method encapsulatedMethod) {
-            this.encapsulatedMethod = encapsulatedMethod;
-            final JavaClass javaClass = builder.getClassByName(encapsulatedMethod.getDeclaringClass().getName());
-            javaMethod = javaClass.getMethods().stream()
-                    .filter(m -> encapsulatedMethod.getName().equals(m.getName()))
-                    .findFirst().get();
+            super(encapsulatedMethod,
+                    builder.getClassByName(encapsulatedMethod.getDeclaringClass().getName())
+                            .getMethods().stream()
+                            .filter(m -> encapsulatedMethod.getName().equals(m.getName()))
+                            .findFirst().get());
         }
-
-        public Method getEncapsulatedMethod() {
-            return encapsulatedMethod;
-        }
-
-        @Override
-        public JavaModel getEncapsulatedModel() {
-            return javaMethod;
-        }
-
-        @Override
-        public int getLineNumber() {
-            return javaMethod.getLineNumber();
-        }
-
         @Override
         public String getName() {
-            return javaMethod.getName();
+            return getJavaModel().getName();
         }
     }
 
