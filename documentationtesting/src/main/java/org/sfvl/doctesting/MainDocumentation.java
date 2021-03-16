@@ -97,35 +97,6 @@ public class MainDocumentation extends ClassDocumentation {
         }
     }
 
-    private <K, V> String mapToString(Map<K, V> map, Function<Map.Entry<K, V>, List<String>> transform, String delimiter) {
-
-        return map.entrySet().stream()
-                .map(transform)
-                .flatMap(Collection::stream)
-                .collect(Collectors.joining(delimiter)
-                );
-    }
-
-    private <K, V> String mapToString(Map<K, V> map, BiFunction<K, V, String> transform, String delimiter, Comparator<Map.Entry<K, V>> comparator) {
-        return streamToString(
-                map.entrySet().stream().sorted(comparator),
-                transform,
-                delimiter);
-    }
-
-    private <K, V> String mapToString(Map<K, V> map, BiFunction<K, V, String> transform, String delimiter) {
-        return streamToString(
-                map.entrySet().stream(),
-                transform,
-                delimiter);
-    }
-
-    private <K, V> String streamToString(Stream<Map.Entry<K, V>> stream, BiFunction<K, V, String> transform, String delimiter) {
-        return stream.map(e -> transform.apply(e.getKey(), e.getValue()))
-                .collect(Collectors.joining(delimiter)
-                );
-    }
-
     /**
      * Documentation is composed with the header following by each test classes documentation.
      *
