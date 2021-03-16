@@ -132,7 +132,6 @@ public class MainDocumentation extends ClassDocumentation {
         return classes.stream()
                 .sorted(Comparator.comparing(Class::getSimpleName))
                 .map(c -> {
-                    final Path rootPath = Paths.get("");
                     final Path mainDocPath = docFilePath;
                     final Path classPath = DocumentationNamer.toPath(c, "", ".adoc");
                     final Path finalPath = mainDocPath.relativize(getDocRootPath().resolve(classPath));
