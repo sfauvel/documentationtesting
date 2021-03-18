@@ -35,7 +35,6 @@ class MainDocumentationTest {
         public DocumentationOnSpecificMethods(List<Method> methods) {
             super("Documentation",
                     Paths.get("src", "test", "docs"),
-                    m -> new DocumentationNamer(Paths.get(""), m).getFilePath().getFileName(),
                     new AsciidocFormatter());
             this.methods = methods;
         }
@@ -64,21 +63,10 @@ class MainDocumentationTest {
         final MainDocumentation defaultDocumentation = new DocumentationOnSpecificMethods(methodsToDocument);
 
         final MainDocumentation customDocumentation = new DocumentationOnSpecificMethods(methodsToDocument) {
-
             // >>>1
-            @Override
-            protected String getTestClassTitle(Class<?> clazz) {
-                return "from getTestClassTitle method " + clazz.getSimpleName();
-            }
-
             @Override
             protected String getHeader() {
                 return "from getHeader method";
-            }
-
-            @Override
-            protected String getDescription(Class<?> classToDocument) {
-                return "from getDescription method " + classToDocument.getSimpleName();
             }
             // <<<1
         };

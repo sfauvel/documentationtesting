@@ -1,9 +1,9 @@
 package org.sfvl.doctesting;
 
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
+import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 
 import java.io.FileWriter;
@@ -12,20 +12,21 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
-import java.util.function.BiFunction;
-import java.util.function.Function;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Generate a main documentation to group all test documentations.
  */
-public class MainDocumentation extends ClassDocumentation {
+public class MainDocumentation {
 
     protected final String DOCUMENTATION_TITLE;
     private static final String DOCUMENTATION_FILENAME = "Documentation";
     private static final PathProvider pathProvider = new PathProvider();
+    protected final Formatter formatter;
     private final Path docRootPath;
 
     public MainDocumentation() {
@@ -37,17 +38,17 @@ public class MainDocumentation extends ClassDocumentation {
     }
 
     public MainDocumentation(String documentationTitle, Path docRootPath) {
-        this.DOCUMENTATION_TITLE = documentationTitle;
-        this.docRootPath = pathProvider.getProjectPath().resolve(docRootPath);
+        this(documentationTitle,
+                pathProvider.getProjectPath().resolve(docRootPath),
+                new AsciidocFormatter());
     }
 
     public MainDocumentation(String documentationTitle,
                              Path docRootPath,
-                             Function<Method, Path> methodToPath,
                              Formatter formatter) {
-        super(formatter, methodToPath, m -> m.isAnnotationPresent(Test.class), c -> c.isAnnotationPresent(Nested.class));
         this.DOCUMENTATION_TITLE = documentationTitle;
         this.docRootPath = pathProvider.getProjectPath().resolve(docRootPath);
+        this.formatter = formatter;
     }
 
     public Path getDocRootPath() {

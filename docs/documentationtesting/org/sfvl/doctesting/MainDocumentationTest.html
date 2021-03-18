@@ -475,18 +475,8 @@ include::org/sfvl/doctesting/InMainDocTest.adoc[leveloffset=+1]</pre>
 <div class="title">MainDocumentation methods overwritten</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">@Override
-protected String getTestClassTitle(Class&lt;?&gt; clazz) {
-    return "from getTestClassTitle method " + clazz.getSimpleName();
-}
-
-@Override
 protected String getHeader() {
     return "from getHeader method";
-}
-
-@Override
-protected String getDescription(Class&lt;?&gt; classToDocument) {
-    return "from getDescription method " + classToDocument.getSimpleName();
 }</code></pre>
 </div>
 </div>
@@ -572,7 +562,7 @@ My description without included any test documentation.</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-03-16 22:31:54 UTC
+Last updated 2021-03-18 12:45:42 UTC
 </div>
 </div>
 </body>

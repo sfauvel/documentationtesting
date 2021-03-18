@@ -28,18 +28,8 @@ You can overwrite methods to modify document generated.
 [source, java, indent=0]
 ----
             @Override
-            protected String getTestClassTitle(Class<?> clazz) {
-                return "from getTestClassTitle method " + clazz.getSimpleName();
-            }
-
-            @Override
             protected String getHeader() {
                 return "from getHeader method";
-            }
-
-            @Override
-            protected String getDescription(Class<?> classToDocument) {
-                return "from getDescription method " + classToDocument.getSimpleName();
             }
 
 ----

@@ -436,11 +436,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
 <h1>JUnit5 extension</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_demo_test">Demo test</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_demo_DemoTest_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</a></li>
+<li><a href="#org_sfvl_demo_DemoTest_should_be_9_when_adding_2_3_and_4">Adding 3 simple numbers</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -459,8 +472,33 @@ Learn more here <a href="https://sfauvel.github.io/documentationtesting" class="
 <div class="paragraph">
 <p>View source of project on <a href="https://github.com/sfauvel/documentationtesting/tree/master/samples/tech_junit5_extension">Github</a></p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_demo_test">Demo test</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Unresolved directive in Documentation.adoc - include::org/sfvl/demo/DemoTest.adoc[leveloffset=+1]</p>
+<p>Demo of a simple usage to generate documentation.</p>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_demo_DemoTest_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h3>
+<div class="paragraph">
+<p>When adding two simple numbers, the java operator '+' should return the sum of them.</p>
+</div>
+<div class="paragraph">
+<p>2 + 3 = 5</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_demo_DemoTest_should_be_9_when_adding_2_3_and_4">Adding 3 simple numbers</h3>
+<div class="paragraph">
+<p>When adding three simple numbers, the java operator '+' should return the sum of them.</p>
+</div>
+<div class="paragraph">
+<p><strong>2 + 3 + 4 = 9</strong></p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <script type="text/x-mathjax-config">

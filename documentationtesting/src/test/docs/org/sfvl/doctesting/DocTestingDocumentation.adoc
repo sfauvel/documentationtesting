@@ -4,6 +4,8 @@
 :stem:
 :toclevels: 4
 
+= Document testing tool
+
 ++++
 <style>
 #content {
@@ -13,8 +15,6 @@
 }
 </style>
 ++++
-
-= Document testing tool
 
 This document describes usage of classes to create test from generated documentation.
 

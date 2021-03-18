@@ -24,8 +24,8 @@ public class DocTestingDocumentation extends MainDocumentation {
 
         return formatter.paragraphSuite(
                 ":source-highlighter: rouge\n" + getDocumentOptions() + "\n:toclevels: 4",
-                style,
                 "= Document testing tool",
+                style,
                 generalInformation());
     }
 

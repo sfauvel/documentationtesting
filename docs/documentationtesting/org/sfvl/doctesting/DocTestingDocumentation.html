@@ -438,10 +438,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
+<h1>Document testing tool</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_document_testing_tool">Document testing tool</a>
 <ul class="sectlevel1">
 <li><a href="#_approvals_extension">Approvals extension</a>
 <ul class="sectlevel2">
@@ -530,11 +529,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 </ul>
-</li>
-</ul>
 </div>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
 <style>
 #content {
    max-width: unset;
@@ -542,7 +541,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
    padding-right: 5%;
 }
 </style>
-<h1 id="_document_testing_tool" class="sect0">Document testing tool</h1>
 <div class="paragraph">
 <p>This document describes usage of classes to create test from generated documentation.</p>
 </div>
@@ -558,6 +556,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><a href="#_codeextractor">CodeExtractor</a>: Help to extract information from code.</p>
 </li>
 </ul>
+</div>
+</div>
 </div>
 <div class="sect1">
 <h2 id="_approvals_extension">Approvals extension</h2>
@@ -2299,18 +2299,8 @@ include::org/sfvl/doctesting/InMainDocTest.adoc[leveloffset=+1]</pre>
 <div class="title">MainDocumentation methods overwritten</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nd">@Override</span>
-<span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getTestClassTitle</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">clazz</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="s">"from getTestClassTitle method "</span> <span class="o">+</span> <span class="n">clazz</span><span class="o">.</span><span class="na">getSimpleName</span><span class="o">();</span>
-<span class="o">}</span>
-
-<span class="nd">@Override</span>
 <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getHeader</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="s">"from getHeader method"</span><span class="o">;</span>
-<span class="o">}</span>
-
-<span class="nd">@Override</span>
-<span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getDescription</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">classToDocument</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="s">"from getDescription method "</span> <span class="o">+</span> <span class="n">classToDocument</span><span class="o">.</span><span class="na">getSimpleName</span><span class="o">();</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
