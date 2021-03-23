@@ -12,10 +12,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -121,16 +118,11 @@ public class MainDocumentation {
     // TODO rename this  method. It extract content but there is already a getDocumentationContent
     protected String getMethodDocumentation(String packageToScan, Path docFilePath) {
         final int title_depth = 0;
-        return getMethodDocumentation(packageToScan, docFilePath, title_depth);
+        return getMethodDocumentation(getClassesWithTest(packageToScan), docFilePath, title_depth);
     }
 
-    protected String getMethodDocumentation(String packageToScan, Path docFilePath, int title_depth) {
-        Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
+    protected String getMethodDocumentation(Set<Class<?>> classes, Path docFilePath, int title_depth) {
 
-        final Map<Class<?>, List<Method>> methodsByClass = testMethods.stream()
-                .collect(Collectors.groupingBy(method -> CodeExtractor.getFirstEnclosingClassBefore(method, null)));
-
-        final Set<Class<?>> classes = methodsByClass.keySet();
         return classes.stream()
                 .sorted(Comparator.comparing(Class::getSimpleName))
                 .map(c -> {
@@ -142,6 +134,13 @@ public class MainDocumentation {
                 })
                 .map(s -> formatter.include(s.toString(), title_depth + 1))
                 .collect(Collectors.joining("\n\n"));
+    }
+
+    private Set<Class<?>> getClassesWithTest(String packageToScan) {
+
+        return getAnnotatedMethod(Test.class, packageToScan).stream()
+                .map(method -> CodeExtractor.getFirstEnclosingClassBefore(method, null))
+                .collect(Collectors.toSet());
     }
 
     protected String getHeader() {
@@ -160,8 +159,35 @@ public class MainDocumentation {
         return "";
     }
 
+    public static class Option {
+        String key;
+        String value;
+
+        public Option(String key) {
+            this(key, "");
+        }
+
+        public Option(String key, String value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        public String format() {
+            return String.format(":%s: %s", key, value).trim();
+        }
+
+    }
+
+    private final List<Option> options = new ArrayList<Option>() {{
+        add(new Option("toc", "left"));
+        add(new Option("nofooter"));
+        add(new Option("stem"));
+    }};
+
     protected String getDocumentOptions() {
-        return ":toc: left\n:nofooter:\n:stem:";
+        return options.stream()
+                .map(Option::format)
+                .collect(Collectors.joining("\n"));
     }
 
     private void writeDoc(FileWriter fileWriter, String content) throws IOException {
