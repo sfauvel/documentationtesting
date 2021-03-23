@@ -1,12 +1,15 @@
 package org.sfvl.doctesting;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 
+import java.io.File;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
@@ -15,7 +18,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+@DisplayName("Create a general documentation")
+@ClassToDocument(clazz = MainDocumentation.class)
 class MainDocumentationTest {
 
     private static final DocWriter doc = new DocWriter();
@@ -54,6 +61,36 @@ class MainDocumentationTest {
             return super.getDocumentationContent(packageToScan, docFilePath)
                     .replaceAll("\\ninclude", "\n\\\\include");
         }
+    }
+
+    @Test
+    public void by_default(TestInfo testInfo) {
+        // >>>1
+        final MainDocumentation doc = new MainDocumentation("Documentation",
+                Paths.get("src", "test", "docs"),
+                new AsciidocFormatter());
+
+        Path docFilePath = doc.getDocRootPath();
+        final String packageToScan = "org.sfvl.doctesting.sample.basic";
+        final String content = doc.getDocumentationContent(packageToScan, docFilePath);
+        // <<<1
+
+        final Path packagePath = Paths.get("src/test/java/").resolve(packageToScan.replaceAll("\\.", "/"));
+        final Stream<String> fileStream = Arrays.stream(packagePath.toFile().listFiles())
+                .filter(File::isFile)
+                .map(File::getName);
+
+        MainDocumentationTest.doc.write("", ".Usage", "[source, java, indent=0]",
+                "----",
+                CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get(), "1"),
+                "----",
+                "");
+
+        MainDocumentationTest.doc.write(String.format(".Files contained in the folder `%s`", packagePath),
+                fileStream.map(f -> "* " + f)
+                        .collect(Collectors.joining("\n", "", "\n")));
+
+        MainDocumentationTest.doc.write("", ".Default document generated", "----", content.replaceAll("\\ninclude", "\n\\\\include"), "----");
     }
 
     @Test

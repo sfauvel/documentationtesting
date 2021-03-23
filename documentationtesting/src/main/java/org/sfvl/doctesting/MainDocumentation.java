@@ -19,7 +19,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Generate a main documentation to group all test documentations.
+ * You can use this class to generate a main documentation that aggregate other documentations
+ * and in particular, those generated from test classes.
  */
 public class MainDocumentation {
 
