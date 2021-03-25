@@ -1,4 +1,4 @@
-[#org_sfvl_doctesting_BuilderDocumentationTest_RelativizedToPath_from_a_package]
+[#org_sfvl_doctesting_DocumentationBuilderTest_RelativizedToPath_from_a_package]
 = From a package
 
 Path to file is relativized to the given package.
@@ -6,15 +6,15 @@ Path to file is relativized to the given package.
 .Usage
 [source, java, indent=0]
 ----
-            final Class[] classesToAdd = {
+            Class[] classesToAdd = {
                     org.sfvl.doctesting.sample.basic.FirstTest.class,
                     org.sfvl.docformatter.AsciidocFormatterTest.class
             };
 
-            final BuilderDocumentation document = new BuilderDocumentation("My title")
+            DocumentationBuilder builder = new DocumentationBuilder("My title")
                     .withClassesToInclude(classesToAdd)
                     .withLocation(org.sfvl.docformatter.Formatter.class.getPackage());
-            final String content = document.getDoc();
+            String document = builder.build();
 
 ----
 

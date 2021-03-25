@@ -13,43 +13,25 @@ import java.util.stream.Collectors;
  * You can use this class to generate a main documentation that aggregate other documentations
  * and in particular, those generated from test classes.
  */
-public class BuilderDocumentation {
+public class DocumentationBuilder {
 
     protected final String documentationTitle;
     protected final Formatter formatter;
     private Path location = Paths.get("");
 
-    public BuilderDocumentation withLocation(Package packageLocation) {
-        return withLocation(DocumentationNamer.toPath(packageLocation));
-    }
-
-    public BuilderDocumentation withLocation(Path location) {
-        this.location = location;
-        return this;
-    }
-
-    public BuilderDocumentation withClassesToInclude(Class<?>... classesToInclude) {
-        return withClassesToInclude(Arrays.asList(classesToInclude));
-    }
-
-    public BuilderDocumentation withClassesToInclude(List<Class<?>> classesToInclude) {
-        this.classesToInclude = classesToInclude;
-        return this;
-    }
-
     private List<Class<?>> classesToInclude;
 
-    private final List<Function<BuilderDocumentation, String>> docStructure = new ArrayList<>();
+    private final List<Function<DocumentationBuilder, String>> docStructure = new ArrayList<>();
 
-    public BuilderDocumentation() {
+    public DocumentationBuilder() {
         this("Documentation");
     }
 
-    public BuilderDocumentation(String documentationTitle) {
+    public DocumentationBuilder(String documentationTitle) {
         this(documentationTitle, new AsciidocFormatter());
     }
 
-    public BuilderDocumentation(String documentationTitle,
+    public DocumentationBuilder(String documentationTitle,
                                 Formatter formatter) {
         this.documentationTitle = documentationTitle;
         this.formatter = formatter;
@@ -59,19 +41,34 @@ public class BuilderDocumentation {
                 builder -> builder.includeClasses());
     }
 
-    public BuilderDocumentation withStructure(Function<BuilderDocumentation, String>... structure) {
+    public DocumentationBuilder withLocation(Package packageLocation) {
+        return withLocation(DocumentationNamer.toPath(packageLocation));
+    }
+
+    public DocumentationBuilder withLocation(Path location) {
+        this.location = location;
+        return this;
+    }
+
+    public DocumentationBuilder withClassesToInclude(Class<?>... classesToInclude) {
+        return withClassesToInclude(Arrays.asList(classesToInclude));
+    }
+
+    public DocumentationBuilder withClassesToInclude(List<Class<?>> classesToInclude) {
+        this.classesToInclude = classesToInclude;
+        return this;
+    }
+
+    public DocumentationBuilder withStructure(Function<DocumentationBuilder, String>... structure) {
         return withStructure(Arrays.asList(structure));
     }
 
-    public BuilderDocumentation withStructure(List<Function<BuilderDocumentation, String>> structure) {
+    public DocumentationBuilder withStructure(List<Function<DocumentationBuilder, String>> structure) {
         docStructure.clear();
         docStructure.addAll(structure);
         return this;
     }
 
-    private String apply(Function<BuilderDocumentation, String> f) {
-        return f.apply(this);
-    }
     public static class Option {
         String key;
         String value;
@@ -103,16 +100,13 @@ public class BuilderDocumentation {
                 .collect(Collectors.joining("\n"));
     }
 
-////////////////////////////////////
-
-
     private String getDocumentTitle() {
         return this.documentationTitle;
     }
 
-    public String getDoc() {
+    public String build() {
         return docStructure.stream()
-                .map(this::apply)
+                .map(f -> f.apply(this))
                 .collect(Collectors.joining("\n"));
     }
 

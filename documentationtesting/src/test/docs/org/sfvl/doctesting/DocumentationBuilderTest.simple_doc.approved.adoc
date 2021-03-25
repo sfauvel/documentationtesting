@@ -1,19 +1,19 @@
-[#org_sfvl_doctesting_BuilderDocumentationTest_simple_doc]
+[#org_sfvl_doctesting_DocumentationBuilderTest_simple_doc]
 = Simple doc
 
 
 .Usage
 [source, java, indent=0]
 ----
-        final Class[] classesToAdd = {
+        Class[] classesToAdd = {
                 org.sfvl.doctesting.sample.basic.FirstTest.class,
                 org.sfvl.doctesting.sample.basic.SecondTest.class
         };
 
-        final BuilderDocumentation document = new BuilderDocumentation("My title")
+        DocumentationBuilder builder = new DocumentationBuilder("My title")
                 .withClassesToInclude(classesToAdd);
 
-        final String content = document.getDoc();
+        String document = builder.build();
 
 ----
 
