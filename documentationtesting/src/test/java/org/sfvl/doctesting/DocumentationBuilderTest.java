@@ -78,6 +78,26 @@ class DocumentationBuilderTest {
     }
 
     @Test
+    public void select_options(TestInfo testInfo) {
+        // >>>1
+        Class[] classesToAdd = {
+                org.sfvl.doctesting.sample.basic.FirstTest.class,
+                org.sfvl.docformatter.AsciidocFormatterTest.class
+        };
+
+        DocumentationBuilder builder = new DocumentationBuilder("My title")
+                .withClassesToInclude(classesToAdd)
+                .withOptionRemoved("toc")
+                .withOptionAdded("noheader")
+                .withOptionAdded("source-highlighter", "rouge");
+        String document = builder.build();
+        // <<<1
+
+        doc.write("Options can be added or removed.", "");
+        writeDoc(testInfo, document);
+    }
+
+    @Test
     public void define_document_structure(TestInfo testInfo) {
         // >>>1
         Class[] classesToAdd = {

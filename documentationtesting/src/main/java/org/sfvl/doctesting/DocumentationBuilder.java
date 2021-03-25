@@ -19,9 +19,15 @@ public class DocumentationBuilder {
     protected final Formatter formatter;
     private Path location = Paths.get("");
 
-    private List<Class<?>> classesToInclude;
+    private List<Class<?>> classesToInclude = Collections.emptyList();
 
     private final List<Function<DocumentationBuilder, String>> docStructure = new ArrayList<>();
+
+    private final List<Option> options = new ArrayList<Option>() {{
+        add(new Option("toc", "left"));
+        add(new Option("nofooter"));
+        add(new Option("stem"));
+    }};
 
     public DocumentationBuilder() {
         this("Documentation");
@@ -70,8 +76,8 @@ public class DocumentationBuilder {
     }
 
     public static class Option {
-        String key;
-        String value;
+        final String key;
+        final String value;
 
         public Option(String key) {
             this(key, "");
@@ -88,11 +94,20 @@ public class DocumentationBuilder {
 
     }
 
-    private final List<Option> options = new ArrayList<Option>() {{
-        add(new Option("toc", "left"));
-        add(new Option("nofooter"));
-        add(new Option("stem"));
-    }};
+    public DocumentationBuilder withOptionAdded(String key, String value) {
+        options.add(new Option(key, value));
+        return this;
+    }
+
+    public DocumentationBuilder withOptionAdded(String key) {
+        options.add(new Option(key));
+        return this;
+    }
+
+    public DocumentationBuilder withOptionRemoved(String key) {
+        options.removeIf(o -> o.key.equals(key));
+        return this;
+    }
 
     protected String getDocumentOptions() {
         return options.stream()

@@ -13,4 +13,6 @@ include::DocumentationBuilderTest.RelativizedToPath.from_a_package.approved.adoc
 
 include::DocumentationBuilderTest.RelativizedToPath.from_a_path.approved.adoc[leveloffset=+2]
 
+include::DocumentationBuilderTest.select_options.approved.adoc[leveloffset=+1]
+
 include::DocumentationBuilderTest.define_document_structure.approved.adoc[leveloffset=+1]
