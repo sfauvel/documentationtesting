@@ -1,10 +1,35 @@
-:source-highlighter: rouge
 :toc: left
 :nofooter:
 :stem:
+:source-highlighter: rouge
 :toclevels: 4
-
 = Document testing tool
+
+This document describes usage of classes to create test from generated documentation.
+
+* <<ApprovalsExtension>>: JUnit extension to check document.
+
+* <<DocWriter>>: Store document before writting it.
+
+* <<CodeExtractor>>: Help to extract information from code.
+
+include::ClassDocumentationTest.adoc[leveloffset=+1]
+
+include::ClassesOrderTest.adoc[leveloffset=+1]
+
+include::CodeExtractorTest.adoc[leveloffset=+1]
+
+include::DocWriterTest.adoc[leveloffset=+1]
+
+include::DocumentationBuilderTest.adoc[leveloffset=+1]
+
+include::DocumentationNamerTest.adoc[leveloffset=+1]
+
+include::MainDocumentationTest.adoc[leveloffset=+1]
+
+include::junitextension/ApprovalsExtensionTest.adoc[leveloffset=+1]
+
+include::junitextension/FindLambdaMethodTest.adoc[leveloffset=+1]
 
 ++++
 <style>
@@ -15,54 +40,3 @@
 }
 </style>
 ++++
-
-This document describes usage of classes to create test from generated documentation.
-
-* <<ApprovalsExtension>>: JUnit extension to check document.
-
-* <<DocWriter>>: Store document before writting it.
-
-* <<CodeExtractor>>: Help to extract information from code.
-
-
-include::junitextension/ApprovalsExtensionTest.adoc[leveloffset=+1]
-
-
-
-include::BuilderDocumentationTest.adoc[leveloffset=+1]
-
-
-
-include::ClassDocumentationTest.adoc[leveloffset=+1]
-
-
-
-include::ClassesOrderTest.adoc[leveloffset=+1]
-
-
-
-include::CodeExtractorTest.adoc[leveloffset=+1]
-
-
-
-include::DocWriterTest.adoc[leveloffset=+1]
-
-
-
-include::DocumentationNamerTest.adoc[leveloffset=+1]
-
-
-
-include::junitextension/FindLambdaMethodTest.adoc[leveloffset=+1]
-
-
-
-include::sample/basic/FirstTest.adoc[leveloffset=+1]
-
-
-
-include::MainDocumentationTest.adoc[leveloffset=+1]
-
-
-
-include::sample/basic/SecondTest.adoc[leveloffset=+1]
