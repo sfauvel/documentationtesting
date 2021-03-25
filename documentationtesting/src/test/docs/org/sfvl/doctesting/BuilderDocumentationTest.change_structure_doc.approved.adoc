@@ -1,0 +1,28 @@
+[#org_sfvl_doctesting_BuilderDocumentationTest_change_structure_doc]
+= Change structure doc
+
+
+.Usage
+[source, java, indent=0]
+----
+        final Class[] classesToAdd = {
+                org.sfvl.doctesting.sample.basic.FirstTest.class,
+                org.sfvl.docformatter.AsciidocFormatterTest.class
+        };
+
+        final BuilderDocumentation document = new BuilderDocumentation("My title")
+                .withClassesToInclude(classesToAdd)
+//                .withPackageLocation(org.sfvl.docformatter.Formatter.class.getPackage())
+                .withStructure(BuilderDocumentation::includeClasses);
+        final String content = document.getDoc();
+
+----
+
+.Default document generated
+----
+
+\include::org/sfvl/doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
+
+\include::org/sfvl/docformatter/AsciidocFormatterTest.adoc[leveloffset=+1]
+
+----

@@ -13,7 +13,7 @@ public class HowToDocumentation extends MainDocumentation {
     protected String getHeader() {
         return formatter.paragraphSuite(
                 ":source-highlighter: rouge\n" + getDocumentOptions(),
-                "= " + DOCUMENTATION_TITLE,
+                "= " + documentationTitle,
                 generalInformation());
     }
 

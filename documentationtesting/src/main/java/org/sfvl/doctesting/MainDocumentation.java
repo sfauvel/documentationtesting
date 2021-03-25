@@ -13,6 +13,7 @@ import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
@@ -21,11 +22,28 @@ import java.util.stream.Collectors;
  */
 public class MainDocumentation {
 
-    protected final String DOCUMENTATION_TITLE;
+    protected final String documentationTitle;
     private static final String DOCUMENTATION_FILENAME = "Documentation";
     private static final PathProvider pathProvider = new PathProvider();
     protected final Formatter formatter;
     private final Path docRootPath;
+
+    public MainDocumentation withPackageLocation(Package packageLocation) {
+        this.packageLocation = packageLocation;
+        return this;
+    }
+
+    public MainDocumentation withClassesToInclude(Class<?>... classesToInclude) {
+        return withClassesToInclude(Arrays.asList(classesToInclude));
+    }
+
+    public MainDocumentation withClassesToInclude(List<Class<?>> classesToInclude) {
+        this.classesToInclude = classesToInclude;
+        return this;
+    }
+
+    private Package packageLocation;
+    private List<Class<?>> classesToInclude;
 
     public MainDocumentation() {
         this("Documentation");
@@ -44,9 +62,13 @@ public class MainDocumentation {
     public MainDocumentation(String documentationTitle,
                              Path docRootPath,
                              Formatter formatter) {
-        this.DOCUMENTATION_TITLE = documentationTitle;
+        this.documentationTitle = documentationTitle;
         this.docRootPath = pathProvider.getProjectPath().resolve(docRootPath);
         this.formatter = formatter;
+
+        docStructure.add(this::getDocumentOptions);
+        docStructure.add(() -> "= " + getDocumentTitle());
+        docStructure.add(this::includeClasses);
     }
 
     public Path getDocRootPath() {
@@ -150,7 +172,7 @@ public class MainDocumentation {
                 getDocumentOptions(),
                 (readmePath.toFile().exists()
                         ? "include::../../../readme.adoc[leveloffset=+1]"
-                        : "= " + DOCUMENTATION_TITLE),
+                        : "= " + documentationTitle),
                 generalInformation());
         return header;
     }
@@ -158,6 +180,8 @@ public class MainDocumentation {
     protected String generalInformation() {
         return "";
     }
+
+
 
     public static class Option {
         String key;
@@ -203,4 +227,35 @@ public class MainDocumentation {
         return reflections.getMethodsAnnotatedWith(annotation);
     }
 
+////////////////////////////////////
+
+    private final List<Supplier<String>> docStructure = new ArrayList<Supplier<String>>();
+
+    private String getDocumentTitle() {
+        return this.documentationTitle;
+    }
+
+    public String getDoc() {
+        return docStructure.stream()
+                .map(Supplier::get)
+                .collect(Collectors.joining("\n"));
+    }
+
+    private String includeClasses() {
+        return includeClasses(packageLocation, classesToInclude);
+    }
+    private String includeClasses(Package packageLocation, List<Class<?>> classesToInclude) {
+
+        return classesToInclude.stream()
+                .map(c -> getRelativeFilePath(packageLocation, c))
+                .map(path -> formatter.include(path.toString()).trim())
+                .collect(Collectors.joining("\n\n", "\n", "\n"));
+    }
+
+    private Path getRelativeFilePath(Package packageLocation, Class<?> clazz) {
+        final Path docPath = DocumentationNamer.toPath(packageLocation);
+        final Path classPath = DocumentationNamer.toPath(clazz, "", ".adoc");
+
+        return docPath.relativize(classPath);
+    }
 }

@@ -23,7 +23,7 @@ public class TriviaDocumentation extends DemoDocumentation {
     protected String getDocumentOptions() {
         return formatter.paragraphSuite(
                 ":sectnums:\n" + super.getDocumentOptions(),
-                "= " + DOCUMENTATION_TITLE);
+                "= " + documentationTitle);
     }
 
     @Override

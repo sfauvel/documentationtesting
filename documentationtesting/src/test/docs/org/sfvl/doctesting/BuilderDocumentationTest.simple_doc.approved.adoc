@@ -1,0 +1,31 @@
+[#org_sfvl_doctesting_BuilderDocumentationTest_simple_doc]
+= Simple doc
+
+
+.Usage
+[source, java, indent=0]
+----
+        final Class[] classesToAdd = {
+                org.sfvl.doctesting.sample.basic.FirstTest.class,
+                org.sfvl.doctesting.sample.basic.SecondTest.class
+        };
+
+        final BuilderDocumentation document = new BuilderDocumentation("My title")
+                .withClassesToInclude(classesToAdd);
+
+        final String content = document.getDoc();
+
+----
+
+.Document generated
+----
+:toc: left
+:nofooter:
+:stem:
+= My title
+
+\include::org/sfvl/doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
+
+\include::org/sfvl/doctesting/sample/basic/SecondTest.adoc[leveloffset=+1]
+
+----

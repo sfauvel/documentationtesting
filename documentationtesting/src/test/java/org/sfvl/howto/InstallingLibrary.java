@@ -15,7 +15,7 @@ public class InstallingLibrary  extends MainDocumentation {
 
         final String header = formatter.paragraphSuite(
                 getDocumentOptions(),
-                "= " + DOCUMENTATION_TITLE,
+                "= " + documentationTitle,
                 generalInformation());
         return header;
     }

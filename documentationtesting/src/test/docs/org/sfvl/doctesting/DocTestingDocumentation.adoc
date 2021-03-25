@@ -29,6 +29,10 @@ include::junitextension/ApprovalsExtensionTest.adoc[leveloffset=+1]
 
 
 
+include::BuilderDocumentationTest.adoc[leveloffset=+1]
+
+
+
 include::ClassDocumentationTest.adoc[leveloffset=+1]
 
 
@@ -53,4 +57,12 @@ include::junitextension/FindLambdaMethodTest.adoc[leveloffset=+1]
 
 
 
+include::sample/basic/FirstTest.adoc[leveloffset=+1]
+
+
+
 include::MainDocumentationTest.adoc[leveloffset=+1]
+
+
+
+include::sample/basic/SecondTest.adoc[leveloffset=+1]

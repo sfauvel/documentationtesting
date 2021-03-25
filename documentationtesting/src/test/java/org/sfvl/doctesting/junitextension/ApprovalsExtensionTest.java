@@ -4,7 +4,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
@@ -114,7 +113,7 @@ class ApprovalsExtensionTest {
             @Override
             protected String getHeader() {
                 return formatter.paragraphSuite(getDocumentOptions(),
-                        "= " + DOCUMENTATION_TITLE);
+                        "= " + documentationTitle);
             }
 
             @Override
