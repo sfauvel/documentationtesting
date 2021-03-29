@@ -1,3 +1,4 @@
+:nofooter:
 = In main doc bis test
 
 include::InMainDocBisTest.testX.approved.adoc[leveloffset=+1]

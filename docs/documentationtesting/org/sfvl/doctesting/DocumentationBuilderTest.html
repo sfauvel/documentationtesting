@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>In main doc bis test</title>
+<title>Create a general documentation</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -438,14 +438,304 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>In main doc bis test</h1>
+<h1>Create a general documentation</h1>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="org_sfvl_doctesting_InMainDocBisTest_testX">Title for this test</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In my <strong>test</strong></p>
+<p>You can use this class to generate a main documentation that aggregate other documentations
+and in particular, those generated from test classes.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_DocumentationBuilderTest_simple_doc">Simple doc</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Usage</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">Class[] classesToAdd = {
+        org.sfvl.doctesting.sample.basic.FirstTest.class,
+        org.sfvl.doctesting.sample.basic.SecondTest.class
+};
+
+DocumentationBuilder builder = new DocumentationBuilder("My title")
+        .withClassesToInclude(classesToAdd);
+
+String document = builder.build();</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Document generated</div>
+<div class="content">
+<pre>:toc: left
+:nofooter:
+:stem:
+= My title
+
+include::org/sfvl/doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
+
+include::org/sfvl/doctesting/sample/basic/SecondTest.adoc[leveloffset=+1]</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_DocumentationBuilderTest_simple_doc_with_a_subclass_of_DocumentationBuilder">Simple doc with a subclass of DocumentationBuilder</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We can subclass a DocumentationBuilder to redefine some methods or create new ones.</p>
+</div>
+<div class="listingblock">
+<div class="title">Usage</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">class ExtendedBuilder extends DocumentationBuilder {
+    public ExtendedBuilder() {
+        super("My extending builder");
+    }
+
+    @Override
+    protected String getDocumentOptions() {
+        return ":no_options:";
+    }
+}
+Class[] classesToAdd = {
+        org.sfvl.doctesting.sample.basic.FirstTest.class,
+        org.sfvl.doctesting.sample.basic.SecondTest.class
+};
+
+DocumentationBuilder builder = new ExtendedBuilder()
+        .withClassesToInclude(classesToAdd);
+
+String document = builder.build();</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Document generated</div>
+<div class="content">
+<pre>:no_options:
+= My extending builder
+
+include::org/sfvl/doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
+
+include::org/sfvl/doctesting/sample/basic/SecondTest.adoc[leveloffset=+1]</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_relativized_to_path">Relativized to path</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All links are relative to a path corresponding to the location where the document will be written.</p>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_DocumentationBuilderTest_RelativizedToPath_from_a_package">From a package</h3>
+<div class="paragraph">
+<p>Path to file is relativized to the given package.</p>
+</div>
+<div class="listingblock">
+<div class="title">Usage</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">Class[] classesToAdd = {
+        org.sfvl.doctesting.sample.basic.FirstTest.class,
+        org.sfvl.docformatter.AsciidocFormatterTest.class
+};
+
+DocumentationBuilder builder = new DocumentationBuilder("My title")
+        .withClassesToInclude(classesToAdd)
+        .withLocation(org.sfvl.docformatter.Formatter.class.getPackage());
+String document = builder.build();</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Document generated</div>
+<div class="content">
+<pre>:toc: left
+:nofooter:
+:stem:
+= My title
+
+include::../doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
+
+include::AsciidocFormatterTest.adoc[leveloffset=+1]</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_DocumentationBuilderTest_RelativizedToPath_from_a_path">From a path</h3>
+<div class="paragraph">
+<p>Path to file is relativized to the given path.</p>
+</div>
+<div class="listingblock">
+<div class="title">Usage</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">Class[] classesToAdd = {
+        org.sfvl.doctesting.sample.basic.FirstTest.class,
+        org.sfvl.docformatter.AsciidocFormatterTest.class
+};
+
+DocumentationBuilder builder = new DocumentationBuilder("My title")
+        .withClassesToInclude(classesToAdd)
+        .withLocation(Paths.get("org", "sfvl", "docformatter"));
+String document = builder.build();</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Document generated</div>
+<div class="content">
+<pre>:toc: left
+:nofooter:
+:stem:
+= My title
+
+include::../doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
+
+include::AsciidocFormatterTest.adoc[leveloffset=+1]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_DocumentationBuilderTest_select_options">Select options</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Options can be added or removed.</p>
+</div>
+<div class="listingblock">
+<div class="title">Usage</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">Class[] classesToAdd = {
+        org.sfvl.doctesting.sample.basic.FirstTest.class,
+        org.sfvl.docformatter.AsciidocFormatterTest.class
+};
+
+DocumentationBuilder builder = new DocumentationBuilder("My title")
+        .withClassesToInclude(classesToAdd)
+        .withOptionRemoved("toc")
+        .withOptionAdded("noheader")
+        .withOptionAdded("source-highlighter", "rouge");
+String document = builder.build();</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Document generated</div>
+<div class="content">
+<pre>:nofooter:
+:stem:
+:noheader:
+:source-highlighter: rouge
+= My title
+
+include::org/sfvl/doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
+
+include::org/sfvl/docformatter/AsciidocFormatterTest.adoc[leveloffset=+1]</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_DocumentationBuilderTest_define_document_structure">Define document structure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We can change document structure to organize it as we want.</p>
+</div>
+<div class="paragraph">
+<p>In this example, we display only classes includes and we add text before and after them.
+.Usage</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">Class[] classesToAdd = {
+        org.sfvl.doctesting.sample.basic.FirstTest.class,
+        org.sfvl.docformatter.AsciidocFormatterTest.class
+};
+
+DocumentationBuilder builder = new DocumentationBuilder()
+        .withClassesToInclude(classesToAdd)
+        .withLocation(Paths.get("org", "sfvl", "docformatter"))
+        .withStructureBuilder(DocumentationBuilder.class,
+                b -&gt; "Documentation of classes",
+                b -&gt; b.includeClasses(),
+                b -&gt; "This is my footer"
+        );
+
+String document = builder.build();</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Document generated</div>
+<div class="content">
+<pre>Documentation of classes
+
+include::../doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
+
+include::AsciidocFormatterTest.adoc[leveloffset=+1]
+
+This is my footer</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_check_class_for_structure">check_class_for_structure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We need to specify a class when defining document structure.
+It allows to call methods on that object in lambda.
+Lambda will be called with the builder instance so this class must be a super class of the builder.
+There is no verification at compile time, but an exception is thrown when build is called if a wrong type was given.</p>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_DocumentationBuilderTest_check_class_for_structure_with_class_inherits_from_DocumentationBuilder">With class inherits from DocumentationBuilder</h3>
+<div class="paragraph">
+<p>When the given class inherits from a DocumentationBuilder.</p>
+</div>
+<div class="paragraph">
+<p><strong>SubClassOfDocumentationBuilder</strong> inherits from <strong>DocumentationBuilder</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Usage</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">final Class&lt;SubClassOfDocumentationBuilder&gt; clazz = SubClassOfDocumentationBuilder.class;
+DocumentationBuilder builder = new DocumentationBuilder()
+        .withStructureBuilder(clazz,
+                b -&gt; b.getDocumentOptions(),
+                b -&gt; b.formatSomething()
+        );</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>No error and builder is ready to use.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_DocumentationBuilderTest_check_class_for_structure_with_class_not_inherits_from_DocumentationBuilder">With class not inherits from DocumentationBuilder</h3>
+<div class="paragraph">
+<p>When the given class not inherits from a DocumentationBuilder.</p>
+</div>
+<div class="paragraph">
+<p><strong>SubClassOfObject</strong> inherits from <strong>Object</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Usage</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">final Class&lt;SubClassOfObject&gt; clazz = SubClassOfObject.class;
+DocumentationBuilder builder = new DocumentationBuilder()
+        .withStructureBuilder(clazz, b -&gt; b.formatSomething());</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Exception was thrown: RuntimeException:</p>
+</div>
+<div class="listingblock">
+<div class="title">Exception message:</div>
+<div class="content">
+<pre>Wrong type</pre>
+</div>
+</div>
 </div>
 </div>
 </div>

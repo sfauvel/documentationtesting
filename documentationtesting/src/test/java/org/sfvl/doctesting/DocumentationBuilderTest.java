@@ -11,7 +11,7 @@ import org.sfvl.doctesting.junitextension.ClassToDocument;
 import java.nio.file.Paths;
 
 @DisplayName("Create a general documentation")
-@ClassToDocument(clazz = MainDocumentation.class)
+@ClassToDocument(clazz = DocumentationBuilder.class)
 class DocumentationBuilderTest {
 
     private static final DocWriter doc = new DocWriter();

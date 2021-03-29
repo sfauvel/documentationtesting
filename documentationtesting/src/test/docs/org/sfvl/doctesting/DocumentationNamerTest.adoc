@@ -1,3 +1,4 @@
+:nofooter:
 = Documentation Namer
 
 include::DocumentationNamerTest.document_namer.approved.adoc[leveloffset=+1]

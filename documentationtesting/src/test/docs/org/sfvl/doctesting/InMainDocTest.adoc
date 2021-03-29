@@ -1,3 +1,4 @@
+:nofooter:
 = Title for the document
 
 Class comment is added to description.

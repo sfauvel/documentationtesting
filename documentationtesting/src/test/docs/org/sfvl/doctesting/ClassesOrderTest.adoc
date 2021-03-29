@@ -1,3 +1,4 @@
+:nofooter:
 = Classes order test
 
 include::ClassesOrderTest.in_order.approved.adoc[leveloffset=+1]

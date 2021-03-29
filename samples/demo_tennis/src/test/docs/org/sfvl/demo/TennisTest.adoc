@@ -1,3 +1,4 @@
+:nofooter:
 = Scores examples
 
 We will display a tennis score.

@@ -1,3 +1,4 @@
+:nofooter:
 = Extract information from method reference
 
 FindLambdaMethod class provides tools to find reference method name.

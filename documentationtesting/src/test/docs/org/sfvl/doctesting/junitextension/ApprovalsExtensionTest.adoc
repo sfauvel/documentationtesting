@@ -1,3 +1,4 @@
+:nofooter:
 = Approvals extension
 
 JUnit5 extension that verify written document matches with approved one.

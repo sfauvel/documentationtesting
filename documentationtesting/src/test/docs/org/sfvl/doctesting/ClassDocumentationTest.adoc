@@ -1,3 +1,4 @@
+:nofooter:
 = Class documentation test
 
 Generate a documentation of a test class aggregating approved method files.

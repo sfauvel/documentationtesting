@@ -1,3 +1,4 @@
+:nofooter:
 = CodeExtractor
 
 It is often useful to retrieve information from the source code itself.

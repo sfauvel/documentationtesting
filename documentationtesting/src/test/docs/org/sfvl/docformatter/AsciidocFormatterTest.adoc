@@ -1,3 +1,4 @@
+:nofooter:
 = Asciidoctor formatter
 
 `AsciidocFormatter` provides high level methods to generate asciidoc text.

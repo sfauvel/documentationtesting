@@ -48,7 +48,10 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
             return;
         }
         final ClassDocumentation classDocumentation = new ClassDocumentation();
-        final String content = classDocumentation.getClassDocumentation(currentClass);
+        final String content = String.join("\n",
+                ":nofooter:",
+                classDocumentation.getClassDocumentation(currentClass)
+        );
         final Path docFilePath = getDocPath().resolve(DocumentationNamer.toPath(currentClass,"", ".adoc"));
         try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
             fileWriter.write(content);
