@@ -5,7 +5,10 @@ import org.sfvl.docformatter.Formatter;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -15,13 +18,31 @@ import java.util.stream.Collectors;
  */
 public class DocumentationBuilder {
 
+
+    static private class DocBuilder<T> {
+
+        public final List<Function<T, String>> docStructure = new ArrayList<>();
+
+        public String build(T obj) {
+            return docStructure.stream()
+                    .map(f -> f.apply(obj))
+                    .collect(Collectors.joining("\n"));
+        }
+
+        DocBuilder<T> insert(Function<T, String> fn) {
+            docStructure.add(fn);
+            return this;
+        }
+
+    }
+
     protected final String documentationTitle;
     protected final Formatter formatter;
     private Path location = Paths.get("");
 
     private List<Class<?>> classesToInclude = Collections.emptyList();
 
-    private final List<Function<DocumentationBuilder, String>> docStructure = new ArrayList<>();
+    private DocBuilder docBuilder;
 
     private final List<Option> options = new ArrayList<Option>() {{
         add(new Option("toc", "left"));
@@ -42,9 +63,11 @@ public class DocumentationBuilder {
         this.documentationTitle = documentationTitle;
         this.formatter = formatter;
 
-        withStructure(builder -> builder.getDocumentOptions(),
-                builder -> "= " + getDocumentTitle(),
-                builder -> builder.includeClasses());
+        withStructureBuilder(DocumentationBuilder.class,
+                b -> b.getDocumentOptions(),
+                b -> "= " + b.getDocumentTitle(),
+                b -> b.includeClasses());
+
     }
 
     public DocumentationBuilder withLocation(Package packageLocation) {
@@ -65,13 +88,22 @@ public class DocumentationBuilder {
         return this;
     }
 
-    public DocumentationBuilder withStructure(Function<DocumentationBuilder, String>... structure) {
-        return withStructure(Arrays.asList(structure));
-    }
-
-    public DocumentationBuilder withStructure(List<Function<DocumentationBuilder, String>> structure) {
-        docStructure.clear();
-        docStructure.addAll(structure);
+    /**
+     * There is no verification at compile time between parameter clazz and class of the instance.
+     * Instance must be a parent of parameter clazz.
+     *
+     * @param clazz
+     * @param structure
+     * @param <T>
+     * @return
+     */
+    public <T> DocumentationBuilder withStructureBuilder(Class<T> clazz, Function<T, String>... structure) {
+        if (!this.getClass().isAssignableFrom(clazz)) {
+            throw new RuntimeException("Wrong type");
+        }
+        docBuilder = new DocBuilder<T>();
+        Arrays.stream(structure)
+                .forEachOrdered(fn -> docBuilder.insert(fn));
         return this;
     }
 
@@ -120,14 +152,13 @@ public class DocumentationBuilder {
     }
 
     public String build() {
-        return docStructure.stream()
-                .map(f -> f.apply(this))
-                .collect(Collectors.joining("\n"));
+        return docBuilder.build(this);
     }
 
     public String includeClasses() {
         return includeClasses(location, classesToInclude);
     }
+
     private String includeClasses(Path location, List<Class<?>> classesToInclude) {
 
         return classesToInclude.stream()
@@ -141,4 +172,7 @@ public class DocumentationBuilder {
 
         return docPath.relativize(classPath);
     }
+
 }
+
+

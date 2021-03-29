@@ -16,8 +16,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class DocTestingDocumentation {
+public class DocTestingDocumentation extends DocumentationBuilder {
     final PathProvider pathProvider = new PathProvider();
+
+    public DocTestingDocumentation(String title) {
+        super(title);
+    }
+
+    public DocTestingDocumentation() {
+    }
 
     private String getStyle() {
         String style = String.join("\n", "++++",
@@ -77,12 +84,12 @@ public class DocTestingDocumentation {
     }
 
     public void generate() throws IOException {
-        String document = new DocumentationBuilder("Document testing tool")
+        String document = new DocTestingDocumentation("Document testing tool")
                 .withClassesToInclude(getClassesToDocument())
                 .withLocation(DocTestingDocumentation.class.getPackage())
                 .withOptionAdded("source-highlighter", "rouge")
                 .withOptionAdded("toclevels", "4")
-                .withStructure(
+                .withStructureBuilder(DocTestingDocumentation.class,
                         b -> b.getDocumentOptions(),
                         b -> String.format("= %s\n", b.documentationTitle),
                         b -> this.generalInformation(b.formatter),

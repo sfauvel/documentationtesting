@@ -16,3 +16,14 @@ include::DocumentationBuilderTest.RelativizedToPath.from_a_path.approved.adoc[le
 include::DocumentationBuilderTest.select_options.approved.adoc[leveloffset=+1]
 
 include::DocumentationBuilderTest.define_document_structure.approved.adoc[leveloffset=+1]
+
+== check_class_for_structure
+
+We need to specify a class when defining document structure.
+It allows to call methods on that object in lambda.
+Lambda will be called with the builder instance so this class must be a super class of the builder.
+There is no verification at compile time, but an exception is thrown when build is called if a wrong type was given.
+
+include::DocumentationBuilderTest.check_class_for_structure.with_class_inherits_from_DocumentationBuilder.approved.adoc[leveloffset=+2]
+
+include::DocumentationBuilderTest.check_class_for_structure.with_class_not_inherits_from_DocumentationBuilder.approved.adoc[leveloffset=+2]

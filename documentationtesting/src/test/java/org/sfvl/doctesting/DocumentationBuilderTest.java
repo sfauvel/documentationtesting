@@ -105,14 +105,15 @@ class DocumentationBuilderTest {
                 org.sfvl.docformatter.AsciidocFormatterTest.class
         };
 
-        DocumentationBuilder builder = new DocumentationBuilder("My title")
+        DocumentationBuilder builder = new DocumentationBuilder()
                 .withClassesToInclude(classesToAdd)
                 .withLocation(Paths.get("org", "sfvl", "docformatter"))
-                .withStructure(
-                        b -> "Documentation of classes:",
-                        DocumentationBuilder::includeClasses,
+                .withStructureBuilder(DocumentationBuilder.class,
+                        b -> "Documentation of classes",
+                        b -> b.includeClasses(),
                         b -> "This is my footer"
                 );
+
         String document = builder.build();
         // <<<1
 
@@ -120,6 +121,81 @@ class DocumentationBuilderTest {
                 "",
                 "In this example, we display only classes includes and we add text before and after them.");
         writeDoc(testInfo, document);
+    }
+
+
+    /**
+     * We need to specify a class when defining document structure.
+     * It allows to call methods on that object in lambda.
+     * Lambda will be called with the builder instance so this class must be a super class of the builder.
+     * There is no verification at compile time, but an exception is thrown when build is called if a wrong type was given.
+     */
+    @Nested
+    class check_class_for_structure {
+
+        class SubClassOfObject {
+            public String formatSomething() {
+                return "";
+            }
+        }
+
+        class SubClassOfDocumentationBuilder extends DocumentationBuilder {
+            public String formatSomething() {
+                return "";
+            }
+        }
+        @Test
+        public void with_class_inherits_from_DocumentationBuilder(TestInfo testInfo) {
+            try {
+                // >>>1
+                final Class<SubClassOfDocumentationBuilder> clazz = SubClassOfDocumentationBuilder.class;
+                // <<<1
+                doc.write("When the given class inherits from a " + DocumentationBuilder.class.getSimpleName() + ".", "", "");
+                doc.write("");
+                doc.write(String.format("*%s* inherits from *%s*.", clazz.getSimpleName(), clazz.getSuperclass().getSimpleName()), "");
+                doc.write("", ".Usage", "[source, java, indent=0]",
+                        "----",
+                        CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get(), "1"),
+                        "----",
+                        "");
+
+                // >>>1
+                DocumentationBuilder builder = new DocumentationBuilder()
+                        .withStructureBuilder(clazz,
+                                b -> b.getDocumentOptions(),
+                                b -> b.formatSomething()
+                        );
+                // <<<1
+                doc.write("No error and builder is ready to use.", "");
+            } catch (Exception e) {
+                doc.write(String.format("Exception was thrown: %s: \n\n.Exception message:\n----\n%s\n----", e.getClass().getSimpleName(), e.getMessage()), "");
+            }
+        }
+
+        @Test
+        public void with_class_not_inherits_from_DocumentationBuilder(TestInfo testInfo) {
+            try {
+                // >>>1
+                final Class<SubClassOfObject> clazz = SubClassOfObject.class;
+                // <<<1
+                doc.write("When the given class not inherits from a " + DocumentationBuilder.class.getSimpleName() + ".", "", "");
+                doc.write(String.format("*%s* inherits from *%s*.", clazz.getSimpleName(), clazz.getSuperclass().getSimpleName()), "");
+                doc.write("", ".Usage", "[source, java, indent=0]",
+                        "----",
+                        CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get(), "1"),
+                        "----",
+                        "");
+
+                // >>>1
+                DocumentationBuilder builder = new DocumentationBuilder()
+                        .withStructureBuilder(clazz, b -> b.formatSomething());
+                // <<<1
+                doc.write("No error and builder is ready to use.", "");
+            } catch (Exception e) {
+                doc.write(String.format("Exception was thrown: %s: \n\n.Exception message:\n----\n%s\n----", e.getClass().getSimpleName(), e.getMessage()), "");
+            }
+        }
+
     }
 
     public void writeDoc(TestInfo testInfo, String content) {

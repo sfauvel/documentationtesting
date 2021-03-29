@@ -1,0 +1,19 @@
+[#org_sfvl_doctesting_DocumentationBuilderTest_check_class_for_structure_with_class_inherits_from_DocumentationBuilder]
+= With class inherits from DocumentationBuilder
+
+When the given class inherits from a DocumentationBuilder.
+
+*SubClassOfDocumentationBuilder* inherits from *DocumentationBuilder*.
+
+.Usage
+[source, java, indent=0]
+----
+                final Class<SubClassOfDocumentationBuilder> clazz = SubClassOfDocumentationBuilder.class;
+                DocumentationBuilder builder = new DocumentationBuilder()
+                        .withStructureBuilder(clazz,
+                                b -> b.getDocumentOptions(),
+                                b -> b.formatSomething()
+                        );
+
+----
+No error and builder is ready to use.

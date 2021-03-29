@@ -12,21 +12,22 @@ In this example, we display only classes includes and we add text before and aft
                 org.sfvl.docformatter.AsciidocFormatterTest.class
         };
 
-        DocumentationBuilder builder = new DocumentationBuilder("My title")
+        DocumentationBuilder builder = new DocumentationBuilder()
                 .withClassesToInclude(classesToAdd)
                 .withLocation(Paths.get("org", "sfvl", "docformatter"))
-                .withStructure(
-                        b -> "Documentation of classes:",
-                        DocumentationBuilder::includeClasses,
+                .withStructureBuilder(DocumentationBuilder.class,
+                        b -> "Documentation of classes",
+                        b -> b.includeClasses(),
                         b -> "This is my footer"
                 );
+
         String document = builder.build();
 
 ----
 
 .Document generated
 ----
-Documentation of classes:
+Documentation of classes
 
 \include::../doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
 
