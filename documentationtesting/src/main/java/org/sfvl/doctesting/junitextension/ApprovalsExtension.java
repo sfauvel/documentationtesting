@@ -15,6 +15,8 @@ import org.sfvl.doctesting.PathProvider;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -62,6 +64,9 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
     public void afterEach(ExtensionContext extensionContext) throws Exception {
         String content = getDocWriter().formatOutput(extensionContext.getDisplayName(), extensionContext.getTestMethod().get());
         getDocWriter().reset();
+        content += extensionContext.getExecutionException()
+                .map(this::displayFailingReason)
+                .orElse("");
 
         final DocumentationNamer documentationNamer = new DocumentationNamer(getDocPath(), extensionContext.getTestMethod().get());
         ApprovalNamer approvalNamer = new ApprovalNamer() {
@@ -122,6 +127,18 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
                 new ApprovalTextWriter(content, "adoc"),
                 approvalNamer,
                 approvalFailureReporter);
+    }
+
+    public String displayFailingReason(Throwable e) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        e.printStackTrace(pw);
+
+        return String.join("\n",
+                "*Error generating documentation*",
+                "----",
+                sw.toString(),
+                "----");
     }
 
     /**

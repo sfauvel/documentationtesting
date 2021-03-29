@@ -12,3 +12,5 @@ include::ApprovalsExtensionTest.using_displayName.approved.adoc[leveloffset=+1]
 include::ApprovalsExtensionTest.nested_class.approved.adoc[leveloffset=+1]
 
 include::ApprovalsExtensionTest.document_with_all_tests_in_a_testclass.approved.adoc[leveloffset=+1]
+
+include::ApprovalsExtensionTest.failing_test_output.approved.adoc[leveloffset=+1]
