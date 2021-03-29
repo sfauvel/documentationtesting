@@ -5,6 +5,8 @@ and in particular, those generated from test classes.
 
 include::DocumentationBuilderTest.simple_doc.approved.adoc[leveloffset=+1]
 
+include::DocumentationBuilderTest.simple_doc_with_a_subclass_of_DocumentationBuilder.approved.adoc[leveloffset=+1]
+
 == Relativized to path
 
 All links are relative to a path corresponding to the location where the document will be written.

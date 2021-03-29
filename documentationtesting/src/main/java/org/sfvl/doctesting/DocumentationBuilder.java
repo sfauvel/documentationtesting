@@ -63,11 +63,10 @@ public class DocumentationBuilder {
         this.documentationTitle = documentationTitle;
         this.formatter = formatter;
 
-        withStructureBuilder(DocumentationBuilder.class,
+        withStructureBuilder((Class<DocumentationBuilder>)this.getClass(),
                 b -> b.getDocumentOptions(),
                 b -> "= " + b.getDocumentTitle(),
                 b -> b.includeClasses());
-
     }
 
     public DocumentationBuilder withLocation(Package packageLocation) {

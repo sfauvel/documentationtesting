@@ -35,6 +35,35 @@ class DocumentationBuilderTest {
         writeDoc(testInfo, document);
     }
 
+    @Test
+    public void simple_doc_with_a_subclass_of_DocumentationBuilder(TestInfo testInfo) {
+
+        // >>>1
+        class ExtendedBuilder extends DocumentationBuilder {
+            public ExtendedBuilder() {
+                super("My extending builder");
+            }
+
+            @Override
+            protected String getDocumentOptions() {
+                return ":no_options:";
+            }
+        }
+        Class[] classesToAdd = {
+                org.sfvl.doctesting.sample.basic.FirstTest.class,
+                org.sfvl.doctesting.sample.basic.SecondTest.class
+        };
+
+        DocumentationBuilder builder = new ExtendedBuilder()
+                .withClassesToInclude(classesToAdd);
+
+        String document = builder.build();
+        // <<<1
+
+        doc.write("We can subclass a " + DocumentationBuilder.class.getSimpleName() + " to redefine some methods or create new ones.", "");
+        writeDoc(testInfo, document);
+    }
+
     /**
      * All links are relative to a path corresponding to the location where the document will be written.
      */
@@ -122,7 +151,6 @@ class DocumentationBuilderTest {
                 "In this example, we display only classes includes and we add text before and after them.");
         writeDoc(testInfo, document);
     }
-
 
     /**
      * We need to specify a class when defining document structure.
