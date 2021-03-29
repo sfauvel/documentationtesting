@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Main documentation test</title>
+<title>Create a general documentation</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -438,9 +438,62 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Main documentation test</h1>
+<h1>Create a general documentation</h1>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can use this class to generate a main documentation that aggregate other documentations
+and in particular, those generated from test classes.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_MainDocumentationTest_by_default">By default</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Usage</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">final MainDocumentation doc = new MainDocumentation("Documentation",
+        Paths.get("src", "test", "docs"),
+        new AsciidocFormatter());
+
+Path docFilePath = doc.getDocRootPath();
+final String packageToScan = "org.sfvl.doctesting.sample.basic";
+final String content = doc.getDocumentationContent(packageToScan, docFilePath);</code></pre>
+</div>
+</div>
+<div class="ulist">
+<div class="title">Files contained in the folder <code>src/test/java/org/sfvl/doctesting/sample/basic</code></div>
+<ul>
+<li>
+<p>SecondTest.java</p>
+</li>
+<li>
+<p>FirstTest.java</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Default document generated</div>
+<div class="content">
+<pre>:toc: left
+:nofooter:
+:stem:
+
+include::../../../readme.adoc[leveloffset=+1]
+
+
+include::org/sfvl/doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
+
+
+
+include::org/sfvl/doctesting/sample/basic/SecondTest.adoc[leveloffset=+1]</pre>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="org_sfvl_doctesting_MainDocumentationTest_document_structure">Document structure</h2>
 <div class="sectionbody">
@@ -562,7 +615,7 @@ My description without included any test documentation.</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-03-18 12:45:42 UTC
+Last updated 2021-03-29 13:45:33 UTC
 </div>
 </div>
 </body>
