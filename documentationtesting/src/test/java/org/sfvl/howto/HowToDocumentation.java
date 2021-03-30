@@ -1,26 +1,29 @@
 package org.sfvl.howto;
 
-import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.ClassFinder;
+import org.sfvl.doctesting.Document;
+import org.sfvl.doctesting.DocumentationBuilder;
 
 import java.io.IOException;
+import java.util.List;
 
-public class HowToDocumentation extends MainDocumentation {
+public class HowToDocumentation extends DocumentationBuilder {
+
     public HowToDocumentation() {
         super("How to");
+
+        final Package aPackage = this.getClass().getPackage();
+        withClassesToInclude(getClasses(aPackage));
+        withLocation(aPackage);
+        withOptionAdded("source-highlighter", "rouge");
     }
 
-    @Override
-    protected String getHeader() {
-        return formatter.paragraphSuite(
-                ":source-highlighter: rouge\n" + getDocumentOptions(),
-                "= " + documentationTitle,
-                generalInformation());
+    protected List<Class<?>> getClasses(Package aPackage) {
+        return new ClassFinder().testClasses(aPackage);
     }
 
     public static void main(String... args) throws IOException {
-        final HowToDocumentation generator = new HowToDocumentation();
-
-        generator.generate();
+        Document.produce(new HowToDocumentation());
     }
 
 }

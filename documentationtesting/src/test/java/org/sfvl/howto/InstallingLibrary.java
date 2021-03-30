@@ -1,27 +1,26 @@
 package org.sfvl.howto;
 
-import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.Document;
+import org.sfvl.doctesting.DocumentationBuilder;
 
-import java.nio.file.Path;
+import java.io.IOException;
 
-public class InstallingLibrary  extends MainDocumentation {
+public class InstallingLibrary extends DocumentationBuilder {
 
     public InstallingLibrary() {
         super("Installing Documentation testing");
+
+        withStructureBuilder(InstallingLibrary.class,
+                b -> b.getDocumentOptions(),
+                b -> String.format("= %s\n", b.getDocumentTitle()),
+                b -> b.getContent());
     }
 
-    @Override
-    public String getHeader() {
-
-        final String header = formatter.paragraphSuite(
-                getDocumentOptions(),
-                "= " + documentationTitle,
-                generalInformation());
-        return header;
-    }
-    @Override
-    protected String getMethodDocumentation(String packageToScan, Path docFilePath) {
+    protected String getContent() {
         return "To be written";
+    }
 
+    public static void main(String... args) throws IOException {
+        Document.produce(new InstallingLibrary());
     }
 }

@@ -31,12 +31,12 @@ class ClassDocumentationTest {
     @DisplayName(value = "Default test class documentation")
     public void default_class_documentation(TestInfo testInfo) throws IOException {
 
-        // >>>1
+        // >>>
         final ClassDocumentation defaultDocumentation = new ClassDocumentation();
         final String defaultContent = defaultDocumentation.getClassDocumentation(
                 InMainDocTest.class                                              // <1>
         );
-        // <<<1
+        // <<<
 
         Method method = Arrays.stream(ClassDocumentation.class.getDeclaredMethods())
                 .filter(m -> m.getName().equals("getClassDocumentation"))
@@ -77,13 +77,13 @@ class ClassDocumentationTest {
     @Test
     public void title_level(TestInfo testInfo) throws IOException {
 
-        // >>>1
+        // >>>
         final ClassDocumentation defaultDocumentation = new ClassDocumentation();
 
         final String defaultContent = defaultDocumentation.getClassDocumentation(
                 InMainDocTest.class,
                 3);   // <1>
-        // <<<1
+        // <<<
 
         doc.write(formatter.sourceCodeBuilder("java")
                         .title("Code used")
@@ -163,12 +163,12 @@ class ClassDocumentationTest {
     @DisplayName(value = "Test class documentation with nested classes")
     public void nested_class_documentation(TestInfo testInfo) throws IOException {
 
-        // >>>1
+        // >>>
         final ClassDocumentation defaultDocumentation = new ClassDocumentation();
 
         final Class<?> testClass = ClassDocumentationTest_DemoNestedTest.class;
         final String defaultContent = defaultDocumentation.getClassDocumentation(testClass);
-        // <<<1
+        // <<<
 
         doc.write("",
                 formatter.sourceCodeBuilder("java")

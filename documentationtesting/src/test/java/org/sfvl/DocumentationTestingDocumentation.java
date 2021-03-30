@@ -4,6 +4,7 @@ import org.sfvl.docformatter.FormatterDocumentation;
 import org.sfvl.doctesting.DocTestingDocumentation;
 import org.sfvl.doctesting.MainDocumentation;
 import org.sfvl.doctesting.junitextension.JUnitExtensionDocumentation;
+import org.sfvl.doctesting.Document;
 import org.sfvl.howto.HowToDocumentation;
 import org.sfvl.howto.InstallingLibrary;
 
@@ -56,8 +57,8 @@ public class DocumentationTestingDocumentation extends MainDocumentation {
     public static void main(String... args) throws IOException {
         new DocTestingDocumentation().generate();
         new FormatterDocumentation().generate();
-        new HowToDocumentation().generate();
-        new InstallingLibrary().generate();
+        Document.produce(new HowToDocumentation());
+        Document.produce(new InstallingLibrary());
 
         new DocumentationTestingDocumentation().generate(null, "index");
     }

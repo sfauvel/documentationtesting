@@ -1,9 +1,7 @@
-:source-highlighter: rouge
 :toc: left
 :nofooter:
 :stem:
-
+:source-highlighter: rouge
 = How to
-
 
 include::UseYourOwnStyle.adoc[leveloffset=+1]

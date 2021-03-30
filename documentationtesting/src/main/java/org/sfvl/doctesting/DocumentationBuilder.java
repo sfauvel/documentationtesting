@@ -146,7 +146,7 @@ public class DocumentationBuilder {
                 .collect(Collectors.joining("\n"));
     }
 
-    private String getDocumentTitle() {
+    protected String getDocumentTitle() {
         return this.documentationTitle;
     }
 
