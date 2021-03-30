@@ -18,4 +18,5 @@ a| `namer.getApprovedPath(Paths.get("src", "test", "docs", "org"))` | sfvl/docte
 a| `DocumentationNamer.toPath(org.sfvl.doctesting.DocumentationNamerTest.class)` | org/sfvl/doctesting/DocumentationNamerTest
 a| `DocumentationNamer.toPath(org.sfvl.doctesting.DocumentationNamerTest.class.getPackage())` | org/sfvl/doctesting
 a| `DocumentationNamer.toPath(org.sfvl.doctesting.DocumentationNamerTest.class, "prefix_", ".suffix")` | org/sfvl/doctesting/prefix_DocumentationNamerTest.suffix
+a| `DocumentationNamer.toAsciiDocFilePath(org.sfvl.doctesting.DocumentationNamerTest.class)` | org/sfvl/doctesting/DocumentationNamerTest.adoc
 |====

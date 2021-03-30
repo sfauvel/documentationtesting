@@ -69,7 +69,12 @@ class DocumentationNamerTest {
                 "a| `" + extract(testInfo, "9") + "` | " +
                         // >>>9
                         DocumentationNamer.toPath(org.sfvl.doctesting.DocumentationNamerTest.class, "prefix_", ".suffix")
-                // <<<9
+                         // <<<9
+                ,
+                "a| `" + extract(testInfo, "10") + "` | " +
+                        // >>>10
+                        DocumentationNamer.toAsciiDocFilePath(org.sfvl.doctesting.DocumentationNamerTest.class)
+                        // <<<10
                 ,
                 "|====");
     }

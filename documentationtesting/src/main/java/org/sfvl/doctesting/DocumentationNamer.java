@@ -78,4 +78,8 @@ public class DocumentationNamer {
                 .map(Paths::get)
                 .reduce(Paths.get(""), Path::resolve);
     }
+
+    public static Path toAsciiDocFilePath(Class<?> aClass) {
+        return toPath(aClass, "", ".adoc");
+    }
 }
