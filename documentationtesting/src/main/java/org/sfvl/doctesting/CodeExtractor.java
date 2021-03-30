@@ -221,13 +221,13 @@ public class CodeExtractor {
         StringBuffer buffer = new StringBuffer();
         boolean inTag = false;
         for (String s1 : source.split("\n")) {
-            if (s1.contains("// " + end)) {
+            if (s1.trim().equals("// " + end)) {
                 inTag = false;
             }
             if (inTag) {
                 buffer.append(s1 + "\n");
             }
-            if (s1.contains("// " + begin)) {
+            if (s1.trim().equals("// " + begin)) {
                 inTag = true;
             }
         }

@@ -5,7 +5,10 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
-import org.sfvl.doctesting.sample.*;
+import org.sfvl.doctesting.sample.ClassWithCommentToExtract;
+import org.sfvl.doctesting.sample.ClassWithMethodToExtract;
+import org.sfvl.doctesting.sample.MyClass;
+import org.sfvl.doctesting.sample.SimpleClass;
 
 import java.lang.reflect.Method;
 import java.util.Optional;
@@ -315,7 +318,7 @@ class CodeExtractorTest {
                 // <<<3
 
                 doc.write("You can have several part identify by a text that you pass as argument " +
-                        "to the function extracting the code.",
+                                "to the function extracting the code.",
                         "You can have several part identified by the same text.",
                         "In that case, all parts matching the text will be returned.",
                         "", "");
@@ -332,9 +335,109 @@ class CodeExtractorTest {
                         formatSourceCode(codePart1),
                         ".Source code Part 2 extracted",
                         formatSourceCode(codePart2));
+
             }
         }
 
+        /**
+         * We shows here some technical cases.
+         */
+        @Nested
+        class ExtractPartOfCode {
+
+            /**
+             * Tag (MyCode) could be a subpart of another one (**MyCode**Before or **MyCode**After).
+             */
+            @Test
+            public void tag_with_same_beginning_of_another_tag(TestInfo testInfo) {
+                final Method testMethod = testInfo.getTestMethod().get();
+
+                // >>>SourceCode
+                // >>>MyCodeBefore
+                String partBefore = "Part before MyCode";
+                // <<<MyCodeBefore
+
+                // >>>MyCode
+                String partMyCode = "Part MyCode";
+                // <<<MyCode
+
+                // >>>MyCodeAfter
+                String partAfter = "Part after MyCode";
+                // <<<MyCodeAfter
+                // <<<SourceCode
+
+                doc.write(".Source code with extractor tags",
+                        formatSourceCode(CodeExtractor.extractPartOfMethod(testMethod, "SourceCode")));
+
+                doc.writeInline(
+                        ".Source code part MyCodeBefore extracted",
+                        formatSourceCode(CodeExtractor.extractPartOfMethod(testMethod, "MyCodeBefore")),
+                        ".Source code part MyCodeAfter extracted",
+                        formatSourceCode(CodeExtractor.extractPartOfMethod(testMethod, "MyCodeAfter")),
+                        ".Source code part MyCode extracted",
+                        formatSourceCode(CodeExtractor.extractPartOfMethod(testMethod, "MyCode")));
+
+            }
+
+            /**
+             *Tag inside another one can be a subpart (MyCode)  of the global one (**MyCode**Global) .
+             */
+            @Test
+            public void tag_beginning_with_same_outer_tag_name(TestInfo testInfo) {
+                final Method testMethod = testInfo.getTestMethod().get();
+
+                // >>>SourceCode
+                // >>>MyCodeGlobal
+                String partGlobalBefore = "Part global before MyCode";
+
+                // >>>MyCode
+                String partMyCode = "Part MyCode";
+                // <<<MyCode
+
+                String partGlobalAfter = "Part global after MyCode";
+                // <<<MyCodeGlobal
+                // <<<SourceCode
+
+                doc.write(".Source code with extractor tags",
+                        formatSourceCode(CodeExtractor.extractPartOfMethod(testMethod, "SourceCode")));
+
+                doc.writeInline(
+                        ".Source code part MyCodeInside extracted",
+                        formatSourceCode(CodeExtractor.extractPartOfMethod(testMethod, "MyCode")),
+                        ".Source code part MyCodeInsideAround extracted",
+                        formatSourceCode(CodeExtractor.extractPartOfMethod(testMethod, "MyCodeGlobal")));
+            }
+
+            /**
+             *Tag inside (**MyCodeGlobal**Inside) another one can be an extension of an outside tag (MyCodeGlobal).
+             */
+            @Test
+            public void tag_beginning_with_same_inner_tag_name(TestInfo testInfo) {
+                final Method testMethod = testInfo.getTestMethod().get();
+
+                // >>>SourceCode
+                // >>>MyCodeGlobal
+                String partGlobalBefore = "Part global before MyCode";
+
+                // >>>MyCodeGlobalInside
+                String partInside = "Part MyCode";
+                // <<<MyCodeGlobalInside
+
+                String partGlobalAfter = "Part global after MyCode";
+                // <<<MyCodeGlobal
+                // <<<SourceCode
+
+                doc.write(".Source code with extractor tags",
+                        formatSourceCode(CodeExtractor.extractPartOfMethod(testMethod, "SourceCode")));
+
+                doc.writeInline(
+                        ".Source code part MyCodeEnclosed extracted",
+                        formatSourceCode(CodeExtractor.extractPartOfMethod(testMethod, "MyCodeGlobalInside")),
+                        ".Source code part MyCodeEnclosedInside extracted",
+                        formatSourceCode(CodeExtractor.extractPartOfMethod(testMethod, "MyCodeGlobal")));
+            }
+
+        }
 
         @Test
         public void extract_enclosing_classes(TestInfo testInfo) throws NoSuchMethodException {
@@ -404,6 +507,7 @@ class CodeExtractorTest {
         }
     }
     // tag::NestedClass[]
+
     /**
      * Comment of the nested class of CodeExtractorTest.
      */

@@ -16,6 +16,16 @@ include::CodeExtractorTest.ExtractCode.extract_code_from_method.approved.adoc[le
 
 include::CodeExtractorTest.ExtractCode.extract_part_of_code_from_method.approved.adoc[leveloffset=+2]
 
+=== Extract part of code
+
+We shows here some technical cases.
+
+include::CodeExtractorTest.ExtractCode.ExtractPartOfCode.tag_with_same_beginning_of_another_tag.approved.adoc[leveloffset=+3]
+
+include::CodeExtractorTest.ExtractCode.ExtractPartOfCode.tag_beginning_with_same_outer_tag_name.approved.adoc[leveloffset=+3]
+
+include::CodeExtractorTest.ExtractCode.ExtractPartOfCode.tag_beginning_with_same_inner_tag_name.approved.adoc[leveloffset=+3]
+
 include::CodeExtractorTest.ExtractCode.extract_enclosing_classes.approved.adoc[leveloffset=+2]
 
 include::CodeExtractorTest.ExtractCode.extract_first_enclosing_classes_before_another.approved.adoc[leveloffset=+2]

@@ -1,0 +1,49 @@
+[#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_beginning_with_same_outer_tag_name]
+= Tag beginning with same outer tag name
+
+Tag inside another one can be a subpart (MyCode)  of the global one (**MyCode**Global) .
+
+.Source code with extractor tags
+[source, java, indent=0]
+----
+                // >>>MyCodeGlobal
+                String partGlobalBefore = "Part global before MyCode";
+
+                // >>>MyCode
+                String partMyCode = "Part MyCode";
+                // <<<MyCode
+
+                String partGlobalAfter = "Part global after MyCode";
+                // <<<MyCodeGlobal
+
+----
+[.inline]
+====
+.Source code part MyCodeInside extracted
+[source, java, indent=0]
+----
+                String partMyCode = "Part MyCode";
+
+----
+.Source code part MyCodeInsideAround extracted
+[source, java, indent=0]
+----
+                String partGlobalBefore = "Part global before MyCode";
+
+                // >>>MyCode
+                String partMyCode = "Part MyCode";
+                // <<<MyCode
+
+                String partGlobalAfter = "Part global after MyCode";
+
+----
+====
+++++
+<style>
+#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_beginning_with_same_outer_tag_name ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++
