@@ -2,6 +2,7 @@ package org.sfvl;
 
 import org.sfvl.docformatter.FormatterDocumentation;
 import org.sfvl.doctesting.DocTestingDocumentation;
+import org.sfvl.doctesting.DocumentationBuilder;
 import org.sfvl.doctesting.MainDocumentation;
 import org.sfvl.doctesting.junitextension.JUnitExtensionDocumentation;
 import org.sfvl.doctesting.Document;
@@ -10,6 +11,8 @@ import org.sfvl.howto.InstallingLibrary;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class DocumentationTestingDocumentation extends MainDocumentation {
 
@@ -57,8 +60,13 @@ public class DocumentationTestingDocumentation extends MainDocumentation {
     public static void main(String... args) throws IOException {
         new DocTestingDocumentation().generate();
         new FormatterDocumentation().generate();
-        Document.produce(new HowToDocumentation());
-        Document.produce(new InstallingLibrary());
+
+        for (DocumentationBuilder builder : Arrays.asList(
+                new HowToDocumentation(),
+                new InstallingLibrary()
+        )) {
+            Document.produce(builder);
+        }
 
         new DocumentationTestingDocumentation().generate(null, "index");
     }
