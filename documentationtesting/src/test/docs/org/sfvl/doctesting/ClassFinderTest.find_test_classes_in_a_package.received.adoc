@@ -1,7 +1,0 @@
-[#org_sfvl_doctesting_ClassFinderTest_find_test_classes_in_a_package]
-= Find test classes in a package
-
-Classes found:
-
-* org.sfvl.doctesting.sample.basic.FirstTest
-* org.sfvl.doctesting.sample.basic.SecondTest
