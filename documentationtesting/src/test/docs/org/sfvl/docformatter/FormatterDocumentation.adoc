@@ -1,8 +1,6 @@
 :toc: left
 :nofooter:
 :stem:
-
 = Documentation
-
 
 include::AsciidocFormatterTest.adoc[leveloffset=+1]

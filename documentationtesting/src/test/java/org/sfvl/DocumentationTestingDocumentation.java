@@ -2,17 +2,16 @@ package org.sfvl;
 
 import org.sfvl.docformatter.FormatterDocumentation;
 import org.sfvl.doctesting.DocTestingDocumentation;
+import org.sfvl.doctesting.Document;
 import org.sfvl.doctesting.DocumentationBuilder;
 import org.sfvl.doctesting.MainDocumentation;
 import org.sfvl.doctesting.junitextension.JUnitExtensionDocumentation;
-import org.sfvl.doctesting.Document;
 import org.sfvl.howto.HowToDocumentation;
 import org.sfvl.howto.InstallingLibrary;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 public class DocumentationTestingDocumentation extends MainDocumentation {
 
@@ -34,7 +33,7 @@ public class DocumentationTestingDocumentation extends MainDocumentation {
                 "== Getting started",
                 "",
                 "To get started quickly, download link:https://github.com/sfauvel/TryDocAsTest[Try doc as test] project.",
-                "After "+ linkToClass(InstallingLibrary.class, "installing Documentation testing") + " maven library, you are ready to write documentation that validate your code.",
+                "After " + linkToClass(InstallingLibrary.class, "installing Documentation testing") + " maven library, you are ready to write documentation that validate your code.",
                 "",
                 "== Main features",
                 "",
@@ -59,9 +58,9 @@ public class DocumentationTestingDocumentation extends MainDocumentation {
 
     public static void main(String... args) throws IOException {
         new DocTestingDocumentation().generate();
-        new FormatterDocumentation().generate();
 
         for (DocumentationBuilder builder : Arrays.asList(
+                new FormatterDocumentation(),
                 new HowToDocumentation(),
                 new InstallingLibrary()
         )) {

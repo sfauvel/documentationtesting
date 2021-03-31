@@ -1,30 +1,27 @@
 package org.sfvl.docformatter;
 
-import org.sfvl.doctesting.*;
+import org.sfvl.doctesting.ClassDocumentation;
+import org.sfvl.doctesting.Document;
+import org.sfvl.doctesting.DocumentationBuilder;
+import org.sfvl.doctesting.DocumentationNamer;
 
 import java.io.IOException;
 
-public class FormatterDocumentation extends MainDocumentation {
+public class FormatterDocumentation extends DocumentationBuilder {
 
-//    public void generate() throws IOException {
-////        generate(AsciidocFormatterTest.class);
-//        final Path path = DocumentationNamer.toPath(this.getClass().getPackage());
-//        generate(this.getClass().getPackage().getName(), path.resolve("TestDoc").toString());
-//    }
-
-    protected String getHeader() {
-
-        final String header = formatter.paragraphSuite(
-                getDocumentOptions(),
-                "= " + documentationTitle,
-                generalInformation());
-        return header;
+    public FormatterDocumentation() {
+        super("Documentation");
+        withClassesToInclude(AsciidocFormatterTest.class);
+        withLocation(FormatterDocumentation.class.getPackage());
+        withStructureBuilder(FormatterDocumentation.class,
+                b -> b.getDocumentOptions(),
+                b -> "= " + getDocumentTitle(),
+                b -> b.includeClasses()
+        );
     }
 
     public static void main(String... args) throws IOException {
-        final Package packageToDocument = FormatterDocumentation.class.getPackage();
-        new FormatterDocumentation().generate(packageToDocument.getName(),
-                DocumentationNamer.toPath(packageToDocument).resolve("TestDoc2").toString());
+        Document.produce(new FormatterDocumentation());
     }
 
 }
