@@ -7,30 +7,20 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class JUnitExtensionDocumentation {
+public class JUnitExtensionDocumentation extends DocumentationBuilder {
 
+    public JUnitExtensionDocumentation() {
+        super("Approvals extension");
+        withLocation(JUnitExtensionDocumentation.class.getPackage());
+        withClassesToInclude(ApprovalsExtensionTest.class);
+        withOptionAdded("source-highlighter", "rouge");
+        withOptionAdded("toclevels", "4");
+        withStructureBuilder(JUnitExtensionDocumentation.class,
+                b -> b.getDocumentOptions(),
+                b -> b.includeClasses());
+    }
     public static void main(String... args) throws IOException {
-        final ClassDocumentation generator = new ClassDocumentation();
-        final String classDocumentation = generator.getClassDocumentation(ApprovalsExtensionTest.class);
-
-        final Path docPathInProject = Paths.get("src", "test", "docs");
-        final Path docRootPath = new PathProvider().getProjectPath().resolve(docPathInProject);
-
-        final Path docFilePath = docRootPath.resolve(DocumentationNamer.toPath(JUnitExtensionDocumentation.class, "", ".adoc"));
-
-        final DocWriter doc = new DocWriter();
-        doc.write(":source-highlighter: rouge",
-                ":toc: left",
-                ":nofooter:",
-                ":stem:",
-                ":toclevels: 4",
-                "",
-                classDocumentation);
-
-        try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
-            fileWriter.write(doc.read());
-        }
-
+        Document.produce(new JUnitExtensionDocumentation());
     }
 
 }

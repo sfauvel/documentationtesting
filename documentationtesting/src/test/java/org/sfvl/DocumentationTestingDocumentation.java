@@ -4,24 +4,41 @@ import org.sfvl.docformatter.FormatterDocumentation;
 import org.sfvl.doctesting.DocTestingDocumentation;
 import org.sfvl.doctesting.Document;
 import org.sfvl.doctesting.DocumentationBuilder;
-import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.PathProvider;
 import org.sfvl.doctesting.junitextension.JUnitExtensionDocumentation;
 import org.sfvl.howto.HowToDocumentation;
 import org.sfvl.howto.InstallingLibrary;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
-import java.util.Arrays;
+import java.nio.file.Paths;
+import java.util.HashSet;
+import java.util.Set;
 
-public class DocumentationTestingDocumentation extends MainDocumentation {
+public class DocumentationTestingDocumentation extends DocumentationBuilder {
+
+    /// Record all builder references as a link in documentation.
+    private Set<Class<? extends DocumentationBuilder>> buildersToGenerate = new HashSet<>();
 
     public DocumentationTestingDocumentation() {
         super("Documentation testing");
+        withLocation(Paths.get("."));
+        withStructureBuilder(DocumentationTestingDocumentation.class,
+                b -> b.getDocumentOptions(),
+                b -> b.getHeader(),
+                b -> b.getContent()
+        );
     }
 
-    @Override
-    protected String getMethodDocumentation(String packageToScan, Path docFilePath) {
+    protected String getHeader() {
+        final Path readmePath = new PathProvider().getProjectPath().resolve(Paths.get("readme.adoc"));
+        return "\n" + (readmePath.toFile().exists()
+                ? "include::../../../readme.adoc[leveloffset=+1]"
+                : "= " + getDocumentTitle()) + "\n";
+    }
 
+    private String getContent() {
         return String.join("\n",
                 "This project is composed of two main packages.",
                 "",
@@ -45,28 +62,36 @@ public class DocumentationTestingDocumentation extends MainDocumentation {
                 "* " + linkToClass(FormatterDocumentation.class, "API to transform text") + " to output format");
     }
 
-    private String linkToClass(Class<?> clazz) {
+    private String linkToClass(Class<? extends DocumentationBuilder> clazz) {
         final String name = clazz.getPackage().getName();
         return linkToClass(clazz, name);
     }
 
-    private String linkToClass(Class<?> clazz, String name) {
+    private String linkToClass(Class<? extends DocumentationBuilder> clazz, String name) {
+        buildersToGenerate.add(clazz);
         return String.format("link:%s.html[%s]\n",
                 clazz.getName().replace(".", "/"),
                 name);
     }
 
     public static void main(String... args) throws IOException {
-        for (DocumentationBuilder builder : Arrays.asList(
-                new DocTestingDocumentation(),
-                new FormatterDocumentation(),
-                new HowToDocumentation(),
-                new InstallingLibrary()
-        )) {
-            Document.produce(builder);
-        }
+        final DocumentationTestingDocumentation doc = new DocumentationTestingDocumentation();
+        new Document(doc.build()).saveAs(Paths.get("index.adoc"));
+        doc.buildLinkedFile();
+    }
 
-        new DocumentationTestingDocumentation().generate(null, "index");
+    private void buildLinkedFile() {
+        for (Class<? extends DocumentationBuilder> aClass : this.buildersToGenerate) {
+            try {
+                Document.produce(aClass.getDeclaredConstructor().newInstance());
+            } catch (IOException
+                    | InstantiationException
+                    | IllegalAccessException
+                    | InvocationTargetException
+                    | NoSuchMethodException e) {
+                throw new RuntimeException("Not able to generate " + aClass.getSimpleName(), e);
+            }
+        }
     }
 
 }
