@@ -97,8 +97,9 @@ public class DocumentationBuilder {
      * @return
      */
     public <T> DocumentationBuilder withStructureBuilder(Class<T> clazz, Function<T, String>... structure) {
-        if (!this.getClass().isAssignableFrom(clazz)) {
-            throw new RuntimeException("Wrong type");
+        if (!clazz.isAssignableFrom(this.getClass())) {
+            throw new RuntimeException(
+                    String.format("Wrong type: %s is not a super class of %s", this.getClass().getSimpleName(), clazz.getSimpleName()));
         }
         docBuilder = new DocBuilder<T>();
         Arrays.stream(structure)

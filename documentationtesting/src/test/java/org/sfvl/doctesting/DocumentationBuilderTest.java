@@ -188,7 +188,7 @@ class DocumentationBuilderTest {
                         "");
 
                 // >>>1
-                DocumentationBuilder builder = new DocumentationBuilder()
+                DocumentationBuilder builder = new SubClassOfDocumentationBuilder()
                         .withStructureBuilder(clazz,
                                 b -> b.getDocumentOptions(),
                                 b -> b.formatSomething()

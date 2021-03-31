@@ -17,5 +17,5 @@ Exception was thrown: RuntimeException:
 
 .Exception message:
 ----
-Wrong type
+Wrong type: DocumentationBuilder is not a super class of SubClassOfObject
 ----
