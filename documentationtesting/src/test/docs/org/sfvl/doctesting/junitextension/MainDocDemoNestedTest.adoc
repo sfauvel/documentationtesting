@@ -1,8 +1,0 @@
-:toc: left
-:nofooter:
-:stem:
-
-= Documentation
-
-
-include::DemoNestedTest.adoc[leveloffset=+1]

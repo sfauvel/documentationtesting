@@ -5,12 +5,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.sfvl.Person;
 import org.sfvl.doctesting.DocumentationNamer;
-import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.PathProvider;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,8 +22,7 @@ public class UsingJUnitTest {
 
     @AfterAll
     public static void end() throws IOException, NoSuchMethodException {
-
-        final Path docPath = new MainDocumentation().getDocRootPath();
+        final Path docPath = new PathProvider().getProjectPath().resolve(Paths.get("src", "test", "docs"));
         final DocumentationNamer documentationNamer = new DocumentationNamer(docPath, UsingJUnitTest.class.getMethod("checkPerson"));
 
         final Class<?> aClass = MethodHandles.lookup().lookupClass();

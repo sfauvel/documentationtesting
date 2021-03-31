@@ -10,16 +10,17 @@ import org.junit.platform.launcher.LauncherDiscoveryRequest;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
 import org.sfvl.doctesting.DocWriter;
-import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.DocumentationNamer;
 import org.sfvl.doctesting.NotIncludeToDoc;
 
 import java.io.IOException;
-import java.lang.annotation.*;
-import java.lang.reflect.Method;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.fail;
@@ -110,30 +111,10 @@ class ApprovalsExtensionTest {
                         .map(filename -> "* " + filename)
                         .collect(Collectors.joining("\n\n")));
 
-        final MainDocumentation mainDocumentation = new MainDocumentation() {
-            @Override
-            protected String getHeader() {
-                return formatter.paragraphSuite(getDocumentOptions(),
-                        "= " + documentationTitle);
-            }
-
-            @Override
-            protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
-                return super.getAnnotatedMethod(annotation, packageToScan).stream()
-                        .filter(method -> {
-                            final Class<?> enclosingClass = method.getDeclaringClass().getEnclosingClass();
-                            return DemoNestedTest.class.equals(enclosingClass);
-                        })
-                        .collect(Collectors.toSet());
-            }
-        };
-
-        final String documentationFilename = this.getClass().getPackage().getName().replace(".", "/") + "/" + "MainDoc"+ testClass.getSimpleName();
-        mainDocumentation.generate(this.getClass().getPackage().getName(), documentationFilename);
-
+        final Path documentPath = DocumentationNamer.toAsciiDocFilePath(testClass);
         write("", "", ".Document generated",
                 "----",
-                Files.lines(extension.getDocPath().resolve(Paths.get(documentationFilename + ".adoc")))
+                Files.lines(extension.getDocPath().resolve(documentPath))
                         .collect(Collectors.joining("\n"))
                         .replaceAll("\\ninclude::", "\n\\\\include::"),
                 "----");
@@ -271,6 +252,7 @@ class OnlyRunProgrammaticallyCondition implements ExecutionCondition {
     public static boolean isEnabled() {
         return RUN_TEST_PROGRAMATICALLY;
     }
+
     public static void enable() {
         RUN_TEST_PROGRAMATICALLY = true;
     }
@@ -289,7 +271,7 @@ class OnlyRunProgrammaticallyCondition implements ExecutionCondition {
     }
 }
 
-@Target({ ElementType.TYPE, ElementType.METHOD })
+@Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @ExtendWith(OnlyRunProgrammaticallyCondition.class)
 @interface OnlyRunProgrammatically {
