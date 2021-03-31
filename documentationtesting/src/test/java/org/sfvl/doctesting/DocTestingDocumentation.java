@@ -1,29 +1,27 @@
 package org.sfvl.doctesting;
 
-import org.junit.jupiter.api.Test;
-import org.reflections.Reflections;
-import org.reflections.scanners.MethodAnnotationsScanner;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class DocTestingDocumentation extends DocumentationBuilder {
-    final PathProvider pathProvider = new PathProvider();
-
-    public DocTestingDocumentation(String title) {
-        super(title);
-    }
 
     public DocTestingDocumentation() {
+        super("Document testing tool");
+        withClassesToInclude(getClassesToDocument());
+        withLocation(DocTestingDocumentation.class.getPackage());
+        withOptionAdded("source-highlighter", "rouge");
+        withOptionAdded("toclevels", "4");
+        withStructureBuilder(DocTestingDocumentation.class,
+                b -> b.getDocumentOptions(),
+                b -> String.format("= %s\n", b.documentationTitle),
+                b -> this.generalInformation(b.formatter),
+                b -> b.includeClasses(),
+                b -> this.getStyle()
+        );
     }
 
     private String getStyle() {
@@ -53,7 +51,6 @@ public class DocTestingDocumentation extends DocumentationBuilder {
         }
         return !clazz.isAnnotationPresent(NotIncludeToDoc.class)
                 && toBeInclude(clazz.getDeclaringClass());
-
     }
 
     public boolean toBeInclude(Method method) {
@@ -62,48 +59,11 @@ public class DocTestingDocumentation extends DocumentationBuilder {
     }
 
     private List<Class<?>> getClassesToDocument() {
-        final String prefix = DocumentationNamer.toPath(DocTestingDocumentation.class.getPackage()).toString();
-        Reflections reflections = new Reflections(prefix, new MethodAnnotationsScanner());
-
-        final Stream<Method> methodsAnnotatedWith = reflections.getMethodsAnnotatedWith(Test.class).stream()
-                .filter(this::toBeInclude);
-
-        return methodsAnnotatedWith
-                .map(method -> CodeExtractor.getFirstEnclosingClassBefore(method, null))
-                .distinct()
-                .sorted(Comparator.comparing(Class::getName))
-                .collect(Collectors.toList());
-    }
-
-    public void writeToFile(String document, Path docPath) throws IOException {
-        final Path fullPath = pathProvider.getProjectPath().resolve(Paths.get("src", "test", "docs")).resolve(docPath);
-        try (FileWriter file = new FileWriter(fullPath.toFile())) {
-
-            file.write(document);
-        }
-    }
-
-    public void generate() throws IOException {
-        String document = new DocTestingDocumentation("Document testing tool")
-                .withClassesToInclude(getClassesToDocument())
-                .withLocation(DocTestingDocumentation.class.getPackage())
-                .withOptionAdded("source-highlighter", "rouge")
-                .withOptionAdded("toclevels", "4")
-                .withStructureBuilder(DocTestingDocumentation.class,
-                        b -> b.getDocumentOptions(),
-                        b -> String.format("= %s\n", b.documentationTitle),
-                        b -> this.generalInformation(b.formatter),
-                        b -> b.includeClasses(),
-                        b -> this.getStyle()
-                )
-                .build();
-
-        writeToFile(document, DocumentationNamer.toPath(DocTestingDocumentation.class, "", ".adoc"));
+        return new ClassFinder().testClasses(DocTestingDocumentation.class.getPackage(),
+                this::toBeInclude);
     }
 
     public static void main(String... args) throws IOException {
-        final DocTestingDocumentation generator = new DocTestingDocumentation();
-
-        generator.generate();
+        Document.produce(new DocTestingDocumentation());
     }
 }

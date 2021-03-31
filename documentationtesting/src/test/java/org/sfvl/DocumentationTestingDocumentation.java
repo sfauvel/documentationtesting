@@ -57,9 +57,8 @@ public class DocumentationTestingDocumentation extends MainDocumentation {
     }
 
     public static void main(String... args) throws IOException {
-        new DocTestingDocumentation().generate();
-
         for (DocumentationBuilder builder : Arrays.asList(
+                new DocTestingDocumentation(),
                 new FormatterDocumentation(),
                 new HowToDocumentation(),
                 new InstallingLibrary()
