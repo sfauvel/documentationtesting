@@ -14,6 +14,7 @@ import org.sfvl.doctesting.DocumentationNamer;
 import org.sfvl.doctesting.NotIncludeToDoc;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -21,6 +22,8 @@ import java.lang.annotation.Target;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -199,7 +202,7 @@ class ApprovalsExtensionTest {
         final Path documentationPath = Paths.get("src", "test", "docs")
                 .resolve(filePath);
 
-        AtomicInteger stacktraceLineCount=new AtomicInteger(0);
+        AtomicInteger stacktraceLineCount = new AtomicInteger(0);
         Predicate<String> isStackLine = line -> line.startsWith("	at ");
         write("", "", ".Document generated (exception stack trace is truncated)",
                 "------",
@@ -236,7 +239,15 @@ class ApprovalsExtensionTest {
 //        TestPlan testPlan = launcher.discover(request);
 //        launcher.registerTestExecutionListeners(listener);
         OnlyRunProgrammaticallyCondition.enable();
-        launcher.execute(request);
+
+        final PrintStream out = System.out;
+        try {
+            System.setOut(new InterceptorStream(out));
+            launcher.execute(request);
+        } finally {
+            System.setOut(out);
+        }
+
         OnlyRunProgrammaticallyCondition.disable();
     }
 
@@ -278,6 +289,31 @@ class OnlyRunProgrammaticallyCondition implements ExecutionCondition {
         }
     }
 }
+
+class InterceptorStream extends PrintStream {
+    public final List<String> text = new ArrayList<>();
+
+    InterceptorStream(PrintStream o) {
+        super(o, true);
+    }
+
+    @Override
+    public void print(String s) {
+        text.add(s);
+    }
+
+    public void write(int b) {
+    }
+
+    public void write(byte buf[], int off, int len) {
+    }
+
+    @Override
+    public String toString() {
+        return text.stream()
+                .collect(Collectors.joining("\n"));
+    }
+};
 
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
