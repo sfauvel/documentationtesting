@@ -1,8 +1,10 @@
 package org.sfvl.demo;
 
 import org.sfvl.doctesting.DemoDocumentation;
+import org.sfvl.doctesting.Document;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class BasicDocumentation extends DemoDocumentation {
 
@@ -11,8 +13,6 @@ public class BasicDocumentation extends DemoDocumentation {
     }
 
     public static void main(String... args) throws IOException {
-        final BasicDocumentation generator = new BasicDocumentation();
-
-        generator.generate("org.sfvl");
+        new Document(BasicDocumentation.class).saveAs(Paths.get("Documentation.adoc"));
     }
 }

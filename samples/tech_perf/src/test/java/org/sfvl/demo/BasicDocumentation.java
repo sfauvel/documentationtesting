@@ -124,9 +124,7 @@ public class BasicDocumentation extends DemoDocumentation {
     }
 
     public static void main(String... args) throws IOException {
-        final BasicDocumentation generator = new BasicDocumentation();
-
-        generator.generate("org.sfvl");
+        new Document(BasicDocumentation.class).saveAs(Paths.get("Documentation.adoc"));
     }
 
     public String parseTestReport(Map<String, String> perfAttributes) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException {

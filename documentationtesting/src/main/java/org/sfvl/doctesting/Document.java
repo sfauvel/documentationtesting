@@ -2,6 +2,7 @@ package org.sfvl.doctesting;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -12,8 +13,24 @@ public class Document {
         this.content = content;
     }
 
+    public Document(DocumentationBuilder docBuilder) {
+        this(docBuilder.build());
+    }
+
+    public Document(Class<? extends DocumentationBuilder> docBuilderClass) {
+        this(createBuilderInstance(docBuilderClass).build());
+    }
+
+    public static DocumentationBuilder createBuilderInstance(Class<? extends DocumentationBuilder> docBuilderClass) {
+        try {
+            return docBuilderClass.getConstructor().newInstance();
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+            throw new RuntimeException("Exception creating builder", e);
+        }
+    }
+
     public static void produce(DocumentationBuilder docBuilder) throws IOException {
-        new Document(docBuilder.build()).saveAs(docBuilder.getClass());
+        new Document(docBuilder).saveAs(docBuilder.getClass());
     }
 
     public void saveAs(Class<?> aClass) throws IOException {

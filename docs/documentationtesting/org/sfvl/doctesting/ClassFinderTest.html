@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Failing test</title>
+<title>Class finder test</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -438,17 +438,62 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Failing test</h1>
+<h1>Class finder test</h1>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="org_sfvl_doctesting_junitextension_FailingTest_failing_test">Failing test</h2>
+<h2 id="org_sfvl_doctesting_ClassFinderTest_find_test_classes_in_a_package">Find test classes in a package</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Some information before failure.</p>
+<div class="listingblock">
+<div class="title">Source code to find classes containing tests</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">List&lt;Class&lt;?&gt;&gt; classes = new ClassFinder()
+        .testClasses(org.sfvl.doctesting.sample.SimpleClass.class.getPackage());</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Information added after failure are not in the final document.</p>
+<p>Classes found:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>org.sfvl.doctesting.sample.basic.FirstTest</p>
+</li>
+<li>
+<p>org.sfvl.doctesting.sample.basic.SecondTest</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_ClassFinderTest_find_test_classes_in_a_package_with_filter">Find test classes in a package with filter</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, all classes containing a test method are found.
+It&#8217;s possible to exclude some test methods because they are not relevant in the context.
+If all test methods of a class are excluded, then the class will not be return as a found class.</p>
+</div>
+<div class="paragraph">
+<p>Here, we exclude all method in a class with name starting by 'Second'.
+.Source code to find classes containing tests</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">List&lt;Class&lt;?&gt;&gt; classes = new ClassFinder()
+        .testClasses(org.sfvl.doctesting.sample.SimpleClass.class.getPackage(),
+            m -&gt; !m.getDeclaringClass().getSimpleName().startsWith("Second"));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Classes found:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>org.sfvl.doctesting.sample.basic.FirstTest</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

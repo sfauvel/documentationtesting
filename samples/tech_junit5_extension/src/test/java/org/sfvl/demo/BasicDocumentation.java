@@ -1,8 +1,6 @@
 package org.sfvl.demo;
 
-import org.sfvl.doctesting.ClassDocumentation;
-import org.sfvl.doctesting.DemoDocumentation;
-import org.sfvl.doctesting.DocumentationNamer;
+import org.sfvl.doctesting.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,8 +13,8 @@ public class BasicDocumentation extends DemoDocumentation {
         super("JUnit5 extension");
     }
 
-    public static void generateClassDoc(BasicDocumentation generator, Class<DemoTest> classToDocument) throws IOException {
-        final Path docRootPath = Paths.get("src", "test", "docs");
+    public static void generateClassDoc(Class<DemoTest> classToDocument) throws IOException {
+        final Path docRootPath = new PathProvider().getProjectPath().resolve(Paths.get("src", "test", "docs"));
         final ClassDocumentation classDocumentation = new ClassDocumentation();
 
         final Path path = docRootPath.resolve(DocumentationNamer.toPath(DemoTest.class, "", ".adoc"));
@@ -26,11 +24,8 @@ public class BasicDocumentation extends DemoDocumentation {
     }
 
     public static void main(String... args) throws IOException {
-        final BasicDocumentation generator = new BasicDocumentation();
-
-        generateClassDoc(generator, DemoTest.class);
-
-        generator.generate("org.sfvl");
+        generateClassDoc(DemoTest.class);
+        new Document(BasicDocumentation.class).saveAs(Paths.get("Documentation.adoc"));
     }
 
 

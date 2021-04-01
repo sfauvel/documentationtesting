@@ -1,9 +1,9 @@
 package org.sfvl;
 
 import org.sfvl.doctesting.DemoDocumentation;
+import org.sfvl.doctesting.Document;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class GameOfLifeDocumentation extends DemoDocumentation {
@@ -13,9 +13,7 @@ public class GameOfLifeDocumentation extends DemoDocumentation {
     }
 
     public static void main(String... args) throws IOException {
-        final GameOfLifeDocumentation generator = new GameOfLifeDocumentation();
-
-        generator.generate("org.sfvl");
+        new Document(GameOfLifeDocumentation.class).saveAs(Paths.get("Documentation.adoc"));
     }
 
 }

@@ -68,14 +68,9 @@ public class BasicDocumentation extends DemoDocumentation {
         return outputFile.getParent();
     }
 
-    private void generate(String s, String index) throws IOException {
-        new Document(this.build()).saveAs(Paths.get("index.adoc"));
-    }
-
     public static void main(String... args) throws IOException {
         final BasicDocumentation generator = new BasicDocumentation();
-
-        generator.generate("org.sfvl", "index");
+        new Document(generator.build()).saveAs(Paths.get("index.adoc"));
         generator.convertToHtml();
     }
 }

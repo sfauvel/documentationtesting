@@ -43,8 +43,4 @@ public class DemoDocumentation extends DocumentationBuilder {
                 "View source of project on link:{github-repo}/" + projectFolderPath.toString() + "[Github]\n\n";
     }
 
-    protected void generate(String packageToScan) throws IOException {
-        new Document(build()).saveAs(Paths.get("Documentation.adoc"));
-    }
-
 }
