@@ -26,11 +26,11 @@ public class BasicDocumentation extends DemoDocumentation {
     }
 
     private void convertToHtml() {
-        final Path outputProjectDocsPath = new PathProvider().getProjectPath().getParent().resolve(getOutputProjectPath());
+        final Path outputProjectDocsPath = new PathProvider().getProjectPath().resolve(getOutputProjectPath());
         try (Asciidoctor asciidoctor = create()) {
-            final AsciiDocDirectoryWalker files = new AsciiDocDirectoryWalker(getDocRootPath().toString());
+            final AsciiDocDirectoryWalker files = new AsciiDocDirectoryWalker(getFullDocRootPath().toString());
             for (File asciidocFile : files) {
-                if (asciidocFile.toString().endsWith(".approved.adoc")) {
+                if (asciidocFile.toString().endsWith(".adoc")) {
                     final Path outputPath = getOutputPath(outputProjectDocsPath, asciidocFile);
                     Files.createDirectories(outputPath);
                     asciidoctor.convertFile(asciidocFile,
@@ -42,6 +42,10 @@ public class BasicDocumentation extends DemoDocumentation {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private Path getFullDocRootPath() {
+        return new PathProvider().getProjectPath().resolve(getDocRootPath());
     }
 
     private Path getAbsoluteDocPath() {
@@ -59,11 +63,11 @@ public class BasicDocumentation extends DemoDocumentation {
     private Path getOutputProjectPath() {
         final Path projectPath = new PathProvider().getProjectPath();
         final Path projectFolder = projectPath.getFileName();
-        return Paths.get("docs").resolve(projectFolder);
+        return Paths.get("target", "docs").resolve(projectFolder);
     }
 
     private Path getOutputPath(Path outputPath, File asciidocFile) throws IOException {
-        final Path relativizeToRootPath = getDocRootPath().relativize(asciidocFile.toPath());
+        final Path relativizeToRootPath = getFullDocRootPath().relativize(asciidocFile.toPath());
         final Path outputFile = outputPath.resolve(relativizeToRootPath);
         return outputFile.getParent();
     }
