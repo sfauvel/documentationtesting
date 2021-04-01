@@ -13,5 +13,4 @@ View source of project on link:{github-repo}/samples/demo_fizzbuzz[Github]
 
 
 
-
 include::org/sfvl/application/fizzbuzz/FizzBuzzTest.adoc[leveloffset=+1]

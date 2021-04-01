@@ -700,7 +700,7 @@ There is no verification at compile time, but an exception is thrown when build 
 <div class="title">Usage</div>
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">final Class&lt;SubClassOfDocumentationBuilder&gt; clazz = SubClassOfDocumentationBuilder.class;
-DocumentationBuilder builder = new DocumentationBuilder()
+DocumentationBuilder builder = new SubClassOfDocumentationBuilder()
         .withStructureBuilder(clazz,
                 b -&gt; b.getDocumentOptions(),
                 b -&gt; b.formatSomething()
@@ -733,7 +733,7 @@ DocumentationBuilder builder = new DocumentationBuilder()
 <div class="listingblock">
 <div class="title">Exception message:</div>
 <div class="content">
-<pre>Wrong type</pre>
+<pre>Wrong type: DocumentationBuilder is not a super class of SubClassOfObject</pre>
 </div>
 </div>
 </div>

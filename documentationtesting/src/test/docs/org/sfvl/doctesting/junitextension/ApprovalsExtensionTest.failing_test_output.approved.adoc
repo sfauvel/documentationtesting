@@ -15,13 +15,21 @@ include::../../../../../java/org/sfvl/doctesting/junitextension/ApprovalsExtensi
 
 
 
-.Document generated
-----
-:nofooter:
+.Document generated (exception stack trace is truncated)
+------
+[#org_sfvl_doctesting_junitextension_FailingTest_failing_test]
 = Failing test
 
-\include::FailingTest.failing_test.approved.adoc[leveloffset=+1]
+Some information before failure.
+
+*Error generating documentation*
 ----
+org.opentest4j.AssertionFailedError: Problem on the test, it fails.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+
+----
+------
 
 ++++
 <style>
@@ -37,4 +45,4 @@ include::../../../../../java/org/sfvl/doctesting/junitextension/ApprovalsExtensi
 
 _final rendering_
 [.adocRendering]
-include::FailingTest.adoc[leveloffset=+1]
+include::FailingTest.failing_test.received.adoc[leveloffset=+1]

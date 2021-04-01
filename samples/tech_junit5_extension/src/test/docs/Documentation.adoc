@@ -13,5 +13,4 @@ View source of project on link:{github-repo}/samples/tech_junit5_extension[Githu
 
 
 
-
 include::org/sfvl/demo/DemoTest.adoc[leveloffset=+1]

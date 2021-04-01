@@ -1,14 +1,14 @@
 package org.sfvl.demo;
 
+import net.bytebuddy.NamingStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.reflections.Reflections;
+import org.reflections.scanners.MethodAnnotationsScanner;
 import org.sfvl.Person;
 import org.sfvl.docformatter.AsciidocFormatter;
-import org.sfvl.doctesting.ClassDocumentation;
-import org.sfvl.doctesting.DemoDocumentation;
-import org.sfvl.doctesting.DocumentationNamer;
-import org.sfvl.doctesting.PathProvider;
+import org.sfvl.doctesting.*;
 import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -20,6 +20,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -32,11 +33,15 @@ public class BasicDocumentation extends DemoDocumentation {
 
     public BasicDocumentation() {
         super("Performance");
+        withStructureBuilder(BasicDocumentation.class,
+                b -> b.getDocumentOptions(),
+                b -> b.getHeader(),
+                b -> "= " + b.getDocumentTitle(),
+                b -> b.getContent());
     }
 
-    @Override
-    protected String getDocumentationContent(String packageToScan, Path docFilePath) {
 
+    public String getContent() {
         final Map<String, String> perfAttributes = new HashMap<>();
         String lines = "";
         try {
@@ -47,7 +52,7 @@ public class BasicDocumentation extends DemoDocumentation {
 
         final String perfAttributesFileName = "perfAttributes.adoc";
 
-        try (final FileWriter fileWriter = new FileWriter(getDocRootPath().resolve(perfAttributesFileName).toFile())) {
+        try (final FileWriter fileWriter = new FileWriter(getAbsoluteDocPath().resolve(perfAttributesFileName).toFile())) {
             String attributes = perfAttributes.entrySet().stream()
                     .map(entry -> String.format(":%s: %s", entry.getKey(), entry.getValue()))
                     .collect(Collectors.joining("\n"));
@@ -72,10 +77,9 @@ public class BasicDocumentation extends DemoDocumentation {
 
         return getHeader() +
                 perfDocumentation +
-                getMethodDocumentation(packageToScan, docFilePath);
+                getMethodDocumentation(this.getClass().getPackage().getName(), null);
     }
 
-    @Override
     protected String getMethodDocumentation(String packageToScan, Path docFilePath) {
         Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
 
@@ -100,6 +104,23 @@ public class BasicDocumentation extends DemoDocumentation {
                 .collect(Collectors.joining("\n"));
 
         return testsDocumentation;
+    }
+
+    private Path getAbsoluteDocPath() {
+        return getProjectPath().resolve(getDocRootPath());
+    }
+
+    private Path getDocRootPath() {
+        return Paths.get("src", "test", "docs");
+    }
+
+    private Path getProjectPath() {
+        return new PathProvider().getProjectPath();
+    }
+
+    protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
+        Reflections reflections = new Reflections(packageToScan, new MethodAnnotationsScanner());
+        return reflections.getMethodsAnnotatedWith(annotation);
     }
 
     public static void main(String... args) throws IOException {

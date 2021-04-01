@@ -13,5 +13,4 @@ View source of project on link:{github-repo}/samples/tech_using_git_or_approvals
 
 
 
-
 include::org/sfvl/demo/DemoTest.adoc[leveloffset=+1]

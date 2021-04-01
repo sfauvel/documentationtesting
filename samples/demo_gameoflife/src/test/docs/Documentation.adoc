@@ -13,9 +13,6 @@ View source of project on link:{github-repo}/samples/demo_gameoflife[Github]
 
 
 
-
 include::org/sfvl/GameOfLifeRulesTest.adoc[leveloffset=+1]
-
-
 
 include::org/sfvl/GameOfLifeTest.adoc[leveloffset=+1]

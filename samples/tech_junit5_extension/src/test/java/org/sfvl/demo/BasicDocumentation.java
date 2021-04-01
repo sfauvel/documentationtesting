@@ -7,6 +7,7 @@ import org.sfvl.doctesting.DocumentationNamer;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class BasicDocumentation extends DemoDocumentation {
 
@@ -15,9 +16,10 @@ public class BasicDocumentation extends DemoDocumentation {
     }
 
     public static void generateClassDoc(BasicDocumentation generator, Class<DemoTest> classToDocument) throws IOException {
+        final Path docRootPath = Paths.get("src", "test", "docs");
         final ClassDocumentation classDocumentation = new ClassDocumentation();
 
-        final Path path = generator.getDocRootPath().resolve(DocumentationNamer.toPath(DemoTest.class, "", ".adoc"));
+        final Path path = docRootPath.resolve(DocumentationNamer.toPath(DemoTest.class, "", ".adoc"));
         try (FileWriter writer = new FileWriter(path.toFile())) {
             writer.write(classDocumentation.getClassDocumentation(classToDocument));
         }

@@ -5,6 +5,7 @@ import org.asciidoctor.OptionsBuilder;
 import org.asciidoctor.SafeMode;
 import org.asciidoctor.jruby.AsciiDocDirectoryWalker;
 import org.sfvl.doctesting.DemoDocumentation;
+import org.sfvl.doctesting.Document;
 import org.sfvl.doctesting.PathProvider;
 
 import java.io.File;
@@ -43,6 +44,18 @@ public class BasicDocumentation extends DemoDocumentation {
         }
     }
 
+    private Path getAbsoluteDocPath() {
+        return getProjectPath().resolve(getDocRootPath());
+    }
+
+    private Path getDocRootPath() {
+        return Paths.get("src", "test", "docs");
+    }
+
+    private Path getProjectPath() {
+        return new PathProvider().getProjectPath();
+    }
+
     private Path getOutputProjectPath() {
         final Path projectPath = new PathProvider().getProjectPath();
         final Path projectFolder = projectPath.getFileName();
@@ -53,6 +66,10 @@ public class BasicDocumentation extends DemoDocumentation {
         final Path relativizeToRootPath = getDocRootPath().relativize(asciidocFile.toPath());
         final Path outputFile = outputPath.resolve(relativizeToRootPath);
         return outputFile.getParent();
+    }
+
+    private void generate(String s, String index) throws IOException {
+        new Document(this.build()).saveAs(Paths.get("index.adoc"));
     }
 
     public static void main(String... args) throws IOException {

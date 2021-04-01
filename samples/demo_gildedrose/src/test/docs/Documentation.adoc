@@ -13,5 +13,4 @@ View source of project on link:{github-repo}/samples/demo_gildedrose[Github]
 
 
 
-
 include::fr/xebia/katas/gildedrose/InnTest.adoc[leveloffset=+1]

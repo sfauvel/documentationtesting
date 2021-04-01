@@ -1,19 +1,16 @@
 package com.adaptionsoft.games.uglytrivia;
 
+import org.sfvl.doctesting.ClassFinder;
 import org.sfvl.doctesting.DemoDocumentation;
+import org.sfvl.doctesting.Document;
+import org.sfvl.doctesting.DocumentationBuilder;
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.util.Set;
+import java.nio.file.Paths;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class TriviaDocumentation extends DemoDocumentation {
-
-    public TriviaDocumentation() {
-        this("Trivia");
-    }
 
     public TriviaDocumentation(String documentationTitle) {
         super(documentationTitle);
@@ -27,7 +24,7 @@ public class TriviaDocumentation extends DemoDocumentation {
     }
 
     @Override
-    protected String getHeader() {
+    protected String getContent() {
 
         final Game aGame = new Game();
         final String line = IntStream.range(0, 12)
@@ -36,7 +33,7 @@ public class TriviaDocumentation extends DemoDocumentation {
                 .map(category -> String.format("* [%s category]#%s#", category.toLowerCase(), category))
                 .collect(Collectors.joining("\n"));
 
-        return super.getHeader() +
+        return super.getContent() +
                 "== Legend\n\n" +
                 "=== Categories\n\nThe questions asked to the players are chosen from the following categories: \n\n" + line + "\n\n" +
                 "=== Board\n\n" +
@@ -48,28 +45,17 @@ public class TriviaDocumentation extends DemoDocumentation {
 
     public static void main(String... args) throws IOException {
         {
-            final TriviaDocumentation documentation = new TriviaDocumentation() {
-                @Override
-                protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
-                    final Set<Method> annotatedMethod = super.getAnnotatedMethod(annotation, packageToScan);
-                    return annotatedMethod.stream()
-                            .filter(m -> !m.getDeclaringClass().equals(GameSvgTest.class))
-                            .collect(Collectors.toSet());
-                }
-            };
-            documentation.generate("com.adaptionsoft.games.uglytrivia");
+            final DocumentationBuilder documentation = new TriviaDocumentation("Trivia")
+                    .withClassesToInclude(new ClassFinder().testClasses(
+                            TriviaDocumentation.class.getPackage(),
+                            m -> !m.getDeclaringClass().equals(GameSvgTest.class))
+                    );
+            new Document(documentation.build()).saveAs(Paths.get("Documentation.adoc"));
         }
         {
-            final TriviaDocumentation documentation = new TriviaDocumentation("Trivia with animation") {
-                @Override
-                protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
-                    final Set<Method> annotatedMethod = super.getAnnotatedMethod(annotation, packageToScan);
-                    return annotatedMethod.stream()
-                            .filter(m -> m.getDeclaringClass().equals(GameSvgTest.class))
-                            .collect(Collectors.toSet());
-                }
-            };
-            documentation.generate("com.adaptionsoft.games.uglytrivia", "DocumentationWithAnimation");
+            final DocumentationBuilder documentation = new TriviaDocumentation("Trivia with animation")
+                    .withClassesToInclude(GameSvgTest.class);
+            new Document(documentation.build()).saveAs(Paths.get("DocumentationWithAnimation.adoc"));
         }
 
     }

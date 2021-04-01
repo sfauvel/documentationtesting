@@ -822,6 +822,161 @@ System.out.println(text);</code></pre>
 </style>
 </div>
 <div class="sect2">
+<h3 id="_extract_part_of_code">Extract part of code</h3>
+<div class="paragraph">
+<p>We shows here some technical cases.</p>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_with_same_beginning_of_another_tag">Tag with same beginning of another tag</h4>
+<div class="paragraph">
+<p>Tag (MyCode) could be a subpart of another one (<strong>MyCode</strong>Before or <strong>MyCode</strong>After).</p>
+</div>
+<div class="listingblock">
+<div class="title">Source code with extractor tags</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">// &gt;&gt;&gt;MyCodeBefore
+String partBefore = "Part before MyCode";
+// &lt;&lt;&lt;MyCodeBefore
+
+// &gt;&gt;&gt;MyCode
+String partMyCode = "Part MyCode";
+// &lt;&lt;&lt;MyCode
+
+// &gt;&gt;&gt;MyCodeAfter
+String partAfter = "Part after MyCode";
+// &lt;&lt;&lt;MyCodeAfter</code></pre>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">Source code part MyCodeBefore extracted</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">String partBefore = "Part before MyCode";</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Source code part MyCodeAfter extracted</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">String partAfter = "Part after MyCode";</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Source code part MyCode extracted</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">String partMyCode = "Part MyCode";</code></pre>
+</div>
+</div>
+</div>
+</div>
+<style>
+#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_with_same_beginning_of_another_tag ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_beginning_with_same_outer_tag_name">Tag beginning with same outer tag name</h4>
+<div class="paragraph">
+<p>Tag inside another one can be a subpart (MyCode)  of the global one (<strong>MyCode</strong>Global) .</p>
+</div>
+<div class="listingblock">
+<div class="title">Source code with extractor tags</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">// &gt;&gt;&gt;MyCodeGlobal
+String partGlobalBefore = "Part global before MyCode";
+
+// &gt;&gt;&gt;MyCode
+String partMyCode = "Part MyCode";
+// &lt;&lt;&lt;MyCode
+
+String partGlobalAfter = "Part global after MyCode";
+// &lt;&lt;&lt;MyCodeGlobal</code></pre>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">Source code part MyCodeInside extracted</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">String partMyCode = "Part MyCode";</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Source code part MyCodeInsideAround extracted</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">String partGlobalBefore = "Part global before MyCode";
+
+// &gt;&gt;&gt;MyCode
+String partMyCode = "Part MyCode";
+// &lt;&lt;&lt;MyCode
+
+String partGlobalAfter = "Part global after MyCode";</code></pre>
+</div>
+</div>
+</div>
+</div>
+<style>
+#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_beginning_with_same_outer_tag_name ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_beginning_with_same_inner_tag_name">Tag beginning with same inner tag name</h4>
+<div class="paragraph">
+<p>Tag inside (<strong>MyCodeGlobal</strong>Inside) another one can be an extension of an outside tag (MyCodeGlobal).</p>
+</div>
+<div class="listingblock">
+<div class="title">Source code with extractor tags</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">// &gt;&gt;&gt;MyCodeGlobal
+String partGlobalBefore = "Part global before MyCode";
+
+// &gt;&gt;&gt;MyCodeGlobalInside
+String partInside = "Part MyCode";
+// &lt;&lt;&lt;MyCodeGlobalInside
+
+String partGlobalAfter = "Part global after MyCode";
+// &lt;&lt;&lt;MyCodeGlobal</code></pre>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">Source code part MyCodeEnclosed extracted</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">String partInside = "Part MyCode";</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Source code part MyCodeEnclosedInside extracted</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">String partGlobalBefore = "Part global before MyCode";
+
+// &gt;&gt;&gt;MyCodeGlobalInside
+String partInside = "Part MyCode";
+// &lt;&lt;&lt;MyCodeGlobalInside
+
+String partGlobalAfter = "Part global after MyCode";</code></pre>
+</div>
+</div>
+</div>
+</div>
+<style>
+#org_sfvl_doctesting_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_beginning_with_same_inner_tag_name ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+</div>
+</div>
+<div class="sect2">
 <h3 id="org_sfvl_doctesting_CodeExtractorTest_ExtractCode_extract_enclosing_classes">Extract enclosing classes</h3>
 <div class="paragraph">
 <p>Class list of <code>org.sfvl.doctesting.CodeExtractorTest</code> give :</p>

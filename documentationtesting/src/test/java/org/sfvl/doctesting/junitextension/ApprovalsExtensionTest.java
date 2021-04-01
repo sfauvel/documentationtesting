@@ -21,6 +21,8 @@ import java.lang.annotation.Target;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.fail;
@@ -192,15 +194,21 @@ class ApprovalsExtensionTest {
                 includeSourceWithTag(testClass.getSimpleName()),
                 "", "");
 
-        final Path generatedFilePath = Paths.get("", getClass().getPackage().getName().split("\\."));
-        final Path documentationPath = extension.getDocPath().resolve(generatedFilePath).resolve(testClass.getSimpleName() + ".adoc");
+        final String fileName = testClass.getSimpleName() + ".failing_test.received.adoc";
+        final Path filePath = DocumentationNamer.toPath(testClass.getPackage()).resolve(fileName);
+        final Path documentationPath = Paths.get("src", "test", "docs")
+                .resolve(filePath);
 
-        write("", "", ".Document generated",
-                "----",
+        AtomicInteger stacktraceLineCount=new AtomicInteger(0);
+        Predicate<String> isStackLine = line -> line.startsWith("	at ");
+        write("", "", ".Document generated (exception stack trace is truncated)",
+                "------",
                 Files.lines(documentationPath)
+                        // We truncate stack trace to avoid to have an ouput that change from on execution from another.
+                        .filter(line -> !isStackLine.test(line) || stacktraceLineCount.incrementAndGet() < 3)
                         .collect(Collectors.joining("\n"))
                         .replaceAll("\\ninclude::", "\n\\\\include::"),
-                "----");
+                "------");
 
         String style = "++++\n" +
                 "<style>\n" +
@@ -213,12 +221,12 @@ class ApprovalsExtensionTest {
                 "}\n" +
                 "</style>\n" +
                 "++++";
+
         write("", "", style, "", "_final rendering_", "[.adocRendering]",
-                "include::" + testClass.getSimpleName() + ".adoc[leveloffset=+1]"
+                "include::" + fileName + "[leveloffset=+1]"
         );
 
     }
-
 
     public void runTestClass(Class<?> testClass) {
         LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()

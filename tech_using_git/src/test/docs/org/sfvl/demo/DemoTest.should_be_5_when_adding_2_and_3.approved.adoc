@@ -1,4 +1,0 @@
-[#org_sfvl_demo_DemoTest_should_be_5_when_adding_2_and_3]
-= Adding 2 simple numbers
-
-2 + 3 = 5
