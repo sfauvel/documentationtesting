@@ -442,6 +442,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_create_a_document">Create a document</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_howto_CreateADocument_simplest_way_to_create_a_document">Simplest way to create a document</a></li>
+</ul>
+</li>
 <li><a href="#_use_your_own_style">Use your own style</a>
 <ul class="sectlevel2">
 <li><a href="#org_sfvl_howto_UseYourOwnStyle_define_a_custom_style">Define a custom style</a></li>
@@ -451,6 +456,59 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_create_a_document">Create a document</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>DocumentationBuilder provides an easy way to create a document.
+It&#8217;s useful to creates pages with a free structure in which we can select files to include.</p>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_howto_CreateADocument_simplest_way_to_create_a_document">Simplest way to create a document</h3>
+<div class="listingblock">
+<div class="title">Usage</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">DocumentationBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocumentationBuilder</span><span class="o">(</span><span class="s">"My title"</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getContent</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Text of the document"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">};</span>
+
+<span class="k">new</span> <span class="nf">Document</span><span class="o">(</span><span class="n">builder</span><span class="o">).</span><span class="na">saveAs</span><span class="o">(</span><span class="n">outputFile</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Document generated</div>
+<div class="content">
+<pre>:toc: left
+:nofooter:
+:stem:
+= My title
+Text of the document</pre>
+</div>
+</div>
+<style>
+.adocRendering {
+    padding: 1em;
+    background: #fffef7;
+    border-color: #e0e0dc;
+    -webkit-box-shadow: 0 1px 4px #e0e0dc;
+    box-shadow: 0 1px 4px #e0e0dc;
+}
+</style>
+<div class="paragraph">
+<p><em>final rendering</em></p>
+</div>
+<div class="sect3 adocRendering">
+<h4 id="_my_title">My title</h4>
+<div class="paragraph">
+<p>Text of the document</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_use_your_own_style">Use your own style</h2>
 <div class="sectionbody">

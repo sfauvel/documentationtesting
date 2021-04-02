@@ -482,7 +482,7 @@ If all test methods of a class are excluded, then the class will not be return a
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">List&lt;Class&lt;?&gt;&gt; classes = new ClassFinder()
         .testClasses(org.sfvl.doctesting.sample.SimpleClass.class.getPackage(),
-            m -&gt; !m.getDeclaringClass().getSimpleName().startsWith("Second"));</code></pre>
+                m -&gt; !m.getDeclaringClass().getSimpleName().startsWith("Second"));</code></pre>
 </div>
 </div>
 <div class="paragraph">

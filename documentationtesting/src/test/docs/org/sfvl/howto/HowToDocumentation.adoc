@@ -7,4 +7,3 @@
 include::CreateADocument.adoc[leveloffset=+1]
 
 include::UseYourOwnStyle.adoc[leveloffset=+1]
-

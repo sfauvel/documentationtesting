@@ -27,6 +27,7 @@ public class DocumentationBuilder {
         public String build(T obj) {
             return docStructure.stream()
                     .map(f -> f.apply(obj))
+                    .filter(text -> !text.isEmpty())
                     .collect(Collectors.joining("\n"));
         }
 
