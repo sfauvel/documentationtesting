@@ -8,10 +8,11 @@ import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.platform.commons.support.ModifierSupport;
-import org.sfvl.doctesting.ClassDocumentation;
-import org.sfvl.doctesting.DocWriter;
-import org.sfvl.doctesting.DocumentationNamer;
-import org.sfvl.doctesting.PathProvider;
+import org.sfvl.doctesting.utils.CodeExtractor;
+import org.sfvl.doctesting.writer.ClassDocumentation;
+import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.utils.PathProvider;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,6 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -49,7 +51,13 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
         if (isNestedClass(currentClass)) {
             return;
         }
-        final ClassDocumentation classDocumentation = new ClassDocumentation();
+        final ClassDocumentation classDocumentation = new ClassDocumentation() {
+            protected Optional<String> relatedClassDescription(Class<?> fromClass) {
+                return Optional.ofNullable(fromClass.getAnnotation(ClassToDocument.class))
+                        .map(ClassToDocument::clazz)
+                        .map(CodeExtractor::getComment);
+            }
+        };
         final String content = String.join("\n",
                 ":nofooter:",
                 classDocumentation.getClassDocumentation(currentClass)

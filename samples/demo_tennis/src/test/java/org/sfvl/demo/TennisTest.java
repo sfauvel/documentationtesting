@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.DocWriter;
+import org.sfvl.doctesting.utils.DocWriter;
 
 import java.util.ArrayList;
 import java.util.List;

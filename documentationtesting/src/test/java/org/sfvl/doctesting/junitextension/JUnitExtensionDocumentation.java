@@ -1,11 +1,9 @@
 package org.sfvl.doctesting.junitextension;
 
-import org.sfvl.doctesting.*;
+import org.sfvl.doctesting.writer.Document;
+import org.sfvl.doctesting.writer.DocumentationBuilder;
 
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class JUnitExtensionDocumentation extends DocumentationBuilder {
 

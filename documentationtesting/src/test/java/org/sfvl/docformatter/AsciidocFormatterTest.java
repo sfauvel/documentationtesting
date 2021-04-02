@@ -5,10 +5,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.doctesting.CodeExtractor;
+import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
-import org.sfvl.doctesting.DocWriter;
+import org.sfvl.doctesting.utils.DocWriter;
 
 import java.io.FileWriter;
 import java.io.IOException;

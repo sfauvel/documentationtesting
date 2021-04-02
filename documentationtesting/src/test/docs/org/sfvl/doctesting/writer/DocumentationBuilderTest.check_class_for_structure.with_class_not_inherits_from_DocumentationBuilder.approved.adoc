@@ -1,0 +1,21 @@
+[#org_sfvl_doctesting_writer_DocumentationBuilderTest_check_class_for_structure_with_class_not_inherits_from_DocumentationBuilder]
+= With class not inherits from DocumentationBuilder
+
+When the given class not inherits from a DocumentationBuilder.
+
+*SubClassOfObject* inherits from *Object*.
+
+.Usage
+[source, java, indent=0]
+----
+                final Class<SubClassOfObject> clazz = SubClassOfObject.class;
+                DocumentationBuilder builder = new DocumentationBuilder()
+                        .withStructureBuilder(clazz, b -> b.formatSomething());
+
+----
+Exception was thrown: RuntimeException: 
+
+.Exception message:
+----
+Wrong type: DocumentationBuilder is not a super class of SubClassOfObject
+----

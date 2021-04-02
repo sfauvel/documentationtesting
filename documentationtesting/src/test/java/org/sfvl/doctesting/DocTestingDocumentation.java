@@ -2,6 +2,11 @@ package org.sfvl.doctesting;
 
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.writer.Document;
+import org.sfvl.doctesting.writer.DocumentationBuilder;
+import org.sfvl.doctesting.utils.ClassFinder;
+import org.sfvl.doctesting.utils.CodeExtractor;
+import org.sfvl.doctesting.utils.DocWriter;
 
 import java.io.IOException;
 import java.lang.reflect.Method;

@@ -1,6 +1,0 @@
-[#org_sfvl_doctesting_ClassDocumentationTest_DemoNestedTest_Adding_should_be_9_when_adding_2_3_and_4]
-= Adding 3 simple numbers
-
-A nested test.
-
-2 + 3 + 4 = 9

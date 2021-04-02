@@ -1,7 +1,7 @@
 package org.sfvl;
 
-import org.sfvl.doctesting.DemoDocumentation;
-import org.sfvl.doctesting.Document;
+import org.sfvl.doctesting.demo.DemoDocumentation;
+import org.sfvl.doctesting.writer.Document;
 
 import java.io.IOException;
 import java.nio.file.Paths;

@@ -1,7 +1,7 @@
 package org.sfvl.howto;
 
-import org.sfvl.doctesting.Document;
-import org.sfvl.doctesting.DocumentationBuilder;
+import org.sfvl.doctesting.writer.Document;
+import org.sfvl.doctesting.writer.DocumentationBuilder;
 
 import java.io.IOException;
 

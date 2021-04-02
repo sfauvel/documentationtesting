@@ -5,7 +5,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.platform.commons.support.ModifierSupport;
-import org.sfvl.doctesting.*;
+import org.sfvl.doctesting.utils.*;
+import org.sfvl.doctesting.writer.ClassDocumentation;
 
 import java.io.FileWriter;
 import java.nio.file.Path;

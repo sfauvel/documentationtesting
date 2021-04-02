@@ -1,0 +1,47 @@
+[#org_sfvl_doctesting_utils_ClassesOrderTest_in_order]
+= In order
+
+We retrieve names of methods and nested classes in the same order they appear in source file.
+
+.Get declared methods and classes in order
+[source,java,indent=0]
+----
+        Class<?> testClass = MyClass.class;
+        Stream<ClassesOrder.EncapsulateDeclared> declaredInOrder
+                = new ClassesOrder().getDeclaredInOrder(testClass);
+
+----
+Only methods and classes directly under the class passed in parameter are returned.
+
+* method_1
+* MySubClassA
+* method_2
+* MySubClassB
+* method_3
+
+.Test example using
+[source,java,indent=0]
+----
+    class MyClass {
+
+        public void method_1() {
+        }
+
+        class MySubClassA {
+            public void method_A_1() {
+            }
+        }
+
+        public void method_2() {
+        }
+
+        class MySubClassB {
+            public void method_B_1() {
+            }
+        }
+
+        public void method_3() {
+        }
+    }
+----
+

@@ -1,6 +1,10 @@
 package org.sfvl.demo;
 
-import org.sfvl.doctesting.*;
+import org.sfvl.doctesting.writer.Document;
+import org.sfvl.doctesting.writer.ClassDocumentation;
+import org.sfvl.doctesting.demo.DemoDocumentation;
+import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.utils.PathProvider;
 
 import java.io.FileWriter;
 import java.io.IOException;

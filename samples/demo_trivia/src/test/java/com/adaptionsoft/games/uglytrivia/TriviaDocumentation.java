@@ -1,9 +1,9 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import org.sfvl.doctesting.ClassFinder;
-import org.sfvl.doctesting.DemoDocumentation;
-import org.sfvl.doctesting.Document;
-import org.sfvl.doctesting.DocumentationBuilder;
+import org.sfvl.doctesting.utils.ClassFinder;
+import org.sfvl.doctesting.demo.DemoDocumentation;
+import org.sfvl.doctesting.writer.Document;
+import org.sfvl.doctesting.writer.DocumentationBuilder;
 
 import java.io.IOException;
 import java.nio.file.Paths;

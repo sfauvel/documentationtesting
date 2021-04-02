@@ -4,9 +4,9 @@ import org.asciidoctor.Asciidoctor;
 import org.asciidoctor.OptionsBuilder;
 import org.asciidoctor.SafeMode;
 import org.asciidoctor.jruby.AsciiDocDirectoryWalker;
-import org.sfvl.doctesting.DemoDocumentation;
-import org.sfvl.doctesting.Document;
-import org.sfvl.doctesting.PathProvider;
+import org.sfvl.doctesting.demo.DemoDocumentation;
+import org.sfvl.doctesting.writer.Document;
+import org.sfvl.doctesting.utils.PathProvider;
 
 import java.io.File;
 import java.io.IOException;

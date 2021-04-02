@@ -1,6 +1,5 @@
 package org.sfvl.demo;
 
-import net.bytebuddy.NamingStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -8,8 +7,12 @@ import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
 import org.sfvl.Person;
 import org.sfvl.docformatter.AsciidocFormatter;
-import org.sfvl.doctesting.*;
 import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
+import org.sfvl.doctesting.writer.Document;
+import org.sfvl.doctesting.writer.ClassDocumentation;
+import org.sfvl.doctesting.demo.DemoDocumentation;
+import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.utils.PathProvider;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;

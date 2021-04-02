@@ -1,9 +1,7 @@
 package org.sfvl.docformatter;
 
-import org.sfvl.doctesting.ClassDocumentation;
-import org.sfvl.doctesting.Document;
-import org.sfvl.doctesting.DocumentationBuilder;
-import org.sfvl.doctesting.DocumentationNamer;
+import org.sfvl.doctesting.writer.Document;
+import org.sfvl.doctesting.writer.DocumentationBuilder;
 
 import java.io.IOException;
 

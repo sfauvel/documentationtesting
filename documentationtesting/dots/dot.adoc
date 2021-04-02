@@ -1,0 +1,4 @@
+[graphviz]
+----
+include::classes.dot[]
+----

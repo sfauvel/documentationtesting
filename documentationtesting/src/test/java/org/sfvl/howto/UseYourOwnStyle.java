@@ -3,8 +3,7 @@ package org.sfvl.howto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
-import org.sfvl.docformatter.SourceCodeBuilder;
-import org.sfvl.doctesting.DocWriter;
+import org.sfvl.doctesting.utils.DocWriter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 
 /**

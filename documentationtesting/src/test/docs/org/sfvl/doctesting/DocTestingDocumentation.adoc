@@ -13,25 +13,25 @@ This document describes usage of classes to create test from generated documenta
 
 * <<CodeExtractor>>: Help to extract information from code.
 
-include::ClassDocumentationTest.adoc[leveloffset=+1]
-
-include::ClassFinderTest.adoc[leveloffset=+1]
-
-include::ClassesOrderTest.adoc[leveloffset=+1]
-
-include::CodeExtractorTest.adoc[leveloffset=+1]
-
-include::DocWriterTest.adoc[leveloffset=+1]
-
-include::DocumentationBuilderTest.adoc[leveloffset=+1]
-
-include::DocumentationNamerTest.adoc[leveloffset=+1]
-
-include::MainDocumentationTest.adoc[leveloffset=+1]
-
 include::junitextension/ApprovalsExtensionTest.adoc[leveloffset=+1]
 
 include::junitextension/FindLambdaMethodTest.adoc[leveloffset=+1]
+
+include::utils/ClassFinderTest.adoc[leveloffset=+1]
+
+include::utils/ClassesOrderTest.adoc[leveloffset=+1]
+
+include::utils/CodeExtractorTest.adoc[leveloffset=+1]
+
+include::utils/DocWriterTest.adoc[leveloffset=+1]
+
+include::utils/DocumentationNamerTest.adoc[leveloffset=+1]
+
+include::writer/ClassDocumentationTest.adoc[leveloffset=+1]
+
+include::writer/DocumentationBuilderTest.adoc[leveloffset=+1]
+
+include::writer/MainDocumentationTest.adoc[leveloffset=+1]
 
 ++++
 <style>

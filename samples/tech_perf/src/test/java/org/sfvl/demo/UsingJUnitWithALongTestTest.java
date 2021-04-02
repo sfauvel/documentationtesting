@@ -4,8 +4,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.sfvl.Person;
-import org.sfvl.doctesting.DocumentationNamer;
-import org.sfvl.doctesting.PathProvider;
+import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.utils.PathProvider;
 
 import java.io.FileWriter;
 import java.io.IOException;

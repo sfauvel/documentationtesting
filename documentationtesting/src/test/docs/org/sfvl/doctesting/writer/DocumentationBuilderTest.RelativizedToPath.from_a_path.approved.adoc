@@ -1,0 +1,32 @@
+[#org_sfvl_doctesting_writer_DocumentationBuilderTest_RelativizedToPath_from_a_path]
+= From a path
+
+Path to file is relativized to the given path.
+
+.Usage
+[source, java, indent=0]
+----
+            Class[] classesToAdd = {
+                    org.sfvl.doctesting.sample.basic.FirstTest.class,
+                    org.sfvl.docformatter.AsciidocFormatterTest.class
+            };
+
+            DocumentationBuilder builder = new DocumentationBuilder("My title")
+                    .withClassesToInclude(classesToAdd)
+                    .withLocation(Paths.get("org", "sfvl", "docformatter"));
+            String document = builder.build();
+
+----
+
+.Document generated
+----
+:toc: left
+:nofooter:
+:stem:
+= My title
+
+\include::../doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
+
+\include::AsciidocFormatterTest.adoc[leveloffset=+1]
+
+----

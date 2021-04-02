@@ -2,9 +2,9 @@ package org.sfvl;
 
 import org.sfvl.docformatter.FormatterDocumentation;
 import org.sfvl.doctesting.DocTestingDocumentation;
-import org.sfvl.doctesting.Document;
-import org.sfvl.doctesting.DocumentationBuilder;
-import org.sfvl.doctesting.PathProvider;
+import org.sfvl.doctesting.writer.Document;
+import org.sfvl.doctesting.writer.DocumentationBuilder;
+import org.sfvl.doctesting.utils.PathProvider;
 import org.sfvl.doctesting.junitextension.JUnitExtensionDocumentation;
 import org.sfvl.howto.HowToDocumentation;
 import org.sfvl.howto.InstallingLibrary;

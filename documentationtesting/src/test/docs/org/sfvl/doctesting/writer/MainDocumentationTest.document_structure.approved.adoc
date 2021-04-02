@@ -1,0 +1,81 @@
+[#org_sfvl_doctesting_writer_MainDocumentationTest_document_structure]
+= Document structure
+
+Documentation is composed with the header following by each test classes documentation.
+
+A class documentation is composed with a title and a description.
+Each test method has created a file which is included  to document the class.
+
+You can overwrite methods to modify document generated.
+
+.Default document generated
+----
+:toc: left
+:nofooter:
+:stem:
+
+\include::../../../readme.adoc[leveloffset=+1]
+
+
+\include::org/sfvl/doctesting/writer/InMainDocBisTest.adoc[leveloffset=+1]
+
+
+
+\include::org/sfvl/doctesting/writer/InMainDocTest.adoc[leveloffset=+1]
+
+----
+.MainDocumentation methods overwritten
+[source, java, indent=0]
+----
+            @Override
+            protected String getHeader() {
+                return "from getHeader method";
+            }
+
+----
+.Custom document generated
+----
+from getHeader method
+
+
+\include::org/sfvl/doctesting/writer/InMainDocBisTest.adoc[leveloffset=+1]
+
+
+
+\include::org/sfvl/doctesting/writer/InMainDocTest.adoc[leveloffset=+1]
+
+----
+.Test class used to in this examples
+[source, java, indent=0]
+----
+@DisplayName("Title for the document")
+class InMainDocTest {
+    private static final DocWriter docWriter = new DocWriter();
+    @RegisterExtension
+    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+
+    @Test
+    @DisplayName("Title for this test")
+    public void testA() {
+        docWriter.write("In my *test*");
+    }
+
+    @Test
+    @DisplayName("Title for this test")
+    public void testB() {
+        docWriter.write("In my *test*");
+    }
+}
+
+class InMainDocBisTest {
+    private static final DocWriter docWriter = new DocWriter();
+    @RegisterExtension
+    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+
+    @Test
+    @DisplayName("Title for this test")
+    public void testX() {
+        docWriter.write("In my *test*");
+    }
+}
+----
