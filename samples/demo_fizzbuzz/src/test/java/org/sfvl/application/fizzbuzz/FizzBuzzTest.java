@@ -1,9 +1,11 @@
 package org.sfvl.application.fizzbuzz;
 
 import org.junit.jupiter.api.Test;
-import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 import org.sfvl.application.FizzBuzz;
+import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -63,6 +65,35 @@ public class FizzBuzzTest extends ApprovalsBase {
         callFizzBuzzWith(60);
     }
 
+    @Test
+    public void values_for_a_result() {
+        final int maxValue = 30;
+        final Map<String, List<Integer>> groupedValues = IntStream.rangeClosed(1, maxValue)
+                .mapToObj(i -> i)
+                .collect(Collectors.groupingBy(
+                        i -> {
+                            String value = FizzBuzz.get(i);
+                            return isNumeric(value) ? "Number" : value;
+                        }));
+
+        write(String.format("List of values (between & to %s) that give a specific result", maxValue),
+                "",
+                groupedValues.entrySet().stream()
+                .map(e -> String.format("* *%s*: %s", e.getKey(), e.getValue()))
+                .collect(Collectors.joining("\n")));
+    }
+
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
 
     private void callFizzBuzzWith(int value) {
         write(String.format("FizzBuzz(%d) = %s +\n ", value, FizzBuzz.get(value)));

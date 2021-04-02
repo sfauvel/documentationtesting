@@ -1,0 +1,9 @@
+[#org_sfvl_application_fizzbuzz_FizzBuzzTest_values_for_a_result]
+= Values for a result
+
+List of values (between & to 30) that give a specific result
+
+* *FizzBuzz*: [15, 30]
+* *Fizz*: [3, 6, 9, 12, 18, 21, 24, 27]
+* *Number*: [1, 2, 4, 7, 8, 11, 13, 14, 16, 17, 19, 22, 23, 26, 28, 29]
+* *Buzz*: [5, 10, 20, 25]
