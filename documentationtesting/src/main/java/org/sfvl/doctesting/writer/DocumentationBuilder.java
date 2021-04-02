@@ -14,8 +14,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * You can use this class to generate a main documentation that aggregate other documentations
- * and in particular, those generated from test classes.
+ * You can use the DocumentationBuilder class to generate a documentation.
+ * You can aggregate other documentations and in particular, those generated from test classes.
  */
 public class DocumentationBuilder {
 
@@ -67,7 +67,16 @@ public class DocumentationBuilder {
         withStructureBuilder((Class<DocumentationBuilder>)this.getClass(),
                 b -> b.getDocumentOptions(),
                 b -> "= " + b.getDocumentTitle(),
-                b -> b.includeClasses());
+                b -> b.getContent(),
+                b -> b.getFooter());
+    }
+
+    protected String getContent() {
+        return includeClasses();
+    }
+
+    protected String getFooter() {
+        return "";
     }
 
     public DocumentationBuilder withLocation(Package packageLocation) {

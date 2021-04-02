@@ -38,7 +38,8 @@ public class DocumentationTestingDocumentation extends DocumentationBuilder {
                 : "= " + getDocumentTitle()) + "\n";
     }
 
-    private String getContent() {
+    @Override
+    protected String getContent() {
         return String.join("\n",
                 "This project is composed of two main packages.",
                 "",
