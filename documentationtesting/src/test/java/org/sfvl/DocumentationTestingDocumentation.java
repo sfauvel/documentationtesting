@@ -3,6 +3,7 @@ package org.sfvl;
 import org.sfvl.docformatter.FormatterDocumentation;
 import org.sfvl.doctesting.DocTestingDocumentation;
 import org.sfvl.doctesting.writer.Document;
+import org.sfvl.doctesting.writer.DocumentProducer;
 import org.sfvl.doctesting.writer.DocumentationBuilder;
 import org.sfvl.doctesting.utils.PathProvider;
 import org.sfvl.doctesting.junitextension.JUnitExtensionDocumentation;
@@ -19,7 +20,7 @@ import java.util.Set;
 public class DocumentationTestingDocumentation extends DocumentationBuilder {
 
     /// Record all builder references as a link in documentation.
-    private Set<Class<? extends DocumentationBuilder>> buildersToGenerate = new HashSet<>();
+    private Set<Class<? extends DocumentProducer>> buildersToGenerate = new HashSet<>();
 
     public DocumentationTestingDocumentation() {
         super("Documentation testing");
@@ -63,12 +64,12 @@ public class DocumentationTestingDocumentation extends DocumentationBuilder {
                 "* " + linkToClass(FormatterDocumentation.class, "API to transform text") + " to output format");
     }
 
-    private String linkToClass(Class<? extends DocumentationBuilder> clazz) {
+    private String linkToClass(Class<? extends DocumentProducer> clazz) {
         final String name = clazz.getPackage().getName();
         return linkToClass(clazz, name);
     }
 
-    private String linkToClass(Class<? extends DocumentationBuilder> clazz, String name) {
+    private String linkToClass(Class<? extends DocumentProducer> clazz, String name) {
         buildersToGenerate.add(clazz);
         return String.format("link:%s.html[%s]\n",
                 clazz.getName().replace(".", "/"),
@@ -82,9 +83,10 @@ public class DocumentationTestingDocumentation extends DocumentationBuilder {
     }
 
     private void buildLinkedFile() {
-        for (Class<? extends DocumentationBuilder> aClass : this.buildersToGenerate) {
+        for (Class<? extends DocumentProducer> aClass : this.buildersToGenerate) {
             try {
-                Document.produce(aClass.getDeclaredConstructor().newInstance());
+                aClass.getDeclaredConstructor().newInstance().produce();
+//                Document.produce(aClass.getDeclaredConstructor().newInstance());
             } catch (IOException
                     | InstantiationException
                     | IllegalAccessException

@@ -1,32 +1,34 @@
 package org.sfvl.doctesting;
 
+import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.writer.Document;
-import org.sfvl.doctesting.writer.DocumentationBuilder;
 import org.sfvl.doctesting.utils.ClassFinder;
 import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.writer.Document;
+import org.sfvl.doctesting.writer.DocumentProducer;
+import org.sfvl.doctesting.writer.Options;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class DocTestingDocumentation extends DocumentationBuilder {
+public class DocTestingDocumentation implements DocumentProducer {
 
-    public DocTestingDocumentation() {
-        super("Document testing tool");
-        withClassesToInclude(getClassesToDocument());
-        withLocation(DocTestingDocumentation.class.getPackage());
-        withOptionAdded("source-highlighter", "rouge");
-        withOptionAdded("toclevels", "4");
-        withStructureBuilder(DocTestingDocumentation.class,
-                b -> b.getDocumentOptions(),
-                b -> String.format("= %s\n", b.documentationTitle),
-                b -> this.generalInformation(b.formatter),
-                b -> b.includeClasses(),
-                b -> this.getStyle()
-        );
+    protected final Formatter formatter = new AsciidocFormatter();
+
+    public String build() {
+        return formatter.paragraphSuite(
+                new Options(formatter).withCode(),
+                formatter.title(1, "Document testing tool"),
+                generalInformation(formatter),
+                includeClasses(),
+                getStyle()
+                );
     }
 
     private String getStyle() {
@@ -50,6 +52,25 @@ public class DocTestingDocumentation extends DocumentationBuilder {
                 "* <<" + CodeExtractor.class.getSimpleName() + ">>: Help to extract information from code.");
     }
 
+    public String includeClasses() {
+        final Path location = DocumentationNamer.toPath(DocTestingDocumentation.class.getPackage());
+        return includeClasses(location, getClassesToDocument());
+    }
+
+    private String includeClasses(Path location, List<Class<?>> classesToInclude) {
+
+        return classesToInclude.stream()
+                .map(c -> getRelativeFilePath(location, c))
+                .map(path -> formatter.include(path.toString()).trim())
+                .collect(Collectors.joining("\n\n", "\n", "\n"));
+    }
+
+    private Path getRelativeFilePath(Path docPath, Class<?> clazz) {
+        final Path classPath = DocumentationNamer.toPath(clazz, "", ".adoc");
+
+        return docPath.relativize(classPath);
+    }
+
     public boolean toBeInclude(Class<?> clazz) {
         if (clazz == null) {
             return true;
@@ -68,7 +89,13 @@ public class DocTestingDocumentation extends DocumentationBuilder {
                 this::toBeInclude);
     }
 
+    @Override
+    public void produce() throws IOException {
+        new Document(this.build()).saveAs(this.getClass());
+    }
+
     public static void main(String... args) throws IOException {
-        Document.produce(new DocTestingDocumentation());
+        final DocTestingDocumentation doc = new DocTestingDocumentation();
+        new Document(doc.build()).saveAs(doc.getClass());
     }
 }

@@ -3,7 +3,12 @@
 :stem:
 :source-highlighter: rouge
 :toclevels: 4
+
+
+
+
 = Document testing tool
+
 
 This document describes usage of classes to create test from generated documentation.
 
@@ -12,6 +17,7 @@ This document describes usage of classes to create test from generated documenta
 * <<DocWriter>>: Store document before writting it.
 
 * <<CodeExtractor>>: Help to extract information from code.
+
 
 include::junitextension/ApprovalsExtensionTest.adoc[leveloffset=+1]
 
@@ -32,6 +38,7 @@ include::writer/ClassDocumentationTest.adoc[leveloffset=+1]
 include::writer/DocumentationBuilderTest.adoc[leveloffset=+1]
 
 include::writer/MainDocumentationTest.adoc[leveloffset=+1]
+
 
 ++++
 <style>

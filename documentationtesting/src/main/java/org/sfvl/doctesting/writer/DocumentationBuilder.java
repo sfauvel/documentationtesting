@@ -4,6 +4,7 @@ import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.utils.DocumentationNamer;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -17,8 +18,13 @@ import java.util.stream.Collectors;
  * You can use the DocumentationBuilder class to generate a documentation.
  * You can aggregate other documentations and in particular, those generated from test classes.
  */
-public class DocumentationBuilder {
+public class DocumentationBuilder implements DocumentProducer{
 
+
+    @Override
+    public void produce() throws IOException {
+        new Document(this.build()).saveAs(this.getClass());
+    }
 
     static private class DocBuilder<T> {
 
@@ -116,25 +122,6 @@ public class DocumentationBuilder {
         Arrays.stream(structure)
                 .forEachOrdered(fn -> docBuilder.insert(fn));
         return this;
-    }
-
-    public static class Option {
-        final String key;
-        final String value;
-
-        public Option(String key) {
-            this(key, "");
-        }
-
-        public Option(String key, String value) {
-            this.key = key;
-            this.value = value;
-        }
-
-        public String format() {
-            return String.format(":%s: %s", key, value).trim();
-        }
-
     }
 
     public DocumentationBuilder withOptionAdded(String key, String value) {
