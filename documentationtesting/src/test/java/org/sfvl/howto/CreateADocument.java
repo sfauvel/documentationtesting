@@ -4,17 +4,18 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.utils.DocWriter;
 import org.sfvl.doctesting.utils.DocumentationNamer;
 import org.sfvl.doctesting.writer.Document;
-import org.sfvl.doctesting.writer.DocumentationBuilder;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -27,30 +28,109 @@ public class CreateADocument {
     @RegisterExtension
     static ApprovalsExtension extension = new ApprovalsExtension(doc);
 
-    private final AsciidocFormatter formatter = new AsciidocFormatter();
-
+    /**
+     * Creating a document is just writing a file.
+     * We can use a link:https://en.wikipedia.org/wiki/Markup_language[markup language] to easily writing a formatted document.
+     *
+     * @param testInfo
+     * @throws IOException
+     */
     @Test
     public void simplest_way_to_create_a_document(TestInfo testInfo) throws IOException {
 
         final Path outputFile = DocumentationNamer
                 .toPath(this.getClass().getPackage())
-                .resolve("DocumentSample.adoc");
+                .resolve("DocumentVerySample.adoc");
 
         // >>>1
-        DocumentationBuilder builder = new DocumentationBuilder("My title") {
-            @Override
-            protected String getContent() {
+        class MyDocument {
+            protected String content() {
+                return String.join("\n",
+                        "= My title",
+                        "Text of the document"
+                );
+            }
+        }
+
+        new Document(new MyDocument().content()).saveAs(outputFile);
+        // <<<1
+
+        writeDoc(testInfo, outputFile);
+    }
+
+    /**
+     * To build a document, we can reuse some code that generate a part of document.
+     * To do that, we can use a method in the same class, use another class or a lambda.
+     *
+     * @param testInfo
+     * @throws IOException
+     */
+    @Test
+    public void reuse_sub_parts_of_document(TestInfo testInfo) throws IOException {
+
+        final Path outputFile = DocumentationNamer
+                .toPath(this.getClass().getPackage())
+                .resolve("DocumentWithSubPart.adoc");
+
+        // >>>1
+        class Header {
+            private final Formatter formatter;
+
+            public Header(Formatter formatter) {
+                this.formatter = formatter;
+            }
+
+            public String content() {
+                return formatter.paragraph(
+                        ":toc: left",
+                        ":nofooter:",
+                        ":stem:"
+                );
+            }
+        }
+
+        class MyDocument {
+            private Formatter formatter = new AsciidocFormatter();
+
+            private Function<Formatter, String> title = f -> f.title(1, "My title");
+
+            private String description() {
                 return "Text of the document";
             }
-        };
 
-        new Document(builder).saveAs(outputFile);
+            protected String content() {
+                return String.join("\n",
+                        // Using another class.
+                        new Header(formatter).content(),
+                        // Using a lambda
+                        title.apply(formatter),
+                        // Using a method in the same class.
+                        description()
+                );
+            }
+        }
+
+        new Document(new MyDocument().content()).saveAs(outputFile);
         // <<<1
 
         writeDoc(testInfo, outputFile);
     }
 
     public void writeDoc(TestInfo testInfo, String content) {
+        final String view_rendering = content.replaceAll("(\n|^)=(.*)", "$1==$2");
+        writeDoc(testInfo, content, view_rendering);
+    }
+
+    public void writeDoc(TestInfo testInfo, Path file) throws IOException {
+        final String content = Files.lines(Paths.get("src", "test", "docs").resolve(file))
+                .collect(Collectors.joining("\n"));
+        final Path relativize = DocumentationNamer.toPath(this.getClass().getPackage()).relativize(file);
+        final String view_rendering = "include::" + relativize + "[leveloffset=+1]";
+
+        writeDoc(testInfo, content, view_rendering);
+    }
+
+    public void writeDoc(TestInfo testInfo, String content, String view_rendering) {
         doc.write("", ".Usage", "[source, java, indent=0]",
                 "----",
                 CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get(), "1"),
@@ -62,35 +142,6 @@ public class CreateADocument {
                 content.replaceAll("\\ninclude", "\n\\\\include"),
                 "----");
 
-        String style = "++++\n" +
-                "<style>\n" +
-                ".adocRendering {\n" +
-                "    padding: 1em;\n" +
-                "    background: #fffef7;\n" +
-                "    border-color: #e0e0dc;\n" +
-                "    -webkit-box-shadow: 0 1px 4px #e0e0dc;\n" +
-                "    box-shadow: 0 1px 4px #e0e0dc;\n" +
-                "}\n" +
-                "</style>\n" +
-                "++++";
-        doc.write("", "", style, "", "_final rendering_", "[.adocRendering]",
-                content.replaceAll("(\n|^)=(.*)", "$1==$2")
-        );
-    }
-    public void writeDoc(TestInfo testInfo, Path file) throws IOException {
-        doc.write("", ".Usage", "[source, java, indent=0]",
-                "----",
-                CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get(), "1"),
-                "----",
-                "");
-
-        doc.write("", ".Document generated",
-                "----",
-                Files.lines(Paths.get("src", "test", "docs").resolve(file))
-                        .collect(Collectors.joining("\n"))
-                        .replaceAll("\\ninclude", "\n\\\\include"),
-                "----");
-
 
         String style = "++++\n" +
                 "<style>\n" +
@@ -104,10 +155,12 @@ public class CreateADocument {
                 "</style>\n" +
                 "++++";
 
-        final Path relativize = DocumentationNamer.toPath(this.getClass().getPackage()).relativize(file);
 
-        doc.write("", "", style, "", "_final rendering_", "[.adocRendering]",
-                "include::" + relativize + "[leveloffset=+1]"
+        doc.write("", "",
+                style, "",
+                "_final rendering_",
+                "[.adocRendering]",
+                view_rendering
         );
     }
 

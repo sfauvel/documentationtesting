@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 
 @DisplayName("Create a general documentation")
 @ClassToDocument(clazz = DocumentationBuilder.class)
-class DocumentationBuilderTest {
+public class DocumentationBuilderTest {
 
     private static final DocWriter doc = new DocWriter();
     @RegisterExtension

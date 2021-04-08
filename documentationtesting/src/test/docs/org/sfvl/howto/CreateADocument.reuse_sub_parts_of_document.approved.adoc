@@ -1,0 +1,79 @@
+[#org_sfvl_howto_CreateADocument_reuse_sub_parts_of_document]
+= Reuse sub parts of document
+
+To build a document, we can reuse some code that generate a part of document.
+To do that, we can use a method in the same class, use another class or a lambda.
+
+
+.Usage
+[source, java, indent=0]
+----
+        class Header {
+            private final Formatter formatter;
+
+            public Header(Formatter formatter) {
+                this.formatter = formatter;
+            }
+
+            public String content() {
+                return formatter.paragraph(
+                        ":toc: left",
+                        ":nofooter:",
+                        ":stem:"
+                );
+            }
+        }
+
+        class MyDocument {
+            private Formatter formatter = new AsciidocFormatter();
+
+            private Function<Formatter, String> title = f -> f.title(1, "My title");
+
+            private String description() {
+                return "Text of the document";
+            }
+
+            protected String content() {
+                return String.join("\n",
+                        // Using another class.
+                        new Header(formatter).content(),
+                        // Using a lambda
+                        title.apply(formatter),
+                        // Using a method in the same class.
+                        description()
+                );
+            }
+        }
+
+        new Document(new MyDocument().content()).saveAs(outputFile);
+
+----
+
+.Document generated
+----
+:toc: left
+:nofooter:
+:stem:
+
+
+
+= My title
+
+Text of the document
+----
+
+++++
+<style>
+.adocRendering {
+    padding: 1em;
+    background: #fffef7;
+    border-color: #e0e0dc;
+    -webkit-box-shadow: 0 1px 4px #e0e0dc;
+    box-shadow: 0 1px 4px #e0e0dc;
+}
+</style>
+++++
+
+_final rendering_
+[.adocRendering]
+include::DocumentWithSubPart.adoc[leveloffset=+1]

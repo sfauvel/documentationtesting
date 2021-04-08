@@ -36,6 +36,10 @@ public class Document {
         new Document(docBuilder).saveAs(docBuilder.getClass());
     }
 
+    public String getContent() {
+        return content;
+    }
+
     public void saveAs(Class<?> aClass) throws IOException {
         saveAs(DocumentationNamer.toAsciiDocFilePath(aClass));
     }
