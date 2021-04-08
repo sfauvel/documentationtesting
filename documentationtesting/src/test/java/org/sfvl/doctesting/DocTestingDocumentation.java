@@ -7,15 +7,12 @@ import org.sfvl.doctesting.utils.ClassFinder;
 import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.utils.DocWriter;
 import org.sfvl.doctesting.utils.DocumentationNamer;
-import org.sfvl.doctesting.writer.Document;
-import org.sfvl.doctesting.writer.DocumentProducer;
-import org.sfvl.doctesting.writer.Options;
+import org.sfvl.doctesting.writer.*;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class DocTestingDocumentation implements DocumentProducer {
 
@@ -23,12 +20,19 @@ public class DocTestingDocumentation implements DocumentProducer {
 
     public String build() {
         return formatter.paragraphSuite(
-                new Options(formatter).withCode(),
+                getOptions(),
                 formatter.title(1, "Document testing tool"),
                 generalInformation(formatter),
-                includeClasses(),
+                includeClasses(formatter),
                 getStyle()
                 );
+    }
+
+    public String getOptions() {
+        return formatter.paragraph(
+                new Options(formatter).withCode().trim(),
+                new Option("toclevels", "4").format()
+        );
     }
 
     private String getStyle() {
@@ -52,23 +56,9 @@ public class DocTestingDocumentation implements DocumentProducer {
                 "* <<" + CodeExtractor.class.getSimpleName() + ">>: Help to extract information from code.");
     }
 
-    public String includeClasses() {
+    public String includeClasses(Formatter formatter) {
         final Path location = DocumentationNamer.toPath(DocTestingDocumentation.class.getPackage());
-        return includeClasses(location, getClassesToDocument());
-    }
-
-    private String includeClasses(Path location, List<Class<?>> classesToInclude) {
-
-        return classesToInclude.stream()
-                .map(c -> getRelativeFilePath(location, c))
-                .map(path -> formatter.include(path.toString()).trim())
-                .collect(Collectors.joining("\n\n", "\n", "\n"));
-    }
-
-    private Path getRelativeFilePath(Path docPath, Class<?> clazz) {
-        final Path classPath = DocumentationNamer.toPath(clazz, "", ".adoc");
-
-        return docPath.relativize(classPath);
+        return new Classes(formatter).includeClasses(location, getClassesToDocument());
     }
 
     public boolean toBeInclude(Class<?> clazz) {

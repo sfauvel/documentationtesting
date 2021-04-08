@@ -2,7 +2,13 @@
 :nofooter:
 :stem:
 :source-highlighter: rouge
+
+
+
+
 = How to
+
+
 
 include::CreateADocument.adoc[leveloffset=+1]
 

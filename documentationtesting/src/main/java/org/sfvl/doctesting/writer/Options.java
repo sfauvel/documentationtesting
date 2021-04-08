@@ -34,8 +34,7 @@ public class Options {
                 new Option("toc", "left"),
                 new Option("nofooter"),
                 new Option("stem"),
-                new Option("source-highlighter", "rouge"),
-                new Option("toclevels", "4")
+                new Option("source-highlighter", "rouge")
         ));
     }
 }
