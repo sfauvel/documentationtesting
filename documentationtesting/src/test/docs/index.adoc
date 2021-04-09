@@ -1,6 +1,10 @@
 :toc: left
 :nofooter:
 :stem:
+:source-highlighter: rouge
+
+
+
 
 include::../../../readme.adoc[leveloffset=+1]
 

@@ -1,12 +1,14 @@
 package org.sfvl;
 
+import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.FormatterDocumentation;
 import org.sfvl.doctesting.DocTestingDocumentation;
+import org.sfvl.doctesting.junitextension.JUnitExtensionDocumentation;
+import org.sfvl.doctesting.utils.PathProvider;
 import org.sfvl.doctesting.writer.Document;
 import org.sfvl.doctesting.writer.DocumentProducer;
-import org.sfvl.doctesting.writer.DocumentationBuilder;
-import org.sfvl.doctesting.utils.PathProvider;
-import org.sfvl.doctesting.junitextension.JUnitExtensionDocumentation;
+import org.sfvl.doctesting.writer.Options;
 import org.sfvl.howto.HowToDocumentation;
 import org.sfvl.howto.InstallingLibrary;
 
@@ -17,29 +19,19 @@ import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
-public class DocumentationTestingDocumentation extends DocumentationBuilder {
+public class DocumentationTestingDocumentation implements DocumentProducer {
 
+    private final Formatter formatter = new AsciidocFormatter();
     /// Record all builder references as a link in documentation.
     private Set<Class<? extends DocumentProducer>> buildersToGenerate = new HashSet<>();
-
-    public DocumentationTestingDocumentation() {
-        super("Documentation testing");
-        withLocation(Paths.get("."));
-        withStructureBuilder(DocumentationTestingDocumentation.class,
-                b -> b.getDocumentOptions(),
-                b -> b.getHeader(),
-                b -> b.getContent()
-        );
-    }
 
     protected String getHeader() {
         final Path readmePath = new PathProvider().getProjectPath().resolve(Paths.get("readme.adoc"));
         return "\n" + (readmePath.toFile().exists()
                 ? "include::../../../readme.adoc[leveloffset=+1]"
-                : "= " + getDocumentTitle()) + "\n";
+                : "= Documentation testing\n");
     }
 
-    @Override
     protected String getContent() {
         return String.join("\n",
                 "This project is composed of two main packages.",
@@ -76,17 +68,10 @@ public class DocumentationTestingDocumentation extends DocumentationBuilder {
                 name);
     }
 
-    public static void main(String... args) throws IOException {
-        final DocumentationTestingDocumentation doc = new DocumentationTestingDocumentation();
-        new Document(doc.build()).saveAs(Paths.get("index.adoc"));
-        doc.buildLinkedFile();
-    }
-
     private void buildLinkedFile() {
         for (Class<? extends DocumentProducer> aClass : this.buildersToGenerate) {
             try {
                 aClass.getDeclaredConstructor().newInstance().produce();
-//                Document.produce(aClass.getDeclaredConstructor().newInstance());
             } catch (IOException
                     | InstantiationException
                     | IllegalAccessException
@@ -95,6 +80,25 @@ public class DocumentationTestingDocumentation extends DocumentationBuilder {
                 throw new RuntimeException("Not able to generate " + aClass.getSimpleName(), e);
             }
         }
+    }
+
+    public String build() {
+        return formatter.paragraphSuite(
+                new Options(formatter).withCode(),
+                getHeader(),
+                getContent()
+        );
+
+    }
+
+    public void produce() throws IOException {
+        new Document(build()).saveAs(Paths.get("index.adoc"));
+    }
+
+    public static void main(String... args) throws IOException {
+        final DocumentationTestingDocumentation doc = new DocumentationTestingDocumentation();
+        doc.produce();
+        doc.buildLinkedFile();
     }
 
 }
