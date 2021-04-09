@@ -60,7 +60,11 @@ public class CreateADocument {
 
     /**
      * To build a document, we can reuse some code that generate a part of document.
-     * To do that, we can use a method in the same class, use another class or a lambda.
+     * To do that, we can use:
+     *
+     * * a method in the same class
+     * * use another class
+     * * a lambda
      *
      * @param testInfo
      * @throws IOException
