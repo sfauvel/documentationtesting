@@ -1,6 +1,12 @@
 :toc: left
 :nofooter:
 :stem:
+:source-highlighter: rouge
+
+
+
+
 = Installing Documentation testing
+
 
 To be written
