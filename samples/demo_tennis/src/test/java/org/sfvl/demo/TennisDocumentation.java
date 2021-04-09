@@ -12,7 +12,12 @@ public class TennisDocumentation extends DemoDocumentation {
         super("Tennis");
     }
 
+    @Override
+    public void produce() throws IOException {
+        new Document(this.build()).saveAs(Paths.get("").resolve("Documentation.adoc"));
+    }
+
     public static void main(String... args) throws IOException {
-        new Document(TennisDocumentation.class).saveAs(Paths.get("Documentation.adoc"));
+        new TennisDocumentation().produce();
     }
 }

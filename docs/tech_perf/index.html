@@ -442,9 +442,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_performance">Performance</a></li>
-<li><a href="#_performance_2">Performance</a>
-<ul class="sectlevel1">
-<li><a href="#_performance_3">Performance</a></li>
 <li><a href="#_performances">Performances</a></li>
 <li><a href="#_verify_documentation_with_approvals_library">Verify documentation with <em>Approvals</em> library.</a>
 <ul class="sectlevel2">
@@ -463,44 +460,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_using_junit_assertions_to_test">Using JUnit assertions to test.</a></li>
 </ul>
-</li>
-</ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
 <h2 id="_performance">Performance</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>We evaluate performance using different approaches.</p>
-</div>
-<div class="paragraph">
-<p>This comparison is very light and approximate.
-It&#8217;s just to give an idea of the cost to generate files and compare them.</p>
-</div>
-<div class="paragraph">
-<p>We show below time to execute different types of tests.
-First, we execute a very simple test with JUnit, Approvals and using Git.
-With Git, we execute it with option no-assert or not.
-This option, is used when we launch tests with script to check failure only at the end.</p>
-</div>
-<div class="paragraph">
-<p>We show what each test provide as output to compare a classical test to the approach based on the documentation.
-With Junit, we just display test source code.</p>
-</div>
-<div class="paragraph">
-<p>We see a factor of 7 between JUnit and Git.
-In fact, there is a time taken to build JavaProjectBuilder to be able to parse code and retrieve comments.
-This initialization finished, tests are pretty fast with a factor of 3 with JUnit.
-With Approvals, preformance is less good (but may be optimized).
-This approach is clearly slower than using Junit, but difference is not really signifiant unless there is a lot a tests.
-We execute 1000 tests in less than 1 second.</p>
-</div>
-</div>
-</div>
-<h1 id="_performance_2" class="sect0">Performance</h1>
-<div class="sect1">
-<h2 id="_performance_3">Performance</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We evaluate performance using different approaches.</p>
@@ -558,55 +522,55 @@ This step is fast, it&#8217;s just a shell script with some git commands.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Long</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndALongTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.235</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.255</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. There is only one test but it check 100 times the same case.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Long</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitWithALongTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.029</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.009</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test. There is only one test but it check 100 times the same case.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndLotOfTests_A_Test</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.314</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.332</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndLotOfTests_B_Test</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.635</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.561</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitAndLotOfTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.095</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.105</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test 1000 cases.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Many</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndManyTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.114</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.122</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100 tests are made.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Many</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitAndManyTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.015</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.01</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test 100 cases.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingApprovalsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.045</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.042</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify documentation with <em>Approvals</em> library.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitAssertingOnEachTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.175</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.194</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Check file modification with git after each test.</p></td>
 </tr>
 <tr>
@@ -618,7 +582,7 @@ This step is fast, it&#8217;s just a shell script with some git commands.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.001</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test.</p></td>
 </tr>
 </tbody>
@@ -750,25 +714,236 @@ This step is fast, it&#8217;s just a shell script with some git commands.</p>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">@Test
-public void should_give_person_information() {
-    checkPerson();
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_give_person_information</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">checkPerson</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">checkPerson</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="nc">LocalDate</span> <span class="n">now</span> <span class="o">=</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+    <span class="kd">final</span> <span class="kt">int</span> <span class="n">current_year</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="na">getYear</span><span class="o">();</span>
+    <span class="kd">final</span> <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">45</span><span class="o">;</span>
+    <span class="kd">final</span> <span class="nc">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"John"</span><span class="o">,</span> <span class="s">"Doe"</span><span class="o">,</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">current_year</span> <span class="o">-</span> <span class="n">age</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">23</span><span class="o">));</span>
+
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">age</span><span class="o">,</span> <span class="n">person</span><span class="o">.</span><span class="na">age</span><span class="o">());</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="s">"John Doe"</span><span class="o">,</span> <span class="n">person</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge .cm {
+  color: #999988;
+  font-style: italic;
 }
-
-public static void checkPerson() {
-    final LocalDate now = LocalDate.now();
-    final int current_year = now.getYear();
-    final int age = 45;
-    final Person person = new Person("John", "Doe", LocalDate.of(current_year - age, 11, 23));
-
-    assertEquals(age, person.age());
-    assertEquals("John Doe", person.toString());
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
+pre.rouge .cp {
+  color: #999999;
+  font-weight: bold;
+}
+pre.rouge .c1 {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+pre.rouge .gd {
+  color: #000000;
+  background-color: #ffdddd;
+}
+pre.rouge .ge {
+  color: #000000;
+  font-style: italic;
+}
+pre.rouge .gr {
+  color: #aa0000;
+}
+pre.rouge .gh {
+  color: #999999;
+}
+pre.rouge .gi {
+  color: #000000;
+  background-color: #ddffdd;
+}
+pre.rouge .go {
+  color: #888888;
+}
+pre.rouge .gp {
+  color: #555555;
+}
+pre.rouge .gs {
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #aaaaaa;
+}
+pre.rouge .gt {
+  color: #aa0000;
+}
+pre.rouge .kc {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kd {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kn {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kp {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kr {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kt {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .k, pre.rouge .kv {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .mf {
+  color: #009999;
+}
+pre.rouge .mh {
+  color: #009999;
+}
+pre.rouge .il {
+  color: #009999;
+}
+pre.rouge .mi {
+  color: #009999;
+}
+pre.rouge .mo {
+  color: #009999;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+  color: #009999;
+}
+pre.rouge .sb {
+  color: #d14;
+}
+pre.rouge .sc {
+  color: #d14;
+}
+pre.rouge .sd {
+  color: #d14;
+}
+pre.rouge .s2 {
+  color: #d14;
+}
+pre.rouge .se {
+  color: #d14;
+}
+pre.rouge .sh {
+  color: #d14;
+}
+pre.rouge .si {
+  color: #d14;
+}
+pre.rouge .sx {
+  color: #d14;
+}
+pre.rouge .sr {
+  color: #009926;
+}
+pre.rouge .s1 {
+  color: #d14;
+}
+pre.rouge .ss {
+  color: #990073;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
+  color: #d14;
+}
+pre.rouge .na {
+  color: #008080;
+}
+pre.rouge .bp {
+  color: #999999;
+}
+pre.rouge .nb {
+  color: #0086B3;
+}
+pre.rouge .nc {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .no {
+  color: #008080;
+}
+pre.rouge .nd {
+  color: #3c5d5d;
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #800080;
+}
+pre.rouge .ne {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nn {
+  color: #555555;
+}
+pre.rouge .nt {
+  color: #000080;
+}
+pre.rouge .vc {
+  color: #008080;
+}
+pre.rouge .vg {
+  color: #008080;
+}
+pre.rouge .vi {
+  color: #008080;
+}
+pre.rouge .nv, pre.rouge .vm {
+  color: #008080;
+}
+pre.rouge .ow {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .o {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .w {
+  color: #bbbbbb;
+}
+pre.rouge {
+  background-color: #f8f8f8;
+}
+</style>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",

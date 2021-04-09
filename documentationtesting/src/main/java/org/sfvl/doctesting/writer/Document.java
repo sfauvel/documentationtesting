@@ -16,26 +16,6 @@ public class Document {
         this.content = content;
     }
 
-    public Document(DocumentationBuilder docBuilder) {
-        this(docBuilder.build());
-    }
-
-    public Document(Class<? extends DocumentationBuilder> docBuilderClass) {
-        this(createBuilderInstance(docBuilderClass).build());
-    }
-
-    public static DocumentationBuilder createBuilderInstance(Class<? extends DocumentationBuilder> docBuilderClass) {
-        try {
-            return docBuilderClass.getConstructor().newInstance();
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
-            throw new RuntimeException("Exception creating builder", e);
-        }
-    }
-
-    public static void produce(DocumentationBuilder docBuilder) throws IOException {
-        new Document(docBuilder).saveAs(docBuilder.getClass());
-    }
-
     public String getContent() {
         return content;
     }
@@ -55,7 +35,4 @@ public class Document {
         }
     }
 
-    static Document buildFrom(DocumentationBuilder builder) {
-        return new Document(builder.build());
-    }
 }

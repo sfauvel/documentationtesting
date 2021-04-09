@@ -12,8 +12,13 @@ public class GameOfLifeDocumentation extends DemoDocumentation {
         super("Game of life");
     }
 
+    @Override
+    public void produce() throws IOException {
+        new Document(this.build()).saveAs(Paths.get("").resolve("Documentation.adoc"));
+    }
+
     public static void main(String... args) throws IOException {
-        new Document(GameOfLifeDocumentation.class).saveAs(Paths.get("Documentation.adoc"));
+        new GameOfLifeDocumentation().produce();
     }
 
 }

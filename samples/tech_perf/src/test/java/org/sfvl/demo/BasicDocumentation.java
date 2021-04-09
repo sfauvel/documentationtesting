@@ -8,11 +8,14 @@ import org.reflections.scanners.MethodAnnotationsScanner;
 import org.sfvl.Person;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
+import org.sfvl.doctesting.utils.ClassFinder;
+import org.sfvl.doctesting.writer.Classes;
 import org.sfvl.doctesting.writer.Document;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.demo.DemoDocumentation;
 import org.sfvl.doctesting.utils.DocumentationNamer;
 import org.sfvl.doctesting.utils.PathProvider;
+import org.sfvl.doctesting.writer.Options;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
@@ -33,16 +36,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class BasicDocumentation extends DemoDocumentation {
-
-    public BasicDocumentation() {
-        super("Performance");
-        withStructureBuilder(BasicDocumentation.class,
-                b -> b.getDocumentOptions(),
-                b -> b.getHeader(),
-                b -> "= " + b.getDocumentTitle(),
-                b -> b.getContent());
-    }
-
 
     public String getContent() {
         final Map<String, String> perfAttributes = new HashMap<>();
@@ -78,12 +71,11 @@ public class BasicDocumentation extends DemoDocumentation {
                 "\ninclude::" + perfAttributesFileName + "[]\n" +
                 timeFromReports;
 
-        return getHeader() +
-                perfDocumentation +
-                getMethodDocumentation(this.getClass().getPackage().getName(), null);
+        return perfDocumentation +
+                getMethodDocumentation(this.getClass().getPackage().getName());
     }
 
-    protected String getMethodDocumentation(String packageToScan, Path docFilePath) {
+    protected String getMethodDocumentation(String packageToScan) {
         Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
 
         Map<Class<?>, List<Method>> methodsByClass;
@@ -124,10 +116,6 @@ public class BasicDocumentation extends DemoDocumentation {
     protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
         Reflections reflections = new Reflections(packageToScan, new MethodAnnotationsScanner());
         return reflections.getMethodsAnnotatedWith(annotation);
-    }
-
-    public static void main(String... args) throws IOException {
-        new Document(BasicDocumentation.class).saveAs(Paths.get("Documentation.adoc"));
     }
 
     public String parseTestReport(Map<String, String> perfAttributes) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException {
@@ -178,4 +166,22 @@ public class BasicDocumentation extends DemoDocumentation {
         doc.write("* *age()*: " + person.age() + " (_if we are in " + now.getYear() + "_)\n");
         doc.write("* *toString()*: " + person.toString() + "\n");
     }
+
+    public String build() {
+        return formatter.paragraphSuite(
+                new Options(formatter).withCode(),
+                getHeader(),
+                getContent()
+        );
+    }
+
+    @Override
+    public void produce() throws IOException {
+        new Document(this.build()).saveAs(Paths.get("Documentation.adoc"));
+    }
+
+    public static void main(String... args) throws IOException {
+        new BasicDocumentation().produce();
+    }
+
 }

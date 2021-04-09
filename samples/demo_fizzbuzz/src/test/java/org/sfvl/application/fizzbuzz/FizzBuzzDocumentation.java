@@ -12,8 +12,13 @@ public class FizzBuzzDocumentation extends DemoDocumentation {
         super("FizzBuzz");
     }
 
+    @Override
+    public void produce() throws IOException {
+        new Document(this.build()).saveAs(Paths.get("").resolve("Documentation.adoc"));
+    }
+
     public static void main(String... args) throws IOException {
-        new Document(FizzBuzzDocumentation.class).saveAs(Paths.get("Documentation.adoc"));
+        new FizzBuzzDocumentation().produce();
     }
 
 }

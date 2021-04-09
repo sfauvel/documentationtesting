@@ -4,7 +4,6 @@ import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.writer.Document;
 import org.sfvl.doctesting.writer.DocumentProducer;
-import org.sfvl.doctesting.writer.DocumentationBuilder;
 import org.sfvl.doctesting.writer.Options;
 
 import java.io.IOException;

@@ -12,7 +12,12 @@ public class HeroDocumentation extends DemoDocumentation {
         super("Hero");
     }
 
+    @Override
+    public void produce() throws IOException {
+        new Document(this.build()).saveAs(Paths.get("").resolve("Documentation.adoc"));
+    }
+
     public static void main(String... args) throws IOException {
-        new Document(HeroDocumentation.class).saveAs(Paths.get("Documentation.adoc"));
+        new HeroDocumentation().produce();
     }
 }

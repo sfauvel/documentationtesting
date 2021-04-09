@@ -27,10 +27,14 @@ public class BasicDocumentation extends DemoDocumentation {
         }
     }
 
-    public static void main(String... args) throws IOException {
-        generateClassDoc(DemoTest.class);
-        new Document(BasicDocumentation.class).saveAs(Paths.get("Documentation.adoc"));
+    @Override
+    public void produce() throws IOException {
+        new Document(this.build()).saveAs(Paths.get("").resolve("Documentation.adoc"));
     }
 
+    public static void main(String... args) throws IOException {
+        generateClassDoc(DemoTest.class);
+        new BasicDocumentation().produce();
+    }
 
 }

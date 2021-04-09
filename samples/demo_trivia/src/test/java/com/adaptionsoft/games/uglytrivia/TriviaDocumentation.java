@@ -2,30 +2,22 @@ package com.adaptionsoft.games.uglytrivia;
 
 import org.sfvl.doctesting.utils.ClassFinder;
 import org.sfvl.doctesting.demo.DemoDocumentation;
+import org.sfvl.doctesting.utils.PathProvider;
+import org.sfvl.doctesting.writer.Classes;
 import org.sfvl.doctesting.writer.Document;
-import org.sfvl.doctesting.writer.DocumentationBuilder;
+import org.sfvl.doctesting.writer.Options;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class TriviaDocumentation extends DemoDocumentation {
 
-    public TriviaDocumentation(String documentationTitle) {
-        super(documentationTitle);
-    }
-
-    @Override
-    protected String getDocumentOptions() {
-        return formatter.paragraphSuite(
-                ":sectnums:\n" + super.getDocumentOptions(),
-                "= " + documentationTitle);
-    }
-
-    @Override
-    protected String getContent() {
-
+    public String getContent() {
         final Game aGame = new Game();
         final String line = IntStream.range(0, 12)
                 .mapToObj(i -> aGame.category(i))
@@ -43,20 +35,40 @@ public class TriviaDocumentation extends DemoDocumentation {
                 "\n";
     }
 
-    public static void main(String... args) throws IOException {
-        {
-            final DocumentationBuilder documentation = new TriviaDocumentation("Trivia")
-                    .withClassesToInclude(new ClassFinder().testClasses(
-                            TriviaDocumentation.class.getPackage(),
-                            m -> !m.getDeclaringClass().equals(GameSvgTest.class))
-                    );
-            new Document(documentation.build()).saveAs(Paths.get("Documentation.adoc"));
-        }
-        {
-            final DocumentationBuilder documentation = new TriviaDocumentation("Trivia with animation")
-                    .withClassesToInclude(GameSvgTest.class);
-            new Document(documentation.build()).saveAs(Paths.get("DocumentationWithAnimation.adoc"));
-        }
-
+    public String build(String title, List<Class<?>> classesToInclude) {
+        return formatter.paragraphSuite(
+                new Options(formatter).withCode(),
+                formatter.title(1, title),
+                getHeader(),
+                getContent(),
+                new Classes(formatter).includeClasses(
+                        docRootPath,
+                        classesToInclude
+                )
+        );
     }
+
+    public static List<Class<?>> getStandardClasses() {
+        return new ClassFinder().testClasses(
+                TriviaDocumentation.class.getPackage(),
+                m -> !m.getDeclaringClass().equals(GameSvgTest.class));
+    }
+
+    public static List<Class<?>> getSvgClasses() {
+        return Arrays.asList(GameSvgTest.class);
+    }
+
+    @Override
+    public void produce() throws IOException {
+        new Document(this.build("Trivia", getStandardClasses()))
+                .saveAs(Paths.get("").resolve("Documentation.adoc"));
+
+        new Document(this.build("Trivia with animation", getSvgClasses()))
+                .saveAs(Paths.get("").resolve("DocumentationWithAnimation.adoc"));
+    }
+
+    public static void main(String... args) throws IOException {
+        new TriviaDocumentation().produce();
+    }
+
 }

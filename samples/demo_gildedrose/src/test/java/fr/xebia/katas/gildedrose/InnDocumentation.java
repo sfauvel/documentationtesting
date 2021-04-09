@@ -11,8 +11,13 @@ public class InnDocumentation extends DemoDocumentation {
         super("Gilded Rose");
     }
 
+    @Override
+    public void produce() throws IOException {
+        new Document(this.build()).saveAs(Paths.get("").resolve("Documentation.adoc"));
+    }
+
     public static void main(String... args) throws IOException {
-        new Document(InnDocumentation.class).saveAs(Paths.get("Documentation.adoc"));
+        new InnDocumentation().produce();
     }
 
 }

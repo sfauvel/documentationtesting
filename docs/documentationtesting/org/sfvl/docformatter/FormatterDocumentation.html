@@ -517,7 +517,7 @@ For each method, we describe:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.standardOptions();</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">standardOptions</span><span class="o">();</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -539,7 +539,7 @@ For each method, we describe:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.tableOfContent(3);</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">tableOfContent</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -560,7 +560,7 @@ For each method, we describe:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.title(2, "Description");</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">title</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="s">"Description"</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -580,7 +580,7 @@ For each method, we describe:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.warning("Take care of that");</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">warning</span><span class="o">(</span><span class="s">"Take care of that"</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -624,9 +624,9 @@ There is no line break when text is rendered in HTML.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.paragraph("We write some sentences.",
-        "Each of them are in is own line in asciidoc text.",
-        "They are in a same paragraph at the end.");</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">paragraph</span><span class="o">(</span><span class="s">"We write some sentences."</span><span class="o">,</span>
+        <span class="s">"Each of them are in is own line in asciidoc text."</span><span class="o">,</span>
+        <span class="s">"They are in a same paragraph at the end."</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -659,8 +659,8 @@ They are in a same paragraph at the end.</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.paragraphSuite("My first paragraph.",
-        "The second paragraph with a blank line before to separate from the first one.");</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">paragraphSuite</span><span class="o">(</span><span class="s">"My first paragraph."</span><span class="o">,</span>
+        <span class="s">"The second paragraph with a blank line before to separate from the first one."</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -691,7 +691,7 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.description("Describe something.");</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">description</span><span class="o">(</span><span class="s">"Describe something."</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -717,7 +717,7 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.addDefinition("Asciidoctor", "A fast text processor &amp; publishing toolchain for converting AsciiDoc to HTML");</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">addDefinition</span><span class="o">(</span><span class="s">"Asciidoctor"</span><span class="o">,</span> <span class="s">"A fast text processor &amp; publishing toolchain for converting AsciiDoc to HTML"</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -748,7 +748,7 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.anchorLink("AnchorExample", "This is a link to anoter place");</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">anchorLink</span><span class="o">(</span><span class="s">"AnchorExample"</span><span class="o">,</span> <span class="s">"This is a link to anoter place"</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -774,7 +774,7 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.link("AnchorExample") + "You can make an anchor to here";</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">link</span><span class="o">(</span><span class="s">"AnchorExample"</span><span class="o">)</span> <span class="o">+</span> <span class="s">"You can make an anchor to here"</span><span class="o">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -800,8 +800,8 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.listItem("First")
-        + formatter.listItem("Second");</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">listItem</span><span class="o">(</span><span class="s">"First"</span><span class="o">)</span>
+        <span class="o">+</span> <span class="n">formatter</span><span class="o">.</span><span class="na">listItem</span><span class="o">(</span><span class="s">"Second"</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -835,7 +835,7 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.listItems("First", "Second", "Third");</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">listItems</span><span class="o">(</span><span class="s">"First"</span><span class="o">,</span> <span class="s">"Second"</span><span class="o">,</span> <span class="s">"Third"</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -876,7 +876,7 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.listItems();</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">listItems</span><span class="o">();</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -896,11 +896,11 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.sourceCode(
-        "public int add(int a, int b) {\n" +
-                "   int result = a + b;\n" +
-                "   return result;\n" +
-                "}");</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">sourceCode</span><span class="o">(</span>
+        <span class="s">"public int add(int a, int b) {\n"</span> <span class="o">+</span>
+                <span class="s">"   int result = a + b;\n"</span> <span class="o">+</span>
+                <span class="s">"   return result;\n"</span> <span class="o">+</span>
+                <span class="s">"}"</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -908,10 +908,10 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">public int add(int a, int b) {
-   int result = a + b;
-   return result;
-}</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+   <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
+   <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -937,10 +937,10 @@ public int add(int a, int b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.blockBuilder("====")
-        .title("Simple block")
-        .content("Into the block")
-        .build();</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">blockBuilder</span><span class="o">(</span><span class="s">"===="</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">title</span><span class="o">(</span><span class="s">"Simple block"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">content</span><span class="o">(</span><span class="s">"Into the block"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -974,16 +974,16 @@ Into the block
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.sourceCodeBuilder("groovy")
-        .title("Source code")
-        .indent(4)
-        .source(
-        "public int add(int a, int b) {\n" +
-                "   int result = a + b;\n" +
-                "   return result;\n" +
-                "}")
-        .build()
-        ;</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">sourceCodeBuilder</span><span class="o">(</span><span class="s">"groovy"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">title</span><span class="o">(</span><span class="s">"Source code"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">indent</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">source</span><span class="o">(</span>
+        <span class="s">"public int add(int a, int b) {\n"</span> <span class="o">+</span>
+                <span class="s">"   int result = a + b;\n"</span> <span class="o">+</span>
+                <span class="s">"   return result;\n"</span> <span class="o">+</span>
+                <span class="s">"}"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+        <span class="o">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -992,10 +992,10 @@ Into the block
 <div class="listingblock">
 <div class="title">Source code</div>
 <div class="content">
-<pre class="highlight"><code class="language-groovy" data-lang="groovy">    public int add(int a, int b) {
-       int result = a + b;
-       return result;
-    }</code></pre>
+<pre class="rouge highlight"><code data-lang="groovy">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+       <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
+       <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+    <span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1022,14 +1022,14 @@ public int add(int a, int b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.sourceCodeBuilder()
-        .source(
-                "public int add(int a, int b) {\n" +
-                        "   int result = a + b;\n" +
-                        "   return result;\n" +
-                        "}")
-        .build()
-;</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">sourceCodeBuilder</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">source</span><span class="o">(</span>
+                <span class="s">"public int add(int a, int b) {\n"</span> <span class="o">+</span>
+                        <span class="s">"   int result = a + b;\n"</span> <span class="o">+</span>
+                        <span class="s">"   return result;\n"</span> <span class="o">+</span>
+                        <span class="s">"}"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+<span class="o">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1037,7 +1037,7 @@ public int add(int a, int b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>public int add(int a, int b) {
+<pre class="rouge highlight"><code>public int add(int a, int b) {
    int result = a + b;
    return result;
 }</code></pre>
@@ -1066,9 +1066,9 @@ public int add(int a, int b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">final String fileToInclude = "tmp/anotherFile.adoc";
-writeAFile(fileToInclude, "Text from another file included in this one");
-output = formatter.include(fileToInclude);</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">fileToInclude</span> <span class="o">=</span> <span class="s">"tmp/anotherFile.adoc"</span><span class="o">;</span>
+<span class="n">writeAFile</span><span class="o">(</span><span class="n">fileToInclude</span><span class="o">,</span> <span class="s">"Text from another file included in this one"</span><span class="o">);</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">include</span><span class="o">(</span><span class="n">fileToInclude</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1094,11 +1094,11 @@ output = formatter.include(fileToInclude);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.table(Arrays.asList(
-        Arrays.asList("A", "B", "C"),
-        Arrays.asList("x", "y", "z"),
-        Arrays.asList("1", "2", "3")
-));</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">table</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"A"</span><span class="o">,</span> <span class="s">"B"</span><span class="o">,</span> <span class="s">"C"</span><span class="o">),</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"x"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">,</span> <span class="s">"z"</span><span class="o">),</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"1"</span><span class="o">,</span> <span class="s">"2"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">)</span>
+<span class="o">));</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1149,11 +1149,11 @@ output = formatter.include(fileToInclude);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">output = formatter.tableWithHeader(Arrays.asList(
-        Arrays.asList("A", "B", "C"),
-        Arrays.asList("x", "y", "z"),
-        Arrays.asList("1", "2", "3")
-));</code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">tableWithHeader</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"A"</span><span class="o">,</span> <span class="s">"B"</span><span class="o">,</span> <span class="s">"C"</span><span class="o">),</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"x"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">,</span> <span class="s">"z"</span><span class="o">),</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"1"</span><span class="o">,</span> <span class="s">"2"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">)</span>
+<span class="o">));</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1203,6 +1203,217 @@ output = formatter.include(fileToInclude);</code></pre>
 </div>
 </div>
 </div>
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge .cm {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cp {
+  color: #999999;
+  font-weight: bold;
+}
+pre.rouge .c1 {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+pre.rouge .gd {
+  color: #000000;
+  background-color: #ffdddd;
+}
+pre.rouge .ge {
+  color: #000000;
+  font-style: italic;
+}
+pre.rouge .gr {
+  color: #aa0000;
+}
+pre.rouge .gh {
+  color: #999999;
+}
+pre.rouge .gi {
+  color: #000000;
+  background-color: #ddffdd;
+}
+pre.rouge .go {
+  color: #888888;
+}
+pre.rouge .gp {
+  color: #555555;
+}
+pre.rouge .gs {
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #aaaaaa;
+}
+pre.rouge .gt {
+  color: #aa0000;
+}
+pre.rouge .kc {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kd {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kn {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kp {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kr {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kt {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .k, pre.rouge .kv {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .mf {
+  color: #009999;
+}
+pre.rouge .mh {
+  color: #009999;
+}
+pre.rouge .il {
+  color: #009999;
+}
+pre.rouge .mi {
+  color: #009999;
+}
+pre.rouge .mo {
+  color: #009999;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+  color: #009999;
+}
+pre.rouge .sb {
+  color: #d14;
+}
+pre.rouge .sc {
+  color: #d14;
+}
+pre.rouge .sd {
+  color: #d14;
+}
+pre.rouge .s2 {
+  color: #d14;
+}
+pre.rouge .se {
+  color: #d14;
+}
+pre.rouge .sh {
+  color: #d14;
+}
+pre.rouge .si {
+  color: #d14;
+}
+pre.rouge .sx {
+  color: #d14;
+}
+pre.rouge .sr {
+  color: #009926;
+}
+pre.rouge .s1 {
+  color: #d14;
+}
+pre.rouge .ss {
+  color: #990073;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
+  color: #d14;
+}
+pre.rouge .na {
+  color: #008080;
+}
+pre.rouge .bp {
+  color: #999999;
+}
+pre.rouge .nb {
+  color: #0086B3;
+}
+pre.rouge .nc {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .no {
+  color: #008080;
+}
+pre.rouge .nd {
+  color: #3c5d5d;
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #800080;
+}
+pre.rouge .ne {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nn {
+  color: #555555;
+}
+pre.rouge .nt {
+  color: #000080;
+}
+pre.rouge .vc {
+  color: #008080;
+}
+pre.rouge .vg {
+  color: #008080;
+}
+pre.rouge .vi {
+  color: #008080;
+}
+pre.rouge .nv, pre.rouge .vm {
+  color: #008080;
+}
+pre.rouge .ow {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .o {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .w {
+  color: #bbbbbb;
+}
+pre.rouge {
+  background-color: #f8f8f8;
+}
+</style>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",

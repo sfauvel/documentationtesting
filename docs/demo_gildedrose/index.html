@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Gilded Rose Kata</title>
+<title>Gilded Rose</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -438,16 +438,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
+<h1>Gilded Rose</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_gilded_rose_kata">Gilded Rose Kata</a>
-<ul class="sectlevel2">
-<li><a href="#_your_tasks">Your tasks</a></li>
-<li><a href="#_new_feature">New feature</a></li>
-<li><a href="#_misc_links">Misc Links</a></li>
-</ul>
-</li>
 <li><a href="#_inn_test">Inn test</a>
 <ul class="sectlevel2">
 <li><a href="#fr_xebia_katas_gildedrose_InnTest_example_of_evolution_by_item">Example of evolution by item</a></li>
@@ -457,94 +451,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="_gilded_rose_kata">Gilded Rose Kata</h2>
+<div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>Hi and welcome to team Gilded Rose. As you know, we are a small inn with a prime location in a prominent city ran by a friendly innkeeper named Allison. We also buy and sell only the finest goods. Unfortunately, our goods are constantly degrading in quality as they approach their sell by date. We have a system in place that updates our inventory for us. It was developed by a no-nonsense type named Leeroy, who has moved on to new adventures.</p>
-</div>
-<div class="sect2">
-<h3 id="_your_tasks">Your tasks</h3>
-<div class="paragraph">
-<p>Your tasks are to :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Add the new feature to our system so that we can begin selling a new category of items.</p>
-</li>
-<li>
-<p>Present the system as a web application so that we can take orders worldwide.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>First an introduction to our system:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>All items have a SellIn value which denotes the number of days we have to sell the item</p>
-</li>
-<li>
-<p>All items have a Quality value which denotes how valuable the item is</p>
-</li>
-<li>
-<p>At the end of each day our system lowers both values for every item</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Pretty simple, right? Well this is where it gets interesting:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Once the sell by date has passed, Quality degrades twice as fast</p>
-</li>
-<li>
-<p>The Quality of an item is never negative</p>
-</li>
-<li>
-<p>“Aged Brie” actually increases in Quality the older it gets</p>
-</li>
-<li>
-<p>The Quality of an item is never more than 50</p>
-</li>
-<li>
-<p>“Sulfuras”, being a legendary item, never has to be sold or decreases in Quality</p>
-</li>
-<li>
-<p>“Backstage passes”, like aged brie, increases in Quality as it’s SellIn value approaches; Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_new_feature">New feature</h3>
-<div class="paragraph">
-<p>We have recently signed a supplier of conjured items. This requires an update to our system:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>“Conjured” items degrade in Quality twice as fast as normal items</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Feel free to make any changes to the UpdateQuality method and add any new code as long as everything still works correctly. However, do not alter the Item class or Items property as those belong to the goblin in the corner who will insta-rage and one-shot you as he doesn’t believe in shared code ownership (you can make the UpdateQuality method and Items property static if you like, we’ll cover for you).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_misc_links">Misc Links</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Original Kata Code : <a href="https://github.com/NotMyself/GildedRose" class="bare">https://github.com/NotMyself/GildedRose</a></p>
-</li>
-</ul>
-</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -562,7 +470,6 @@ Learn more here <a href="https://sfauvel.github.io/documentationtesting" class="
 </div>
 <div class="paragraph">
 <p>View source of project on <a href="https://github.com/sfauvel/documentationtesting/tree/master/samples/demo_gildedrose">Github</a></p>
-</div>
 </div>
 </div>
 </div>

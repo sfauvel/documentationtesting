@@ -12,7 +12,12 @@ public class BasicDocumentation extends DemoDocumentation {
         super("Using Approvals");
     }
 
+    @Override
+    public void produce() throws IOException {
+        new Document(this.build()).saveAs(Paths.get("").resolve("Documentation.adoc"));
+    }
+
     public static void main(String... args) throws IOException {
-        new Document(BasicDocumentation.class).saveAs(Paths.get("Documentation.adoc"));
+        new BasicDocumentation().produce();
     }
 }

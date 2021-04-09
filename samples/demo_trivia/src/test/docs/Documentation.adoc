@@ -1,11 +1,17 @@
-:sectnums:
 :toc: left
 :nofooter:
 :stem:
+:source-highlighter: rouge
+
+
+
 
 = Trivia
 
+
+
 include::../../../readme.adoc[leveloffset=+1]
+
 
 NOTE: The examples shown here are generated from the source code.
 They therefore represent the behavior of the application at any times.
@@ -30,6 +36,7 @@ The questions asked to the players are chosen from the following categories:
 On the board, the current player is in bold: *Chet*, Pat +
 A player who has a penalty has his name enclosed in square brackets: [Chet] +
 The number of points is displayed behind the player's name: Chet &#x2783; +
+
 
 
 

@@ -1,12 +1,14 @@
 :toc: left
 :nofooter:
 :stem:
+:source-highlighter: rouge
+
+
+
 
 include::../../../readme.adoc[leveloffset=+1]
 
-= Performance
 
-include::../../../readme.adoc[leveloffset=+1]
 
 == Performances
 
