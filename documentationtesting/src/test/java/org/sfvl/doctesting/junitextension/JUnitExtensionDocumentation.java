@@ -1,24 +1,41 @@
 package org.sfvl.doctesting.junitextension;
 
-import org.sfvl.doctesting.writer.Document;
-import org.sfvl.doctesting.writer.DocumentationBuilder;
+import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.docformatter.Formatter;
+import org.sfvl.doctesting.utils.ClassFinder;
+import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.writer.*;
 
 import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.Arrays;
 
-public class JUnitExtensionDocumentation extends DocumentationBuilder {
+public class JUnitExtensionDocumentation implements DocumentProducer {
 
-    public JUnitExtensionDocumentation() {
-        super("Approvals extension");
-        withLocation(JUnitExtensionDocumentation.class.getPackage());
-        withClassesToInclude(ApprovalsExtensionTest.class);
-        withOptionAdded("source-highlighter", "rouge");
-        withOptionAdded("toclevels", "4");
-        withStructureBuilder(JUnitExtensionDocumentation.class,
-                b -> b.getDocumentOptions(),
-                b -> b.includeClasses());
+    private final Formatter formatter = new AsciidocFormatter();
+
+    public String getOptions() {
+        return formatter.paragraph(
+                new Options(formatter).withCode().trim(),
+                new Option("toclevels", "4").format()
+        );
     }
+
+    public String build() {
+        return formatter.paragraphSuite(
+                getOptions(),
+                new Classes(formatter).includeClasses(
+                        DocumentationNamer.toPath(getClass().getPackage()),
+                                Arrays.asList(ApprovalsExtensionTest.class))
+        );
+    }
+
+    public void produce() throws IOException {
+        new Document(build()).saveAs(getClass());
+    }
+
     public static void main(String... args) throws IOException {
-        Document.produce(new JUnitExtensionDocumentation());
+        new JUnitExtensionDocumentation().produce();
     }
 
 }
