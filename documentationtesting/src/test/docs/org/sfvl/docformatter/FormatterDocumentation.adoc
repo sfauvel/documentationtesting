@@ -1,6 +1,13 @@
 :toc: left
 :nofooter:
 :stem:
+:source-highlighter: rouge
+
+
+
+
 = Documentation
+
+
 
 include::AsciidocFormatterTest.adoc[leveloffset=+1]

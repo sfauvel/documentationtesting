@@ -85,7 +85,6 @@ public class DocTestingDocumentation implements DocumentProducer {
     }
 
     public static void main(String... args) throws IOException {
-        final DocTestingDocumentation doc = new DocTestingDocumentation();
-        new Document(doc.build()).saveAs(doc.getClass());
+        new DocTestingDocumentation().produce();
     }
 }
