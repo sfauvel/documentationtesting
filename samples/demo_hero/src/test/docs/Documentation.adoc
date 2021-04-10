@@ -6,7 +6,7 @@
 
 
 
-= Hero
+include::../../../readme.adoc[leveloffset=+1]
 
 
 NOTE: The examples shown here are generated from the source code.

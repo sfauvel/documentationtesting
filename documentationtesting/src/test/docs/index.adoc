@@ -5,7 +5,6 @@
 
 
 
-
 include::../../../readme.adoc[leveloffset=+1]
 
 This project is composed of two main packages.

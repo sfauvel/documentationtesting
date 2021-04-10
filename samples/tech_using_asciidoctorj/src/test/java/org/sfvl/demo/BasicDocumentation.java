@@ -72,9 +72,15 @@ public class BasicDocumentation extends DemoDocumentation {
         return outputFile.getParent();
     }
 
-    public static void main(String... args) throws IOException {
-        final BasicDocumentation generator = new BasicDocumentation();
-        new Document(generator.build()).saveAs(Paths.get("index.adoc"));
-        generator.convertToHtml();
+    @Override
+    public void produce() throws IOException {
+        new Document(build()).saveAs(Paths.get("index.adoc"));
+        convertToHtml();
+
     }
+
+    public static void main(String... args) throws IOException {
+        new BasicDocumentation().produce();
+    }
+
 }

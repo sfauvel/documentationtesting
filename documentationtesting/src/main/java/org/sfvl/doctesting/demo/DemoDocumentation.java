@@ -39,7 +39,7 @@ public abstract class DemoDocumentation implements DocumentProducer {
         final Path readmePath = new PathProvider().getProjectPath().resolve(Paths.get("readme.adoc"));
         return "\n" + (readmePath.toFile().exists()
                 ? "include::../../../readme.adoc[leveloffset=+1]"
-                : "= " + documentationTitle) + "\n";
+                :  formatter.title(1, documentationTitle)) + "\n";
     }
 
     public String getContent() {
@@ -55,7 +55,7 @@ public abstract class DemoDocumentation implements DocumentProducer {
     public String build() {
         return formatter.paragraphSuite(
                 new Options(formatter).withCode(),
-                formatter.title(1, documentationTitle),
+                getHeader(),
                 getContent(),
                 new Classes(formatter).includeClasses(
                         docRootPath,

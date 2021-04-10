@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+
 public class Options {
     private final Formatter formatter;
+    private final List<Option> options = new ArrayList<>();
 
     public Options(Formatter formatter) {
         this.formatter = formatter;
@@ -29,12 +31,30 @@ public class Options {
                 .collect(Collectors.toList()).toArray(new String[0]));
     }
 
+    public String build() {
+        return getDocumentOptions(options);
+    }
+
     public String withCode() {
-        return getDocumentOptions(Stream.of(
-                new Option("toc", "left"),
-                new Option("nofooter"),
-                new Option("stem"),
-                new Option("source-highlighter", "rouge")
-        ));
+        with("toc", "left");
+        with("nofooter");
+        with("stem");
+        with("source-highlighter", "rouge");
+        return build();
+    }
+
+    public org.sfvl.doctesting.writer.Options with(String key, String value) {
+        options.add(new Option(key, value));
+        return this;
+    }
+
+    public org.sfvl.doctesting.writer.Options with(String key) {
+        options.add(new Option(key));
+        return this;
+    }
+
+    public org.sfvl.doctesting.writer.Options remove(String key) {
+        options.removeIf(o -> o.key.equals(key));
+        return this;
     }
 }

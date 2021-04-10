@@ -485,13 +485,32 @@ We can use a <a href="https://en.wikipedia.org/wiki/Markup_language">markup lang
 <span class="k">new</span> <span class="nf">Document</span><span class="o">(</span><span class="k">new</span> <span class="nc">MyDocument</span><span class="o">().</span><span class="na">content</span><span class="o">()).</span><span class="na">saveAs</span><span class="o">(</span><span class="n">outputFile</span><span class="o">);</span></code></pre>
 </div>
 </div>
-<div class="listingblock">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="title">Document generated</div>
 <div class="content">
 <pre>= My title
 Text of the document</pre>
 </div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><em>final rendering</em></p>
 </div>
+<div class="sect2 adocRendering">
+<h3 id="_my_title">My title</h3>
+<div class="paragraph">
+<p>Text of the document</p>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <style>
 .adocRendering {
     padding: 1em;
@@ -501,21 +520,25 @@ Text of the document</pre>
     box-shadow: 0 1px 4px #e0e0dc;
 }
 </style>
-<div class="paragraph">
-<p><em>final rendering</em></p>
-</div>
-<div class="sect3 adocRendering">
-<h4 id="_my_title">My title</h4>
-<div class="paragraph">
-<p>Text of the document</p>
-</div>
-</div>
 </div>
 <div class="sect2">
 <h3 id="org_sfvl_howto_CreateADocument_reuse_sub_parts_of_document">Reuse sub parts of document</h3>
 <div class="paragraph">
 <p>To build a document, we can reuse some code that generate a part of document.
-To do that, we can use a method in the same class, use another class or a lambda.</p>
+To do that, we can use:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a method in the same class</p>
+</li>
+<li>
+<p>use another class</p>
+</li>
+<li>
+<p>a lambda</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="title">Usage</div>
@@ -560,7 +583,14 @@ To do that, we can use a method in the same class, use another class or a lambda
 <span class="k">new</span> <span class="nf">Document</span><span class="o">(</span><span class="k">new</span> <span class="nc">MyDocument</span><span class="o">().</span><span class="na">content</span><span class="o">()).</span><span class="na">saveAs</span><span class="o">(</span><span class="n">outputFile</span><span class="o">);</span></code></pre>
 </div>
 </div>
-<div class="listingblock">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="title">Document generated</div>
 <div class="content">
 <pre>:toc: left
@@ -573,7 +603,19 @@ To do that, we can use a method in the same class, use another class or a lambda
 
 Text of the document</pre>
 </div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><em>final rendering</em></p>
 </div>
+<div class="sect2 adocRendering">
+<h3 id="_my_title_2">My title</h3>
+<div class="paragraph">
+<p>Text of the document</p>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <style>
 .adocRendering {
     padding: 1em;
@@ -583,15 +625,6 @@ Text of the document</pre>
     box-shadow: 0 1px 4px #e0e0dc;
 }
 </style>
-<div class="paragraph">
-<p><em>final rendering</em></p>
-</div>
-<div class="sect3 adocRendering">
-<h4 id="_my_title_2">My title</h4>
-<div class="paragraph">
-<p>Text of the document</p>
-</div>
-</div>
 </div>
 </div>
 </div>
