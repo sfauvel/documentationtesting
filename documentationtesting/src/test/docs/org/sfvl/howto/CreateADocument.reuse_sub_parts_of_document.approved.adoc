@@ -2,7 +2,11 @@
 = Reuse sub parts of document
 
 To build a document, we can reuse some code that generate a part of document.
-To do that, we can use a method in the same class, use another class or a lambda.
+To do that, we can use:
+
+* a method in the same class
+* use another class
+* a lambda
 
 
 .Usage
@@ -48,8 +52,9 @@ To do that, we can use a method in the same class, use another class or a lambda
         new Document(new MyDocument().content()).saveAs(outputFile);
 
 ----
-
-.Document generated
+[cols=2]
+|====
+a|.Document generated
 ----
 :toc: left
 :nofooter:
@@ -61,7 +66,10 @@ To do that, we can use a method in the same class, use another class or a lambda
 
 Text of the document
 ----
-
+a|_final rendering_
+[.adocRendering]
+include::DocumentWithSubPart.adoc[leveloffset=+1]
+|====
 ++++
 <style>
 .adocRendering {
@@ -73,7 +81,3 @@ Text of the document
 }
 </style>
 ++++
-
-_final rendering_
-[.adocRendering]
-include::DocumentWithSubPart.adoc[leveloffset=+1]

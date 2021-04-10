@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -141,11 +142,16 @@ public class CreateADocument {
                 "----",
                 "");
 
-        doc.write("", ".Document generated",
-                "----",
-                content.replaceAll("\\ninclude", "\n\\\\include"),
-                "----");
-
+        writeColumns(
+                String.join("\n",
+                        ".Document generated",
+                        "----",
+                        content.replaceAll("\\ninclude", "\n\\\\include"),
+                        "----"),
+                String.join("\n",
+                        "_final rendering_",
+                        "[.adocRendering]",
+                        view_rendering));
 
         String style = "++++\n" +
                 "<style>\n" +
@@ -158,14 +164,16 @@ public class CreateADocument {
                 "}\n" +
                 "</style>\n" +
                 "++++";
+        doc.write("", style, "");
+    }
+
+    public void writeColumns(String... cells) {
+        doc.write(String.format("[cols=%d]", cells.length),
+                "|====",
+                Arrays.stream(cells).map(text -> String.format("a|%s", text)).collect(Collectors.joining("\n")),
+                "|====");
 
 
-        doc.write("", "",
-                style, "",
-                "_final rendering_",
-                "[.adocRendering]",
-                view_rendering
-        );
     }
 
 }

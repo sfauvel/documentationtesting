@@ -26,10 +26,7 @@ public class DocumentationTestingDocumentation implements DocumentProducer {
     private Set<Class<? extends DocumentProducer>> buildersToGenerate = new HashSet<>();
 
     protected String getHeader() {
-        final Path readmePath = new PathProvider().getProjectPath().resolve(Paths.get("readme.adoc"));
-        return "\n" + (readmePath.toFile().exists()
-                ? "include::../../../readme.adoc[leveloffset=+1]"
-                : "= Documentation testing\n");
+        return "include::../../../readme.adoc[leveloffset=+1]";
     }
 
     protected String getContent() {

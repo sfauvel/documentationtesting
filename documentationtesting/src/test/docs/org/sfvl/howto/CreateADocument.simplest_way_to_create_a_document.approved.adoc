@@ -20,13 +20,17 @@ We can use a link:https://en.wikipedia.org/wiki/Markup_language[markup language]
         new Document(new MyDocument().content()).saveAs(outputFile);
 
 ----
-
-.Document generated
+[cols=2]
+|====
+a|.Document generated
 ----
 = My title
 Text of the document
 ----
-
+a|_final rendering_
+[.adocRendering]
+include::DocumentVerySample.adoc[leveloffset=+1]
+|====
 ++++
 <style>
 .adocRendering {
@@ -38,7 +42,3 @@ Text of the document
 }
 </style>
 ++++
-
-_final rendering_
-[.adocRendering]
-include::DocumentVerySample.adoc[leveloffset=+1]
