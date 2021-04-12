@@ -27,6 +27,10 @@ function check_file_differences() {
   DEMO_RESULT=$(source ${SCRIPTS_PATH}/checkDocInFolder.sh ${DOCS_PATH})
   echo "$DEMO_RESULT"
   echo ---------------------
+  if [[ "$DEMO_RESULT" =~ "FAILURES:" ]]
+  then
+    exit 1
+  fi
 }
 
 source ${SCRIPTS_PATH}/loadWritingFunction.sh
