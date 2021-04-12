@@ -1,37 +1,13 @@
-:source-highlighter: rouge
 :toc: left
 :nofooter:
 :stem:
+:source-highlighter: rouge
+
+
+
 
 = Documentation
 
-== Asciidoctor formatter
 
-`AsciidocFormatter` provides high level methods to generate asciidoc text.
 
-Each section of this documentation explain one method of the `AsciidocFormatter`.
-For each method, we describe:
-
-- how it can be uses in code
-- what the asciidoc generated will look like at the end (except when it's not possible)
-- the asciidoc text generated
-
-include::AsciidocFormatterTest.should_format_standard_option.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_table_of_content.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_title.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_warning.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_paragraph.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_description.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_definition.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_anchorLink.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_link.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_one_list_item.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_list.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_empty_list.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_source_code.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_block.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_source_code_with_a_builder.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_source_code_with_a_minimal_builder.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_include.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_table.approved.adoc[leveloffset=+2]
-include::AsciidocFormatterTest.should_format_table_with_header.approved.adoc[leveloffset=+2]
+include::AsciidocFormatterTest.adoc[leveloffset=+1]

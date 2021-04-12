@@ -1,8 +1,15 @@
 :toc: left
 :nofooter:
 :stem:
+:source-highlighter: rouge
+
+
+
+
 
 = Game of life
+
+
 
 NOTE: The examples shown here are generated from the source code.
 They therefore represent the behavior of the application at any times.
@@ -13,16 +20,7 @@ View source of project on link:{github-repo}/samples/demo_gameoflife[Github]
 
 
 
-== Game of life rules
 
-https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+include::org/sfvl/GameOfLifeRulesTest.adoc[leveloffset=+1]
 
-include::org/sfvl/GameOfLifeRulesTest.rules.approved.adoc[leveloffset=+2]
-
-== Game of life illustrated by examples
-
-https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
-
-include::org/sfvl/GameOfLifeTest.die_when_less_than_2_neighbours.approved.adoc[leveloffset=+2]
-include::org/sfvl/GameOfLifeTest.stay_alive_when_2_neighbours.approved.adoc[leveloffset=+2]
-include::org/sfvl/GameOfLifeTest.becomes_alive_when_3_neighbours.approved.adoc[leveloffset=+2]
+include::org/sfvl/GameOfLifeTest.adoc[leveloffset=+1]

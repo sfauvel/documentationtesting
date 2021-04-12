@@ -4,26 +4,33 @@ import org.approvaltests.Approvals;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
+import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
-import org.sfvl.doctesting.DocWriter;
-import org.sfvl.doctesting.DocumentationNamer;
-import org.sfvl.doctesting.PathProvider;
+import org.junit.platform.commons.support.ModifierSupport;
+import org.sfvl.doctesting.utils.CodeExtractor;
+import org.sfvl.doctesting.writer.ClassDocumentation;
+import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.utils.PathProvider;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * JUnit5 extension that verify written document matches with approved one.
  *
  * It checks that everything written during test is identical to the approved content.
  */
-public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallback {
+public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallback, AfterAllCallback {
 
     private static final PathProvider pathBuidler = new PathProvider();
     private T docWriter;
@@ -35,10 +42,39 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
     public T getDocWriter() {
         return docWriter;
     }
+    private boolean isNestedClass(Class<?> currentClass) {
+        return !ModifierSupport.isStatic(currentClass) && currentClass.isMemberClass();
+    }
+    @Override
+    public void afterAll(ExtensionContext extensionContext) throws Exception {
+        final Class<?> currentClass = extensionContext.getTestClass().get();
+        if (isNestedClass(currentClass)) {
+            return;
+        }
+        final ClassDocumentation classDocumentation = new ClassDocumentation() {
+            protected Optional<String> relatedClassDescription(Class<?> fromClass) {
+                return Optional.ofNullable(fromClass.getAnnotation(ClassToDocument.class))
+                        .map(ClassToDocument::clazz)
+                        .map(CodeExtractor::getComment);
+            }
+        };
+        final String content = String.join("\n",
+                ":nofooter:",
+                classDocumentation.getClassDocumentation(currentClass)
+        );
+        final Path docFilePath = getDocPath().resolve(DocumentationNamer.toPath(currentClass,"", ".adoc"));
+        try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
+            fileWriter.write(content);
+        }
+    }
 
     @Override
     public void afterEach(ExtensionContext extensionContext) throws Exception {
         String content = getDocWriter().formatOutput(extensionContext.getDisplayName(), extensionContext.getTestMethod().get());
+        getDocWriter().reset();
+        content += extensionContext.getExecutionException()
+                .map(this::displayFailingReason)
+                .orElse("");
 
         final DocumentationNamer documentationNamer = new DocumentationNamer(getDocPath(), extensionContext.getTestMethod().get());
         ApprovalNamer approvalNamer = new ApprovalNamer() {
@@ -99,6 +135,18 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
                 new ApprovalTextWriter(content, "adoc"),
                 approvalNamer,
                 approvalFailureReporter);
+    }
+
+    public String displayFailingReason(Throwable e) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        e.printStackTrace(pw);
+
+        return String.join("\n",
+                "*Error generating documentation*",
+                "----",
+                sw.toString(),
+                "----");
     }
 
     /**

@@ -1,0 +1,26 @@
+[#org_sfvl_doctesting_utils_DocWriterTest_doc_writer_usage]
+= DocWriter usage
+
+DocWriter is just a buffer.
+Everything wrote in DocWriter will be returned when asking for output.
+A title is add to the output.
+
+.DocWriter usage
+        final DocWriter doc = new DocWriter();
+        doc.write("Some text added to show DocWriter output.");
+        final String output = doc.formatOutput(
+                "My title",
+                getClass().getMethod("method_demo", TestInfo.class)
+        );
+
+
+
+Output provided
+****
+[#org_sfvl_doctesting_utils_DocWriterTest_method_demo]
+= My title
+
+This method shows what kind of output is provided.
+
+Some text added to show DocWriter output.
+****

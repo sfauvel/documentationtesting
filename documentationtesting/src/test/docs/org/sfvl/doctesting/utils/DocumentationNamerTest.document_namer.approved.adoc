@@ -1,0 +1,22 @@
+[#org_sfvl_doctesting_utils_DocumentationNamerTest_document_namer]
+= Document namer
+
+DocumentNamer build names and paths from a method.
+
+.DocumentNamer usage
+        final DocumentationNamer namer = new DocumentationNamer(Paths.get("src", "test", "docs"), testInfo);
+
+
+[%header]
+|====
+| Code | Result 
+a| `namer.getApprovalName()` | DocumentationNamerTest.document_namer
+a| `namer.getApprovalFileName()` | DocumentationNamerTest.document_namer.approved.adoc
+a| `namer.getSourceFilePath()` | src/test/docs/org/sfvl/doctesting/utils/
+a| `namer.getFilePath()` | src/test/docs/org/sfvl/doctesting/utils/DocumentationNamerTest.document_namer.approved.adoc
+a| `namer.getApprovedPath(Paths.get("src", "test", "docs", "org"))` | sfvl/doctesting/utils/DocumentationNamerTest.document_namer.approved.adoc
+a| `DocumentationNamer.toPath(DocumentationNamerTest.class)` | org/sfvl/doctesting/utils/DocumentationNamerTest
+a| `DocumentationNamer.toPath(DocumentationNamerTest.class.getPackage())` | org/sfvl/doctesting/utils
+a| `DocumentationNamer.toPath(DocumentationNamerTest.class, "prefix_", ".suffix")` | org/sfvl/doctesting/utils/prefix_DocumentationNamerTest.suffix
+a| `DocumentationNamer.toAsciiDocFilePath(DocumentationNamerTest.class)` | org/sfvl/doctesting/utils/DocumentationNamerTest.adoc
+|====

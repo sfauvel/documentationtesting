@@ -1,4 +1,0 @@
-[#org_sfvl_doctesting_InMainDocBisTest_testX]
-= Title for this test
-
-In my *test*

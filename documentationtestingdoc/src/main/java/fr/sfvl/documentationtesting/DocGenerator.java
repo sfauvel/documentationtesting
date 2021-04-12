@@ -68,8 +68,8 @@ public class DocGenerator {
         Files.createDirectories(docPath);
 
         generateDocFile(docName, doc);
-        generateDocFile("demo_list.adoc", "\n= Documentation produced\n\n" + demos);
-        generateDocFile("tech_list.adoc", "\n= Technical alternatives\n\n" + demos_tech);
+        generateDocFile("demo_list.adoc", "\n:nofooter:\n= Documentation produced\n\n" + demos);
+        generateDocFile("tech_list.adoc", "\n:nofooter:\n= Technical alternatives\n\n" + demos_tech);
 
     }
 

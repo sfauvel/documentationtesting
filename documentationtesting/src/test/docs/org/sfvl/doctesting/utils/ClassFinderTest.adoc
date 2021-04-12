@@ -1,0 +1,6 @@
+:nofooter:
+= Class finder test
+
+include::ClassFinderTest.find_test_classes_in_a_package.approved.adoc[leveloffset=+1]
+
+include::ClassFinderTest.find_test_classes_in_a_package_with_filter.approved.adoc[leveloffset=+1]

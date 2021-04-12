@@ -1,0 +1,10 @@
+:nofooter:
+= DocWriter
+
+include::DocWriterTest.doc_writer_usage.approved.adoc[leveloffset=+1]
+
+include::DocWriterTest.format_title.approved.adoc[leveloffset=+1]
+
+include::DocWriterTest.add_description_using_comment.approved.adoc[leveloffset=+1]
+
+include::DocWriterTest.title.approved.adoc[leveloffset=+1]

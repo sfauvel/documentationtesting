@@ -1,11 +1,21 @@
 package org.sfvl.demo;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.reflections.Reflections;
+import org.reflections.scanners.MethodAnnotationsScanner;
 import org.sfvl.Person;
-import org.sfvl.doctesting.DemoDocumentation;
-import org.sfvl.doctesting.PathProvider;
+import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
+import org.sfvl.doctesting.utils.ClassFinder;
+import org.sfvl.doctesting.writer.Classes;
+import org.sfvl.doctesting.writer.Document;
+import org.sfvl.doctesting.writer.ClassDocumentation;
+import org.sfvl.doctesting.demo.DemoDocumentation;
+import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.utils.PathProvider;
+import org.sfvl.doctesting.writer.Options;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
@@ -16,6 +26,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -26,13 +37,7 @@ import java.util.stream.Stream;
 
 public class BasicDocumentation extends DemoDocumentation {
 
-    public BasicDocumentation() {
-        super("Performance");
-    }
-
-    @Override
-    protected String getDocumentationContent(String packageToScan, Path docFilePath) {
-
+    public String getContent() {
         final Map<String, String> perfAttributes = new HashMap<>();
         String lines = "";
         try {
@@ -43,7 +48,7 @@ public class BasicDocumentation extends DemoDocumentation {
 
         final String perfAttributesFileName = "perfAttributes.adoc";
 
-        try (final FileWriter fileWriter = new FileWriter(getDocRootPath().resolve(perfAttributesFileName).toFile())) {
+        try (final FileWriter fileWriter = new FileWriter(getAbsoluteDocPath().resolve(perfAttributesFileName).toFile())) {
             String attributes = perfAttributes.entrySet().stream()
                     .map(entry -> String.format(":%s: %s", entry.getKey(), entry.getValue()))
                     .collect(Collectors.joining("\n"));
@@ -66,13 +71,11 @@ public class BasicDocumentation extends DemoDocumentation {
                 "\ninclude::" + perfAttributesFileName + "[]\n" +
                 timeFromReports;
 
-        return getHeader() +
-                perfDocumentation +
-                getMethodDocumentation(packageToScan, docFilePath);
+        return perfDocumentation +
+                getMethodDocumentation(this.getClass().getPackage().getName());
     }
 
-    @Override
-    protected String getMethodDocumentation(String packageToScan, Path docFilePath) {
+    protected String getMethodDocumentation(String packageToScan) {
         Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
 
         Map<Class<?>, List<Method>> methodsByClass;
@@ -85,22 +88,34 @@ public class BasicDocumentation extends DemoDocumentation {
         }
         String testsDocumentation = methodsByClass.entrySet().stream()
                 .sorted(Comparator.comparing(e -> e.getKey().getSimpleName()))
-                .map(e -> "== "
-                        + getTestClassTitle(e)
-                        + "\n" + getComment(e.getKey())
-                        + "\n\n"
-                        + includeMethods(e.getValue(), docFilePath)
-                        + "\n\n"
-                )
+                .map(e -> {
+                    return new ClassDocumentation(new AsciidocFormatter(),
+                            m -> new DocumentationNamer(getDocRootPath(), m)
+                                    .getApprovedPath(getDocRootPath()),
+                            m -> e.getValue().contains(m),
+                            c -> c.isAnnotationPresent(Nested.class)
+                    ).getClassDocumentation(e.getKey(), 2);
+                })
                 .collect(Collectors.joining("\n"));
 
         return testsDocumentation;
     }
 
-    public static void main(String... args) throws IOException {
-        final BasicDocumentation generator = new BasicDocumentation();
+    private Path getAbsoluteDocPath() {
+        return getProjectPath().resolve(getDocRootPath());
+    }
 
-        generator.generate("org.sfvl");
+    private Path getDocRootPath() {
+        return Paths.get("src", "test", "docs");
+    }
+
+    private Path getProjectPath() {
+        return new PathProvider().getProjectPath();
+    }
+
+    protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
+        Reflections reflections = new Reflections(packageToScan, new MethodAnnotationsScanner());
+        return reflections.getMethodsAnnotatedWith(annotation);
     }
 
     public String parseTestReport(Map<String, String> perfAttributes) throws ParserConfigurationException, SAXException, IOException, ClassNotFoundException {
@@ -151,4 +166,22 @@ public class BasicDocumentation extends DemoDocumentation {
         doc.write("* *age()*: " + person.age() + " (_if we are in " + now.getYear() + "_)\n");
         doc.write("* *toString()*: " + person.toString() + "\n");
     }
+
+    public String build() {
+        return formatter.paragraphSuite(
+                new Options(formatter).withCode(),
+                getHeader(),
+                getContent()
+        );
+    }
+
+    @Override
+    public void produce() throws IOException {
+        new Document(this.build()).saveAs(Paths.get("Documentation.adoc"));
+    }
+
+    public static void main(String... args) throws IOException {
+        new BasicDocumentation().produce();
+    }
+
 }

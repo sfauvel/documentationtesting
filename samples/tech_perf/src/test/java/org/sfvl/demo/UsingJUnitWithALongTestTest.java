@@ -4,13 +4,14 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.sfvl.Person;
-import org.sfvl.doctesting.DocumentationNamer;
-import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.utils.PathProvider;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,8 +22,7 @@ public class UsingJUnitWithALongTestTest {
 
     @AfterAll
     public static void end() throws IOException, NoSuchMethodException {
-
-        final Path docPath = new MainDocumentation().getDocRootPath();
+        final Path docPath = new PathProvider().getProjectPath().resolve(Paths.get("src", "test", "docs"));
         final DocumentationNamer documentationNamer = new DocumentationNamer(docPath, UsingJUnitWithALongTestTest.class.getMethod("should_give_person_information"));
 
         final Class<?> aClass = MethodHandles.lookup().lookupClass();

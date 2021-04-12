@@ -1,8 +1,10 @@
 package org.sfvl.application.fizzbuzz;
 
-import org.sfvl.doctesting.DemoDocumentation;
+import org.sfvl.doctesting.demo.DemoDocumentation;
+import org.sfvl.doctesting.writer.Document;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class FizzBuzzDocumentation extends DemoDocumentation {
 
@@ -10,10 +12,13 @@ public class FizzBuzzDocumentation extends DemoDocumentation {
         super("FizzBuzz");
     }
 
-    public static void main(String... args) throws IOException {
-        final FizzBuzzDocumentation generator = new FizzBuzzDocumentation();
+    @Override
+    public void produce() throws IOException {
+        new Document(this.build()).saveAs(Paths.get("").resolve("Documentation.adoc"));
+    }
 
-        generator.generate("org.sfvl");
+    public static void main(String... args) throws IOException {
+        new FizzBuzzDocumentation().produce();
     }
 
 }

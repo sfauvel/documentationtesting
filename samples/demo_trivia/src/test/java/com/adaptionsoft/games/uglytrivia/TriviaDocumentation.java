@@ -1,34 +1,23 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import org.sfvl.doctesting.DemoDocumentation;
+import org.sfvl.doctesting.utils.ClassFinder;
+import org.sfvl.doctesting.demo.DemoDocumentation;
+import org.sfvl.doctesting.utils.PathProvider;
+import org.sfvl.doctesting.writer.Classes;
+import org.sfvl.doctesting.writer.Document;
+import org.sfvl.doctesting.writer.Options;
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.util.Set;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class TriviaDocumentation extends DemoDocumentation {
 
-    public TriviaDocumentation() {
-        this("Trivia");
-    }
-
-    public TriviaDocumentation(String documentationTitle) {
-        super(documentationTitle);
-    }
-
-    @Override
-    protected String getDocumentOptions() {
-        return joinParagraph(
-                ":sectnums:\n" + super.getDocumentOptions(),
-                "= " + DOCUMENTATION_TITLE);
-    }
-
-    @Override
-    protected String getHeader() {
-
+    public String getContent() {
         final Game aGame = new Game();
         final String line = IntStream.range(0, 12)
                 .mapToObj(i -> aGame.category(i))
@@ -36,7 +25,7 @@ public class TriviaDocumentation extends DemoDocumentation {
                 .map(category -> String.format("* [%s category]#%s#", category.toLowerCase(), category))
                 .collect(Collectors.joining("\n"));
 
-        return super.getHeader() +
+        return super.getContent() +
                 "== Legend\n\n" +
                 "=== Categories\n\nThe questions asked to the players are chosen from the following categories: \n\n" + line + "\n\n" +
                 "=== Board\n\n" +
@@ -46,31 +35,40 @@ public class TriviaDocumentation extends DemoDocumentation {
                 "\n";
     }
 
-    public static void main(String... args) throws IOException {
-        {
-            final TriviaDocumentation documentation = new TriviaDocumentation() {
-                @Override
-                protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
-                    final Set<Method> annotatedMethod = super.getAnnotatedMethod(annotation, packageToScan);
-                    return annotatedMethod.stream()
-                            .filter(m -> !m.getDeclaringClass().equals(GameSvgTest.class))
-                            .collect(Collectors.toSet());
-                }
-            };
-            documentation.generate("com.adaptionsoft.games.uglytrivia");
-        }
-        {
-            final TriviaDocumentation documentation = new TriviaDocumentation("Trivia with animation") {
-                @Override
-                protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
-                    final Set<Method> annotatedMethod = super.getAnnotatedMethod(annotation, packageToScan);
-                    return annotatedMethod.stream()
-                            .filter(m -> m.getDeclaringClass().equals(GameSvgTest.class))
-                            .collect(Collectors.toSet());
-                }
-            };
-            documentation.generate("com.adaptionsoft.games.uglytrivia", "DocumentationWithAnimation");
-        }
-
+    public String build(String title, List<Class<?>> classesToInclude) {
+        return formatter.paragraphSuite(
+                new Options(formatter).withCode(),
+                formatter.title(1, title),
+                getHeader(),
+                getContent(),
+                new Classes(formatter).includeClasses(
+                        docRootPath,
+                        classesToInclude
+                )
+        );
     }
+
+    public static List<Class<?>> getStandardClasses() {
+        return new ClassFinder().testClasses(
+                TriviaDocumentation.class.getPackage(),
+                m -> !m.getDeclaringClass().equals(GameSvgTest.class));
+    }
+
+    public static List<Class<?>> getSvgClasses() {
+        return Arrays.asList(GameSvgTest.class);
+    }
+
+    @Override
+    public void produce() throws IOException {
+        new Document(this.build("Trivia", getStandardClasses()))
+                .saveAs(Paths.get("").resolve("Documentation.adoc"));
+
+        new Document(this.build("Trivia with animation", getSvgClasses()))
+                .saveAs(Paths.get("").resolve("DocumentationWithAnimation.adoc"));
+    }
+
+    public static void main(String... args) throws IOException {
+        new TriviaDocumentation().produce();
+    }
+
 }

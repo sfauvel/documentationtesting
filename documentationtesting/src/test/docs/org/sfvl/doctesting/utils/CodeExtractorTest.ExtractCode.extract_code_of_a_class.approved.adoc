@@ -1,0 +1,40 @@
+[#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_of_a_class]
+= Extract code of a class
+
+.How to extract code of a class
+[source, java, indent=0]
+----
+            String code = CodeExtractor.classSource(SimpleClass.class);
+
+----
+
+[.inline]
+====
+.Source code to extract
+[source, java, indent=0]
+----
+include::../../../../../java/org/sfvl/doctesting/sample/SimpleClass.java[tag=classToExtract]
+----
+====
+
+[.inline]
+====
+.Source code extracted
+[source, java, indent=0]
+----
+public class SimpleClass {
+    public int simpleMethod() {
+        return 0;
+    }
+}
+----
+====
+++++
+<style>
+#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_of_a_class ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++

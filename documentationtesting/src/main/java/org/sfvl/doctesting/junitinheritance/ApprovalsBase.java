@@ -3,7 +3,7 @@ package org.sfvl.doctesting.junitinheritance;
 import org.approvaltests.Approvals;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
-import org.sfvl.doctesting.DocumentationNamer;
+import org.sfvl.doctesting.utils.DocumentationNamer;
 
 import static org.junit.jupiter.api.Assertions.fail;
 

@@ -449,6 +449,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_title">Title</a></li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_warning">Warning</a></li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_paragraph">Paragraph</a></li>
+<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_suite_of_paragraphs">Suite of paragraphs</a></li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_description">Description</a></li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_definition">Definition</a></li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_anchorLink">Anchor</a></li>
@@ -644,6 +645,41 @@ They are in a same paragraph at the end.</p>
 <pre>We write some sentences.
 Each of them are in is own line in asciidoc text.
 They are in a same paragraph at the end.</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_suite_of_paragraphs">Suite of paragraphs</h3>
+<div class="paragraph">
+<p>Join paragraph with enough line break to separate them.</p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">paragraphSuite</span><span class="o">(</span><span class="s">"My first paragraph."</span><span class="o">,</span>
+        <span class="s">"The second paragraph with a blank line before to separate from the first one."</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="paragraph">
+<p>My first paragraph.</p>
+</div>
+<div class="paragraph">
+<p>The second paragraph with a blank line before to separate from the first one.</p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>My first paragraph.
+
+The second paragraph with a blank line before to separate from the first one.</pre>
 </div>
 </div>
 <hr>

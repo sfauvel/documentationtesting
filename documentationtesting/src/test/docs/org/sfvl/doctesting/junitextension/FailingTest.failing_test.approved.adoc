@@ -1,0 +1,6 @@
+[#org_sfvl_doctesting_junitextension_FailingTest_failing_test]
+= Failing test
+
+Some information before failure.
+
+Information added after failure are not in the final document.

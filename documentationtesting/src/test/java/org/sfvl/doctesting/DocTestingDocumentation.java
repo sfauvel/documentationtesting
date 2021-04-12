@@ -1,17 +1,41 @@
 package org.sfvl.doctesting;
 
+import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.utils.ClassFinder;
+import org.sfvl.doctesting.utils.CodeExtractor;
+import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.writer.*;
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.nio.file.Path;
+import java.util.List;
 
-public class DocTestingDocumentation extends MainDocumentation {
+public class DocTestingDocumentation implements DocumentProducer {
 
-    @Override
-    protected String getHeader() {
+    protected final Formatter formatter = new AsciidocFormatter();
+
+    public String build() {
+        return formatter.paragraphSuite(
+                getOptions(),
+                formatter.title(1, "Document testing tool"),
+                generalInformation(formatter),
+                includeClasses(formatter),
+                getStyle()
+                );
+    }
+
+    public String getOptions() {
+        return formatter.paragraph(
+                new Options(formatter).withCode().trim(),
+                new Option("toclevels", "4").format()
+        );
+    }
+
+    private String getStyle() {
         String style = String.join("\n", "++++",
                 "<style>",
                 "#content {",
@@ -21,21 +45,20 @@ public class DocTestingDocumentation extends MainDocumentation {
                 "}",
                 "</style>",
                 "++++");
-
-        return joinParagraph(
-                ":source-highlighter: rouge\n" + getDocumentOptions() + "\n:toclevels: 4",
-                style,
-                "= Document testing tool",
-                generalInformation());
+        return style;
     }
 
-    @Override
-    protected String generalInformation() {
-        return joinParagraph(super.generalInformation(),
+    protected String generalInformation(Formatter formatter) {
+        return formatter.paragraphSuite(
                 "This document describes usage of classes to create test from generated documentation.",
                 "* <<" + ApprovalsExtension.class.getSimpleName() + ">>: JUnit extension to check document.",
                 "* <<" + DocWriter.class.getSimpleName() + ">>: Store document before writting it.",
                 "* <<" + CodeExtractor.class.getSimpleName() + ">>: Help to extract information from code.");
+    }
+
+    public String includeClasses(Formatter formatter) {
+        final Path location = DocumentationNamer.toPath(DocTestingDocumentation.class.getPackage());
+        return new Classes(formatter).includeClasses(location, getClassesToDocument());
     }
 
     public boolean toBeInclude(Class<?> clazz) {
@@ -44,25 +67,24 @@ public class DocTestingDocumentation extends MainDocumentation {
         }
         return !clazz.isAnnotationPresent(NotIncludeToDoc.class)
                 && toBeInclude(clazz.getDeclaringClass());
-
     }
+
     public boolean toBeInclude(Method method) {
         return !method.isAnnotationPresent(NotIncludeToDoc.class)
-            && toBeInclude(method.getDeclaringClass());
+                && toBeInclude(method.getDeclaringClass());
+    }
+
+    private List<Class<?>> getClassesToDocument() {
+        return new ClassFinder().testClasses(DocTestingDocumentation.class.getPackage(),
+                this::toBeInclude);
     }
 
     @Override
-    protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
-        return super.getAnnotatedMethod(annotation, packageToScan).stream()
-                .filter(this::toBeInclude)
-                .collect(Collectors.toSet());
+    public void produce() throws IOException {
+        new Document(this.build()).saveAs(this.getClass());
     }
-
 
     public static void main(String... args) throws IOException {
-        final DocTestingDocumentation generator = new DocTestingDocumentation();
-
-        generator.generate();
+        new DocTestingDocumentation().produce();
     }
-
 }

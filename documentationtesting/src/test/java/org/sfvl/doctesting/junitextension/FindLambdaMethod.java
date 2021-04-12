@@ -86,7 +86,6 @@ public class FindLambdaMethod {
             final String group = matcher.group();
             final String substring = group.substring(1, group.length() - 1)
                     .replace("/", ".");
-            System.out.println(substring);
             try {
                 if (Integer.class.getName().equals(substring)) {
                     args.add(int.class);

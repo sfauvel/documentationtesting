@@ -1,0 +1,5 @@
+:toc: left
+:nofooter:
+:stem:
+= My title
+Text of the document

@@ -1,0 +1,16 @@
+:nofooter:
+= Scores examples
+
+We will display a tennis score.
+
+include::TennisTest.start_of_the_game.approved.adoc[leveloffset=+1]
+
+include::TennisTest.player_A_win_one_point.approved.adoc[leveloffset=+1]
+
+include::TennisTest.player_B_win_one_point.approved.adoc[leveloffset=+1]
+
+include::TennisTest.player_A_win_two_points.approved.adoc[leveloffset=+1]
+
+include::TennisTest.player_B_win_two_points.approved.adoc[leveloffset=+1]
+
+include::TennisTest.both_players_win_some_points.approved.adoc[leveloffset=+1]

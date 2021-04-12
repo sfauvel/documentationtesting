@@ -1,0 +1,11 @@
+:nofooter:
+= Create a general documentation
+
+You can use this class to generate a main documentation that aggregate other documentations
+and in particular, those generated from test classes.
+
+include::MainDocumentationTest.by_default.approved.adoc[leveloffset=+1]
+
+include::MainDocumentationTest.document_structure.approved.adoc[leveloffset=+1]
+
+include::MainDocumentationTest.select_methods_to_add.approved.adoc[leveloffset=+1]

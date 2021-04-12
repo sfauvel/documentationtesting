@@ -1,14 +1,15 @@
-:source-highlighter: rouge
 :toc: left
 :nofooter:
 :stem:
+:source-highlighter: rouge
 
-= Documentation
 
-== Use your own style
 
-To have specific style in some chapter, you can use HTML style directly in your Asciidoc files.
 
-You need to encapsulate it between \\++++ and <style> balise.
+= How to
 
-include::UseYourOwnStyle.define_a_custom_style.approved.adoc[leveloffset=+2]
+
+
+include::CreateADocument.adoc[leveloffset=+1]
+
+include::UseYourOwnStyle.adoc[leveloffset=+1]

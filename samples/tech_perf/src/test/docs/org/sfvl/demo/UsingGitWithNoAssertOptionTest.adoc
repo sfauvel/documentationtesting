@@ -1,0 +1,5 @@
+= Use Git to check file modification but after all tests. The time shown not include this verification.
+
+Demo of a simple usage to generate documentation.
+
+include::UsingGitWithNoAssertOptionTest.should_give_person_information.approved.adoc[leveloffset=+1]

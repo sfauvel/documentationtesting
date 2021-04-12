@@ -1,0 +1,36 @@
+[#org_sfvl_doctesting_writer_MainDocumentationTest_by_default]
+= By default
+
+
+.Usage
+[source, java, indent=0]
+----
+        final MainDocumentation doc = new MainDocumentation("Documentation",
+                Paths.get("src", "test", "docs"),
+                new AsciidocFormatter());
+
+        Path docFilePath = doc.getDocRootPath();
+        final String packageToScan = "org.sfvl.doctesting.sample.basic";
+        final String content = doc.getDocumentationContent(packageToScan, docFilePath);
+
+----
+.Files contained in the folder `src/test/java/org/sfvl/doctesting/sample/basic`
+* SecondTest.java
+* FirstTest.java
+
+.Default document generated
+----
+:toc: left
+:nofooter:
+:stem:
+
+\include::../../../readme.adoc[leveloffset=+1]
+
+
+\include::org/sfvl/doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
+
+
+
+\include::org/sfvl/doctesting/sample/basic/SecondTest.adoc[leveloffset=+1]
+
+----

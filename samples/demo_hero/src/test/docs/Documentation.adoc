@@ -1,8 +1,13 @@
 :toc: left
 :nofooter:
 :stem:
+:source-highlighter: rouge
+
+
+
 
 include::../../../readme.adoc[leveloffset=+1]
+
 
 NOTE: The examples shown here are generated from the source code.
 They therefore represent the behavior of the application at any times.
@@ -13,18 +18,5 @@ View source of project on link:{github-repo}/samples/demo_hero[Github]
 
 
 
-== Hero experience test
 
-We show different approach to test writing a documentation.
-We start with a typical characterization test that produced a file using for non regression with `approvals`.
-After, we explore other way to produce a readable document.
-It gives ideas on advantages and drawbacks for each case.
-
-include::org/sfvl/demo/HeroExperienceTest.should_gainxp_approvals.approved.adoc[leveloffset=+2]
-include::org/sfvl/demo/HeroExperienceTest.should_gainxp.approved.adoc[leveloffset=+2]
-include::org/sfvl/demo/HeroExperienceTest.should_gainxp_and_levelup.approved.adoc[leveloffset=+2]
-include::org/sfvl/demo/HeroExperienceTest.should_gainxp_and_levelup_bounded.approved.adoc[leveloffset=+2]
-include::org/sfvl/demo/HeroExperienceTest.should_gainxp_and_levelup_bounded_full.approved.adoc[leveloffset=+2]
-include::org/sfvl/demo/HeroExperienceTest.should_show_when_gainxp.approved.adoc[leveloffset=+2]
-include::org/sfvl/demo/HeroExperienceTest.experience_points_needed_to_go_to_the_next_level.approved.adoc[leveloffset=+2]
-include::org/sfvl/demo/HeroExperienceTest.experience_points_needed_to_go_to_the_next_level_with_boost_equals_1.approved.adoc[leveloffset=+2]
+include::org/sfvl/demo/HeroExperienceTest.adoc[leveloffset=+1]

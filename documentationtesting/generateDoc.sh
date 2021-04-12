@@ -8,7 +8,7 @@ DESTINATION_PATH=../docs/${PROJECT_NAME}
 
 mvn clean install package -q
 
-for DOC_FILE in $(find ${DOCS_PATH} -name "*.adoc")
+for DOC_FILE in $(find ${DOCS_PATH} -name "*[^\.approved].adoc")
 do
   ASCIIDOC_NAME=${DOC_FILE##*/}
   HTMLDOC_NAME=${ASCIIDOC_NAME/.adoc/.html}

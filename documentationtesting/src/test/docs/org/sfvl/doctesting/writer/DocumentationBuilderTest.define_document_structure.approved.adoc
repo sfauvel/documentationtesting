@@ -1,0 +1,37 @@
+[#org_sfvl_doctesting_writer_DocumentationBuilderTest_define_document_structure]
+= Define document structure
+
+We can change document structure to organize it as we want.
+
+In this example, we display only classes includes and we add text before and after them.
+.Usage
+[source, java, indent=0]
+----
+        Class[] classesToAdd = {
+                org.sfvl.doctesting.sample.basic.FirstTest.class,
+                org.sfvl.docformatter.AsciidocFormatterTest.class
+        };
+
+        DocumentationBuilder builder = new DocumentationBuilder()
+                .withClassesToInclude(classesToAdd)
+                .withLocation(Paths.get("org", "sfvl", "docformatter"))
+                .withStructureBuilder(DocumentationBuilder.class,
+                        b -> "Documentation of classes",
+                        b -> b.includeClasses(),
+                        b -> "This is my footer"
+                );
+
+        String document = builder.build();
+
+----
+
+.Document generated
+----
+Documentation of classes
+
+\include::../doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
+
+\include::AsciidocFormatterTest.adoc[leveloffset=+1]
+
+This is my footer
+----

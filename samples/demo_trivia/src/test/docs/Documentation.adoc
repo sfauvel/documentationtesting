@@ -1,11 +1,17 @@
-:sectnums:
 :toc: left
 :nofooter:
 :stem:
+:source-highlighter: rouge
+
+
+
 
 = Trivia
 
+
+
 include::../../../readme.adoc[leveloffset=+1]
+
 
 NOTE: The examples shown here are generated from the source code.
 They therefore represent the behavior of the application at any times.
@@ -33,11 +39,5 @@ The number of points is displayed behind the player's name: Chet &#x2783; +
 
 
 
-== Functional examples
 
-include::com/adaptionsoft/games/uglytrivia/GameTest.player_advances.approved.adoc[leveloffset=+2]
-include::com/adaptionsoft/games/uglytrivia/GameTest.player_scores.approved.adoc[leveloffset=+2]
-include::com/adaptionsoft/games/uglytrivia/GameTest.win_the_game.approved.adoc[leveloffset=+2]
-include::com/adaptionsoft/games/uglytrivia/GameTest.jail.approved.adoc[leveloffset=+2]
-include::com/adaptionsoft/games/uglytrivia/GameTest.player_stay_in_penality_box.approved.adoc[leveloffset=+2]
-include::com/adaptionsoft/games/uglytrivia/GameTest.play_until_someone_wins.approved.adoc[leveloffset=+2]
+include::com/adaptionsoft/games/uglytrivia/GameTest.adoc[leveloffset=+1]

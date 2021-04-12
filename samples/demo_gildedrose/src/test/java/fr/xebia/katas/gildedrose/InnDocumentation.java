@@ -1,18 +1,23 @@
 package fr.xebia.katas.gildedrose;
 
-import org.sfvl.doctesting.DemoDocumentation;
+import org.sfvl.doctesting.demo.DemoDocumentation;
+import org.sfvl.doctesting.writer.Document;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class InnDocumentation extends DemoDocumentation {
     public InnDocumentation() {
         super("Gilded Rose");
     }
 
-    public static void main(String... args) throws IOException {
-        final InnDocumentation generator = new InnDocumentation();
+    @Override
+    public void produce() throws IOException {
+        new Document(this.build()).saveAs(Paths.get("").resolve("Documentation.adoc"));
+    }
 
-        generator.generate("fr.xebia.katas");
+    public static void main(String... args) throws IOException {
+        new InnDocumentation().produce();
     }
 
 }

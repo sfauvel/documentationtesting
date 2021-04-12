@@ -1,40 +1,101 @@
 package org.sfvl;
 
+import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.FormatterDocumentation;
 import org.sfvl.doctesting.DocTestingDocumentation;
-import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.junitextension.JUnitExtensionDocumentation;
+import org.sfvl.doctesting.utils.PathProvider;
+import org.sfvl.doctesting.writer.Document;
+import org.sfvl.doctesting.writer.DocumentProducer;
+import org.sfvl.doctesting.writer.Options;
 import org.sfvl.howto.HowToDocumentation;
+import org.sfvl.howto.InstallingLibrary;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashSet;
+import java.util.Set;
 
-public class DocumentationTestingDocumentation extends MainDocumentation {
+public class DocumentationTestingDocumentation implements DocumentProducer {
 
-    public DocumentationTestingDocumentation() {
-        super("Documentation testing");
+    private final Formatter formatter = new AsciidocFormatter();
+    /// Record all builder references as a link in documentation.
+    private Set<Class<? extends DocumentProducer>> buildersToGenerate = new HashSet<>();
+
+    protected String getHeader() {
+        return "include::../../../readme.adoc[leveloffset=+1]";
     }
 
-    @Override
-    protected String getMethodDocumentation(String packageToScan, Path docFilePath) {
-        return "This project is composed of two main packages.\n\n" +
-                "* " + linkToClass(DocTestingDocumentation.class) + ": Tools to make test validating generated files.\n" +
-                "* " + linkToClass(FormatterDocumentation.class) + ": Utilities to format documentation." +
-                "\n\n" +
-                "Section " + linkToClass(HowToDocumentation.class) + " shows how to do some common needs.";
+    protected String getContent() {
+        return String.join("\n",
+                "This project is composed of two main packages.",
+                "",
+                "* " + linkToClass(DocTestingDocumentation.class) + ": Tools to make test validating generated files.",
+                "* " + linkToClass(FormatterDocumentation.class) + ": Utilities to format documentation.",
+                "",
+                "Section " + linkToClass(HowToDocumentation.class) + " shows how to do some common needs.",
+                "",
+                "== Getting started",
+                "",
+                "To get started quickly, download link:https://github.com/sfauvel/TryDocAsTest[Try doc as test] project.",
+                "After " + linkToClass(InstallingLibrary.class, "installing Documentation testing") + " maven library, you are ready to write documentation that validate your code.",
+                "",
+                "== Main features",
+                "",
+                "* " + linkToClass(JUnitExtensionDocumentation.class, "JUnit extension embedded Approvals"),
+                "** Name file associate to each test",
+                "** Execute verification after test",
+                "* Generation of a general documentation that aggregate all test files",
+                "* Tools to extract parts of code",
+                "* " + linkToClass(FormatterDocumentation.class, "API to transform text") + " to output format");
     }
 
-    private String linkToClass(Class<?> clazz) {
+    private String linkToClass(Class<? extends DocumentProducer> clazz) {
+        final String name = clazz.getPackage().getName();
+        return linkToClass(clazz, name);
+    }
+
+    private String linkToClass(Class<? extends DocumentProducer> clazz, String name) {
+        buildersToGenerate.add(clazz);
         return String.format("link:%s.html[%s]\n",
                 clazz.getName().replace(".", "/"),
-                clazz.getPackage().getName());
+                name);
+    }
+
+    private void buildLinkedFile() {
+        for (Class<? extends DocumentProducer> aClass : this.buildersToGenerate) {
+            try {
+                aClass.getDeclaredConstructor().newInstance().produce();
+            } catch (IOException
+                    | InstantiationException
+                    | IllegalAccessException
+                    | InvocationTargetException
+                    | NoSuchMethodException e) {
+                throw new RuntimeException("Not able to generate " + aClass.getSimpleName(), e);
+            }
+        }
+    }
+
+    public String build() {
+        return formatter.paragraphSuite(
+                new Options(formatter).withCode(),
+                getHeader(),
+                getContent()
+        );
+
+    }
+
+    public void produce() throws IOException {
+        new Document(build()).saveAs(Paths.get("index.adoc"));
     }
 
     public static void main(String... args) throws IOException {
-        new DocTestingDocumentation().generate();
-        new FormatterDocumentation().generate();
-        new HowToDocumentation().generate();
-
-        new DocumentationTestingDocumentation().generate(null, "index");
+        final DocumentationTestingDocumentation doc = new DocumentationTestingDocumentation();
+        doc.produce();
+        doc.buildLinkedFile();
     }
 
 }

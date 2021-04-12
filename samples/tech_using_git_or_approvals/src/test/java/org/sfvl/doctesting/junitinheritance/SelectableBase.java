@@ -1,6 +1,6 @@
 package org.sfvl.doctesting.junitinheritance;
 
-import org.sfvl.doctesting.DocumentationNamer;
+import org.sfvl.doctesting.utils.DocumentationNamer;
 
 /**
  * Base class for test.

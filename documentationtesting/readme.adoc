@@ -1,5 +1,5 @@
 = Documentation testing
 
-This project provides tools to start a project using documentation as validation.
+This library provides tools to start a project using documentation as validation.
 
 

@@ -1,0 +1,27 @@
+[#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_enclosing_classes]
+= Extract enclosing classes
+
+[%autowidth]
+Class list of `org.sfvl.doctesting.utils.CodeExtractorTest` give :
+
+[%autowidth]
+|====
+| CodeExtractorTest
+|====
+
+Class list of `org.sfvl.doctesting.sample.MyClass.MySubClass.ASubClassOfMySubClass` give :
+
+[%autowidth]
+|====
+| MyClass | MySubClass | ASubClassOfMySubClass
+|====
+
+++++
+<style>
+#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_enclosing_classes ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++

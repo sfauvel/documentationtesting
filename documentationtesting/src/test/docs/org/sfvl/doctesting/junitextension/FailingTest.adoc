@@ -1,0 +1,4 @@
+:nofooter:
+= Failing test
+
+include::FailingTest.failing_test.approved.adoc[leveloffset=+1]

@@ -1,35 +1,43 @@
 package org.sfvl.doctesting.junitextension;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
+import org.junit.jupiter.api.extension.*;
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
-import org.sfvl.doctesting.DocWriter;
-import org.sfvl.doctesting.MainDocumentation;
+import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.utils.DocumentationNamer;
 import org.sfvl.doctesting.NotIncludeToDoc;
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
+import java.io.PrintStream;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.platform.engine.discovery.DiscoverySelectors.selectClass;
 
-@DisplayName("ApprovalsExtension")
+@DisplayName("Approvals extension")
 @ClassToDocument(clazz = ApprovalsExtension.class)
 class ApprovalsExtensionTest {
 
-    private final DocWriter docWriter = new DocWriter();
+    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
     private void write(String... texts) {
         docWriter.write(texts);
@@ -81,8 +89,6 @@ class ApprovalsExtensionTest {
                 "----",
                 "include::" + filename + "[]",
                 "----");
-
-
     }
 
     @Test
@@ -96,7 +102,7 @@ class ApprovalsExtensionTest {
         final Class<?> testClass = DemoNestedTest.class;
         runTestClass(testClass);
 
-        write(".Test example using nested class",
+        write("", "", ".Test example using nested class",
                 includeSourceWithTag(testClass.getSimpleName()),
                 "", "");
 
@@ -110,40 +116,120 @@ class ApprovalsExtensionTest {
                         .map(filename -> "* " + filename)
                         .collect(Collectors.joining("\n\n")));
 
-        final MainDocumentation mainDocumentation = new MainDocumentation() {
-            @Override
-            protected String getHeader() {
-                return joinParagraph(getDocumentOptions(),
-                        "= " + DOCUMENTATION_TITLE);
-            }
-
-            @Override
-            protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
-                return super.getAnnotatedMethod(annotation, packageToScan).stream()
-                        .filter(method -> {
-                            final Class<?> enclosingClass = method.getDeclaringClass().getEnclosingClass();
-                            return DemoNestedTest.class.equals(enclosingClass);
-                        })
-                        .collect(Collectors.toSet());
-            }
-        };
-
-        final String documentationFilename = this.getClass().getPackage().getName().replace(".", "/") + "/" + testClass.getSimpleName();
-        mainDocumentation.generate(this.getClass().getPackage().getName(), documentationFilename);
-
+        final Path documentPath = DocumentationNamer.toAsciiDocFilePath(testClass);
         write("", "", ".Document generated",
                 "----",
-                Files.lines(extension.getDocPath().resolve(Paths.get(documentationFilename + ".adoc")))
+                Files.lines(extension.getDocPath().resolve(documentPath))
                         .collect(Collectors.joining("\n"))
                         .replaceAll("\\ninclude::", "\n\\\\include::"),
                 "----");
 
-        write("", "", ".final rendering",
-                "include::" + testClass.getSimpleName() + ".adoc[]"
+        String style = "++++\n" +
+                "<style>\n" +
+                ".adocRendering {\n" +
+                "    padding: 1em;\n" +
+                "    background: #fffef7;\n" +
+                "    border-color: #e0e0dc;\n" +
+                "    -webkit-box-shadow: 0 1px 4px #e0e0dc;\n" +
+                "    box-shadow: 0 1px 4px #e0e0dc;\n" +
+                "}\n" +
+                "</style>\n" +
+                "++++";
+        write("", "", style, "", "_final rendering_", "[.adocRendering]",
+                "include::" + testClass.getSimpleName() + ".adoc[leveloffset=+1]"
         );
 
     }
 
+    @Test
+    public void document_with_all_tests_in_a_testclass() throws IOException {
+        write("At the end of a test, a file is created including file generated on each test.",
+                "",
+                "`" + ApprovalsExtension.class.getSimpleName() + "` must be static to be able to run `" + AfterAll.class.getSimpleName() + "` callback.");
+
+        final Class<?> testClass = MyTest.class;
+        runTestClass(testClass);
+
+        write("", "", ".Test example used to generate class document",
+                includeSourceWithTag(testClass.getSimpleName()),
+                "", "");
+
+        final Path generatedFilePath = Paths.get("", getClass().getPackage().getName().split("\\."));
+        final Path documentationPath = extension.getDocPath().resolve(generatedFilePath).resolve(testClass.getSimpleName() + ".adoc");
+
+        write("", "", ".Document generated",
+                "----",
+                Files.lines(documentationPath)
+                        .collect(Collectors.joining("\n"))
+                        .replaceAll("\\ninclude::", "\n\\\\include::"),
+                "----");
+
+        String style = "++++\n" +
+                "<style>\n" +
+                ".adocRendering {\n" +
+                "    padding: 1em;\n" +
+                "    background: #fffef7;\n" +
+                "    border-color: #e0e0dc;\n" +
+                "    -webkit-box-shadow: 0 1px 4px #e0e0dc;\n" +
+                "    box-shadow: 0 1px 4px #e0e0dc;\n" +
+                "}\n" +
+                "</style>\n" +
+                "++++";
+        write("", "", style, "", "_final rendering_", "[.adocRendering]",
+                "include::" + testClass.getSimpleName() + ".adoc[leveloffset=+1]"
+        );
+
+    }
+
+    /**
+     * When a test fails, the error is written in the final document.
+     * It's help to understand and investigate on the problem.
+     */
+    @Test
+    public void failing_test_output() throws IOException {
+        write("When the test fails, the reason (exception) is written into the generated document.",
+                "");
+
+        final Class<?> testClass = FailingTest.class;
+        runTestClass(testClass);
+
+        write("", "", ".Test example used to generate class document",
+                includeSourceWithTag(testClass.getSimpleName()),
+                "", "");
+
+        final String fileName = testClass.getSimpleName() + ".failing_test.received.adoc";
+        final Path filePath = DocumentationNamer.toPath(testClass.getPackage()).resolve(fileName);
+        final Path documentationPath = Paths.get("src", "test", "docs")
+                .resolve(filePath);
+
+        AtomicInteger stacktraceLineCount = new AtomicInteger(0);
+        Predicate<String> isStackLine = line -> line.startsWith("	at ");
+        write("", "", ".Document generated (exception stack trace is truncated)",
+                "------",
+                Files.lines(documentationPath)
+                        // We truncate stack trace to avoid to have an ouput that change from on execution from another.
+                        .filter(line -> !isStackLine.test(line) || stacktraceLineCount.incrementAndGet() < 3)
+                        .collect(Collectors.joining("\n"))
+                        .replaceAll("\\ninclude::", "\n\\\\include::"),
+                "------");
+
+        String style = "++++\n" +
+                "<style>\n" +
+                ".adocRendering {\n" +
+                "    padding: 1em;\n" +
+                "    background: #fffef7;\n" +
+                "    border-color: #e0e0dc;\n" +
+                "    -webkit-box-shadow: 0 1px 4px #e0e0dc;\n" +
+                "    box-shadow: 0 1px 4px #e0e0dc;\n" +
+                "}\n" +
+                "</style>\n" +
+                "++++";
+
+        write("", "", style, "", "_final rendering_", "[.adocRendering]",
+                "include::" + fileName + "[leveloffset=+1]"
+        );
+
+    }
 
     public void runTestClass(Class<?> testClass) {
         LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()
@@ -152,7 +238,17 @@ class ApprovalsExtensionTest {
         Launcher launcher = LauncherFactory.create();
 //        TestPlan testPlan = launcher.discover(request);
 //        launcher.registerTestExecutionListeners(listener);
-        launcher.execute(request);
+        OnlyRunProgrammaticallyCondition.enable();
+
+        final PrintStream out = System.out;
+        try {
+            System.setOut(new InterceptorStream(out));
+            launcher.execute(request);
+        } finally {
+            System.setOut(out);
+        }
+
+        OnlyRunProgrammaticallyCondition.disable();
     }
 
     public String includeSourceWithTag(String tag) {
@@ -165,14 +261,90 @@ class ApprovalsExtensionTest {
                 "----");
     }
 
+
+}
+
+class OnlyRunProgrammaticallyCondition implements ExecutionCondition {
+
+    static public boolean RUN_TEST_PROGRAMATICALLY = false;
+
+    public static boolean isEnabled() {
+        return RUN_TEST_PROGRAMATICALLY;
+    }
+
+    public static void enable() {
+        RUN_TEST_PROGRAMATICALLY = true;
+    }
+
+    public static void disable() {
+        RUN_TEST_PROGRAMATICALLY = false;
+    }
+
+    @Override
+    public ConditionEvaluationResult evaluateExecutionCondition(ExtensionContext extensionContext) {
+        if (isEnabled()) {
+            return ConditionEvaluationResult.enabled("Test run programmatically");
+        } else {
+            return ConditionEvaluationResult.disabled("Test could only be launched programmatically.");
+        }
+    }
+}
+
+class InterceptorStream extends PrintStream {
+    public final List<String> text = new ArrayList<>();
+
+    InterceptorStream(PrintStream o) {
+        super(o, true);
+    }
+
+    @Override
+    public void print(String s) {
+        text.add(s);
+    }
+
+    public void write(int b) {
+    }
+
+    public void write(byte buf[], int off, int len) {
+    }
+
+    @Override
+    public String toString() {
+        return text.stream()
+                .collect(Collectors.joining("\n"));
+    }
+};
+
+@Target({ElementType.TYPE, ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@ExtendWith(OnlyRunProgrammaticallyCondition.class)
+@interface OnlyRunProgrammatically {
 }
 
 @NotIncludeToDoc
+@OnlyRunProgrammatically
+// tag::FailingTest[]
+class FailingTest {
+    private static final DocWriter docWriter = new DocWriter();
+    @RegisterExtension
+    static final ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+
+    @Test
+    public void failing_test() {
+        docWriter.write("Some information before failure.", "", "");
+        fail("Problem on the test, it fails.");
+        docWriter.write("Information added after failure are not in the final document.", "");
+    }
+}
+// end::FailingTest[]
+
+@NotIncludeToDoc
+@OnlyRunProgrammatically
 // tag::MyTest[]
 class MyTest {
-    private final DocWriter docWriter = new DocWriter();
+    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static final ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
     @Test
     public void test_A() {
@@ -183,12 +355,13 @@ class MyTest {
 // end::MyTest[]
 
 @NotIncludeToDoc
+@OnlyRunProgrammatically
 // tag::UsingDisplayNameTest[]
 @DisplayName("Title for the document")
 class UsingDisplayNameTest {
-    private final DocWriter docWriter = new DocWriter();
+    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static final ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
     @Test
     @DisplayName("Title for this test")
@@ -198,22 +371,23 @@ class UsingDisplayNameTest {
 }
 // end::UsingDisplayNameTest[]
 
+@NotIncludeToDoc
+@OnlyRunProgrammatically
 // tag::DemoNestedTest[]
-
 /**
  * Demo of a simple usage to generate documentation.
  */
-@NotIncludeToDoc
 class DemoNestedTest {
-    private final DocWriter writer = new DocWriter();
+    private static final DocWriter writer = new DocWriter();
+
+    @RegisterExtension
+    static final ApprovalsExtension extension = new ApprovalsExtension(writer);
 
     /**
      * Document of Addition operations.
      */
     @Nested
     class Adding {
-        @RegisterExtension
-        ApprovalsExtension extension = new ApprovalsExtension(writer);
 
         @Test
         @DisplayName("Adding 2 simple numbers")
@@ -233,9 +407,6 @@ class DemoNestedTest {
 
     @Nested
     class Multiply {
-        @RegisterExtension
-        ApprovalsExtension extension = new ApprovalsExtension(writer);
-
         @Test
         @DisplayName("Multiply 2 simple numbers")
         public void should_be_12_when_multiply_4_and_3() {
@@ -244,3 +415,4 @@ class DemoNestedTest {
     }
 }
 // end::DemoNestedTest[]
+

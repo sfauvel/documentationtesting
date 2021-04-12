@@ -12,6 +12,8 @@ public interface Formatter {
 
     String paragraph(String... content);
 
+    String paragraphSuite(String... paragraph);
+
     String tableOfContent();
 
     String tableOfContent(int level);
@@ -25,6 +27,7 @@ public interface Formatter {
     String sourceCode(String source);
 
     String include(String filename);
+
     String include(String filename, int offset);
 
     String warning(String message);
@@ -36,6 +39,7 @@ public interface Formatter {
     String anchorLink(String id, String visibleText);
 
     String table(List<List<? extends Object>> data);
+
     String tableWithHeader(List<List<? extends Object>> asList);
 
     String image(String filename);
@@ -47,6 +51,7 @@ public interface Formatter {
     BlockBuilder blockBuilder(String delimiter);
 
     SourceCodeBuilder sourceCodeBuilder();
+
     SourceCodeBuilder sourceCodeBuilder(String language);
 
 }

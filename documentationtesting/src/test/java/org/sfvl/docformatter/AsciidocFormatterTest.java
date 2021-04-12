@@ -5,10 +5,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.doctesting.CodeExtractor;
+import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
-import org.sfvl.doctesting.DocWriter;
+import org.sfvl.doctesting.utils.DocWriter;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class AsciidocFormatterTest {
     private String output;
 
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(new DocWriter());
+    static ApprovalsExtension extension = new ApprovalsExtension(new DocWriter());
 
     public void write(String... texts) {
         extension.getDocWriter().write(texts);
@@ -86,6 +86,16 @@ public class AsciidocFormatterTest {
         output = formatter.paragraph("We write some sentences.",
                 "Each of them are in is own line in asciidoc text.",
                 "They are in a same paragraph at the end.");
+    }
+
+    /**
+     * Join paragraph with enough line break to separate them.
+     */
+    @Test
+    @DisplayName("Suite of paragraphs")
+    public void should_format_suite_of_paragraphs() {
+        output = formatter.paragraphSuite("My first paragraph.",
+                "The second paragraph with a blank line before to separate from the first one.");
     }
 
     @Test

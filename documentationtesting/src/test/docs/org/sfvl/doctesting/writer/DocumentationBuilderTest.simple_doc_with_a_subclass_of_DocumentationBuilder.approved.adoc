@@ -1,0 +1,40 @@
+[#org_sfvl_doctesting_writer_DocumentationBuilderTest_simple_doc_with_a_subclass_of_DocumentationBuilder]
+= Simple doc with a subclass of DocumentationBuilder
+
+We can subclass a DocumentationBuilder to redefine some methods or create new ones.
+
+.Usage
+[source, java, indent=0]
+----
+        class ExtendedBuilder extends DocumentationBuilder {
+            public ExtendedBuilder() {
+                super("My extending builder");
+            }
+
+            @Override
+            protected String getDocumentOptions() {
+                return ":no_options:";
+            }
+        }
+        Class[] classesToAdd = {
+                org.sfvl.doctesting.sample.basic.FirstTest.class,
+                org.sfvl.doctesting.sample.basic.SecondTest.class
+        };
+
+        DocumentationBuilder builder = new ExtendedBuilder()
+                .withClassesToInclude(classesToAdd);
+
+        String document = builder.build();
+
+----
+
+.Document generated
+----
+:no_options:
+= My extending builder
+
+\include::org/sfvl/doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
+
+\include::org/sfvl/doctesting/sample/basic/SecondTest.adoc[leveloffset=+1]
+
+----

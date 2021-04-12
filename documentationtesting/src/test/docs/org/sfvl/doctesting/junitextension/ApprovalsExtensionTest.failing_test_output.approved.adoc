@@ -1,0 +1,48 @@
+[#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_failing_test_output]
+= Failing test output
+
+When a test fails, the error is written in the final document.
+It's help to understand and investigate on the problem.
+
+When the test fails, the reason (exception) is written into the generated document.
+
+
+.Test example used to generate class document
+[source, java, indent=0]
+----
+include::../../../../../java/org/sfvl/doctesting/junitextension/ApprovalsExtensionTest.java[tag=FailingTest]
+----
+
+
+
+.Document generated (exception stack trace is truncated)
+------
+[#org_sfvl_doctesting_junitextension_FailingTest_failing_test]
+= Failing test
+
+Some information before failure.
+
+*Error generating documentation*
+----
+org.opentest4j.AssertionFailedError: Problem on the test, it fails.
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+
+----
+------
+
+++++
+<style>
+.adocRendering {
+    padding: 1em;
+    background: #fffef7;
+    border-color: #e0e0dc;
+    -webkit-box-shadow: 0 1px 4px #e0e0dc;
+    box-shadow: 0 1px 4px #e0e0dc;
+}
+</style>
+++++
+
+_final rendering_
+[.adocRendering]
+include::FailingTest.failing_test.received.adoc[leveloffset=+1]

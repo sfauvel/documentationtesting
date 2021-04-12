@@ -1,3 +1,4 @@
+:nofooter:
 = Ways to implement
 
 We just need to check that there is no difference in documents generated.

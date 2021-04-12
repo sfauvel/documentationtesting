@@ -1,6 +1,9 @@
 :toc: left
 :nofooter:
 :stem:
+:source-highlighter: rouge
+
+
 
 include::../../../readme.adoc[leveloffset=+1]
 
@@ -13,3 +16,20 @@ This project is composed of two main packages.
 
 Section link:org/sfvl/howto/HowToDocumentation.html[org.sfvl.howto]
  shows how to do some common needs.
+
+== Getting started
+
+To get started quickly, download link:https://github.com/sfauvel/TryDocAsTest[Try doc as test] project.
+After link:org/sfvl/howto/InstallingLibrary.html[installing Documentation testing]
+ maven library, you are ready to write documentation that validate your code.
+
+== Main features
+
+* link:org/sfvl/doctesting/junitextension/JUnitExtensionDocumentation.html[JUnit extension embedded Approvals]
+
+** Name file associate to each test
+** Execute verification after test
+* Generation of a general documentation that aggregate all test files
+* Tools to extract parts of code
+* link:org/sfvl/docformatter/FormatterDocumentation.html[API to transform text]
+ to output format

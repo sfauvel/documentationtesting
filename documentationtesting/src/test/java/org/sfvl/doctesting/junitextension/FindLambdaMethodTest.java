@@ -4,8 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.doctesting.CodeExtractor;
-import org.sfvl.doctesting.DocWriter;
+import org.sfvl.doctesting.utils.CodeExtractor;
+import org.sfvl.doctesting.utils.DocWriter;
 
 import java.lang.reflect.Method;
 
@@ -14,9 +14,9 @@ import java.lang.reflect.Method;
  */
 @DisplayName(value = "Extract information from method reference")
 class FindLambdaMethodTest {
-    private final DocWriter doc = new DocWriter();
+    private static final DocWriter doc = new DocWriter();
     @RegisterExtension
-    ApprovalsExtension extension = new ApprovalsExtension(doc);
+    static ApprovalsExtension extension = new ApprovalsExtension(doc);
 
     public void myMethod() {
 
