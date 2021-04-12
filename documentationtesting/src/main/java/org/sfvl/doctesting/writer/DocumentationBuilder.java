@@ -17,7 +17,12 @@ import java.util.stream.Collectors;
 /**
  * You can use the DocumentationBuilder class to generate a documentation.
  * You can aggregate other documentations and in particular, those generated from test classes.
+ *
+ * @deprecated
+ * This class was used to create a dynamic builder but it does not simplify the code
+ * so we prefer to not use it.
  */
+@Deprecated
 public class DocumentationBuilder implements DocumentProducer{
 
 

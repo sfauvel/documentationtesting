@@ -20,7 +20,13 @@ import java.util.stream.Collectors;
 /**
  * You can use this class to generate a main documentation that aggregate other documentations
  * and in particular, those generated from test classes.
+ *
+ * @deprecated
+ * This class was used to create a global documentation very quickly
+ * but it hides to many things without simplifying much
+ * so we prefer to not use it.
  */
+@Deprecated
 public class MainDocumentation {
 
     protected final String documentationTitle;
