@@ -1,13 +1,37 @@
 package org.sfvl.demo;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
+import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.writer.ClassDocumentation;
+
+import java.io.FileWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Demo of a simple usage to generate documentation.
  */
 public class DemoTest extends ApprovalsBase {
+    @AfterAll
+    public static void afterAll(TestInfo testInfo) throws Exception {
+        final Class<?> clazz = testInfo.getTestClass().get();
+
+        final ClassDocumentation classDocumentation = new ClassDocumentation();
+        final String content = String.join("\n",
+                ":nofooter:",
+                classDocumentation.getClassDocumentation(clazz));
+
+        final Path docFilePath = Paths.get("src", "test", "docs")
+                .resolve(DocumentationNamer.toPath(clazz, "", ".adoc"));
+
+        try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
+            fileWriter.write(content);
+        }
+    }
 
     /**
      * When adding two simple numbers, the java operator '+' should return the sum of them.

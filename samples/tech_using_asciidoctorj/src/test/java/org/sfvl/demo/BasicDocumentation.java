@@ -5,8 +5,8 @@ import org.asciidoctor.OptionsBuilder;
 import org.asciidoctor.SafeMode;
 import org.asciidoctor.jruby.AsciiDocDirectoryWalker;
 import org.sfvl.doctesting.demo.DemoDocumentation;
-import org.sfvl.doctesting.writer.Document;
 import org.sfvl.doctesting.utils.PathProvider;
+import org.sfvl.doctesting.writer.Document;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +30,9 @@ public class BasicDocumentation extends DemoDocumentation {
         try (Asciidoctor asciidoctor = create()) {
             final AsciiDocDirectoryWalker files = new AsciiDocDirectoryWalker(getFullDocRootPath().toString());
             for (File asciidocFile : files) {
-                if (asciidocFile.toString().endsWith(".adoc")) {
+                if (asciidocFile.toString().endsWith(".adoc")
+                        && !(asciidocFile.toString().endsWith(".approved.adoc")
+                        || asciidocFile.toString().endsWith(".received.adoc"))) {
                     final Path outputPath = getOutputPath(outputProjectDocsPath, asciidocFile);
                     Files.createDirectories(outputPath);
                     asciidoctor.convertFile(asciidocFile,

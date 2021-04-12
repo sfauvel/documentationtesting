@@ -1,3 +1,4 @@
+:nofooter:
 = Demo test
 
 Demo of a simple usage to generate documentation.
