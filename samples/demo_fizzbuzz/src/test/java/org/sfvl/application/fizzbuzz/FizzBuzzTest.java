@@ -1,5 +1,6 @@
 package org.sfvl.application.fizzbuzz;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.sfvl.application.FizzBuzz;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
@@ -66,6 +67,7 @@ public class FizzBuzzTest extends ApprovalsBase {
     }
 
     @Test
+    @DisplayName(value = "Values by result")
     public void values_for_a_result() {
         final int maxValue = 30;
         final Map<String, List<Integer>> groupedValues = IntStream.rangeClosed(1, maxValue)
