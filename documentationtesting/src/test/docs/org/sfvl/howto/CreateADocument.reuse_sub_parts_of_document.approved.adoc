@@ -70,9 +70,6 @@ a|_final rendering_
 [.adocRendering]
 include::DocumentWithSubPart.adoc[leveloffset=+1]
 |====
-
-
-
 ++++
 <style>
 .adocRendering {
