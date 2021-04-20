@@ -23,7 +23,7 @@ public class Classes {
     }
 
     private Path getRelativeFilePath(Path docPath, Class<?> clazz) {
-        final Path classPath = DocumentationNamer.toPath(clazz, "", ".adoc");
+        final Path classPath = DocumentationNamer.toPath(clazz, "", ".approved.adoc");
 
         return docPath.relativize(classPath);
     }

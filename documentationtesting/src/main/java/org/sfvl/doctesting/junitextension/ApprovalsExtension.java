@@ -9,12 +9,11 @@ import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.platform.commons.support.ModifierSupport;
 import org.sfvl.doctesting.utils.CodeExtractor;
-import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.utils.DocWriter;
 import org.sfvl.doctesting.utils.DocumentationNamer;
 import org.sfvl.doctesting.utils.PathProvider;
+import org.sfvl.doctesting.writer.ClassDocumentation;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -62,10 +61,11 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
                 ":nofooter:",
                 classDocumentation.getClassDocumentation(currentClass)
         );
-        final Path docFilePath = getDocPath().resolve(DocumentationNamer.toPath(currentClass,"", ".adoc"));
-        try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
-            fileWriter.write(content);
-        }
+        final Class<?> testClass = extensionContext.getTestClass().get();
+        final DocumentationNamer documentationNamer = new DocumentationNamer(getDocPath(), testClass);
+
+        verifyDoc(content, documentationNamer);
+
     }
 
     @Override
@@ -77,6 +77,10 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
                 .orElse("");
 
         final DocumentationNamer documentationNamer = new DocumentationNamer(getDocPath(), extensionContext.getTestMethod().get());
+        verifyDoc(content, documentationNamer);
+    }
+
+    public void verifyDoc(String content, DocumentationNamer documentationNamer) {
         ApprovalNamer approvalNamer = new ApprovalNamer() {
 
             @Override

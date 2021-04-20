@@ -116,7 +116,7 @@ class ApprovalsExtensionTest {
                         .map(filename -> "* " + filename)
                         .collect(Collectors.joining("\n\n")));
 
-        final Path documentPath = DocumentationNamer.toAsciiDocFilePath(testClass);
+        final Path documentPath = new DocumentationNamer(extension.getDocPath(), testClass).getFilePath();
         write("", "", ".Document generated",
                 "----",
                 Files.lines(extension.getDocPath().resolve(documentPath))
@@ -136,7 +136,7 @@ class ApprovalsExtensionTest {
                 "</style>\n" +
                 "++++";
         write("", "", style, "", "_final rendering_", "[.adocRendering]",
-                "include::" + testClass.getSimpleName() + ".adoc[leveloffset=+1]"
+                "include::" + testClass.getSimpleName() + ".approved.adoc[leveloffset=+1]"
         );
 
     }
@@ -155,7 +155,7 @@ class ApprovalsExtensionTest {
                 "", "");
 
         final Path generatedFilePath = Paths.get("", getClass().getPackage().getName().split("\\."));
-        final Path documentationPath = extension.getDocPath().resolve(generatedFilePath).resolve(testClass.getSimpleName() + ".adoc");
+        final Path documentationPath = extension.getDocPath().resolve(generatedFilePath).resolve(testClass.getSimpleName() + ".approved.adoc");
 
         write("", "", ".Document generated",
                 "----",

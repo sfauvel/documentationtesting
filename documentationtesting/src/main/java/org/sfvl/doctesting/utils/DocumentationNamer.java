@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 public class DocumentationNamer {
 
     private final Method testMethod;
+    private final Class<?> declaringClass;
     private final Path docRootPath;
 
     public DocumentationNamer(Path docRootPath, TestInfo testInfo) {
@@ -23,7 +24,16 @@ public class DocumentationNamer {
     }
 
     public DocumentationNamer(Path docRootPath, Method testMethod) {
+        this(docRootPath, testMethod.getDeclaringClass(), testMethod);
+    }
+
+    public DocumentationNamer(Path docRootPath, Class<?> declaringClass) {
+        this(docRootPath, declaringClass, null);
+    }
+
+    private DocumentationNamer(Path docRootPath, Class<?> declaringClass, Method testMethod) {
         this.docRootPath = docRootPath;
+        this.declaringClass = declaringClass;
         this.testMethod = testMethod;
     }
 
@@ -31,7 +41,6 @@ public class DocumentationNamer {
 
         final List<String> classesTree = new ArrayList<String>();
 
-        final Class<?> declaringClass = testMethod.getDeclaringClass();
         classesTree.add(0, declaringClass.getSimpleName());
 
         Class<?> enclosingClass = declaringClass.getEnclosingClass();
@@ -40,7 +49,9 @@ public class DocumentationNamer {
             enclosingClass = enclosingClass.getEnclosingClass();
         }
 
-        classesTree.add(testMethod.getName());
+        if (testMethod != null) {
+            classesTree.add(testMethod.getName());
+        }
         return classesTree.stream().collect(Collectors.joining("."));
     }
 
@@ -49,7 +60,6 @@ public class DocumentationNamer {
     }
 
     public String getSourceFilePath() {
-        final Class<?> declaringClass = testMethod.getDeclaringClass();
         Path pathName = toPath(declaringClass.getPackage());
 
         return docRootPath.resolve(pathName) + "/";

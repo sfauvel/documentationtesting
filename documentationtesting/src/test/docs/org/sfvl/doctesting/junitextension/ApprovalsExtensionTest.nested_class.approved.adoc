@@ -20,6 +20,8 @@ Generated files in `org/sfvl/doctesting/junitextension`:
 
 * DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc
 
+* DemoNestedTest.approved.adoc
+
 .Document generated
 ----
 :nofooter:
@@ -54,4 +56,4 @@ Document of Addition operations.
 
 _final rendering_
 [.adocRendering]
-include::DemoNestedTest.adoc[leveloffset=+1]
+include::DemoNestedTest.approved.adoc[leveloffset=+1]
