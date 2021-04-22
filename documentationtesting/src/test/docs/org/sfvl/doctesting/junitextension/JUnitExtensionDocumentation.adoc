@@ -7,4 +7,4 @@
 
 
 
-include::ApprovalsExtensionTest.adoc[leveloffset=+1]
+include::ApprovalsExtensionTest.approved.adoc[leveloffset=+1]

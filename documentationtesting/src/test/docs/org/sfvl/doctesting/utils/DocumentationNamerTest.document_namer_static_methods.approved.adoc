@@ -1,0 +1,13 @@
+[#org_sfvl_doctesting_utils_DocumentationNamerTest_document_namer_static_methods]
+= Document namer static methods
+
+DocumentNamer build names and paths from a method.
+
+[%header]
+|====
+| Code | Result 
+a| `DocumentationNamer.toPath(DocumentationNamerTest.class)` | org/sfvl/doctesting/utils/DocumentationNamerTest
+a| `DocumentationNamer.toPath(DocumentationNamerTest.class.getPackage())` | org/sfvl/doctesting/utils
+a| `DocumentationNamer.toPath(DocumentationNamerTest.class, "prefix_", ".suffix")` | org/sfvl/doctesting/utils/prefix_DocumentationNamerTest.suffix
+a| `DocumentationNamer.toAsciiDocFilePath(DocumentationNamerTest.class)` | org/sfvl/doctesting/utils/DocumentationNamerTest.adoc
+|====

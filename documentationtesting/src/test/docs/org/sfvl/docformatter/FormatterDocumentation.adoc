@@ -10,4 +10,4 @@
 
 
 
-include::AsciidocFormatterTest.adoc[leveloffset=+1]
+include::AsciidocFormatterTest.approved.adoc[leveloffset=+1]

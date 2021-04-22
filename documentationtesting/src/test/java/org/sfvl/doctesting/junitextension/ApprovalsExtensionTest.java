@@ -176,7 +176,7 @@ class ApprovalsExtensionTest {
                 "</style>\n" +
                 "++++";
         write("", "", style, "", "_final rendering_", "[.adocRendering]",
-                "include::" + testClass.getSimpleName() + ".adoc[leveloffset=+1]"
+                "include::" + new DocumentationNamer(Paths.get(""), testClass).getApprovalFileName() + "[leveloffset=+1]"
         );
 
     }

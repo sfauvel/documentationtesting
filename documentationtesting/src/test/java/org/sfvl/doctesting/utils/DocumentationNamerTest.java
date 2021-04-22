@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 
 import java.nio.file.Paths;
+import java.util.function.Function;
 
 @DisplayName("Documentation Namer")
 class DocumentationNamerTest {
@@ -15,66 +16,101 @@ class DocumentationNamerTest {
     static ApprovalsExtension extension = new ApprovalsExtension(doc);
 
     /**
-     * DocumentNamer build names and paths from a method.
+     * DocumentNamer build names and paths from a method or a class.
      */
     @Test
     public void document_namer(TestInfo testInfo) {
 
-        // >>>1
-        final DocumentationNamer namer = new DocumentationNamer(Paths.get("src", "test", "docs"), testInfo);
-        // <<<1
+        // >>>1_method
+        final DocumentationNamer namerMethod =
+                new DocumentationNamer(Paths.get("src", "test", "docs"), testInfo);
+        // <<<1_method
 
-        doc.write(".DocumentNamer usage",
-                CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get(), "1"),
+        // >>>1_class
+        final DocumentationNamer namerClass =
+                new DocumentationNamer(Paths.get("src", "test", "docs"), this.getClass());
+        // <<<1_class
+
+        doc.write(".DocumentNamer usage with method",
+                CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get(), "1_method"),
+                "", "");
+
+        doc.write(".DocumentNamer usage with class",
+                CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get(), "1_class"),
                 "", "");
 
         doc.write( "[%header]",
                 "|====",
-                "| Code | Result ",
-                "a| `" + extract(testInfo, "2") + "` | " +
+                "| Code | Result with method | Result with class",
+                getS(testInfo, namerMethod, namerClass, namer ->
                         // >>>2
                         namer.getApprovalName()
                         // <<<2
-                        ,
-                "a| `" + extract(testInfo, "3") + "` | " +
+                        , "2"
+                ),
+                getS(testInfo, namerMethod, namerClass, namer ->
                         // >>>3
                         namer.getApprovalFileName()
                         // <<<3
-                ,
-                "a| `" + extract(testInfo, "4") + "` | " +
+                        , "3"
+                ),
+                getS(testInfo, namerMethod, namerClass, namer ->
                         // >>>4
                         namer.getSourceFilePath()
                         // <<<4
-                ,
-                "a| `" + extract(testInfo, "5") + "` | " +
+                        , "4"
+                ),
+                getS(testInfo, namerMethod, namerClass, namer ->
                         // >>>5
                         namer.getFilePath()
                         // <<<5
-                ,
-                "a| `" + extract(testInfo, "6") + "` | " +
+                        , "5"
+                ),
+                getS(testInfo, namerMethod, namerClass, namer ->
                         // >>>6
                         namer.getApprovedPath(Paths.get("src", "test", "docs", "org"))
                         // <<<6
-                ,
+                        , "6"
+                ),
+                "|====");
+
+    }
+
+    private String getS(TestInfo testInfo, DocumentationNamer namer, DocumentationNamer namerClass, Function<DocumentationNamer, Object> t, String suffix) {
+        return "3.+a| `" + extract(testInfo, suffix) + "`\n| | " +
+                t.apply(namer)
+                + " | " + t.apply(namerClass);
+    }
+
+
+    /**
+     * DocumentNamer build names and paths from a method.
+     */
+    @Test
+    public void document_namer_static_methods(TestInfo testInfo) {
+
+        doc.write( "[%header]",
+                "|====",
+                "| Code | Result ",
                 "a| `" + extract(testInfo, "7") + "` | " +
                         // >>>7
                         DocumentationNamer.toPath(DocumentationNamerTest.class)
-                        // <<<7
+                // <<<7
                 ,
                 "a| `" + extract(testInfo, "8") + "` | " +
                         // >>>8
                         DocumentationNamer.toPath(DocumentationNamerTest.class.getPackage())
-                        // <<<8
+                // <<<8
                 ,
                 "a| `" + extract(testInfo, "9") + "` | " +
                         // >>>9
                         DocumentationNamer.toPath(DocumentationNamerTest.class, "prefix_", ".suffix")
-                         // <<<9
+                // <<<9
                 ,
                 "a| `" + extract(testInfo, "10") + "` | " +
                         // >>>10
                         DocumentationNamer.toAsciiDocFilePath(DocumentationNamerTest.class)
-                        // <<<10
+                // <<<10
                 ,
                 "|====");
     }

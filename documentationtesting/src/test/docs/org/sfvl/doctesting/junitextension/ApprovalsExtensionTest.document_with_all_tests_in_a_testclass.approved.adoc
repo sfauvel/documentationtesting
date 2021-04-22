@@ -35,4 +35,4 @@ include::../../../../../java/org/sfvl/doctesting/junitextension/ApprovalsExtensi
 
 _final rendering_
 [.adocRendering]
-include::MyTest.adoc[leveloffset=+1]
+include::MyTest.approved.adoc[leveloffset=+1]
