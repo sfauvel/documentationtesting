@@ -57,7 +57,7 @@ public class MainDocumentation {
     }
 
     public MainDocumentation(String documentationTitle) {
-        this(documentationTitle, Paths.get("src", "test", "docs"));
+        this(documentationTitle, Config.DOC_PATH);
     }
 
     public MainDocumentation(String documentationTitle, Path docRootPath) {

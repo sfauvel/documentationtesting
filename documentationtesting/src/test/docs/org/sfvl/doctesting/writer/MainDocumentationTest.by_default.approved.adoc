@@ -6,7 +6,7 @@
 [source, java, indent=0]
 ----
         final MainDocumentation doc = new MainDocumentation("Documentation",
-                Paths.get("src", "test", "docs"),
+                Config.DOC_PATH,
                 new AsciidocFormatter());
 
         Path docFilePath = doc.getDocRootPath();

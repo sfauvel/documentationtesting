@@ -23,12 +23,12 @@ class DocumentationNamerTest {
 
         // >>>1_method
         final DocumentationNamer namerMethod =
-                new DocumentationNamer(Paths.get("src", "test", "docs"), testInfo);
+                new DocumentationNamer(Config.DOC_PATH, testInfo);
         // <<<1_method
 
         // >>>1_class
         final DocumentationNamer namerClass =
-                new DocumentationNamer(Paths.get("src", "test", "docs"), this.getClass());
+                new DocumentationNamer(Config.DOC_PATH, this.getClass());
         // <<<1_class
 
         doc.write(".DocumentNamer usage with method",
@@ -68,7 +68,7 @@ class DocumentationNamerTest {
                 ),
                 getS(testInfo, namerMethod, namerClass, namer ->
                         // >>>6
-                        namer.getApprovedPath(Paths.get("src", "test", "docs", "org"))
+                        namer.getApprovedPath(Config.DOC_PATH.resolve("org"))
                         // <<<6
                         , "6"
                 ),

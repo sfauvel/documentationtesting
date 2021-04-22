@@ -10,10 +10,7 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
-import org.sfvl.doctesting.utils.CodeExtractor;
-import org.sfvl.doctesting.utils.DocWriter;
-import org.sfvl.doctesting.utils.DocumentationNamer;
-import org.sfvl.doctesting.utils.PathProvider;
+import org.sfvl.doctesting.utils.*;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -104,7 +101,7 @@ class ClassDocumentationTest {
     }
 
     public String extractSourceFromFile(Class<?> clazz) throws IOException {
-        final Path sourcePath = Paths.get("src", "test", "java");
+        final Path sourcePath = Config.TEST_PATH;
 
         return Files.lines(sourcePath.resolve(Paths.get(
                 clazz.getPackage().getName().replace(".", "/"),
@@ -201,7 +198,7 @@ class ClassDocumentationTest {
         final Path packageDocPath = extension.getDocPath().resolve(packagePath);
         final Path relativizeToProjectPath = packageDocPath.relativize(projectPath);
         final Path javaFilePath = relativizeToProjectPath
-                .resolve(Paths.get("src", "test", "java"))
+                .resolve(Config.TEST_PATH)
                 .resolve(packagePath)
                 .resolve(this.getClass().getSimpleName() + ".java");
 

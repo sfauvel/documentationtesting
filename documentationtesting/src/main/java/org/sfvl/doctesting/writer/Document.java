@@ -1,5 +1,6 @@
 package org.sfvl.doctesting.writer;
 
+import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocumentationNamer;
 import org.sfvl.doctesting.utils.PathProvider;
 
@@ -27,7 +28,7 @@ public class Document {
     public void saveAs(Path outputFile) throws IOException {
         final Path docFilePath = new PathProvider()
                 .getProjectPath()
-                .resolve(Paths.get("src", "test", "docs"))
+                .resolve(Config.DOC_PATH)
                 .resolve(outputFile);
 
         try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {

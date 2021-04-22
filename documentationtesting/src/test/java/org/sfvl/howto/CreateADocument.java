@@ -7,6 +7,7 @@ import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.utils.CodeExtractor;
+import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocWriter;
 import org.sfvl.doctesting.utils.DocumentationNamer;
 import org.sfvl.doctesting.writer.Document;
@@ -127,7 +128,7 @@ public class CreateADocument {
     }
 
     public void writeDoc(TestInfo testInfo, Path file) throws IOException {
-        final String content = Files.lines(Paths.get("src", "test", "docs").resolve(file))
+        final String content = Files.lines(Config.DOC_PATH.resolve(file))
                 .collect(Collectors.joining("\n"));
         final Path relativize = DocumentationNamer.toPath(this.getClass().getPackage()).relativize(file);
         final String view_rendering = "include::" + relativize + "[leveloffset=+1]";

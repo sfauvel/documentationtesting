@@ -9,6 +9,7 @@ import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
+import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocWriter;
 import org.sfvl.doctesting.utils.DocumentationNamer;
 import org.sfvl.doctesting.NotIncludeToDoc;
@@ -199,8 +200,7 @@ class ApprovalsExtensionTest {
 
         final String fileName = testClass.getSimpleName() + ".failing_test.received.adoc";
         final Path filePath = DocumentationNamer.toPath(testClass.getPackage()).resolve(fileName);
-        final Path documentationPath = Paths.get("src", "test", "docs")
-                .resolve(filePath);
+        final Path documentationPath = Config.DOC_PATH.resolve(filePath);
 
         AtomicInteger stacktraceLineCount = new AtomicInteger(0);
         Predicate<String> isStackLine = line -> line.startsWith("	at ");

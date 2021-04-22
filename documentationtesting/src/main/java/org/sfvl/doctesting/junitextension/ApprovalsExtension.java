@@ -8,10 +8,7 @@ import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.platform.commons.support.ModifierSupport;
-import org.sfvl.doctesting.utils.CodeExtractor;
-import org.sfvl.doctesting.utils.DocWriter;
-import org.sfvl.doctesting.utils.DocumentationNamer;
-import org.sfvl.doctesting.utils.PathProvider;
+import org.sfvl.doctesting.utils.*;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 
 import java.io.IOException;
@@ -158,7 +155,7 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
      * @return
      */
     public Path getDocPath() {
-        return pathBuidler.getProjectPath().resolve(Paths.get( "src", "test", "docs"));
+        return pathBuidler.getProjectPath().resolve(Config.DOC_PATH);
     }
 
 

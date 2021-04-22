@@ -7,7 +7,6 @@ import com.thoughtworks.qdox.model.JavaModel;
 
 import java.lang.reflect.Method;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -124,7 +123,8 @@ public class ClassesOrder {
     private JavaProjectBuilder createJavaProjectBuilderWithTestPath() {
         JavaProjectBuilder builder = new JavaProjectBuilder();
 
-        final Path testPath = pathProvider.getProjectPath().resolve(Paths.get("src", "test", "java"));
+
+        final Path testPath = pathProvider.getProjectPath().resolve(Config.TEST_PATH);
         builder.addSourceTree(testPath.toFile());
         return builder;
     }

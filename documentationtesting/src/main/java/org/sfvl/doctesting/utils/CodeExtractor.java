@@ -33,8 +33,8 @@ public class CodeExtractor {
         if (builder == null) {
             final PathProvider pathProvider = new PathProvider();
             builder = new JavaProjectBuilder();
-            builder.addSourceTree(pathProvider.getProjectPath().resolve(Paths.get("src/main/java")).toFile());
-            builder.addSourceTree(pathProvider.getProjectPath().resolve(Paths.get("src/test/java")).toFile());
+            builder.addSourceTree(pathProvider.getProjectPath().resolve(Config.SOURCE_PATH).toFile());
+            builder.addSourceTree(pathProvider.getProjectPath().resolve(Config.TEST_PATH).toFile());
         }
     }
 
@@ -142,7 +142,7 @@ public class CodeExtractor {
         private final Path sourcePath;
 
         public CodeExtractorVisitor(Class<?> classToExtract) {
-            sourcePath = Paths.get("src/test/java");
+            sourcePath = Config.TEST_PATH;
             classToDetermineFile = getFirstEnclosingClassBefore(classToExtract, null);
             classPackage = classToExtract.getPackage();
 

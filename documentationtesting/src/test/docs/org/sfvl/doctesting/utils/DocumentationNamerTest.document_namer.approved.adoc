@@ -5,12 +5,12 @@ DocumentNamer build names and paths from a method or a class.
 
 .DocumentNamer usage with method
         final DocumentationNamer namerMethod =
-                new DocumentationNamer(Paths.get("src", "test", "docs"), testInfo);
+                new DocumentationNamer(Config.DOC_PATH, testInfo);
 
 
 .DocumentNamer usage with class
         final DocumentationNamer namerClass =
-                new DocumentationNamer(Paths.get("src", "test", "docs"), this.getClass());
+                new DocumentationNamer(Config.DOC_PATH, this.getClass());
 
 
 [%header]
@@ -24,6 +24,6 @@ DocumentNamer build names and paths from a method or a class.
 | | src/test/docs/org/sfvl/doctesting/utils/ | src/test/docs/org/sfvl/doctesting/utils/
 3.+a| `namer.getFilePath()`
 | | src/test/docs/org/sfvl/doctesting/utils/DocumentationNamerTest.document_namer.approved.adoc | src/test/docs/org/sfvl/doctesting/utils/DocumentationNamerTest.approved.adoc
-3.+a| `namer.getApprovedPath(Paths.get("src", "test", "docs", "org"))`
+3.+a| `namer.getApprovedPath(Config.DOC_PATH.resolve("org"))`
 | | sfvl/doctesting/utils/DocumentationNamerTest.document_namer.approved.adoc | sfvl/doctesting/utils/DocumentationNamerTest.approved.adoc
 |====

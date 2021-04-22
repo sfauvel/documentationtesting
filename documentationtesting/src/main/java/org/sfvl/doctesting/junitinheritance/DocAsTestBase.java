@@ -10,13 +10,11 @@ import org.sfvl.doctesting.writer.ClassDocumentation;
 
 import java.io.FileWriter;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public abstract class DocAsTestBase {
     protected static final PathProvider pathBuidler = new PathProvider();
 
     DocWriter writer = new DocWriter();
-    private static Path DOC_PATH = Paths.get("src", "test", "docs");
 
     /**
      * Return the name to use as title from a test method .
@@ -40,7 +38,7 @@ public abstract class DocAsTestBase {
      * @return
      */
     protected Path getDocPath() {
-        return ApprovalsBase.pathBuidler.getProjectPath().resolve(DOC_PATH);
+        return ApprovalsBase.pathBuidler.getProjectPath().resolve(Config.DOC_PATH);
     }
 
     private static boolean isNestedClass(Class<?> currentClass) {
@@ -55,7 +53,7 @@ public abstract class DocAsTestBase {
         }
         final ClassDocumentation classDocumentation = new ClassDocumentation();
         final String content = classDocumentation.getClassDocumentation(clazz);
-        final Path docFilePath = DOC_PATH.resolve(DocumentationNamer.toPath(clazz, "", ".adoc"));
+        final Path docFilePath = Config.DOC_PATH.resolve(DocumentationNamer.toPath(clazz, "", ".adoc"));
         try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
             fileWriter.write(content);
         }

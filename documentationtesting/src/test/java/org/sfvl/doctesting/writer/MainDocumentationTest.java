@@ -10,6 +10,7 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.utils.CodeExtractor;
+import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocWriter;
 
 import java.io.File;
@@ -44,7 +45,7 @@ class MainDocumentationTest {
 
         public DocumentationOnSpecificMethods(List<Method> methods) {
             super("Documentation",
-                    Paths.get("src", "test", "docs"),
+                    Config.DOC_PATH,
                     new AsciidocFormatter());
             this.methods = methods;
         }
@@ -70,7 +71,7 @@ class MainDocumentationTest {
     public void by_default(TestInfo testInfo) {
         // >>>1
         final MainDocumentation doc = new MainDocumentation("Documentation",
-                Paths.get("src", "test", "docs"),
+                Config.DOC_PATH,
                 new AsciidocFormatter());
 
         Path docFilePath = doc.getDocRootPath();
@@ -78,7 +79,7 @@ class MainDocumentationTest {
         final String content = doc.getDocumentationContent(packageToScan, docFilePath);
         // <<<1
 
-        final Path packagePath = Paths.get("src/test/java/").resolve(packageToScan.replaceAll("\\.", "/"));
+        final Path packagePath = Config.TEST_PATH.resolve(packageToScan.replaceAll("\\.", "/"));
         final Stream<String> fileStream = Arrays.stream(packagePath.toFile().listFiles())
                 .filter(File::isFile)
                 .map(File::getName);

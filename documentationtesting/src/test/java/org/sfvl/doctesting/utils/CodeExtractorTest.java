@@ -692,10 +692,10 @@ class CodeExtractorTest {
     }
 
     public String includeSourceWithTag(String tag, Class<?> aClass) {
-        final Path pathFileThatInclude = Paths.get("src", "test", "docs")
+        final Path pathFileThatInclude = Config.DOC_PATH
                 .resolve(DocumentationNamer.toPath(this.getClass().getPackage()));
 
-        final Path pathFileToInclude = Paths.get("src", "test", "java")
+        final Path pathFileToInclude = Config.TEST_PATH
                 .resolve(DocumentationNamer.toPath(aClass));
 
         final Path relativizePath = pathFileThatInclude.relativize(pathFileToInclude);
