@@ -989,7 +989,7 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:154)
 	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:90)
 	at org.sfvl.doctesting.junitextension.ApprovalsExtensionTest.runTestClass(ApprovalsExtensionTest.java:246)
-	at org.sfvl.doctesting.junitextension.ApprovalsExtensionTest.failing_test_output(ApprovalsExtensionTest.java:194)
+	at org.sfvl.doctesting.junitextension.ApprovalsExtensionTest.failing_test_output(ApprovalsExtensionTest.java:195)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -2368,14 +2368,14 @@ It returns either DisplayName annotation value or method name.</p>
 <div class="title">DocumentNamer usage with method</div>
 <div class="content">
 <pre>final DocumentationNamer namerMethod =
-        new DocumentationNamer(Paths.get("src", "test", "docs"), testInfo);</pre>
+        new DocumentationNamer(Config.DOC_PATH, testInfo);</pre>
 </div>
 </div>
 <div class="literalblock">
 <div class="title">DocumentNamer usage with class</div>
 <div class="content">
 <pre>final DocumentationNamer namerClass =
-        new DocumentationNamer(Paths.get("src", "test", "docs"), this.getClass());</pre>
+        new DocumentationNamer(Config.DOC_PATH, this.getClass());</pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -2434,7 +2434,7 @@ It returns either DisplayName annotation value or method name.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" colspan="3"><div class="content"><div class="paragraph">
-<p><code>namer.getApprovedPath(Paths.get("src", "test", "docs", "org"))</code></p>
+<p><code>namer.getApprovedPath(Config.DOC_PATH.resolve("org"))</code></p>
 </div></div></td>
 </tr>
 <tr>
@@ -3046,7 +3046,7 @@ and in particular, those generated from test classes.</p>
 <div class="title">Usage</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">MainDocumentation</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MainDocumentation</span><span class="o">(</span><span class="s">"Documentation"</span><span class="o">,</span>
-        <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"src"</span><span class="o">,</span> <span class="s">"test"</span><span class="o">,</span> <span class="s">"docs"</span><span class="o">),</span>
+        <span class="nc">Config</span><span class="o">.</span><span class="na">DOC_PATH</span><span class="o">,</span>
         <span class="k">new</span> <span class="nf">AsciidocFormatter</span><span class="o">());</span>
 
 <span class="nc">Path</span> <span class="n">docFilePath</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">getDocRootPath</span><span class="o">();</span>
