@@ -1,10 +1,13 @@
 package org.sfvl;
 
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.FormatterDocumentation;
 import org.sfvl.doctesting.DocTestingDocumentation;
+import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.JUnitExtensionDocumentation;
+import org.sfvl.doctesting.utils.DocWriter;
 import org.sfvl.doctesting.utils.PathProvider;
 import org.sfvl.doctesting.writer.Document;
 import org.sfvl.doctesting.writer.DocumentProducer;
@@ -40,8 +43,24 @@ public class DocumentationTestingDocumentation implements DocumentProducer {
                 "",
                 "== Getting started",
                 "",
-                "To get started quickly, download link:https://github.com/sfauvel/TryDocAsTest[Try doc as test] project.",
-                "After " + linkToClass(InstallingLibrary.class, "installing Documentation testing") + " maven library, you are ready to write documentation that validate your code.",
+                "To get started quickly, you can download link:https://github.com/sfauvel/TryDocAsTest[Try doc as test] project.",
+                "It's a minimal project that is ready to use and which implementing a small demo.",
+                "",
+                "",
+                "If you want to use it on your own project, you need to:",
+                "",
+                "* " + linkToClass(InstallingLibrary.class, "Installing DocumentationTesting").trim() + " maven library and add dependency to your `pom.xml`",
+                "",
+                "* Create a test and register " + ApprovalsExtension.class.getSimpleName() + " extension adding the code below to the test class.",
+                formatter.sourceCodeBuilder("java")
+                .source("private static final DocWriter doc = new DocWriter();\n" +
+                        "@RegisterExtension\n" +
+                        "static ApprovalsExtension extension = new ApprovalsExtension(docWriter);")
+                .build(),
+                "",
+                "* Write in your test everything you want to see in your documentation using `doc.write(\"...\")`",
+                "You don't have to write assertions, tests will be passed when generated documents are the same as the last time.",
+                "",
                 "",
                 "== Main features",
                 "",
