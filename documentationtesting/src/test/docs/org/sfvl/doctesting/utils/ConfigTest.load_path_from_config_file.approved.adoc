@@ -1,0 +1,19 @@
+[#org_sfvl_doctesting_utils_ConfigTest_load_path_from_config_file]
+= Configuration file
+
+
+
+You can change those folders by creating a properties file named `docAsTest.properties` and put it in a resource folder.
+
+When this file contains:
+----
+include::../../../../../resources/testConfig.properties[]
+----
+
+Values are:
+
+* SOURCE_PATH=source/java
+* TEST_PATH=source/test
+* DOC_PATH=source/docs
+
+When config file does not exist, values are the default ones.

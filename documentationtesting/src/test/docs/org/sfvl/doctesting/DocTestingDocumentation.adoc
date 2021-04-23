@@ -29,6 +29,8 @@ include::utils/ClassesOrderTest.approved.adoc[leveloffset=+1]
 
 include::utils/CodeExtractorTest.approved.adoc[leveloffset=+1]
 
+include::utils/ConfigTest.approved.adoc[leveloffset=+1]
+
 include::utils/DocWriterTest.approved.adoc[leveloffset=+1]
 
 include::utils/DocumentationNamerTest.approved.adoc[leveloffset=+1]

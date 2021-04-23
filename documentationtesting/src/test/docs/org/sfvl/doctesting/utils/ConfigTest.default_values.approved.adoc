@@ -1,0 +1,10 @@
+[#org_sfvl_doctesting_utils_ConfigTest_default_values]
+= Default values
+
+
+
+By default, values are:
+
+* SOURCE_PATH=src/main/java
+* TEST_PATH=src/test/java
+* DOC_PATH=src/test/docs

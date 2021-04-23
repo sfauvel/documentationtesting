@@ -1,0 +1,6 @@
+:nofooter:
+= Configuration
+
+include::ConfigTest.default_values.approved.adoc[leveloffset=+1]
+
+include::ConfigTest.load_path_from_config_file.approved.adoc[leveloffset=+1]
