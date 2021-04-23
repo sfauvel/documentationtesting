@@ -9,4 +9,29 @@
 = Installing Documentation testing
 
 
-To be written
+We use the library link:https://github.com/sfauvel/documentationtesting[documentationtesting]
+which provides what we need to get started.
+For a complete description of how to use it go to the link:https://sfauvel.github.io/documentationtesting/documentationtesting[documentation site]
+
+The library is not yet on a public repository.
+To use it, you need to download and install it.
+
+You have to download `.jar` and `.pom` from
+link:https://github.com/sfauvel/documentationtesting/packages/538792[last Documentation Testing release]
+
+Run this maven command to install it:
+----
+mvn install:install-file -Dfile=<path-to-file>.jar -DpomFile=<path-to-pomfile>.pom
+----
+
+
+Then, you can add the dependency to your `pom.xml` to use it in your project
+[source,xml,indent=0]
+----
+        <dependency>
+            <groupId>org.sfvl</groupId>
+            <artifactId>documentationtesting</artifactId>
+            <version>${documentationtesting.version}</version>
+            <scope>test</scope>
+        </dependency>
+----
