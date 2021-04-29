@@ -13,7 +13,6 @@ import org.sfvl.doctesting.sample.SimpleClass;
 
 import java.lang.reflect.Method;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
@@ -342,6 +341,86 @@ class CodeExtractorTest {
             }
         }
 
+        public String method_with_code_to_extract() {
+            // >>>
+            String value = "some text";
+            // <<<
+
+            return CodeExtractor.extractPartOfCurrentMethod();
+        }
+
+        public String method_with_code_to_extract_with_tag() {
+            // >>>1
+            String value1 = "some text";
+            // <<<1
+
+            // >>>2
+            String value2 = "code to extract";
+            // <<<2
+
+            return CodeExtractor.extractPartOfCurrentMethod("2");
+        }
+
+        @Test
+        public void extract_a_part_of_code_from_the_current_method(TestInfo testInfo) {
+            {
+                {
+                    // >>>12
+                    String code = CodeExtractor.extractPartOfCurrentMethod();
+                    // <<<12
+                }
+
+                String code =
+                        // >>>99
+                        method_with_code_to_extract
+                                // <<<99
+                                        ();
+                String codeToExtract = CodeExtractor.methodSource(this.getClass(), CodeExtractor.extractPartOfCurrentMethod("99").trim());
+
+                doc.write(".How to extract code from the current method",
+                        extractMarkedCode(testInfo, "12"),
+                        "");
+
+                doc.writeInline(
+                        ".Source code from file",
+                        formatSourceCode(codeToExtract)
+                );
+
+                doc.writeInline(
+                        ".Source code extracted from the current method",
+                        formatSourceCode(code)
+                );
+            }
+            {
+                {
+                    // >>>2
+                    String code = CodeExtractor.extractPartOfCurrentMethod("2");
+                    // <<<2
+                }
+
+                String code =
+                // >>>98
+                        method_with_code_to_extract_with_tag
+                // <<<98
+                ();
+                String codeToExtract = CodeExtractor.methodSource(this.getClass(), CodeExtractor.extractPartOfCurrentMethod("98").trim());
+
+                doc.write(".How to extract code from the current method using a tag",
+                        extractMarkedCode(testInfo, "2"),
+                        "");
+
+                doc.writeInline(
+                        ".Source code from file",
+                        formatSourceCode(codeToExtract)
+                );
+
+                doc.writeInline(
+                        ".Source code extracted from the current method",
+                        formatSourceCode(code)
+                );
+            }
+        }
+
         /**
          * We shows here some technical cases.
          */
@@ -383,7 +462,7 @@ class CodeExtractorTest {
             }
 
             /**
-             *Tag inside another one can be a subpart (MyCode)  of the global one (**MyCode**Global) .
+             * Tag inside another one can be a subpart (MyCode)  of the global one (**MyCode**Global) .
              */
             @Test
             public void tag_beginning_with_same_outer_tag_name(TestInfo testInfo) {
@@ -412,7 +491,7 @@ class CodeExtractorTest {
             }
 
             /**
-             *Tag inside (**MyCodeGlobal**Inside) another one can be an extension of an outside tag (MyCodeGlobal).
+             * Tag inside (**MyCodeGlobal**Inside) another one can be an extension of an outside tag (MyCodeGlobal).
              */
             @Test
             public void tag_beginning_with_same_inner_tag_name(TestInfo testInfo) {

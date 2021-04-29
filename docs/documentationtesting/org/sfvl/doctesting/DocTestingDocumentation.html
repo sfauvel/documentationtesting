@@ -519,6 +519,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
+<li><a href="#_configuration">Configuration</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_doctesting_utils_ConfigTest_default_values">Default values</a></li>
+<li><a href="#org_sfvl_doctesting_utils_ConfigTest_load_path_from_config_file">Configuration file</a></li>
+</ul>
+</li>
 <li><a href="#_docwriter">DocWriter</a>
 <ul class="sectlevel2">
 <li><a href="#org_sfvl_doctesting_utils_DocWriterTest_doc_writer_usage">DocWriter usage</a></li>
@@ -2184,6 +2190,65 @@ In that case, all parts matching the text will be returned.</p>
    margin-right: 2em;
 }
 </style>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration">Configuration</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_ConfigTest_default_values">Default values</h3>
+<div class="paragraph">
+<p>By default, values are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>SOURCE_PATH=src/main/java</p>
+</li>
+<li>
+<p>TEST_PATH=src/test/java</p>
+</li>
+<li>
+<p>DOC_PATH=src/test/docs</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_ConfigTest_load_path_from_config_file">Configuration file</h3>
+<div class="paragraph">
+<p>You can change those folders by creating a properties file named <code>docAsTest.properties</code> and put it in a resource folder.</p>
+</div>
+<div class="paragraph">
+<p>When this file contains:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SOURCE_PATH:source/java
+TEST_PATH:source/test
+DOC_PATH:source/docs</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Values are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>SOURCE_PATH=source/java</p>
+</li>
+<li>
+<p>TEST_PATH=source/test</p>
+</li>
+<li>
+<p>DOC_PATH=source/docs</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When config file does not exist, values are the default ones.</p>
 </div>
 </div>
 </div>

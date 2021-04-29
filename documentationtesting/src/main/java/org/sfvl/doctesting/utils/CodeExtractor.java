@@ -194,6 +194,26 @@ public class CodeExtractor {
                 .collect(Collectors.toList());
     }
 
+
+    public static String extractPartOfCurrentMethod() {
+        return extractPartOfCurrentMethod(Thread.currentThread().getStackTrace()[2], "");
+
+    }
+    public static String extractPartOfCurrentMethod(String suffix) {
+        return extractPartOfCurrentMethod(Thread.currentThread().getStackTrace()[2], suffix);
+    }
+
+    private static String extractPartOfCurrentMethod(StackTraceElement callerStack, String suffix) {
+        try {
+            final Class<?> callerClass = Class.forName(callerStack.getClassName());
+            final String callerMethod = callerStack.getMethodName();
+            return extractPartOfMethod(callerClass, callerMethod, suffix);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
     public static String extractPartOfMethod(Method method) {
         return extractPartOfMethod(method, "");
     }

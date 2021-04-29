@@ -16,6 +16,8 @@ include::CodeExtractorTest.ExtractCode.extract_code_from_method.approved.adoc[le
 
 include::CodeExtractorTest.ExtractCode.extract_part_of_code_from_method.approved.adoc[leveloffset=+2]
 
+include::CodeExtractorTest.ExtractCode.extract_a_part_of_code_from_the_current_method.approved.adoc[leveloffset=+2]
+
 === Extract part of code
 
 We shows here some technical cases.

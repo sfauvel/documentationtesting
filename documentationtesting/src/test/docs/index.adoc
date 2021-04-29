@@ -36,7 +36,7 @@ static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 ----
 
 * Write in your test everything you want to see in your documentation using `doc.write("...")`
-You don't have to write assertions. Tests pass only when generated documents are the same as the last time tests were executed.
+You don't have to write assertions, tests will be passed when generated documents are the same as the last time.
 
 
 == Main features
