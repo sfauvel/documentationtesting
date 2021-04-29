@@ -75,7 +75,8 @@ class CodeExtractorTest {
         public void extract_code_of_a_class(TestInfo testInfo) {
 
             // >>>
-            String code = CodeExtractor.classSource(SimpleClass.class);
+            Class<?> classToExtract = SimpleClass.class;
+            String code = CodeExtractor.classSource(classToExtract);
             // <<<
 
             doc.write(".How to extract code of a class",
@@ -84,7 +85,7 @@ class CodeExtractorTest {
 
             doc.writeInline(
                     ".Source code to extract",
-                    includeSourceWithTag("classToExtract", SimpleClass.class)
+                    includeSourceWithTag("classToExtract", classToExtract)
             );
 
             doc.writeInline(
@@ -116,10 +117,12 @@ class CodeExtractorTest {
         }
 
         @Test
+        @DisplayName(value = "Extract code of a non public class in file")
         public void extract_code_of_an_other_class_in_file(TestInfo testInfo) {
             {
                 // >>>1
-                String code = CodeExtractor.classSource(CodeExtractorTest.class, ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);
+                String code = CodeExtractor.classSource(CodeExtractorTest.class,
+                        ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);
                 // <<<1
 
                 doc.write("It's not possible to extract code of a non public class because it's not possible to determine source file.",
@@ -141,7 +144,8 @@ class CodeExtractorTest {
             {
                 try {
                     // >>>2
-                    String code = CodeExtractor.classSource(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);
+                    String code = CodeExtractor.classSource(
+                            ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);
                     // <<<2
 
                     doc.writeInline(
