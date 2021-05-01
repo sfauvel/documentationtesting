@@ -37,6 +37,7 @@ public class ApprovalsExtensionTest {
     }
 
     @Test
+    @DisplayName(value = "Creating a test using ApprovalsExtension")
     public void using_extension() {
         final Class<?> testClass = MyTest.class;
 

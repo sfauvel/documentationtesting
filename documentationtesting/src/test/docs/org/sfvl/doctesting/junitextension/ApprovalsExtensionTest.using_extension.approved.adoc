@@ -1,5 +1,5 @@
 [#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_extension]
-= Using extension
+= Creating a test using ApprovalsExtension
 
 This is an example to create a simple test using `ApprovalsExtension`.
 
