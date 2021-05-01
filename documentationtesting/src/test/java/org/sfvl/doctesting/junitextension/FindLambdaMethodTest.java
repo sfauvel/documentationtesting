@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
  * FindLambdaMethod class provides tools to find reference method name.
  */
 @DisplayName(value = "Extract information from method reference")
-class FindLambdaMethodTest {
+public class FindLambdaMethodTest {
     private static final DocWriter doc = new DocWriter();
     @RegisterExtension
     static ApprovalsExtension extension = new ApprovalsExtension(doc);

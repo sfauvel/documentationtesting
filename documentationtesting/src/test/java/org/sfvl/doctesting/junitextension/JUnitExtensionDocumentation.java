@@ -2,12 +2,10 @@ package org.sfvl.doctesting.junitextension;
 
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
-import org.sfvl.doctesting.utils.ClassFinder;
 import org.sfvl.doctesting.utils.DocumentationNamer;
 import org.sfvl.doctesting.writer.*;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class JUnitExtensionDocumentation implements DocumentProducer {
