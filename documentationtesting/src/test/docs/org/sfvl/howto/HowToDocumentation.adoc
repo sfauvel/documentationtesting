@@ -10,6 +10,9 @@
 
 
 
+include::../doctesting/junitextension/ApprovalsExtensionTest.using_extension.approved.adoc[leveloffset=+1]
+
+
 include::CreateADocument.approved.adoc[leveloffset=+1]
 
 include::UseYourOwnStyle.approved.adoc[leveloffset=+1]

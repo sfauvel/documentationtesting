@@ -1,4 +1,0 @@
-[#org_sfvl_doctesting_junitextension_MyTest_test_A]
-= Test A
-
-In my *test*

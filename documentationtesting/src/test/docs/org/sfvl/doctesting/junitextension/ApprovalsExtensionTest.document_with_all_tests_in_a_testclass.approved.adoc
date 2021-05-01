@@ -8,7 +8,7 @@ At the end of a test, a file is created including file generated on each test.
 .Test example used to generate class document
 [source, java, indent=0]
 ----
-include::../../../../../java/org/sfvl/doctesting/junitextension/ApprovalsExtensionTest.java[tag=MyTest]
+include::../../../../../java/org/sfvl/samples/MyTest.java[tag=MyTest]
 ----
 
 
@@ -35,4 +35,4 @@ include::../../../../../java/org/sfvl/doctesting/junitextension/ApprovalsExtensi
 
 _final rendering_
 [.adocRendering]
-include::MyTest.approved.adoc[leveloffset=+1]
+include::../../samples/MyTest.approved.adoc[leveloffset=+1]

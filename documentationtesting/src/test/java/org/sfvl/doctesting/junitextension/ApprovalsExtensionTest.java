@@ -4,37 +4,29 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.*;
-import org.junit.platform.launcher.Launcher;
-import org.junit.platform.launcher.LauncherDiscoveryRequest;
-import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
-import org.junit.platform.launcher.core.LauncherFactory;
+import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.doctesting.NotIncludeToDoc;
+import org.sfvl.doctesting.test_tools.OnlyRunProgrammatically;
+import org.sfvl.doctesting.test_tools.TestRunnerFromTest;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocWriter;
 import org.sfvl.doctesting.utils.DocumentationNamer;
-import org.sfvl.doctesting.NotIncludeToDoc;
+import org.sfvl.samples.MyTest;
 
 import java.io.IOException;
-import java.io.PrintStream;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.fail;
-import static org.junit.platform.engine.discovery.DiscoverySelectors.selectClass;
 
 @DisplayName("Approvals extension")
 @ClassToDocument(clazz = ApprovalsExtension.class)
-class ApprovalsExtensionTest {
+public class ApprovalsExtensionTest {
 
     private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
@@ -48,9 +40,9 @@ class ApprovalsExtensionTest {
     public void using_extension() {
         final Class<?> testClass = MyTest.class;
 
-        runTestClass(testClass);
+        new TestRunnerFromTest().runTestClass(testClass);
 
-        write("This is an example of `" + ApprovalsExtension.class.getSimpleName() + "` usage.",
+        write("This is an example to create a simple test using `" + ApprovalsExtension.class.getSimpleName() + "`.",
                 "",
                 "You have to write a class and add `" + RegisterExtension.class.getSimpleName() + "` annotation on an attribute.",
                 "This extension will check that content of `" + DocWriter.class.getSimpleName() + "` has not changed since the last time.",
@@ -58,14 +50,14 @@ class ApprovalsExtensionTest {
                 "", "");
 
         write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`",
-                includeSourceWithTag(testClass.getSimpleName()),
+                includeSourceWithTag(testClass.getSimpleName(), testClass),
                 "", "");
 
-        final String testMethod = FindLambdaMethod.getName(MyTest::test_A);
-        final String filename = testClass.getSimpleName() + "." + testMethod + ".approved.adoc";
-        write("When executing test method `" + testMethod + "`, a file `" + filename + "` is generated and contains the following text",
+        final Method method = FindLambdaMethod.getMethod(MyTest::test_A);
+        final Path approvedPath = getRelativizedApprovedPath(method, Config.DOC_PATH);
+        write("When executing test method `" + method.getName() + "`, a file `" + approvedPath.getFileName() + "` is generated and contains the following text",
                 "----",
-                "include::" + filename + "[]",
+                "include::" + approvedPath + "[]",
                 "----",
                 "Filename and title come from method name.",
                 "The chapter content contains what was written using `" + DocWriter.class.getSimpleName() + "`");
@@ -76,7 +68,7 @@ class ApprovalsExtensionTest {
     public void using_displayName() throws IOException {
         final Class<?> testClass = UsingDisplayNameTest.class;
 
-        runTestClass(testClass);
+        new TestRunnerFromTest().runTestClass(testClass);
 
         write("You can use DisplayName annotation to customize test title");
 
@@ -101,7 +93,7 @@ class ApprovalsExtensionTest {
                         "when `̀" + DocWriter.class.getSimpleName() + "` could be declare once on enclosing class.");
 
         final Class<?> testClass = DemoNestedTest.class;
-        runTestClass(testClass);
+        new TestRunnerFromTest().runTestClass(testClass);
 
         write("", "", ".Test example using nested class",
                 includeSourceWithTag(testClass.getSimpleName()),
@@ -149,18 +141,17 @@ class ApprovalsExtensionTest {
                 "`" + ApprovalsExtension.class.getSimpleName() + "` must be static to be able to run `" + AfterAll.class.getSimpleName() + "` callback.");
 
         final Class<?> testClass = MyTest.class;
-        runTestClass(testClass);
+        new TestRunnerFromTest().runTestClass(testClass);
 
         write("", "", ".Test example used to generate class document",
-                includeSourceWithTag(testClass.getSimpleName()),
+                includeSourceWithTag(testClass.getSimpleName(),testClass),
                 "", "");
 
-        final Path generatedFilePath = Paths.get("", getClass().getPackage().getName().split("\\."));
-        final Path documentationPath = extension.getDocPath().resolve(generatedFilePath).resolve(testClass.getSimpleName() + ".approved.adoc");
+        final DocumentationNamer documentationNamer = new DocumentationNamer(Config.DOC_PATH, MyTest.class);
 
         write("", "", ".Document generated",
                 "----",
-                Files.lines(documentationPath)
+                Files.lines(documentationNamer.getApprovedPath(Paths.get("")))
                         .collect(Collectors.joining("\n"))
                         .replaceAll("\\ninclude::", "\n\\\\include::"),
                 "----");
@@ -177,7 +168,7 @@ class ApprovalsExtensionTest {
                 "</style>\n" +
                 "++++";
         write("", "", style, "", "_final rendering_", "[.adocRendering]",
-                "include::" + new DocumentationNamer(Paths.get(""), testClass).getApprovalFileName() + "[leveloffset=+1]"
+                "include::" + getRelativizedApprovedPath(documentationNamer, Config.DOC_PATH) + "[leveloffset=+1]"
         );
 
     }
@@ -192,7 +183,7 @@ class ApprovalsExtensionTest {
                 "");
 
         final Class<?> testClass = FailingTest.class;
-        runTestClass(testClass);
+        new TestRunnerFromTest().runTestClass(testClass);
 
         write("", "", ".Test example used to generate class document",
                 includeSourceWithTag(testClass.getSimpleName()),
@@ -231,94 +222,33 @@ class ApprovalsExtensionTest {
 
     }
 
-    public void runTestClass(Class<?> testClass) {
-        LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()
-                .selectors(selectClass(testClass))
-                .build();
-        Launcher launcher = LauncherFactory.create();
-//        TestPlan testPlan = launcher.discover(request);
-//        launcher.registerTestExecutionListeners(listener);
-        OnlyRunProgrammaticallyCondition.enable();
+    private Path getRelativizedApprovedPath(Method method, Path fromPath) {
+        final DocumentationNamer documentationNamer = new DocumentationNamer(Config.DOC_PATH, method);
+        return getRelativizedApprovedPath(documentationNamer, fromPath);
+    }
 
-        final PrintStream out = System.out;
-        try {
-            System.setOut(new InterceptorStream(out));
-            launcher.execute(request);
-        } finally {
-            System.setOut(out);
-        }
-
-        OnlyRunProgrammaticallyCondition.disable();
+    private Path getRelativizedApprovedPath(DocumentationNamer documentationNamer, Path fromPath) {
+        return documentationNamer.getApprovedPath(fromPath.resolve(DocumentationNamer.toPath(this.getClass().getPackage())));
     }
 
     public String includeSourceWithTag(String tag) {
+        return includeSourceWithTag(tag, this.getClass());
+    }
+
+    private String includeSourceWithTag(String tag, Class<?> aClass) {
+        final Path adoc = Config.DOC_PATH.resolve(DocumentationNamer.toPath(this.getClass().getPackage()));
+        final Path path = Config.TEST_PATH.resolve(DocumentationNamer.toPath(aClass, "", ".java"));
+        final Path relativizedJavaFilePath = adoc.relativize(path);
         return String.join("\n",
                 "[source, java, indent=0]",
                 "----",
-                String.format("include::../../../../../java/%s.java[tag=%s]",
-                        getClass().getName().replace(".", "/"),
+                String.format("include::%s[tag=%s]",
+                        relativizedJavaFilePath,
                         tag),
                 "----");
     }
 
 
-}
-
-class OnlyRunProgrammaticallyCondition implements ExecutionCondition {
-
-    static public boolean RUN_TEST_PROGRAMATICALLY = false;
-
-    public static boolean isEnabled() {
-        return RUN_TEST_PROGRAMATICALLY;
-    }
-
-    public static void enable() {
-        RUN_TEST_PROGRAMATICALLY = true;
-    }
-
-    public static void disable() {
-        RUN_TEST_PROGRAMATICALLY = false;
-    }
-
-    @Override
-    public ConditionEvaluationResult evaluateExecutionCondition(ExtensionContext extensionContext) {
-        if (isEnabled()) {
-            return ConditionEvaluationResult.enabled("Test run programmatically");
-        } else {
-            return ConditionEvaluationResult.disabled("Test could only be launched programmatically.");
-        }
-    }
-}
-
-class InterceptorStream extends PrintStream {
-    public final List<String> text = new ArrayList<>();
-
-    InterceptorStream(PrintStream o) {
-        super(o, true);
-    }
-
-    @Override
-    public void print(String s) {
-        text.add(s);
-    }
-
-    public void write(int b) {
-    }
-
-    public void write(byte buf[], int off, int len) {
-    }
-
-    @Override
-    public String toString() {
-        return text.stream()
-                .collect(Collectors.joining("\n"));
-    }
-};
-
-@Target({ElementType.TYPE, ElementType.METHOD})
-@Retention(RetentionPolicy.RUNTIME)
-@ExtendWith(OnlyRunProgrammaticallyCondition.class)
-@interface OnlyRunProgrammatically {
 }
 
 @NotIncludeToDoc
@@ -337,22 +267,6 @@ class FailingTest {
     }
 }
 // end::FailingTest[]
-
-@NotIncludeToDoc
-@OnlyRunProgrammatically
-// tag::MyTest[]
-class MyTest {
-    private static final DocWriter docWriter = new DocWriter();
-    @RegisterExtension
-    static final ApprovalsExtension extension = new ApprovalsExtension(docWriter);
-
-    @Test
-    public void test_A() {
-        docWriter.write("In my *test*");
-    }
-
-}
-// end::MyTest[]
 
 @NotIncludeToDoc
 @OnlyRunProgrammatically

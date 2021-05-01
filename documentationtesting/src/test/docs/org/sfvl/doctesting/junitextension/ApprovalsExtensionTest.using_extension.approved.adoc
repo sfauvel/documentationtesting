@@ -1,7 +1,7 @@
 [#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_extension]
 = Using extension
 
-This is an example of `ApprovalsExtension` usage.
+This is an example to create a simple test using `ApprovalsExtension`.
 
 You have to write a class and add `RegisterExtension` annotation on an attribute.
 This extension will check that content of `DocWriter` has not changed since the last time.
@@ -10,12 +10,12 @@ This extension will check that content of `DocWriter` has not changed since the 
 .Test example using `ApprovalsExtension`
 [source, java, indent=0]
 ----
-include::../../../../../java/org/sfvl/doctesting/junitextension/ApprovalsExtensionTest.java[tag=MyTest]
+include::../../../../../java/org/sfvl/samples/MyTest.java[tag=MyTest]
 ----
 
 When executing test method `test_A`, a file `MyTest.test_A.approved.adoc` is generated and contains the following text
 ----
-include::MyTest.test_A.approved.adoc[]
+include::../../samples/MyTest.test_A.approved.adoc[]
 ----
 Filename and title come from method name.
 The chapter content contains what was written using `DocWriter`
