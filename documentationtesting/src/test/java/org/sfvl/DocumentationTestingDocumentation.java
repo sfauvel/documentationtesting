@@ -1,23 +1,23 @@
 package org.sfvl;
 
-import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.FormatterDocumentation;
 import org.sfvl.doctesting.DocTestingDocumentation;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.junitextension.JUnitExtensionDocumentation;
-import org.sfvl.doctesting.utils.DocWriter;
-import org.sfvl.doctesting.utils.PathProvider;
+import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.utils.DocumentationNamer;
 import org.sfvl.doctesting.writer.Document;
 import org.sfvl.doctesting.writer.DocumentProducer;
 import org.sfvl.doctesting.writer.Options;
-import org.sfvl.howto.HowToDocumentation;
+import org.sfvl.howto.HowTo;
 import org.sfvl.howto.InstallingLibrary;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.nio.file.Path;
+import java.lang.reflect.Method;
 import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
@@ -39,7 +39,7 @@ public class DocumentationTestingDocumentation implements DocumentProducer {
                 "* " + linkToClass(DocTestingDocumentation.class) + ": Tools to make test validating generated files.",
                 "* " + linkToClass(FormatterDocumentation.class) + ": Utilities to format documentation.",
                 "",
-                "Section " + linkToClass(HowToDocumentation.class) + " shows how to do some common needs.",
+                "Section " + linkToMethod(HowTo::how_to) + " shows how to do some common needs.",
                 "",
                 "== Getting started",
                 "",
@@ -53,10 +53,10 @@ public class DocumentationTestingDocumentation implements DocumentProducer {
                 "",
                 "* Create a test and register " + ApprovalsExtension.class.getSimpleName() + " extension adding the code below to the test class.",
                 formatter.sourceCodeBuilder("java")
-                .source("private static final DocWriter doc = new DocWriter();\n" +
-                        "@RegisterExtension\n" +
-                        "static ApprovalsExtension extension = new ApprovalsExtension(docWriter);")
-                .build(),
+                        .source("private static final DocWriter doc = new DocWriter();\n" +
+                                "@RegisterExtension\n" +
+                                "static ApprovalsExtension extension = new ApprovalsExtension(docWriter);")
+                        .build(),
                 "",
                 "* Write in your test everything you want to see in your documentation using `doc.write(\"...\")`",
                 "You don't have to write assertions, tests will be passed when generated documents are the same as the last time.",
@@ -82,6 +82,21 @@ public class DocumentationTestingDocumentation implements DocumentProducer {
         return String.format("link:%s.html[%s]\n",
                 clazz.getName().replace(".", "/"),
                 name);
+    }
+
+    public <T> String linkToMethod(FindLambdaMethod.SerializableConsumer<T> methodToInclude) {
+        final Method method = FindLambdaMethod.getMethod(methodToInclude);
+        final DocumentationNamer documentationNamer = new DocumentationNamer(Config.DOC_PATH, method);
+        final String filename = documentationNamer.getApprovedPath(Config.DOC_PATH).toString();
+        String methodName = method.getName();
+
+        String title = methodName.replace("_", " ");
+        title = title.substring(0, 1).toUpperCase() + title.substring(1);
+
+        return String.format("link:%s[%s]\n",
+                filename.replaceAll("\\.adoc", ".html"),
+                title);
+
     }
 
     private void buildLinkedFile() {
