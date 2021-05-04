@@ -36,10 +36,10 @@ public class DocumentationTestingDocumentation implements DocumentProducer {
         return String.join("\n",
                 "This project is composed of two main packages.",
                 "",
-                "* " + linkToClass(DocTestingDocumentation.class) + ": Tools to make test validating generated files.",
-                "* " + linkToClass(FormatterDocumentation.class) + ": Utilities to format documentation.",
+                "* " + linkToDocClass(DocTestingDocumentation.class) + ": Tools to make test validating generated files.",
+                "* " + linkToDocClass(FormatterDocumentation.class) + ": Utilities to format documentation.",
                 "",
-                "Section " + linkToMethod(HowTo::how_to) + " shows how to do some common needs.",
+                "Section " + linkToClass(HowTo.class) + " shows how to do some common needs.",
                 "",
                 "== Getting started",
                 "",
@@ -49,7 +49,7 @@ public class DocumentationTestingDocumentation implements DocumentProducer {
                 "",
                 "If you want to use it on your own project, you need to:",
                 "",
-                "* " + linkToClass(InstallingLibrary.class, "Installing DocumentationTesting").trim() + " maven library and add dependency to your `pom.xml`",
+                "* " + linkToDocClass(InstallingLibrary.class, "Installing DocumentationTesting").trim() + " maven library and add dependency to your `pom.xml`",
                 "",
                 "* Create a test and register " + ApprovalsExtension.class.getSimpleName() + " extension adding the code below to the test class.",
                 formatter.sourceCodeBuilder("java")
@@ -64,24 +64,36 @@ public class DocumentationTestingDocumentation implements DocumentProducer {
                 "",
                 "== Main features",
                 "",
-                "* " + linkToClass(JUnitExtensionDocumentation.class, "JUnit extension embedded Approvals"),
+                "* " + linkToDocClass(JUnitExtensionDocumentation.class, "JUnit extension embedded Approvals"),
                 "** Name file associate to each test",
                 "** Execute verification after test",
                 "* Generation of a general documentation that aggregate all test files",
                 "* Tools to extract parts of code",
-                "* " + linkToClass(FormatterDocumentation.class, "API to transform text") + " to output format");
+                "* " + linkToDocClass(FormatterDocumentation.class, "API to transform text") + " to output format");
     }
 
-    private String linkToClass(Class<? extends DocumentProducer> clazz) {
+    private String linkToDocClass(Class<? extends DocumentProducer> clazz) {
         final String name = clazz.getPackage().getName();
-        return linkToClass(clazz, name);
+        return linkToDocClass(clazz, name);
     }
 
-    private String linkToClass(Class<? extends DocumentProducer> clazz, String name) {
+    private String linkToDocClass(Class<? extends DocumentProducer> clazz, String name) {
         buildersToGenerate.add(clazz);
         return String.format("link:%s.html[%s]\n",
                 clazz.getName().replace(".", "/"),
                 name);
+    }
+
+    private String linkToClass(Class<?> clazz) {
+        final String className = clazz.getSimpleName();
+        final String title = className.substring(0, 1) +
+                className.substring(1)
+                        .replaceAll("([A-Z])", " $1")
+                        .toLowerCase();
+
+        return String.format("link:%s.html[%s]\n",
+                DocumentationNamer.toPath(clazz),
+                title);
     }
 
     public <T> String linkToMethod(FindLambdaMethod.SerializableConsumer<T> methodToInclude) {

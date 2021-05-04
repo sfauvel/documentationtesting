@@ -1,0 +1,26 @@
+
+= Format text
+
+
+To format text, we can use a formatter that hide technical syntax of the language used.
+
+.Formatter usage
+        Formatter formatter = new AsciidocFormatter();
+        final String text = formatter.listItems("Item A", "Item B", "Item C");
+
+
+.Text generated
+----
+
+* Item A
+* Item B
+* Item C
+----
+
+.Final rendering
+====
+
+* Item A
+* Item B
+* Item C
+====

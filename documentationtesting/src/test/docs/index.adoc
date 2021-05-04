@@ -14,7 +14,7 @@ This project is composed of two main packages.
 * link:org/sfvl/docformatter/FormatterDocumentation.html[org.sfvl.docformatter]
 : Utilities to format documentation.
 
-Section link:org/sfvl/howto/HowTo.how_to.approved.html[How to]
+Section link:org/sfvl/howto/HowTo.html[How to]
  shows how to do some common needs.
 
 == Getting started

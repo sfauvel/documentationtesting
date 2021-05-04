@@ -15,10 +15,15 @@ public class Classes {
     }
 
     public String includeClasses(Path location, List<Class<?>> classesToInclude) {
+        return includeClasses(location, classesToInclude, 1);
+    }
 
+    public String includeClasses(Path location, List<Class<?>> classesToInclude, int offset) {
         return classesToInclude.stream()
                 .map(c -> getRelativeFilePath(location, c))
-                .map(path -> formatter.include(path.toString()).trim())
+                .map(path -> {
+                    return formatter.include(path.toString(), offset).trim();
+                })
                 .collect(Collectors.joining("\n\n", "\n", "\n"));
     }
 
