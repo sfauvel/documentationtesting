@@ -1,0 +1,39 @@
+[#org_sfvl_doctesting_utils_DocWriterTest_doc_writer_without_title]
+= DocWriter without title
+
+If you don't want the default title in the generated file, add @NoTitle annotation.
+It can be useful when you want to include this file in another test for example.
+
+.Test with NoTitle annotation
+
+[source,java,indent=0]
+----
+        class MyTest {
+            @Test
+            @NoTitle
+            public void my_method() {
+                // my doc generation
+            }
+        }
+
+----
+
+
+.DocWriter usage
+
+[source,java,indent=0]
+----
+        final DocWriter doc = new DocWriter();
+        doc.write("Some text added to show DocWriter output.");
+        final String output = doc.formatOutput(
+                "Do not display this title",
+                MyTest.class.getMethod("my_method")
+        );
+
+----
+
+
+.Output provided
+....
+Some text added to show DocWriter output.
+....

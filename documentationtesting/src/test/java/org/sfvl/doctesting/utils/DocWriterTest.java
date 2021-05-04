@@ -12,6 +12,7 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
+import org.sfvl.doctesting.utils.DocWriter.NoTitle;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ class DocWriterTest {
     /**
      * DocWriter is just a buffer.
      * Everything wrote in DocWriter will be returned when asking for output.
-     * A title is add to the output.
+     * By default, a title is added to the output.
      *
      * @param testInfo
      * @throws NoSuchMethodException
@@ -65,7 +66,49 @@ class DocWriterTest {
         // <<<
 
         docWriter.write(".DocWriter usage",
-                CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get()),
+                formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                "", "");
+
+        docWriter.write(formatter
+                .blockBuilder(Formatter.Block.LITERAL)
+                .title("Output provided")
+                .content(output)
+                .build());
+    }
+
+    /**
+     * If you don't want the default title in the generated file, add @NoTitle annotation.
+     * It can be useful when you want to include this file in another test for example.
+     */
+    @Test
+    @DisplayName("DocWriter without title")
+    public void doc_writer_without_title(TestInfo testInfo) throws NoSuchMethodException {
+
+        // >>>test_class
+        class MyTest {
+            @Test
+            @NoTitle
+            public void my_method() {
+                // my doc generation
+            }
+        }
+        // <<<test_class
+
+        // >>>
+        final DocWriter doc = new DocWriter();
+        doc.write("Some text added to show DocWriter output.");
+        final String output = doc.formatOutput(
+                "Do not display this title",
+                MyTest.class.getMethod("my_method")
+        );
+        // <<<
+
+        docWriter.write(".Test with NoTitle annotation",
+                formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod("test_class")),
+                "", "");
+
+        docWriter.write(".DocWriter usage",
+                formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
                 "", "");
 
         docWriter.write(formatter

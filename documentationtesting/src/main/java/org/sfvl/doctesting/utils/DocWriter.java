@@ -1,5 +1,7 @@
 package org.sfvl.doctesting.utils;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -8,6 +10,11 @@ import java.util.stream.Collectors;
  * This object is used to store the text that need to be write to the final document.
  */
 public class DocWriter {
+    @Retention(RetentionPolicy.RUNTIME)
+    public static @interface NoTitle {
+
+    }
+
     private StringBuffer sb = new StringBuffer();
 
     /**
@@ -22,12 +29,16 @@ public class DocWriter {
     }
 
     public String formatOutput(String displayName, Method testMethod) {
-        return String.join("",
+        boolean isTitle = testMethod.getAnnotation(NoTitle.class) == null;
+        String title = isTitle
+                ? String.join("",
                 String.format("[#%s]", titleId(testMethod)),
                 "\n",
                 "= " + formatTitle(displayName, testMethod) + "\n",
-                //String.format("// %s.%s\n", testMethod.getDeclaringClass().getCanonicalName(), testMethod.getName()),
-                "\n",
+                "\n")
+                : "";
+        return String.join("",
+                title,
                 CodeExtractor.getComment(testMethod).map(comment -> comment + "\n\n").orElse(""),
                 read());
     }
