@@ -8,6 +8,7 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.AsciidocFormatterTest;
+import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
@@ -25,6 +26,8 @@ class DocWriterTest {
     private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
     static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+
+    final AsciidocFormatter formatter = new AsciidocFormatter();
 
     private void write(String... texts) {
         docWriter.write(texts);
@@ -65,10 +68,11 @@ class DocWriterTest {
                 CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get()),
                 "", "");
 
-        docWriter.write("",
-                "Output provided",
-                "****", output, "****");
-
+        docWriter.write(formatter
+                .blockBuilder(Formatter.Block.LITERAL)
+                .title("Output provided")
+                .content(output)
+                .build());
     }
 
     @Test

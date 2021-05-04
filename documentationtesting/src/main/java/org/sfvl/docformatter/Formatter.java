@@ -48,10 +48,14 @@ public interface Formatter {
 
     Source source(String s);
 
+    BlockBuilder blockBuilder(Block block);
     BlockBuilder blockBuilder(String delimiter);
 
     SourceCodeBuilder sourceCodeBuilder();
 
     SourceCodeBuilder sourceCodeBuilder(String language);
 
+    public static enum Block {
+        LITERAL;
+    }
 }

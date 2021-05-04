@@ -14,6 +14,7 @@ public class AsciidocFormatter implements Formatter {
      * - *sourcedir*: Path to locate source files.
      * - *source-highlighter*: Source code highlighter to use.
      * - *docinfo*:
+     *
      * @returnlink:https://asciidoctor.org/docs/user-manual/#docinfo-file[Add custom header and footer]
      */
     @Override
@@ -77,8 +78,8 @@ public class AsciidocFormatter implements Formatter {
     @Override
     public String listItems(String... texts) {
         return Arrays.stream(texts)
-                    .map(this::listItem)
-                    .collect(Collectors.joining());
+                .map(this::listItem)
+                .collect(Collectors.joining());
     }
 
     @Override
@@ -130,7 +131,7 @@ public class AsciidocFormatter implements Formatter {
     public String tableWithHeader(List<List<?>> data) {
         return "\n|====\n" +
                 data.stream().limit(1).map(this::formatTableLine).collect(Collectors.joining("\n")) +
-                "\n\n"+
+                "\n\n" +
                 data.stream().skip(1).map(this::formatTableLine).collect(Collectors.joining("\n")) +
                 "\n|====\n";
     }
@@ -169,6 +170,15 @@ public class AsciidocFormatter implements Formatter {
         return new AsciidocBlockBuilder(delimiter);
     }
 
+    private static Map<Block, String> delimiters = new HashMap() {{
+        put(Block.LITERAL, "....");
+    }};
+
+    @Override
+    public BlockBuilder blockBuilder(Block block) {
+        return blockBuilder(delimiters.getOrDefault(block, ""));
+    }
+
     @Override
     public SourceCodeBuilder sourceCodeBuilder() {
         return new AsciidocSourceCodeBuilder();
@@ -186,6 +196,7 @@ public class AsciidocFormatter implements Formatter {
             super(BlockBuilder.class, delimiter);
         }
     }
+
     public static class AsciidocGenericBlockBuilder<T> implements GenericBlockBuilder<T> {
         private final T myself;
         protected final String delimiter;
@@ -247,7 +258,7 @@ public class AsciidocFormatter implements Formatter {
 
         public AsciidocSourceCodeBuilder(String language) {
             super(SourceCodeBuilder.class, "----");
-            withOption("source"+Optional.ofNullable(language).map(t -> ","+t).orElse(""));
+            withOption("source" + Optional.ofNullable(language).map(t -> "," + t).orElse(""));
             withOption("indent", "0");
         }
 

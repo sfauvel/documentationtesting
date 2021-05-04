@@ -14,13 +14,12 @@ A title is add to the output.
         );
 
 
-
-Output provided
-****
+.Output provided
+....
 [#org_sfvl_doctesting_utils_DocWriterTest_method_demo]
 = My title
 
 This method shows what kind of output is provided.
 
 Some text added to show DocWriter output.
-****
+....

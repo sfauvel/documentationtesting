@@ -38,7 +38,11 @@ include::AsciidocFormatterTest.should_format_empty_list.approved.adoc[leveloffse
 
 include::AsciidocFormatterTest.should_format_source_code.approved.adoc[leveloffset=+1]
 
-include::AsciidocFormatterTest.should_format_block.approved.adoc[leveloffset=+1]
+== block
+
+include::AsciidocFormatterTest.block.should_format_block_with_enum.approved.adoc[leveloffset=+2]
+
+include::AsciidocFormatterTest.block.should_format_block.approved.adoc[leveloffset=+2]
 
 include::AsciidocFormatterTest.should_format_source_code_with_a_builder.approved.adoc[leveloffset=+1]
 

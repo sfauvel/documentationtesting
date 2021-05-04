@@ -1,9 +1,6 @@
 package org.sfvl.docformatter;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
@@ -155,13 +152,28 @@ public class AsciidocFormatterTest {
                         "}");
     }
 
-    @Test
-    @DisplayName("Block")
-    public void should_format_block() {
-        output = formatter.blockBuilder("====")
-                .title("Simple block")
-                .content("Into the block")
-                .build();
+    @Nested
+    class block {
+        /**
+         * You can select block type from on of the Block enum.
+         */
+        @Test
+        @DisplayName("Predefine blocks")
+        public void should_format_block_with_enum() {
+            output = formatter.blockBuilder(Formatter.Block.LITERAL)
+                    .title("Simple block")
+                    .content("Into the block")
+                    .build();
+        }
+
+        @Test
+        @DisplayName("Free block")
+        public void should_format_block() {
+            output = formatter.blockBuilder("====")
+                    .title("Simple block")
+                    .content("Into the block")
+                    .build();
+        }
     }
 
     @Test
@@ -273,12 +285,4 @@ public class AsciidocFormatterTest {
         }
     }
 
-    public static void main(String... args) {
-        final String comment = CodeExtractor.getComment(AsciidocFormatterTest.class);
-        System.out.println(comment);
-
-
-        final Optional<String> commentx = CodeExtractor.getComment(AsciidocFormatterTest.class, "standardOptions");
-        System.out.println(commentx.orElse("No comment"));
-    }
 }
