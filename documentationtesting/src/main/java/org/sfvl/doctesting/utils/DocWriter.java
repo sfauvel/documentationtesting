@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 public class DocWriter {
     @Retention(RetentionPolicy.RUNTIME)
     public static @interface NoTitle {
-
     }
 
     private StringBuffer sb = new StringBuffer();
@@ -61,7 +60,7 @@ public class DocWriter {
      * It returns either DisplayName annotation value or method name.
      *
      * @param displayName
-     * @param methodName
+     * @param method
      * @return
      */
     public String formatTitle(String displayName, Method method) {

@@ -21,6 +21,8 @@ This document describes usage of classes to create test from generated documenta
 
 include::junitextension/ApprovalsExtensionTest.approved.adoc[leveloffset=+1]
 
+include::junitextension/FailureReporterTest.approved.adoc[leveloffset=+1]
+
 include::junitextension/FindLambdaMethodTest.approved.adoc[leveloffset=+1]
 
 include::utils/ClassFinderTest.approved.adoc[leveloffset=+1]

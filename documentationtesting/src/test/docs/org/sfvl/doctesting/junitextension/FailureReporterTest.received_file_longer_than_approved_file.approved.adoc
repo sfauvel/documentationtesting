@@ -1,0 +1,28 @@
+[#org_sfvl_doctesting_junitextension_FailureReporterTest_received_file_longer_than_approved_file]
+= Received file longer than approved file
+
+When the received file is longer than the approved file,
+We indicate that there is no more lines.
+
+.Received text
+....
+= Title
+Description
+Footer
+....
+.Approved text
+....
+= Title
+Description
+....
+.Report
+....
+Differences between files:
+    Approved: /tmp/files/approved.adoc
+    Received: /tmp/files/received.adoc
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+3 (no line)
+=================================================================
+3: Footer
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+....

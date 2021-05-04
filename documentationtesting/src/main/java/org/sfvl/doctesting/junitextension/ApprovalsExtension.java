@@ -12,6 +12,7 @@ import org.sfvl.doctesting.utils.*;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.nio.file.Files;
@@ -38,9 +39,11 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
     public T getDocWriter() {
         return docWriter;
     }
+
     private boolean isNestedClass(Class<?> currentClass) {
         return !ModifierSupport.isStatic(currentClass) && currentClass.isMemberClass();
     }
+
     @Override
     public void afterAll(ExtensionContext extensionContext) throws Exception {
         final Class<?> currentClass = extensionContext.getTestClass().get();
@@ -91,51 +94,10 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
             }
         };
 
-        final ApprovalFailureReporter approvalFailureReporter = new ApprovalFailureReporter() {
-            ApprovalFailureReporter delegate = Approvals.getReporter();
-
-            @Override
-            public void report(String received, String approved) {
-                delegate.report(received, approved);
-
-
-                System.out.println(approved);
-                System.out.println("*****************************************************************");
-                try {
-                    Files.lines(Paths.get(approved)).forEach(System.out::println);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("*****************************************************************");
-                System.out.println(received);
-                try {
-                    Files.lines(Paths.get(received)).forEach(System.out::println);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("*****************************************************************");
-
-                try {
-                    final List<String> approvedLines = Files.lines(Paths.get(approved)).collect(Collectors.toList());
-                    final List<String> receivedLines = Files.lines(Paths.get(received)).collect(Collectors.toList());
-
-                    for (int lineNumber = 0; lineNumber < approvedLines.size(); lineNumber++) {
-                        if (!approvedLines.get(lineNumber).equals(receivedLines.get(lineNumber))) {
-                            System.out.println(String.format("%d: %s", lineNumber, receivedLines.get(lineNumber)));
-                        }
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("*****************************************************************");
-
-            }
-        };
-
         Approvals.verify(
                 new ApprovalTextWriter(content, "adoc"),
                 approvalNamer,
-                approvalFailureReporter);
+                new FailureReporter());
     }
 
     public String displayFailingReason(Throwable e) {
@@ -152,6 +114,7 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
 
     /**
      * Give path where docs are generated.
+     *
      * @return
      */
     public Path getDocPath() {
@@ -159,6 +122,59 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
     }
 
 
+    public static class FailureReporter implements ApprovalFailureReporter {
+        ApprovalFailureReporter delegate = Approvals.getReporter();
+        private final PrintStream out;
 
+        public FailureReporter() {
+            this(System.out);
+        }
 
+        public FailureReporter(PrintStream out) {
+            this.out = out;
+        }
+
+        @Override
+        public void report(String received, String approved) {
+            delegate.report(received, approved);
+
+            try {
+                final List<String> approvedLines = Files.lines(Paths.get(approved)).collect(Collectors.toList());
+                final List<String> receivedLines = Files.lines(Paths.get(received)).collect(Collectors.toList());
+
+                int lineNumber = 0;
+                while (lineNumber < approvedLines.size()
+                        && lineNumber < receivedLines.size()
+                        && approvedLines.get(lineNumber).equals(receivedLines.get(lineNumber))) {
+                    lineNumber++;
+                }
+
+                if (lineNumber >= approvedLines.size() && lineNumber >= receivedLines.size()) {
+                    out.println(String.format("Files are identical:\n    Approved: %s\n    Received: %s",
+                            approved,
+                            received));
+                } else {
+                    out.println(String.format("Differences between files:\n    Approved: %s\n    Received: %s",
+                            approved,
+                            received));
+                    out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                    out.println(formatLine(approvedLines, lineNumber));
+                    out.println("=================================================================");
+                    out.println(formatLine(receivedLines, lineNumber));
+                    out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        private String formatLine(List<String> lines, int lineNumber) {
+            if (lineNumber < lines.size()) {
+                return String.format("%d: %s", (lineNumber + 1), lines.get(lineNumber));
+            } else {
+                return String.format("%d (no line)", (lineNumber + 1));
+            }
+        }
+    }
 }

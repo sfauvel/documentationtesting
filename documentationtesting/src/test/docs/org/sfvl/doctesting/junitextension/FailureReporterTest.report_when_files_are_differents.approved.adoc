@@ -1,0 +1,31 @@
+[#org_sfvl_doctesting_junitextension_FailureReporterTest_report_when_files_are_differents]
+= Report when files are differents
+
+When the received file is not the same as the approved file,
+first different line is displayed on report.
+
+.Received text
+....
+= Title
+Description
+Line from received text
+Footer received
+....
+.Approved text
+....
+= Title
+Description
+Line from approved text
+Footer approved
+....
+.Report
+....
+Differences between files:
+    Approved: /tmp/files/approved.adoc
+    Received: /tmp/files/received.adoc
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+3: Line from approved text
+=================================================================
+3: Line from received text
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+....
