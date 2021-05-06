@@ -40,4 +40,4 @@ The number of points is displayed behind the player's name: Chet &#x2783; +
 
 
 
-include::com/adaptionsoft/games/uglytrivia/GameTest.adoc[leveloffset=+1]
+include::com/adaptionsoft/games/uglytrivia/GameTest.approved.adoc[leveloffset=+1]

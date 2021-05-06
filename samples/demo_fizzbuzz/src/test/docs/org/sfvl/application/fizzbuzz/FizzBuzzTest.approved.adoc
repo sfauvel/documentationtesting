@@ -1,0 +1,20 @@
+= Fizz buzz test
+
+link:https://en.wikipedia.org/wiki/Fizz_buzz[Fizz buzz] is a group word game for children to teach them about division.
+
+Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz” instead of the number
+and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz “.
+
+http://codingdojo.org/kata/FizzBuzz/
+
+include::FizzBuzzTest.sample_output.approved.adoc[leveloffset=+1]
+
+include::FizzBuzzTest.return_given_number.approved.adoc[leveloffset=+1]
+
+include::FizzBuzzTest.return_fizz_when_divisible_by_three.approved.adoc[leveloffset=+1]
+
+include::FizzBuzzTest.return_buzz_when_divisible_by_five.approved.adoc[leveloffset=+1]
+
+include::FizzBuzzTest.return_fizzbuzz_when_divisible_by_three_and_five.approved.adoc[leveloffset=+1]
+
+include::FizzBuzzTest.values_for_a_result.approved.adoc[leveloffset=+1]

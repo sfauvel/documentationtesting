@@ -21,7 +21,7 @@ public class BasicDocumentation extends DemoDocumentation {
         final Path docRootPath = new PathProvider().getProjectPath().resolve(Paths.get("src", "test", "docs"));
         final ClassDocumentation classDocumentation = new ClassDocumentation();
 
-        final Path path = docRootPath.resolve(DocumentationNamer.toPath(DemoTest.class, "", ".adoc"));
+        final Path path = docRootPath.resolve(DocumentationNamer.toPath(DemoTest.class, "", ".approved.adoc"));
         try (FileWriter writer = new FileWriter(path.toFile())) {
             writer.write(classDocumentation.getClassDocumentation(classToDocument));
         }

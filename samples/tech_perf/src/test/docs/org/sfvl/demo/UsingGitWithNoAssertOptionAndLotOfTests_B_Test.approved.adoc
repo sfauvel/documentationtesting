@@ -1,0 +1,3 @@
+= Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.
+
+Demo of a simple usage to generate documentation.

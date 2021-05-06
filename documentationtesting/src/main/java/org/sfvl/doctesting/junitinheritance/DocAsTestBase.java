@@ -53,7 +53,7 @@ public abstract class DocAsTestBase {
         }
         final ClassDocumentation classDocumentation = new ClassDocumentation();
         final String content = classDocumentation.getClassDocumentation(clazz);
-        final Path docFilePath = Config.DOC_PATH.resolve(DocumentationNamer.toPath(clazz, "", ".adoc"));
+        final Path docFilePath = Config.DOC_PATH.resolve(DocumentationNamer.toPath(clazz, "", ".approved.adoc"));
         try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
             fileWriter.write(content);
         }

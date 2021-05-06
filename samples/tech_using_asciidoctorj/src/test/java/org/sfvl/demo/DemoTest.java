@@ -26,7 +26,7 @@ public class DemoTest extends ApprovalsBase {
                 classDocumentation.getClassDocumentation(clazz));
 
         final Path docFilePath = Paths.get("src", "test", "docs")
-                .resolve(DocumentationNamer.toPath(clazz, "", ".adoc"));
+                .resolve(DocumentationNamer.toPath(clazz, "", ".approved.adoc"));
 
         try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
             fileWriter.write(content);

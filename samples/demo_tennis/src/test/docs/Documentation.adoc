@@ -19,4 +19,4 @@ View source of project on link:{github-repo}/samples/demo_tennis[Github]
 
 
 
-include::org/sfvl/demo/TennisTest.adoc[leveloffset=+1]
+include::org/sfvl/demo/TennisTest.approved.adoc[leveloffset=+1]

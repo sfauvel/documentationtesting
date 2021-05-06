@@ -19,4 +19,4 @@ View source of project on link:{github-repo}/samples/demo_hero[Github]
 
 
 
-include::org/sfvl/demo/HeroExperienceTest.adoc[leveloffset=+1]
+include::org/sfvl/demo/HeroExperienceTest.approved.adoc[leveloffset=+1]

@@ -9,8 +9,14 @@ import java.util.stream.Collectors;
 
 public class Classes {
     private final Formatter formatter;
+    private final String suffix;
 
     public Classes(Formatter formatter) {
+        this(formatter, ".approved.adoc");
+    }
+
+    public Classes(Formatter formatter, String suffix) {
+        this.suffix = suffix;
         this.formatter = formatter;
     }
 
@@ -28,7 +34,7 @@ public class Classes {
     }
 
     private Path getRelativeFilePath(Path docPath, Class<?> clazz) {
-        final Path classPath = DocumentationNamer.toPath(clazz, "", ".approved.adoc");
+        final Path classPath = DocumentationNamer.toPath(clazz, "", suffix);
 
         return docPath.relativize(classPath);
     }
