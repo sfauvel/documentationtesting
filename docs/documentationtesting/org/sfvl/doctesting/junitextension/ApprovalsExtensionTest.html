@@ -436,9 +436,49 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
 <h1>Approvals extension</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_extension">Creating a test using ApprovalsExtension</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_displayName">Using displayName</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_nested_class">Nested class</a>
+<ul class="sectlevel2">
+<li><a href="#_demo_nested_test">Demo nested test</a>
+<ul class="sectlevel3">
+<li><a href="#_adding">Adding</a>
+<ul class="sectlevel4">
+<li><a href="#org_sfvl_doctesting_junitextension_DemoNestedTest_Adding_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_DemoNestedTest_Adding_should_be_9_when_adding_2_3_and_4">Adding 3 simple numbers</a></li>
+</ul>
+</li>
+<li><a href="#_multiply">Multiply</a>
+<ul class="sectlevel4">
+<li><a href="#org_sfvl_doctesting_junitextension_DemoNestedTest_Multiply_should_be_12_when_multiply_4_and_3">Multiply 2 simple numbers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_document_with_all_tests_in_a_testclass">Document with all tests in a testclass</a>
+<ul class="sectlevel2">
+<li><a href="#_my_test">My test</a>
+<ul class="sectlevel3">
+<li><a href="#org_sfvl_samples_MyTest_test_A">Test A</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_failing_test_output">Failing test output</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_doctesting_junitextension_FailingTest_failing_test">Failing test</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div id="content">
 <div id="preamble">
@@ -452,10 +492,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_extension">Using extension</h2>
+<h2 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_extension">Creating a test using ApprovalsExtension</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This is an example of <code>ApprovalsExtension</code> usage.</p>
+<p>This is an example to create a simple test using <code>ApprovalsExtension</code>.</p>
 </div>
 <div class="paragraph">
 <p>You have to write a class and add <code>RegisterExtension</code> annotation on an attribute.
@@ -465,17 +505,17 @@ This extension will check that content of <code>DocWriter</code> has not changed
 <div class="listingblock">
 <div class="title">Test example using <code>ApprovalsExtension</code></div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class MyTest {
-    private static final DocWriter docWriter = new DocWriter();
-    @RegisterExtension
-    static final ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">MyTest</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">docWriter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">();</span>
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">extension</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ApprovalsExtension</span><span class="o">(</span><span class="n">docWriter</span><span class="o">);</span>
 
-    @Test
-    public void test_A() {
-        docWriter.write("In my *test*");
-    }
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">docWriter</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
+    <span class="o">}</span>
 
-}</code></pre>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -483,7 +523,7 @@ This extension will check that content of <code>DocWriter</code> has not changed
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>[#org_sfvl_doctesting_junitextension_MyTest_test_A]
+<pre>[#org_sfvl_samples_MyTest_test_A]
 = Test A
 
 In my *test*</pre>
@@ -503,18 +543,18 @@ The chapter content contains what was written using <code>DocWriter</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">@DisplayName("Title for the document")
-class UsingDisplayNameTest {
-    private static final DocWriter docWriter = new DocWriter();
-    @RegisterExtension
-    static final ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Title for the document"</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">UsingDisplayNameTest</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">docWriter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">();</span>
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">extension</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ApprovalsExtension</span><span class="o">(</span><span class="n">docWriter</span><span class="o">);</span>
 
-    @Test
-    @DisplayName("Title for this test")
-    public void test_A() {
-        docWriter.write("In my *test*");
-    }
-}</code></pre>
+    <span class="nd">@Test</span>
+    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Title for this test"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">docWriter</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -543,46 +583,46 @@ Each nested class create a nested title.</p>
 <div class="listingblock">
 <div class="title">Test example using nested class</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">/**
+<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
  * Demo of a simple usage to generate documentation.
- */
-class DemoNestedTest {
-    private static final DocWriter writer = new DocWriter();
+ */</span>
+<span class="kd">class</span> <span class="nc">DemoNestedTest</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">();</span>
 
-    @RegisterExtension
-    static final ApprovalsExtension extension = new ApprovalsExtension(writer);
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">extension</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ApprovalsExtension</span><span class="o">(</span><span class="n">writer</span><span class="o">);</span>
 
-    /**
+    <span class="cm">/**
      * Document of Addition operations.
-     */
-    @Nested
-    class Adding {
+     */</span>
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">Adding</span> <span class="o">{</span>
 
-        @Test
-        @DisplayName("Adding 2 simple numbers")
-        public void should_be_5_when_adding_2_and_3() {
-            writer.write(String.format("%d + %d = %d", 2, 3, 2 + 3));
-        }
+        <span class="nd">@Test</span>
+        <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Adding 2 simple numbers"</span><span class="o">)</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_be_5_when_adding_2_and_3</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">writer</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d + %d = %d"</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="o">));</span>
+        <span class="o">}</span>
 
-        /**
+        <span class="cm">/**
          * A nested test.
-         */
-        @Test
-        @DisplayName("Adding 3 simple numbers")
-        public void should_be_9_when_adding_2_3_and_4() {
-            writer.write(String.format("%d + %d + %d = %d", 2, 3, 4, 2 + 3 + 4));
-        }
-    }
+         */</span>
+        <span class="nd">@Test</span>
+        <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Adding 3 simple numbers"</span><span class="o">)</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_be_9_when_adding_2_3_and_4</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">writer</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d + %d + %d = %d"</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 
-    @Nested
-    class Multiply {
-        @Test
-        @DisplayName("Multiply 2 simple numbers")
-        public void should_be_12_when_multiply_4_and_3() {
-            writer.write(String.format("%d * %d = %d", 4, 3, 4 * 3));
-        }
-    }
-}</code></pre>
+    <span class="nd">@Nested</span>
+    <span class="kd">class</span> <span class="nc">Multiply</span> <span class="o">{</span>
+        <span class="nd">@Test</span>
+        <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Multiply 2 simple numbers"</span><span class="o">)</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_be_12_when_multiply_4_and_3</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">writer</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d * %d = %d"</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">3</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -598,6 +638,9 @@ class DemoNestedTest {
 </li>
 <li>
 <p>DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc</p>
+</li>
+<li>
+<p>DemoNestedTest.approved.adoc</p>
 </li>
 </ul>
 </div>
@@ -684,17 +727,17 @@ include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ado
 <div class="listingblock">
 <div class="title">Test example used to generate class document</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class MyTest {
-    private static final DocWriter docWriter = new DocWriter();
-    @RegisterExtension
-    static final ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">MyTest</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">docWriter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">();</span>
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">extension</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ApprovalsExtension</span><span class="o">(</span><span class="n">docWriter</span><span class="o">);</span>
 
-    @Test
-    public void test_A() {
-        docWriter.write("In my *test*");
-    }
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">docWriter</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
+    <span class="o">}</span>
 
-}</code></pre>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -721,7 +764,7 @@ include::MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
 <div class="sect2 adocRendering">
 <h3 id="_my_test">My test</h3>
 <div class="sect3">
-<h4 id="org_sfvl_doctesting_junitextension_MyTest_test_A">Test A</h4>
+<h4 id="org_sfvl_samples_MyTest_test_A">Test A</h4>
 <div class="paragraph">
 <p>In my <strong>test</strong></p>
 </div>
@@ -742,18 +785,18 @@ It&#8217;s help to understand and investigate on the problem.</p>
 <div class="listingblock">
 <div class="title">Test example used to generate class document</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class FailingTest {
-    private static final DocWriter docWriter = new DocWriter();
-    @RegisterExtension
-    static final ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">FailingTest</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">docWriter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">();</span>
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">extension</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ApprovalsExtension</span><span class="o">(</span><span class="n">docWriter</span><span class="o">);</span>
 
-    @Test
-    public void failing_test() {
-        docWriter.write("Some information before failure.", "", "");
-        fail("Problem on the test, it fails.");
-        docWriter.write("Information added after failure are not in the final document.", "");
-    }
-}</code></pre>
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">failing_test</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">docWriter</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"Some information before failure."</span><span class="o">,</span> <span class="s">""</span><span class="o">,</span> <span class="s">""</span><span class="o">);</span>
+        <span class="n">fail</span><span class="o">(</span><span class="s">"Problem on the test, it fails."</span><span class="o">);</span>
+        <span class="n">docWriter</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"Information added after failure are not in the final document."</span><span class="o">,</span> <span class="s">""</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -798,7 +841,7 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 <pre>org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
-	at org.sfvl.doctesting.junitextension.FailingTest.failing_test(ApprovalsExtensionTest.java:335)
+	at org.sfvl.doctesting.junitextension.FailingTest.failing_test(ApprovalsExtensionTest.java:266)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -844,8 +887,8 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:170)
 	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:154)
 	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:90)
-	at org.sfvl.doctesting.junitextension.ApprovalsExtensionTest.runTestClass(ApprovalsExtensionTest.java:246)
-	at org.sfvl.doctesting.junitextension.ApprovalsExtensionTest.failing_test_output(ApprovalsExtensionTest.java:194)
+	at org.sfvl.doctesting.test_tools.TestRunnerFromTest.runTestClass(TestRunnerFromTest.java:25)
+	at org.sfvl.doctesting.junitextension.ApprovalsExtensionTest.failing_test_output(ApprovalsExtensionTest.java:187)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -903,5 +946,240 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 </div>
 </div>
 </div>
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge .cm {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cp {
+  color: #999999;
+  font-weight: bold;
+}
+pre.rouge .c1 {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+pre.rouge .gd {
+  color: #000000;
+  background-color: #ffdddd;
+}
+pre.rouge .ge {
+  color: #000000;
+  font-style: italic;
+}
+pre.rouge .gr {
+  color: #aa0000;
+}
+pre.rouge .gh {
+  color: #999999;
+}
+pre.rouge .gi {
+  color: #000000;
+  background-color: #ddffdd;
+}
+pre.rouge .go {
+  color: #888888;
+}
+pre.rouge .gp {
+  color: #555555;
+}
+pre.rouge .gs {
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #aaaaaa;
+}
+pre.rouge .gt {
+  color: #aa0000;
+}
+pre.rouge .kc {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kd {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kn {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kp {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kr {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kt {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .k, pre.rouge .kv {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .mf {
+  color: #009999;
+}
+pre.rouge .mh {
+  color: #009999;
+}
+pre.rouge .il {
+  color: #009999;
+}
+pre.rouge .mi {
+  color: #009999;
+}
+pre.rouge .mo {
+  color: #009999;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+  color: #009999;
+}
+pre.rouge .sb {
+  color: #d14;
+}
+pre.rouge .sc {
+  color: #d14;
+}
+pre.rouge .sd {
+  color: #d14;
+}
+pre.rouge .s2 {
+  color: #d14;
+}
+pre.rouge .se {
+  color: #d14;
+}
+pre.rouge .sh {
+  color: #d14;
+}
+pre.rouge .si {
+  color: #d14;
+}
+pre.rouge .sx {
+  color: #d14;
+}
+pre.rouge .sr {
+  color: #009926;
+}
+pre.rouge .s1 {
+  color: #d14;
+}
+pre.rouge .ss {
+  color: #990073;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
+  color: #d14;
+}
+pre.rouge .na {
+  color: #008080;
+}
+pre.rouge .bp {
+  color: #999999;
+}
+pre.rouge .nb {
+  color: #0086B3;
+}
+pre.rouge .nc {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .no {
+  color: #008080;
+}
+pre.rouge .nd {
+  color: #3c5d5d;
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #800080;
+}
+pre.rouge .ne {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nn {
+  color: #555555;
+}
+pre.rouge .nt {
+  color: #000080;
+}
+pre.rouge .vc {
+  color: #008080;
+}
+pre.rouge .vg {
+  color: #008080;
+}
+pre.rouge .vi {
+  color: #008080;
+}
+pre.rouge .nv, pre.rouge .vm {
+  color: #008080;
+}
+pre.rouge .ow {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .o {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .w {
+  color: #bbbbbb;
+}
+pre.rouge {
+  background-color: #f8f8f8;
+}
+</style>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>

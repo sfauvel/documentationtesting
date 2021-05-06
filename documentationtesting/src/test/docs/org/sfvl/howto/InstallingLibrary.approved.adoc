@@ -1,0 +1,4 @@
+:nofooter:
+= Installing library
+
+include::InstallingLibrary.Installing_documentation_testing.approved.adoc[leveloffset=+1]

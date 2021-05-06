@@ -1,0 +1,4 @@
+:nofooter:
+= Doc testing documentation
+
+include::DocTestingDocumentation.doc.approved.adoc[leveloffset=+1]

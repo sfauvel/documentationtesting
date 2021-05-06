@@ -4,4 +4,4 @@
 :source-highlighter: rouge
 :toclevels: 4
 
-include::DocTestingDocumentation.approved.adoc[]
+include::ApprovalsExtensionTest.approved.adoc[]

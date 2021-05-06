@@ -1,0 +1,74 @@
+[#org_sfvl_DocumentationTestingDocumentation_documentationTesting]
+= DocumentationTesting
+
+[cols=2]
+[.DocumentationTestingDoc.intro]
+|====
+^.a| == Tutorial
+[.subtitle]
+Learning-oriented
+
+In progress...
+
+^.a| == How-to guides
+[.subtitle]
+Problem-oriented
+
+Section link:org/sfvl/howto/HowTo.html[How to]
+ shows how to do some common needs.
+^.a| == Explanation
+[.subtitle]
+Understanding-oriented
+
+[.noborder]
+!====
+a!
+* link:org/sfvl/doctesting/junitextension/ApprovalsExtensionTest.html[JUnit extension embedded Approvals]
+
+** Name file associate to each test
+** Execute verification after test
+* Generation of a general documentation that aggregate all test files
+* Tools to extract parts of code
+* link:org/sfvl/docformatter/AsciidocFormatterTest.html[API to transform text]
+ to output format
+!====
+^.a| == Reference
+[.subtitle]
+Information-oriented
+
+[.noborder]
+!====
+a!
+* link:org/sfvl/doctesting/DocTestingDocumentation.html[Doc testing documentation]
+: Tools to make test validating generated files.
+* link:org/sfvl/docformatter/AsciidocFormatterTest.html[Asciidoc formatter test]
+: Utilities to format documentation.
+!====
+
+|====
+++++
+<style>
+table.DocumentationTestingDoc.grid-all > * > tr > * {
+    border-width:3px;
+    border-color:#AAAAAA;
+}
+
+.DocumentationTestingDoc.intro td {
+    background-color:#05fdCC;
+    //border: 30px solid #BFBFBF;
+    -webkit-box-shadow: 3px 3px 6px #A9A9A9;
+}
+
+.DocumentationTestingDoc .subtitle {
+    color: #888888;
+}
+.DocumentationTestingDoc .noborder td{
+    border: none;
+    -webkit-box-shadow: none;
+}
+.DocumentationTestingDoc table.noborder  {
+    border: none;
+}
+
+</style>
+++++

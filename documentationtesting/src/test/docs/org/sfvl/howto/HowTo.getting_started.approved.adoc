@@ -1,0 +1,20 @@
+[#org_sfvl_howto_HowTo_getting_started]
+= Getting started
+
+To get started quickly, you can download link:https://github.com/sfauvel/TryDocAsTest[Try doc as test] project.
+It's a minimal project that is ready to use and which implementing a small demo.
+
+If you want to use it on your own project, you need to:
+
+* link:org/sfvl/howto/InstallingLibrary.html[Installing DocumentationTesting] maven library and add dependency to your `pom.xml`
+
+* Create a test and register ApprovalsExtension extension adding the code below to the test class.
+[source,java,indent=0]
+----
+private static final DocWriter doc = new DocWriter();
+@RegisterExtension
+static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+----
+
+* Write in your test everything you want to see in your documentation using `doc.write("...")`
+You don't have to write assertions, tests will be passed when generated documents are the same as the last time.

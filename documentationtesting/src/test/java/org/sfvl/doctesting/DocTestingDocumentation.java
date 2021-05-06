@@ -1,5 +1,7 @@
 package org.sfvl.doctesting;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
@@ -9,14 +11,24 @@ import org.sfvl.doctesting.utils.DocWriter;
 import org.sfvl.doctesting.utils.DocumentationNamer;
 import org.sfvl.doctesting.writer.*;
 
-import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.util.List;
 
-public class DocTestingDocumentation implements DocumentProducer {
+public class DocTestingDocumentation {
+    private static final org.sfvl.doctesting.utils.DocWriter doc = new org.sfvl.doctesting.utils.DocWriter();
+
+    @RegisterExtension
+    static ApprovalsExtension extension = new ApprovalsExtension(doc);
+
 
     protected final Formatter formatter = new AsciidocFormatter();
+
+    @Test
+    @DocWriter.NoTitle
+    public void doc() {
+        doc.write(build());
+    }
 
     public String build() {
         return formatter.paragraphSuite(
@@ -75,16 +87,11 @@ public class DocTestingDocumentation implements DocumentProducer {
     }
 
     private List<Class<?>> getClassesToDocument() {
-        return new ClassFinder().testClasses(DocTestingDocumentation.class.getPackage(),
+        final List<Class<?>> classes = new ClassFinder().testClasses(DocTestingDocumentation.class.getPackage(),
                 this::toBeInclude);
+        classes.remove(this.getClass());
+        return classes;
     }
 
-    @Override
-    public void produce() throws IOException {
-        new Document(this.build()).saveAs(this.getClass());
-    }
 
-    public static void main(String... args) throws IOException {
-        new DocTestingDocumentation().produce();
-    }
 }

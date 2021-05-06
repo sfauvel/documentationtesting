@@ -4,6 +4,8 @@
 :source-highlighter: rouge
 = How to
 
+include::HowTo.getting_started.approved.adoc[leveloffset=+1]
+
 include::HowTo.create_a_test.approved.adoc[leveloffset=+1]
 
 include::HowTo.format_text.approved.adoc[leveloffset=+1]

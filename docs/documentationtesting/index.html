@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Documentation testing</title>
+<title>DocumentationTesting</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -436,89 +436,59 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body id="org_sfvl_DocumentationTestingDocumentation_documentationTesting" class="article">
 <div id="header">
-<div id="toc" class="toc2">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_documentation_testing">Documentation testing</a></li>
-<li><a href="#_getting_started">Getting started</a></li>
-<li><a href="#_main_features">Main features</a></li>
-</ul>
-</div>
+<h1>DocumentationTesting</h1>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="_documentation_testing">Documentation testing</h2>
+<table class="tableblock frame-all grid-all stretch DocumentationTestingDoc intro">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="content"><div class="sect1">
+<h2 id="_tutorial">Tutorial</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>This library provides tools to start a project using documentation as validation.</p>
+<div class="paragraph subtitle">
+<p>Learning-oriented</p>
 </div>
 <div class="paragraph">
-<p>This project is composed of two main packages.</p>
+<p>In progress&#8230;&#8203;</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="org/sfvl/doctesting/DocTestingDocumentation.html">org.sfvl.doctesting</a>
-: Tools to make test validating generated files.</p>
-</li>
-<li>
-<p><a href="org/sfvl/docformatter/FormatterDocumentation.html">org.sfvl.docformatter</a>
-: Utilities to format documentation.</p>
-</li>
-</ul>
+</div>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><div class="content"><div class="sect1">
+<h2 id="_how_to_guides">How-to guides</h2>
+<div class="sectionbody">
+<div class="paragraph subtitle">
+<p>Problem-oriented</p>
 </div>
 <div class="paragraph">
-<p>Section <a href="org/sfvl/howto/HowToDocumentation.html">org.sfvl.howto</a>
+<p>Section <a href="org/sfvl/howto/HowTo.html">How to</a>
  shows how to do some common needs.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_getting_started">Getting started</h2>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="content"><div class="sect1">
+<h2 id="_explanation">Explanation</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>To get started quickly, you can download <a href="https://github.com/sfauvel/TryDocAsTest">Try doc as test</a> project.
-It&#8217;s a minimal project that is ready to use and which implementing a small demo.</p>
+<div class="paragraph subtitle">
+<p>Understanding-oriented</p>
 </div>
-<div class="paragraph">
-<p>If you want to use it on your own project, you need to:</p>
-</div>
-<div class="ulist">
+<table class="tableblock frame-all grid-all stretch noborder">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
 <ul>
 <li>
-<p><a href="org/sfvl/howto/InstallingLibrary.html">Installing DocumentationTesting</a> maven library and add dependency to your <code>pom.xml</code></p>
-</li>
-<li>
-<p>Create a test and register ApprovalsExtension extension adding the code below to the test class.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>private static final DocWriter doc = new DocWriter();
-@RegisterExtension
-static ApprovalsExtension extension = new ApprovalsExtension(docWriter);</pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Write in your test everything you want to see in your documentation using <code>doc.write("&#8230;&#8203;")</code>
-You don&#8217;t have to write assertions, tests will be passed when generated documents are the same as the last time.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_main_features">Main features</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="org/sfvl/doctesting/junitextension/JUnitExtensionDocumentation.html">JUnit extension embedded Approvals</a></p>
+<p><a href="org/sfvl/doctesting/junitextension/ApprovalsExtensionTest.html">JUnit extension embedded Approvals</a></p>
 <div class="ulist">
 <ul>
 <li>
@@ -537,37 +507,77 @@ You don&#8217;t have to write assertions, tests will be passed when generated do
 <p>Tools to extract parts of code</p>
 </li>
 <li>
-<p><a href="org/sfvl/docformatter/FormatterDocumentation.html">API to transform text</a>
+<p><a href="org/sfvl/docformatter/AsciidocFormatterTest.html">API to transform text</a>
 to output format</p>
 </li>
 </ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><div class="content"><div class="sect1">
+<h2 id="_reference">Reference</h2>
+<div class="sectionbody">
+<div class="paragraph subtitle">
+<p>Information-oriented</p>
+</div>
+<table class="tableblock frame-all grid-all stretch noborder">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><a href="org/sfvl/doctesting/DocTestingDocumentation.html">Doc testing documentation</a>
+: Tools to make test validating generated files.</p>
+</li>
+<li>
+<p><a href="org/sfvl/docformatter/AsciidocFormatterTest.html">Asciidoc formatter test</a>
+: Utilities to format documentation.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<style>
+table.DocumentationTestingDoc.grid-all > * > tr > * {
+    border-width:3px;
+    border-color:#AAAAAA;
+}
+
+.DocumentationTestingDoc.intro td {
+    background-color:#05fdCC;
+    //border: 30px solid #BFBFBF;
+    -webkit-box-shadow: 3px 3px 6px #A9A9A9;
+}
+
+.DocumentationTestingDoc .subtitle {
+    color: #888888;
+}
+.DocumentationTestingDoc .noborder td{
+    border: none;
+    -webkit-box-shadow: none;
+}
+.DocumentationTestingDoc table.noborder  {
+    border: none;
+}
+
+</style>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-05-06 20:10:53 UTC
 </div>
 </div>
-</div>
-</div>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-})
-MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
-  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
-      data.math.root.display = "block"
-    }
-    return data
-  })
-})
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>

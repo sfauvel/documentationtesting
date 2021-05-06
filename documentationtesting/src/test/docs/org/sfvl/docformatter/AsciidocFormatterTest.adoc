@@ -4,7 +4,4 @@
 :source-highlighter: rouge
 :toclevels: 4
 
-
-
-
-include::ApprovalsExtensionTest.approved.adoc[leveloffset=+1]
+include::AsciidocFormatterTest.approved.adoc[]

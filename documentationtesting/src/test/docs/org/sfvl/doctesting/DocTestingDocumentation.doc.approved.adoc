@@ -1,0 +1,55 @@
+:toc: left
+:nofooter:
+:stem:
+:source-highlighter: rouge
+:toclevels: 4
+
+
+
+
+= Document testing tool
+
+
+This document describes usage of classes to create test from generated documentation.
+
+* <<ApprovalsExtension>>: JUnit extension to check document.
+
+* <<DocWriter>>: Store document before writting it.
+
+* <<CodeExtractor>>: Help to extract information from code.
+
+
+include::junitextension/ApprovalsExtensionTest.approved.adoc[leveloffset=+1]
+
+include::junitextension/FailureReporterTest.approved.adoc[leveloffset=+1]
+
+include::junitextension/FindLambdaMethodTest.approved.adoc[leveloffset=+1]
+
+include::utils/ClassFinderTest.approved.adoc[leveloffset=+1]
+
+include::utils/ClassesOrderTest.approved.adoc[leveloffset=+1]
+
+include::utils/CodeExtractorTest.approved.adoc[leveloffset=+1]
+
+include::utils/ConfigTest.approved.adoc[leveloffset=+1]
+
+include::utils/DocWriterTest.approved.adoc[leveloffset=+1]
+
+include::utils/DocumentationNamerTest.approved.adoc[leveloffset=+1]
+
+include::writer/ClassDocumentationTest.approved.adoc[leveloffset=+1]
+
+include::writer/DocumentationBuilderTest.approved.adoc[leveloffset=+1]
+
+include::writer/MainDocumentationTest.approved.adoc[leveloffset=+1]
+
+
+++++
+<style>
+#content {
+   max-width: unset;
+   padding-left: 5%;
+   padding-right: 5%;
+}
+</style>
+++++

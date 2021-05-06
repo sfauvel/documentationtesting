@@ -457,7 +457,8 @@ This class provides utilities to extract pieces of code or comments.</p>
 <div class="listingblock">
 <div class="title">How to extract code of a class</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.classSource(SimpleClass.class);</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">Class&lt;?&gt; classToExtract = SimpleClass.class;
+String code = CodeExtractor.classSource(classToExtract);</code></pre>
 </div>
 </div>
 <div class="exampleblock inline">
@@ -541,7 +542,7 @@ This class provides utilities to extract pieces of code or comments.</p>
 </style>
 </div>
 <div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_of_an_other_class_in_file">Extract code of an other class in file</h3>
+<h3 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_of_an_other_class_in_file">Extract code of a non public class in file</h3>
 <div class="paragraph">
 <p>It&#8217;s not possible to extract code of a non public class because it&#8217;s not possible to determine source file.
 To be able to extract it, we have to explicitly give source file.</p>
@@ -549,7 +550,8 @@ To be able to extract it, we have to explicitly give source file.</p>
 <div class="listingblock">
 <div class="title">How to extract code of a non public class</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.classSource(CodeExtractorTest.class, ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.classSource(CodeExtractorTest.class,
+        ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);</code></pre>
 </div>
 </div>
 <div class="exampleblock inline">
@@ -604,7 +606,8 @@ class ClassNestedWithCommentToExtract {
 <div class="listingblock">
 <div class="title">This code does not work and throw an exception</div>
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.classSource(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">String code = CodeExtractor.classSource(
+        ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);</code></pre>
 </div>
 </div>
 <div class="exampleblock inline">
