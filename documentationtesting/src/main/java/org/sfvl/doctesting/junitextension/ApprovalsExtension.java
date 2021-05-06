@@ -50,6 +50,15 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
         if (isNestedClass(currentClass)) {
             return;
         }
+        final String content = getClassContent(currentClass);
+        final Class<?> testClass = extensionContext.getTestClass().get();
+        final DocumentationNamer documentationNamer = new DocumentationNamer(getDocPath(), testClass);
+
+        verifyDoc(content, documentationNamer);
+
+    }
+
+    protected String getClassContent(Class<?> currentClass) {
         final ClassDocumentation classDocumentation = new ClassDocumentation() {
             protected Optional<String> relatedClassDescription(Class<?> fromClass) {
                 return Optional.ofNullable(fromClass.getAnnotation(ClassToDocument.class))
@@ -61,11 +70,7 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
                 ":nofooter:",
                 classDocumentation.getClassDocumentation(currentClass)
         );
-        final Class<?> testClass = extensionContext.getTestClass().get();
-        final DocumentationNamer documentationNamer = new DocumentationNamer(getDocPath(), testClass);
-
-        verifyDoc(content, documentationNamer);
-
+        return content;
     }
 
     @Override
