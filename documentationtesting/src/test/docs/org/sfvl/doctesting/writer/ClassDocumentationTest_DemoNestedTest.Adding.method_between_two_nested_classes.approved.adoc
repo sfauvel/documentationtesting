@@ -1,6 +1,0 @@
-[#org_sfvl_doctesting_ClassDocumentationTest_DemoNestedTest_Adding_method_between_two_nested_classes]
-= Method between two nested classes
-
-A method between two nested classes is between those classes in final documentatiton.
-
-This is the documentation generated in test
