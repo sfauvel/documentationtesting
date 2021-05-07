@@ -12,7 +12,7 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
-import org.sfvl.doctesting.utils.DocWriter.NoTitle;
+import org.sfvl.doctesting.utils.NoTitle;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

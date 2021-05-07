@@ -9,10 +9,7 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
-import org.sfvl.doctesting.utils.CodeExtractor;
-import org.sfvl.doctesting.utils.Config;
-import org.sfvl.doctesting.utils.DocWriter;
-import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.utils.*;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.writer.Classes;
 
@@ -123,13 +120,13 @@ public class HowTo {
     }
 
     @Test
-    @org.sfvl.doctesting.utils.DocWriter.NoTitle
+    @NoTitle
     public void create_a_test() {
         doc.write(getInclude(ApprovalsExtensionTest::using_extension, 0));
     }
 
     @Test
-    @org.sfvl.doctesting.utils.DocWriter.NoTitle
+    @NoTitle
     public void format_text() {
         // >>>
         Formatter formatter = new AsciidocFormatter();
@@ -154,13 +151,13 @@ public class HowTo {
     }
 
     @Test
-    @DocWriter.NoTitle
+    @NoTitle
     public void create_a_document() {
         doc.write(getInclude(CreateADocument.class, 0));
     }
 
     @Test
-    @DocWriter.NoTitle
+    @NoTitle
     public void use_your_own_style() {
         doc.write(getInclude(UseYourOwnStyle.class, 0));
     }
