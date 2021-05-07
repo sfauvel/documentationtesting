@@ -52,9 +52,8 @@ To do that, we can use:
         new Document(new MyDocument().content()).saveAs(outputFile);
 
 ----
-[cols=2]
-|====
-a|.Document generated
+
+.Document generated
 ----
 :toc: left
 :nofooter:
@@ -66,10 +65,9 @@ a|.Document generated
 
 Text of the document
 ----
-a|_final rendering_
+_final rendering_
 [.adocRendering]
 include::DocumentWithSubPart.adoc[leveloffset=+1]
-|====
 ++++
 <style>
 .adocRendering {

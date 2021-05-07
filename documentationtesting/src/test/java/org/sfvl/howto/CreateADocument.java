@@ -169,12 +169,14 @@ public class CreateADocument {
     }
 
     public void writeColumns(String... cells) {
-        doc.write(String.format("[cols=%d]", cells.length),
-                "|====",
-                Arrays.stream(cells).map(text -> String.format("a|%s", text)).collect(Collectors.joining("\n")),
-                "|====");
+// Title in a table not working very well. There is a warning when generating HTML.
+//        doc.write(String.format("[cols=%d]", cells.length),
+//                "|====",
+//                Arrays.stream(cells).map(text -> String.format("a|%s", text)).collect(Collectors.joining("\n")),
+//                "|====");
 
-
+        doc.write("","");
+        doc.write(Arrays.stream(cells).collect(Collectors.joining("\n")));
     }
 
 }
