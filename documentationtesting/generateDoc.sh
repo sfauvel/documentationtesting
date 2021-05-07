@@ -11,7 +11,7 @@ mvn clean install package -q
 for DOC_FILE in $(find ${DOCS_PATH} -type f -name "*.adoc")
 do
   # Not include approved files
-  if [[ ! "$DOC_FILE" == *.approved.adoc ]]
+  if [[ ! "$DOC_FILE" == *.approved.adoc && ! "$DOC_FILE" == *.received.adoc ]]
   then
     ASCIIDOC_NAME=${DOC_FILE##*/}
     HTMLDOC_NAME=${ASCIIDOC_NAME/.adoc/.html}

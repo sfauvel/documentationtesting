@@ -447,8 +447,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_format_text">Format text</a></li>
 <li><a href="#_create_a_document">Create a document</a>
 <ul class="sectlevel2">
-<li><a href="#org_sfvl_howto_CreateADocument_simplest_way_to_create_a_document">Simplest way to create a document</a></li>
-<li><a href="#org_sfvl_howto_CreateADocument_reuse_sub_parts_of_document">Reuse sub parts of document</a></li>
+<li><a href="#org_sfvl_howto_CreateADocument_simplest_way_to_create_a_document">Simplest way to create a document</a>
+<ul class="sectlevel3">
+<li><a href="#_my_title">My title</a></li>
+</ul>
+</li>
+<li><a href="#org_sfvl_howto_CreateADocument_reuse_sub_parts_of_document">Reuse sub parts of document</a>
+<ul class="sectlevel3">
+<li><a href="#_my_title_2">My title</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_use_your_own_style">Use your own style</a>
@@ -610,32 +618,21 @@ We can use a <a href="https://en.wikipedia.org/wiki/Markup_language">markup lang
 <span class="k">new</span> <span class="nf">Document</span><span class="o">(</span><span class="k">new</span> <span class="nc">MyDocument</span><span class="o">().</span><span class="na">content</span><span class="o">()).</span><span class="na">saveAs</span><span class="o">(</span><span class="n">outputFile</span><span class="o">);</span></code></pre>
 </div>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="listingblock">
 <div class="title">Document generated</div>
 <div class="content">
 <pre>= My title
 Text of the document</pre>
 </div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+</div>
+<div class="paragraph">
 <p><em>final rendering</em></p>
 </div>
-<div class="sect2 adocRendering">
-<h3 id="_my_title">My title</h3>
+<div class="sect3 adocRendering">
+<h4 id="_my_title">My title</h4>
 <div class="paragraph">
 <p>Text of the document</p>
 </div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
 <style>
 .adocRendering {
     padding: 1em;
@@ -645,6 +642,7 @@ Text of the document</pre>
     box-shadow: 0 1px 4px #e0e0dc;
 }
 </style>
+</div>
 </div>
 <div class="sect2">
 <h3 id="org_sfvl_howto_CreateADocument_reuse_sub_parts_of_document">Reuse sub parts of document</h3>
@@ -708,14 +706,7 @@ To do that, we can use:</p>
 <span class="k">new</span> <span class="nf">Document</span><span class="o">(</span><span class="k">new</span> <span class="nc">MyDocument</span><span class="o">().</span><span class="na">content</span><span class="o">()).</span><span class="na">saveAs</span><span class="o">(</span><span class="n">outputFile</span><span class="o">);</span></code></pre>
 </div>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="listingblock">
 <div class="title">Document generated</div>
 <div class="content">
 <pre>:toc: left
@@ -728,19 +719,15 @@ To do that, we can use:</p>
 
 Text of the document</pre>
 </div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+</div>
+<div class="paragraph">
 <p><em>final rendering</em></p>
 </div>
-<div class="sect2 adocRendering">
-<h3 id="_my_title_2">My title</h3>
+<div class="sect3 adocRendering">
+<h4 id="_my_title_2">My title</h4>
 <div class="paragraph">
 <p>Text of the document</p>
 </div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
 <style>
 .adocRendering {
     padding: 1em;
@@ -750,6 +737,7 @@ Text of the document</pre>
     box-shadow: 0 1px 4px #e0e0dc;
 }
 </style>
+</div>
 </div>
 </div>
 </div>
