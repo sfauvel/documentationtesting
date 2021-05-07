@@ -29,7 +29,7 @@ class FailingTest {
 
 .Document generated (exception stack trace is truncated)
 ------
-[#org_sfvl_doctesting_junitextension_FailingTest_failing_test]
+[#org_sfvl_samples_FailingTest_failing_test]
 = Failing test
 
 Some information before failure.
@@ -55,6 +55,11 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 </style>
 ++++
 
+:leveloffset: +1
 _final rendering_
 [.adocRendering]
-include::FailingTest.failing_test.received.adoc[leveloffset=+1]
+include::../../samples/FailingTest.failing_test.received.adoc[lines="1..10"]
+...
+----
+// We add the line below to close truncated block open in included file
+:leveloffset: -1

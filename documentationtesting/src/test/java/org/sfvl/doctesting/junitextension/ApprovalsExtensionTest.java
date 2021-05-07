@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.NotIncludeToDoc;
+import org.sfvl.samples.FailingTest;
 import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocWriter;
@@ -74,17 +75,17 @@ public class ApprovalsExtensionTest {
 
         final Path generatedFilePath = Paths.get("", getClass().getPackage().getName().split("\\."));
         doc.write("Generated files in `" + generatedFilePath + "`:", "", Files.list(doc.getDocPath().resolve(generatedFilePath))
-                        .map(file -> file.getFileName().toString())
-                        .filter(filename -> filename.startsWith(DemoNestedTest.class.getSimpleName() + "."))
-                        .filter((filename -> filename.endsWith(".approved.adoc")))
-                        .sorted()
-                        .map(filename -> "* " + filename)
-                        .collect(Collectors.joining("\n\n")));
+                .map(file -> file.getFileName().toString())
+                .filter(filename -> filename.startsWith(DemoNestedTest.class.getSimpleName() + "."))
+                .filter((filename -> filename.endsWith(".approved.adoc")))
+                .sorted()
+                .map(filename -> "* " + filename)
+                .collect(Collectors.joining("\n\n")));
 
         final Path documentPath = new DocumentationNamer(doc.getDocPath(), testClass).getFilePath();
         doc.write("", "", ".Document generated", "----", Files.lines(doc.getDocPath().resolve(documentPath))
-                        .collect(Collectors.joining("\n"))
-                        .replaceAll("\\ninclude::", "\n\\\\include::"), "----");
+                .collect(Collectors.joining("\n"))
+                .replaceAll("\\ninclude::", "\n\\\\include::"), "----");
 
         String style = "++++\n" +
                 "<style>\n" +
@@ -113,8 +114,8 @@ public class ApprovalsExtensionTest {
         final DocumentationNamer documentationNamer = new DocumentationNamer(Config.DOC_PATH, MyTest.class);
 
         doc.write("", "", ".Document generated", "----", Files.lines(documentationNamer.getApprovedPath(Paths.get("")))
-                        .collect(Collectors.joining("\n"))
-                        .replaceAll("\\ninclude::", "\n\\\\include::"), "----");
+                .collect(Collectors.joining("\n"))
+                .replaceAll("\\ninclude::", "\n\\\\include::"), "----");
 
         String style = "++++\n" +
                 "<style>\n" +
@@ -142,7 +143,7 @@ public class ApprovalsExtensionTest {
         final Class<?> testClass = FailingTest.class;
         runTestAndWriteResultAsComment(testClass);
 
-        doc.write("", "", ".Test example used to generate class document", extractSourceWithTag(testClass.getSimpleName(), this.getClass(), testClass), "", "");
+        doc.write("", "", ".Test example used to generate class document", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
         final String fileName = testClass.getSimpleName() + ".failing_test.received.adoc";
         final Path filePath = DocumentationNamer.toPath(testClass.getPackage()).resolve(fileName);
@@ -152,10 +153,10 @@ public class ApprovalsExtensionTest {
         Predicate<String> isStackLine = line -> line.startsWith("	at ");
         // We truncate stack trace to avoid to have an ouput that change from on execution from another.
         doc.write("", "", ".Document generated (exception stack trace is truncated)", "------", Files.lines(documentationPath)
-                        // We truncate stack trace to avoid to have an ouput that change from on execution from another.
-                        .filter(line -> !isStackLine.test(line) || stacktraceLineCount.incrementAndGet() < 3)
-                        .collect(Collectors.joining("\n"))
-                        .replaceAll("\\ninclude::", "\n\\\\include::"), "------");
+                // We truncate stack trace to avoid to have an ouput that change from on execution from another.
+                .filter(line -> !isStackLine.test(line) || stacktraceLineCount.incrementAndGet() < 3)
+                .collect(Collectors.joining("\n"))
+                .replaceAll("\\ninclude::", "\n\\\\include::"), "------");
 
         String style = "++++\n" +
                 "<style>\n" +
@@ -169,8 +170,20 @@ public class ApprovalsExtensionTest {
                 "</style>\n" +
                 "++++";
 
-        doc.write("", "", style, "", "_final rendering_", "[.adocRendering]", "include::" + fileName + "[leveloffset=+1]");
-
+        final Method method = FindLambdaMethod.getMethod(FailingTest::failing_test);
+        final Path approvedPath = getRelativizedApprovedPath(method, Config.DOC_PATH);
+        doc.write("",
+                "",
+                style,
+                "",
+                ":leveloffset: +1",
+                "_final rendering_",
+                "[.adocRendering]",
+                "include::"+approvedPath.toString().replace(".approved.", ".received.")+"[lines=\"1..10\"]",
+                "...",
+                "----",
+                "// We add the line below to close truncated block open in included file",
+                ":leveloffset: -1");
     }
 
     private void runTestAndWriteResultAsComment(Class<?> testClass) {
@@ -221,20 +234,6 @@ public class ApprovalsExtensionTest {
 
 }
 
-@NotIncludeToDoc
-@OnlyRunProgrammatically
-// tag::FailingTest[]
-class FailingTest {
-    @RegisterExtension
-    static final ApprovalsExtension doc = new SimpleApprovalsExtension();
-
-    @Test
-    public void failing_test() {
-        doc.write("Some information before failure.", "", "");
-        fail("Problem on the test, it fails.");
-        doc.write("Information added after failure are not in the final document.", "");
-    }
-}
 // end::FailingTest[]
 
 @NotIncludeToDoc

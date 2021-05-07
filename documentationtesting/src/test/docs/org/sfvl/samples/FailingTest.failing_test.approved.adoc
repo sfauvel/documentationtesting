@@ -1,4 +1,4 @@
-[#org_sfvl_doctesting_junitextension_FailingTest_failing_test]
+[#org_sfvl_samples_FailingTest_failing_test]
 = Failing test
 
 Some information before failure.
