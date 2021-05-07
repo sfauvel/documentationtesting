@@ -1,17 +1,14 @@
-package org.sfvl.samples;
+[#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_a_custom_writer]
+= Using a custom writer
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.doctesting.NotIncludeToDoc;
-import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.utils.DocWriter;
 
-import java.lang.reflect.Method;
+// Test result for MyCustomWriterTest: Success
+It's possible to give a specific DocWriter to `ApprovalsExtension`
+and modify what it will be written in the final document.
 
-@NotIncludeToDoc
-@org.sfvl.test_tools.OnlyRunProgrammatically
-public
-// tag::MyCustomWriterTest[]
+.Test example using `ApprovalsExtension`
+[source, java, indent=0]
+----
 class MyCustomWriterTest {
 
     @RegisterExtension
@@ -42,4 +39,9 @@ class MyCustomWriterTest {
     }
 
 }
-// end::MyCustomWriterTest[]
+----
+
+When executing test method `test_A`, a file `MyCustomWriterTest.test_A.approved.adoc` is generated and contains the following text
+----
+include::../../samples/MyCustomWriterTest.test_A.approved.adoc[]
+----

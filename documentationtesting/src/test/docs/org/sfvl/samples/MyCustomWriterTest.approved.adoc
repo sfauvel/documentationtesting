@@ -1,0 +1,4 @@
+:nofooter:
+= My custom writer test
+
+include::MyCustomWriterTest.test_A.approved.adoc[leveloffset=+1]

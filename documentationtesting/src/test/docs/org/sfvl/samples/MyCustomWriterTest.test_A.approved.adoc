@@ -1,0 +1,5 @@
+// Add an header to the document
+[#org_sfvl_samples_MyCustomWriterTest_test_A]
+= Test A: Custom title
+
+In my *test* // Add a comment after each call to write

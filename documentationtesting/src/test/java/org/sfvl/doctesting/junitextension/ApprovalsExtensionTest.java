@@ -6,11 +6,12 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.NotIncludeToDoc;
-import org.sfvl.samples.FailingTest;
 import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocWriter;
 import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.samples.FailingTest;
+import org.sfvl.samples.MyCustomWriterTest;
 import org.sfvl.samples.MyTest;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
 import org.sfvl.test_tools.TestRunnerFromTest;
@@ -23,8 +24,6 @@ import java.nio.file.Paths;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.fail;
 
 @DisplayName("Approvals extension")
 @ClassToDocument(clazz = ApprovalsExtension.class)
@@ -62,6 +61,26 @@ public class ApprovalsExtensionTest {
         final String testMethod = FindLambdaMethod.getName(UsingDisplayNameTest::test_A);
         final String filename = testClass.getSimpleName() + "." + testMethod + ".approved.adoc";
         doc.write("Generated file with DisplayName content as title", "----", "include::" + filename + "[]", "----");
+    }
+
+    @Test
+    public void using_a_custom_writer() {
+        final Class<?> testClass = MyCustomWriterTest.class;
+
+        runTestAndWriteResultAsComment(testClass);
+
+        doc.write("It's possible to give a specific DocWriter to `" + ApprovalsExtension.class.getSimpleName() + "`",
+                "and modify what it will be written in the final document.",
+                "", "");
+
+        doc.write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
+
+        final Method method = FindLambdaMethod.getMethod(MyCustomWriterTest::test_A);
+        final Path approvedPath = getRelativizedApprovedPath(method, Config.DOC_PATH);
+        doc.write("When executing test method `" + method.getName() + "`, a file `" + approvedPath.getFileName() + "` is generated and contains the following text",
+                "----",
+                "include::" + approvedPath + "[]",
+                "----");
     }
 
     @Test
@@ -179,7 +198,7 @@ public class ApprovalsExtensionTest {
                 ":leveloffset: +1",
                 "_final rendering_",
                 "[.adocRendering]",
-                "include::"+approvedPath.toString().replace(".approved.", ".received.")+"[lines=\"1..10\"]",
+                "include::" + approvedPath.toString().replace(".approved.", ".received.") + "[lines=\"1..10\"]",
                 "...",
                 "----",
                 "// We add the line below to close truncated block open in included file",
