@@ -1,4 +1,4 @@
-package org.sfvl.doctesting.test_tools;
+package org.sfvl.test_tools;
 
 import java.io.PrintStream;
 import java.util.ArrayList;

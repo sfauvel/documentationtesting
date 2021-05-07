@@ -4,20 +4,21 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.doctesting.utils.DocWriter;
 
 @NotIncludeToDoc
 @org.sfvl.test_tools.OnlyRunProgrammatically
 public
-// tag::MyTest[]
-class MyTest {
+// tag::MyCustomWriterTest[]
+class MyCustomWriterTest {
+    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    static final ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static final ApprovalsExtension extension = new ApprovalsExtension(docWriter);
 
     @Test
     public void test_A() {
-        doc.write("In my *test*");
+        docWriter.write("In my *test*");
     }
 
 }
-// end::MyTest[]
+// end::MyCustomWriterTest[]

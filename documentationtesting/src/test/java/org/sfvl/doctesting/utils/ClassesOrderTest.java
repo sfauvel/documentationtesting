@@ -5,6 +5,7 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,10 +13,8 @@ import java.util.stream.Stream;
 
 class ClassesOrderTest {
 
-    private static final DocWriter doc = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(doc);
-
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     @Test
     public void in_order(TestInfo testInfo) {

@@ -29,6 +29,10 @@ import java.util.stream.Collectors;
  */
 public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallback, AfterAllCallback {
 
+    public static <T extends DocWriter> ApprovalsExtension<T> build(T docWriter) {
+        return new ApprovalsExtension<T>(docWriter);
+    }
+
     private static final PathProvider pathBuidler = new PathProvider();
     private T docWriter;
 
@@ -38,6 +42,9 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
 
     public T getDocWriter() {
         return docWriter;
+    }
+    public void write(String... texts) {
+        this.docWriter.write(texts);
     }
 
     private boolean isNestedClass(Class<?> currentClass) {

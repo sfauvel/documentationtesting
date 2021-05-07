@@ -1,6 +1,8 @@
 [#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_extension]
 = Creating a test using ApprovalsExtension
 
+
+// Test result for MyTest: Success
 This is an example to create a simple test using `ApprovalsExtension`.
 
 You have to write a class and add `RegisterExtension` annotation on an attribute.
@@ -10,7 +12,16 @@ This extension will check that content of `DocWriter` has not changed since the 
 .Test example using `ApprovalsExtension`
 [source, java, indent=0]
 ----
-include::../../../../../java/org/sfvl/samples/MyTest.java[tag=MyTest]
+class MyTest {
+    @RegisterExtension
+    static final ApprovalsExtension doc = new SimpleApprovalsExtension();
+
+    @Test
+    public void test_A() {
+        doc.write("In my *test*");
+    }
+
+}
 ----
 
 When executing test method `test_A`, a file `MyTest.test_A.approved.adoc` is generated and contains the following text

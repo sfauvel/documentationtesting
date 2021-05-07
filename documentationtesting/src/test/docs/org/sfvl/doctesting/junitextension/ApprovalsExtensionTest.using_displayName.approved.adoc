@@ -1,10 +1,22 @@
 [#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_displayName]
 = Using displayName
 
+
+// Test result for UsingDisplayNameTest: Success
 You can use DisplayName annotation to customize test title.Test example using DisplayName
 [source, java, indent=0]
 ----
-include::../../../../../java/org/sfvl/doctesting/junitextension/ApprovalsExtensionTest.java[tag=UsingDisplayNameTest]
+@DisplayName("Title for the document")
+class UsingDisplayNameTest {
+    @RegisterExtension
+    static final ApprovalsExtension doc = new SimpleApprovalsExtension();
+
+    @Test
+    @DisplayName("Title for this test")
+    public void test_A() {
+        doc.write("In my *test*");
+    }
+}
 ----
 
 Generated file with DisplayName content as title

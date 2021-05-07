@@ -4,12 +4,50 @@
 Nested class can be used to organize tests.
 Each nested class create a nested title.
 
-`ApprovalsExtension` must be register on each test when `̀DocWriter` could be declare once on enclosing class.
+// Test result for DemoNestedTest: Success
+
 
 .Test example using nested class
 [source, java, indent=0]
 ----
-include::../../../../../java/org/sfvl/doctesting/junitextension/ApprovalsExtensionTest.java[tag=DemoNestedTest]
+/**
+ * Demo of a simple usage to generate documentation.
+ */
+class DemoNestedTest {
+    @RegisterExtension
+    static final ApprovalsExtension writer = new SimpleApprovalsExtension();
+
+    /**
+     * Document of Addition operations.
+     */
+    @Nested
+    class Adding {
+
+        @Test
+        @DisplayName("Adding 2 simple numbers")
+        public void should_be_5_when_adding_2_and_3() {
+            writer.write(String.format("%d + %d = %d", 2, 3, 2 + 3));
+        }
+
+        /**
+         * A nested test.
+         */
+        @Test
+        @DisplayName("Adding 3 simple numbers")
+        public void should_be_9_when_adding_2_3_and_4() {
+            writer.write(String.format("%d + %d + %d = %d", 2, 3, 4, 2 + 3 + 4));
+        }
+    }
+
+    @Nested
+    class Multiply {
+        @Test
+        @DisplayName("Multiply 2 simple numbers")
+        public void should_be_12_when_multiply_4_and_3() {
+            writer.write(String.format("%d * %d = %d", 4, 3, 4 * 3));
+        }
+    }
+}
 ----
 
 Generated files in `org/sfvl/doctesting/junitextension`:

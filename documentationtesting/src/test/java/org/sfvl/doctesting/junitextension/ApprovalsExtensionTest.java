@@ -6,12 +6,13 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.NotIncludeToDoc;
-import org.sfvl.doctesting.test_tools.OnlyRunProgrammatically;
-import org.sfvl.doctesting.test_tools.TestRunnerFromTest;
+import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocWriter;
 import org.sfvl.doctesting.utils.DocumentationNamer;
 import org.sfvl.samples.MyTest;
+import org.sfvl.test_tools.OnlyRunProgrammatically;
+import org.sfvl.test_tools.TestRunnerFromTest;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -41,7 +42,7 @@ public class ApprovalsExtensionTest {
     public void using_extension() {
         final Class<?> testClass = MyTest.class;
 
-        new TestRunnerFromTest().runTestClass(testClass);
+        runTestAndWriteResultAsComment(testClass);
 
         write("This is an example to create a simple test using `" + ApprovalsExtension.class.getSimpleName() + "`.",
                 "",
@@ -51,7 +52,7 @@ public class ApprovalsExtensionTest {
                 "", "");
 
         write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`",
-                includeSourceWithTag(testClass.getSimpleName(), testClass),
+                extractSourceWithTag(testClass.getSimpleName(), testClass),
                 "", "");
 
         final Method method = FindLambdaMethod.getMethod(MyTest::test_A);
@@ -62,19 +63,18 @@ public class ApprovalsExtensionTest {
                 "----",
                 "Filename and title come from method name.",
                 "The chapter content contains what was written using `" + DocWriter.class.getSimpleName() + "`");
-
     }
 
     @Test
     public void using_displayName() throws IOException {
         final Class<?> testClass = UsingDisplayNameTest.class;
 
-        new TestRunnerFromTest().runTestClass(testClass);
+        runTestAndWriteResultAsComment(testClass);
 
         write("You can use DisplayName annotation to customize test title");
 
         write(".Test example using DisplayName",
-                includeSourceWithTag(testClass.getSimpleName()),
+                extractSourceWithTag(testClass.getSimpleName(), this.getClass(), testClass),
                 "", "");
 
         final String testMethod = FindLambdaMethod.getName(UsingDisplayNameTest::test_A);
@@ -89,15 +89,13 @@ public class ApprovalsExtensionTest {
     public void nested_class() throws IOException {
         write("Nested class can be used to organize tests.",
                 "Each nested class create a nested title.",
-                "",
-                "`" + ApprovalsExtension.class.getSimpleName() + "` must be register on each test " +
-                        "when `̀" + DocWriter.class.getSimpleName() + "` could be declare once on enclosing class.");
+                "");
 
         final Class<?> testClass = DemoNestedTest.class;
-        new TestRunnerFromTest().runTestClass(testClass);
+        runTestAndWriteResultAsComment(testClass);
 
         write("", "", ".Test example using nested class",
-                includeSourceWithTag(testClass.getSimpleName()),
+                extractSourceWithTag(testClass.getSimpleName(), this.getClass(), testClass),
                 "", "");
 
         final Path generatedFilePath = Paths.get("", getClass().getPackage().getName().split("\\."));
@@ -137,15 +135,15 @@ public class ApprovalsExtensionTest {
 
     @Test
     public void document_with_all_tests_in_a_testclass() throws IOException {
-        write("At the end of a test, a file is created including file generated on each test.",
+        write("At the end of a test, a file is created including files generated on each test.",
                 "",
                 "`" + ApprovalsExtension.class.getSimpleName() + "` must be static to be able to run `" + AfterAll.class.getSimpleName() + "` callback.");
 
         final Class<?> testClass = MyTest.class;
-        new TestRunnerFromTest().runTestClass(testClass);
+        runTestAndWriteResultAsComment(testClass);
 
         write("", "", ".Test example used to generate class document",
-                includeSourceWithTag(testClass.getSimpleName(),testClass),
+                extractSourceWithTag(testClass.getSimpleName(), testClass),
                 "", "");
 
         final DocumentationNamer documentationNamer = new DocumentationNamer(Config.DOC_PATH, MyTest.class);
@@ -184,10 +182,10 @@ public class ApprovalsExtensionTest {
                 "");
 
         final Class<?> testClass = FailingTest.class;
-        new TestRunnerFromTest().runTestClass(testClass);
+        runTestAndWriteResultAsComment(testClass);
 
         write("", "", ".Test example used to generate class document",
-                includeSourceWithTag(testClass.getSimpleName()),
+                extractSourceWithTag(testClass.getSimpleName(), this.getClass(), testClass),
                 "", "");
 
         final String fileName = testClass.getSimpleName() + ".failing_test.received.adoc";
@@ -223,6 +221,13 @@ public class ApprovalsExtensionTest {
 
     }
 
+    private void runTestAndWriteResultAsComment(Class<?> testClass) {
+        final TestRunnerFromTest.Results results = new TestRunnerFromTest().runTestClass(testClass);
+        write("",
+                String.format("// Test result for %s: %s", testClass.getSimpleName(), results.sucess() ? "Success" : "Fails"),
+                "");
+    }
+
     private Path getRelativizedApprovedPath(Method method, Path fromPath) {
         final DocumentationNamer documentationNamer = new DocumentationNamer(Config.DOC_PATH, method);
         return getRelativizedApprovedPath(documentationNamer, fromPath);
@@ -230,6 +235,19 @@ public class ApprovalsExtensionTest {
 
     private Path getRelativizedApprovedPath(DocumentationNamer documentationNamer, Path fromPath) {
         return documentationNamer.getApprovedPath(fromPath.resolve(DocumentationNamer.toPath(this.getClass().getPackage())));
+    }
+
+    private String extractSourceWithTag(String tag, Class<?> classToIdentifySourceClass, Class<?> testClass) {
+        final String source = String.join("\n",
+                "[source, java, indent=0]",
+                "----",
+                CodeExtractor.extractCodeBetween(CodeExtractor.classSource(classToIdentifySourceClass, testClass), "tag::" + tag + "[]", "end::" + tag + "[]").trim(),
+                "----");
+        return source;
+    }
+
+    private String extractSourceWithTag(String tag, Class<?> testClass) {
+        return extractSourceWithTag(tag, testClass, testClass);
     }
 
     public String includeSourceWithTag(String tag) {
@@ -256,15 +274,14 @@ public class ApprovalsExtensionTest {
 @OnlyRunProgrammatically
 // tag::FailingTest[]
 class FailingTest {
-    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    static final ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static final ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     @Test
     public void failing_test() {
-        docWriter.write("Some information before failure.", "", "");
+        doc.write("Some information before failure.", "", "");
         fail("Problem on the test, it fails.");
-        docWriter.write("Information added after failure are not in the final document.", "");
+        doc.write("Information added after failure are not in the final document.", "");
     }
 }
 // end::FailingTest[]
@@ -274,14 +291,13 @@ class FailingTest {
 // tag::UsingDisplayNameTest[]
 @DisplayName("Title for the document")
 class UsingDisplayNameTest {
-    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    static final ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static final ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     @Test
     @DisplayName("Title for this test")
     public void test_A() {
-        docWriter.write("In my *test*");
+        doc.write("In my *test*");
     }
 }
 // end::UsingDisplayNameTest[]
@@ -293,10 +309,8 @@ class UsingDisplayNameTest {
  * Demo of a simple usage to generate documentation.
  */
 class DemoNestedTest {
-    private static final DocWriter writer = new DocWriter();
-
     @RegisterExtension
-    static final ApprovalsExtension extension = new ApprovalsExtension(writer);
+    static final ApprovalsExtension writer = new SimpleApprovalsExtension();
 
     /**
      * Document of Addition operations.
