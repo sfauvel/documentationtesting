@@ -29,13 +29,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 @ClassToDocument(clazz = ApprovalsExtension.class)
 public class ApprovalsExtensionTest {
 
-    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
-
-    private void write(String... texts) {
-        docWriter.write(texts);
-    }
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     @Test
     @DisplayName(value = "Creating a test using ApprovalsExtension")
@@ -44,25 +39,13 @@ public class ApprovalsExtensionTest {
 
         runTestAndWriteResultAsComment(testClass);
 
-        write("This is an example to create a simple test using `" + ApprovalsExtension.class.getSimpleName() + "`.",
-                "",
-                "You have to write a class and add `" + RegisterExtension.class.getSimpleName() + "` annotation on an attribute.",
-                "This extension will check that content of `" + DocWriter.class.getSimpleName() + "` has not changed since the last time.",
-                "`" + DocWriter.class.getSimpleName() + "` passed to the `" + ApprovalsExtension.class.getSimpleName() + "` is used to indicated what we want to write to the output.",
-                "", "");
+        doc.write("This is an example to create a simple test using `" + ApprovalsExtension.class.getSimpleName() + "`.", "", "You have to write a class and add `" + RegisterExtension.class.getSimpleName() + "` annotation on an attribute.", "This extension will check that content of `" + DocWriter.class.getSimpleName() + "` has not changed since the last time.", "`" + DocWriter.class.getSimpleName() + "` passed to the `" + ApprovalsExtension.class.getSimpleName() + "` is used to indicated what we want to write to the output.", "", "");
 
-        write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`",
-                extractSourceWithTag(testClass.getSimpleName(), testClass),
-                "", "");
+        doc.write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
         final Method method = FindLambdaMethod.getMethod(MyTest::test_A);
         final Path approvedPath = getRelativizedApprovedPath(method, Config.DOC_PATH);
-        write("When executing test method `" + method.getName() + "`, a file `" + approvedPath.getFileName() + "` is generated and contains the following text",
-                "----",
-                "include::" + approvedPath + "[]",
-                "----",
-                "Filename and title come from method name.",
-                "The chapter content contains what was written using `" + DocWriter.class.getSimpleName() + "`");
+        doc.write("When executing test method `" + method.getName() + "`, a file `" + approvedPath.getFileName() + "` is generated and contains the following text", "----", "include::" + approvedPath + "[]", "----", "Filename and title come from method name.", "The chapter content contains what was written using `" + DocWriter.class.getSimpleName() + "`");
     }
 
     @Test
@@ -71,36 +54,26 @@ public class ApprovalsExtensionTest {
 
         runTestAndWriteResultAsComment(testClass);
 
-        write("You can use DisplayName annotation to customize test title");
+        doc.write("You can use DisplayName annotation to customize test title");
 
-        write(".Test example using DisplayName",
-                extractSourceWithTag(testClass.getSimpleName(), this.getClass(), testClass),
-                "", "");
+        doc.write(".Test example using DisplayName", extractSourceWithTag(testClass.getSimpleName(), this.getClass(), testClass), "", "");
 
         final String testMethod = FindLambdaMethod.getName(UsingDisplayNameTest::test_A);
         final String filename = testClass.getSimpleName() + "." + testMethod + ".approved.adoc";
-        write("Generated file with DisplayName content as title",
-                "----",
-                "include::" + filename + "[]",
-                "----");
+        doc.write("Generated file with DisplayName content as title", "----", "include::" + filename + "[]", "----");
     }
 
     @Test
     public void nested_class() throws IOException {
-        write("Nested class can be used to organize tests.",
-                "Each nested class create a nested title.",
-                "");
+        doc.write("Nested class can be used to organize tests.", "Each nested class create a nested title.", "");
 
         final Class<?> testClass = DemoNestedTest.class;
         runTestAndWriteResultAsComment(testClass);
 
-        write("", "", ".Test example using nested class",
-                extractSourceWithTag(testClass.getSimpleName(), this.getClass(), testClass),
-                "", "");
+        doc.write("", "", ".Test example using nested class", extractSourceWithTag(testClass.getSimpleName(), this.getClass(), testClass), "", "");
 
         final Path generatedFilePath = Paths.get("", getClass().getPackage().getName().split("\\."));
-        write("Generated files in `" + generatedFilePath + "`:", "",
-                Files.list(extension.getDocPath().resolve(generatedFilePath))
+        doc.write("Generated files in `" + generatedFilePath + "`:", "", Files.list(doc.getDocPath().resolve(generatedFilePath))
                         .map(file -> file.getFileName().toString())
                         .filter(filename -> filename.startsWith(DemoNestedTest.class.getSimpleName() + "."))
                         .filter((filename -> filename.endsWith(".approved.adoc")))
@@ -108,13 +81,10 @@ public class ApprovalsExtensionTest {
                         .map(filename -> "* " + filename)
                         .collect(Collectors.joining("\n\n")));
 
-        final Path documentPath = new DocumentationNamer(extension.getDocPath(), testClass).getFilePath();
-        write("", "", ".Document generated",
-                "----",
-                Files.lines(extension.getDocPath().resolve(documentPath))
+        final Path documentPath = new DocumentationNamer(doc.getDocPath(), testClass).getFilePath();
+        doc.write("", "", ".Document generated", "----", Files.lines(doc.getDocPath().resolve(documentPath))
                         .collect(Collectors.joining("\n"))
-                        .replaceAll("\\ninclude::", "\n\\\\include::"),
-                "----");
+                        .replaceAll("\\ninclude::", "\n\\\\include::"), "----");
 
         String style = "++++\n" +
                 "<style>\n" +
@@ -127,33 +97,24 @@ public class ApprovalsExtensionTest {
                 "}\n" +
                 "</style>\n" +
                 "++++";
-        write("", "", style, "", "_final rendering_", "[.adocRendering]",
-                "include::" + testClass.getSimpleName() + ".approved.adoc[leveloffset=+1]"
-        );
+        doc.write("", "", style, "", "_final rendering_", "[.adocRendering]", "include::" + testClass.getSimpleName() + ".approved.adoc[leveloffset=+1]");
 
     }
 
     @Test
     public void document_with_all_tests_in_a_testclass() throws IOException {
-        write("At the end of a test, a file is created including files generated on each test.",
-                "",
-                "`" + ApprovalsExtension.class.getSimpleName() + "` must be static to be able to run `" + AfterAll.class.getSimpleName() + "` callback.");
+        doc.write("At the end of a test, a file is created including files generated on each test.", "", "`" + ApprovalsExtension.class.getSimpleName() + "` must be static to be able to run `" + AfterAll.class.getSimpleName() + "` callback.");
 
         final Class<?> testClass = MyTest.class;
         runTestAndWriteResultAsComment(testClass);
 
-        write("", "", ".Test example used to generate class document",
-                extractSourceWithTag(testClass.getSimpleName(), testClass),
-                "", "");
+        doc.write("", "", ".Test example used to generate class document", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
         final DocumentationNamer documentationNamer = new DocumentationNamer(Config.DOC_PATH, MyTest.class);
 
-        write("", "", ".Document generated",
-                "----",
-                Files.lines(documentationNamer.getApprovedPath(Paths.get("")))
+        doc.write("", "", ".Document generated", "----", Files.lines(documentationNamer.getApprovedPath(Paths.get("")))
                         .collect(Collectors.joining("\n"))
-                        .replaceAll("\\ninclude::", "\n\\\\include::"),
-                "----");
+                        .replaceAll("\\ninclude::", "\n\\\\include::"), "----");
 
         String style = "++++\n" +
                 "<style>\n" +
@@ -166,9 +127,7 @@ public class ApprovalsExtensionTest {
                 "}\n" +
                 "</style>\n" +
                 "++++";
-        write("", "", style, "", "_final rendering_", "[.adocRendering]",
-                "include::" + getRelativizedApprovedPath(documentationNamer, Config.DOC_PATH) + "[leveloffset=+1]"
-        );
+        doc.write("", "", style, "", "_final rendering_", "[.adocRendering]", "include::" + getRelativizedApprovedPath(documentationNamer, Config.DOC_PATH) + "[leveloffset=+1]");
 
     }
 
@@ -178,15 +137,12 @@ public class ApprovalsExtensionTest {
      */
     @Test
     public void failing_test_output() throws IOException {
-        write("When the test fails, the reason (exception) is written into the generated document.",
-                "");
+        doc.write("When the test fails, the reason (exception) is written into the generated document.", "");
 
         final Class<?> testClass = FailingTest.class;
         runTestAndWriteResultAsComment(testClass);
 
-        write("", "", ".Test example used to generate class document",
-                extractSourceWithTag(testClass.getSimpleName(), this.getClass(), testClass),
-                "", "");
+        doc.write("", "", ".Test example used to generate class document", extractSourceWithTag(testClass.getSimpleName(), this.getClass(), testClass), "", "");
 
         final String fileName = testClass.getSimpleName() + ".failing_test.received.adoc";
         final Path filePath = DocumentationNamer.toPath(testClass.getPackage()).resolve(fileName);
@@ -194,14 +150,12 @@ public class ApprovalsExtensionTest {
 
         AtomicInteger stacktraceLineCount = new AtomicInteger(0);
         Predicate<String> isStackLine = line -> line.startsWith("	at ");
-        write("", "", ".Document generated (exception stack trace is truncated)",
-                "------",
-                Files.lines(documentationPath)
+        // We truncate stack trace to avoid to have an ouput that change from on execution from another.
+        doc.write("", "", ".Document generated (exception stack trace is truncated)", "------", Files.lines(documentationPath)
                         // We truncate stack trace to avoid to have an ouput that change from on execution from another.
                         .filter(line -> !isStackLine.test(line) || stacktraceLineCount.incrementAndGet() < 3)
                         .collect(Collectors.joining("\n"))
-                        .replaceAll("\\ninclude::", "\n\\\\include::"),
-                "------");
+                        .replaceAll("\\ninclude::", "\n\\\\include::"), "------");
 
         String style = "++++\n" +
                 "<style>\n" +
@@ -215,17 +169,14 @@ public class ApprovalsExtensionTest {
                 "</style>\n" +
                 "++++";
 
-        write("", "", style, "", "_final rendering_", "[.adocRendering]",
-                "include::" + fileName + "[leveloffset=+1]"
-        );
+        doc.write("", "", style, "", "_final rendering_", "[.adocRendering]", "include::" + fileName + "[leveloffset=+1]");
 
     }
 
     private void runTestAndWriteResultAsComment(Class<?> testClass) {
         final TestRunnerFromTest.Results results = new TestRunnerFromTest().runTestClass(testClass);
-        write("",
-                String.format("// Test result for %s: %s", testClass.getSimpleName(), results.sucess() ? "Success" : "Fails"),
-                "");
+        String[] texts = new String[]{"", String.format("// Test result for %s: %s", testClass.getSimpleName(), results.sucess() ? "Success" : "Fails"), ""};
+        doc.write(texts);
     }
 
     private Path getRelativizedApprovedPath(Method method, Path fromPath) {
