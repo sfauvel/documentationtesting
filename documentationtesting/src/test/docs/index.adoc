@@ -1,1 +1,2 @@
+:nofooter:
 include::org/sfvl/DocumentationTestingDocumentation.documentationTesting.approved.adoc[]

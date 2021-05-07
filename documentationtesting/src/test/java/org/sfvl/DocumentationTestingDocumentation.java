@@ -50,6 +50,7 @@ public class DocumentationTestingDocumentation {
         final Method method = FindLambdaMethod.getMethod(DocumentationTestingDocumentation::documentationTesting);
         final DocumentationNamer documentationNamer = new DocumentationNamer(Paths.get(""), method);
         String content = String.join("\n",
+                ":nofooter:",
                 "include::" + documentationNamer.getFilePath().toString() + "[]");
 
         final Path indexFile = Config.DOC_PATH.resolve("index.adoc");
