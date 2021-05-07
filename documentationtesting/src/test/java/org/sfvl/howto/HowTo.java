@@ -16,7 +16,11 @@ import org.sfvl.doctesting.utils.DocumentationNamer;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.writer.Classes;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -63,7 +67,7 @@ public class HowTo {
                 "",
                 "If you want to use it on your own project, you need to:",
                 "",
-                "* link:org/sfvl/howto/InstallingLibrary.html[Installing DocumentationTesting] maven library and add dependency to your `pom.xml`",
+                "* " + linkToClass(InstallingLibrary.class, "Installing DocumentationTesting").trim() + " maven library and add dependency to your `pom.xml`",
                 "",
                 "* Create a test and register ApprovalsExtension extension adding the code below to the test class.",
                 "[source,java,indent=0]",
@@ -76,6 +80,46 @@ public class HowTo {
                 "* Write in your test everything you want to see in your documentation using `doc.write(\"...\")`",
                 "You don't have to write assertions, tests will be passed when generated documents are the same as the last time.\n");
 
+    }
+
+    private void generatePage(Class<?> clazz) throws IOException {
+        final DocumentationNamer documentationNamer = new DocumentationNamer(Paths.get(""), clazz);
+        String includeContent = String.join("\n",
+                ":toc: left",
+                ":nofooter:",
+                ":stem:",
+                ":source-highlighter: rouge",
+                ":toclevels: 4",
+                "",
+                String.format("include::%s[]", documentationNamer.getApprovalFileName()));
+        final Path pagePath = DocumentationNamer.toPath(clazz, "", ".adoc");
+
+        try (FileWriter fileWriter = new FileWriter(Config.DOC_PATH.resolve(pagePath).toFile())) {
+            fileWriter.write(includeContent);
+        }
+    }
+
+    private String linkToClass(Class<?> clazz) {
+
+        final String className = clazz.getSimpleName();
+        final String title = className.substring(0, 1) +
+                className.substring(1)
+                        .replaceAll("([A-Z])", " $1")
+                        .toLowerCase();
+
+        return linkToClass(clazz, title);
+    }
+
+    private String linkToClass(Class<?> clazz, String title) {
+        try {
+            generatePage(clazz);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return String.format("link:%s.html[%s]\n",
+                DocumentationNamer.toPath(this.getClass().getPackage()).relativize(DocumentationNamer.toPath(clazz)),
+                title);
     }
 
     @Test
