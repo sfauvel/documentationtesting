@@ -154,19 +154,6 @@ public class DocumentationTestingDocumentation {
                 "++++");
     }
 
-
-    private String linkToDocClass(Class<? extends DocumentProducer> clazz) {
-        final String name = clazz.getPackage().getName();
-        return linkToDocClass(clazz, name);
-    }
-
-    private String linkToDocClass(Class<? extends DocumentProducer> clazz, String name) {
-        buildersToGenerate.add(clazz);
-        return String.format("link:%s.html[%s]\n",
-                clazz.getName().replace(".", "/"),
-                name);
-    }
-
     private String linkToClass(Class<?> clazz) {
 
         final String className = clazz.getSimpleName();
@@ -186,7 +173,7 @@ public class DocumentationTestingDocumentation {
         }
 
         return String.format("link:%s.html[%s]\n",
-                DocumentationNamer.toPath(clazz),
+                Paths.get("").relativize(DocumentationNamer.toPath(clazz)),
                 title);
     }
 
