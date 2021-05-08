@@ -15,8 +15,8 @@
 
 ----
 .Files contained in the folder `src/test/java/org/sfvl/doctesting/sample/basic`
-* SecondTest.java
 * FirstTest.java
+* SecondTest.java
 
 .Default document generated
 ----

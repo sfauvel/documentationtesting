@@ -92,6 +92,7 @@ class MainDocumentationTest {
 
         MainDocumentationTest.doc.write(String.format(".Files contained in the folder `%s`", packagePath),
                 fileStream.map(f -> "* " + f)
+                        .sorted()
                         .collect(Collectors.joining("\n", "", "\n")));
 
         MainDocumentationTest.doc.write("", ".Default document generated", "----", content.replaceAll("\\ninclude", "\n\\\\include"), "----");
