@@ -57,27 +57,13 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
         if (isNestedClass(currentClass)) {
             return;
         }
-        final String content = getClassContent(currentClass);
-        final Class<?> testClass = extensionContext.getTestClass().get();
-        final DocumentationNamer documentationNamer = new DocumentationNamer(getDocPath(), testClass);
+        final String content = docWriter.getClassContent(currentClass);
 
+        final DocumentationNamer documentationNamer = new DocumentationNamer(
+                getDocPath(),
+                extensionContext.getTestClass().get());
         verifyDoc(content, documentationNamer);
 
-    }
-
-    protected String getClassContent(Class<?> currentClass) {
-        final ClassDocumentation classDocumentation = new ClassDocumentation() {
-            protected Optional<String> relatedClassDescription(Class<?> fromClass) {
-                return Optional.ofNullable(fromClass.getAnnotation(ClassToDocument.class))
-                        .map(ClassToDocument::clazz)
-                        .map(CodeExtractor::getComment);
-            }
-        };
-        final String content = String.join("\n",
-                ":nofooter:",
-                classDocumentation.getClassDocumentation(currentClass)
-        );
-        return content;
     }
 
     @Override
@@ -88,7 +74,9 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
                 .map(this::displayFailingReason)
                 .orElse("");
 
-        final DocumentationNamer documentationNamer = new DocumentationNamer(getDocPath(), extensionContext.getTestMethod().get());
+        final DocumentationNamer documentationNamer = new DocumentationNamer(
+                getDocPath(),
+                extensionContext.getTestMethod().get());
         verifyDoc(content, documentationNamer);
     }
 

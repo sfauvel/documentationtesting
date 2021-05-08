@@ -1,9 +1,13 @@
 package org.sfvl.doctesting.utils;
 
+import org.sfvl.doctesting.junitextension.ClassToDocument;
+import org.sfvl.doctesting.writer.ClassDocumentation;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -37,6 +41,21 @@ public class DocWriter {
                 title,
                 CodeExtractor.getComment(testMethod).map(comment -> comment + "\n\n").orElse(""),
                 read());
+    }
+
+    public String getClassContent(Class<?> currentClass) {
+        final ClassDocumentation classDocumentation = new ClassDocumentation() {
+            protected Optional<String> relatedClassDescription(Class<?> fromClass) {
+                return Optional.ofNullable(fromClass.getAnnotation(ClassToDocument.class))
+                        .map(ClassToDocument::clazz)
+                        .map(CodeExtractor::getComment);
+            }
+        };
+        final String content = String.join("\n",
+                ":nofooter:",
+                classDocumentation.getClassDocumentation(currentClass)
+        );
+        return content;
     }
 
     public String titleId(Method testMethod) {

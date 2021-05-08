@@ -10,6 +10,7 @@ import org.sfvl.doctesting.DocTestingDocumentation;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.utils.DocWriter;
 import org.sfvl.doctesting.utils.DocumentationNamer;
 import org.sfvl.doctesting.writer.DocumentProducer;
 import org.sfvl.doctesting.writer.Options;
@@ -25,17 +26,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class DocumentationTestingDocumentation {
-    private static final org.sfvl.doctesting.utils.DocWriter doc = new org.sfvl.doctesting.utils.DocWriter();
 
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(doc) {
+    static ApprovalsExtension doc = new ApprovalsExtension(new DocWriter() {
         @Override
-        protected String getClassContent(Class currentClass) {
+        public String getClassContent(Class<?> currentClass) {
             return String.join("\n",
                     ":notitle:",
                     super.getClassContent(currentClass));
         }
-    };
+    });
 
     private final Formatter formatter = new AsciidocFormatter();
     /// Record all builder references as a link in documentation.
