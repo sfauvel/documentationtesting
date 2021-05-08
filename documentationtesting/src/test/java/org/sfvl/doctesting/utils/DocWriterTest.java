@@ -12,7 +12,7 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
-import org.sfvl.doctesting.utils.NoTitle;
+import org.sfvl.samples.MyTest;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -73,6 +73,34 @@ class DocWriterTest {
                 .blockBuilder(Formatter.Block.LITERAL)
                 .title("Output provided")
                 .content(output)
+                .build());
+    }
+
+    /**
+     * DocWriter is also used to format output of a test class.
+     * What is wrote on DocWriter is not used in this case.
+     *
+     * @param testInfo
+     * @throws NoSuchMethodException
+     */
+    @Test
+    @DisplayName("DocWriter of a class")
+    public void doc_writer_with_a_class(TestInfo testInfo) throws NoSuchMethodException {
+
+        // >>>
+        final DocWriter doc = new DocWriter();
+        doc.write("Some text added to show DocWriter output.");
+        final String output = doc.formatOutput(MyTest.class);
+        // <<<
+
+        docWriter.write(".DocWriter usage",
+                formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                "", "");
+
+        docWriter.write(formatter
+                .blockBuilder(Formatter.Block.LITERAL)
+                .title("Output provided")
+                .content(output.replaceAll("\\ninclude::", "\n\\\\include::"))
                 .build());
     }
 

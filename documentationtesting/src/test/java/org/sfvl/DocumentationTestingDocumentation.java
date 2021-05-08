@@ -30,10 +30,10 @@ public class DocumentationTestingDocumentation {
     @RegisterExtension
     static ApprovalsExtension doc = new ApprovalsExtension(new DocWriter() {
         @Override
-        public String getClassContent(Class<?> currentClass) {
+        public String formatOutput(Class<?> clazz) {
             return String.join("\n",
                     ":notitle:",
-                    super.getClassContent(currentClass));
+                    super.formatOutput(clazz));
         }
     });
 

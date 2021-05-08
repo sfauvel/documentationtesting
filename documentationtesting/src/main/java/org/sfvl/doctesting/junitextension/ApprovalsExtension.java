@@ -57,7 +57,7 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
         if (isNestedClass(currentClass)) {
             return;
         }
-        final String content = docWriter.getClassContent(currentClass);
+        final String content = docWriter.formatOutput(currentClass);
 
         final DocumentationNamer documentationNamer = new DocumentationNamer(
                 getDocPath(),
