@@ -113,7 +113,14 @@ public class FailureReporterTest {
 
         final ByteArrayOutputStream os = new ByteArrayOutputStream();
         final ApprovalsExtension.FailureReporter reporter = new ApprovalsExtension.FailureReporter(new PrintStream(os));
-        reporter.report(receivedFile, approvedFile);
+        final PrintStream out = System.out;
+        // We redirect System.out to nothing to avoid a output to console.
+        System.setOut(new PrintStream(new ByteArrayOutputStream()));
+        try {
+            reporter.report(receivedFile, approvedFile);
+        } finally {
+            System.setOut(out);
+        }
 
         doc.write(formatter.blockBuilder(Formatter.Block.LITERAL)
                         .title("Received text")
