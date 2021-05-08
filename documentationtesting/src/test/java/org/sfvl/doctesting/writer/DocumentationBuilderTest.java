@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.utils.DocWriter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
@@ -16,9 +17,8 @@ import java.nio.file.Paths;
 @ClassToDocument(clazz = DocumentationBuilder.class)
 public class DocumentationBuilderTest {
 
-    private static final DocWriter doc = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(doc);
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     @Test
     public void simple_doc(TestInfo testInfo) {

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,20 +13,15 @@ import java.util.stream.Collectors;
 /**
  * We will display a tennis score.
  */
-@DisplayName(value="Scores examples")
+@DisplayName(value = "Scores examples")
 public class TennisTest {
 
-    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
-
-    private void write(String... texts) {
-        docWriter.write(texts);
-    }
-
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     static class TennisRecorder extends Tennis {
         List<String> points = new ArrayList<>();
+
         @Override
         public void playerAWinPoint() {
             points.add("A");
@@ -66,7 +61,7 @@ public class TennisTest {
      */
     @Test
     public void player_B_win_one_point() {
-        
+
         tennis.playerBWinPoint();
 
         displayScore(tennis);
@@ -89,7 +84,7 @@ public class TennisTest {
      */
     @Test
     public void player_B_win_two_points() {
-        
+
         tennis.playerBWinPoint();
         tennis.playerBWinPoint();
 
@@ -115,27 +110,18 @@ public class TennisTest {
     private void displayScore(TennisRecorder tennis) {
         Score score = tennis.getScore();
         String textScore = score.playerA() + " - " + score.playerB();
-        write("[%autowidth, cols=" + (tennis.points.size()+2) + "*, stripes=none]\n|===\n");
-        write("| Player A" + pointsToTable("A", tennis.points) + "\n.2+^.^| *" + textScore + "* \n");
-        write("| Player B" + pointsToTable("B", tennis.points) + "| \n");
-        write("|===\n");
+        doc.write("[%autowidth, cols=" + (tennis.points.size() + 2) + "*, stripes=none]",
+                "|===",
+                "| Player A" + pointsToTable("A", tennis.points) + "\n.2+^.^| *" + textScore + "* ",
+                "| Player B" + pointsToTable("B", tennis.points) + "| ",
+                "|===",
+                "");
 
         writeStyle();
     }
 
     private void writeStyle() {
-        write("", 
-                "++++",
-                "<style>",
-                "table.tableblock.grid-all {",
-                "    border-collapse: collapse;",
-                "}",
-                "table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr > .tableblock:last-child {",
-                "    border: 1px solid #dddddd;",
-                "}",
-                "</style>",
-                "++++",
-                "");
+        doc.write("", "++++", "<style>", "table.tableblock.grid-all {", "    border-collapse: collapse;", "}", "table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr > .tableblock:last-child {", "    border: 1px solid #dddddd;", "}", "</style>", "++++", "");
     }
 
     private String pointsToTable(String player, List<String> points) {

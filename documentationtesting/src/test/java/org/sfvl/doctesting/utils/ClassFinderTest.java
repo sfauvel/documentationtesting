@@ -5,14 +5,14 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ClassFinderTest {
-    private static final DocWriter doc = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(doc);
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     @Test
     public void find_test_classes_in_a_package(TestInfo testInfo) {

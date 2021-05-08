@@ -5,6 +5,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.*;
 import org.sfvl.doctesting.writer.*;
 
@@ -13,10 +14,9 @@ import java.nio.file.Path;
 import java.util.List;
 
 public class DocTestingDocumentation {
-    private static final DocWriter doc = new DocWriter();
 
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(doc);
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
 
     protected final Formatter formatter = new AsciidocFormatter();

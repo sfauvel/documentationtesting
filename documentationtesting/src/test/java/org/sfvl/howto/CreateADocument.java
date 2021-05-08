@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocWriter;
@@ -26,9 +27,8 @@ import java.util.stream.Collectors;
  */
 public class CreateADocument {
 
-    private static final DocWriter doc = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(doc);
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     /**
      * Creating a document is just writing a file.

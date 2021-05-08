@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 
 /**
  * Class comment is added to description.
@@ -13,19 +13,18 @@ import org.sfvl.doctesting.utils.DocWriter;
 @DisplayName("Title for the document")
 @NotIncludeToDoc
 class InMainDocTest {
-    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     @Test
     @DisplayName("Title for this test")
     public void testA() {
-        docWriter.write("In my *test*");
+        doc.write("In my *test*");
     }
 
     @Test
     @DisplayName("Title for this test")
     public void testB() {
-        docWriter.write("In my *test*");
+        doc.write("In my *test*");
     }
 }

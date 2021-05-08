@@ -2,10 +2,10 @@ package org.sfvl.docformatter;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
-import org.sfvl.doctesting.utils.DocWriter;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,11 +31,7 @@ public class AsciidocFormatterTest {
     private String output;
 
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(new DocWriter());
-
-    public void write(String... texts) {
-        extension.getDocWriter().write(texts);
-    }
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     @Retention(RetentionPolicy.RUNTIME)
     public @interface TestOption {
@@ -240,25 +236,18 @@ public class AsciidocFormatterTest {
                 .getAnnotation(TestOption.class));
 
         annotation.map(TestOption::includeMethodDoc)
-                .filter(name -> !name.isEmpty())
+                .filter(methodName -> !methodName.isEmpty())
                 .map(methodName -> CodeExtractor.getComment(AsciidocFormatter.class, methodName))
-                .ifPresent(doc -> write(doc + "\n"));
+                .ifPresent(comment -> doc.write(comment.get(), ""));
 
-        write("\n[red]##_Usage_##\n[source,java,indent=0]\n----\n");
-        write(extractMethod(testinfo));
-
-        write("\n----\n");
+        doc.write("", "[red]##_Usage_##", "[source,java,indent=0]", "----", extractMethod(testinfo), "----", "");
 
         if (annotation.map(TestOption::showRender).orElse(true)) {
-            write("\n[red]##_Render_##\n\n");
-            write(output);
-            write("\n");
+            doc.write("", "[red]##_Render_##", "", output, "");
         }
-        write("\n[red]##_Asciidoc generated_##\n------\n");
-        write(output.replaceAll("\\ninclude", "\n\\\\include"));
-        write("\n------\n");
+        doc.write("\n[red]##_Asciidoc generated_##", "------", output.replaceAll("\\ninclude", "\n\\\\include"), "------", "");
 
-        write("\n___\n");
+        doc.write("", "___", "");
     }
 
     public String extractMethod(TestInfo testinfo) {
@@ -277,7 +266,7 @@ public class AsciidocFormatterTest {
 
         final String canonicalName = this.getClass().getPackage().getName();
         final String pathName = canonicalName.toString().replace('.', '/');
-        final Path filePath = extension.getDocPath().resolve(pathName).resolve(fileName);
+        final Path filePath = doc.getDocPath().resolve(pathName).resolve(fileName);
 
         filePath.getParent().toFile().mkdirs();
         try (FileWriter writerInclude = new FileWriter(filePath.toFile())) {

@@ -5,15 +5,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 
 import java.nio.file.Paths;
 import java.util.function.Function;
 
 @DisplayName("Documentation Namer")
 class DocumentationNamerTest {
-    private static final DocWriter doc = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(doc);
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     /**
      * DocumentNamer build names and paths from a method or a class.

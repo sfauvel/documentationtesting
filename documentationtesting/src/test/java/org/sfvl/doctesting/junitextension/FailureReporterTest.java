@@ -14,9 +14,8 @@ import java.nio.file.Path;
 
 @DisplayName("Failure report")
 public class FailureReporterTest {
-    private static final DocWriter doc = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(doc);
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     @TempDir
     Path tempDir;

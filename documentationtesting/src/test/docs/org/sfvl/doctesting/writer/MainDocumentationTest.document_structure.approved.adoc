@@ -50,32 +50,30 @@ from getHeader method
 ----
 @DisplayName("Title for the document")
 class InMainDocTest {
-    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     @Test
     @DisplayName("Title for this test")
     public void testA() {
-        docWriter.write("In my *test*");
+        doc.write("In my *test*");
     }
 
     @Test
     @DisplayName("Title for this test")
     public void testB() {
-        docWriter.write("In my *test*");
+        doc.write("In my *test*");
     }
 }
 
 class InMainDocBisTest {
-    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     @Test
     @DisplayName("Title for this test")
     public void testX() {
-        docWriter.write("In my *test*");
+        doc.write("In my *test*");
     }
 }
 ----

@@ -3,6 +3,7 @@ package org.sfvl.howto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.DocWriter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 
@@ -13,9 +14,8 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
  */
 public class UseYourOwnStyle {
 
-    private static final DocWriter doc = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(doc);
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     private final AsciidocFormatter formatter = new AsciidocFormatter();
 

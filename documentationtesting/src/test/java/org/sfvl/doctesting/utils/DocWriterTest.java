@@ -12,6 +12,7 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.samples.MyTest;
 
 import java.lang.reflect.Method;
@@ -24,14 +25,13 @@ import java.util.stream.IntStream;
 
 @DisplayName("DocWriter")
 class DocWriterTest {
-    private static final DocWriter docWriter = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     final AsciidocFormatter formatter = new AsciidocFormatter();
 
     private void write(String... texts) {
-        docWriter.write(texts);
+        doc.write(texts);
     }
 
     /**
@@ -65,11 +65,11 @@ class DocWriterTest {
         );
         // <<<
 
-        docWriter.write(".DocWriter usage",
+        DocWriterTest.doc.write(".DocWriter usage",
                 formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
                 "", "");
 
-        docWriter.write(formatter
+        DocWriterTest.doc.write(formatter
                 .blockBuilder(Formatter.Block.LITERAL)
                 .title("Output provided")
                 .content(output)
@@ -93,11 +93,11 @@ class DocWriterTest {
         final String output = doc.formatOutput(MyTest.class);
         // <<<
 
-        docWriter.write(".DocWriter usage",
+        DocWriterTest.doc.write(".DocWriter usage",
                 formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
                 "", "");
 
-        docWriter.write(formatter
+        DocWriterTest.doc.write(formatter
                 .blockBuilder(Formatter.Block.LITERAL)
                 .title("Output provided")
                 .content(output.replaceAll("\\ninclude::", "\n\\\\include::"))
@@ -131,15 +131,15 @@ class DocWriterTest {
         );
         // <<<
 
-        docWriter.write(".Test with NoTitle annotation",
+        DocWriterTest.doc.write(".Test with NoTitle annotation",
                 formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod("test_class")),
                 "", "");
 
-        docWriter.write(".DocWriter usage",
+        DocWriterTest.doc.write(".DocWriter usage",
                 formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
                 "", "");
 
-        docWriter.write(formatter
+        DocWriterTest.doc.write(formatter
                 .blockBuilder(Formatter.Block.LITERAL)
                 .title("Output provided")
                 .content(output)
@@ -153,19 +153,19 @@ class DocWriterTest {
         final String name = testMethod.getName();
 
         {
-            docWriter.write("When display name is different from test method name, displayName is used as title.", "", "");
+            doc.write("When display name is different from test method name, displayName is used as title.", "", "");
 
             writeFormatOutput("My title", testMethod);
         }
 
         {
-            docWriter.write("When display name is the same as test method name, name is reformatted.", "", "");
+            doc.write("When display name is the same as test method name, name is reformatted.", "", "");
 
             writeFormatOutput(testMethod.getName() + "()", testMethod);
         }
 
         {
-            docWriter.write("Test method could have TestInfo parameter.", "", "");
+            doc.write("Test method could have TestInfo parameter.", "", "");
 
             final Method testMethodWithTestInfo = FindLambdaMethod.getMethod(DocWriterTest::test_method_with_test_info);
             writeFormatOutput(testMethodWithTestInfo.getName() + "(TestInfo)", testMethodWithTestInfo);
@@ -188,17 +188,17 @@ class DocWriterTest {
         final String name = FindLambdaMethod.getName(MyTestWithComment::testA);
         final Method testMethod = MyTestWithComment.class.getMethod(name);
 
-        docWriter.write("When test method had a comment, it's written after title.", "", "");
+        doc.write("When test method had a comment, it's written after title.", "", "");
 
         final DocWriter docWriterForTest = new DocWriter();
         final String output = docWriterForTest.formatOutput(name + "()", testMethod);
 
-        docWriter.write(".Test example with comment on method",
+        doc.write(".Test example with comment on method",
   //              CodeExtractor.classSource(MyTestWithComment.class),
                 includeSourceWithTag(MyTestWithComment.class.getSimpleName()),
                 "", "");
 
-        docWriter.write("****", output, "****", "");
+        doc.write("****", output, "****", "");
     }
 
     public void writeFormatOutput(String displayName, Method testMethod) {
@@ -207,10 +207,10 @@ class DocWriterTest {
                 .replaceAll("(^)\\[#", "//[#")
                 .replaceAll("\\n\\[#", "\n//[#");
 
-        docWriter.write(String.format("Calling formatOutput with DisplayName=\"%s\" and Method=%s provides",
+        doc.write(String.format("Calling formatOutput with DisplayName=\"%s\" and Method=%s provides",
                 displayName, testMethod.getName()), "");
 
-        docWriter.write("****", output, "****", "");
+        doc.write("****", output, "****", "");
     }
 
     public String includeSourceWithTag(String tag) {

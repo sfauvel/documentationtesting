@@ -5,10 +5,7 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
-import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
-import org.sfvl.doctesting.junitextension.ClassToDocument;
-import org.sfvl.doctesting.junitextension.FindLambdaMethod;
+import org.sfvl.doctesting.junitextension.*;
 import org.sfvl.doctesting.utils.*;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.writer.Classes;
@@ -23,10 +20,8 @@ import java.util.Optional;
 
 public class HowTo {
 
-    private static final DocWriter doc = new DocWriter();
-
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(doc) {
+    static ApprovalsExtension doc = new SimpleApprovalsExtension() {
         @Override
         public void afterAll(ExtensionContext extensionContext) throws Exception {
             final Class<?> currentClass = extensionContext.getTestClass().get();

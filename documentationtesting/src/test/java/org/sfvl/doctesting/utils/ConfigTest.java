@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -16,9 +17,8 @@ import java.util.stream.Collectors;
 
 @DisplayName(value = "Configuration")
 class ConfigTest {
-    private static final DocWriter doc = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(doc);
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     @Test
     public void default_values() throws IOException {

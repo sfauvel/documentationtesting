@@ -9,6 +9,7 @@ import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocWriter;
@@ -29,9 +30,8 @@ import java.util.stream.Stream;
 @ClassToDocument(clazz = MainDocumentation.class)
 class MainDocumentationTest {
 
-    private static final DocWriter doc = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(doc);
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     final List<Method> methodsToDocument = Arrays.asList(
             FindLambdaMethod.getMethod(InMainDocTest::testA),

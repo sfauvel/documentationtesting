@@ -14,9 +14,8 @@ import java.lang.reflect.Method;
  */
 @DisplayName(value = "Extract information from method reference")
 public class FindLambdaMethodTest {
-    private static final DocWriter doc = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(doc);
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     public void myMethod() {
 

@@ -10,6 +10,7 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.*;
 
 import java.io.IOException;
@@ -24,9 +25,8 @@ import java.util.stream.Collectors;
 class ClassDocumentationTest {
 
     private final Formatter formatter = new AsciidocFormatter();
-    private static final DocWriter doc = new DocWriter();
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(doc);
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     @Test
     @DisplayName(value = "Default test class documentation")
@@ -195,7 +195,7 @@ class ClassDocumentationTest {
 
         final Path projectPath = new PathProvider().getProjectPath();
         final Path packagePath = DocumentationNamer.toPath(this.getClass().getPackage());
-        final Path packageDocPath = extension.getDocPath().resolve(packagePath);
+        final Path packageDocPath = doc.getDocPath().resolve(packagePath);
         final Path relativizeToProjectPath = packageDocPath.relativize(projectPath);
         final Path javaFilePath = relativizeToProjectPath
                 .resolve(Config.TEST_PATH)
@@ -220,10 +220,9 @@ class ClassDocumentationTest {
  */
 @NotIncludeToDoc
 class ClassDocumentationTest_DemoNestedTest {
-    private static final DocWriter writer = new DocWriter();
 
     @RegisterExtension
-    static final ApprovalsExtension extension = new ApprovalsExtension(writer);
+    static final ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     /**
      * Document of Addition operations.
@@ -234,7 +233,7 @@ class ClassDocumentationTest_DemoNestedTest {
         @Test
         @DisplayName("Adding 2 simple numbers")
         public void should_be_5_when_adding_2_and_3() {
-            writer.write(String.format("%d + %d = %d", 2, 3, 2 + 3));
+            doc.write(String.format("%d + %d = %d", 2, 3, 2 + 3));
         }
 
         /**
@@ -243,7 +242,7 @@ class ClassDocumentationTest_DemoNestedTest {
         @Test
         @DisplayName("Adding 3 simple numbers")
         public void should_be_9_when_adding_2_3_and_4() {
-            writer.write(String.format("%d + %d + %d = %d", 2, 3, 4, 2 + 3 + 4));
+            doc.write(String.format("%d + %d + %d = %d", 2, 3, 4, 2 + 3 + 4));
         }
 
         /**
@@ -254,7 +253,7 @@ class ClassDocumentationTest_DemoNestedTest {
             @Test
             @DisplayName("Adding 2 negative numbers")
             public void should_be_minus_8_when_adding_minus_3_and_minus_5() {
-                writer.write(String.format("%d + %d = %d", -3, -5, (-3) + (-5)));
+                doc.write(String.format("%d + %d = %d", -3, -5, (-3) + (-5)));
             }
         }
     }
@@ -264,7 +263,7 @@ class ClassDocumentationTest_DemoNestedTest {
      */
     @Test
     public void method_between_two_nested_classes() {
-        writer.write("This is the documentation generated in test");
+        doc.write("This is the documentation generated in test");
     }
 
     @Nested
@@ -272,7 +271,7 @@ class ClassDocumentationTest_DemoNestedTest {
         @Test
         @DisplayName("Multiply 2 simple numbers")
         public void should_be_12_when_multiply_4_and_3() {
-            writer.write(String.format("%d * %d = %d", 4, 3, 4 * 3));
+            doc.write(String.format("%d * %d = %d", 4, 3, 4 * 3));
         }
     }
 }
