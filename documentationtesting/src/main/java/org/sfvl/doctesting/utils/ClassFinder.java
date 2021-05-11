@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 public class ClassFinder {
     public List<Class<?>> testClasses(Package packageToScan, Predicate<Method> methodFilter) {
-        final String prefix = DocumentationNamer.toPath(packageToScan).toString();
+        final String prefix = DocPath.toPath(packageToScan).toString();
         Reflections reflections = new Reflections(prefix, new MethodAnnotationsScanner());
 
         final Stream<Method> methodsAnnotatedWith = reflections.getMethodsAnnotatedWith(Test.class).stream()
@@ -27,16 +27,7 @@ public class ClassFinder {
     }
 
     public List<Class<?>> testClasses(Package packageToScan) {
-        final String prefix = DocumentationNamer.toPath(packageToScan).toString();
-        Reflections reflections = new Reflections(prefix, new MethodAnnotationsScanner());
-
-        final Stream<Method> methodsAnnotatedWith = reflections.getMethodsAnnotatedWith(Test.class).stream();
-
-        return methodsAnnotatedWith
-                .map(method -> CodeExtractor.getFirstEnclosingClassBefore(method, null))
-                .distinct()
-                .sorted(Comparator.comparing(Class::getName))
-                .collect(Collectors.toList());
+        return testClasses(packageToScan, m -> true);
     }
 
 }

@@ -7,5 +7,9 @@ public class MyClass {
         public class ASubClassOfMySubClass {
 
         }
+
+        public void doSomething() {
+
+        }
     }
 }

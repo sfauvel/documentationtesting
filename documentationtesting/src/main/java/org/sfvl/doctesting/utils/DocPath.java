@@ -12,13 +12,18 @@ public class DocPath {
 
     public DocPath(Class<?> clazz) {
         this.folder = toPath(clazz.getPackage());
-        this.name = clazz.getSimpleName();
+        this.name = extractClassName(clazz);
     }
 
     public DocPath(Method method) {
         final Class<?> clazz = method.getDeclaringClass();
         this.folder = toPath(clazz.getPackage());
-        this.name = String.format("%s.%s", clazz.getSimpleName(), method.getName());
+        String className = extractClassName(clazz);
+        this.name = String.format("%s.%s", className, method.getName());
+    }
+
+    private final String extractClassName(Class<?> clazz) {
+        return clazz.getCanonicalName().replace(clazz.getPackage().getName() + ".", "");
     }
 
     public OnePath approved() {

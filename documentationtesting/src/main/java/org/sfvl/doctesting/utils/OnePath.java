@@ -16,11 +16,15 @@ public class OnePath {
     }
 
     public Path path() {
-        return rootPath.resolve(folder).resolve(name + suffix);
+        return rootPath.resolve(folder).resolve(fullname());
     }
 
     public Path folder() {
         return rootPath.resolve(folder);
+    }
+
+    public String fullname() {
+        return name + suffix;
     }
 
     public Path from(Class<?> classToRelativized) {
@@ -34,4 +38,5 @@ public class OnePath {
     public Path to(OnePath classToRelativized) {
         return this.folder().relativize(classToRelativized.path());
     }
+
 }

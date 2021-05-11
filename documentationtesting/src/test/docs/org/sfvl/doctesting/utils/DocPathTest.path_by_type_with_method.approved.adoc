@@ -20,24 +20,29 @@ We also used `org.sfvl.doctesting.utils.DocPathTest` class to display `from` and
 [%header]
 |====
 | Code | Method | Result
-.4+a| `page()` | path() | src/test/docs/org/sfvl/samples/MyTest.test_A.adoc
+.5+a| `page()` | path() | src/test/docs/org/sfvl/samples/MyTest.test_A.adoc
 a| folder() | src/test/docs/org/sfvl/samples
+a| fullname() | MyTest.test_A.adoc
 a| from() | ../../samples/MyTest.test_A.adoc
 a| to() | ../doctesting/utils/DocPathTest.approved.adoc
-.4+a| `approved()` | path() | src/test/docs/org/sfvl/samples/MyTest.test_A.approved.adoc
+.5+a| `approved()` | path() | src/test/docs/org/sfvl/samples/MyTest.test_A.approved.adoc
 a| folder() | src/test/docs/org/sfvl/samples
+a| fullname() | MyTest.test_A.approved.adoc
 a| from() | ../../samples/MyTest.test_A.approved.adoc
 a| to() | ../doctesting/utils/DocPathTest.approved.adoc
-.4+a| `received()` | path() | src/test/docs/org/sfvl/samples/MyTest.test_A.received.adoc
+.5+a| `received()` | path() | src/test/docs/org/sfvl/samples/MyTest.test_A.received.adoc
 a| folder() | src/test/docs/org/sfvl/samples
+a| fullname() | MyTest.test_A.received.adoc
 a| from() | ../../samples/MyTest.test_A.received.adoc
 a| to() | ../doctesting/utils/DocPathTest.approved.adoc
-.4+a| `test()` | path() | src/test/java/org/sfvl/samples/MyTest.test_A.java
+.5+a| `test()` | path() | src/test/java/org/sfvl/samples/MyTest.test_A.java
 a| folder() | src/test/java/org/sfvl/samples
+a| fullname() | MyTest.test_A.java
 a| from() | ../../../../../java/org/sfvl/samples/MyTest.test_A.java
 a| to() | ../../../../docs/org/sfvl/doctesting/utils/DocPathTest.approved.adoc
-.4+a| `doc()` | path() | org/sfvl/samples/MyTest.test_A.html
+.5+a| `doc()` | path() | org/sfvl/samples/MyTest.test_A.html
 a| folder() | org/sfvl/samples
+a| fullname() | MyTest.test_A.html
 a| from() | ../../../../../../../org/sfvl/samples/MyTest.test_A.html
 a| to() | ../../../src/test/docs/org/sfvl/doctesting/utils/DocPathTest.approved.adoc
 |====

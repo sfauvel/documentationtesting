@@ -1,0 +1,6 @@
+[#org_sfvl_doctesting_utils_DocPathTest_nested_class]
+= Nested class
+
+Name for nested class `org.sfvl.doctesting.sample.MyClass$MySubClass` is `MyClass.MySubClass`.
+
+Name for method `doSomething` in nested class `org.sfvl.doctesting.sample.MyClass$MySubClass` is `MyClass.MySubClass.doSomething`.

@@ -5,10 +5,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
-import org.sfvl.doctesting.utils.ClassesOrder;
-import org.sfvl.doctesting.utils.CodeExtractor;
-import org.sfvl.doctesting.utils.DocumentationNamer;
-import org.sfvl.doctesting.utils.PathProvider;
+import org.sfvl.doctesting.utils.*;
 
 import java.lang.reflect.Method;
 import java.nio.file.Path;
@@ -35,8 +32,7 @@ public class ClassDocumentation {
     public ClassDocumentation() {
         this(
                 new AsciidocFormatter(),
-                m -> new DocumentationNamer(Paths.get(""), m)
-                        .getApprovedPath(DocumentationNamer.toPath(m.getDeclaringClass().getPackage())),
+                m -> Paths.get(new DocPath(m).approved().fullname()),
                 m -> m.isAnnotationPresent(Test.class),
                 c -> c.isAnnotationPresent(Nested.class)
         );

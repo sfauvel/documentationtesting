@@ -11,8 +11,10 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.doctesting.sample.MyClass;
 import org.sfvl.samples.MyTest;
 
+import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.util.function.Function;
 
@@ -21,9 +23,9 @@ public class DocPathTest {
     @RegisterExtension
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
+    final Formatter formatter = new AsciidocFormatter();
     @Test
     public void path_by_type() {
-        final Formatter formatter = new AsciidocFormatter();
 
         // >>>1
         final DocPath docPath = new DocPath(MyTest.class);
@@ -77,7 +79,6 @@ public class DocPathTest {
 
     @Test
     public void path_by_type_with_method() {
-        final Formatter formatter = new AsciidocFormatter();
 
         // >>>1
         final DocPath docPath = new DocPath(FindLambdaMethod.getMethod(MyTest::test_A));
@@ -129,6 +130,25 @@ public class DocPathTest {
                 "|====");
     }
 
+    @Test
+    public void nested_class() {
+        final Class<?> clazz = MyClass.MySubClass.class;
+        doc.write(String.format("Name for nested class `%s` is `%s`.",
+                clazz.getName(),
+                new DocPath(clazz).name()),
+                "",
+                ""
+        );
+
+        final Method method = FindLambdaMethod.getMethod(MyClass.MySubClass::doSomething);
+        doc.write(String.format("Name for method `%s` in nested class `%s` is `%s`.",
+                method.getName(),
+                method.getDeclaringClass().getName(),
+                new DocPath(method).name()),
+                ""
+        );
+    }
+
     class CallsRecorder<T extends Object> implements Answer<T> {
         String lastCall = "";
 
@@ -150,9 +170,6 @@ public class DocPathTest {
     }
 
     String line(DocPath docPath, Function<DocPath, OnePath> methodOnDocPath, OnePath realtiveToApproved) {
-
-
-
         final CallsRecorder recorder = new CallsRecorder();
 
         final DocPath spyDocPath = addSpyRecorderOn(docPath, recorder);
@@ -162,12 +179,13 @@ public class DocPathTest {
 
         final OnePath spy = addSpyRecorderOn(onePath, recorder);
 
-        Function<Path, String> callResult = p -> String.format("%s | %s", recorder.lastCall(), p);
+        Function<Object, String> callResult = p -> String.format("%s | %s", recorder.lastCall(), p);
 
         return String.join("\n",
-                ".4+a| `" + methodCalledOnDocPath + "` | "
+                ".5+a| `" + methodCalledOnDocPath + "` | "
                         + callResult.apply(spy.path())
                 , "a| " + callResult.apply(spy.folder())
+                , "a| " + callResult.apply(spy.fullname())
                 , "a| " + callResult.apply(spy.from(realtiveToApproved))
                 , "a| " + callResult.apply(spy.to(realtiveToApproved))
         );
