@@ -1,0 +1,4 @@
+:nofooter:
+= Document path
+
+include::DocPathTest.path_by_type.approved.adoc[leveloffset=+1]

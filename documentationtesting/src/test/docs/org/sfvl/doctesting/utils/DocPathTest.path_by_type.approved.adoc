@@ -1,0 +1,33 @@
+[#org_sfvl_doctesting_utils_DocPathTest_path_by_type]
+= Path by type
+
+DocPath is created with this code:
+[source,indent=0]
+----
+final DocPath docPath = new DocPath(MyTest.class);
+----
+
+Note that `MyTest` class is declared in package `org.sfvl.samples`.
+
+We also used `org.sfvl.doctesting.utils.DocPathTest` class to display `from` and `to` results with approved file (`src/test/docs/org/sfvl/doctesting/utils/DocPathTest.approved.adoc`).
+[%autowidth]
+[%header]
+|====
+| Code | Method | Result
+.4+a| `approved()` | path() | src/test/docs/org/sfvl/samples/MyTest.approved.adoc
+a| folder() | src/test/docs/org/sfvl/samples
+a| from() | ../../samples/MyTest.approved.adoc
+a| to() | ../doctesting/utils/DocPathTest.approved.adoc
+.4+a| `received()` | path() | src/test/docs/org/sfvl/samples/MyTest.received.adoc
+a| folder() | src/test/docs/org/sfvl/samples
+a| from() | ../../samples/MyTest.received.adoc
+a| to() | ../doctesting/utils/DocPathTest.approved.adoc
+.4+a| `test()` | path() | src/test/java/org/sfvl/samples/MyTest.java
+a| folder() | src/test/java/org/sfvl/samples
+a| from() | ../../../../../java/org/sfvl/samples/MyTest.java
+a| to() | ../../../../docs/org/sfvl/doctesting/utils/DocPathTest.approved.adoc
+.4+a| `doc()` | path() | org/sfvl/samples/MyTest.html
+a| folder() | org/sfvl/samples
+a| from() | ../../../../../../../org/sfvl/samples/MyTest.html
+a| to() | ../../../src/test/docs/org/sfvl/doctesting/utils/DocPathTest.approved.adoc
+|====
