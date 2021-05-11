@@ -1,7 +1,10 @@
 package org.sfvl.doctesting.writer;
 
 import org.sfvl.docformatter.Formatter;
+import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.utils.OnePath;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -34,8 +37,7 @@ public class Classes {
     }
 
     private Path getRelativeFilePath(Path docPath, Class<?> clazz) {
-        final Path classPath = DocumentationNamer.toPath(clazz, "", suffix);
-
-        return docPath.relativize(classPath);
+        final OnePath approved = new DocPath(clazz).approved();
+        return approved.from(Config.DOC_PATH.resolve(docPath));
     }
 }

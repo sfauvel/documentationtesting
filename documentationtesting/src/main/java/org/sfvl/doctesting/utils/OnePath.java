@@ -27,9 +27,11 @@ public class OnePath {
         return name + suffix;
     }
 
+    public Path from(Path pathToRelativized) {
+        return pathToRelativized.relativize(this.path());
+    }
     public Path from(Class<?> classToRelativized) {
-        final DocPath from = new DocPath(classToRelativized);
-        return from.approved().folder().relativize(this.path());
+        return from(new DocPath(classToRelativized).approved().folder());
     }
     public Path from(OnePath classToRelativized) {
         return classToRelativized.folder().relativize(this.path());
