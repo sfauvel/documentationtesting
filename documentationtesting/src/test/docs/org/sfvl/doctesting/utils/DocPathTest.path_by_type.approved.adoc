@@ -13,7 +13,17 @@ We also used `org.sfvl.doctesting.utils.DocPathTest` class to display `from` and
 [%autowidth]
 [%header]
 |====
+| Method | Result
+| name() | MyTest
+|====
+[%autowidth]
+[%header]
+|====
 | Code | Method | Result
+.4+a| `page()` | path() | src/test/docs/org/sfvl/samples/MyTest.adoc
+a| folder() | src/test/docs/org/sfvl/samples
+a| from() | ../../samples/MyTest.adoc
+a| to() | ../doctesting/utils/DocPathTest.approved.adoc
 .4+a| `approved()` | path() | src/test/docs/org/sfvl/samples/MyTest.approved.adoc
 a| folder() | src/test/docs/org/sfvl/samples
 a| from() | ../../samples/MyTest.approved.adoc

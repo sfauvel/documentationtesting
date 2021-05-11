@@ -48,10 +48,25 @@ public class DocPathTest {
                         relativeToApproved.path()),
                 "");
 
+
+        final CallsRecorder recorder = new CallsRecorder();
+        final DocPath spyDocPath = addSpyRecorderOn(docPath, recorder);
+        final String name = spyDocPath.name();
+        final String methodCalledOnDocPath = recorder.lastCall();
+
+        doc.write("[%autowidth]",
+                "[%header]",
+                "|====",
+                "| Method | Result",
+                String.format("| %s | %s", methodCalledOnDocPath, name),
+                "|====",
+                "");
+
         doc.write("[%autowidth]",
                 "[%header]",
                 "|====",
                 "| Code | Method | Result",
+                line(docPath, DocPath::page, relativeToApproved),
                 line(docPath, DocPath::approved, relativeToApproved),
                 line(docPath, DocPath::received, relativeToApproved),
                 line(docPath, DocPath::test, relativeToApproved),
@@ -59,27 +74,29 @@ public class DocPathTest {
                 "|====");
     }
 
-    String line(DocPath docPath, Function<DocPath, OnePath> methodOnDocPath, OnePath realtiveToApproved) {
+    class CallsRecorder<T extends Object> implements Answer<T> {
+        String lastCall = "";
 
-        class CallsRecorder<T extends Object> implements Answer<T> {
-            String lastCall = "";
-
-            @Override
-            public T answer(InvocationOnMock a) throws Throwable {
-                final Object result = a.callRealMethod();
+        @Override
+        public T answer(InvocationOnMock a) throws Throwable {
+            final Object result = a.callRealMethod();
 
 //                final Object[] arguments = a.getArguments();
 //                String parameters = Arrays.stream(arguments).map(v -> "" + v).collect(Collectors.joining(", "));
 //                lastCall = a.getMethod().getName() + "(" + parameters + ")";
-                lastCall = a.getMethod().getName() + "()";
-                return (T) result;
-            }
-
-            String lastCall() {
-                return lastCall;
-            }
-
+            lastCall = a.getMethod().getName() + "()";
+            return (T) result;
         }
+
+        String lastCall() {
+            return lastCall;
+        }
+
+    }
+
+    String line(DocPath docPath, Function<DocPath, OnePath> methodOnDocPath, OnePath realtiveToApproved) {
+
+
 
         final CallsRecorder recorder = new CallsRecorder();
 
@@ -93,7 +110,8 @@ public class DocPathTest {
         Function<Path, String> callResult = p -> String.format("%s | %s", recorder.lastCall(), p);
 
         return String.join("\n",
-                ".4+a| `" + methodCalledOnDocPath + "` | " + callResult.apply(spy.path())
+                ".4+a| `" + methodCalledOnDocPath + "` | "
+                        + callResult.apply(spy.path())
                 , "a| " + callResult.apply(spy.folder())
                 , "a| " + callResult.apply(spy.from(realtiveToApproved))
                 , "a| " + callResult.apply(spy.to(realtiveToApproved))

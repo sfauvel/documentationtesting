@@ -9,17 +9,12 @@ import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.platform.commons.support.ModifierSupport;
 import org.sfvl.doctesting.utils.*;
-import org.sfvl.doctesting.writer.ClassDocumentation;
 
-import java.io.IOException;
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -43,6 +38,7 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
     public T getDocWriter() {
         return docWriter;
     }
+
     public void write(String... texts) {
         this.docWriter.write(texts);
     }
@@ -94,6 +90,26 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
             }
         };
 
+        ApprovalsExtension.this.verifyDoc(content, approvalNamer);
+    }
+
+    public void verifyDoc(String content, DocPath docPath) {
+        ApprovalNamer approvalNamer = new ApprovalNamer() {
+            @Override
+            public String getApprovalName() {
+                return docPath.name();
+            }
+
+            @Override
+            public String getSourceFilePath() {
+                return docPath.approved().folder().toString() + File.separator;
+            }
+        };
+
+        verifyDoc(content, approvalNamer);
+    }
+
+    private void verifyDoc(String content, ApprovalNamer approvalNamer) {
         Approvals.verify(
                 new ApprovalTextWriter(content, "adoc"),
                 approvalNamer,

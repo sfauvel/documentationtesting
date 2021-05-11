@@ -25,4 +25,13 @@ public class DocPath {
     public OnePath doc() {
         return new OnePath(clazz, Paths.get(""), ".html");
     }
+
+    public OnePath page() {
+        return new OnePath(clazz, Config.DOC_PATH, ".adoc");
+    }
+
+    public String name() {
+        return clazz.getSimpleName();
+    }
+
 }

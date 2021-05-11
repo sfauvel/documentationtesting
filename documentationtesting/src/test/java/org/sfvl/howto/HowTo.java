@@ -13,8 +13,6 @@ import org.sfvl.doctesting.writer.Classes;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -43,9 +41,8 @@ public class HowTo {
                     classDocumentation.getClassDocumentation(currentClass)
             );
             final Class<?> testClass = extensionContext.getTestClass().get();
-            final DocumentationNamer documentationNamer = new DocumentationNamer(getDocPath(), testClass);
 
-            verifyDoc(content, documentationNamer);
+            verifyDoc(content, new DocPath(testClass));
         }
     };
 
@@ -75,7 +72,10 @@ public class HowTo {
     }
 
     private void generatePage(Class<?> clazz) throws IOException {
-        final DocumentationNamer documentationNamer = new DocumentationNamer(Paths.get(""), clazz);
+        generatePage(new DocPath(clazz));
+    }
+
+    private void generatePage(DocPath docPath) throws IOException {
         String includeContent = String.join("\n",
                 ":toc: left",
                 ":nofooter:",
@@ -83,10 +83,9 @@ public class HowTo {
                 ":source-highlighter: rouge",
                 ":toclevels: 4",
                 "",
-                String.format("include::%s[]", documentationNamer.getApprovalFileName()));
-        final Path pagePath = DocumentationNamer.toPath(clazz, "", ".adoc");
+                String.format("include::%s[]", docPath.approved().from(this.getClass())));
 
-        try (FileWriter fileWriter = new FileWriter(Config.DOC_PATH.resolve(pagePath).toFile())) {
+        try (FileWriter fileWriter = new FileWriter(docPath.page().path().toFile())) {
             fileWriter.write(includeContent);
         }
     }
@@ -103,14 +102,16 @@ public class HowTo {
     }
 
     private String linkToClass(Class<?> clazz, String title) {
+        final DocPath docPath = new DocPath(clazz);
         try {
-            generatePage(clazz);
+            generatePage(docPath);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        return String.format("link:%s.html[%s]\n",
-                DocumentationNamer.toPath(this.getClass().getPackage()).relativize(DocumentationNamer.toPath(clazz)),
+
+        return String.format("link:%s[%s]\n",
+                docPath.doc().from(new DocPath(this.getClass()).doc()),
                 title);
     }
 
@@ -163,6 +164,7 @@ public class HowTo {
 
     public <T> String getInclude(FindLambdaMethod.SerializableConsumer<T> methodToInclude, int offset) {
         final Method method = FindLambdaMethod.getMethod(methodToInclude);
+
         final DocumentationNamer documentationNamer = new DocumentationNamer(Config.DOC_PATH, method);
         return formatter.include(
                 documentationNamer.getApprovedPath(Config.DOC_PATH.resolve(DocumentationNamer.toPath(this.getClass().getPackage()))).toString(), offset);
