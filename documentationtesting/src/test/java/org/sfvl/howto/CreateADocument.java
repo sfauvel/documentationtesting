@@ -8,15 +8,13 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.CodeExtractor;
-import org.sfvl.doctesting.utils.Config;
-import org.sfvl.doctesting.utils.DocWriter;
-import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.doctesting.utils.OnePath;
 import org.sfvl.doctesting.writer.Document;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -30,6 +28,13 @@ public class CreateADocument {
     @RegisterExtension
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
+
+    private Path includeFromTo(Object fromClass, OnePath to) {
+        final DocPath from = new DocPath(fromClass.getClass());
+        return from.approved().folder().relativize(to.path());
+    }
+
+
     /**
      * Creating a document is just writing a file.
      * We can use a link:https://en.wikipedia.org/wiki/Markup_language[markup language] to easily writing a formatted document.
@@ -39,10 +44,7 @@ public class CreateADocument {
      */
     @Test
     public void simplest_way_to_create_a_document(TestInfo testInfo) throws IOException {
-
-        final Path outputFile = DocumentationNamer
-                .toPath(this.getClass().getPackage())
-                .resolve("DocumentVerySample.adoc");
+        final OnePath outputFile = new DocPath(DocumentVerySimple.class).approved();
 
         // >>>1
         class MyDocument {
@@ -73,10 +75,7 @@ public class CreateADocument {
      */
     @Test
     public void reuse_sub_parts_of_document(TestInfo testInfo) throws IOException {
-
-        final Path outputFile = DocumentationNamer
-                .toPath(this.getClass().getPackage())
-                .resolve("DocumentWithSubPart.adoc");
+        final OnePath outputFile = new DocPath(DocumentWithSubPart.class).approved();
 
         // >>>1
         class Header {
@@ -127,11 +126,10 @@ public class CreateADocument {
         writeDoc(testInfo, content, view_rendering);
     }
 
-    public void writeDoc(TestInfo testInfo, Path file) throws IOException {
-        final String content = Files.lines(Config.DOC_PATH.resolve(file))
+    private void writeDoc(TestInfo testInfo, OnePath outputFile) throws IOException {
+        final String content = Files.lines(outputFile.path())
                 .collect(Collectors.joining("\n"));
-        final Path relativize = DocumentationNamer.toPath(this.getClass().getPackage()).relativize(file);
-        final String view_rendering = "include::" + relativize + "[leveloffset=+1]";
+        final String view_rendering = "include::" + outputFile.from(this.getClass()) + "[leveloffset=+1]";
 
         writeDoc(testInfo, content, view_rendering);
     }
@@ -175,8 +173,14 @@ public class CreateADocument {
 //                Arrays.stream(cells).map(text -> String.format("a|%s", text)).collect(Collectors.joining("\n")),
 //                "|====");
 
-        doc.write("","");
+        doc.write("", "");
         doc.write(Arrays.stream(cells).collect(Collectors.joining("\n")));
     }
 
+}
+
+class DocumentVerySimple {
+}
+
+class DocumentWithSubPart {
 }

@@ -67,7 +67,7 @@ Text of the document
 ----
 _final rendering_
 [.adocRendering]
-include::DocumentWithSubPart.adoc[leveloffset=+1]
+include::DocumentWithSubPart.approved.adoc[leveloffset=+1]
 ++++
 <style>
 .adocRendering {

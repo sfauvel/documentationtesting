@@ -33,6 +33,8 @@ include::utils/CodeExtractorTest.approved.adoc[leveloffset=+1]
 
 include::utils/ConfigTest.approved.adoc[leveloffset=+1]
 
+include::utils/DocPathTest.approved.adoc[leveloffset=+1]
+
 include::utils/DocWriterTest.approved.adoc[leveloffset=+1]
 
 include::utils/DocumentationNamerTest.approved.adoc[leveloffset=+1]

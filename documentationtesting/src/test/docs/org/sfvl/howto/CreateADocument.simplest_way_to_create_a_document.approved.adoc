@@ -28,7 +28,7 @@ Text of the document
 ----
 _final rendering_
 [.adocRendering]
-include::DocumentVerySample.adoc[leveloffset=+1]
+include::DocumentVerySimple.approved.adoc[leveloffset=+1]
 ++++
 <style>
 .adocRendering {
