@@ -2,3 +2,5 @@
 = Document path
 
 include::DocPathTest.path_by_type.approved.adoc[leveloffset=+1]
+
+include::DocPathTest.path_by_type_with_method.approved.adoc[leveloffset=+1]

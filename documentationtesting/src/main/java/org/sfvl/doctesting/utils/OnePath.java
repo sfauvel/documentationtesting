@@ -1,41 +1,26 @@
 package org.sfvl.doctesting.utils;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
 
 public class OnePath {
-    private final Class<?> clazz;
     private final String suffix;
     private final Path rootPath;
+    private final Path folder;
+    private final String name;
 
-    public OnePath(Class<?> clazz, Path rootPath, String suffix) {
-        this.clazz = clazz;
+    public OnePath(Path rootPath, Path folder, String name, String suffix) {
+        this.name = name;
+        this.folder = folder;
         this.suffix = suffix;
         this.rootPath = rootPath;
     }
 
     public Path path() {
-        final Path path = OnePath.toPath(clazz);
-        return rootPath.resolve(path + suffix);
+        return rootPath.resolve(folder).resolve(name + suffix);
     }
 
     public Path folder() {
-        return rootPath.resolve(toPath(clazz.getPackage()));
-    }
-
-    public static Path toPath(Class<?> aClass) {
-        return toPath(aClass, "", "");
-    }
-
-    public static Path toPath(Class<?> aClass, String prefix, String suffix) {
-        return toPath(aClass.getPackage()).resolve(prefix + aClass.getSimpleName() + suffix);
-    }
-
-    public static Path toPath(Package aPackage) {
-        return Arrays.stream(aPackage.getName().split("\\."))
-                .map(Paths::get)
-                .reduce(Paths.get(""), Path::resolve);
+        return rootPath.resolve(folder);
     }
 
     public Path from(Class<?> classToRelativized) {

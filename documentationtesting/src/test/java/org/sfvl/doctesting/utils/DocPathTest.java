@@ -9,6 +9,7 @@ import org.mockito.stubbing.Answer;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.samples.MyTest;
 
@@ -26,6 +27,60 @@ public class DocPathTest {
 
         // >>>1
         final DocPath docPath = new DocPath(MyTest.class);
+        // <<<1
+
+        Class<?> clazz = MyTest.class;
+        final Class<?> classToCompare = DocPathTest.class;
+        final OnePath relativeToApproved = new DocPath(classToCompare).approved();
+
+        doc.write(
+                "DocPath is created with this code:",
+                formatter.sourceCodeBuilder()
+                        .source(CodeExtractor.extractPartOfCurrentMethod("1").trim())
+                        .build(),
+                "",
+                "Note that `" + clazz.getSimpleName() + "` class is declared in package `" + clazz.getPackage().getName() + "`.",
+                ""
+        );
+
+        doc.write("",
+                String.format("We also used `%s` class to display `from` and `to` results with approved file (`%s`).",
+                        classToCompare.getCanonicalName(),
+                        relativeToApproved.path()),
+                "");
+
+
+        final CallsRecorder recorder = new CallsRecorder();
+        final DocPath spyDocPath = addSpyRecorderOn(docPath, recorder);
+        final String name = spyDocPath.name();
+        final String methodCalledOnDocPath = recorder.lastCall();
+
+        doc.write("[%autowidth]",
+                "[%header]",
+                "|====",
+                "| Method | Result",
+                String.format("| %s | %s", methodCalledOnDocPath, name),
+                "|====",
+                "");
+
+        doc.write("[%autowidth]",
+                "[%header]",
+                "|====",
+                "| Code | Method | Result",
+                line(docPath, DocPath::page, relativeToApproved),
+                line(docPath, DocPath::approved, relativeToApproved),
+                line(docPath, DocPath::received, relativeToApproved),
+                line(docPath, DocPath::test, relativeToApproved),
+                line(docPath, DocPath::doc, relativeToApproved),
+                "|====");
+    }
+
+    @Test
+    public void path_by_type_with_method() {
+        final Formatter formatter = new AsciidocFormatter();
+
+        // >>>1
+        final DocPath docPath = new DocPath(FindLambdaMethod.getMethod(MyTest::test_A));
         // <<<1
 
         Class<?> clazz = MyTest.class;
