@@ -165,9 +165,7 @@ public class HowTo {
     public <T> String getInclude(FindLambdaMethod.SerializableConsumer<T> methodToInclude, int offset) {
         final Method method = FindLambdaMethod.getMethod(methodToInclude);
 
-        final DocumentationNamer documentationNamer = new DocumentationNamer(Config.DOC_PATH, method);
-        return formatter.include(
-                documentationNamer.getApprovedPath(Config.DOC_PATH.resolve(DocumentationNamer.toPath(this.getClass().getPackage()))).toString(), offset);
-
+        final OnePath approvedPath = new DocPath(method).approved();
+        return formatter.include(approvedPath.from(new DocPath(this.getClass()).approved()).toString(), offset);
     }
 }
