@@ -72,10 +72,6 @@ public class MainDocumentation {
         this.documentationTitle = documentationTitle;
         this.docRootPath = pathProvider.getProjectPath().resolve(docRootPath);
         this.formatter = formatter;
-
-        docStructure.add(this::getDocumentOptions);
-        docStructure.add(() -> "= " + getDocumentTitle());
-        docStructure.add(this::includeClasses);
     }
 
     public Path getDocRootPath() {
@@ -232,37 +228,5 @@ public class MainDocumentation {
     protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
         Reflections reflections = new Reflections(packageToScan, new MethodAnnotationsScanner());
         return reflections.getMethodsAnnotatedWith(annotation);
-    }
-
-////////////////////////////////////
-
-    private final List<Supplier<String>> docStructure = new ArrayList<Supplier<String>>();
-
-    private String getDocumentTitle() {
-        return this.documentationTitle;
-    }
-
-    public String getDoc() {
-        return docStructure.stream()
-                .map(Supplier::get)
-                .collect(Collectors.joining("\n"));
-    }
-
-    private String includeClasses() {
-        return includeClasses(packageLocation, classesToInclude);
-    }
-    private String includeClasses(Package packageLocation, List<Class<?>> classesToInclude) {
-
-        return classesToInclude.stream()
-                .map(c -> getRelativeFilePath(packageLocation, c))
-                .map(path -> formatter.include(path.toString()).trim())
-                .collect(Collectors.joining("\n\n", "\n", "\n"));
-    }
-
-    private Path getRelativeFilePath(Package packageLocation, Class<?> clazz) {
-        final Path docPath = DocumentationNamer.toPath(packageLocation);
-        final Path classPath = DocumentationNamer.toPath(clazz, "", ".adoc");
-
-        return docPath.relativize(classPath);
     }
 }

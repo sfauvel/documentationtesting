@@ -66,7 +66,7 @@ public class DocTestingDocumentation {
     }
 
     public String includeClasses(Formatter formatter) {
-        final Path location = DocumentationNamer.toPath(DocTestingDocumentation.class.getPackage());
+        final Path location = DocPath.toPath(DocTestingDocumentation.class.getPackage());
         return new Classes(formatter).includeClasses(location, getClassesToDocument());
     }
 

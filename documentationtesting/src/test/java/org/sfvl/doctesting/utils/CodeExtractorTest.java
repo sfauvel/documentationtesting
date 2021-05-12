@@ -12,7 +12,6 @@ import org.sfvl.doctesting.sample.MyClass;
 import org.sfvl.doctesting.sample.SimpleClass;
 
 import java.lang.reflect.Method;
-import java.nio.file.Path;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
@@ -403,10 +402,10 @@ class CodeExtractorTest {
                 }
 
                 String code =
-                // >>>98
+                        // >>>98
                         method_with_code_to_extract_with_tag
-                // <<<98
-                ();
+                                // <<<98
+                                        ();
                 String codeToExtract = CodeExtractor.methodSource(this.getClass(), CodeExtractor.extractPartOfCurrentMethod("98").trim());
 
                 doc.write(".How to extract code from the current method using a tag",
@@ -775,15 +774,9 @@ class CodeExtractorTest {
     }
 
     public String includeSourceWithTag(String tag, Class<?> aClass) {
-        final Path pathFileThatInclude = Config.DOC_PATH
-                .resolve(DocumentationNamer.toPath(this.getClass().getPackage()));
-
-        final Path pathFileToInclude = Config.TEST_PATH
-                .resolve(DocumentationNamer.toPath(aClass));
-
-        final Path relativizePath = pathFileThatInclude.relativize(pathFileToInclude);
-        return formatSourceCode(String.format("include::%s.java[tag=%s]",
-                relativizePath,
+        final DocPath docPath = new DocPath(aClass);
+        return formatSourceCode(String.format("include::%s[tag=%s]",
+                docPath.test().from(this.getClass()),
                 tag));
     }
 

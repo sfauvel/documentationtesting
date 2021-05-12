@@ -8,8 +8,7 @@ import org.reflections.scanners.MethodAnnotationsScanner;
 import org.sfvl.Person;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
-import org.sfvl.doctesting.utils.ClassFinder;
-import org.sfvl.doctesting.writer.Classes;
+import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.writer.Document;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.demo.DemoDocumentation;
@@ -177,7 +176,7 @@ public class BasicDocumentation extends DemoDocumentation {
 
     @Override
     public void produce() throws IOException {
-        new Document(this.build()).saveAs(Paths.get("Documentation.adoc"));
+        new Document(this.build()).saveAs(Config.DOC_PATH.resolve("Documentation.adoc"));
     }
 
     public static void main(String... args) throws IOException {

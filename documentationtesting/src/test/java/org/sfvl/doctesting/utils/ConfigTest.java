@@ -32,8 +32,7 @@ class ConfigTest {
 
         {
             Formatter formatter = new AsciidocFormatter();
-            final Path path = Config.DOC_PATH.resolve(DocumentationNamer.toPath(this.getClass().getPackage()));
-
+            final Path path = new DocPath(this.getClass()).page().folder();
 
             final String configFile = "testConfig.properties";
             doc.write("", "",

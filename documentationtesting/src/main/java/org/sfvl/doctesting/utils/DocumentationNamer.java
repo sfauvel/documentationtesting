@@ -6,7 +6,6 @@ import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -60,7 +59,7 @@ public class DocumentationNamer {
     }
 
     public String getSourceFilePath() {
-        Path pathName = toPath(declaringClass.getPackage());
+        Path pathName = DocPath.toPath(declaringClass.getPackage());
 
         return docRootPath.resolve(pathName) + "/";
     }
@@ -80,13 +79,7 @@ public class DocumentationNamer {
     }
 
     public static Path toPath(Class<?> aClass, String prefix, String suffix) {
-        return toPath(aClass.getPackage()).resolve(prefix + aClass.getSimpleName() + suffix);
-    }
-
-    public static Path toPath(Package aPackage) {
-        return Arrays.stream(aPackage.getName().split("\\."))
-                .map(Paths::get)
-                .reduce(Paths.get(""), Path::resolve);
+        return DocPath.toPath(aClass.getPackage()).resolve(prefix + aClass.getSimpleName() + suffix);
     }
 
     public static Path toAsciiDocFilePath(Class<?> aClass) {

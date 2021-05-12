@@ -55,10 +55,7 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
         }
         final String content = docWriter.formatOutput(currentClass);
 
-        final DocumentationNamer documentationNamer = new DocumentationNamer(
-                getDocPath(),
-                extensionContext.getTestClass().get());
-        verifyDoc(content, documentationNamer);
+        verifyDoc(content, new DocPath(extensionContext.getTestClass().get()));
 
     }
 
@@ -70,27 +67,7 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
                 .map(this::displayFailingReason)
                 .orElse("");
 
-        final DocumentationNamer documentationNamer = new DocumentationNamer(
-                getDocPath(),
-                extensionContext.getTestMethod().get());
-        verifyDoc(content, documentationNamer);
-    }
-
-    public void verifyDoc(String content, DocumentationNamer documentationNamer) {
-        ApprovalNamer approvalNamer = new ApprovalNamer() {
-
-            @Override
-            public String getApprovalName() {
-                return documentationNamer.getApprovalName();
-            }
-
-            @Override
-            public String getSourceFilePath() {
-                return documentationNamer.getSourceFilePath();
-            }
-        };
-
-        ApprovalsExtension.this.verifyDoc(content, approvalNamer);
+        verifyDoc(content, new DocPath(extensionContext.getTestMethod().get()));
     }
 
     public void verifyDoc(String content, DocPath docPath) {

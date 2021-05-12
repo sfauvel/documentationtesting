@@ -159,7 +159,7 @@ public class HowTo {
     }
 
     public String getInclude(Class aClass, int offset) {
-        return new Classes(formatter).includeClasses(DocumentationNamer.toPath(aClass.getPackage()), Arrays.asList(aClass), offset).trim();
+        return new Classes(formatter).includeClasses(DocPath.toPath(aClass.getPackage()), Arrays.asList(aClass), offset).trim();
     }
 
     public <T> String getInclude(FindLambdaMethod.SerializableConsumer<T> methodToInclude, int offset) {

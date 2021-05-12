@@ -5,6 +5,7 @@ import org.asciidoctor.OptionsBuilder;
 import org.asciidoctor.SafeMode;
 import org.asciidoctor.jruby.AsciiDocDirectoryWalker;
 import org.sfvl.doctesting.demo.DemoDocumentation;
+import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.PathProvider;
 import org.sfvl.doctesting.writer.Document;
 
@@ -76,7 +77,7 @@ public class BasicDocumentation extends DemoDocumentation {
 
     @Override
     public void produce() throws IOException {
-        new Document(build()).saveAs(Paths.get("index.adoc"));
+        new Document(build()).saveAs(Config.DOC_PATH.resolve("index.adoc"));
         convertToHtml();
 
     }

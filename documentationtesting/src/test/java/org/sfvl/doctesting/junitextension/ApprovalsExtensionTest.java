@@ -6,10 +6,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.NotIncludeToDoc;
-import org.sfvl.doctesting.utils.CodeExtractor;
-import org.sfvl.doctesting.utils.Config;
-import org.sfvl.doctesting.utils.DocWriter;
-import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.utils.*;
 import org.sfvl.samples.FailingTest;
 import org.sfvl.samples.MyCustomWriterTest;
 import org.sfvl.samples.MyTest;
@@ -44,7 +41,7 @@ public class ApprovalsExtensionTest {
         doc.write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
         final Method method = FindLambdaMethod.getMethod(MyTest::test_A);
-        final Path approvedPath = getRelativizedApprovedPath(method, Config.DOC_PATH);
+        final Path approvedPath = new DocPath(method).approved().from(this.getClass());
         doc.write("When executing test method `" + method.getName() + "`, a file `" + approvedPath.getFileName() + "` is generated and contains the following text", "----", "include::" + approvedPath + "[]", "----", "Filename and title come from method name.", "The chapter content contains what was written using `" + DocWriter.class.getSimpleName() + "`");
     }
 
@@ -76,7 +73,7 @@ public class ApprovalsExtensionTest {
         doc.write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
         final Method method = FindLambdaMethod.getMethod(MyCustomWriterTest::test_A);
-        final Path approvedPath = getRelativizedApprovedPath(method, Config.DOC_PATH);
+        final Path approvedPath = new DocPath(method).approved().from(this.getClass());
         doc.write("When executing test method `" + method.getName() + "`, a file `" + approvedPath.getFileName() + "` is generated and contains the following text",
                 "----",
                 "include::" + approvedPath + "[]",
@@ -101,8 +98,8 @@ public class ApprovalsExtensionTest {
                 .map(filename -> "* " + filename)
                 .collect(Collectors.joining("\n\n")));
 
-        final Path documentPath = new DocumentationNamer(doc.getDocPath(), testClass).getFilePath();
-        doc.write("", "", ".Document generated", "----", Files.lines(doc.getDocPath().resolve(documentPath))
+        final OnePath approved = new DocPath(testClass).approved();
+        doc.write("", "", ".Document generated", "----", Files.lines(approved.path())
                 .collect(Collectors.joining("\n"))
                 .replaceAll("\\ninclude::", "\n\\\\include::"), "----");
 
@@ -130,9 +127,8 @@ public class ApprovalsExtensionTest {
 
         doc.write("", "", ".Test example used to generate class document", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
-        final DocumentationNamer documentationNamer = new DocumentationNamer(Config.DOC_PATH, MyTest.class);
-
-        doc.write("", "", ".Document generated", "----", Files.lines(documentationNamer.getApprovedPath(Paths.get("")))
+        final OnePath approved = new DocPath(MyTest.class).approved();
+        doc.write("", "", ".Document generated", "----", Files.lines(approved.path())
                 .collect(Collectors.joining("\n"))
                 .replaceAll("\\ninclude::", "\n\\\\include::"), "----");
 
@@ -147,7 +143,7 @@ public class ApprovalsExtensionTest {
                 "}\n" +
                 "</style>\n" +
                 "++++";
-        doc.write("", "", style, "", "_final rendering_", "[.adocRendering]", "include::" + getRelativizedApprovedPath(documentationNamer, Config.DOC_PATH) + "[leveloffset=+1]");
+        doc.write("", "", style, "", "_final rendering_", "[.adocRendering]", "include::" + approved.from(this.getClass()) + "[leveloffset=+1]");
 
     }
 
@@ -164,9 +160,9 @@ public class ApprovalsExtensionTest {
 
         doc.write("", "", ".Test example used to generate class document", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
-        final String fileName = testClass.getSimpleName() + ".failing_test.received.adoc";
-        final Path filePath = DocumentationNamer.toPath(testClass.getPackage()).resolve(fileName);
-        final Path documentationPath = Config.DOC_PATH.resolve(filePath);
+        final Method method = FindLambdaMethod.getMethod(FailingTest::failing_test);
+        final DocPath docPath = new DocPath(method);
+        final Path documentationPath = docPath.received().path();
 
         AtomicInteger stacktraceLineCount = new AtomicInteger(0);
         Predicate<String> isStackLine = line -> line.startsWith("	at ");
@@ -189,8 +185,6 @@ public class ApprovalsExtensionTest {
                 "</style>\n" +
                 "++++";
 
-        final Method method = FindLambdaMethod.getMethod(FailingTest::failing_test);
-        final Path approvedPath = getRelativizedApprovedPath(method, Config.DOC_PATH);
         doc.write("",
                 "",
                 style,
@@ -198,7 +192,7 @@ public class ApprovalsExtensionTest {
                 ":leveloffset: +1",
                 "_final rendering_",
                 "[.adocRendering]",
-                "include::" + approvedPath.toString().replace(".approved.", ".received.") + "[lines=\"1..10\"]",
+                "include::" + docPath.received().from(this.getClass()) + "[lines=\"1..10\"]",
                 "...",
                 "----",
                 "// We add the line below to close truncated block open in included file",
@@ -209,15 +203,6 @@ public class ApprovalsExtensionTest {
         final TestRunnerFromTest.Results results = new TestRunnerFromTest().runTestClass(testClass);
         String[] texts = new String[]{"", String.format("// Test result for %s: %s", testClass.getSimpleName(), results.sucess() ? "Success" : "Fails"), ""};
         doc.write(texts);
-    }
-
-    private Path getRelativizedApprovedPath(Method method, Path fromPath) {
-        final DocumentationNamer documentationNamer = new DocumentationNamer(Config.DOC_PATH, method);
-        return getRelativizedApprovedPath(documentationNamer, fromPath);
-    }
-
-    private Path getRelativizedApprovedPath(DocumentationNamer documentationNamer, Path fromPath) {
-        return documentationNamer.getApprovedPath(fromPath.resolve(DocumentationNamer.toPath(this.getClass().getPackage())));
     }
 
     private String extractSourceWithTag(String tag, Class<?> classToIdentifySourceClass, Class<?> testClass) {
@@ -238,7 +223,7 @@ public class ApprovalsExtensionTest {
     }
 
     private String includeSourceWithTag(String tag, Class<?> aClass) {
-        final Path adoc = Config.DOC_PATH.resolve(DocumentationNamer.toPath(this.getClass().getPackage()));
+        final Path adoc = Config.DOC_PATH.resolve(DocPath.toPath(this.getClass().getPackage()));
         final Path path = Config.TEST_PATH.resolve(DocumentationNamer.toPath(aClass, "", ".java"));
         final Path relativizedJavaFilePath = adoc.relativize(path);
         return String.join("\n",

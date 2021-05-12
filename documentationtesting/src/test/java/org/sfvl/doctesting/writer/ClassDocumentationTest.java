@@ -11,13 +11,15 @@ import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-import org.sfvl.doctesting.utils.*;
+import org.sfvl.doctesting.utils.CodeExtractor;
+import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.doctesting.utils.PathProvider;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -101,11 +103,7 @@ class ClassDocumentationTest {
     }
 
     public String extractSourceFromFile(Class<?> clazz) throws IOException {
-        final Path sourcePath = Config.TEST_PATH;
-
-        return Files.lines(sourcePath.resolve(Paths.get(
-                clazz.getPackage().getName().replace(".", "/"),
-                clazz.getSimpleName() + ".java")))
+        return Files.lines(new DocPath(clazz).test().path())
                 .filter(line -> !line.startsWith("@" + NotIncludeToDoc.class.getSimpleName()))
                 .filter(line -> !line.startsWith("package"))
                 .filter(line -> !line.startsWith("import"))
@@ -194,7 +192,7 @@ class ClassDocumentationTest {
     public String includeSourceWithTag(String tag) {
 
         final Path projectPath = new PathProvider().getProjectPath();
-        final Path packagePath = DocumentationNamer.toPath(this.getClass().getPackage());
+        final Path packagePath = DocPath.toPath(this.getClass().getPackage());
         final Path packageDocPath = doc.getDocPath().resolve(packagePath);
         final Path relativizeToProjectPath = packageDocPath.relativize(projectPath);
         final Path javaFilePath = relativizeToProjectPath

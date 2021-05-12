@@ -2,6 +2,7 @@ package org.sfvl.doctesting.writer;
 
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
+import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.DocumentationNamer;
 
 import java.io.IOException;
@@ -92,7 +93,7 @@ public class DocumentationBuilder implements DocumentProducer{
     }
 
     public DocumentationBuilder withLocation(Package packageLocation) {
-        return withLocation(DocumentationNamer.toPath(packageLocation));
+        return withLocation(DocPath.toPath(packageLocation));
     }
 
     public DocumentationBuilder withLocation(Path location) {

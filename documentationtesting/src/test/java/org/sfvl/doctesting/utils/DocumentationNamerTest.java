@@ -7,7 +7,6 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 
-import java.nio.file.Paths;
 import java.util.function.Function;
 
 @DisplayName("Documentation Namer")
@@ -97,11 +96,6 @@ class DocumentationNamerTest {
                         DocumentationNamer.toPath(DocumentationNamerTest.class)
                 // <<<7
                 ,
-                "a| `" + extract(testInfo, "8") + "` | " +
-                        // >>>8
-                        DocumentationNamer.toPath(DocumentationNamerTest.class.getPackage())
-                // <<<8
-                ,
                 "a| `" + extract(testInfo, "9") + "` | " +
                         // >>>9
                         DocumentationNamer.toPath(DocumentationNamerTest.class, "prefix_", ".suffix")
@@ -112,7 +106,15 @@ class DocumentationNamerTest {
                         DocumentationNamer.toAsciiDocFilePath(DocumentationNamerTest.class)
                 // <<<10
                 ,
+                "a| `" + extract(testInfo, "11") + "` | " +
+                        // Show how to do the same with DocPath
+                        // >>>11
+                        new DocPath(DocumentationNamerTest.class).page().from(Config.DOC_PATH)
+                // <<<11
+                ,
                 "|====");
+
+        ;
     }
 
     public String extract(TestInfo testInfo, String suffix) {

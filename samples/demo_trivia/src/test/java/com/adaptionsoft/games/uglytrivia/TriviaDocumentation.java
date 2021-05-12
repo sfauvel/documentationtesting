@@ -2,13 +2,12 @@ package com.adaptionsoft.games.uglytrivia;
 
 import org.sfvl.doctesting.utils.ClassFinder;
 import org.sfvl.doctesting.demo.DemoDocumentation;
-import org.sfvl.doctesting.utils.PathProvider;
+import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.writer.Classes;
 import org.sfvl.doctesting.writer.Document;
 import org.sfvl.doctesting.writer.Options;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
@@ -60,11 +59,9 @@ public class TriviaDocumentation extends DemoDocumentation {
 
     @Override
     public void produce() throws IOException {
-        new Document(this.build("Trivia", getStandardClasses()))
-                .saveAs(Paths.get("").resolve("Documentation.adoc"));
+        new Document(this.build("Trivia", getStandardClasses())).saveAs(Config.DOC_PATH.resolve("Documentation.adoc"));
 
-        new Document(this.build("Trivia with animation", getSvgClasses()))
-                .saveAs(Paths.get("").resolve("DocumentationWithAnimation.adoc"));
+        new Document(this.build("Trivia with animation", getSvgClasses())).saveAs(Config.DOC_PATH.resolve("DocumentationWithAnimation.adoc"));
     }
 
     public static void main(String... args) throws IOException {

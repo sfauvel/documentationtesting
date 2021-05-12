@@ -7,7 +7,7 @@ DocumentNamer build names and paths from a method.
 |====
 | Code | Result 
 a| `DocumentationNamer.toPath(DocumentationNamerTest.class)` | org/sfvl/doctesting/utils/DocumentationNamerTest
-a| `DocumentationNamer.toPath(DocumentationNamerTest.class.getPackage())` | org/sfvl/doctesting/utils
 a| `DocumentationNamer.toPath(DocumentationNamerTest.class, "prefix_", ".suffix")` | org/sfvl/doctesting/utils/prefix_DocumentationNamerTest.suffix
 a| `DocumentationNamer.toAsciiDocFilePath(DocumentationNamerTest.class)` | org/sfvl/doctesting/utils/DocumentationNamerTest.adoc
+a| `new DocPath(DocumentationNamerTest.class).page().from(Config.DOC_PATH)` | org/sfvl/doctesting/utils/DocumentationNamerTest.adoc
 |====
