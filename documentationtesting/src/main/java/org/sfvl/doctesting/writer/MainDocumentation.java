@@ -14,7 +14,6 @@ import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
@@ -57,21 +56,9 @@ public class MainDocumentation {
     }
 
     public MainDocumentation(String documentationTitle) {
-        this(documentationTitle, Config.DOC_PATH);
-    }
-
-    public MainDocumentation(String documentationTitle, Path docRootPath) {
-        this(documentationTitle,
-                pathProvider.getProjectPath().resolve(docRootPath),
-                new AsciidocFormatter());
-    }
-
-    public MainDocumentation(String documentationTitle,
-                             Path docRootPath,
-                             Formatter formatter) {
         this.documentationTitle = documentationTitle;
-        this.docRootPath = pathProvider.getProjectPath().resolve(docRootPath);
-        this.formatter = formatter;
+        this.docRootPath = Config.DOC_PATH;
+        this.formatter = new AsciidocFormatter();
     }
 
     public Path getDocRootPath() {
@@ -89,24 +76,24 @@ public class MainDocumentation {
 
     public void generate() throws IOException {
         final String packageToScan = getClass().getPackage().getName();
-        generate(packageToScan, DocumentationNamer.toPath(getClass()).toString());
+        generate(packageToScan, new DocPath(getClass()).page());
     }
 
     protected void generate(String packageToScan) throws IOException {
-        generate(packageToScan, DOCUMENTATION_FILENAME);
+        final OnePath onePath = new OnePath(Config.DOC_PATH, Paths.get(""), DOCUMENTATION_FILENAME, ".adoc");
+        generate(packageToScan, onePath);
     }
 
-    public void generate(String packageToScan, String documentationFilename) throws IOException {
-        final Path docFilePath = docRootPath.resolve(documentationFilename + ".adoc");
-        final String content = getDocumentationContent(packageToScan, docFilePath.getParent());
+    private void generate(String packageToScan, OnePath onePath) throws IOException {
+        final String content = getDocumentationContent(packageToScan, onePath.folder());
 
-        try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
+        try (FileWriter fileWriter = new FileWriter(onePath.path().toFile())) {
             writeDoc(fileWriter, content);
         }
     }
 
     protected void generate(Class<?> classToGenerate) throws IOException {
-        final Path docFilePath = docRootPath.resolve(DocumentationNamer.toPath(this.getClass(), "", ".adoc"));
+        final Path docFilePath = new DocPath(this.getClass()).page().path();
 
         final DocWriter doc = new DocWriter();
         doc.write(":source-highlighter: rouge",
@@ -150,13 +137,7 @@ public class MainDocumentation {
 
         return classes.stream()
                 .sorted(Comparator.comparing(Class::getSimpleName))
-                .map(c -> {
-                    final Path mainDocPath = docFilePath;
-                    final Path classPath = DocumentationNamer.toPath(c, "", ".adoc");
-                    final Path finalPath = mainDocPath.relativize(getDocRootPath().resolve(classPath));
-
-                    return finalPath;
-                })
+                .map(c -> new DocPath(c).page().from(docFilePath))
                 .map(s -> formatter.include(s.toString(), title_depth + 1))
                 .collect(Collectors.joining("\n\n"));
     }

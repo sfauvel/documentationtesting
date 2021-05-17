@@ -5,9 +5,7 @@
 .Usage
 [source, java, indent=0]
 ----
-        final MainDocumentation doc = new MainDocumentation("Documentation",
-                Config.DOC_PATH,
-                new AsciidocFormatter());
+        final MainDocumentation doc = new MainDocumentation("Documentation");
 
         Path docFilePath = doc.getDocRootPath();
         final String packageToScan = "org.sfvl.doctesting.sample.basic";

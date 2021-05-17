@@ -44,9 +44,7 @@ class MainDocumentationTest {
         private final List<Method> methods;
 
         public DocumentationOnSpecificMethods(List<Method> methods) {
-            super("Documentation",
-                    Config.DOC_PATH,
-                    new AsciidocFormatter());
+            super("Documentation");
             this.methods = methods;
         }
 
@@ -70,9 +68,7 @@ class MainDocumentationTest {
     @Test
     public void by_default(TestInfo testInfo) {
         // >>>1
-        final MainDocumentation doc = new MainDocumentation("Documentation",
-                Config.DOC_PATH,
-                new AsciidocFormatter());
+        final MainDocumentation doc = new MainDocumentation("Documentation");
 
         Path docFilePath = doc.getDocRootPath();
         final String packageToScan = "org.sfvl.doctesting.sample.basic";

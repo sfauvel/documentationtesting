@@ -2,8 +2,8 @@ package org.sfvl.doctesting.writer;
 
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
+import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
-import org.sfvl.doctesting.utils.DocumentationNamer;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -19,17 +19,16 @@ import java.util.stream.Collectors;
  * You can use the DocumentationBuilder class to generate a documentation.
  * You can aggregate other documentations and in particular, those generated from test classes.
  *
- * @deprecated
- * This class was used to create a dynamic builder but it does not simplify the code
+ * @deprecated This class was used to create a dynamic builder but it does not simplify the code
  * so we prefer to not use it.
  */
 @Deprecated
-public class DocumentationBuilder implements DocumentProducer{
+public class DocumentationBuilder implements DocumentProducer {
 
 
     @Override
     public void produce() throws IOException {
-        new Document(this.build()).saveAs(this.getClass());
+        new Document(this.build()).saveAs(new DocPath(this.getClass()).page());
     }
 
     static private class DocBuilder<T> {
@@ -77,7 +76,7 @@ public class DocumentationBuilder implements DocumentProducer{
         this.documentationTitle = documentationTitle;
         this.formatter = formatter;
 
-        withStructureBuilder((Class<DocumentationBuilder>)this.getClass(),
+        withStructureBuilder((Class<DocumentationBuilder>) this.getClass(),
                 b -> b.getDocumentOptions(),
                 b -> "= " + b.getDocumentTitle(),
                 b -> b.getContent(),
@@ -172,9 +171,7 @@ public class DocumentationBuilder implements DocumentProducer{
     }
 
     private Path getRelativeFilePath(Path docPath, Class<?> clazz) {
-        final Path classPath = DocumentationNamer.toPath(clazz, "", ".adoc");
-
-        return docPath.relativize(classPath);
+        return new DocPath(clazz).page().from(Config.DOC_PATH.resolve(docPath));
     }
 
 }
