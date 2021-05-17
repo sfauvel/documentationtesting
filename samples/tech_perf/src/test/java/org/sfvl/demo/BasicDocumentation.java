@@ -7,13 +7,13 @@ import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
 import org.sfvl.Person;
 import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.doctesting.demo.DemoDocumentation;
 import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
 import org.sfvl.doctesting.utils.Config;
-import org.sfvl.doctesting.writer.Document;
-import org.sfvl.doctesting.writer.ClassDocumentation;
-import org.sfvl.doctesting.demo.DemoDocumentation;
-import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.PathProvider;
+import org.sfvl.doctesting.writer.ClassDocumentation;
+import org.sfvl.doctesting.writer.Document;
 import org.sfvl.doctesting.writer.Options;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -89,8 +89,7 @@ public class BasicDocumentation extends DemoDocumentation {
                 .sorted(Comparator.comparing(e -> e.getKey().getSimpleName()))
                 .map(e -> {
                     return new ClassDocumentation(new AsciidocFormatter(),
-                            m -> new DocumentationNamer(getDocRootPath(), m)
-                                    .getApprovedPath(getDocRootPath()),
+                            m -> new DocPath(m).approved().from(Config.DOC_PATH),
                             m -> e.getValue().contains(m),
                             c -> c.isAnnotationPresent(Nested.class)
                     ).getClassDocumentation(e.getKey(), 2);

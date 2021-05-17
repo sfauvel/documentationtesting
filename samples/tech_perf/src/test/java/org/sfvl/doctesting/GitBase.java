@@ -7,7 +7,6 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
 import org.sfvl.doctesting.utils.DocPath;
-import org.sfvl.doctesting.utils.DocumentationNamer;
 import org.sfvl.doctesting.utils.OnePath;
 
 import java.io.BufferedWriter;
@@ -15,7 +14,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.fail;
 

@@ -4,14 +4,11 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.sfvl.Person;
-import org.sfvl.doctesting.utils.DocumentationNamer;
-import org.sfvl.doctesting.utils.PathProvider;
+import org.sfvl.doctesting.utils.DocPath;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.invoke.MethodHandles;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,19 +19,13 @@ public class UsingJUnitWithALongTestTest {
 
     @AfterAll
     public static void end() throws IOException, NoSuchMethodException {
-        final Path docPath = new PathProvider().getProjectPath().resolve(Paths.get("src", "test", "docs"));
-        final DocumentationNamer documentationNamer = new DocumentationNamer(docPath, UsingJUnitWithALongTestTest.class.getMethod("should_give_person_information"));
+        final Class<?> clazzWithCode = UsingJUnitWithALongTestTest.class;
+        final DocPath docPath = new DocPath(clazzWithCode.getMethod("should_give_person_information"));
+        final Path approvedPath = docPath.approved().path();
 
-        final Class<?> aClass = MethodHandles.lookup().lookupClass();
-
-        try (FileWriter fileWriter = new FileWriter(documentationNamer.getFilePath().toFile())) {
-            final Path filePath = documentationNamer.getFilePath().getParent();
-            final Path testPath = filePath.relativize(docPath.getParent());
-            final Path classPath = testPath.resolve("java")
-                    .resolve(aClass.getPackage().getName().replace('.', '/'))
-                    .resolve(aClass.getSimpleName() + ".java");
-
-            fileWriter.write("\n[source,java,indent=0]\n----\ninclude::" + classPath + "[tags=code]\n----\n");
+        try (FileWriter fileWriter = new FileWriter(approvedPath.toFile())) {
+            final Path pathToInclude = new DocPath(clazzWithCode).test().from(docPath.approved());
+            fileWriter.write("\n[source,java,indent=0]\n----\ninclude::" + pathToInclude + "[tags=code]\n----\n");
         }
 
     }
