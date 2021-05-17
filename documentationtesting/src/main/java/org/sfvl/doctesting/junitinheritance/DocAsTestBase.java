@@ -66,10 +66,10 @@ public abstract class DocAsTestBase {
         final Path docRootPath = getDocPath();
         String content = buildContent(testInfo);
 
-        approvalAfterTestSpecific(content, new DocumentationNamer(docRootPath, testInfo));
+        approvalAfterTestSpecific(content, new DocPath(testInfo.getTestMethod().get()));
     }
 
-    abstract protected void approvalAfterTestSpecific(final String content, final DocumentationNamer documentationNamer) throws Exception;
+    protected abstract void approvalAfterTestSpecific(final String content, final DocPath docPath) throws Exception;
 
     /**
      * Write a text to the output.

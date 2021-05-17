@@ -1,10 +1,9 @@
 package org.sfvl.doctesting.junitinheritance;
 
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-import org.sfvl.doctesting.utils.DocWriter;
-import org.sfvl.doctesting.utils.DocumentationNamer;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.doctesting.utils.DocPath;
 
 class DocAsTestBaseTest {
 
@@ -13,7 +12,7 @@ class DocAsTestBaseTest {
 
     DocAsTestBase docAsTest = new DocAsTestBase() {
         @Override
-        protected void approvalAfterTestSpecific(String content, DocumentationNamer documentationNamer) throws Exception {
+        protected void approvalAfterTestSpecific(String content, DocPath docPath) throws Exception {
         }
     };
 

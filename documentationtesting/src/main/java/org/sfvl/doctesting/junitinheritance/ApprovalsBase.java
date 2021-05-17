@@ -3,9 +3,9 @@ package org.sfvl.doctesting.junitinheritance;
 import org.approvaltests.Approvals;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
-import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.utils.DocPath;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import java.io.File;
 
 /**
  * Base class for test.
@@ -15,17 +15,16 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class ApprovalsBase extends DocAsTestBase {
 
     @Override
-    protected void approvalAfterTestSpecific(final String content, final DocumentationNamer documentationNamer) throws Exception {
+    protected void approvalAfterTestSpecific(final String content, final DocPath docPath) throws Exception {
         ApprovalNamer approvalNamer = new ApprovalNamer() {
-
             @Override
             public String getApprovalName() {
-                return documentationNamer.getApprovalName();
+                return docPath.name();
             }
 
             @Override
             public String getSourceFilePath() {
-                return documentationNamer.getSourceFilePath();
+                return docPath.approved().folder().toString() + File.separator;
             }
         };
 

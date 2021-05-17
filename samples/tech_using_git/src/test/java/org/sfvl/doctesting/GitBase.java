@@ -6,7 +6,9 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
+import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.utils.OnePath;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -25,20 +27,19 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class GitBase extends DocAsTestBase {
 
     @Override
-    protected void approvalAfterTestSpecific(final String content, final DocumentationNamer documentationNamer) throws Exception {
-
-        writeContent(documentationNamer, content);
+    protected void approvalAfterTestSpecific(String content, DocPath docPath) throws Exception {
+        writeContent(docPath, content);
 
         // When property 'no-assert' is present, we just generate documents without checking.
         if (System.getProperty("no-assert") == null) {
-            assertNoModification(documentationNamer);
+            assertNoModification(docPath);
         }
     }
 
-    private void writeContent(DocumentationNamer documentationNamer, String content) throws IOException {
-        final Path filePath = documentationNamer.getFilePath();
-        createDirIfNotExists(Paths.get(documentationNamer.getSourceFilePath()));
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath.toFile().toString()))) {
+    private void writeContent(DocPath docPath, String content) throws IOException {
+        final OnePath filePath = docPath.approved();
+        createDirIfNotExists(filePath.folder());
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath.path().toFile().toString()))) {
             writer.write(content);
         }
     }
@@ -51,14 +52,16 @@ public class GitBase extends DocAsTestBase {
         }
     }
 
-    private void assertNoModification(DocumentationNamer documentationNamer) throws Exception {
+    private void assertNoModification(DocPath docPath) throws Exception {
         final Path gitRoot = pathBuidler.getGitRootPath();
 
-        final Path subPath = gitRoot.relativize(documentationNamer.getFilePath());
+        final Path approvedPath = docPath.approved().path();
+        final Path absoluteApprovedPath = pathBuidler.getProjectPath().resolve(approvedPath);
+        final Path subPath = gitRoot.relativize(absoluteApprovedPath);
         if (isModify(gitRoot, subPath.toString())) {
-            fail("File was modified:" + documentationNamer.getApprovalName() + ".adoc");
+            fail("File was modified:" + docPath.approved().path().toString());
         } else {
-            System.out.println("Success:" + documentationNamer.getApprovalName() + ".adoc");
+            System.out.println("Success:" + docPath.approved().path().toString());
 
         }
     }
