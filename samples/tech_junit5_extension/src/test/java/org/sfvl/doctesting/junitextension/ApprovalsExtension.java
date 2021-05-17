@@ -5,10 +5,11 @@ import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
+import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.DocWriter;
-import org.sfvl.doctesting.utils.DocumentationNamer;
 import org.sfvl.doctesting.utils.PathProvider;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -28,17 +29,16 @@ public class ApprovalsExtension implements AfterEachCallback {
         final DocWriter writer = getWriter(extensionContext);
         String content = writer.formatOutput(extensionContext.getDisplayName(), extensionContext.getTestMethod().get());
 
-        final DocumentationNamer documentationNamer = new DocumentationNamer(getDocPath(), extensionContext.getTestMethod().get());
+        final DocPath docPath = new DocPath(extensionContext.getTestMethod().get());
         ApprovalNamer approvalNamer = new ApprovalNamer() {
-
             @Override
             public String getApprovalName() {
-                return documentationNamer.getApprovalName();
+                return docPath.name();
             }
 
             @Override
             public String getSourceFilePath() {
-                return documentationNamer.getSourceFilePath();
+                return docPath.approved().folder().toString() + File.separator;
             }
         };
 
@@ -60,13 +60,12 @@ public class ApprovalsExtension implements AfterEachCallback {
 
     /**
      * Give path where docs are generated.
+     *
      * @return
      */
     protected Path getDocPath() {
-        return pathBuidler.getProjectPath().resolve(Paths.get( "src", "test", "docs"));
+        return pathBuidler.getProjectPath().resolve(Paths.get("src", "test", "docs"));
     }
-
-
 
 
 }
