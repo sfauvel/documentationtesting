@@ -5,12 +5,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
-import org.sfvl.doctesting.utils.DocumentationNamer;
+import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 
 import java.io.FileWriter;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  * Demo of a simple usage to generate documentation.
@@ -25,8 +24,7 @@ public class DemoTest extends ApprovalsBase {
                 ":nofooter:",
                 classDocumentation.getClassDocumentation(clazz));
 
-        final Path docFilePath = Paths.get("src", "test", "docs")
-                .resolve(DocumentationNamer.toPath(clazz, "", ".approved.adoc"));
+        final Path docFilePath = new DocPath(clazz).approved().path();
 
         try (FileWriter fileWriter = new FileWriter(docFilePath.toFile())) {
             fileWriter.write(content);
