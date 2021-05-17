@@ -7,12 +7,9 @@ import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
-import org.sfvl.doctesting.utils.DocumentationNamer;
-import org.sfvl.doctesting.utils.PathProvider;
+import org.sfvl.doctesting.utils.DocPath;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Random;
 
 
@@ -25,7 +22,7 @@ public class ClassivalApprovalsGameTest {
 
     @Test
     public void classical_approvals_test(TestInfo testInfo) throws Exception {
-       
+
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
@@ -57,17 +54,16 @@ public class ClassivalApprovalsGameTest {
     }
 
     private ApprovalNamer getApprovalNamer(TestInfo testInfo) {
-        final PathProvider pathProvider = new PathProvider();
-        final Path docRootPath = pathProvider.getProjectPath().resolve(Paths.get("src", "test", "docs"));
-
-        final DocumentationNamer documentationNamer = new DocumentationNamer(docRootPath, testInfo);
+        final DocPath docPath = new DocPath(testInfo.getTestMethod().get());
         ApprovalNamer approvalNamer = new ApprovalNamer() {
+            @Override
             public String getApprovalName() {
-                return documentationNamer.getApprovalName();
+                return docPath.name();
             }
 
+            @Override
             public String getSourceFilePath() {
-                return documentationNamer.getSourceFilePath();
+                return docPath.approved().folder().toString() + File.separator;
             }
         };
         return approvalNamer;
