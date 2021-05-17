@@ -218,27 +218,7 @@ public class ApprovalsExtensionTest {
         return extractSourceWithTag(tag, testClass, testClass);
     }
 
-    public String includeSourceWithTag(String tag) {
-        return includeSourceWithTag(tag, this.getClass());
-    }
-
-    private String includeSourceWithTag(String tag, Class<?> aClass) {
-        final Path adoc = Config.DOC_PATH.resolve(DocPath.toPath(this.getClass().getPackage()));
-        final Path path = Config.TEST_PATH.resolve(DocumentationNamer.toPath(aClass, "", ".java"));
-        final Path relativizedJavaFilePath = adoc.relativize(path);
-        return String.join("\n",
-                "[source, java, indent=0]",
-                "----",
-                String.format("include::%s[tag=%s]",
-                        relativizedJavaFilePath,
-                        tag),
-                "----");
-    }
-
-
 }
-
-// end::FailingTest[]
 
 @NotIncludeToDoc
 @OnlyRunProgrammatically
