@@ -10,8 +10,8 @@ import org.sfvl.doctesting.DocTestingDocumentation;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.DocWriter;
-import org.sfvl.doctesting.utils.DocumentationNamer;
 import org.sfvl.doctesting.writer.DocumentProducer;
 import org.sfvl.doctesting.writer.Options;
 import org.sfvl.howto.HowTo;
@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -48,10 +47,11 @@ public class DocumentationTestingDocumentation {
     @AfterAll
     static public void writeIndexPage() throws IOException {
         final Method method = FindLambdaMethod.getMethod(DocumentationTestingDocumentation::documentationTesting);
-        final DocumentationNamer documentationNamer = new DocumentationNamer(Paths.get(""), method);
+
+        final DocPath docPath = new DocPath(method);
         String content = String.join("\n",
                 ":nofooter:",
-                "include::" + documentationNamer.getFilePath().toString() + "[]");
+                "include::" + docPath.approved().from(Config.DOC_PATH).toString() + "[]");
 
         final Path indexFile = Config.DOC_PATH.resolve("index.adoc");
         try (FileWriter fileWriter = new FileWriter(indexFile.toFile())) {
@@ -59,8 +59,7 @@ public class DocumentationTestingDocumentation {
         }
     }
 
-    private void generatePage(Class<?> clazz) throws IOException {
-        final DocumentationNamer documentationNamer = new DocumentationNamer(Paths.get(""), clazz);
+    private void generatePage(DocPath docPath) throws IOException {
         String includeContent = String.join("\n",
                 ":toc: left",
                 ":nofooter:",
@@ -68,10 +67,9 @@ public class DocumentationTestingDocumentation {
                 ":source-highlighter: rouge",
                 ":toclevels: 4",
                 "",
-                String.format("include::%s[]", documentationNamer.getApprovalFileName()));
-        final Path pagePath = DocumentationNamer.toPath(clazz, "", ".adoc");
+                String.format("include::%s[]", docPath.approved().fullname()));
 
-        try (FileWriter fileWriter = new FileWriter(Config.DOC_PATH.resolve(pagePath).toFile())) {
+        try (FileWriter fileWriter = new FileWriter(docPath.page().path().toFile())) {
             fileWriter.write(includeContent);
         }
     }
@@ -166,28 +164,27 @@ public class DocumentationTestingDocumentation {
     }
 
     private String linkToClass(Class<?> clazz, String title) {
+        final DocPath docPath = new DocPath(clazz);
         try {
-            generatePage(clazz);
+            generatePage(docPath);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        return String.format("link:%s.html[%s]\n",
-                Paths.get("").relativize(DocumentationNamer.toPath(clazz)),
+        return String.format("link:%s[%s]\n",
+                docPath.doc().path(),
                 title);
     }
 
     public <T> String linkToMethod(FindLambdaMethod.SerializableConsumer<T> methodToInclude) {
         final Method method = FindLambdaMethod.getMethod(methodToInclude);
-        final DocumentationNamer documentationNamer = new DocumentationNamer(Config.DOC_PATH, method);
-        final String filename = documentationNamer.getApprovedPath(Config.DOC_PATH).toString();
-        String methodName = method.getName();
 
+        String methodName = method.getName();
         String title = methodName.replace("_", " ");
         title = title.substring(0, 1).toUpperCase() + title.substring(1);
 
-        return String.format("link:%s[%s]\n",
-                filename.replaceAll("\\.adoc", ".html"),
+        return String.format("link:%[%s]\n",
+                new DocPath(method).doc().path(),
                 title);
 
     }
