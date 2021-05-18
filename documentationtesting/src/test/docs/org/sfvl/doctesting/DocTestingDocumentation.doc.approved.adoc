@@ -37,8 +37,6 @@ include::utils/DocPathTest.approved.adoc[leveloffset=+1]
 
 include::utils/DocWriterTest.approved.adoc[leveloffset=+1]
 
-include::utils/DocumentationNamerTest.approved.adoc[leveloffset=+1]
-
 include::writer/ClassDocumentationTest.approved.adoc[leveloffset=+1]
 
 include::writer/DocumentationBuilderTest.approved.adoc[leveloffset=+1]
