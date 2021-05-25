@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
 [#org_sfvl_demo_UsingGitWithNoAssertOptionTest_should_give_person_information]
 = Should give person information
 

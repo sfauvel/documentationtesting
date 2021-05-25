@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_doctesting_utils_DocWriterTest_doc_writer_usage]
 = DocWriter usage
 
@@ -21,6 +25,10 @@ By default, a title is added to the output.
 
 .Output provided
 ....
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_doctesting_utils_DocWriterTest_method_demo]
 = My title
 

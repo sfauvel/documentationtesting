@@ -1,10 +1,13 @@
 package com.adaptionsoft.games.uglytrivia;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -14,6 +17,17 @@ import java.util.stream.Collectors;
 
 @DisplayName("Functional examples")
 public class GameSvgTest extends ApprovalsBase {
+
+    final PrintStream out = System.out;
+
+    @BeforeEach
+    public void before() {
+        System.setOut(new InterceptorStream(out));
+    }
+    @AfterEach
+    public void after() {
+        System.setOut(out);
+    }
 
     public static final int SQUARE_SIZE = 50;
     public static final int BOARD_SIZE = 12;

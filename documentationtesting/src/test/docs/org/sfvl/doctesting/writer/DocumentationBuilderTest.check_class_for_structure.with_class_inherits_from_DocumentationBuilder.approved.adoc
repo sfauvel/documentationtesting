@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_doctesting_writer_DocumentationBuilderTest_check_class_for_structure_with_class_inherits_from_DocumentationBuilder]
 = With class inherits from DocumentationBuilder
 

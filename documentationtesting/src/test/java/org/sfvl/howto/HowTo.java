@@ -110,8 +110,9 @@ public class HowTo {
         }
 
 
-        return String.format("link:%s[%s]\n",
-                docPath.doc().from(new DocPath(this.getClass()).doc()),
+        return String.format("link:{%s}/%s[%s]\n",
+                Config.DOC_PATH_TAG,
+                new DocPath(this.getClass()).doc().path(),
                 title);
     }
 

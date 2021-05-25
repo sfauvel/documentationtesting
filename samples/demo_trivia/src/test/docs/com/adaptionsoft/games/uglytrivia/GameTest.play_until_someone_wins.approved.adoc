@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#com_adaptionsoft_games_uglytrivia_GameTest_play_until_someone_wins]
 = Simulation of a complete game
 

@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_doctesting_writer_InMainDocTest_testB]
 = Title for this test
 

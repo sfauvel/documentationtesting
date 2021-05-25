@@ -127,10 +127,10 @@ public class ApprovalsExtensionTest {
 
         doc.write("", "", ".Test example used to generate class document", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
+        doc.write("Class `" + testClass.getSimpleName() + "` is in package `" + testClass.getPackage().getName() + "`.");
         final OnePath approved = new DocPath(MyTest.class).approved();
-        doc.write("", "", ".Document generated", "----", Files.lines(approved.path())
-                .collect(Collectors.joining("\n"))
-                .replaceAll("\\ninclude::", "\n\\\\include::"), "----");
+
+        doc.write("", "", adocFileSourceEscaped(approved));
 
         String style = "++++\n" +
                 "<style>\n" +
@@ -167,11 +167,12 @@ public class ApprovalsExtensionTest {
         AtomicInteger stacktraceLineCount = new AtomicInteger(0);
         Predicate<String> isStackLine = line -> line.startsWith("	at ");
         // We truncate stack trace to avoid to have an ouput that change from on execution from another.
-        doc.write("", "", ".Document generated (exception stack trace is truncated)", "------", Files.lines(documentationPath)
+        doc.write("", "", ".Document generated (exception stack trace is truncated)", "------",
+                escapedAdocSpecialKeywords(Files.lines(documentationPath)
                 // We truncate stack trace to avoid to have an ouput that change from on execution from another.
                 .filter(line -> !isStackLine.test(line) || stacktraceLineCount.incrementAndGet() < 3)
-                .collect(Collectors.joining("\n"))
-                .replaceAll("\\ninclude::", "\n\\\\include::"), "------");
+                .collect(Collectors.joining("\n"))),
+                "------");
 
         String style = "++++\n" +
                 "<style>\n" +
@@ -192,7 +193,7 @@ public class ApprovalsExtensionTest {
                 ":leveloffset: +1",
                 "_final rendering_",
                 "[.adocRendering]",
-                "include::" + docPath.received().from(this.getClass()) + "[lines=\"1..10\"]",
+                "include::" + docPath.received().from(this.getClass()) + "[lines=\"1..14\"]",
                 "...",
                 "----",
                 "// We add the line below to close truncated block open in included file",
@@ -218,6 +219,23 @@ public class ApprovalsExtensionTest {
         return extractSourceWithTag(tag, testClass, testClass);
     }
 
+    private String adocFileSourceEscaped(OnePath approved) throws IOException {
+        final String collect = Files.lines(approved.path())
+                .collect(Collectors.joining("\n"));
+        return String.join("\n",
+                ".Document generated",
+                "----",
+                escapedAdocSpecialKeywords(collect),
+                "----");
+    }
+
+    private String escapedAdocSpecialKeywords(String collect) {
+        return collect
+                .replaceAll("(^|\\n)include::", "$1\\\\include::")
+                .replaceAll("(^|\\n)ifndef::", "$1\\\\ifndef::")
+                .replaceAll("(^|\\n)ifdef::", "$1\\\\ifdef::")
+                .replaceAll("(^|\\n)endif::", "$1\\\\endif::");
+    }
 }
 
 @NotIncludeToDoc

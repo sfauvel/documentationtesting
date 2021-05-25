@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
 [#org_sfvl_demo_TennisTest_player_A_win_one_point]
 = Player A win one point
 

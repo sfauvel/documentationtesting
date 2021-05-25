@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -50,6 +51,7 @@ public class DocumentationTestingDocumentation {
 
         final DocPath docPath = new DocPath(method);
         String content = String.join("\n",
+                doc.getDocWriter().defineDocPath(Paths.get(".")),
                 ":nofooter:",
                 "include::" + docPath.approved().from(Config.DOC_PATH).toString() + "[]");
 
@@ -171,7 +173,8 @@ public class DocumentationTestingDocumentation {
             throw new RuntimeException(e);
         }
 
-        return String.format("link:%s[%s]\n",
+        return String.format("link:{%s}/%s[%s]\n",
+                Config.DOC_PATH_TAG,
                 docPath.doc().path(),
                 title);
     }
@@ -183,7 +186,8 @@ public class DocumentationTestingDocumentation {
         String title = methodName.replace("_", " ");
         title = title.substring(0, 1).toUpperCase() + title.substring(1);
 
-        return String.format("link:%[%s]\n",
+        return String.format("link:{%s}/%[%s]\n",
+                Config.DOC_PATH_TAG,
                 new DocPath(method).doc().path(),
                 title);
 

@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_doctesting_writer_ClassDocumentationTest_DemoNestedTest_Adding_AddingNegativeNumber_should_be_minus_8_when_adding_minus_3_and_minus_5]
 = Adding 2 negative numbers
 

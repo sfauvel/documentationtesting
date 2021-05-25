@@ -539,12 +539,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_utils_DocWriterTest_title">Formatted title</a></li>
 </ul>
 </li>
-<li><a href="#_documentation_namer">Documentation Namer</a>
-<ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_utils_DocumentationNamerTest_document_namer">Document namer</a></li>
-<li><a href="#org_sfvl_doctesting_utils_DocumentationNamerTest_document_namer_static_methods">Document namer static methods</a></li>
-</ul>
-</li>
 <li><a href="#_class_documentation_test">Class documentation test</a>
 <ul class="sectlevel3">
 <li><a href="#org_sfvl_doctesting_writer_ClassDocumentationTest_default_class_documentation">Default test class documentation</a></li>
@@ -733,6 +727,7 @@ and modify what it will be written in the final document.</p>
 <div class="listingblock">
 <div class="content">
 <pre>// Add an header to the document
+
 [#org_sfvl_samples_MyCustomWriterTest_test_A]
 = Test A: Custom title
 
@@ -901,10 +896,17 @@ include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ado
 <span class="o">}</span></code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Class <code>MyTest</code> is in package <code>org.sfvl.samples</code>.</p>
+</div>
 <div class="listingblock">
 <div class="title">Document generated</div>
 <div class="content">
-<pre>:nofooter:
+<pre>ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+:nofooter:
 = My test
 
 include::MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
@@ -960,7 +962,11 @@ It&#8217;s help to understand and investigate on the problem.</p>
 <div class="listingblock">
 <div class="title">Document generated (exception stack trace is truncated)</div>
 <div class="content">
-<pre>[#org_sfvl_samples_FailingTest_failing_test]
+<pre>ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+[#org_sfvl_samples_FailingTest_failing_test]
 = Failing test
 
 Some information before failure.
@@ -3057,139 +3063,6 @@ It returns either DisplayName annotation value or method name.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">test_method_with_test_info(TestInfo)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">test_method_with_test_info</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Test method with test info</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_documentation_namer">Documentation Namer</h3>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_DocumentationNamerTest_document_namer">Document namer</h4>
-<div class="paragraph">
-<p>DocumentNamer build names and paths from a method or a class.</p>
-</div>
-<div class="literalblock">
-<div class="title">DocumentNamer usage with method</div>
-<div class="content">
-<pre>final DocumentationNamer namerMethod =
-        new DocumentationNamer(Config.DOC_PATH, testInfo);</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="title">DocumentNamer usage with class</div>
-<div class="content">
-<pre>final DocumentationNamer namerClass =
-        new DocumentationNamer(Config.DOC_PATH, this.getClass());</pre>
-</div>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Code</th>
-<th class="tableblock halign-left valign-top">Result with method</th>
-<th class="tableblock halign-left valign-top">Result with class</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top" colspan="3"><div class="content"><div class="paragraph">
-<p><code>namer.getApprovalName()</code></p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DocumentationNamerTest.document_namer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DocumentationNamerTest</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" colspan="3"><div class="content"><div class="paragraph">
-<p><code>namer.getApprovalFileName()</code></p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DocumentationNamerTest.document_namer.approved.adoc</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DocumentationNamerTest.approved.adoc</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" colspan="3"><div class="content"><div class="paragraph">
-<p><code>namer.getSourceFilePath()</code></p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/docs/org/sfvl/doctesting/utils/</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/docs/org/sfvl/doctesting/utils/</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" colspan="3"><div class="content"><div class="paragraph">
-<p><code>namer.getFilePath()</code></p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/docs/org/sfvl/doctesting/utils/DocumentationNamerTest.document_namer.approved.adoc</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/docs/org/sfvl/doctesting/utils/DocumentationNamerTest.approved.adoc</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" colspan="3"><div class="content"><div class="paragraph">
-<p><code>namer.getApprovedPath(Config.DOC_PATH.resolve("org"))</code></p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sfvl/doctesting/utils/DocumentationNamerTest.document_namer.approved.adoc</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sfvl/doctesting/utils/DocumentationNamerTest.approved.adoc</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_DocumentationNamerTest_document_namer_static_methods">Document namer static methods</h4>
-<div class="paragraph">
-<p>DocumentNamer build names and paths from a method.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Code</th>
-<th class="tableblock halign-left valign-top">Result</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>DocumentationNamer.toPath(DocumentationNamerTest.class)</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org/sfvl/doctesting/utils/DocumentationNamerTest</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>DocumentationNamer.toPath(DocumentationNamerTest.class, "prefix_", ".suffix")</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org/sfvl/doctesting/utils/prefix_DocumentationNamerTest.suffix</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>DocumentationNamer.toAsciiDocFilePath(DocumentationNamerTest.class)</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org/sfvl/doctesting/utils/DocumentationNamerTest.adoc</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>new DocPath(DocumentationNamerTest.class).page().from(Config.DOC_PATH)</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org/sfvl/doctesting/utils/DocumentationNamerTest.adoc</p></td>
 </tr>
 </tbody>
 </table>

@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_doctesting_utils_ClassesOrderTest_nested_class_using_outer_method]
 = Nested class using outer method
 

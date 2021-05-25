@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_first_enclosing_classes_before_another]
 = Extract first enclosing classes before another
 

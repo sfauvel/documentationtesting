@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
 [#org_sfvl_demo_HeroExperienceTest_should_gainxp_approvals]
 = Should gainxp approvals
 

@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_doctesting_junitextension_DemoNestedTest_Adding_should_be_5_when_adding_2_and_3]
 = Adding 2 simple numbers
 

@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_application_fizzbuzz_FizzBuzzTest_values_for_a_result]
 = Values by result
 

@@ -1,1 +1,5 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
 include::CreateADocument.approved.adoc[leveloffset=+0]

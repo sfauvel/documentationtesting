@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_doctesting_writer_ClassDocumentationTest_DemoNestedTest_method_between_two_nested_classes]
 = Method between two nested classes
 

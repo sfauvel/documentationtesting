@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_doctesting_junitextension_FailureReporterTest_received_file_longer_than_approved_file]
 = Received file longer than approved file
 

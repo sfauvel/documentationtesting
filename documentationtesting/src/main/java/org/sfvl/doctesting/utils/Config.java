@@ -9,6 +9,7 @@ import java.util.Properties;
 public class Config {
 
     public static final String DEFAULT_CONFIGURATION_FILE = "docAsTest.properties";
+    public static final String DOC_PATH_TAG = "ROOT_PATH";
 
     enum Key {
         SOURCE_PATH, TEST_PATH, DOC_PATH;

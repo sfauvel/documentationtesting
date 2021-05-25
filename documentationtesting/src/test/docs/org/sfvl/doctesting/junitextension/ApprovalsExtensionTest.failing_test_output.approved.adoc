@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_failing_test_output]
 = Failing test output
 
@@ -29,6 +33,10 @@ class FailingTest {
 
 .Document generated (exception stack trace is truncated)
 ------
+\ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+\endif::[]
+
 [#org_sfvl_samples_FailingTest_failing_test]
 = Failing test
 
@@ -58,7 +66,7 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 :leveloffset: +1
 _final rendering_
 [.adocRendering]
-include::../../samples/FailingTest.failing_test.received.adoc[lines="1..10"]
+include::../../samples/FailingTest.failing_test.received.adoc[lines="1..14"]
 ...
 ----
 // We add the line below to close truncated block open in included file

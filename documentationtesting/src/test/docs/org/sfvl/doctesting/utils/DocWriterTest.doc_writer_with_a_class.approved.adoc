@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_doctesting_utils_DocWriterTest_doc_writer_with_a_class]
 = DocWriter of a class
 
@@ -17,6 +21,10 @@ What is wrote on DocWriter is not used in this case.
 
 .Output provided
 ....
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
 :nofooter:
 = My test
 

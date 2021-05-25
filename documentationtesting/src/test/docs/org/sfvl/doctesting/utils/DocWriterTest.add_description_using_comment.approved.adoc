@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_doctesting_utils_DocWriterTest_add_description_using_comment]
 = Add description
 
@@ -10,6 +14,10 @@ include::../../../../../java/org/sfvl/doctesting/utils/DocWriterTest.java[tag=My
 ----
 
 ****
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_doctesting_utils_DocWriterTest_MyTestWithComment_testA]
 = TestA
 

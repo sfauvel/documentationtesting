@@ -617,6 +617,7 @@ and modify what it will be written in the final document.</p>
 <div class="listingblock">
 <div class="content">
 <pre>// Add an header to the document
+
 [#org_sfvl_samples_MyCustomWriterTest_test_A]
 = Test A: Custom title
 
@@ -789,10 +790,17 @@ include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ado
 <span class="o">}</span></code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Class <code>MyTest</code> is in package <code>org.sfvl.samples</code>.</p>
+</div>
 <div class="listingblock">
 <div class="title">Document generated</div>
 <div class="content">
-<pre>:nofooter:
+<pre>ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+:nofooter:
 = My test
 
 include::MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
@@ -850,7 +858,11 @@ It&#8217;s help to understand and investigate on the problem.</p>
 <div class="listingblock">
 <div class="title">Document generated (exception stack trace is truncated)</div>
 <div class="content">
-<pre>[#org_sfvl_samples_FailingTest_failing_test]
+<pre>ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+[#org_sfvl_samples_FailingTest_failing_test]
 = Failing test
 
 Some information before failure.

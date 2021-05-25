@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_doctesting_writer_DocumentationBuilderTest_define_document_structure]
 = Define document structure
 

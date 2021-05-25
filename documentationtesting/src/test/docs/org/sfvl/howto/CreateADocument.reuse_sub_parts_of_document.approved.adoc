@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
 [#org_sfvl_howto_CreateADocument_reuse_sub_parts_of_document]
 = Reuse sub parts of document
 

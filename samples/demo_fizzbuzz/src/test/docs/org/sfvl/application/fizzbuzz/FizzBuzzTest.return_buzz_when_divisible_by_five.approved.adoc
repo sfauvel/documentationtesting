@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_application_fizzbuzz_FizzBuzzTest_return_buzz_when_divisible_by_five]
 = Return buzz when divisible by five
 

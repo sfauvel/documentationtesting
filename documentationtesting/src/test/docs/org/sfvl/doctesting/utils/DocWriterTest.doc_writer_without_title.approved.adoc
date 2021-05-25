@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_doctesting_utils_DocWriterTest_doc_writer_without_title]
 = DocWriter without title
 
@@ -35,5 +39,9 @@ It can be useful when you want to include this file in another test for example.
 
 .Output provided
 ....
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 Some text added to show DocWriter output.
 ....

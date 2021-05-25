@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
 [#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_document_with_all_tests_in_a_testclass]
 = Document with all tests in a testclass
 
@@ -22,10 +26,14 @@ class MyTest {
 }
 ----
 
-
+Class `MyTest` is in package `org.sfvl.samples`.
 
 .Document generated
 ----
+\ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+\endif::[]
+
 :nofooter:
 = My test
 

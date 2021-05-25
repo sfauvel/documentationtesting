@@ -4,6 +4,8 @@ import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 
 import java.lang.reflect.Method;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,6 +38,8 @@ public class DocWriter {
                 "\n")
                 : "";
         return String.join("",
+                defineDocPath(testMethod.getDeclaringClass()),
+                "\n\n",
                 title,
                 CodeExtractor.getComment(testMethod).map(comment -> comment + "\n\n").orElse(""),
                 read());
@@ -50,9 +54,26 @@ public class DocWriter {
             }
         };
         return String.join("\n",
+                defineDocPath(clazz),
+                "",
                 ":nofooter:",
                 classDocumentation.getClassDocumentation(clazz)
         );
+    }
+
+    public String defineDocPath(Class<?> clazz) {
+        final String aPackage = clazz.getPackage().getName();
+        final Path relativePathToRoot = Arrays.stream(aPackage.split("\\."))
+                .map(__ -> Paths.get(".."))
+                .reduce(Paths.get(""), Path::resolve);
+        return defineDocPath(relativePathToRoot);
+    }
+
+    public String defineDocPath(Path relativePathToRoot) {
+        return String.join("\n",
+                "ifndef::" + Config.DOC_PATH_TAG + "[]",
+                ":" + Config.DOC_PATH_TAG + ": " + relativePathToRoot,
+                "endif::[]");
     }
 
     public String titleId(Method testMethod) {

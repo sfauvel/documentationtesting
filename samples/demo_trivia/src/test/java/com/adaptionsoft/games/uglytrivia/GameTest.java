@@ -1,10 +1,10 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -20,6 +20,16 @@ import java.util.stream.IntStream;
 @DisplayName("Functional examples")
 public class GameTest extends ApprovalsBase {
 
+    final PrintStream out = System.out;
+
+    @BeforeEach
+    public void before() {
+        System.setOut(new InterceptorStream(out));
+    }
+    @AfterEach
+    public void after() {
+        System.setOut(out);
+    }
 
     private boolean notAWinner = true;
     class FakeGame extends Game {
@@ -56,7 +66,6 @@ public class GameTest extends ApprovalsBase {
     @Test
     @DisplayName("Movements of a player")
     public void player_advances() throws Exception {
-
         {
             write("== Normal move\n\n");
 
@@ -103,6 +112,7 @@ public class GameTest extends ApprovalsBase {
         }
 
         addStyleSheet();
+        System.setOut(out);
     }
 
     /**
