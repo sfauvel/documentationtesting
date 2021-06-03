@@ -1,0 +1,16 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../..
+endif::[]
+
+[#fr_sfvl_ConceptDocTest_howTo]
+= HowTo
+
+Several examples are provided to show how we can use it and what it can produce.
+
+
+include::ConceptDocTest.demo_list.approved.adoc[leveloffset=+1]
+
+
+include::ConceptDocTest.tech_list.approved.adoc[leveloffset=+1]
+
+

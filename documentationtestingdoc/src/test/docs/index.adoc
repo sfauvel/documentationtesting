@@ -1,0 +1,5 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: documentationtestingdoc
+endif::[]
+:nofooter:
+include::fr/sfvl/ConceptDocTest.index.approved.adoc[]

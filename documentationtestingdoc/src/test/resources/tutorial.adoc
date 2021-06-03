@@ -1,0 +1,58 @@
+= Tutorial
+
+== Quick start
+
+You can experiment it simply with almost nothing.
+
+. Use your usual test framework.
+. Create a test that write to a text file.
+. Add to this file result of the execution.
+. Add the file to git.
+
+You now have a non regression test in place.
+Each time you run this test, a change in the file is a regression.
+
+By the time, you can add useful information to the output file and format it to be more readable.
+
+
+== Java project
+
+If you want to experiment it in a java project, you can use library provided.
+
+=== Ready to test project
+
+You can use the link:https://github.com/sfauvel/TryDocAsTest[TryDocAsTest] project.
+It's a preconfigure project to start with a complete tool.
+
+=== Use it in your own project
+
+You want to create your own Java project to try this approach.
+The only module you need is `documentationtestesting` one.
+
+Start by writing a test that inherits from `org.sfvl.doctesting.junitinheritance.ApprovalsBase`.
+
+Use `write` method to write all you want to be in documentation.
+It should be at least input and output.
+When you write output, you don't write values expected but only values given by the application.
+
+Then run test as usual.
+First time, test fails and a file is produced in `src/test/docs` with the name of the test.
+The filename ends with `received.adoc`.
+
+Read the file and verify that it looks like as you want.
+If it is the case, rename it with `approved.adoc` instead of `received.adoc`.
+
+Relaunch tests and they should pass.
+
+.Example with DemoTest.java
+[source, java]
+----
+include::{rootpath}/samples/demo_basic_approvals/src/test/java/org/sfvl/demo/DemoTest.java[]
+----
+
+|===
+| File generated to validate
+a| include::{rootpath}/samples/demo_basic_approvals/src/test/docs/org/sfvl/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+3]
+|===
+
+

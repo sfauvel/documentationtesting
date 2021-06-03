@@ -1,9 +1,15 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../..
+endif::[]
+
+:sourcedir: ..
+:source-highlighter: rouge
+:docinfo:
+
+:nofooter:
+:fulldoc:
 = Documentation testing
 :rootpath: .
-
-ifndef::fulldoc[]
-*To have more information, you can visit https://sfauvel.github.io/documentationtesting/[complete documentation].*
-endif::fulldoc[]
 
 We used to say that tests are the first documentation.
 But a test often looks like that:
@@ -143,3 +149,82 @@ max-width: 75%;
 }
 </style>
 ++++
+Here, what you can find as resources on this site
+
+[cols=2]
+[.DocumentationTestingDoc.intro.bis]
+|====
+^.a| == link:{ROOT_PATH}/fr/sfvl/ConceptDocTest.explanation.html[More explanation]
+
+
+You want to have more information of the concept, the idea, the history, ...
+
+
+
+^.a| == link:{ROOT_PATH}/fr/sfvl/ConceptDocTest.tutorial.html[Just try it]
+
+
+We explain how to experiment whatever your language.
+
+
+
+^.a| == link:{ROOT_PATH}/fr/sfvl/ConceptDocTest.howTo.html[Some examples]
+
+
+We will present some documentation.
+That shows how we can present some information in a documentation that is also a test.
+
+
+
+^.a| == link:{ROOT_PATH}/fr/sfvl/ConceptDocTest.reference.html[Tools]
+
+
+Tools, full discussions and choices
+
+
+
+|====
+
+
+Full project documentation is here: https://sfauvel.github.io/documentationtesting/
+++++
+<style>
+table.DocumentationTestingDoc.grid-all > * > tr > * {
+    border-width:3px;
+    border-color:#AAAAAA;
+}
+
+.DocumentationTestingDoc.intro td {
+    background-color:#05fdCC;
+    //border: 30px solid #BFBFBF;
+    -webkit-box-shadow: 3px 3px 6px #A9A9A9;
+}
+.DocumentationTestingDoc.intro.bis td {
+    background-color:#fdfff0;
+    padding:2em;
+}
+.DocumentationTestingDoc.intro.bis td h2 {
+    margin-top:0 !important;
+}
+
+.DocumentationTestingDoc .subtitle {
+    color: #888888;
+}
+.DocumentationTestingDoc .noborder td{
+    border: none;
+    -webkit-box-shadow: none;
+}
+.DocumentationTestingDoc table.noborder  {
+    border: none;
+}
+
+#content {
+max-width: 75%;
+}
+
+
+</style>
+++++
+
+
+

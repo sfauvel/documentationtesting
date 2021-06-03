@@ -1,0 +1,16 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../..
+endif::[]
+
+[#fr_sfvl_ConceptDocTest_reference]
+= Reference
+
+In this page, you will find links to resources that help you to implement a documentation that can be used as a non regression test.
+
+
+
+* Documentation of the concept: link:{github-pages}[]
+* Library for Java: link:{github-pages}/documentationtesting[DocumentationTesting]
+* To get source and examples: link:{github-repo}[]
+* A plugin for IntelliJ is provided in {github-repo}/approvalsDocPlugin[approvalsDocPlugin] folder
+

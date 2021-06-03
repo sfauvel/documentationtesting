@@ -1,5 +1,0 @@
-:nofooter:
-= Samples
-
-include::./demo_list.adoc[leveloffset=+1]
-include::./tech_list.adoc[leveloffset=+1]

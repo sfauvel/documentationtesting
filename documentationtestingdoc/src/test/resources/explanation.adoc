@@ -1,0 +1,38 @@
+= Explanation
+
+== Principal
+
+//L'idée est d'avoir une documentation générée à partir du code afin qu'elle reflète le comportement actuel de l'application.
+The idea is to have documentation generated from the code so that it reflects the current behavior of the application.
+
+//On peut alors valider, après relecture, que ce qui est écrit correspond aux attentes du produit.
+We can then validate, after proofreading, that what is written corresponds to the expectations of the product.
+
+//Ces documents deviennent la référence sur laquelle on s'appuira pour détecter des régressions.
+// Tout changement sera considéré comme un test en échec.
+These documents become the reference on which we will rely to detect regressions.
+Any change will be considered a failed test.
+
+== Another way to test
+
+With this approach, we have to change the way we test software.
+We need to think more about documentation than about tests.
+We just have to make visible how the software behave whatever this behavior.
+Secondly, we will decide if this behavior is the one we expect.
+
+== What is a test
+
+A test is the verification that a behaviour is the one we expect.
+To do that, we need two things.
+First, we need to have all information to describe the behavior in a specific scenario.
+Generally, it means to know the context, steps achieved and results obtained.
+Second, we have to check that it is what we expect.
+
+The automation is the capacity to reproduce all of that without human needs.
+
+== Compare with other approches
+
+* TDD: We can use it to do TDD. At the end, our test are not only technical code.
+* BDD: It's very close to BDD expect that documentation is not instruction to execute a test. There is more possibilities tp write a readable docmentation.
+* Golden Master: It's a golden master but reference file is not just data. We can understand each case and validate them more easily when functional change.
+* Living documentation: It's a living documentation that have to be validate once so we'll be warned when behavior change.

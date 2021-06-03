@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # Convert all documentation of modules writing in asciidoctor to a global HTML documentation.
+# You can define `DOC_AS_TEST_ADDITIONAL_VOLUME` variable to add one volume to docker (not possible to add more than one)
+#   DOC_AS_TEST_ADDITIONAL_VOLUME=$(pwd)/../samples:${DOCKER_WORKDIR}/samples
 set -euo pipefail
 
 ASCIIDOC_DOCKER_IMAGE=asciidoctor/docker-asciidoctor:1.1.0
@@ -39,6 +41,9 @@ function generateAsciidoc() {
     local OUTPUT_FILE=$4
     local STYLESHEETS=${SCRIPT_PATH}/../stylesheets
 
+    # By default, we set to ':' so we can add this value after '-v' option in docker command.
+    local ADDITIONAL_VOLUME=$(eval echo "${DOC_AS_TEST_ADDITIONAL_VOLUME:-":"}")
+
     # echo ------------------------------
     # echo PROJECT_PATH: $PROJECT_PATH
     # echo ADOC_FILE: $ADOC_FILE
@@ -52,10 +57,12 @@ function generateAsciidoc() {
         mkdir -p ${DESTINATION}
     fi
 
+# -v $(pwd)/../samples:${DOCKER_WORKDIR}/samples
     docker run -it \
     	-v $(pwd)/${PROJECT_PATH}:${DOCKER_WORKDIR}/ \
     	-v $(pwd)/${DESTINATION}:/destination/ \
     	-v ${STYLESHEETS}:/stylesheets:ro \
+	    -v ${ADDITIONAL_VOLUME} \
 	    -w ${DOCKER_WORKDIR} \
     	${ASCIIDOC_DOCKER_IMAGE} \
     	asciidoctor \

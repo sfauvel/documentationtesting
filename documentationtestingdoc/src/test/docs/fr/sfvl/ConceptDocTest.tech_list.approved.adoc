@@ -1,0 +1,33 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../..
+endif::[]
+
+[#fr_sfvl_ConceptDocTest_tech_list]
+= Technical demos
+
+These examples show different approaches related to the technical environment.
+It could be about languages, tools or some specifics cases.
+
+
+ * link:{ROOT_PATH}/../tech_haskell/index.html[tech_haskell]: Example in Haskell. 
+
+
+ * link:{ROOT_PATH}/../tech_junit4/index.html[tech_junit4]: Demo using junit4. 
+
+
+ * link:{ROOT_PATH}/../tech_junit5_extension/index.html[tech_junit5_extension]: Demo using junit5 extension. 
+
+
+ * link:{ROOT_PATH}/../tech_perf/index.html[tech_perf]: Evalute performance between classical test between using documentation approvals. 
+
+
+ * link:{ROOT_PATH}/../tech_python/index.html[tech_python]: Example in Python. 
+
+
+ * link:{ROOT_PATH}/../tech_using_asciidoctorj/index.html[tech_using_asciidoctorj]: Use asciidoctorj to convert asciidoctor files to html. 
+
+
+ * link:{ROOT_PATH}/../tech_using_git/index.html[tech_using_git]: Simple demo with validation using git. 
+
+
+ * link:{ROOT_PATH}/../tech_using_git_or_approvals/index.html[tech_using_git_or_approvals]: Simple demo with validation using git or approvals. 

@@ -1,0 +1,39 @@
+= Documentation testing
+:rootpath: .
+
+Imagine that your tests are as readable as documentation and that they look like this
+
+// https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp
+++++
+<script>
+function myFunction(button, id) {
+  var x = document.getElementById(id);
+  if (x.style.display === "none") {
+    button.textContent = "Hide";
+    x.style.display = "block";
+  } else {
+    button.textContent = "Show";
+    x.style.display = "none";
+  }
+}
+</script>
+<style>
+.myButton {
+    background-color: #34FF67;
+    width:6em;
+    padding: 0.4em;
+    text-align:center;
+}
+.myButton:hover {
+    background-color: #F4FF67;
+    font-weight:bold;
+}
+</style>
+
+<div class="myButton" onclick="myFunction(this, 'myDIV')" style="cursor:default">Click Me</div>
+
+<div id="myDIV" style="display:none; padding:0.5em;">
+  This is my DIV element.
+</div>
+++++
+

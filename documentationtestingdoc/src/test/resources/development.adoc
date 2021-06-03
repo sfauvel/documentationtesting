@@ -1,0 +1,36 @@
+= Development
+
+This section give you informations to contribute to the project.
+
+To get source and examples: https://github.com/sfauvel/documentationtesting
+
+
+ifdef::fulldoc[]
+link:documentationtesting/index.html[Code documentation of project DocumentationTesting]
+endif::[]
+
+== Generate a full documentation
+
+To generate a single file with all tests, launch `MainDocumentation` class.
+
+`convertAdoc.sh` takes the single generated file to convert it to HTML.
+
+You can use `RunAll` class to make all process in a single command.
+launch tests, generate an asciidoc with all files generated and convert it to HTML.
+
+== On Windows
+
+Scripts are written to run with bash.
+On windows, you can execute them in a Git bash console for example.
+
+It's not possible to run docker with volume in a bash script on Windows.
+To execute projets on specific language, compiler need to be installed in machin.
+
+We also used docker to convert asciidoc to html.
+On windows, this generation could not be done when executing all project.
+A script _convertADocToHtml.bat_ is provided to generate Html for one project.
+
+== Modify doc format
+
+If you decide to change style of the documentation generated, all your tests will be failed.
+You can approve them renaming all files `*.received.adoc` to `*.approved.adoc`.

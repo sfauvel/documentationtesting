@@ -1,0 +1,25 @@
+:notitle:
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../..
+endif::[]
+
+:nofooter:
+= Concept doc test
+
+include::ConceptDocTest.index.approved.adoc[leveloffset=+1]
+
+include::ConceptDocTest.explanation.approved.adoc[leveloffset=+1]
+
+include::ConceptDocTest.tutorial.approved.adoc[leveloffset=+1]
+
+include::ConceptDocTest.howTo.approved.adoc[leveloffset=+1]
+
+include::ConceptDocTest.reference.approved.adoc[leveloffset=+1]
+
+include::ConceptDocTest.best_practice.approved.adoc[leveloffset=+1]
+
+include::ConceptDocTest.ways_to_implement.approved.adoc[leveloffset=+1]
+
+include::ConceptDocTest.demo_list.approved.adoc[leveloffset=+1]
+
+include::ConceptDocTest.tech_list.approved.adoc[leveloffset=+1]

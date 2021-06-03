@@ -1,0 +1,33 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../..
+endif::[]
+
+[#fr_sfvl_ConceptDocTest_demo_list]
+= Functional demos
+
+Those samples show different documentation that can be generated.
+It allows to give ideas on different ways of presenting information
+
+
+ * link:{ROOT_PATH}/../demo_basic_approvals/index.html[demo_basic_approvals]: Simple demo with validation using approvals. 
+
+
+ * link:{ROOT_PATH}/../demo_fizzbuzz/index.html[demo_fizzbuzz]: Fizz buzz with samples foreach rules. 
+
+
+ * link:{ROOT_PATH}/../demo_gameoflife/index.html[demo_gameoflife]: The famous game of life kata with a visual representation of each rule. 
+
+
+ * link:{ROOT_PATH}/../demo_gildedrose/index.html[demo_gildedrose]: Gilded Rose displaying evolution of values in a table and with a graphic. 
+
+
+ * link:{ROOT_PATH}/../demo_hero/index.html[demo_hero]: Shows different documentation that could be produced to verify the same thing. 
+
+
+ * link:{ROOT_PATH}/../demo_minimal/index.html[demo_minimal]: Minimal project generating doc 
+
+
+ * link:{ROOT_PATH}/../demo_tennis/index.html[demo_tennis]: Tennis score display in a readable board. 
+
+
+ * link:{ROOT_PATH}/../demo_trivia/index.html[demo_trivia]: Demo with trivia kata. 
