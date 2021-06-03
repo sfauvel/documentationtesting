@@ -98,6 +98,7 @@ function write_result() {
   else
     write_failure "FAILURE"
     write_failure "$HTML_RESULT"
+    exit 1
   fi
 }
 
