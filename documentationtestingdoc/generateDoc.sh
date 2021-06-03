@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+
+mvn clean install package -q
+
 export DOC_AS_TEST_ADDITIONAL_VOLUME='$(pwd)/../samples:${DOCKER_WORKDIR}/samples'
 
 DOC_PROJECT_PATH=..

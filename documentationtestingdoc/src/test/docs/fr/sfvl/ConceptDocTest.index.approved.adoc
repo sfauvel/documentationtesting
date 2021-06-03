@@ -11,6 +11,10 @@ endif::[]
 = Documentation testing
 :rootpath: .
 
+ifndef::fulldoc[]
+*To have more information, you can visit https://sfauvel.github.io/documentationtesting/[complete documentation].*
+endif::fulldoc[]
+
 We used to say that tests are the first documentation.
 But a test often looks like that:
 

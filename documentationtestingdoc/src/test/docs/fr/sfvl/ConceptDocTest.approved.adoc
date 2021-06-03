@@ -12,6 +12,8 @@ include::ConceptDocTest.explanation.approved.adoc[leveloffset=+1]
 
 include::ConceptDocTest.tutorial.approved.adoc[leveloffset=+1]
 
+include::ConceptDocTest.development.approved.adoc[leveloffset=+1]
+
 include::ConceptDocTest.howTo.approved.adoc[leveloffset=+1]
 
 include::ConceptDocTest.reference.approved.adoc[leveloffset=+1]

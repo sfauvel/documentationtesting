@@ -9,6 +9,9 @@ Those samples show different documentation that can be generated.
 It allows to give ideas on different ways of presenting information
 
 
+ * link:{ROOT_PATH}/../demo_asciidoc/index.html[demo_asciidoc]: Show how to write asciidoc to display some common needs. 
+
+
  * link:{ROOT_PATH}/../demo_basic_approvals/index.html[demo_basic_approvals]: Simple demo with validation using approvals. 
 
 
