@@ -1,0 +1,28 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+[#org_sfvl_demo_AsciiDocRenderingTest_useful_symbol]
+= Useful symbol
+
+You can display utf-8 characters with syntax: `\&#x2714;` to display `&#x2714;`.
+
+See: https://www.w3schools.com/charsets/ref_html_utf8.asp
+
+[%autowidth]
+|====
+^| `\&#x2714;`
+^| &#x2714;
+|====
+
+[%autowidth]
+|====
+^| `\&#x2191;`| `\&#x2193;`| `\&#x21A5;`| `\&#x21A7;`| `\&#x21D1;`| `\&#x21D3;`| `\&#x21E1;`| `\&#x21E3;`| `\&#x21E7;`| `\&#x21E9;`
+^| &#x2191;| &#x2193;| &#x21A5;| &#x21A7;| &#x21D1;| &#x21D3;| &#x21E1;| &#x21E3;| &#x21E7;| &#x21E9;
+|====
+
+[%autowidth]
+|====
+^| `\&#x2206;`| `\&#x2207;`| `\&#x22C0;`| `\&#x22C1;`
+^| &#x2206;| &#x2207;| &#x22C0;| &#x22C1;
+|====

@@ -1,0 +1,7 @@
+= Asciidoc rendering
+
+We explain how to make some common rendering with asciidoc.
+
+== Resources
+
+* https://asciidoctor.org/docs/asciidoc-writers-guide[AsciiDoc Writer’s Guide]

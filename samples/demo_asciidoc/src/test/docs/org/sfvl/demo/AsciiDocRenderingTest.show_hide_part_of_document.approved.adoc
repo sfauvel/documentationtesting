@@ -1,0 +1,69 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+
+include::{ROOT_PATH}/../resources/buttonShowHide.adoc[][leveloffset=+1]
+.Asciidoc source used
+------
+= Show/Hide some document parts
+:rootpath: .
+
+You can use javascript and css to add some dynamic behavior in your page.
+Here we create a button to show/hide some text.
+
+// https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp
+++++
+<script>
+function myFunction(button, id) {
+  var x = document.getElementById(id);
+  if (x.style.display === "none") {
+    button.textContent = "\u22C0 | Hide";
+    x.style.display = "block";
+  } else {
+    button.textContent = "\u22C1 | Show";
+    x.style.display = "none";
+  }
+}
+</script>
+<style>
+.myButton {
+    background-color: #4CAF50;
+    width:6em;
+    padding: 0.6em;
+    text-align:center;
+}
+.myButton:hover {
+    font-weight:bold;
+}
+</style>
+
+++++
+
+++++
+<div class="myButton" onclick="myFunction(this, 'myTextToShowHide_1')" style="cursor:default">
+    &#x22C0; | Hide
+</div>
+++++
+
+[#myTextToShowHide_1]
+----
+public void mySourceCode() {
+    // do something
+}
+----
+
+++++
+<div class="myButton" onclick="myFunction(this, 'myTextToShowHide_2')" style="cursor:default">
+    &#x22C0; | Hide
+</div>
+++++
+
+[#myTextToShowHide_2]
+----
+public void anotherExample() {
+    // do something
+}
+----
+
+------
