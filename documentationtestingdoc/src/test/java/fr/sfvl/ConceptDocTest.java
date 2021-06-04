@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.DocWriter;
