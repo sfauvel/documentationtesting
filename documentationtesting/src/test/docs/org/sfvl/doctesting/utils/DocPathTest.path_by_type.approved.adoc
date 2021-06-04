@@ -44,6 +44,11 @@ a| folder() | src/test/java/org/sfvl/samples
 a| fullname() | MyTest.java
 a| from() | ../../../../../java/org/sfvl/samples/MyTest.java
 a| to() | ../../../../docs/org/sfvl/doctesting/utils/DocPathTest.approved.adoc
+.5+a| `resource()` | path() | src/test/resources/org/sfvl/samples/MyTest.adoc
+a| folder() | src/test/resources/org/sfvl/samples
+a| fullname() | MyTest.adoc
+a| from() | ../../../../../resources/org/sfvl/samples/MyTest.adoc
+a| to() | ../../../../docs/org/sfvl/doctesting/utils/DocPathTest.approved.adoc
 .5+a| `doc()` | path() | org/sfvl/samples/MyTest.html
 a| folder() | org/sfvl/samples
 a| fullname() | MyTest.html

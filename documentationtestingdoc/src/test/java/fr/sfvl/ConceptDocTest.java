@@ -161,19 +161,26 @@ public class ConceptDocTest extends MyFormatter {
     @Test
     @NoTitle
     public void explanation() {
-        doc.write("include::{ROOT_PATH}/../resources/explanation.adoc[]");
+        final DocPath docPath = new DocPath(Paths.get(""), "explanation");
+        final Path from = docPath.resource().from(this.getClass());
+        doc.write(String.format("include::%s[]", from.toString()));
+
     }
 
     @Test
     @NoTitle
     public void tutorial() {
-        doc.write("include::{ROOT_PATH}/../resources/tutorial.adoc[]");
+        final DocPath docPath = new DocPath(Paths.get(""), "tutorial");
+        final Path from = docPath.resource().from(this.getClass());
+        doc.write(String.format("include::%s[]", from.toString()));
     }
 
     @Test
     @NoTitle
     public void development() {
-        doc.write("include::{ROOT_PATH}/../resources/development.adoc[]");
+        final DocPath docPath = new DocPath(Paths.get(""), "development");
+        final Path from = docPath.resource().from(this.getClass());
+        doc.write(String.format("include::%s[]", from.toString()));
     }
 
     /**
@@ -209,14 +216,18 @@ public class ConceptDocTest extends MyFormatter {
     @NoTitle
     public void best_practice() {
         // With @NoTitle, there is no need to change leveloffset, otherwise add [leveloffset=+1]
-        doc.write("include::{ROOT_PATH}/../resources/best_practice.adoc[]");
+        final DocPath docPath = new DocPath(Paths.get(""), "best_practice");
+        final Path from = docPath.resource().from(this.getClass());
+        doc.write(String.format("include::%s[]", from.toString()));
     }
 
     @Test
     @NoTitle
     public void ways_to_implement() {
         // With @NoTitle, there is no need to change leveloffset, otherwise add [leveloffset=+1]
-        doc.write("include::{ROOT_PATH}/../resources/ways_to_implement.adoc[]");
+        final DocPath docPath = new DocPath(Paths.get(""), "ways_to_implement");
+        final Path from = docPath.resource().from(this.getClass());
+        doc.write(String.format("include::%s[]", from.toString()));
     }
 
     /**

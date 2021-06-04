@@ -1,5 +1,4 @@
 = Show/Hide some document parts
-:rootpath: .
 
 You can use javascript and css to add some dynamic behavior in your page.
 Here we create a button to show/hide some text.

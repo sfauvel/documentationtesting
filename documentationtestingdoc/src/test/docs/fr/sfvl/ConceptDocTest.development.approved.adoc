@@ -2,4 +2,4 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../..
 endif::[]
 
-include::{ROOT_PATH}/../resources/development.adoc[]
+include::../../../resources/development.adoc[]

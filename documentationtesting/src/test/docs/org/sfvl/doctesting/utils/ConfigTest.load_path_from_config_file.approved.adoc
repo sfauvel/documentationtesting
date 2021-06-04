@@ -19,5 +19,6 @@ Values are:
 * SOURCE_PATH=source/java
 * TEST_PATH=source/test
 * DOC_PATH=source/docs
+* RESOURCE_PATH=src/test/resources
 
 When config file does not exist, values are the default ones.

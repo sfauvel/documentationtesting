@@ -11,19 +11,31 @@ public class DocPath {
     private final String name;
 
     public DocPath(Class<?> clazz) {
-        this.folder = toPath(clazz.getPackage());
-        this.name = extractClassName(clazz);
+        this(clazz.getPackage(),
+                extractClassName(clazz));
     }
 
     public DocPath(Method method) {
-        final Class<?> clazz = method.getDeclaringClass();
-        this.folder = toPath(clazz.getPackage());
-        String className = extractClassName(clazz);
-        this.name = String.format("%s.%s", className, method.getName());
+        this(method.getDeclaringClass().getPackage(),
+                extractMethodName(method));
     }
 
-    private final String extractClassName(Class<?> clazz) {
+    public DocPath(Package classPackage, String name) {
+        this(toPath(classPackage),
+                name);
+    }
+
+    public DocPath(Path folder, String name) {
+        this.folder = folder;
+        this.name = name;
+    }
+
+    private static final String extractClassName(Class<?> clazz) {
         return clazz.getCanonicalName().replace(clazz.getPackage().getName() + ".", "");
+    }
+
+    private static final String extractMethodName(Method method) {
+        return String.format("%s.%s", extractClassName(method.getDeclaringClass()), method.getName());
     }
 
     public OnePath approved() {
@@ -37,7 +49,9 @@ public class DocPath {
     public OnePath test() {
         return new OnePath(Config.TEST_PATH, folder, name, ".java");
     }
-
+    public OnePath resource() {
+        return new OnePath(Config.RESOURCE_PATH, folder, name, ".adoc");
+    }
     public OnePath doc() {
         return new OnePath(Paths.get(""), folder, name, ".html");
     }

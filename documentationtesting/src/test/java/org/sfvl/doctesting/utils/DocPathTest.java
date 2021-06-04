@@ -73,6 +73,7 @@ public class DocPathTest {
                 line(docPath, DocPath::approved, relativeToApproved),
                 line(docPath, DocPath::received, relativeToApproved),
                 line(docPath, DocPath::test, relativeToApproved),
+                line(docPath, DocPath::resource, relativeToApproved),
                 line(docPath, DocPath::doc, relativeToApproved),
                 "|====");
     }

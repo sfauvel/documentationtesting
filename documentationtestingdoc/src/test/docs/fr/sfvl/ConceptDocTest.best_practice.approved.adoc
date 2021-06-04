@@ -2,4 +2,4 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../..
 endif::[]
 
-include::{ROOT_PATH}/../resources/best_practice.adoc[]
+include::../../../resources/best_practice.adoc[]

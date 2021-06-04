@@ -1,13 +1,17 @@
 package org.sfvl.demo;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.NoTitle;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,6 +28,20 @@ public class AsciiDocRenderingTest {
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     static private Formatter formatter = new AsciidocFormatter();
+
+    @AfterAll
+    static public void writeIndexPage() throws IOException, NoSuchMethodException {
+        final DocPath docPath = new DocPath(AsciiDocRenderingTest.class);
+        String content = String.join("\n",
+                doc.getDocWriter().defineDocPath(Paths.get(".")),
+                ":nofooter:",
+                "include::" + docPath.approved().from(Config.DOC_PATH).toString() + "[]");
+
+        final Path indexFile = Config.DOC_PATH.resolve("Documentation.adoc");
+        try (FileWriter fileWriter = new FileWriter(indexFile.toFile())) {
+            fileWriter.write(content);
+        }
+    }
 
     /**
      * You can display utf-8 characters with syntax: `\&#x2714;` to display `&#x2714;`.
@@ -69,13 +87,14 @@ public class AsciiDocRenderingTest {
     @Test
     @NoTitle
     void show_hide_part_of_document() throws IOException {
-        String filename = "buttonShowHide.adoc";
-        doc.write(formatter.include(String.format("{ROOT_PATH}/../resources/%s[]", filename)));
+        final DocPath docPath = new DocPath(Paths.get(""), "buttonShowHide");
+        final Path from = docPath.resource().from(this.getClass());
 
+        doc.write(formatter.include(from.toString()));
         doc.write(
                 String.format(".Asciidoc source used"),
                 "------",
-                getEscapedFileContent(Paths.get("src/test/resources").resolve(filename)),
+                getEscapedFileContent(docPath.resource().path()),
                 "------"
         );
     }
