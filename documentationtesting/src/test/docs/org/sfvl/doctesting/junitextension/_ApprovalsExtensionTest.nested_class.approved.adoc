@@ -1,0 +1,105 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+[#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_nested_class]
+= Nested class
+
+Nested class can be used to organize tests.
+Each nested class create a nested title.
+
+// Test result for DemoNestedTest: Success
+
+
+.Test example using nested class
+[source, java, indent=0]
+----
+/**
+ * Demo of a simple usage to generate documentation.
+ */
+class DemoNestedTest {
+    @RegisterExtension
+    static final ApprovalsExtension writer = new SimpleApprovalsExtension();
+
+    /**
+     * Document of Addition operations.
+     */
+    @Nested
+    class Adding {
+
+        @Test
+        @DisplayName("Adding 2 simple numbers")
+        public void should_be_5_when_adding_2_and_3() {
+            writer.write(String.format("%d + %d = %d", 2, 3, 2 + 3));
+        }
+
+        /**
+         * A nested test.
+         */
+        @Test
+        @DisplayName("Adding 3 simple numbers")
+        public void should_be_9_when_adding_2_3_and_4() {
+            writer.write(String.format("%d + %d + %d = %d", 2, 3, 4, 2 + 3 + 4));
+        }
+    }
+
+    @Nested
+    class Multiply {
+        @Test
+        @DisplayName("Multiply 2 simple numbers")
+        public void should_be_12_when_multiply_4_and_3() {
+            writer.write(String.format("%d * %d = %d", 4, 3, 4 * 3));
+        }
+    }
+}
+----
+
+Generated files in `org/sfvl/doctesting/junitextension`:
+
+* _DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc
+
+* _DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc
+
+* _DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc
+
+* _DemoNestedTest.approved.adoc
+
+.Document generated
+----
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+:nofooter:
+= Demo nested test
+
+Demo of a simple usage to generate documentation.
+
+== Adding
+
+Document of Addition operations.
+
+\include::_DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+2]
+
+\include::_DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+2]
+
+== Multiply
+
+\include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]
+----
+
+++++
+<style>
+.adocRendering {
+    padding: 1em;
+    background: #fffef7;
+    border-color: #e0e0dc;
+    -webkit-box-shadow: 0 1px 4px #e0e0dc;
+    box-shadow: 0 1px 4px #e0e0dc;
+}
+</style>
+++++
+
+_final rendering_
+[.adocRendering]
+include::_DemoNestedTest.approved.adoc[leveloffset=+1]

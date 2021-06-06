@@ -6,10 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
 <title>Approvals extension</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
-@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}
 audio,video{display:inline-block}
 audio:not([controls]){display:none;height:0}
@@ -433,7 +434,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer{background:none}
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
-
 </style>
 </head>
 <body class="article toc2 toc-left">
@@ -519,7 +519,7 @@ This extension will check that content of <code>DocWriter</code> has not changed
 </div>
 </div>
 <div class="paragraph">
-<p>When executing test method <code>test_A</code>, a file <code>MyTest.test_A.approved.adoc</code> is generated and contains the following text</p>
+<p>When executing test method <code>test_A</code>, a file <code>_MyTest.test_A.approved.adoc</code> is generated and contains the following text</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -612,7 +612,7 @@ and modify what it will be written in the final document.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>When executing test method <code>test_A</code>, a file <code>MyCustomWriterTest.test_A.approved.adoc</code> is generated and contains the following text</p>
+<p>When executing test method <code>test_A</code>, a file <code>_MyCustomWriterTest.test_A.approved.adoc</code> is generated and contains the following text</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -682,16 +682,16 @@ Each nested class create a nested title.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc</p>
+<p>_DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc</p>
 </li>
 <li>
-<p>DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc</p>
+<p>_DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc</p>
 </li>
 <li>
-<p>DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc</p>
+<p>_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc</p>
 </li>
 <li>
-<p>DemoNestedTest.approved.adoc</p>
+<p>_DemoNestedTest.approved.adoc</p>
 </li>
 </ul>
 </div>
@@ -707,13 +707,13 @@ Demo of a simple usage to generate documentation.
 
 Document of Addition operations.
 
-include::DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+2]
+include::_DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+2]
 
-include::DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+2]
+include::_DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+2]
 
 == Multiply
 
-include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]</pre>
+include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]</pre>
 </div>
 </div>
 <style>
@@ -803,7 +803,7 @@ endif::[]
 :nofooter:
 = My test
 
-include::MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
+include::_MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
 </div>
 </div>
 <style>

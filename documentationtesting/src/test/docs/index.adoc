@@ -2,4 +2,4 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: .
 endif::[]
 :nofooter:
-include::org/sfvl/DocumentationTestingDocumentation.documentationTesting.approved.adoc[]
+include::org/sfvl/_DocumentationTestingDocumentation.documentationTesting.approved.adoc[]

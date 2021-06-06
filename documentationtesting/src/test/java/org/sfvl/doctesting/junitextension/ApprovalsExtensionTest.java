@@ -56,7 +56,7 @@ public class ApprovalsExtensionTest {
         doc.write(".Test example using DisplayName", extractSourceWithTag(testClass.getSimpleName(), this.getClass(), testClass), "", "");
 
         final String testMethod = FindLambdaMethod.getName(UsingDisplayNameTest::test_A);
-        final String filename = testClass.getSimpleName() + "." + testMethod + ".approved.adoc";
+        final String filename = "_" + testClass.getSimpleName() + "." + testMethod + ".approved.adoc";
         doc.write("Generated file with DisplayName content as title", "----", "include::" + filename + "[]", "----");
     }
 
@@ -92,7 +92,7 @@ public class ApprovalsExtensionTest {
         final Path generatedFilePath = Paths.get("", getClass().getPackage().getName().split("\\."));
         doc.write("Generated files in `" + generatedFilePath + "`:", "", Files.list(doc.getDocPath().resolve(generatedFilePath))
                 .map(file -> file.getFileName().toString())
-                .filter(filename -> filename.startsWith(DemoNestedTest.class.getSimpleName() + "."))
+                .filter(filename -> filename.startsWith("_" + DemoNestedTest.class.getSimpleName() + "."))
                 .filter((filename -> filename.endsWith(".approved.adoc")))
                 .sorted()
                 .map(filename -> "* " + filename)
@@ -114,7 +114,7 @@ public class ApprovalsExtensionTest {
                 "}\n" +
                 "</style>\n" +
                 "++++";
-        doc.write("", "", style, "", "_final rendering_", "[.adocRendering]", "include::" + testClass.getSimpleName() + ".approved.adoc[leveloffset=+1]");
+        doc.write("", "", style, "", "_final rendering_", "[.adocRendering]", "include::_" + testClass.getSimpleName() + ".approved.adoc[leveloffset=+1]");
 
     }
 

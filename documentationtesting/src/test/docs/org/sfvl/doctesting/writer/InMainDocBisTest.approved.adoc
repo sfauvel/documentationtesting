@@ -1,8 +1,0 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../../..
-endif::[]
-
-:nofooter:
-= In main doc bis test
-
-include::InMainDocBisTest.testX.approved.adoc[leveloffset=+1]

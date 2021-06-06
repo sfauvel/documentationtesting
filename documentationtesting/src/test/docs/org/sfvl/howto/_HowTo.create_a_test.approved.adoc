@@ -1,0 +1,6 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+
+include::../doctesting/junitextension/_ApprovalsExtensionTest.using_extension.approved.adoc[leveloffset=+0]

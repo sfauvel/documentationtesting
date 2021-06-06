@@ -1,0 +1,51 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+[#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_a_custom_writer]
+= Using a custom writer
+
+
+// Test result for MyCustomWriterTest: Success
+It's possible to give a specific DocWriter to `ApprovalsExtension`
+and modify what it will be written in the final document.
+
+.Test example using `ApprovalsExtension`
+[source, java, indent=0]
+----
+class MyCustomWriterTest {
+
+    @RegisterExtension
+    static final ApprovalsExtension doc = new ApprovalsExtension(
+            new DocWriter() {
+                @Override
+                public void write(String... texts) {
+                    super.write(texts);
+                    super.write(" // Add a comment after each call to write");
+                }
+
+                @Override
+                public String formatOutput(String displayName, Method testMethod) {
+                    return "// Add an header to the document\n"
+                            + super.formatOutput(displayName, testMethod);
+                }
+
+                @Override
+                public String formatTitle(String displayName, Method method) {
+                    return super.formatTitle(displayName, method) + ": Custom title";
+                }
+            }
+    );
+
+    @Test
+    public void test_A() {
+        doc.write("In my *test*");
+    }
+
+}
+----
+
+When executing test method `test_A`, a file `_MyCustomWriterTest.test_A.approved.adoc` is generated and contains the following text
+----
+include::../../samples/_MyCustomWriterTest.test_A.approved.adoc[]
+----
