@@ -19,4 +19,4 @@ View source of project on link:{github-repo}/samples/tech_using_asciidoctorj[Git
 
 
 
-include::org/sfvl/demo/DemoTest.approved.adoc[leveloffset=+1]
+include::org/sfvl/demo/_DemoTest.approved.adoc[leveloffset=+1]

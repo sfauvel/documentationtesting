@@ -49,21 +49,24 @@ function generate_docs() {
   echo "Generate projects documentation..."
   for DEMO_NAME in $ALL_DEMOS
   do
-      echo "---------------------"
-      echo "Project ${DEMO_NAME}"
+      #echo "---------------------"
+      echo -n "Project ${DEMO_NAME}: "
       pushd $DEMO_NAME > /dev/null
       returncode=0
-      ./generateDoc.sh || returncode=$?
+      ./generateDoc.sh > /dev/null 2>&1 || returncode=$?
+
 
       if [[ returncode -eq 0 ]]
       then
-        DEMO_STATUS="${GREEN}OK${NO_COLOR}"
+        DEMO_STATUS="OK"
         TEST_COLOR=${GREEN}
       else
         ALL_STATUS_RESULT="${RED}FAILED${NO_COLOR}"
         DEMO_STATUS="FAILED"
         TEST_COLOR=${RED}
       fi
+
+      echo -e  "${TEST_COLOR}${DEMO_STATUS}${NO_COLOR}"
 
       ALL_RESULTS="$ALL_RESULTS${TEST_COLOR}- ${DEMO_NAME}: ${DEMO_STATUS}${NO_COLOR}\n"
       popd > /dev/null

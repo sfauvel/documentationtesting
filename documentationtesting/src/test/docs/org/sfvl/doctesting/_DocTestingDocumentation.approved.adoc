@@ -1,0 +1,8 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+:nofooter:
+= Doc testing documentation
+
+include::_DocTestingDocumentation.doc.approved.adoc[leveloffset=+1]

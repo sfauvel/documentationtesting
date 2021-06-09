@@ -14,7 +14,7 @@ public class BasicDocumentation extends DemoDocumentation {
 
     @Override
     public void produce() throws IOException {
-        new Document(this.build()).saveAs(Config.DOC_PATH.resolve("Documentation.adoc"));
+        new Document(this.build()).saveAs(Config.DOC_PATH.resolve("index.adoc"));
     }
 
     public static void main(String... args) throws IOException {

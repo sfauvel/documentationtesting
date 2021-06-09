@@ -37,7 +37,7 @@ public class AsciiDocRenderingTest {
                 ":nofooter:",
                 "include::" + docPath.approved().from(Config.DOC_PATH).toString() + "[]");
 
-        final Path indexFile = Config.DOC_PATH.resolve("Documentation.adoc");
+        final Path indexFile = Config.DOC_PATH.resolve("index.adoc");
         try (FileWriter fileWriter = new FileWriter(indexFile.toFile())) {
             fileWriter.write(content);
         }
@@ -50,7 +50,6 @@ public class AsciiDocRenderingTest {
      */
     @Test
     void useful_symbol() {
-
         doc.write(symbols("2714"),
                 "",
                 symbols(

@@ -1,0 +1,12 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+:nofooter:
+= Use your own style
+
+To have specific style in some chapter, you can use HTML style directly in your Asciidoc files.
+
+You need to encapsulate it between \\++++ and <style> balise.
+
+include::_UseYourOwnStyle.define_a_custom_style.approved.adoc[leveloffset=+1]

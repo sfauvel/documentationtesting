@@ -1,0 +1,9 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+[#org_sfvl_samples_FailingTest_failing_test]
+= Failing test
+
+Some information before failure.
+

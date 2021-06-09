@@ -1,0 +1,43 @@
+:toc: left
+:nofooter:
+:stem:
+:source-highlighter: rouge
+
+
+
+
+= Trivia
+
+
+
+include::../../../readme.adoc[leveloffset=+1]
+
+
+NOTE: The examples shown here are generated from the source code.
+They therefore represent the behavior of the application at any times.
+Non regression is ensured by checking the absence of change in this document.
+Learn more here link:{github-pages}[]
+
+View source of project on link:{github-repo}/samples/demo_trivia[Github]
+
+== Legend
+
+=== Categories
+
+The questions asked to the players are chosen from the following categories: 
+
+* [pop category]#Pop#
+* [science category]#Science#
+* [sports category]#Sports#
+* [rock category]#Rock#
+
+=== Board
+
+On the board, the current player is in bold: *Chet*, Pat +
+A player who has a penalty has his name enclosed in square brackets: [Chet] +
+The number of points is displayed behind the player's name: Chet &#x2783; +
+
+
+
+
+include::com/adaptionsoft/games/uglytrivia/_GameTest.approved.adoc[leveloffset=+1]

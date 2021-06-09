@@ -1,0 +1,5 @@
+= Check file modification with git after each test.
+
+Demo of a simple usage to generate documentation.
+
+include::_UsingGitAssertingOnEachTestTest.should_give_person_information.approved.adoc[leveloffset=+1]

@@ -59,9 +59,9 @@ public class TriviaDocumentation extends DemoDocumentation {
 
     @Override
     public void produce() throws IOException {
-        new Document(this.build("Trivia", getStandardClasses())).saveAs(Config.DOC_PATH.resolve("Documentation.adoc"));
+        new Document(this.build("Trivia", getStandardClasses())).saveAs(Config.DOC_PATH.resolve("index.adoc"));
 
-        new Document(this.build("Trivia with animation", getSvgClasses())).saveAs(Config.DOC_PATH.resolve("DocumentationWithAnimation.adoc"));
+        new Document(this.build("Trivia with animation", getSvgClasses())).saveAs(Config.DOC_PATH.resolve("indexWithAnimation.adoc"));
     }
 
     public static void main(String... args) throws IOException {

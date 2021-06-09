@@ -39,11 +39,11 @@ public class DocPath {
     }
 
     public OnePath approved() {
-        return new OnePath(Config.DOC_PATH, folder, name, ".approved.adoc");
+        return new OnePath(Config.DOC_PATH, folder, "_" + name, ".approved.adoc");
     }
 
     public OnePath received() {
-        return new OnePath(Config.DOC_PATH, folder, name, ".received.adoc");
+        return new OnePath(Config.DOC_PATH, folder, "_" + name, ".received.adoc");
     }
 
     public OnePath test() {

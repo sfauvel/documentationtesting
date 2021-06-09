@@ -19,7 +19,7 @@ public class ApprovalsBase extends DocAsTestBase {
         ApprovalNamer approvalNamer = new ApprovalNamer() {
             @Override
             public String getApprovalName() {
-                return docPath.name();
+                return "_" + docPath.name();
             }
 
             @Override

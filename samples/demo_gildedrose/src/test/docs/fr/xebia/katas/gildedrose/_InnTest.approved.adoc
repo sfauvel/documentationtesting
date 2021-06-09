@@ -1,0 +1,3 @@
+= Inn test
+
+include::_InnTest.example_of_evolution_by_item.approved.adoc[leveloffset=+1]

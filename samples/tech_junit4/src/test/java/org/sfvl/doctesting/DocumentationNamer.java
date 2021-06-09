@@ -20,7 +20,7 @@ public class DocumentationNamer {
     }
 
     public String getApprovalName() {
-        return String.join(".",
+        return "_" + String.join(".",
                 testMethod.getDeclaringClass().getSimpleName(),
                 testMethod.getName());
     }

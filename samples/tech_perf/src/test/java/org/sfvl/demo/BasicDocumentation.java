@@ -45,7 +45,7 @@ public class BasicDocumentation extends DemoDocumentation {
             new RuntimeException(e);
         }
 
-        final String perfAttributesFileName = "perfAttributes.adoc";
+        final String perfAttributesFileName = "_perfAttributes.adoc";
 
         try (final FileWriter fileWriter = new FileWriter(getAbsoluteDocPath().resolve(perfAttributesFileName).toFile())) {
             String attributes = perfAttributes.entrySet().stream()
@@ -175,7 +175,7 @@ public class BasicDocumentation extends DemoDocumentation {
 
     @Override
     public void produce() throws IOException {
-        new Document(this.build()).saveAs(Config.DOC_PATH.resolve("Documentation.adoc"));
+        new Document(this.build()).saveAs(Config.DOC_PATH.resolve("index.adoc"));
     }
 
     public static void main(String... args) throws IOException {

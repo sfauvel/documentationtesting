@@ -1,0 +1,16 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+:nofooter:
+= Class documentation test
+
+Generate a documentation of a test class aggregating approved method files.
+
+include::_ClassDocumentationTest.default_class_documentation.approved.adoc[leveloffset=+1]
+
+include::_ClassDocumentationTest.title_level.approved.adoc[leveloffset=+1]
+
+include::_ClassDocumentationTest.customize_output.approved.adoc[leveloffset=+1]
+
+include::_ClassDocumentationTest.nested_class_documentation.approved.adoc[leveloffset=+1]

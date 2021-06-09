@@ -1,0 +1,8 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+:nofooter:
+= Failing test
+
+include::_FailingTest.failing_test.approved.adoc[leveloffset=+1]

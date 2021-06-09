@@ -1,0 +1,13 @@
+= Functional examples
+
+include::_GameSvgTest.player_advances.approved.adoc[leveloffset=+1]
+
+include::_GameSvgTest.player_scores.approved.adoc[leveloffset=+1]
+
+include::_GameSvgTest.win_the_game.approved.adoc[leveloffset=+1]
+
+include::_GameSvgTest.jail.approved.adoc[leveloffset=+1]
+
+include::_GameSvgTest.player_stay_in_penality_box.approved.adoc[leveloffset=+1]
+
+include::_GameSvgTest.play_until_someone_wins.approved.adoc[leveloffset=+1]

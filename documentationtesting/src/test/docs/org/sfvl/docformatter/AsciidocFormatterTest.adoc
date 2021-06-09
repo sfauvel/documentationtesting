@@ -4,4 +4,4 @@
 :source-highlighter: rouge
 :toclevels: 4
 
-include::AsciidocFormatterTest.approved.adoc[]
+include::_AsciidocFormatterTest.approved.adoc[]

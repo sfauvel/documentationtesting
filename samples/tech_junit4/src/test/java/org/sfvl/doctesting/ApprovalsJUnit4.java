@@ -88,7 +88,7 @@ public class ApprovalsJUnit4 {
 
     @Before
     public void initDoc() {
-        fileName = this.getClass().getSimpleName();
+        fileName = "_" + this.getClass().getSimpleName();
     }
 
     @After
@@ -122,7 +122,7 @@ public class ApprovalsJUnit4 {
         try (final FileWriter fileWriter = new FileWriter(sourceFilePath+fileName)) {
 
             final String content = getMethodsInOrder(testMethods)
-                    .map(method -> String.format("%s.%s.approved.adoc", method.getDeclaringClass().getSimpleName(), method.getName()))
+                    .map(method -> String.format("_%s.%s.approved.adoc", method.getDeclaringClass().getSimpleName(), method.getName()))
                     .map(name -> String.format("include::%s[leveloffset=+2]", name))
                     .collect(Collectors.joining("\n"));
 

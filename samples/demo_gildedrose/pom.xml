@@ -18,6 +18,7 @@
         <junit.version>5.4.1</junit.version>
         <xchart.version>3.6.1</xchart.version>
         <documentationtesting.version>1.1.2-SNAPSHOT</documentationtesting.version>
+        <asciidoctor.maven.plugin.version>2.1.0</asciidoctor.maven.plugin.version>
     </properties>
 
     <build>
@@ -54,6 +55,36 @@
                     </arguments>
                     <classpathScope>test</classpathScope>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                <version>${asciidoctor.maven.plugin.version}</version>
+                <configuration>
+                    <sourceDirectory>src/test/docs</sourceDirectory>
+                    <outputDirectory>../../docs/${project.artifactId}</outputDirectory>
+                    <preserveDirectories>true</preserveDirectories>
+                    <relativeBaseDir>true</relativeBaseDir>
+                    <backend>html</backend>
+                    <attributes>
+                        <github-repo>https://github.com/sfauvel/documentationtesting/tree/master</github-repo>
+                        <github-pages>https://github.com/sfauvel/documentationtesting</github-pages>
+                    </attributes>
+                    <logHandler>
+                        <failIf>
+                            <severity>ERROR</severity>
+                        </failIf>
+                    </logHandler>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>asciidoc-to-html</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

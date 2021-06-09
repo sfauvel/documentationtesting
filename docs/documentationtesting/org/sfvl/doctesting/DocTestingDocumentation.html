@@ -6,10 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
 <title>Doc testing documentation</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
-@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}
 audio,video{display:inline-block}
 audio:not([controls]){display:none;height:0}
@@ -433,7 +434,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer{background:none}
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
-
 </style>
 </head>
 <body class="article toc2 toc-left">
@@ -633,7 +633,7 @@ This extension will check that content of <code>DocWriter</code> has not changed
 </div>
 </div>
 <div class="paragraph">
-<p>When executing test method <code>test_A</code>, a file <code>MyTest.test_A.approved.adoc</code> is generated and contains the following text</p>
+<p>When executing test method <code>test_A</code>, a file <code>_MyTest.test_A.approved.adoc</code> is generated and contains the following text</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -722,7 +722,7 @@ and modify what it will be written in the final document.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>When executing test method <code>test_A</code>, a file <code>MyCustomWriterTest.test_A.approved.adoc</code> is generated and contains the following text</p>
+<p>When executing test method <code>test_A</code>, a file <code>_MyCustomWriterTest.test_A.approved.adoc</code> is generated and contains the following text</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -790,16 +790,16 @@ Each nested class create a nested title.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc</p>
+<p>_DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc</p>
 </li>
 <li>
-<p>DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc</p>
+<p>_DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc</p>
 </li>
 <li>
-<p>DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc</p>
+<p>_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc</p>
 </li>
 <li>
-<p>DemoNestedTest.approved.adoc</p>
+<p>_DemoNestedTest.approved.adoc</p>
 </li>
 </ul>
 </div>
@@ -815,13 +815,13 @@ Demo of a simple usage to generate documentation.
 
 Document of Addition operations.
 
-include::DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+2]
+include::_DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+2]
 
-include::DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+2]
+include::_DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+2]
 
 == Multiply
 
-include::DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]</pre>
+include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]</pre>
 </div>
 </div>
 <style>
@@ -909,7 +909,7 @@ endif::[]
 :nofooter:
 = My test
 
-include::MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
+include::_MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
 </div>
 </div>
 <style>
@@ -2445,7 +2445,7 @@ DOC_PATH:source/docs</pre>
 <p>Note that <code>MyTest</code> class is declared in package <code>org.sfvl.samples</code>.</p>
 </div>
 <div class="paragraph">
-<p>We also used <code>org.sfvl.doctesting.utils.DocPathTest</code> class to display <code>from</code> and <code>to</code> results with approved file (<code>src/test/docs/org/sfvl/doctesting/utils/DocPathTest.approved.adoc</code>).</p>
+<p>We also used <code>org.sfvl.doctesting.utils.DocPathTest</code> class to display <code>from</code> and <code>to</code> results with approved file (<code>src/test/docs/org/sfvl/doctesting/utils/_DocPathTest.approved.adoc</code>).</p>
 </div>
 <table class="tableblock frame-all grid-all fit-content">
 <colgroup>
@@ -2508,14 +2508,14 @@ DOC_PATH:source/docs</pre>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>to()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">../doctesting/utils/DocPathTest.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">../doctesting/utils/_DocPathTest.approved.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="5"><div class="content"><div class="paragraph">
 <p><code>approved()</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">path()</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/docs/org/sfvl/samples/MyTest.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/docs/org/sfvl/samples/_MyTest.approved.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -2527,26 +2527,26 @@ DOC_PATH:source/docs</pre>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>fullname()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MyTest.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">_MyTest.approved.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>from()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">../../samples/MyTest.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">../../samples/_MyTest.approved.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>to()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">../doctesting/utils/DocPathTest.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">../doctesting/utils/_DocPathTest.approved.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="5"><div class="content"><div class="paragraph">
 <p><code>received()</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">path()</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/docs/org/sfvl/samples/MyTest.received.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/docs/org/sfvl/samples/_MyTest.received.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -2558,19 +2558,19 @@ DOC_PATH:source/docs</pre>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>fullname()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MyTest.received.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">_MyTest.received.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>from()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">../../samples/MyTest.received.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">../../samples/_MyTest.received.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>to()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">../doctesting/utils/DocPathTest.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">../doctesting/utils/_DocPathTest.approved.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="5"><div class="content"><div class="paragraph">
@@ -2601,7 +2601,7 @@ DOC_PATH:source/docs</pre>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>to()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">../../../../docs/org/sfvl/doctesting/utils/DocPathTest.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">../../../../docs/org/sfvl/doctesting/utils/_DocPathTest.approved.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="5"><div class="content"><div class="paragraph">
@@ -2632,7 +2632,7 @@ DOC_PATH:source/docs</pre>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>to()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">../../../../docs/org/sfvl/doctesting/utils/DocPathTest.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">../../../../docs/org/sfvl/doctesting/utils/_DocPathTest.approved.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="5"><div class="content"><div class="paragraph">
@@ -2663,7 +2663,7 @@ DOC_PATH:source/docs</pre>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>to()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">../../../src/test/docs/org/sfvl/doctesting/utils/DocPathTest.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">../../../src/test/docs/org/sfvl/doctesting/utils/_DocPathTest.approved.adoc</p></td>
 </tr>
 </tbody>
 </table>
@@ -2682,7 +2682,7 @@ DOC_PATH:source/docs</pre>
 <p>Note that <code>MyTest</code> class is declared in package <code>org.sfvl.samples</code>.</p>
 </div>
 <div class="paragraph">
-<p>We also used <code>org.sfvl.doctesting.utils.DocPathTest</code> class to display <code>from</code> and <code>to</code> results with approved file (<code>src/test/docs/org/sfvl/doctesting/utils/DocPathTest.approved.adoc</code>).</p>
+<p>We also used <code>org.sfvl.doctesting.utils.DocPathTest</code> class to display <code>from</code> and <code>to</code> results with approved file (<code>src/test/docs/org/sfvl/doctesting/utils/_DocPathTest.approved.adoc</code>).</p>
 </div>
 <table class="tableblock frame-all grid-all fit-content">
 <colgroup>
@@ -2745,14 +2745,14 @@ DOC_PATH:source/docs</pre>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>to()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">../doctesting/utils/DocPathTest.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">../doctesting/utils/_DocPathTest.approved.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="5"><div class="content"><div class="paragraph">
 <p><code>approved()</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">path()</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/docs/org/sfvl/samples/MyTest.test_A.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/docs/org/sfvl/samples/_MyTest.test_A.approved.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -2764,26 +2764,26 @@ DOC_PATH:source/docs</pre>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>fullname()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MyTest.test_A.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">_MyTest.test_A.approved.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>from()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">../../samples/MyTest.test_A.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">../../samples/_MyTest.test_A.approved.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>to()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">../doctesting/utils/DocPathTest.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">../doctesting/utils/_DocPathTest.approved.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="5"><div class="content"><div class="paragraph">
 <p><code>received()</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">path()</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/docs/org/sfvl/samples/MyTest.test_A.received.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/docs/org/sfvl/samples/_MyTest.test_A.received.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -2795,19 +2795,19 @@ DOC_PATH:source/docs</pre>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>fullname()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MyTest.test_A.received.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">_MyTest.test_A.received.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>from()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">../../samples/MyTest.test_A.received.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">../../samples/_MyTest.test_A.received.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>to()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">../doctesting/utils/DocPathTest.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">../doctesting/utils/_DocPathTest.approved.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="5"><div class="content"><div class="paragraph">
@@ -2838,7 +2838,7 @@ DOC_PATH:source/docs</pre>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>to()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">../../../../docs/org/sfvl/doctesting/utils/DocPathTest.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">../../../../docs/org/sfvl/doctesting/utils/_DocPathTest.approved.adoc</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="5"><div class="content"><div class="paragraph">
@@ -2869,7 +2869,7 @@ DOC_PATH:source/docs</pre>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>to()</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">../../../src/test/docs/org/sfvl/doctesting/utils/DocPathTest.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">../../../src/test/docs/org/sfvl/doctesting/utils/_DocPathTest.approved.adoc</p></td>
 </tr>
 </tbody>
 </table>
@@ -2936,7 +2936,7 @@ What is wrote on DocWriter is not used in this case.</p>
 <pre>:nofooter:
 = My test
 
-include::MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
+include::_MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
 </div>
 </div>
 </div>
@@ -3135,9 +3135,9 @@ It returns either DisplayName annotation value or method name.</p>
 
 Class comment is added to description.
 
-include::InMainDocTest.testA.approved.adoc[leveloffset=+1]
+include::_InMainDocTest.testA.approved.adoc[leveloffset=+1]
 
-include::InMainDocTest.testB.approved.adoc[leveloffset=+1]</code></pre>
+include::_InMainDocTest.testB.approved.adoc[leveloffset=+1]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3200,9 +3200,9 @@ An include instruction is added for each method specified.</p>
 
 Class comment is added to description.
 
-include::InMainDocTest.testA.approved.adoc[leveloffset=+3]
+include::_InMainDocTest.testA.approved.adoc[leveloffset=+3]
 
-include::InMainDocTest.testB.approved.adoc[leveloffset=+3]</code></pre>
+include::_InMainDocTest.testB.approved.adoc[leveloffset=+3]</code></pre>
 </div>
 </div>
 </div>
@@ -3218,9 +3218,9 @@ include::InMainDocTest.testB.approved.adoc[leveloffset=+3]</code></pre>
 
 Class comment is added to description.
 
-include::InMainDocTest.testA.approved.adoc[leveloffset=+1]
+include::_InMainDocTest.testA.approved.adoc[leveloffset=+1]
 
-include::InMainDocTest.testB.approved.adoc[leveloffset=+1]</code></pre>
+include::_InMainDocTest.testB.approved.adoc[leveloffset=+1]</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -3244,9 +3244,9 @@ include::InMainDocTest.testB.approved.adoc[leveloffset=+1]</code></pre>
 
 Description from getDescription method InMainDocTest
 
-include::InMainDocTest.testA.approved.adoc[leveloffset=+1]
+include::_InMainDocTest.testA.approved.adoc[leveloffset=+1]
 
-include::InMainDocTest.testB.approved.adoc[leveloffset=+1]</code></pre>
+include::_InMainDocTest.testB.approved.adoc[leveloffset=+1]</code></pre>
 </div>
 </div>
 </div>
@@ -3272,21 +3272,21 @@ Demo of a simple usage to generate documentation.
 
 Document of Addition operations.
 
-include::ClassDocumentationTest_DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+2]
+include::_ClassDocumentationTest_DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+2]
 
-include::ClassDocumentationTest_DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+2]
+include::_ClassDocumentationTest_DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+2]
 
 === Adding negative number
 
 Addition negative numbers.
 
-include::ClassDocumentationTest_DemoNestedTest.Adding.AddingNegativeNumber.should_be_minus_8_when_adding_minus_3_and_minus_5.approved.adoc[leveloffset=+3]
+include::_ClassDocumentationTest_DemoNestedTest.Adding.AddingNegativeNumber.should_be_minus_8_when_adding_minus_3_and_minus_5.approved.adoc[leveloffset=+3]
 
-include::ClassDocumentationTest_DemoNestedTest.method_between_two_nested_classes.approved.adoc[leveloffset=+1]
+include::_ClassDocumentationTest_DemoNestedTest.method_between_two_nested_classes.approved.adoc[leveloffset=+1]
 
 == Multiply
 
-include::ClassDocumentationTest_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]</code></pre>
+include::_ClassDocumentationTest_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]</code></pre>
 </div>
 </div>
 <div class="listingblock">

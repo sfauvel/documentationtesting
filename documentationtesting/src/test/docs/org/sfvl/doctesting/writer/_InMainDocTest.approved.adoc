@@ -1,0 +1,12 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+:nofooter:
+= Title for the document
+
+Class comment is added to description.
+
+include::_InMainDocTest.testA.approved.adoc[leveloffset=+1]
+
+include::_InMainDocTest.testB.approved.adoc[leveloffset=+1]

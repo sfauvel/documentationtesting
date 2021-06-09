@@ -1,0 +1,11 @@
+:Long-UsingJUnitWithALongTestTest: 0.008
+:Simple-UsingGitAssertingOnEachTestTest: 0.172
+:Many-UsingGitWithNoAssertOptionAndManyTestsTest: 0.143
+:Simple-UsingGitWithNoAssertOptionTest: 0.008
+:Many-UsingJUnitAndManyTestsTest: 0.013
+:Long-UsingGitWithNoAssertOptionAndALongTestTest: 0.321
+:Simple-UsingApprovalsTest: 0.053
+:Lot-UsingJUnitAndLotOfTestsTest: 0.095
+:Simple-UsingJUnitTest: 0.001
+:Lot-UsingGitWithNoAssertOptionAndLotOfTests_A_Test: 0.344
+:Lot-UsingGitWithNoAssertOptionAndLotOfTests_B_Test: 0.749

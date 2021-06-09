@@ -1,0 +1,13 @@
+:toc: left
+:nofooter:
+:stem:
+
+= Using Approvals
+
+View source project on link:{github-repo}/samples/tech_junit4[Github]
+
+== DemoTest
+Demo of a simple usage to generate documentation.
+
+include::org/sfvl/demo/_DemoTest.adding_2_simple_numbers.approved.adoc[leveloffset=+2]
+

@@ -1,0 +1,13 @@
+= Functional examples
+
+include::_GameTest.player_advances.approved.adoc[leveloffset=+1]
+
+include::_GameTest.player_scores.approved.adoc[leveloffset=+1]
+
+include::_GameTest.win_the_game.approved.adoc[leveloffset=+1]
+
+include::_GameTest.jail.approved.adoc[leveloffset=+1]
+
+include::_GameTest.player_stay_in_penality_box.approved.adoc[leveloffset=+1]
+
+include::_GameTest.play_until_someone_wins.approved.adoc[leveloffset=+1]

@@ -1,5 +1,0 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: .
-endif::[]
-:nofooter:
-include::org/sfvl/demo/AsciiDocRenderingTest.approved.adoc[]

@@ -1,0 +1,5 @@
+= Verify documentation with _Approvals_ library.
+
+Demo of a simple usage to generate documentation.
+
+include::_UsingApprovalsTest.should_give_person_information.approved.adoc[leveloffset=+1]

@@ -74,7 +74,7 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
         ApprovalNamer approvalNamer = new ApprovalNamer() {
             @Override
             public String getApprovalName() {
-                return docPath.name();
+                return "_"+docPath.name();
             }
 
             @Override

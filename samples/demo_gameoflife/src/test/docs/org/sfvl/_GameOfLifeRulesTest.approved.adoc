@@ -1,0 +1,5 @@
+= Game of life rules
+
+https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+
+include::_GameOfLifeRulesTest.rules.approved.adoc[leveloffset=+1]

@@ -4,4 +4,4 @@
 :source-highlighter: rouge
 :toclevels: 4
 
-include::InstallingLibrary.approved.adoc[]
+include::_InstallingLibrary.approved.adoc[]

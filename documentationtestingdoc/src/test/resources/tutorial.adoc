@@ -52,7 +52,7 @@ include::{rootpath}/samples/demo_basic_approvals/src/test/java/org/sfvl/demo/Dem
 
 |===
 | File generated to validate
-a| include::{rootpath}/samples/demo_basic_approvals/src/test/docs/org/sfvl/demo/DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+3]
+a| include::{rootpath}/samples/demo_basic_approvals/src/test/docs/org/sfvl/demo/_DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+3]
 |===
 
 

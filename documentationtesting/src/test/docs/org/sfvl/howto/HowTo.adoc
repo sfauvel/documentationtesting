@@ -4,4 +4,4 @@
 :source-highlighter: rouge
 :toclevels: 4
 
-include::HowTo.approved.adoc[]
+include::_HowTo.approved.adoc[]

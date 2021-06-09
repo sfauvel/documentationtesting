@@ -24,7 +24,7 @@ public class MainDocumentation {
 
     private static final String PACKAGE_TO_SCAN = "org.sfvl";
     private final String DOCUMENTATION_TITLE;
-    private static final String DOCUMENTATION_FILENAME = "Documentation";
+    private static final String DOCUMENTATION_FILENAME = "index";
     private static final PathProvider pathProvider = new PathProvider();
     private final Path docRootPath;
 

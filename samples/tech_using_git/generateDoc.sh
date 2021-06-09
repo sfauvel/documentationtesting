@@ -17,7 +17,7 @@ function generate_docs() {
 
   # 'no-assert' avoid to check diff on each test. That's not seem to build significantly faster with this option.
   # The main advantage is that the build do not break, and we can have a result for all modules.
-  mvn clean install package -q -Dno-assert
+  mvn clean install package -Dno-assert
 }
 
 # Check file differences
@@ -35,7 +35,7 @@ function check_file_differences() {
 
 source ${SCRIPTS_PATH}/loadWritingFunction.sh
 generate_docs
-echo -n "Build ${PROJECT_NAME}: "
-write_success "OK"
+#echo -n "Build ${PROJECT_NAME}: "
+#write_success "OK"
 check_file_differences
-${SCRIPTS_PATH}/convertAdocToHtml.sh ${DOCS_PATH} Documentation.adoc ${DESTINATION_PATH}
+#${SCRIPTS_PATH}/convertAdocToHtml.sh ${DOCS_PATH} Documentation.adoc ${DESTINATION_PATH}

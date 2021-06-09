@@ -1,0 +1,36 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+:nofooter:
+= Create a general documentation
+
+You can use the DocumentationBuilder class to generate a documentation.
+You can aggregate other documentations and in particular, those generated from test classes.
+
+include::_DocumentationBuilderTest.simple_doc.approved.adoc[leveloffset=+1]
+
+include::_DocumentationBuilderTest.simple_doc_with_a_subclass_of_DocumentationBuilder.approved.adoc[leveloffset=+1]
+
+== Relativized to path
+
+All links are relative to a path corresponding to the location where the document will be written.
+
+include::_DocumentationBuilderTest.RelativizedToPath.from_a_package.approved.adoc[leveloffset=+2]
+
+include::_DocumentationBuilderTest.RelativizedToPath.from_a_path.approved.adoc[leveloffset=+2]
+
+include::_DocumentationBuilderTest.select_options.approved.adoc[leveloffset=+1]
+
+include::_DocumentationBuilderTest.define_document_structure.approved.adoc[leveloffset=+1]
+
+== check_class_for_structure
+
+We need to specify a class when defining document structure.
+It allows to call methods on that object in lambda.
+Lambda will be called with the builder instance so this class must be a super class of the builder.
+There is no verification at compile time, but an exception is thrown when build is called if a wrong type was given.
+
+include::_DocumentationBuilderTest.check_class_for_structure.with_class_inherits_from_DocumentationBuilder.approved.adoc[leveloffset=+2]
+
+include::_DocumentationBuilderTest.check_class_for_structure.with_class_not_inherits_from_DocumentationBuilder.approved.adoc[leveloffset=+2]

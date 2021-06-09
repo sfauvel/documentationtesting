@@ -59,12 +59,11 @@ then
   remove_docs_directories
   # 'no-assert' avoid to check diff on each test. That's not seem to build significantly faster with this option.
   # The main advantage is that the build do not break, and we can have a result for all modules.
-  mvn clean install package -q -Dno-assert -Dapproved_with=$VALIDATION_MODE
+  mvn clean install package -Dno-assert -Dapproved_with=$VALIDATION_MODE
   echo -n "Build ${PROJECT_NAME}: "
   write_success "OK"
   check_file_differences
 else
   # Do not remove approved file with approvals because it's the reference
-  mvn clean install package -q -Dapproved_with=$VALIDATION_MODE
+  mvn clean install package -Dapproved_with=$VALIDATION_MODE
 fi
-${SCRIPTS_PATH}/convertAdocToHtml.sh ${DOCS_PATH} Documentation.adoc ${DESTINATION_PATH}

@@ -1,0 +1,28 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+:nofooter:
+= Class documentation test_ demo nested test
+
+Demo of a simple usage to generate documentation.
+
+== Adding
+
+Document of Addition operations.
+
+include::_ClassDocumentationTest_DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+2]
+
+include::_ClassDocumentationTest_DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+2]
+
+=== Adding negative number
+
+Addition negative numbers.
+
+include::_ClassDocumentationTest_DemoNestedTest.Adding.AddingNegativeNumber.should_be_minus_8_when_adding_minus_3_and_minus_5.approved.adoc[leveloffset=+3]
+
+include::_ClassDocumentationTest_DemoNestedTest.method_between_two_nested_classes.approved.adoc[leveloffset=+1]
+
+== Multiply
+
+include::_ClassDocumentationTest_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]

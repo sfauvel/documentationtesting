@@ -1,0 +1,22 @@
+= Hero experience test
+
+We show different approach to test writing a documentation.
+We start with a typical characterization test that produced a file using for non regression with `approvals`.
+After, we explore other way to produce a readable document.
+It gives ideas on advantages and drawbacks for each case.
+
+include::_HeroExperienceTest.should_gainxp_approvals.approved.adoc[leveloffset=+1]
+
+include::_HeroExperienceTest.should_gainxp.approved.adoc[leveloffset=+1]
+
+include::_HeroExperienceTest.should_gainxp_and_levelup.approved.adoc[leveloffset=+1]
+
+include::_HeroExperienceTest.should_gainxp_and_levelup_bounded.approved.adoc[leveloffset=+1]
+
+include::_HeroExperienceTest.should_gainxp_and_levelup_bounded_full.approved.adoc[leveloffset=+1]
+
+include::_HeroExperienceTest.should_show_when_gainxp.approved.adoc[leveloffset=+1]
+
+include::_HeroExperienceTest.experience_points_needed_to_go_to_the_next_level.approved.adoc[leveloffset=+1]
+
+include::_HeroExperienceTest.experience_points_needed_to_go_to_the_next_level_with_boost_equals_1.approved.adoc[leveloffset=+1]

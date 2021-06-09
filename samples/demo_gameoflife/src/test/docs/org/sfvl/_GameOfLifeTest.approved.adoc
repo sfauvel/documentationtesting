@@ -1,0 +1,9 @@
+= Game of life illustrated by examples
+
+https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+
+include::_GameOfLifeTest.die_when_less_than_2_neighbours.approved.adoc[leveloffset=+1]
+
+include::_GameOfLifeTest.stay_alive_when_2_neighbours.approved.adoc[leveloffset=+1]
+
+include::_GameOfLifeTest.becomes_alive_when_3_neighbours.approved.adoc[leveloffset=+1]

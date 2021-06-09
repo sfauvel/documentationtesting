@@ -1,0 +1,5 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+include::_UseYourOwnStyle.approved.adoc[leveloffset=+0]

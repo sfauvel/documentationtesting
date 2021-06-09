@@ -1,0 +1,45 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+[#org_sfvl_doctesting_writer_ClassDocumentationTest_customize_output]
+= Customize output
+
+Title and description could be changed by overriding the appropriate methods.
+
+.Default document generated
+[source,indent=0]
+----
+= Title for the document
+
+Class comment is added to description.
+
+\include::_InMainDocTest.testA.approved.adoc[leveloffset=+1]
+
+\include::_InMainDocTest.testB.approved.adoc[leveloffset=+1]
+----
+.ClassDocumentation methods overwritten
+[source,java,indent=0]
+----
+            @Override
+            protected String getTestClassTitle(Class<?> classToDocument) {
+                return "Title from getTestClassTitle method " + classToDocument.getSimpleName();
+            }
+
+            @Override
+            protected String getDescription(Class<?> classToDocument) {
+                return "Description from getDescription method " + classToDocument.getSimpleName();
+            }
+
+----
+.Custom document generated
+[source,indent=0]
+----
+= Title from getTestClassTitle method InMainDocTest
+
+Description from getDescription method InMainDocTest
+
+\include::_InMainDocTest.testA.approved.adoc[leveloffset=+1]
+
+\include::_InMainDocTest.testB.approved.adoc[leveloffset=+1]
+----

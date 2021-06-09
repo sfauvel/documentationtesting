@@ -1,0 +1,56 @@
+:toc: left
+:nofooter:
+:stem:
+:source-highlighter: rouge
+
+
+
+
+include::../../../readme.adoc[leveloffset=+1]
+
+
+
+== Performances
+
+We compare performance of tests using different approaches.
+
+Using Git, we can verify documentation on each test or not.
+When we run all tests, this verification is done at the end by script that launch tests.
+To have total time using Git without verification on each test, we should add time of global checking.
+This step is fast, it's just a shell script with some git commands.
+
+include::_perfAttributes.adoc[]
+
+[%autowidth]
+|====
+| Category | Class | Time in seconds) | Description 
+| Long | UsingGitWithNoAssertOptionAndALongTestTest | {Long-UsingGitWithNoAssertOptionAndALongTestTest} | Use Git to check file modification but after all tests. The time shown not include this verification. There is only one test but it check 100 times the same case.
+| Long | UsingJUnitWithALongTestTest | {Long-UsingJUnitWithALongTestTest} | Using JUnit assertions to test. There is only one test but it check 100 times the same case.
+| Lot | UsingGitWithNoAssertOptionAndLotOfTests_A_Test | {Lot-UsingGitWithNoAssertOptionAndLotOfTests_A_Test} | Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.
+| Lot | UsingGitWithNoAssertOptionAndLotOfTests_B_Test | {Lot-UsingGitWithNoAssertOptionAndLotOfTests_B_Test} | Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.
+| Lot | UsingJUnitAndLotOfTestsTest | {Lot-UsingJUnitAndLotOfTestsTest} | Using JUnit assertions to test 1000 cases.
+| Many | UsingGitWithNoAssertOptionAndManyTestsTest | {Many-UsingGitWithNoAssertOptionAndManyTestsTest} | Use Git to check file modification but after all tests. The time shown not include this verification. 100 tests are made.
+| Many | UsingJUnitAndManyTestsTest | {Many-UsingJUnitAndManyTestsTest} | Using JUnit assertions to test 100 cases.
+| Simple | UsingApprovalsTest | {Simple-UsingApprovalsTest} | Verify documentation with _Approvals_ library.
+| Simple | UsingGitAssertingOnEachTestTest | {Simple-UsingGitAssertingOnEachTestTest} | Check file modification with git after each test.
+| Simple | UsingGitWithNoAssertOptionTest | {Simple-UsingGitWithNoAssertOptionTest} | Use Git to check file modification but after all tests. The time shown not include this verification.
+| Simple | UsingJUnitTest | {Simple-UsingJUnitTest} | Using JUnit assertions to test.
+|====
+== Verify documentation with _Approvals_ library.
+
+Demo of a simple usage to generate documentation.
+
+include::org/sfvl/demo/_UsingApprovalsTest.should_give_person_information.approved.adoc[leveloffset=+2]
+== Check file modification with git after each test.
+
+Demo of a simple usage to generate documentation.
+
+include::org/sfvl/demo/_UsingGitAssertingOnEachTestTest.should_give_person_information.approved.adoc[leveloffset=+2]
+== Use Git to check file modification but after all tests. The time shown not include this verification.
+
+Demo of a simple usage to generate documentation.
+
+include::org/sfvl/demo/_UsingGitWithNoAssertOptionTest.should_give_person_information.approved.adoc[leveloffset=+2]
+== Using JUnit assertions to test.
+
+include::org/sfvl/demo/_UsingJUnitTest.should_give_person_information.approved.adoc[leveloffset=+2]

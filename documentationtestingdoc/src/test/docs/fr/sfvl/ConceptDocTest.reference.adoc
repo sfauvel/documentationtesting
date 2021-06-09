@@ -4,4 +4,4 @@
 :source-highlighter: rouge
 :toclevels: 4
 
-include::ConceptDocTest.reference.approved.adoc[]
+include::_ConceptDocTest.reference.approved.adoc[]
