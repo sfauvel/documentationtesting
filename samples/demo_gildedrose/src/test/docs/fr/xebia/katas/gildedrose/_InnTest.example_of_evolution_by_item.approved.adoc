@@ -9,6 +9,27 @@ endif::[]
 
 == Item +5 Dexterity Vest
 
+[%autowidth]
+[cols="1,1"]
+|====
+<| 
+All items have a SellIn value which denotes the number of days we have to sell the item
+
+All items have a Quality value which denotes how valuable the item is
+
+At the end of each day our system lowers both values for every item
+
+Once the sell by date has passed, Quality degrades twice as fast
+
+The Quality of an item is never negative
+
+The Quality of an item is never more than 50
+
+
+a|
+image::{ROOT_PATH}/fr/xebia/katas/gildedrose/5_Dexterity_Vest.png[]
+|====
+
 
 |====
 | iteration | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19
@@ -16,11 +37,28 @@ endif::[]
 | qualities | 20 | 19 | 18 | 17 | 16 | 15 | 14 | 13 | 12 | 11 | 10 | 8 | 6 | 4 | 2 | 0 | 0 | 0 | 0 | 0
 |====
 
-image::fr/xebia/katas/gildedrose/5_Dexterity_Vest.png[]
-
-
-
 == Item Aged Brie
+
+[%autowidth]
+[cols="1,1"]
+|====
+<| 
+All items have a SellIn value which denotes the number of days we have to sell the item
+
+All items have a Quality value which denotes how valuable the item is
+
+At the end of each day our system lowers both values for every item
+
+Once the sell by date has passed, Quality degrades twice as fast
+
+The Quality of an item is never negative
+
+The Quality of an item is never more than 50
+
+*"Aged Brie" actually increases in Quality the older it gets*
+a|
+image::{ROOT_PATH}/fr/xebia/katas/gildedrose/Aged_Brie.png[]
+|====
 
 
 |====
@@ -29,11 +67,28 @@ image::fr/xebia/katas/gildedrose/5_Dexterity_Vest.png[]
 | qualities | 0 | 1 | 2 | 4 | 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 | 22 | 24 | 26 | 28 | 30 | 32 | 34 | 36
 |====
 
-image::fr/xebia/katas/gildedrose/Aged_Brie.png[]
-
-
-
 == Item Elixir of the Mongoose
+
+[%autowidth]
+[cols="1,1"]
+|====
+<| 
+All items have a SellIn value which denotes the number of days we have to sell the item
+
+All items have a Quality value which denotes how valuable the item is
+
+At the end of each day our system lowers both values for every item
+
+Once the sell by date has passed, Quality degrades twice as fast
+
+The Quality of an item is never negative
+
+The Quality of an item is never more than 50
+
+
+a|
+image::{ROOT_PATH}/fr/xebia/katas/gildedrose/Elixir_of_the_Mongoose.png[]
+|====
 
 
 |====
@@ -42,11 +97,28 @@ image::fr/xebia/katas/gildedrose/Aged_Brie.png[]
 | qualities | 7 | 6 | 5 | 4 | 3 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0
 |====
 
-image::fr/xebia/katas/gildedrose/Elixir_of_the_Mongoose.png[]
-
-
-
 == Item Sulfuras, Hand of Ragnaros
+
+[%autowidth]
+[cols="1,1"]
+|====
+<| 
+All items have a SellIn value which denotes the number of days we have to sell the item
+
+All items have a Quality value which denotes how valuable the item is
+
+At the end of each day our system lowers both values for every item
+
+Once the sell by date has passed, Quality degrades twice as fast
+
+The Quality of an item is never negative
+
+The Quality of an item is never more than 50
+
+*"Sulfuras", being a legendary item, never has to be sold or decreases in Quality*
+a|
+image::{ROOT_PATH}/fr/xebia/katas/gildedrose/Sulfuras__Hand_of_Ragnaros.png[]
+|====
 
 
 |====
@@ -55,11 +127,28 @@ image::fr/xebia/katas/gildedrose/Elixir_of_the_Mongoose.png[]
 | qualities | 80 | 80 | 80 | 80 | 80 | 80 | 80 | 80 | 80 | 80 | 80 | 80 | 80 | 80 | 80 | 80 | 80 | 80 | 80 | 80
 |====
 
-image::fr/xebia/katas/gildedrose/Sulfuras__Hand_of_Ragnaros.png[]
-
-
-
 == Item Backstage passes to a TAFKAL80ETC concert
+
+[%autowidth]
+[cols="1,1"]
+|====
+<| 
+All items have a SellIn value which denotes the number of days we have to sell the item
+
+All items have a Quality value which denotes how valuable the item is
+
+At the end of each day our system lowers both values for every item
+
+Once the sell by date has passed, Quality degrades twice as fast
+
+The Quality of an item is never negative
+
+The Quality of an item is never more than 50
+
+*"Backstage passes", like aged brie, increases in Quality as it’s SellIn value approaches; Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert*
+a|
+image::{ROOT_PATH}/fr/xebia/katas/gildedrose/Backstage_passes_to_a_TAFKAL80ETC_concert.png[]
+|====
 
 
 |====
@@ -68,11 +157,28 @@ image::fr/xebia/katas/gildedrose/Sulfuras__Hand_of_Ragnaros.png[]
 | qualities | 20 | 21 | 22 | 23 | 24 | 25 | 27 | 29 | 31 | 33 | 35 | 38 | 41 | 44 | 47 | 50 | 0 | 0 | 0 | 0
 |====
 
-image::fr/xebia/katas/gildedrose/Backstage_passes_to_a_TAFKAL80ETC_concert.png[]
-
-
-
 == Item Conjured Mana Cake
+
+[%autowidth]
+[cols="1,1"]
+|====
+<| 
+All items have a SellIn value which denotes the number of days we have to sell the item
+
+All items have a Quality value which denotes how valuable the item is
+
+At the end of each day our system lowers both values for every item
+
+Once the sell by date has passed, Quality degrades twice as fast
+
+The Quality of an item is never negative
+
+The Quality of an item is never more than 50
+
+
+a|
+image::{ROOT_PATH}/fr/xebia/katas/gildedrose/Conjured_Mana_Cake.png[]
+|====
 
 
 |====
@@ -80,6 +186,3 @@ image::fr/xebia/katas/gildedrose/Backstage_passes_to_a_TAFKAL80ETC_concert.png[]
 | sellIn | 3 | 2 | 1 | 0 | -1 | -2 | -3 | -4 | -5 | -6 | -7 | -8 | -9 | -10 | -11 | -12 | -13 | -14 | -15 | -16
 | qualities | 6 | 5 | 4 | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0
 |====
-
-image::fr/xebia/katas/gildedrose/Conjured_Mana_Cake.png[]
-

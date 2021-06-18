@@ -13,6 +13,15 @@ public class InnDocumentation extends DemoDocumentation {
     }
 
     @Override
+    public String build() {
+        return String.join("\n",
+                "ifndef::ROOT_PATH[]",
+                ":ROOT_PATH: .",
+                "endif::[]",
+                "") + super.build();
+    }
+
+    @Override
     public void produce() throws IOException {
         new Document(this.build()).saveAs(Config.DOC_PATH.resolve("index.adoc"));
     }
