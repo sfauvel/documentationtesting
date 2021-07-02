@@ -23,23 +23,24 @@ public class DemoTest {
         Files.createDirectories(docPath);
     }
 
+    // tag::test[]
     @Test
     public void should_be_5_when_adding_2_and_3() throws IOException {
-        final Path filePath = docPath.resolve("index.adoc");
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath.toFile().toString()))) {
+        final Path filePath = docPath.resolve("_DemoTest.adoc");
+        final FileWriter fileWriter = new FileWriter(filePath.toFile().toString());
+        try (BufferedWriter writer = new BufferedWriter(fileWriter)) {
 
             int a = 2;
             int b = 3;
 
             final String output = String.join("\n",
-                    ":nofooter:",
                     "= Should add 2 numbers",
                     "",
-                    String.format("%d + %d = %d", a, b, a + b));
+                    String.format("%d + %d = *%d*", a, b, a + b));
 
             writer.write(output);
         }
-
     }
+    // end::test[]
 
 }

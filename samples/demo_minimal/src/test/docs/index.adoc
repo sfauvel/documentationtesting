@@ -1,4 +1,35 @@
 :nofooter:
-= Should add 2 numbers
+:source-highlighter: rouge
+= Minimal demo to generate an asciidoc file
 
-2 + 3 = 5
+We want an output document that looks like:
+
+---
+
+include::_DemoTest.adoc[leveloffset=+2]
+
+---
+
+You can do it with a simple Asciidoc file like this one:
+
+----
+include::_DemoTest.adoc[]
+----
+
+To generate this kind of file, you can do it with this simple code:
+[source, java]
+----
+include::../java/org/sfvl/demo/DemoTest.java[tag=test, indent=0]
+----
+
+If you want to verify that the file has not changed from the last approved file,
+you can use Approvals with the following code.
+First time, test failed because there is no approved file.
+Once you approved the file, the test passes until the output changes.
+
+[source, java]
+----
+include::../java/org/sfvl/demo/DemoWithApprovalsTest.java[tag=test, indent=0]
+----
+
+Sources of this sample: link:{github-repo}/samples/{project_name}[]
