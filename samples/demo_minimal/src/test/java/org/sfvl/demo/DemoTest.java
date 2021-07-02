@@ -31,12 +31,13 @@ public class DemoTest {
             int a = 2;
             int b = 3;
 
-            writer.write(":nofooter:");
-            writer.newLine();
-            writer.write("= Should add 2 numbers");
-            writer.newLine();
-            writer.newLine();
-            writer.write(String.format("%d + %d = %d", a, b, a+b));
+            final String output = String.join("\n",
+                    ":nofooter:",
+                    "= Should add 2 numbers",
+                    "",
+                    String.format("%d + %d = %d", a, b, a + b));
+
+            writer.write(output);
         }
 
     }
