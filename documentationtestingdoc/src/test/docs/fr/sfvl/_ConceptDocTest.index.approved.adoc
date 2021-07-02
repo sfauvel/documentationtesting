@@ -121,6 +121,7 @@ We are free to present the information in the way that seems most appropriate to
 // // link to documentation testing project: Reference
 // * Library to implement it in Java
 
+ifndef::env-github[]
 ++++
 <style>
 table.DocumentationTestingDoc.grid-all > * > tr > * {
@@ -153,6 +154,7 @@ max-width: 75%;
 }
 </style>
 ++++
+endif::[]
 Here, what you can find as resources on this site
 
 [cols=2]
@@ -190,7 +192,9 @@ Tools, full discussions and choices
 |====
 
 
-Full project documentation is here: https://sfauvel.github.io/documentationtesting/
+Full project documentation is here: {github-pages}
+
+Repository github: {github-repo}
 ++++
 <style>
 table.DocumentationTestingDoc.grid-all > * > tr > * {

@@ -111,6 +111,7 @@ We are free to present the information in the way that seems most appropriate to
 // // link to documentation testing project: Reference
 // * Library to implement it in Java
 
+ifndef::env-github[]
 ++++
 <style>
 table.DocumentationTestingDoc.grid-all > * > tr > * {
@@ -143,3 +144,4 @@ max-width: 75%;
 }
 </style>
 ++++
+endif::[]

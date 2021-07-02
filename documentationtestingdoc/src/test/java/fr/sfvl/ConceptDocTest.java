@@ -173,7 +173,7 @@ public class ConceptDocTest extends MyFormatter {
     public void tutorial() {
         final DocPath docPath = new DocPath(Paths.get(""), "tutorial");
         final Path from = docPath.resource().from(this.getClass());
-        doc.write(String.format("include::%s[]", from.toString()));
+        doc.write(String.format("include::%s[leveloffset=+1]", from.toString()));
     }
 
     @Test
@@ -181,7 +181,7 @@ public class ConceptDocTest extends MyFormatter {
     public void development() {
         final DocPath docPath = new DocPath(Paths.get(""), "development");
         final Path from = docPath.resource().from(this.getClass());
-        doc.write(String.format("include::%s[]", from.toString()));
+        doc.write(String.format("include::%s[leveloffset=+1]", from.toString()));
     }
 
     /**
@@ -219,7 +219,7 @@ public class ConceptDocTest extends MyFormatter {
         // With @NoTitle, there is no need to change leveloffset, otherwise add [leveloffset=+1]
         final DocPath docPath = new DocPath(Paths.get(""), "best_practice");
         final Path from = docPath.resource().from(this.getClass());
-        doc.write(String.format("include::%s[]", from.toString()));
+        doc.write(String.format("include::%s[leveloffset=+1]", from.toString()));
     }
 
     @Test
@@ -228,7 +228,7 @@ public class ConceptDocTest extends MyFormatter {
         // With @NoTitle, there is no need to change leveloffset, otherwise add [leveloffset=+1]
         final DocPath docPath = new DocPath(Paths.get(""), "ways_to_implement");
         final Path from = docPath.resource().from(this.getClass());
-        doc.write(String.format("include::%s[]", from.toString()));
+        doc.write(String.format("include::%s[leveloffset=+1]", from.toString()));
     }
 
     /**
@@ -313,7 +313,11 @@ public class ConceptDocTest extends MyFormatter {
     }
 
     private String fullDocumentationLink() {
-        return "Full project documentation is here: https://sfauvel.github.io/documentationtesting/";
+        return String.join("\n",
+                "Full project documentation is here: {github-pages}",
+                "",
+                "Repository github: {github-repo}"
+        );
     }
 
 

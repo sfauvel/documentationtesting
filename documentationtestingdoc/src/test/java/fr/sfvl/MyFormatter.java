@@ -8,6 +8,7 @@ import org.sfvl.doctesting.utils.DocPath;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
@@ -35,6 +36,7 @@ class MyFormatter extends AsciidocFormatter {
                 allCells,
                 "|====");
     }
+
     public String style(String content) {
         return paragraph(
                 "++++",
@@ -76,6 +78,9 @@ class MyFormatter extends AsciidocFormatter {
 
     private void generatePage(DocPath docPath) throws IOException {
         String includeContent = String.join("\n",
+                "ifndef::ROOT_PATH[]",
+                String.format(":ROOT_PATH: %s", docPath.page().folder().relativize(Paths.get(""))),
+                "endif::[]",
                 ":toc: left",
                 ":nofooter:",
                 ":stem:",

@@ -6,10 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
 <title>Tutorial</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
-@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}
 audio,video{display:inline-block}
 audio:not([controls]){display:none;height:0}
@@ -433,20 +434,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer{background:none}
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
-
 </style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Tutorial</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_tutorial">Tutorial</a>
+<ul class="sectlevel2">
 <li><a href="#_quick_start">Quick start</a></li>
 <li><a href="#_java_project">Java project</a>
-<ul class="sectlevel2">
+<ul class="sectlevel3">
 <li><a href="#_ready_to_test_project">Ready to test project</a></li>
 <li><a href="#_use_it_in_your_own_project">Use it in your own project</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -454,8 +457,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_quick_start">Quick start</h2>
+<h2 id="_tutorial">Tutorial</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_quick_start">Quick start</h3>
 <div class="paragraph">
 <p>You can experiment it simply with almost nothing.</p>
 </div>
@@ -483,22 +488,20 @@ Each time you run this test, a change in the file is a regression.</p>
 <p>By the time, you can add useful information to the output file and format it to be more readable.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_java_project">Java project</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_java_project">Java project</h3>
 <div class="paragraph">
 <p>If you want to experiment it in a java project, you can use library provided.</p>
 </div>
-<div class="sect2">
-<h3 id="_ready_to_test_project">Ready to test project</h3>
+<div class="sect3">
+<h4 id="_ready_to_test_project">Ready to test project</h4>
 <div class="paragraph">
 <p>You can use the <a href="https://github.com/sfauvel/TryDocAsTest">TryDocAsTest</a> project.
 It&#8217;s a preconfigure project to start with a complete tool.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_use_it_in_your_own_project">Use it in your own project</h3>
+<div class="sect3">
+<h4 id="_use_it_in_your_own_project">Use it in your own project</h4>
 <div class="paragraph">
 <p>You want to create your own Java project to try this approach.
 The only module you need is <code>documentationtestesting</code> one.</p>
@@ -526,7 +529,7 @@ If it is the case, rename it with <code>approved.adoc</code> instead of <code>re
 <div class="listingblock">
 <div class="title">Example with DemoTest.java</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">demo</span><span class="o">;</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="kn">package</span> <span class="nn">org.sfvl.demo</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">org.junit.jupiter.api.DisplayName</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
@@ -559,18 +562,21 @@ If it is the case, rename it with <code>approved.adoc</code> instead of <code>re
 <td class="tableblock halign-left valign-top"><p class="tableblock">File generated to validate</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="sect3">
-<h4 id="org_sfvl_demo_DemoTest_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h4>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="sect1">
+<h2 id="org_sfvl_demo_DemoTest_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>When adding two simple numbers, the java operator '+' should return the sum of them.</p>
 </div>
 <div class="paragraph">
 <p>2 + 3 = 5</p>
 </div>
+</div>
 </div></div></td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 </div>

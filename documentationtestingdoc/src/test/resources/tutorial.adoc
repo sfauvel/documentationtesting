@@ -1,3 +1,6 @@
+:RESOURCE_TO_PROJECT_ROOT_PATH: ../../..
+:SAMPLES_PATH: ../samples
+
 = Tutorial
 
 == Quick start
@@ -47,12 +50,13 @@ Relaunch tests and they should pass.
 .Example with DemoTest.java
 [source, java]
 ----
-include::{rootpath}/samples/demo_basic_approvals/src/test/java/org/sfvl/demo/DemoTest.java[]
+include::{RESOURCE_TO_PROJECT_ROOT_PATH}/{SAMPLES_PATH}/demo_basic_approvals/src/test/java/org/sfvl/demo/DemoTest.java[]
 ----
 
 |===
 | File generated to validate
-a| include::{rootpath}/samples/demo_basic_approvals/src/test/docs/org/sfvl/demo/_DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+3]
+a|
+include::{RESOURCE_TO_PROJECT_ROOT_PATH}/{SAMPLES_PATH}/demo_basic_approvals/src/test/docs/org/sfvl/demo/_DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+3]
 |===
 
 
