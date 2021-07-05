@@ -1,0 +1,10 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+:nofooter:
+= Demo with documentation testing test
+
+Demo of a simple usage to generate documentation and validate it with Approvals.
+
+include::_DemoWithDocumentationTestingTest.should_add_2_numbers.approved.adoc[leveloffset=+1]

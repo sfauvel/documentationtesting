@@ -25,7 +25,7 @@ public class DemoTest {
 
     // tag::test[]
     @Test
-    public void should_be_5_when_adding_2_and_3() throws IOException {
+    public void should_add_2_numbers() throws IOException {
         final Path filePath = docPath.resolve("_DemoTest.adoc");
         final FileWriter fileWriter = new FileWriter(filePath.toFile().toString());
         try (BufferedWriter writer = new BufferedWriter(fileWriter)) {

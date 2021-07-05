@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Minimal demo to generate an asciidoc file</title>
+<title>Minimal demo to generate a documentation used as non regression test</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,19 +436,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
-<h1>Minimal demo to generate an asciidoc file</h1>
+<h1>Minimal demo to generate a documentation used as non regression test</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_generate_an_asciidoc_file">Generate an asciidoc file</a></li>
+<li><a href="#_check_regression_with_approvals">Check regression with Approvals</a></li>
+<li><a href="#_use_documentationtesting">Use DocumentationTesting</a></li>
+<li><a href="#_sources">Sources</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
-<div id="preamble">
+<div class="sect1">
+<h2 id="_generate_an_asciidoc_file">Generate an asciidoc file</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>We want an output document that looks like:</p>
+<p>We want an <strong>output document</strong> that looks like:</p>
 </div>
 <hr>
-</div>
-</div>
 <div class="sect2">
 <h3 id="_should_add_2_numbers">Should add 2 numbers</h3>
 <div class="paragraph">
@@ -456,7 +464,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <hr>
 <div class="paragraph">
-<p>You can do it with a simple Asciidoc file like this one:</p>
+<p>You can do it with <strong>a simple <a href="https://docs.asciidoctor.org/asciidoc/latest/">Asciidoc</a> file</strong> like this one:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -466,12 +474,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>To generate this kind of file, you can do it with this simple code:</p>
+<p>To generate this kind of file, that is just a text file, you can do it with this simple code below.
+To check there is no regression, put your file under source control and verify that it was not modified between two executions.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nd">@Test</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_be_5_when_adding_2_and_3</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_add_2_numbers</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
     <span class="kd">final</span> <span class="nc">Path</span> <span class="n">filePath</span> <span class="o">=</span> <span class="n">docPath</span><span class="o">.</span><span class="na">resolve</span><span class="o">(</span><span class="s">"_DemoTest.adoc"</span><span class="o">);</span>
     <span class="kd">final</span> <span class="nc">FileWriter</span> <span class="n">fileWriter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileWriter</span><span class="o">(</span><span class="n">filePath</span><span class="o">.</span><span class="na">toFile</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
     <span class="k">try</span> <span class="o">(</span><span class="nc">BufferedWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedWriter</span><span class="o">(</span><span class="n">fileWriter</span><span class="o">))</span> <span class="o">{</span>
@@ -489,34 +498,107 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span class="o">}</span></code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_check_regression_with_approvals">Check regression with Approvals</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>If you want to verify that the file has not changed from the last approved file,
-you can use Approvals with the following code.
+<p>If you want to automate that the file has not changed from the last approved file,
+<strong>you can use Approvals</strong> with the following code.
 First time, test failed because there is no approved file.
 Once you approved the file, the test passes until the output changes.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
- * When adding two simple numbers, the java operator '+' should return the sum of them.
+ * Demo of a simple usage to generate documentation and validate it with Approvals.
  */</span>
-<span class="nd">@Test</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_be_5_when_adding_2_and_3</span><span class="o">()</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoWithApprovalsTest</span> <span class="o">{</span>
 
-    <span class="kd">final</span> <span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">"\n"</span><span class="o">,</span>
-            <span class="s">"= Should add 2 numbers"</span><span class="o">,</span>
-            <span class="s">""</span><span class="o">,</span>
-            <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d + %d = *%d*"</span><span class="o">,</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">));</span>
+    <span class="cm">/**
+     * When adding two simple numbers, the java operator '+' should return the sum of them.
+     */</span>
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_add_2_numbers</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
 
-    <span class="nc">Approvals</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">output</span><span class="o">);</span>
+        <span class="kd">final</span> <span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">"\n"</span><span class="o">,</span>
+                <span class="s">"= Should add 2 numbers"</span><span class="o">,</span>
+                <span class="s">""</span><span class="o">,</span>
+                <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d + %d = *%d*"</span><span class="o">,</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">result</span><span class="o">));</span>
+
+        <span class="nc">Approvals</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">output</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_use_documentationtesting">Use DocumentationTesting</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can also <strong>use DocumentationTesting tool</strong> that integrate Approvals
+, format file name, add comment description and add some commodities.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
+ * Demo of a simple usage to generate documentation and validate it with Approvals.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoWithDocumentationTestingTest</span> <span class="o">{</span>
+
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * When adding two simple numbers, the java operator '+' should return the sum of them.
+     */</span>
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_add_2_numbers</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
+
+        <span class="kd">final</span> <span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d + %d = *%d*"</span><span class="o">,</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+
+        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">output</span><span class="o">);</span>
+    <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Sources of this sample: <a href="https://github.com/sfauvel/documentationtesting/tree/master/samples/demo_minimal" class="bare">https://github.com/sfauvel/documentationtesting/tree/master/samples/demo_minimal</a></p>
+<p>The final file look likes:</p>
+</div>
+<hr>
+<div class="sect2">
+<h3 id="_demo_with_documentation_testing_test">Demo with documentation testing test</h3>
+<div class="paragraph">
+<p>Demo of a simple usage to generate documentation and validate it with Approvals.</p>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_demo_DemoWithDocumentationTestingTest_should_add_2_numbers">Should add 2 numbers</h4>
+<div class="paragraph">
+<p>When adding two simple numbers, the java operator '+' should return the sum of them.</p>
+</div>
+<div class="paragraph">
+<p>2 + 3 = <strong>5</strong></p>
+</div>
+<hr>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sources">Sources</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sources of thoses samples: <a href="https://github.com/sfauvel/documentationtesting/tree/master/samples/demo_minimal" class="bare">https://github.com/sfauvel/documentationtesting/tree/master/samples/demo_minimal</a></p>
+</div>
 </div>
 </div>
 </div>
