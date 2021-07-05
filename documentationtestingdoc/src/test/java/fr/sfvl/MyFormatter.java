@@ -79,7 +79,7 @@ class MyFormatter extends AsciidocFormatter {
     private void generatePage(DocPath docPath) throws IOException {
         String includeContent = String.join("\n",
                 "ifndef::ROOT_PATH[]",
-                String.format(":ROOT_PATH: %s", docPath.page().folder().relativize(Paths.get(""))),
+                String.format(":ROOT_PATH: %s", docPath.doc().folder().relativize(Paths.get(""))),
                 "endif::[]",
                 ":toc: left",
                 ":nofooter:",
