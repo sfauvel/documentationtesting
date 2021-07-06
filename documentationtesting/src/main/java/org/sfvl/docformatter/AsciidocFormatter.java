@@ -97,6 +97,14 @@ public class AsciidocFormatter implements Formatter {
         return include_with_options(filename, String.format("leveloffset=+%d", offset));
     }
 
+    public String include_with_tag(String filename, String tag) {
+        return include_with_options(filename, String.format("tag=%s", tag));
+    }
+
+    public String include_with_lines(String filename, int begin, int end) {
+        return include_with_options(filename, String.format("lines=%d..%d", begin, end));
+    }
+
     private String include_with_options(String filename, String options) {
         return String.format("include::%s[%s]", filename.replaceAll("\\\\", "/"), options);
     }

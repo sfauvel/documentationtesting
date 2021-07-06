@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.utils.*;
 import org.sfvl.samples.FailingTest;
@@ -26,6 +27,7 @@ import java.util.stream.Collectors;
 @ClassToDocument(clazz = ApprovalsExtension.class)
 public class ApprovalsExtensionTest {
 
+    private AsciidocFormatter formatter = new AsciidocFormatter();
     @RegisterExtension
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
@@ -42,7 +44,8 @@ public class ApprovalsExtensionTest {
 
         final Method method = FindLambdaMethod.getMethod(MyTest::test_A);
         final Path approvedPath = new DocPath(method).approved().from(this.getClass());
-        doc.write("When executing test method `" + method.getName() + "`, a file `" + approvedPath.getFileName() + "` is generated and contains the following text", "----", "include::" + approvedPath + "[]", "----", "Filename and title come from method name.", "The chapter content contains what was written using `" + DocWriter.class.getSimpleName() + "`");
+        doc.write("When executing test method `" + method.getName() + "`, a file `" + approvedPath.getFileName() + "` is generated and contains the following text",
+                "----", formatter.include(approvedPath.toString()), "----", "Filename and title come from method name.", "The chapter content contains what was written using `" + DocWriter.class.getSimpleName() + "`");
     }
 
     @Test
@@ -57,7 +60,7 @@ public class ApprovalsExtensionTest {
 
         final String testMethod = FindLambdaMethod.getName(UsingDisplayNameTest::test_A);
         final String filename = "_" + testClass.getSimpleName() + "." + testMethod + ".approved.adoc";
-        doc.write("Generated file with DisplayName content as title", "----", "include::" + filename + "[]", "----");
+        doc.write("Generated file with DisplayName content as title", "----", formatter.include(filename), "----");
     }
 
     @Test
@@ -76,7 +79,7 @@ public class ApprovalsExtensionTest {
         final Path approvedPath = new DocPath(method).approved().from(this.getClass());
         doc.write("When executing test method `" + method.getName() + "`, a file `" + approvedPath.getFileName() + "` is generated and contains the following text",
                 "----",
-                "include::" + approvedPath + "[]",
+                formatter.include(approvedPath.toString()),
                 "----");
     }
 
@@ -114,7 +117,7 @@ public class ApprovalsExtensionTest {
                 "}\n" +
                 "</style>\n" +
                 "++++";
-        doc.write("", "", style, "", "_final rendering_", "[.adocRendering]", "include::_" + testClass.getSimpleName() + ".approved.adoc[leveloffset=+1]");
+        doc.write("", "", style, "", "_final rendering_", "[.adocRendering]", formatter.include("_" + testClass.getSimpleName() + ".approved.adoc", 1));
 
     }
 
@@ -143,7 +146,7 @@ public class ApprovalsExtensionTest {
                 "}\n" +
                 "</style>\n" +
                 "++++";
-        doc.write("", "", style, "", "_final rendering_", "[.adocRendering]", "include::" + approved.from(this.getClass()) + "[leveloffset=+1]");
+        doc.write("", "", style, "", "_final rendering_", "[.adocRendering]", formatter.include(approved.from(this.getClass()).toString(), 1));
 
     }
 
@@ -193,7 +196,7 @@ public class ApprovalsExtensionTest {
                 ":leveloffset: +1",
                 "_final rendering_",
                 "[.adocRendering]",
-                "include::" + docPath.received().from(this.getClass()) + "[lines=\"1..14\"]",
+                formatter.include_with_lines(docPath.received().from(this.getClass()).toString(), 1, 14),
                 "...",
                 "----",
                 "// We add the line below to close truncated block open in included file",

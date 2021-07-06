@@ -60,6 +60,10 @@ include::_AsciidocFormatterTest.Include.add_a_leveloffset.approved.adoc[leveloff
 
 include::_AsciidocFormatterTest.Include.include_is_agnostic_of_directory_separator.approved.adoc[leveloffset=+2]
 
+include::_AsciidocFormatterTest.Include.include_with_a_tag.approved.adoc[leveloffset=+2]
+
+include::_AsciidocFormatterTest.Include.include_with_a_range_of_lines.approved.adoc[leveloffset=+2]
+
 include::_AsciidocFormatterTest.should_format_table.approved.adoc[leveloffset=+1]
 
 include::_AsciidocFormatterTest.should_format_table_with_header.approved.adoc[leveloffset=+1]

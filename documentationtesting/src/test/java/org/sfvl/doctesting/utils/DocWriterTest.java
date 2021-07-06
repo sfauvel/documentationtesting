@@ -218,13 +218,12 @@ class DocWriterTest {
         final String rootPath = IntStream.range(0, nb_folder)
                 .mapToObj(i -> "..")
                 .collect(Collectors.joining("/"));
-        
+
+        final String filename = String.format("%s/java/%s.java", rootPath, getClass().getName().replace(".", "/"));
         return String.join("\n",
                 "[source, java, indent=0]",
                 "----",
-                String.format("include::"+rootPath+"/java/%s.java[tag=%s]",
-                        getClass().getName().replace(".", "/"),
-                        tag),
+                formatter.include_with_tag(filename, tag),
                 "----");
     }
 

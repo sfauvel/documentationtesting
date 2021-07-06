@@ -66,7 +66,7 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 :leveloffset: +1
 _final rendering_
 [.adocRendering]
-include::../../samples/_FailingTest.failing_test.received.adoc[lines="1..14"]
+include::../../samples/_FailingTest.failing_test.received.adoc[lines=1..14]
 ...
 ----
 // We add the line below to close truncated block open in included file

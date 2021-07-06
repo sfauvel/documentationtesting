@@ -230,6 +230,34 @@ public class AsciidocFormatterTest {
                     "",
                     formatter.include("tmp\\anotherFile.adoc"));
         }
+
+        @Test
+        public void include_with_a_tag() throws IOException {
+
+            final String fileToInclude = "tmp/fileWithTag.adoc";
+            writeAFile(fileToInclude, String.join("\n",
+                    "Text with tag",
+                    "tag::myTag[]",
+                    "text inside tag",
+                    "end::myTag[]",
+                    "text after tag")
+            );
+            output = formatter.include_with_tag(fileToInclude, "myTag");
+        }
+
+        @Test
+        public void include_with_a_range_of_lines() throws IOException {
+
+            final String fileToInclude = "tmp/fileWithRange.adoc";
+            writeAFile(fileToInclude, String.join("\n",
+                    "* line 1",
+                    "* line 2",
+                    "* line 3",
+                    "* line 4",
+                    "* line 5")
+            );
+            output = formatter.include_with_lines(fileToInclude, 2, 4);
+        }
     }
 
     @Test

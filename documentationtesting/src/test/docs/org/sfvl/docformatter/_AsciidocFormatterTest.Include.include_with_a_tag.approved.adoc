@@ -1,0 +1,33 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+[#org_sfvl_docformatter_AsciidocFormatterTest_Include_include_with_a_tag]
+= Include with a tag
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+
+            final String fileToInclude = "tmp/fileWithTag.adoc";
+            writeAFile(fileToInclude, String.join("\n",
+                    "Text with tag",
+                    "tag::myTag[]",
+                    "text inside tag",
+                    "end::myTag[]",
+                    "text after tag")
+            );
+            output = formatter.include_with_tag(fileToInclude, "myTag");
+----
+
+[red]##_Render_##
+
+include::tmp/fileWithTag.adoc[tag=myTag]
+
+[red]##_Asciidoc generated_##
+------
+\include::tmp/fileWithTag.adoc[tag=myTag]
+------
+
+___
