@@ -201,13 +201,21 @@ public class AsciidocFormatterTest {
     }
 
     @Nested
-    class include {
+    class Include {
         @Test
         @DisplayName("Include another file")
         public void should_format_include() throws IOException {
             final String fileToInclude = "tmp/anotherFile.adoc";
             writeAFile(fileToInclude, "Text from another file included in this one");
             output = formatter.include(fileToInclude);
+        }
+
+        @Test
+        @TestOption(showRender = false)
+        public void add_a_leveloffset() throws IOException {
+            final String fileToInclude = "tmp/anotherFile.adoc";
+            writeAFile(fileToInclude, "Text from another file included in this one");
+            output = formatter.include(fileToInclude, 2);
         }
 
         /**

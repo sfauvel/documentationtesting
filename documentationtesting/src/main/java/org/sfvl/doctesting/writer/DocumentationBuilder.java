@@ -166,7 +166,7 @@ public class DocumentationBuilder implements DocumentProducer {
 
         return classesToInclude.stream()
                 .map(c -> getRelativeFilePath(location, c))
-                .map(path -> formatter.include(path.toString()).trim())
+                .map(path -> formatter.include(path.toString(), 1))
                 .collect(Collectors.joining("\n\n", "\n", "\n"));
     }
 

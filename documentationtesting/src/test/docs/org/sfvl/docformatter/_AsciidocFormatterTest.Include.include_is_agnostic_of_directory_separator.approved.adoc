@@ -2,7 +2,7 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../..
 endif::[]
 
-[#org_sfvl_docformatter_AsciidocFormatterTest_include_include_is_agnostic_of_directory_separator]
+[#org_sfvl_docformatter_AsciidocFormatterTest_Include_include_is_agnostic_of_directory_separator]
 = Include is agnostic of directory separator
 
 Include directive always used '/' as directory separator regardless of operating system.
@@ -20,9 +20,9 @@ It allows to have same outputs when running tests in several environments.
 
 [red]##_Asciidoc generated_##
 ------
-\include::tmp/anotherFile.adoc[leveloffset=+1]
+\include::tmp/anotherFile.adoc[]
 
-\include::tmp/anotherFile.adoc[leveloffset=+1]
+\include::tmp/anotherFile.adoc[]
 ------
 
 ___

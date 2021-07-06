@@ -190,8 +190,8 @@ public class ConceptDocTest extends MyFormatter {
     @Test
     public void howTo() {
         doc.write(paragraph(
-                include(new DocPath(FindLambdaMethod.getMethod(ConceptDocTest::demo_list)).approved().from(this.getClass()).toString()),
-                include(new DocPath(FindLambdaMethod.getMethod(ConceptDocTest::tech_list)).approved().from(this.getClass()).toString())
+                include(new DocPath(FindLambdaMethod.getMethod(ConceptDocTest::demo_list)).approved().from(this.getClass()).toString(), 1),
+                include(new DocPath(FindLambdaMethod.getMethod(ConceptDocTest::tech_list)).approved().from(this.getClass()).toString(), 1)
         ));
     }
 

@@ -464,10 +464,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_source_code_with_a_builder">Source code using a builder</a></li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_source_code_with_a_minimal_builder">Source code using a minimal builder</a></li>
-<li><a href="#_include">include</a>
+<li><a href="#_include">Include</a>
 <ul class="sectlevel2">
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_include_should_format_include">Include another file</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_include_include_is_agnostic_of_directory_separator">Include is agnostic of directory separator</a></li>
+<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_Include_should_format_include">Include another file</a></li>
+<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_Include_add_a_leveloffset">Add a leveloffset</a></li>
+<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_Include_include_is_agnostic_of_directory_separator">Include is agnostic of directory separator</a></li>
 </ul>
 </li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_table">Table</a></li>
@@ -1142,10 +1143,10 @@ public int add(int a, int b) {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_include">include</h2>
+<h2 id="_include">Include</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_include_should_format_include">Include another file</h3>
+<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_Include_should_format_include">Include another file</h3>
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
 </div>
@@ -1167,13 +1168,35 @@ public int add(int a, int b) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>include::tmp/anotherFile.adoc[leveloffset=+1]</pre>
+<pre>include::tmp/anotherFile.adoc[]</pre>
 </div>
 </div>
 <hr>
 </div>
 <div class="sect2">
-<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_include_include_is_agnostic_of_directory_separator">Include is agnostic of directory separator</h3>
+<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_Include_add_a_leveloffset">Add a leveloffset</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">fileToInclude</span> <span class="o">=</span> <span class="s">"tmp/anotherFile.adoc"</span><span class="o">;</span>
+<span class="n">writeAFile</span><span class="o">(</span><span class="n">fileToInclude</span><span class="o">,</span> <span class="s">"Text from another file included in this one"</span><span class="o">);</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">include</span><span class="o">(</span><span class="n">fileToInclude</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>include::tmp/anotherFile.adoc[leveloffset=+2]</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_Include_include_is_agnostic_of_directory_separator">Include is agnostic of directory separator</h3>
 <div class="paragraph">
 <p>Include directive always used '/' as directory separator regardless of operating system.
 It allows to have same outputs when running tests in several environments.</p>
@@ -1194,9 +1217,9 @@ It allows to have same outputs when running tests in several environments.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>include::tmp/anotherFile.adoc[leveloffset=+1]
+<pre>include::tmp/anotherFile.adoc[]
 
-include::tmp/anotherFile.adoc[leveloffset=+1]</pre>
+include::tmp/anotherFile.adoc[]</pre>
 </div>
 </div>
 <hr>

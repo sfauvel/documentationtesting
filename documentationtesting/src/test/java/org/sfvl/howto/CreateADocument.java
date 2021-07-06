@@ -25,6 +25,8 @@ import java.util.stream.Collectors;
  */
 public class CreateADocument {
 
+    private AsciidocFormatter formatter = new AsciidocFormatter();
+
     @RegisterExtension
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
@@ -129,7 +131,7 @@ public class CreateADocument {
     private void writeDoc(TestInfo testInfo, OnePath outputFile) throws IOException {
         final String content = Files.lines(outputFile.path())
                 .collect(Collectors.joining("\n"));
-        final String view_rendering = "include::" + outputFile.from(this.getClass()) + "[leveloffset=+1]";
+        final String view_rendering = formatter.include(outputFile.from(this.getClass()).toString(), 1);
 
         writeDoc(testInfo, content, view_rendering);
     }
