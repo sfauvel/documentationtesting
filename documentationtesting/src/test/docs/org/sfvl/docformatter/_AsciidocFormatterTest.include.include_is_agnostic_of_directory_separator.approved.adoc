@@ -1,0 +1,30 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+[#org_sfvl_docformatter_AsciidocFormatterTest_include_include_is_agnostic_of_directory_separator]
+= Include is agnostic of directory separator
+
+Include directive always used '/' as directory separator regardless of operating system.
+It allows to have same outputs when running tests in several environments.
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+            output = String.join("\n",
+                    formatter.include("tmp/anotherFile.adoc"),
+                    formatter.include("tmp\\anotherFile.adoc"));
+----
+
+[red]##_Asciidoc generated_##
+------
+
+\include::tmp/anotherFile.adoc[leveloffset=+1]
+
+
+\include::tmp/anotherFile.adoc[leveloffset=+1]
+
+------
+
+___

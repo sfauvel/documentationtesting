@@ -2,10 +2,10 @@ package org.sfvl.docformatter;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.doctesting.utils.CodeExtractor;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -179,12 +179,12 @@ public class AsciidocFormatterTest {
                 .title("Source code")
                 .indent(4)
                 .source(
-                "public int add(int a, int b) {\n" +
-                        "   int result = a + b;\n" +
-                        "   return result;\n" +
-                        "}")
+                        "public int add(int a, int b) {\n" +
+                                "   int result = a + b;\n" +
+                                "   return result;\n" +
+                                "}")
                 .build()
-                ;
+        ;
     }
 
     @Test
@@ -200,12 +200,27 @@ public class AsciidocFormatterTest {
         ;
     }
 
-    @Test
-    @DisplayName("Include another file")
-    public void should_format_include() throws IOException {
-        final String fileToInclude = "tmp/anotherFile.adoc";
-        writeAFile(fileToInclude, "Text from another file included in this one");
-        output = formatter.include(fileToInclude);
+    @Nested
+    class include {
+        @Test
+        @DisplayName("Include another file")
+        public void should_format_include() throws IOException {
+            final String fileToInclude = "tmp/anotherFile.adoc";
+            writeAFile(fileToInclude, "Text from another file included in this one");
+            output = formatter.include(fileToInclude);
+        }
+
+        /**
+         * Include directive always used '/' as directory separator regardless of operating system.
+         * It allows to have same outputs when running tests in several environments.
+         */
+        @Test
+        @TestOption(showRender = false)
+        public void include_is_agnostic_of_directory_separator() throws IOException {
+            output = String.join("\n",
+                    formatter.include("tmp/anotherFile.adoc"),
+                    formatter.include("tmp\\anotherFile.adoc"));
+        }
     }
 
     @Test

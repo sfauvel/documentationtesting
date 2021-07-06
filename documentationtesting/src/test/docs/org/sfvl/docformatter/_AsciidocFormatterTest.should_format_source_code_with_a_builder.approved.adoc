@@ -13,12 +13,12 @@ endif::[]
                 .title("Source code")
                 .indent(4)
                 .source(
-                "public int add(int a, int b) {\n" +
-                        "   int result = a + b;\n" +
-                        "   return result;\n" +
-                        "}")
+                        "public int add(int a, int b) {\n" +
+                                "   int result = a + b;\n" +
+                                "   return result;\n" +
+                                "}")
                 .build()
-                ;
+        ;
 ----
 
 [red]##_Render_##
