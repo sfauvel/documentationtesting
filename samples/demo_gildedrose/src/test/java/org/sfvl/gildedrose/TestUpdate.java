@@ -1,5 +1,7 @@
-package fr.xebia.katas.gildedrose;
+package org.sfvl.gildedrose;
 
+import fr.xebia.katas.gildedrose.Inn;
+import fr.xebia.katas.gildedrose.Item;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
