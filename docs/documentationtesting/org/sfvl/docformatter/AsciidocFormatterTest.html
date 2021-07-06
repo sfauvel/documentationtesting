@@ -464,7 +464,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_source_code_with_a_builder">Source code using a builder</a></li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_source_code_with_a_minimal_builder">Source code using a minimal builder</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_include">Include another file</a></li>
+<li><a href="#_include">include</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_include_should_format_include">Include another file</a></li>
+<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_include_include_is_agnostic_of_directory_separator">Include is agnostic of directory separator</a></li>
+</ul>
+</li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_table">Table</a></li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_table_with_header">Table with header</a></li>
 </ul>
@@ -1052,12 +1057,12 @@ Into the block
         <span class="o">.</span><span class="na">title</span><span class="o">(</span><span class="s">"Source code"</span><span class="o">)</span>
         <span class="o">.</span><span class="na">indent</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
         <span class="o">.</span><span class="na">source</span><span class="o">(</span>
-        <span class="s">"public int add(int a, int b) {\n"</span> <span class="o">+</span>
-                <span class="s">"   int result = a + b;\n"</span> <span class="o">+</span>
-                <span class="s">"   return result;\n"</span> <span class="o">+</span>
-                <span class="s">"}"</span><span class="o">)</span>
+                <span class="s">"public int add(int a, int b) {\n"</span> <span class="o">+</span>
+                        <span class="s">"   int result = a + b;\n"</span> <span class="o">+</span>
+                        <span class="s">"   return result;\n"</span> <span class="o">+</span>
+                        <span class="s">"}"</span><span class="o">)</span>
         <span class="o">.</span><span class="na">build</span><span class="o">()</span>
-        <span class="o">;</span></code></pre>
+<span class="o">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1137,8 +1142,10 @@ public int add(int a, int b) {
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_include">Include another file</h2>
+<h2 id="_include">include</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_include_should_format_include">Include another file</h3>
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
 </div>
@@ -1164,6 +1171,36 @@ public int add(int a, int b) {
 </div>
 </div>
 <hr>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_include_include_is_agnostic_of_directory_separator">Include is agnostic of directory separator</h3>
+<div class="paragraph">
+<p>Include directive always used '/' as directory separator regardless of operating system.
+It allows to have same outputs when running tests in several environments.</p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">"\n"</span><span class="o">,</span>
+        <span class="n">formatter</span><span class="o">.</span><span class="na">include</span><span class="o">(</span><span class="s">"tmp/anotherFile.adoc"</span><span class="o">),</span>
+        <span class="s">""</span><span class="o">,</span>
+        <span class="n">formatter</span><span class="o">.</span><span class="na">include</span><span class="o">(</span><span class="s">"tmp\\anotherFile.adoc"</span><span class="o">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>include::tmp/anotherFile.adoc[leveloffset=+1]
+
+include::tmp/anotherFile.adoc[leveloffset=+1]</pre>
+</div>
+</div>
+<hr>
+</div>
 </div>
 </div>
 <div class="sect1">

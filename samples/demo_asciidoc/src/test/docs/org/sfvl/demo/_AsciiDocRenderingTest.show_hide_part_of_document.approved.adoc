@@ -2,8 +2,8 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../..
 endif::[]
 
-
 include::../../../../resources/buttonShowHide.adoc[leveloffset=+1]
+
 .Asciidoc source used
 ------
 = Show/Hide some document parts

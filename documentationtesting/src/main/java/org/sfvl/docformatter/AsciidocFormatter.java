@@ -94,7 +94,7 @@ public class AsciidocFormatter implements Formatter {
 
     @Override
     public String include(String filename, int offset) {
-        return String.format("\ninclude::%s[leveloffset=+%d]\n", filename.replaceAll("\\\\", "/"), offset);
+        return String.format("include::%s[leveloffset=+%d]", filename.replaceAll("\\\\", "/"), offset);
     }
 
     @Override

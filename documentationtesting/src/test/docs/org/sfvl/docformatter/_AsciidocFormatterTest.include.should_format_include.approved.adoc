@@ -16,15 +16,11 @@ endif::[]
 
 [red]##_Render_##
 
-
 include::tmp/anotherFile.adoc[leveloffset=+1]
-
 
 [red]##_Asciidoc generated_##
 ------
-
 \include::tmp/anotherFile.adoc[leveloffset=+1]
-
 ------
 
 ___

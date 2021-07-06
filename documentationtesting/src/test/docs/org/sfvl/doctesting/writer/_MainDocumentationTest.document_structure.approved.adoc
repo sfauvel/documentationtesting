@@ -20,13 +20,9 @@ You can overwrite methods to modify document generated.
 
 \include::../../../readme.adoc[leveloffset=+1]
 
-
 \include::org/sfvl/doctesting/writer/InMainDocBisTest.adoc[leveloffset=+1]
 
-
-
 \include::org/sfvl/doctesting/writer/InMainDocTest.adoc[leveloffset=+1]
-
 ----
 .MainDocumentation methods overwritten
 [source, java, indent=0]
@@ -41,13 +37,9 @@ You can overwrite methods to modify document generated.
 ----
 from getHeader method
 
-
 \include::org/sfvl/doctesting/writer/InMainDocBisTest.adoc[leveloffset=+1]
 
-
-
 \include::org/sfvl/doctesting/writer/InMainDocTest.adoc[leveloffset=+1]
-
 ----
 .Test class used to in this examples
 [source, java, indent=0]

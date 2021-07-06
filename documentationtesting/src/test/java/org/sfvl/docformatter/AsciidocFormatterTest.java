@@ -219,6 +219,7 @@ public class AsciidocFormatterTest {
         public void include_is_agnostic_of_directory_separator() throws IOException {
             output = String.join("\n",
                     formatter.include("tmp/anotherFile.adoc"),
+                    "",
                     formatter.include("tmp\\anotherFile.adoc"));
         }
     }
@@ -260,7 +261,7 @@ public class AsciidocFormatterTest {
         if (annotation.map(TestOption::showRender).orElse(true)) {
             doc.write("", "[red]##_Render_##", "", output, "");
         }
-        doc.write("\n[red]##_Asciidoc generated_##", "------", output.replaceAll("\\ninclude", "\n\\\\include"), "------", "");
+        doc.write("\n[red]##_Asciidoc generated_##", "------", output.replaceAll("(^|\\n)include", "$1\\\\include"), "------", "");
 
         doc.write("", "___", "");
     }

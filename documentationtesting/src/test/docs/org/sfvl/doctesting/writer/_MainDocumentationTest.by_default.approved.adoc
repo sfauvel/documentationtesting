@@ -28,11 +28,7 @@ endif::[]
 
 \include::../../../readme.adoc[leveloffset=+1]
 
-
 \include::org/sfvl/doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
 
-
-
 \include::org/sfvl/doctesting/sample/basic/SecondTest.adoc[leveloffset=+1]
-
 ----

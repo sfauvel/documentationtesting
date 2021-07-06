@@ -89,8 +89,8 @@ public class AsciiDocRenderingTest {
         final DocPath docPath = new DocPath(Paths.get(""), "buttonShowHide");
         final Path from = docPath.resource().from(this.getClass());
 
-        doc.write(formatter.include(from.toString()));
-        doc.write(
+        doc.write(formatter.include(from.toString()),
+                "",
                 String.format(".Asciidoc source used"),
                 "------",
                 getEscapedFileContent(docPath.resource().path()),
