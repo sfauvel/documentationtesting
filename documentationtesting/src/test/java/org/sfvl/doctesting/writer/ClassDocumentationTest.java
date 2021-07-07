@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 @ClassToDocument(clazz = ClassDocumentation.class)
 class ClassDocumentationTest {
 
-    private final Formatter formatter = new AsciidocFormatter();
+    private final AsciidocFormatter formatter = new AsciidocFormatter();
     @RegisterExtension
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
@@ -203,9 +203,7 @@ class ClassDocumentationTest {
         return String.join("\n",
                 "[source, java, indent=0]",
                 "----",
-                String.format("include::%s[tag=%s]",
-                        javaFilePath.toString(),
-                        tag),
+                formatter.include_with_tag(javaFilePath.toString(), tag),
                 "----");
     }
 }

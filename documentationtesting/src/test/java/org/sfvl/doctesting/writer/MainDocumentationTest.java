@@ -11,6 +11,7 @@ import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.utils.DocPath;
 
 import java.io.File;
 import java.lang.annotation.Annotation;
@@ -83,7 +84,7 @@ class MainDocumentationTest {
                 "----",
                 "");
 
-        MainDocumentationTest.doc.write(String.format(".Files contained in the folder `%s`", packagePath),
+        MainDocumentationTest.doc.write(String.format(".Files contained in the folder `%s`", DocPath.toAsciiDoc(packagePath)),
                 fileStream.map(f -> "* " + f)
                         .sorted()
                         .collect(Collectors.joining("\n", "", "\n")));

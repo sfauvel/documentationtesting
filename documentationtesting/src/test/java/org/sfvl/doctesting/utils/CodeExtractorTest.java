@@ -3,6 +3,7 @@ package org.sfvl.doctesting.utils;
 import com.github.javaparser.ParseProblemException;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
@@ -12,6 +13,7 @@ import org.sfvl.doctesting.sample.MyClass;
 import org.sfvl.doctesting.sample.SimpleClass;
 
 import java.lang.reflect.Method;
+import java.nio.file.Path;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
@@ -22,6 +24,8 @@ import java.util.stream.Collectors;
  */
 @DisplayName(value = "CodeExtractor")
 class CodeExtractorTest {
+
+    private AsciidocFormatter formatter = new AsciidocFormatter();
 
     static class CodeExtractorWriter extends DocWriter {
         void writeInline(String... texts) {
@@ -775,9 +779,8 @@ class CodeExtractorTest {
 
     public String includeSourceWithTag(String tag, Class<?> aClass) {
         final DocPath docPath = new DocPath(aClass);
-        return formatSourceCode(String.format("include::%s[tag=%s]",
-                docPath.test().from(this.getClass()),
-                tag));
+        final Path relativePath = docPath.test().from(this.getClass());
+        return formatSourceCode(formatter.include_with_tag(relativePath.toString(), tag));
     }
 
 }

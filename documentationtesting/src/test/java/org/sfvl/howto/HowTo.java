@@ -13,6 +13,8 @@ import org.sfvl.doctesting.writer.Classes;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -109,10 +111,9 @@ public class HowTo {
             throw new RuntimeException(e);
         }
 
-
-        return String.format("link:{%s}/%s[%s]\n",
-                Config.DOC_PATH_TAG,
-                new DocPath(this.getClass()).doc().path(),
+        final Path relativePath = new DocPath(this.getClass()).doc().path();
+        return String.format("link:%s[%s]\n",
+                DocPath.toAsciiDoc(Paths.get("{"+Config.DOC_PATH_TAG+"}").resolve(relativePath)),
                 title);
     }
 

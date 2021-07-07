@@ -50,7 +50,7 @@ public class DocPathTest {
         doc.write("",
                 String.format("We also used `%s` class to display `from` and `to` results with approved file (`%s`).",
                         classToCompare.getCanonicalName(),
-                        relativeToApproved.path()),
+                        DocPath.toAsciiDoc(relativeToApproved.path())),
                 "");
 
 
@@ -104,7 +104,7 @@ public class DocPathTest {
         doc.write("",
                 String.format("We also used `%s` class to display `from` and `to` results with approved file (`%s`).",
                         classToCompare.getCanonicalName(),
-                        relativeToApproved.path()),
+                        DocPath.toAsciiDoc(relativeToApproved.path())),
                 "");
 
 

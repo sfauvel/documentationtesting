@@ -172,10 +172,8 @@ public class DocumentationTestingDocumentation {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        return String.format("link:{%s}/%s[%s]\n",
-                Config.DOC_PATH_TAG,
-                docPath.doc().path(),
+        return String.format("link:%s[%s]\n",
+                DocPath.toAsciiDoc(Paths.get("{"+Config.DOC_PATH_TAG+"}").resolve(docPath.doc().path())),
                 title);
     }
 

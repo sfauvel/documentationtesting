@@ -93,7 +93,7 @@ public class ApprovalsExtensionTest {
         doc.write("", "", ".Test example using nested class", extractSourceWithTag(testClass.getSimpleName(), this.getClass(), testClass), "", "");
 
         final Path generatedFilePath = Paths.get("", getClass().getPackage().getName().split("\\."));
-        doc.write("Generated files in `" + generatedFilePath + "`:", "", Files.list(doc.getDocPath().resolve(generatedFilePath))
+        doc.write("Generated files in `" + DocPath.toAsciiDoc(generatedFilePath) + "`:", "", Files.list(doc.getDocPath().resolve(generatedFilePath))
                 .map(file -> file.getFileName().toString())
                 .filter(filename -> filename.startsWith("_" + DemoNestedTest.class.getSimpleName() + "."))
                 .filter((filename -> filename.endsWith(".approved.adoc")))
