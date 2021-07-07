@@ -1,0 +1,21 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+[#org_sfvl_doctesting_utils_DocPathTest_make_path_independent_of_operating_system]
+= Make path independent of operating system
+
+Path in asciidoc files must used '/' independently of operating system and file separator.
+
+It's important to always generate the same reference file (.adoc) because we compare it with the last generated one.
+Otherwise, the test could fail when executed on another operating system.
+
+
+[source,java,indent=0]
+----
+        Path path = Paths.get("src", "main", "java");
+        String asciiDocPath = DocPath.toAsciiDoc(path);
+
+----
+
+*asciiDocPath = src/main/java*

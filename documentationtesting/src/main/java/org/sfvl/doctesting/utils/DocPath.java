@@ -1,5 +1,6 @@
 package org.sfvl.doctesting.utils;
 
+import java.io.File;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -68,6 +69,10 @@ public class DocPath {
         return Arrays.stream(aPackage.getName().split("\\."))
                 .map(Paths::get)
                 .reduce(Paths.get(""), Path::resolve);
+    }
+
+    public static String toAsciiDoc(Path path) {
+        return path.toString().replace(File.separatorChar, '/');
     }
 
 }

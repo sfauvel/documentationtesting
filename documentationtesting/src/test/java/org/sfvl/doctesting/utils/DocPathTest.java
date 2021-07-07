@@ -16,6 +16,7 @@ import org.sfvl.samples.MyTest;
 
 import java.lang.reflect.Method;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.function.Function;
 
 @DisplayName(value = "Document path")
@@ -24,6 +25,7 @@ public class DocPathTest {
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     final Formatter formatter = new AsciidocFormatter();
+
     @Test
     public void path_by_type() {
 
@@ -134,6 +136,7 @@ public class DocPathTest {
     @Test
     public void nested_class() {
         final Class<?> clazz = MyClass.MySubClass.class;
+
         doc.write(String.format("Name for nested class `%s` is `%s`.",
                 clazz.getName(),
                 new DocPath(clazz).name()),
@@ -148,6 +151,22 @@ public class DocPathTest {
                 new DocPath(method).name()),
                 ""
         );
+    }
+
+    /**
+     * Path in asciidoc files must used '/' independently of operating system and file separator.
+     *
+     * It's important to always generate the same reference file (.adoc) because we compare it with the last generated one.
+     * Otherwise, the test could fail when executed on another operating system.
+     */
+    @Test
+    public void make_path_independent_of_operating_system() {
+        // >>>
+        Path path = Paths.get("src", "main", "java");
+        String asciiDocPath = DocPath.toAsciiDoc(path);
+        // <<<
+        doc.write(formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                String.format("*asciiDocPath = %s*", asciiDocPath));
     }
 
     class CallsRecorder<T extends Object> implements Answer<T> {
@@ -193,7 +212,7 @@ public class DocPathTest {
     }
 
     private <T> T addSpyRecorderOn(T docPath, Answer recorder) {
-        return Mockito.mock((Class<T>)docPath.getClass(),
+        return Mockito.mock((Class<T>) docPath.getClass(),
                 Mockito.withSettings().spiedInstance(docPath).defaultAnswer(recorder));
     }
 
