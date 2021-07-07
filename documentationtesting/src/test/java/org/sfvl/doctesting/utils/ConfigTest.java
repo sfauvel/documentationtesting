@@ -41,7 +41,7 @@ class ConfigTest {
                     "",
                     "When this file contains:",
                     "----",
-                    String.format("include::%s[]", path.relativize(Paths.get("src", "test", "resources")).resolve(configFile).toString()),
+                    formatter.include(path.relativize(Paths.get("src", "test", "resources")).resolve(configFile).toString()),
                     "----");
 
             final String legend = "Values are:";
@@ -73,7 +73,7 @@ class ConfigTest {
                     legend,
                     "",
                     Arrays.stream(Config.Key.values()).
-                            map(key -> String.format("* %s=%s", key.name(), config.getPath(key).toString()))
+                            map(key -> String.format("* %s=%s", key.name(), DocPath.toAsciiDoc(config.getPath(key))))
                             .collect(Collectors.joining("\n"))
             );
         } catch (Exception e) {

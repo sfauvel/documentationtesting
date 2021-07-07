@@ -189,7 +189,15 @@ public class DocPathTest {
 
     }
 
-    String line(DocPath docPath, Function<DocPath, OnePath> methodOnDocPath, OnePath realtiveToApproved) {
+     String callResult(CallsRecorder recorder, Path path) {
+       return String.format("%s | %s", recorder.lastCall(), DocPath.toAsciiDoc(path));
+     }
+
+     String callResult(CallsRecorder recorder, String t) {
+        return String.format("%s | %s", recorder.lastCall(), t);
+    }
+
+    String line(DocPath docPath, Function<DocPath, OnePath> methodOnDocPath, OnePath relativeToApproved) {
         final CallsRecorder recorder = new CallsRecorder();
 
         final DocPath spyDocPath = addSpyRecorderOn(docPath, recorder);
@@ -199,15 +207,13 @@ public class DocPathTest {
 
         final OnePath spy = addSpyRecorderOn(onePath, recorder);
 
-        Function<Object, String> callResult = p -> String.format("%s | %s", recorder.lastCall(), p);
-
         return String.join("\n",
                 ".5+a| `" + methodCalledOnDocPath + "` | "
-                        + callResult.apply(spy.path())
-                , "a| " + callResult.apply(spy.folder())
-                , "a| " + callResult.apply(spy.fullname())
-                , "a| " + callResult.apply(spy.from(realtiveToApproved))
-                , "a| " + callResult.apply(spy.to(realtiveToApproved))
+                        + callResult(recorder, spy.path())
+                , "a| " + callResult(recorder, spy.folder())
+                , "a| " + callResult(recorder, spy.fullname())
+                , "a| " + callResult(recorder, spy.from(relativeToApproved))
+                , "a| " + callResult(recorder, spy.to(relativeToApproved))
         );
     }
 
