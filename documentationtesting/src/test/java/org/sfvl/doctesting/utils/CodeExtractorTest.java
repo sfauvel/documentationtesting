@@ -7,15 +7,11 @@ import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
-import org.sfvl.doctesting.sample.ClassWithCommentToExtract;
 import org.sfvl.doctesting.sample.ClassWithMethodToExtract;
-import org.sfvl.doctesting.sample.MyClass;
 import org.sfvl.doctesting.sample.SimpleClass;
 
 import java.lang.reflect.Method;
 import java.nio.file.Path;
-import java.util.Optional;
-import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
 /**
@@ -69,6 +65,22 @@ class CodeExtractorTest {
         }
     }
     // end::innerClassToExtract[]
+
+    @Test
+    public void ttt() throws NoSuchMethodException {
+
+
+        Method[] methods = ExtractCode.ExtractPartOfCode.class.getMethods();
+        for (Method method : methods) {
+            if (method.getName().equals("tag_with_same_beginning_of_another_tag")) {
+                System.out.println("Comment of tag_with_same_beginning_of_another_tag");
+                System.out.println(CodeExtractor.getComment(method));
+            }
+        }
+
+
+
+    }
 
     @Nested
     @DisplayName(value = "Extract code")
@@ -166,7 +178,10 @@ class CodeExtractorTest {
                             ".Exception thrown",
                             "++++",
                             e.getProblems().stream()
-                                    .map(c -> c.getCause().map(Throwable::toString).orElse("??"))
+                                    .map(c -> c.getCause()
+                                            .map(Throwable::toString)
+                                            .map(s -> s.replaceAll("\\\\", "/"))
+                                            .orElse("??"))
                                     .collect(Collectors.joining("\n")),
                             "++++",
                             "", "");
@@ -468,132 +483,10 @@ class CodeExtractorTest {
 
             }
 
-            /**
-             * Tag inside another one can be a subpart (MyCode)  of the global one (**MyCode**Global) .
-             */
-            @Test
-            public void tag_beginning_with_same_outer_tag_name(TestInfo testInfo) {
-                final Method testMethod = testInfo.getTestMethod().get();
 
-                // >>>SourceCode
-                // >>>MyCodeGlobal
-                String partGlobalBefore = "Part global before MyCode";
-
-                // >>>MyCode
-                String partMyCode = "Part MyCode";
-                // <<<MyCode
-
-                String partGlobalAfter = "Part global after MyCode";
-                // <<<MyCodeGlobal
-                // <<<SourceCode
-
-                doc.write(".Source code with extractor tags",
-                        formatSourceCode(CodeExtractor.extractPartOfMethod(testMethod, "SourceCode")));
-
-                doc.writeInline(
-                        ".Source code part MyCodeInside extracted",
-                        formatSourceCode(CodeExtractor.extractPartOfMethod(testMethod, "MyCode")),
-                        ".Source code part MyCodeInsideAround extracted",
-                        formatSourceCode(CodeExtractor.extractPartOfMethod(testMethod, "MyCodeGlobal")));
-            }
-
-            /**
-             * Tag inside (**MyCodeGlobal**Inside) another one can be an extension of an outside tag (MyCodeGlobal).
-             */
-            @Test
-            public void tag_beginning_with_same_inner_tag_name(TestInfo testInfo) {
-                final Method testMethod = testInfo.getTestMethod().get();
-
-                // >>>SourceCode
-                // >>>MyCodeGlobal
-                String partGlobalBefore = "Part global before MyCode";
-
-                // >>>MyCodeGlobalInside
-                String partInside = "Part MyCode";
-                // <<<MyCodeGlobalInside
-
-                String partGlobalAfter = "Part global after MyCode";
-                // <<<MyCodeGlobal
-                // <<<SourceCode
-
-                doc.write(".Source code with extractor tags",
-                        formatSourceCode(CodeExtractor.extractPartOfMethod(testMethod, "SourceCode")));
-
-                doc.writeInline(
-                        ".Source code part MyCodeEnclosed extracted",
-                        formatSourceCode(CodeExtractor.extractPartOfMethod(testMethod, "MyCodeGlobalInside")),
-                        ".Source code part MyCodeEnclosedInside extracted",
-                        formatSourceCode(CodeExtractor.extractPartOfMethod(testMethod, "MyCodeGlobal")));
-            }
 
         }
 
-        @Test
-        public void extract_enclosing_classes(TestInfo testInfo) throws NoSuchMethodException {
-            {
-                final Class<?> clazz = CodeExtractorTest.class;
-                doc.write("[%autowidth]", "Class list of `" + clazz.getCanonicalName() + "` give :",
-                        "",
-                        "[%autowidth]",
-                        "|====",
-                        CodeExtractor.enclosingClasses(clazz).stream()
-                                .map(Class::getSimpleName)
-                                .collect(Collectors.joining(" | ", "| ", "")),
-                        "|====",
-                        "", ""
-                );
-            }
-            {
-                final Class<?> clazz = MyClass.MySubClass.ASubClassOfMySubClass.class;
-                doc.write("Class list of `" + clazz.getCanonicalName() + "` give :",
-                        "",
-                        "[%autowidth]",
-                        "|====",
-                        CodeExtractor.enclosingClasses(clazz).stream()
-                                .map(Class::getSimpleName)
-                                .collect(Collectors.joining(" | ", "| ", "")),
-                        "|====",
-                        "", ""
-                );
-            }
-
-        }
-
-        @Test
-        public void extract_first_enclosing_classes_before_another(TestInfo testInfo) throws NoSuchMethodException {
-
-            BiConsumer<Class<?>, Class<?>> write_enclosing = (clazz, clazzBefore) -> {
-                doc.write(String.format("First class of `%s` before `%s` give :",
-                        clazz.getSimpleName(),
-                        (clazzBefore == null ? "null" : clazzBefore.getSimpleName())
-                        ),
-                        "",
-                        "`*" + CodeExtractor.getFirstEnclosingClassBefore(clazz, clazzBefore).getSimpleName() + "*`",
-                        "", ""
-                );
-            };
-
-            final Class<?> fromClass = MyClass.MySubClass.ASubClassOfMySubClass.class;
-            doc.write("Extract from class `" + fromClass.getName()
-                    + "` using `" + "CodeExtractor.getFirstEnclosingClassBefore" + "`\n\n");
-
-            write_enclosing.accept(
-                    fromClass,
-                    MyClass.MySubClass.ASubClassOfMySubClass.class);
-
-            write_enclosing.accept(
-                    fromClass,
-                    MyClass.MySubClass.class);
-
-
-            write_enclosing.accept(
-                    fromClass,
-                    MyClass.class);
-
-            write_enclosing.accept(
-                    fromClass,
-                    null);
-        }
     }
     // tag::NestedClass[]
 
@@ -612,143 +505,7 @@ class CodeExtractorTest {
     }
     // end::NestedClass[]
 
-    @Nested
-    @DisplayName(value = "Extract comment")
-    class ExtractComment {
-
-        @Test
-        @DisplayName(value = "Extract class comment")
-        public void extract_class_comment(TestInfo testInfo) {
-            {
-                doc.write(
-                        ".How to extract comment of a class",
-                        extractMarkedCode(testInfo, "1"),
-                        "");
-
-                // >>>1
-                final String comment = CodeExtractor.getComment(ClassWithCommentToExtract.class);
-                // <<<1
-
-                doc.writeInline(includeSourceWithTag("ClassWithCommentToExtract", ClassWithCommentToExtract.class), "", "");
-
-                formatCommentExtracted("Comment extracted from class",
-                        comment);
-            }
-            {
-                doc.write(
-                        ".How to extract comment of a nested class",
-                        extractMarkedCode(testInfo, "2"),
-                        "");
-
-                // >>>2
-                final String comment = CodeExtractor.getComment(CodeExtractorTest.NestedClass.class);
-                // <<<2
-
-                doc.writeInline(includeSourceWithTag(NestedClass.class.getSimpleName()), "", "");
-
-                formatCommentExtracted("Comment extracted from class",
-                        comment);
-            }
-            {
-                doc.write(
-                        ".How to extract comment of class that is not the main class of his file.",
-                        extractMarkedCode(testInfo, "3"),
-                        "");
-
-
-                // >>>3
-                final String comment = CodeExtractor.getComment(ClassNestedWithCommentToExtract.class);
-                // <<<3
-
-                doc.writeInline(includeSourceWithTag("classNestedWithCommentToExtract"), "", "");
-
-                formatCommentExtracted("Comment extracted from class",
-                        comment);
-            }
-        }
-
-        @Test
-        @DisplayName(value = "Extract method comment")
-        public void extract_method_comment(TestInfo testInfo) throws NoSuchMethodException {
-            doc.writeInline(includeSourceWithTag(ClassWithCommentToExtract.class.getSimpleName(), ClassWithCommentToExtract.class), "", "");
-
-            {
-                doc.write("How to extract comment of a method",
-                        extractMarkedCode(testInfo, "1"),
-                        "");
-
-                // >>>1
-                final Optional<String> comment = CodeExtractor.getComment(
-                        ClassWithCommentToExtract.class,
-                        "methodWithoutParameters"
-                );
-                // <<<1
-
-                formatCommentExtracted("From method without arguments.",
-                        comment.orElse(""));
-            }
-            {
-                doc.write("How to extract comment of a method with parameters",
-                        extractMarkedCode(testInfo, "2"),
-                        "");
-
-                // >>>2
-                final Optional<String> comment = CodeExtractor.getComment(
-                        ClassWithCommentToExtract.class,
-                        "methodWithParameters",
-                        CodeExtractor.getJavaClasses(int.class, String.class)
-                );
-                // <<<2
-
-                formatCommentExtracted("From method with parameters.",
-                        comment.orElse(""));
-            }
-            {
-                doc.write("How to extract comment of a method using Method object",
-                        extractMarkedCode(testInfo, "3"),
-                        "");
-
-                // >>>3
-                final Method methodWithComment = ClassWithCommentToExtract.class.getMethod("methodWithoutParameters");
-                final Optional<String> comment = CodeExtractor.getComment(methodWithComment);
-                // <<<3
-
-                formatCommentExtracted("From method",
-                        comment.orElse(""));
-            }
-
-            {
-                doc.write("How to extract comment of a method with parameters using Method object",
-                        extractMarkedCode(testInfo, "4"),
-                        "");
-
-                // >>>4
-                final Method methodWithComment = ClassWithCommentToExtract.class.getMethod("methodWithParameters", int.class, String.class);
-                final Optional<String> comment = CodeExtractor.getComment(methodWithComment);
-                // <<<4
-
-                formatCommentExtracted("From method",
-                        comment.orElse(""));
-            }
-
-            {
-                doc.write("How to extract comment of a method of an inner class",
-                        extractMarkedCode(testInfo, "5"),
-                        "");
-
-
-                // >>>5
-                final Method methodWithComment = FindLambdaMethod.getMethod(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract::methodInSubClass);
-                final Optional<String> comment = CodeExtractor.getComment(methodWithComment);
-                // <<<5
-
-                formatCommentExtracted("From method",
-                        comment.orElse(""));
-            }
-        }
-    }
-
-    private String extractMarkedCode(TestInfo testInfo) {
+     private String extractMarkedCode(TestInfo testInfo) {
         return formatSourceCode(CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get()));
     }
 
@@ -777,10 +534,38 @@ class CodeExtractorTest {
         return includeSourceWithTag(tag, aClass);
     }
 
+    /**
+     * Comment on method.
+     */
     public String includeSourceWithTag(String tag, Class<?> aClass) {
         final DocPath docPath = new DocPath(aClass);
         final Path relativePath = docPath.test().from(this.getClass());
         return formatSourceCode(formatter.include_with_tag(relativePath.toString(), tag));
+    }
+
+    /**
+     * We shows here some technical cases.
+     */
+    @Nested
+    class MyInnerClass {
+
+        /**
+         * MyInnerClass Tag (MyCode) could be a subpart of another one (**MyCode**Before or **MyCode**After).
+         */
+        @Test
+        public void myInnerMethode(TestInfo testInfo) {
+            System.out.println("MyInnerClass.myInnerMethode");
+        }
+
+        class SubClass {
+            /**
+             * MyInnerClass.SubClass Tag (MyCode) could be a subpart of another one (**MyCode**Before or **MyCode**After).
+             */
+            @Test
+            public void myInnerSubClassMethod(TestInfo testInfo) {
+                System.out.println("MyInnerClass.SubClass.myInnerSubClassMethod");
+            }
+        }
     }
 
 }
