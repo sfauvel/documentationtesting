@@ -543,30 +543,6 @@ class CodeExtractorTest {
         return formatSourceCode(formatter.include_with_tag(relativePath.toString(), tag));
     }
 
-    /**
-     * We shows here some technical cases.
-     */
-    @Nested
-    class MyInnerClass {
-
-        /**
-         * MyInnerClass Tag (MyCode) could be a subpart of another one (**MyCode**Before or **MyCode**After).
-         */
-        @Test
-        public void myInnerMethode(TestInfo testInfo) {
-            System.out.println("MyInnerClass.myInnerMethode");
-        }
-
-        class SubClass {
-            /**
-             * MyInnerClass.SubClass Tag (MyCode) could be a subpart of another one (**MyCode**Before or **MyCode**After).
-             */
-            @Test
-            public void myInnerSubClassMethod(TestInfo testInfo) {
-                System.out.println("MyInnerClass.SubClass.myInnerSubClassMethod");
-            }
-        }
-    }
 
 }
 
