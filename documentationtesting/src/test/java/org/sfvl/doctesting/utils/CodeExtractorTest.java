@@ -13,6 +13,7 @@ import org.sfvl.doctesting.sample.MyClass;
 import org.sfvl.doctesting.sample.SimpleClass;
 
 import java.lang.reflect.Method;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.function.BiConsumer;
@@ -167,6 +168,7 @@ class CodeExtractorTest {
                             "++++",
                             e.getProblems().stream()
                                     .map(c -> c.getCause().map(Throwable::toString).orElse("??"))
+                                    .map(t -> t.contains(NoSuchFileException.class.getName()) ? t.replace('\\', '/') : t)
                                     .collect(Collectors.joining("\n")),
                             "++++",
                             "", "");
