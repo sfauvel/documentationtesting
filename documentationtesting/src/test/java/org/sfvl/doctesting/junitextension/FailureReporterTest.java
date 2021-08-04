@@ -138,7 +138,7 @@ public class FailureReporterTest {
 
         doc.write(formatter.blockBuilder(Formatter.Block.LITERAL)
                 .title("Report")
-                .content(report.replaceAll(tempDir + "/files/", "[TEMPORARY FOLDER]/files/").trim())
+                .content(report.replace(tempDir + "/files/", "[TEMPORARY FOLDER]/files/").trim())
                 .build());
     }
 }
