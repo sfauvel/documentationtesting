@@ -11,6 +11,7 @@ import org.sfvl.doctesting.utils.DocWriter;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @DisplayName("Failure report")
 public class FailureReporterTest {
@@ -138,7 +139,7 @@ public class FailureReporterTest {
 
         doc.write(formatter.blockBuilder(Formatter.Block.LITERAL)
                 .title("Report")
-                .content(report.replace(tempDir + "/files/", "[TEMPORARY FOLDER]/files/").trim())
+                .content(report.replace(tempDir.resolve("files") + File.separator, "[TEMPORARY FOLDER]/files/").trim())
                 .build());
     }
 }
