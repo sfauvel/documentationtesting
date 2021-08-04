@@ -25,8 +25,8 @@ Footer approved
 .Report
 ....
 Differences between files:
-    Approved: /tmp/files/approved.adoc
-    Received: /tmp/files/received.adoc
+    Approved: [TEMPORARY FOLDER]/files/approved.adoc
+    Received: [TEMPORARY FOLDER]/files/received.adoc
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 3: Line from approved text
 =================================================================

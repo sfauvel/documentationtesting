@@ -22,6 +22,6 @@ Description
 .Report
 ....
 Files are identical:
-    Approved: /tmp/files/approved.adoc
-    Received: /tmp/files/received.adoc
+    Approved: [TEMPORARY FOLDER]/files/approved.adoc
+    Received: [TEMPORARY FOLDER]/files/received.adoc
 ....
