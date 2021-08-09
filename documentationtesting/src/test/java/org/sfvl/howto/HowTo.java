@@ -111,9 +111,8 @@ public class HowTo {
             throw new RuntimeException(e);
         }
 
-        final Path relativePath = new DocPath(this.getClass()).doc().path();
         return String.format("link:%s[%s]\n",
-                DocPath.toAsciiDoc(Paths.get("{"+Config.DOC_PATH_TAG+"}").resolve(relativePath)),
+                DocPath.toAsciiDoc(Paths.get("{"+Config.DOC_PATH_TAG+"}").resolve(docPath.doc().path())),
                 title);
     }
 

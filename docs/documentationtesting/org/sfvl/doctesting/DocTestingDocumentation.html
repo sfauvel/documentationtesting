@@ -527,6 +527,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_utils_DocPathTest_path_by_type">Path by type</a></li>
 <li><a href="#org_sfvl_doctesting_utils_DocPathTest_path_by_type_with_method">Path by type with method</a></li>
 <li><a href="#org_sfvl_doctesting_utils_DocPathTest_nested_class">Nested class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_DocPathTest_make_path_independent_of_operating_system">Make path independent of operating system</a></li>
 </ul>
 </li>
 <li><a href="#_docwriter">DocWriter</a>
@@ -1041,8 +1042,8 @@ Footer approved</pre>
 <div class="title">Report</div>
 <div class="content">
 <pre>Differences between files:
-    Approved: /tmp/files/approved.adoc
-    Received: /tmp/files/received.adoc
+    Approved: [TEMPORARY FOLDER]/files/approved.adoc
+    Received: [TEMPORARY FOLDER]/files/received.adoc
 &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
 3: Line from approved text
 =================================================================
@@ -1076,8 +1077,8 @@ Description</pre>
 <div class="title">Report</div>
 <div class="content">
 <pre>Files are identical:
-    Approved: /tmp/files/approved.adoc
-    Received: /tmp/files/received.adoc</pre>
+    Approved: [TEMPORARY FOLDER]/files/approved.adoc
+    Received: [TEMPORARY FOLDER]/files/received.adoc</pre>
 </div>
 </div>
 </div>
@@ -1106,8 +1107,8 @@ Footer</pre>
 <div class="title">Report</div>
 <div class="content">
 <pre>Differences between files:
-    Approved: /tmp/files/approved.adoc
-    Received: /tmp/files/received.adoc
+    Approved: [TEMPORARY FOLDER]/files/approved.adoc
+    Received: [TEMPORARY FOLDER]/files/received.adoc
 &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
 3: Footer
 =================================================================
@@ -1141,8 +1142,8 @@ Description</pre>
 <div class="title">Report</div>
 <div class="content">
 <pre>Differences between files:
-    Approved: /tmp/files/approved.adoc
-    Received: /tmp/files/received.adoc
+    Approved: [TEMPORARY FOLDER]/files/approved.adoc
+    Received: [TEMPORARY FOLDER]/files/received.adoc
 &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
 3 (no line)
 =================================================================
@@ -2881,6 +2882,25 @@ DOC_PATH:source/docs</pre>
 </div>
 <div class="paragraph">
 <p>Name for method <code>doSomething</code> in nested class <code>org.sfvl.doctesting.sample.MyClass$MySubClass</code> is <code>MyClass.MySubClass.doSomething</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_DocPathTest_make_path_independent_of_operating_system">Make path independent of operating system</h4>
+<div class="paragraph">
+<p>Path in asciidoc files must used '/' independently of operating system and file separator.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s important to always generate the same reference file (.adoc) because we compare it with the last generated one.
+Otherwise, the test could fail when executed on another operating system.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"src"</span><span class="o">,</span> <span class="s">"main"</span><span class="o">,</span> <span class="s">"java"</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">asciiDocPath</span> <span class="o">=</span> <span class="nc">DocPath</span><span class="o">.</span><span class="na">toAsciiDoc</span><span class="o">(</span><span class="n">path</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>asciiDocPath = src/main/java</strong></p>
 </div>
 </div>
 </div>

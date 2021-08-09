@@ -469,6 +469,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_Include_should_format_include">Include another file</a></li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_Include_add_a_leveloffset">Add a leveloffset</a></li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_Include_include_is_agnostic_of_directory_separator">Include is agnostic of directory separator</a></li>
+<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_Include_include_with_a_tag">Include with a tag</a></li>
+<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_Include_include_with_a_range_of_lines">Include with a range of lines</a></li>
 </ul>
 </li>
 <li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_table">Table</a></li>
@@ -1220,6 +1222,84 @@ It allows to have same outputs when running tests in several environments.</p>
 <pre>include::tmp/anotherFile.adoc[]
 
 include::tmp/anotherFile.adoc[]</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_Include_include_with_a_tag">Include with a tag</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">fileToInclude</span> <span class="o">=</span> <span class="s">"tmp/fileWithTag.adoc"</span><span class="o">;</span>
+<span class="n">writeAFile</span><span class="o">(</span><span class="n">fileToInclude</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">"\n"</span><span class="o">,</span>
+        <span class="s">"Text with tag"</span><span class="o">,</span>
+        <span class="s">"tag::myTag[]"</span><span class="o">,</span>
+        <span class="s">"text inside tag"</span><span class="o">,</span>
+        <span class="s">"end::myTag[]"</span><span class="o">,</span>
+        <span class="s">"text after tag"</span><span class="o">)</span>
+<span class="o">);</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">include_with_tag</span><span class="o">(</span><span class="n">fileToInclude</span><span class="o">,</span> <span class="s">"myTag"</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="paragraph">
+<p>text inside tag</p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>include::tmp/fileWithTag.adoc[tag=myTag]</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_Include_include_with_a_range_of_lines">Include with a range of lines</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">fileToInclude</span> <span class="o">=</span> <span class="s">"tmp/fileWithRange.adoc"</span><span class="o">;</span>
+<span class="n">writeAFile</span><span class="o">(</span><span class="n">fileToInclude</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">"\n"</span><span class="o">,</span>
+        <span class="s">"* line 1"</span><span class="o">,</span>
+        <span class="s">"* line 2"</span><span class="o">,</span>
+        <span class="s">"* line 3"</span><span class="o">,</span>
+        <span class="s">"* line 4"</span><span class="o">,</span>
+        <span class="s">"* line 5"</span><span class="o">)</span>
+<span class="o">);</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">include_with_lines</span><span class="o">(</span><span class="n">fileToInclude</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>line 2</p>
+</li>
+<li>
+<p>line 3</p>
+</li>
+<li>
+<p>line 4</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>include::tmp/fileWithRange.adoc[lines=2..4]</pre>
 </div>
 </div>
 <hr>

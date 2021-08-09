@@ -1,0 +1,43 @@
+
+
+= Configuration
+
+In your pom.xml add the dependency to the library
+----
+<dependency>
+   <groupId>org.sfvl</groupId>
+   <artifactId>documentationtesting</artifactId>
+   <version>[DOCUMENTATIONTESTING VERSION]</version>
+   <scope>test</scope>
+</dependency>
+----
+Replace [DOCUMENTATIONTESTING VERSION] with the installed version number.
+
+= Create a test
+
+Create a simple test class in your test directory `src/test/java`.
+Register the extension adding those lines
+
+[source,java,indent=0]
+----
+@RegisterExtension
+static ApprovalsExtension doc = new SimpleApprovalsExtension();
+----
+
+Create a test method and use `doc.write()` to write every thing you want to view in documentation and have to be validate
+
+[source,java,indent=0]
+----
+@Test
+public void my_first_test() {
+   doc.write("Something to add to documentation and to check.");
+}
+----
+
+
+= Execution
+
+Run the test as usual with your IDE or using the command `mvn test`.
+*The first execution will fail* and a file with extension `.received.adoc` will be generate in `src/test/doc`.
+Rename the file replacing `.received.adoc` by `.approved.adoc`.
+Relaunch your test and it will pass.

@@ -10,7 +10,7 @@ It's a minimal project that is ready to use and which implementing a small demo.
 
 If you want to use it on your own project, you need to:
 
-* link:{ROOT_PATH}/org/sfvl/howto/HowTo.html[Installing DocumentationTesting] maven library and add dependency to your `pom.xml`
+* link:{ROOT_PATH}/org/sfvl/howto/InstallingLibrary.html[Installing DocumentationTesting] maven library and add dependency to your `pom.xml`
 
 * Create a test and register ApprovalsExtension extension adding the code below to the test class.
 [source,java,indent=0]

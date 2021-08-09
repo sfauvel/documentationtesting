@@ -1,6 +1,7 @@
 package org.sfvl;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
@@ -8,13 +9,17 @@ import org.sfvl.docformatter.AsciidocFormatterTest;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.DocTestingDocumentation;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.utils.NoTitle;
 import org.sfvl.doctesting.writer.DocumentProducer;
 import org.sfvl.doctesting.writer.Options;
 import org.sfvl.howto.HowTo;
+import org.sfvl.howto.InstallingLibrary;
+import org.sfvl.howto.Tutorial;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -25,6 +30,7 @@ import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
+@DisplayName(value = "Documentation Testing Library")
 public class DocumentationTestingDocumentation {
 
     @RegisterExtension
@@ -77,81 +83,23 @@ public class DocumentationTestingDocumentation {
     }
 
     @Test
+    @NoTitle
     public void documentationTesting() {
         doc.write(getContent());
     }
 
     public String getContent() {
+        final DocPath docPath = new DocPath(Paths.get(""), "index");
+        final Path from = docPath.resource().from(new DocPath(this.getClass()).approved());
+
         return String.join("\n",
-                "[cols=2]",
-                "[.DocumentationTestingDoc.intro]",
-                "|====",
-                "^.a| == Tutorial",
-                "[.subtitle]",
-                "Learning-oriented",
-                "",
-                "In progress...",
-                "",
-
-                "^.a| == How-to guides",
-                "[.subtitle]",
-                "Problem-oriented",
-                "",
-                "Section " + linkToClass(HowTo.class) + " shows how to do some common needs.",
-
-                "^.a| == Explanation",
-                "[.subtitle]",
-                "Understanding-oriented",
-                "",
-                "[.noborder]",
-                "!====",
-                "a!",
-                "* " + linkToClass(org.sfvl.doctesting.junitextension.ApprovalsExtensionTest.class, "JUnit extension embedded Approvals"),
-                "** Name file associate to each test",
-                "** Execute verification after test",
-                "* Generation of a general documentation that aggregate all test files",
-                "* Tools to extract parts of code",
-                "* " + linkToClass(AsciidocFormatterTest.class, "API to transform text") + " to output format",
-                "!====",
-
-                "^.a| == Reference",
-                "[.subtitle]",
-                "Information-oriented",
-                "",
-                "[.noborder]",
-                "!====",
-                "a!",
-                "* " + linkToClass(DocTestingDocumentation.class) + ": Tools to make test validating generated files.",
-                "* " + linkToClass(AsciidocFormatterTest.class) + ": Utilities to format documentation.",
-                "!====",
-                "",
-                "|====",
-                "++++",
-                "<style>",
-                "table.DocumentationTestingDoc.grid-all > * > tr > * {",
-                "    border-width:3px;",
-                "    border-color:#AAAAAA;",
-                "}",
-                "",
-                ".DocumentationTestingDoc.intro td {",
-                "    background-color:#05fdCC;",
-                "    //border: 30px solid #BFBFBF;",
-                "    -webkit-box-shadow: 3px 3px 6px #A9A9A9;",
-                "}",
-                "",
-                ".DocumentationTestingDoc .subtitle {",
-                "    color: #888888;",
-                "}",
-                ".DocumentationTestingDoc .noborder td{",
-                "    border: none;",
-                "    -webkit-box-shadow: none;",
-                "}",
-                ".DocumentationTestingDoc table.noborder  {",
-                "    border: none;",
-                "}",
-                "",
-                "</style>",
-                "++++");
+                ":TUTORIAL_HTML: " + generatePageAndGetPath(Tutorial.class),
+                ":HOW_TO_HTML: " + generatePageAndGetPath(HowTo.class),
+                ":APPROVAL_EXTENSION_HTML: " + generatePageAndGetPath(ApprovalsExtensionTest.class),
+                ":ASCIIDOC_FORMATTER_HTML: " + generatePageAndGetPath(AsciidocFormatterTest.class),
+                ":DOC_TESTING_DOCUMENTATION_HTML: " + generatePageAndGetPath(DocTestingDocumentation.class),
+                String.format("include::%s[leveloffset=+1]", from.toString())
+        );
     }
 
     private String linkToClass(Class<?> clazz) {
@@ -166,15 +114,19 @@ public class DocumentationTestingDocumentation {
     }
 
     private String linkToClass(Class<?> clazz, String title) {
+        return String.format("link:%s[%s]\n",
+                generatePageAndGetPath(clazz),
+                title);
+    }
+
+    private String generatePageAndGetPath(Class<?> clazz) {
         final DocPath docPath = new DocPath(clazz);
         try {
             generatePage(docPath);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return String.format("link:%s[%s]\n",
-                DocPath.toAsciiDoc(Paths.get("{"+Config.DOC_PATH_TAG+"}").resolve(docPath.doc().path())),
-                title);
+        return DocPath.toAsciiDoc(docPath.doc().path());
     }
 
     public <T> String linkToMethod(FindLambdaMethod.SerializableConsumer<T> methodToInclude) {
