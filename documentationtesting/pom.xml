@@ -76,12 +76,28 @@
                     <preserveDirectories>true</preserveDirectories>
                     <relativeBaseDir>true</relativeBaseDir>
                     <backend>html</backend>
+                    <attributes>
+                        <github-repo>https://github.com/sfauvel/documentationtesting/tree/master/${project.artifactId}</github-repo>
+                        <github-pages>https://sfauvel.github.io/documentationtesting/${project.artifactId}/</github-pages>
+                    </attributes>
                     <logHandler>
                         <failIf>
                             <severity>ERROR</severity>
                         </failIf>
                     </logHandler>
+                    <resources>
+                        <resource>
+                            <directory>src/test/resources</directory>
+                            <includes>
+                                <include>**/*.jpg</include>
+                                <include>**/*.gif</include>
+                                <include>**/*.svg</include>
+                            </includes>
+                        </resource>
+                        ...
+                    </resources>
                 </configuration>
+
                 <executions>
                     <execution>
                         <id>asciidoc-to-html</id>

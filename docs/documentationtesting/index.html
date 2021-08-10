@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>DocumentationTesting</title>
+<title>Documentation Testing Library</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,56 +436,59 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 </head>
-<body id="org_sfvl_DocumentationTestingDocumentation_documentationTesting" class="article">
+<body class="article">
 <div id="header">
-<h1>DocumentationTesting</h1>
+<h1>Documentation Testing Library</h1>
 </div>
 <div id="content">
-<table class="tableblock frame-all grid-all stretch DocumentationTestingDoc intro">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-center valign-top"><div class="content"><div class="sect1">
-<h2 id="_tutorial">Tutorial</h2>
-<div class="sectionbody">
-<div class="paragraph subtitle">
-<p>Learning-oriented</p>
+<div class="openblock icon-header">
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://github.com/sfauvel/documentationtesting/tree/master/documentationtesting"><img src="github.svg" alt="github" width="30px"></a>
 </div>
+</div>
+</div>
+</div>
+<style>
+.icon-header .imageblock {
+    display: inline-block;
+    margin-left: 5px;
+}
+.icon-header {
+    display: flex;
+    justify-content: flex-end;
+}
+</style>
+<div class="openblock intro">
+<div class="content">
 <div class="paragraph">
-<p><a href="./org/sfvl/howto/Tutorial.html">The best way to start</a></p>
+<p>A java library that make your living documentation your non regression test.</p>
 </div>
 </div>
-</div></div></td>
-<td class="tableblock halign-center valign-top"><div class="content"><div class="sect1">
-<h2 id="_how_to_guides">How-to guides</h2>
-<div class="sectionbody">
+</div>
+<div class="paragraph button_link">
+<p><a href="./org/sfvl/howto/Tutorial.html">GET STARTED</a></p>
+</div>
+<div class="openblock section">
+<div class="title">How to guides</div>
+<div class="content">
 <div class="paragraph subtitle">
 <p>Problem-oriented</p>
 </div>
 <div class="paragraph">
 <p>Section <a href="./org/sfvl/howto/HowTo.html">How to</a>
- shows how to do some common needs.</p>
+shows how to do some common needs.</p>
 </div>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><div class="content"><div class="sect1">
-<h2 id="_explanation">Explanation</h2>
-<div class="sectionbody">
+</div>
+<div class="openblock section">
+<div class="title">Explanation</div>
+<div class="content">
 <div class="paragraph subtitle">
 <p>Understanding-oriented</p>
 </div>
-<table class="tableblock frame-all grid-all stretch noborder">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<div class="ulist">
 <ul>
 <li>
 <p><a href="./org/sfvl/doctesting/junitextension/ApprovalsExtensionTest.html">JUnit extension embedded Approvals</a></p>
@@ -511,25 +514,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 to output format</p>
 </li>
 </ul>
-</div></div></td>
-</tr>
-</tbody>
-</table>
 </div>
-</div></div></td>
-<td class="tableblock halign-center valign-top"><div class="content"><div class="sect1">
-<h2 id="_reference">Reference</h2>
-<div class="sectionbody">
+</div>
+</div>
+<div class="openblock section">
+<div class="title">Reference</div>
+<div class="content">
 <div class="paragraph subtitle">
 <p>Information-oriented</p>
 </div>
-<table class="tableblock frame-all grid-all stretch noborder">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<div class="ulist">
 <ul>
 <li>
 <p><a href="./org/sfvl/doctesting/DocTestingDocumentation.html">Doc testing documentation</a>
@@ -540,38 +534,64 @@ to output format</p>
 : Utilities to format documentation.</p>
 </li>
 </ul>
-</div></div></td>
-</tr>
-</tbody>
-</table>
 </div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
+</div>
 <style>
-table.DocumentationTestingDoc.grid-all > * > tr > * {
-    border-width:3px;
-    border-color:#AAAAAA;
-}
 
-.DocumentationTestingDoc.intro td {
-    background-color:#05fdCC;
-    //border: 30px solid #BFBFBF;
-    -webkit-box-shadow: 3px 3px 6px #A9A9A9;
+.section {
+    margin: 1em;
+    padding: 1em;
+    background-color: #05fdCC;
+    box-shadow: 5px 5px 5px #084f34;
 }
-
-.DocumentationTestingDoc .subtitle {
+.section .title {
+    font-size: 2em;
+}
+.section .subtitle {
     color: #888888;
 }
-.DocumentationTestingDoc .noborder td{
-    border: none;
-    -webkit-box-shadow: none;
+
+.intro {
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
-.DocumentationTestingDoc table.noborder  {
-    border: none;
+.intro p {
+    font-size: 2em;
 }
 
+body {
+    background: #0fd289;
+}
+
+#header > h1:only-child,
+body.toc2 #header > h1:nth-last-child(2),
+#content > h1:first-child:not([class]) {
+    text-align: center;
+    border-bottom-width: 0px;
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.button_link p {
+    text-align: center;
+    letter-spacing: 0.3em;
+}
+
+.button_link a {
+    padding: 0.75em 2em;
+    border-radius: 2em;
+    display: inline-block;
+    color: #000;
+    background-color: #0e9361;
+    box-sizing: border-box;
+    box-shadow: 5px 5px 5px #084f34;
+    text-decoration: none;
+}
 </style>
 </div>
 </body>

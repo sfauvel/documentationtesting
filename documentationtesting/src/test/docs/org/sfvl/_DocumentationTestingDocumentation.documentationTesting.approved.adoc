@@ -7,4 +7,4 @@ endif::[]
 :APPROVAL_EXTENSION_HTML: org/sfvl/doctesting/junitextension/ApprovalsExtensionTest.html
 :ASCIIDOC_FORMATTER_HTML: org/sfvl/docformatter/AsciidocFormatterTest.html
 :DOC_TESTING_DOCUMENTATION_HTML: org/sfvl/doctesting/DocTestingDocumentation.html
-include::../../../resources/index.adoc[leveloffset=+1]
+include::../../../resources/indexContent.adoc[leveloffset=+1]

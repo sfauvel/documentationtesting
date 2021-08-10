@@ -11,14 +11,13 @@ import org.sfvl.doctesting.DocTestingDocumentation;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
-import org.sfvl.doctesting.utils.DocWriter;
 import org.sfvl.doctesting.utils.NoTitle;
 import org.sfvl.doctesting.writer.DocumentProducer;
 import org.sfvl.doctesting.writer.Options;
 import org.sfvl.howto.HowTo;
-import org.sfvl.howto.InstallingLibrary;
 import org.sfvl.howto.Tutorial;
 
 import java.io.FileWriter;
@@ -34,14 +33,7 @@ import java.util.Set;
 public class DocumentationTestingDocumentation {
 
     @RegisterExtension
-    static ApprovalsExtension doc = new ApprovalsExtension(new DocWriter() {
-        @Override
-        public String formatOutput(Class<?> clazz) {
-            return String.join("\n",
-                    ":notitle:",
-                    super.formatOutput(clazz));
-        }
-    });
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     private final Formatter formatter = new AsciidocFormatter();
     /// Record all builder references as a link in documentation.
@@ -53,9 +45,7 @@ public class DocumentationTestingDocumentation {
 
     @AfterAll
     static public void writeIndexPage() throws IOException {
-        final Method method = FindLambdaMethod.getMethod(DocumentationTestingDocumentation::documentationTesting);
-
-        final DocPath docPath = new DocPath(method);
+        final DocPath docPath = new DocPath(DocumentationTestingDocumentation.class);
         String content = String.join("\n",
                 doc.getDocWriter().defineDocPath(Paths.get(".")),
                 ":nofooter:",
@@ -89,7 +79,7 @@ public class DocumentationTestingDocumentation {
     }
 
     public String getContent() {
-        final DocPath docPath = new DocPath(Paths.get(""), "index");
+        final DocPath docPath = new DocPath(Paths.get(""), "indexContent");
         final Path from = docPath.resource().from(new DocPath(this.getClass()).approved());
 
         return String.join("\n",
