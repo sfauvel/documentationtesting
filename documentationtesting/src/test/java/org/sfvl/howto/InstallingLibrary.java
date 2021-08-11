@@ -6,7 +6,7 @@ import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.utils.NoTitle;
 import org.sfvl.doctesting.writer.Options;
 
 public class InstallingLibrary {
@@ -25,6 +25,7 @@ public class InstallingLibrary {
     }
 
     @Test
+    @NoTitle
     public void Installing_documentation_testing() {
         doc.write(getContent());
     }

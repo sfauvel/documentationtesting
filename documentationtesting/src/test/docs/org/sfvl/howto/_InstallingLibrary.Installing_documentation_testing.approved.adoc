@@ -2,9 +2,6 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../..
 endif::[]
 
-[#org_sfvl_howto_InstallingLibrary_Installing_documentation_testing]
-= Installing documentation testing
-
 We use the library link:https://github.com/sfauvel/documentationtesting[documentationtesting]
 which provides what we need to get started.
 For a complete description of how to use it go to the link:https://sfauvel.github.io/documentationtesting/documentationtesting[documentation site]

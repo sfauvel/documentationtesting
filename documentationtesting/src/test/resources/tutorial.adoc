@@ -30,7 +30,10 @@ Create a test method and use `doc.write()` to write every thing you want to view
 ----
 @Test
 public void my_first_test() {
-   doc.write("Something to add to documentation and to check.");
+    String text = "hello";
+    doc.write(String.format("\"%s\".toUpperCase() => \"%s\"",
+            text,
+            text.toUpperCase()));
 }
 ----
 
@@ -38,6 +41,66 @@ public void my_first_test() {
 = Execution
 
 Run the test as usual with your IDE or using the command `mvn test`.
-*The first execution will fail* and a file with extension `.received.adoc` will be generate in `src/test/doc`.
-Rename the file replacing `.received.adoc` by `.approved.adoc`.
+*The first execution will fail* and files with extension `.received.adoc` will be generate in `src/test/doc`,
+one file per test class (_[MY CLASS].received.adoc) and one file per test (_[MY CLASS].[MY METHOD].received.adoc).
+
+Rename all files replacing `.received.adoc` by `.approved.adoc`.
 Relaunch your test and it will pass.
+
+With the test described in 'Create a test' chapter, this `_[MY CLASS].my_first_test.approved.adoc` file contains:
+----
+= My first test
+
+"hello".toUpperCase() => "HELLO"
+----
+
+= Convert to HTML
+
+You can see the `.adoc` file directly in a browser or with your IDE after installing a asciidoc viewer.
+But you may want to have an HTML file.
+
+Add this configuration to your pom.xml.
+
+[source,xml,indent=0]
+----
+<plugin>
+    <groupId>org.asciidoctor</groupId>
+    <artifactId>asciidoctor-maven-plugin</artifactId>
+    <version>2.1.0</version>
+    <configuration>
+        <sourceDirectory>src/test/docs</sourceDirectory>
+        <outputDirectory>docs</outputDirectory>
+        <preserveDirectories>true</preserveDirectories>
+        <relativeBaseDir>true</relativeBaseDir>
+        <backend>html</backend>
+    </configuration>
+    <executions>
+        <execution>
+            <id>asciidoc-to-html</id>
+            <phase>package</phase>
+            <goals>
+                <goal>process-asciidoc</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+----
+
+Create a file `index.adoc` at the root of the docs folder.
+
+----
+\= Documentation
+
+\include::[FOLDER]/_[MY CLASS].approved.adoc[leveloffset=+1]
+----
+
+[FOLDER] is the path from `src/test/docs` folder to the `.adoc` file.
+It's the path corresponding to the package of the class.
+
+Run the Maven command:
+
+----
+mvn package
+----
+
+You will find an `index.html` in the folder `docs` at the root of your project folder.
