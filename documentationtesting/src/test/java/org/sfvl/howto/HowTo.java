@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.docformatter.AsciidocFormatterTest;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.*;
 import org.sfvl.doctesting.utils.*;
@@ -13,7 +14,6 @@ import org.sfvl.doctesting.writer.Classes;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
@@ -63,9 +63,8 @@ public class HowTo {
                 "* Create a test and register ApprovalsExtension extension adding the code below to the test class.",
                 "[source,java,indent=0]",
                 "----",
-                "private static final DocWriter doc = new DocWriter();",
                 "@RegisterExtension",
-                "static ApprovalsExtension extension = new ApprovalsExtension(docWriter);",
+                "static ApprovalsExtension extension = new SimpleApprovalsExtension();",
                 "----",
                 "",
                 "* Write in your test everything you want to see in your documentation using `doc.write(\"...\")`",
@@ -131,7 +130,7 @@ public class HowTo {
         // <<<
         doc.write(formatter.title(1, "Format text"),
                 "",
-                "To format text, we can use a formatter that hide technical syntax of the language used.",
+                "To format text, we can use a formatter that hide technical syntax of the markup language used.",
                 "",
                 ".Formatter usage",
                 CodeExtractor.extractPartOfCurrentMethod(),
@@ -144,7 +143,11 @@ public class HowTo {
                 formatter.blockBuilder("====")
                         .title("Final rendering")
                         .content(text)
-                        .build());
+                        .build(),
+                "",
+                "You can take a look at the " + linkToClass(AsciidocFormatterTest.class, "formatter's full documentation")
+                        + " to get an idea of the features available."
+        );
     }
 
     @Test

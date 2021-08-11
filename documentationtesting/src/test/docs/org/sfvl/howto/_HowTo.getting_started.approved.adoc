@@ -15,9 +15,8 @@ If you want to use it on your own project, you need to:
 * Create a test and register ApprovalsExtension extension adding the code below to the test class.
 [source,java,indent=0]
 ----
-private static final DocWriter doc = new DocWriter();
 @RegisterExtension
-static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+static ApprovalsExtension extension = new SimpleApprovalsExtension();
 ----
 
 * Write in your test everything you want to see in your documentation using `doc.write("...")`

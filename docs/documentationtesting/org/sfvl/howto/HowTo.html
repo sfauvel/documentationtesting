@@ -490,9 +490,8 @@ It&#8217;s a minimal project that is ready to use and which implementing a small
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>private static final DocWriter doc = new DocWriter();
-@RegisterExtension
-static ApprovalsExtension extension = new ApprovalsExtension(docWriter);</pre>
+<pre>@RegisterExtension
+static ApprovalsExtension extension = new SimpleApprovalsExtension();</pre>
 </div>
 </div>
 <div class="ulist">
@@ -552,7 +551,7 @@ The chapter content contains what was written using <code>DocWriter</code></p>
 <h2 id="_format_text">Format text</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To format text, we can use a formatter that hide technical syntax of the language used.</p>
+<p>To format text, we can use a formatter that hide technical syntax of the markup language used.</p>
 </div>
 <div class="literalblock">
 <div class="title">Formatter usage</div>
@@ -586,6 +585,10 @@ final String text = formatter.listItems("Item A", "Item B", "Item C");</pre>
 </ul>
 </div>
 </div>
+</div>
+<div class="paragraph">
+<p>You can take a look at the <a href="../../../org/sfvl/docformatter/AsciidocFormatterTest.html">formatter&#8217;s full documentation</a>
+ to get an idea of the features available.</p>
 </div>
 </div>
 </div>
