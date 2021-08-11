@@ -441,15 +441,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Documentation Testing Library</h1>
 </div>
 <div id="content">
-<div class="openblock icon-header">
-<div class="content">
-<div class="imageblock">
-<div class="content">
-<a class="image" href="https://github.com/sfauvel/documentationtesting/tree/master/documentationtesting"><img src="github.svg" alt="github" width="30px"></a>
-</div>
-</div>
-</div>
-</div>
 <style>
 .icon-header .imageblock {
     display: inline-block;
@@ -458,12 +449,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .icon-header {
     display: flex;
     justify-content: flex-end;
+
+    position: absolute;
+    top: -4.5em;
+    right: 2em;
 }
 </style>
+<div class="openblock icon-header">
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://github.com/sfauvel/documentationtesting/tree/master/documentationtesting"><img src="./github.svg" alt="github" width="30px"></a>
+</div>
+</div>
+</div>
+</div>
 <div class="openblock intro">
 <div class="content">
 <div class="paragraph">
-<p>A java library that make your living documentation your non regression test.</p>
+<p>A java library that make your living documentation your non regression tests</p>
 </div>
 </div>
 </div>
@@ -558,23 +562,22 @@ to output format</p>
     margin-bottom: 2em;
 }
 .intro p {
-    font-size: 2em;
+    font-size: 1.5em;
+    font-style: italic;
+    color: #0c6a47;
 }
 
 body {
     background: #0fd289;
 }
 
-#header > h1:only-child,
-body.toc2 #header > h1:nth-last-child(2),
-#content > h1:first-child:not([class]) {
-    text-align: center;
+#header > h1:only-child
+{
     border-bottom-width: 0px;
-}
 
-h1 {
     font-size: 2.5em;
     font-weight: bold;
+    text-align: center;
 }
 
 .button_link p {

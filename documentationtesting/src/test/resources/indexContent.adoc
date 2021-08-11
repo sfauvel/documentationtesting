@@ -1,12 +1,12 @@
 ifndef::ROOT_PATH[]
 :ROOT_PATH: .
 endif::[]
-
-[icon-header]
---
-image::github.svg[link={github-repo}, width=30px]
-//image::github.svg[link={github-repo}, width=30px]
---
+ifdef::is-html-doc[]
+:imagedir: .
+endif::[]
+ifndef::is-html-doc[]
+:imagedir: {ROOT_PATH}/../resources
+endif::[]
 
 ++++
 <style>
@@ -17,13 +17,28 @@ image::github.svg[link={github-repo}, width=30px]
 .icon-header {
     display: flex;
     justify-content: flex-end;
+
+    position: absolute;
+ifdef::is-html-doc[]
+    top: -4.5em;
+endif::[]
+ifndef::is-html-doc[]
+    top: 1.5em;
+endif::[]
+    right: 2em;
 }
 </style>
 ++++
 
+[icon-header]
+--
+image::{imagedir}/github.svg[link={github-repo}, width=30px]
+//image::{imagedir}/github.svg[link={github-repo}, width=30px]
+--
+
 [.intro]
 --
-A java library that make your living documentation your non regression test.
+A java library that make your living documentation your non regression tests
 --
 
 [.button_link]
@@ -89,23 +104,27 @@ Information-oriented
     margin-bottom: 2em;
 }
 .intro p {
-    font-size: 2em;
+    font-size: 1.5em;
+    font-style: italic;
+    color: #0c6a47;
 }
 
 body {
     background: #0fd289;
 }
 
-#header > h1:only-child,
-body.toc2 #header > h1:nth-last-child(2),
-#content > h1:first-child:not([class]) {
-    text-align: center;
+ifdef::is-html-doc[]
+#header > h1:only-child
+endif::[]
+ifndef::is-html-doc[]
+#content > h1:first-child:not([class]) /* In Intellij viewer */
+endif::[]
+{
     border-bottom-width: 0px;
-}
 
-h1 {
     font-size: 2.5em;
     font-weight: bold;
+    text-align: center;
 }
 
 .button_link p {

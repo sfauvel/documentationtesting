@@ -79,6 +79,7 @@
                     <attributes>
                         <github-repo>https://github.com/sfauvel/documentationtesting/tree/master/${project.artifactId}</github-repo>
                         <github-pages>https://sfauvel.github.io/documentationtesting/${project.artifactId}/</github-pages>
+                        <is-html-doc></is-html-doc>
                     </attributes>
                     <logHandler>
                         <failIf>
