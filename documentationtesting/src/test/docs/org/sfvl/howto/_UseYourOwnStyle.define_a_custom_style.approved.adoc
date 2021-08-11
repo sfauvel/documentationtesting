@@ -5,6 +5,10 @@ endif::[]
 [#org_sfvl_howto_UseYourOwnStyle_define_a_custom_style]
 = Define a custom style
 
+You can customize style adding a css style directly in your file.
+You need to put an html style tag (`<style></style>`) enclosed in `\++++++`
+to add it without processed content and send it directly to the output.
+
 .Asciidoc content
 [source,html,indent=0]
 ----
@@ -15,10 +19,9 @@ endif::[]
 }
 </style>
 ++++
-
 This text should be black.
 
-[withColor]#This text shoud be blue.#
+[.withColor]#This text shoud be blue.#
 
 This text is not anymore blue.
 ----
@@ -32,10 +35,49 @@ This text is not anymore blue.
 }
 </style>
 ++++
-
 This text should be black.
 
-[withColor]#This text shoud be blue.#
+[.withColor]#This text shoud be blue.#
 
 This text is not anymore blue.
 ====
+
+.Asciidoc content
+[source,html,indent=0]
+----
+++++
+<style>
+.withColor {
+   color: blue;
+}
+</style>
+++++
+This text should be black.
+[.withColor]
+--
+This section formed by several lines
+
+should be blue.
+--
+This text is not anymore blue.
+----
+
+.Content rendering
+====
+++++
+<style>
+.withColor {
+   color: blue;
+}
+</style>
+++++
+This text should be black.
+[.withColor]
+--
+This section formed by several lines
+
+should be blue.
+--
+This text is not anymore blue.
+====
+

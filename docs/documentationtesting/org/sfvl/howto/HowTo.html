@@ -754,6 +754,11 @@ Text of the document</pre>
 </div>
 <div class="sect2">
 <h3 id="org_sfvl_howto_UseYourOwnStyle_define_a_custom_style">Define a custom style</h3>
+<div class="paragraph">
+<p>You can customize style adding a css style directly in your file.
+You need to put an html style tag (<code>&lt;style&gt;&lt;/style&gt;</code>) enclosed in <code>++++</code>
+to add it without processed content and send it directly to the output.</p>
+</div>
 <div class="listingblock">
 <div class="title">Asciidoc content</div>
 <div class="content">
@@ -764,10 +769,9 @@ Text of the document</pre>
 <span class="p">}</span>
 <span class="nt">&lt;/style&gt;</span>
 ++++
-
 This text should be black.
 
-[withColor]#This text shoud be blue.#
+[.withColor]#This text shoud be blue.#
 
 This text is not anymore blue.</code></pre>
 </div>
@@ -785,6 +789,52 @@ This text is not anymore blue.</code></pre>
 </div>
 <div class="paragraph">
 <p><span class="withColor">This text shoud be blue.</span></p>
+</div>
+<div class="paragraph">
+<p>This text is not anymore blue.</p>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Asciidoc content</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="html">++++
+<span class="nt">&lt;style&gt;</span>
+<span class="nc">.withColor</span> <span class="p">{</span>
+   <span class="nl">color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+++++
+This text should be black.
+[.withColor]
+--
+This section formed by several lines
+
+should be blue.
+--
+This text is not anymore blue.</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 3. Content rendering</div>
+<div class="content">
+<style>
+.withColor {
+   color: blue;
+}
+</style>
+<div class="paragraph">
+<p>This text should be black.</p>
+</div>
+<div class="openblock withColor">
+<div class="content">
+<div class="paragraph">
+<p>This section formed by several lines</p>
+</div>
+<div class="paragraph">
+<p>should be blue.</p>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>This text is not anymore blue.</p>
