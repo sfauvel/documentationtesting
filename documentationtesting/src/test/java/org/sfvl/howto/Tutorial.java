@@ -25,8 +25,8 @@ public class Tutorial {
         final Path from = docPath.resource().from(new DocPath(this.getClass()).approved());
 
         doc.write(
-                String.format("include::%s[leveloffset=+1]", new DocPath(InstallingLibrary.class).approved().from(this.getClass())),
-                String.format("include::%s[leveloffset=+1]", from.toString())
+                String.format("include::%s[leveloffset=+1]", DocPath.toAsciiDoc(new DocPath(InstallingLibrary.class).approved().from(this.getClass()))),
+                String.format("include::%s[leveloffset=+1]", DocPath.toAsciiDoc(from))
         );
     }
 

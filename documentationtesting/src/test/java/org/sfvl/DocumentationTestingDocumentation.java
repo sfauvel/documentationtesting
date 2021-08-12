@@ -88,7 +88,7 @@ public class DocumentationTestingDocumentation {
                 ":APPROVAL_EXTENSION_HTML: " + generatePageAndGetPath(ApprovalsExtensionTest.class),
                 ":ASCIIDOC_FORMATTER_HTML: " + generatePageAndGetPath(AsciidocFormatterTest.class),
                 ":DOC_TESTING_DOCUMENTATION_HTML: " + generatePageAndGetPath(DocTestingDocumentation.class),
-                String.format("include::%s[leveloffset=+1]", from.toString())
+                String.format("include::%s[leveloffset=+1]", DocPath.toAsciiDoc(from))
         );
     }
 
