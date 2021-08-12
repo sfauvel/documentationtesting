@@ -11,8 +11,12 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        java: ['8', '11']
+        os: [ ubuntu, windows ]
 
     steps:
     - uses: actions/checkout@v2
