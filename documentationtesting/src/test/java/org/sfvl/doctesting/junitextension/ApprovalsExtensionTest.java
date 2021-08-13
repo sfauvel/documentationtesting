@@ -1,25 +1,27 @@
 package org.sfvl.doctesting.junitextension;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
-import org.sfvl.doctesting.utils.*;
+import org.sfvl.doctesting.utils.CodeExtractor;
+import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.utils.OnePath;
 import org.sfvl.samples.FailingTest;
 import org.sfvl.samples.MyCustomWriterTest;
 import org.sfvl.samples.MyTest;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
 import org.sfvl.test_tools.TestRunnerFromTest;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -155,7 +157,8 @@ public class ApprovalsExtensionTest {
      * It's help to understand and investigate on the problem.
      */
     @Test
-    public void failing_test_output() throws IOException {
+    public void failing_test_output(TestInfo info) throws IOException {
+
         doc.write("When the test fails, the reason (exception) is written into the generated document.", "");
 
         final Class<?> testClass = FailingTest.class;
@@ -167,40 +170,83 @@ public class ApprovalsExtensionTest {
         final DocPath docPath = new DocPath(method);
         final Path documentationPath = docPath.received().path();
 
-        AtomicInteger stacktraceLineCount = new AtomicInteger(0);
         Predicate<String> isStackLine = line -> line.startsWith("	at ");
+
         // We truncate stack trace to avoid to have an ouput that change from on execution from another.
-        doc.write("", "", ".Document generated (exception stack trace is truncated)", "------",
-                escapedAdocSpecialKeywords(Files.lines(documentationPath)
-                // We truncate stack trace to avoid to have an ouput that change from on execution from another.
-                .filter(line -> !isStackLine.test(line) || stacktraceLineCount.incrementAndGet() < 3)
-                .collect(Collectors.joining("\n"))),
+
+        final String stackTraceFileName = String.format("_%s.ExceptionStackTrace.adoc",
+                new DocPath(info.getTestMethod().get()).name());
+
+        final Path stackTraceFile = new DocPath(this.getClass()).approved().folder().resolve(stackTraceFileName);
+        try (FileWriter fileWriter = new FileWriter(stackTraceFile.toFile())) {
+            final String stackTraceContent = Files.lines(documentationPath)
+                    .filter(isStackLine)
+                    .collect(Collectors.joining("\n"));
+
+            fileWriter.write(stackTraceContent);
+        }
+
+        List<String> cutLines = new ArrayList<>();
+        final String INCLUDE_KEYWORD_TO_SUBSTITUTE = "INCLUDE_STACKTRACE_HERE";
+        boolean stackTraceFileAlreadyIncluded = false;
+        for (String line : Files.lines(documentationPath).collect(Collectors.toList())) {
+            if (isStackLine.test(line)) {
+                if (stackTraceFileAlreadyIncluded == false) {
+                    stackTraceFileAlreadyIncluded = true;
+                    cutLines.add(INCLUDE_KEYWORD_TO_SUBSTITUTE);
+                }
+            } else {
+                cutLines.add(line);
+            }
+        }
+
+        final int numberOfstackTraceLinesToDisplay = 3;
+        final String include_stacktrace_asciidoc = "include::" + stackTraceFileName + "[lines=1.." + (numberOfstackTraceLinesToDisplay) + "]\n\t...";
+        doc.write("", "",
+                ".Document generated (exception stack trace is truncated)",
+                "------",
+                cutLines.stream()
+                        .map(this::escapedAdocSpecialKeywords)
+                        .collect(Collectors.joining("\n"))
+                        .replace(INCLUDE_KEYWORD_TO_SUBSTITUTE, include_stacktrace_asciidoc),
                 "------");
 
-        String style = "++++\n" +
-                "<style>\n" +
-                ".adocRendering {\n" +
-                "    padding: 1em;\n" +
-                "    background: #fffef7;\n" +
-                "    border-color: #e0e0dc;\n" +
-                "    -webkit-box-shadow: 0 1px 4px #e0e0dc;\n" +
-                "    box-shadow: 0 1px 4px #e0e0dc;\n" +
-                "}\n" +
-                "</style>\n" +
-                "++++";
+        String style = String.join("\n",
+                "++++",
+                "<style>",
+                ".adocRendering {",
+                "    padding: 1em;",
+                "    background: #fffef7;",
+                "    border-color: #e0e0dc;",
+                "    -webkit-box-shadow: 0 1px 4px #e0e0dc;",
+                "    box-shadow: 0 1px 4px #e0e0dc;",
+                "}",
+                ".adocRendering .title1 {",
+                "    font-size: 2em;",
+                "    font-family: \"Open Sans\",\"DejaVu Sans\",sans-serif;",
+                "    font-weight: 300;",
+                "    font-style: normal;",
+                "    color: #ba3925;",
+                "    text-rendering: optimizeLegibility;",
+                "    margin-top: 1em;",
+                "    margin-bottom: .5em;",
+                "}",
+                "</style>",
+                "++++");
 
         doc.write("",
                 "",
                 style,
                 "",
-                ":leveloffset: +1",
                 "_final rendering_",
                 "[.adocRendering]",
-                formatter.include_with_lines(docPath.received().from(this.getClass()).toString(), 1, 14),
-                "...",
-                "----",
-                "// We add the line below to close truncated block open in included file",
-                ":leveloffset: -1");
+                "--",
+                cutLines.stream()
+                        .map(this::escapedAdocTitle)
+                        .collect(Collectors.joining("\n"))
+                        .replace(INCLUDE_KEYWORD_TO_SUBSTITUTE, include_stacktrace_asciidoc),
+                "--");
+
     }
 
     private void runTestAndWriteResultAsComment(Class<?> testClass) {
@@ -238,6 +284,10 @@ public class ApprovalsExtensionTest {
                 .replaceAll("(^|\\n)ifndef::", "$1\\\\ifndef::")
                 .replaceAll("(^|\\n)ifdef::", "$1\\\\ifdef::")
                 .replaceAll("(^|\\n)endif::", "$1\\\\endif::");
+    }
+
+    private String escapedAdocTitle(String line) {
+        return line.replaceAll("^= (.*)", "[.title1]#$1#");
     }
 }
 

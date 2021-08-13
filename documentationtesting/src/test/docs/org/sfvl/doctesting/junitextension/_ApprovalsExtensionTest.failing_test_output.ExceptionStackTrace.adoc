@@ -1,15 +1,3 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../..
-endif::[]
-
-[#org_sfvl_samples_FailingTest_failing_test]
-= Failing test
-
-Some information before failure.
-
-*Error generating documentation*
-----
-org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
 	at org.junit.jupiter.api.Assertions.fail(Assertions.java:117)
 	at org.sfvl.samples.FailingTest.failing_test(FailingTest.java:23)
@@ -136,5 +124,3 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:138)
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:465)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:451)
-
-----

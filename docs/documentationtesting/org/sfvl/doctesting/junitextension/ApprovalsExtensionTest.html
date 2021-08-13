@@ -473,11 +473,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
-<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_failing_test_output">Failing test output</a>
-<ul class="sectlevel2">
-<li><a href="#org_sfvl_samples_FailingTest_failing_test">Failing test</a></li>
-</ul>
-</li>
+<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_failing_test_output">Failing test output</a></li>
 </ul>
 </div>
 </div>
@@ -871,7 +867,9 @@ Some information before failure.
 ----
 org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:117)
+	at org.sfvl.samples.FailingTest.failing_test(FailingTest.java:23)
+	...
 
 ----</pre>
 </div>
@@ -884,12 +882,25 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
     -webkit-box-shadow: 0 1px 4px #e0e0dc;
     box-shadow: 0 1px 4px #e0e0dc;
 }
+.adocRendering .title1 {
+    font-size: 2em;
+    font-family: "Open Sans","DejaVu Sans",sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: #ba3925;
+    text-rendering: optimizeLegibility;
+    margin-top: 1em;
+    margin-bottom: .5em;
+}
 </style>
 <div class="paragraph">
 <p><em>final rendering</em></p>
 </div>
-<div class="sect2 adocRendering">
-<h3 id="org_sfvl_samples_FailingTest_failing_test">Failing test</h3>
+<div class="openblock adocRendering">
+<div class="content">
+<div id="org_sfvl_samples_FailingTest_failing_test" class="paragraph">
+<p><span class="title1">Failing test</span></p>
+</div>
 <div class="paragraph">
 <p>Some information before failure.</p>
 </div>
@@ -900,8 +911,10 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 <div class="content">
 <pre>org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:109)
-...</pre>
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:117)
+	at org.sfvl.samples.FailingTest.failing_test(FailingTest.java:23)
+	...</pre>
+</div>
 </div>
 </div>
 </div>
