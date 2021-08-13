@@ -1,5 +1,6 @@
 package org.sfvl.doctesting.junitextension;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -12,6 +13,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 @DisplayName("Failure report")
 public class FailureReporterTest {
@@ -141,5 +143,21 @@ public class FailureReporterTest {
                 .title("Report")
                 .content(report.replace(tempDir.resolve("files") + File.separator, "[TEMPORARY FOLDER]/files/").trim())
                 .build());
+    }
+
+    @AfterEach
+    public void clean() {
+        deleteDirectory(tempDir.toFile());
+    }
+
+    boolean deleteDirectory(File directoryToBeDeleted) {
+        File[] allContents = directoryToBeDeleted.listFiles();
+        System.out.println(Arrays.toString(allContents));
+        if (allContents != null) {
+            for (File file : allContents) {
+                deleteDirectory(file);
+            }
+        }
+        return directoryToBeDeleted.delete();
     }
 }
