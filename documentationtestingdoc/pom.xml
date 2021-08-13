@@ -50,7 +50,7 @@
                     <backend>html</backend>
                     <attributes>
                         <github-repo>https://github.com/sfauvel/documentationtesting/tree/master</github-repo>
-                        <github-pages>https://github.com/sfauvel/documentationtesting</github-pages>
+                        <github-pages>https://sfauvel.github.io/documentationtesting</github-pages>
                     </attributes>
                     <logHandler>
                         <failIf>
