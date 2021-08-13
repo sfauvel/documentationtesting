@@ -145,19 +145,4 @@ public class FailureReporterTest {
                 .build());
     }
 
-    @AfterEach
-    public void clean() {
-        deleteDirectory(tempDir.toFile());
-    }
-
-    boolean deleteDirectory(File directoryToBeDeleted) {
-        File[] allContents = directoryToBeDeleted.listFiles();
-        System.out.println(Arrays.toString(allContents));
-        if (allContents != null) {
-            for (File file : allContents) {
-                deleteDirectory(file);
-            }
-        }
-        return directoryToBeDeleted.delete();
-    }
 }

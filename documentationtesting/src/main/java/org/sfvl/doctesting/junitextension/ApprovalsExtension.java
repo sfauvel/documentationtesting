@@ -14,8 +14,10 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * JUnit5 extension that verify written document matches with approved one.
@@ -132,8 +134,8 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
             delegate.report(received, approved);
 
             try {
-                final List<String> approvedLines = Files.lines(Paths.get(approved)).collect(Collectors.toList());
-                final List<String> receivedLines = Files.lines(Paths.get(received)).collect(Collectors.toList());
+                final List<String> approvedLines = readFileLines(approved);
+                final List<String> receivedLines = readFileLines(received);
 
                 int lineNumber = 0;
                 while (lineNumber < approvedLines.size()
@@ -160,6 +162,14 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
                 e.printStackTrace();
             }
 
+        }
+
+        private List<String> readFileLines(String filename) throws IOException {
+            final List<String> lines = new ArrayList<>();
+            try (Stream<String> linesStream = Files.lines(Paths.get(filename))) {
+                lines.addAll(linesStream.collect(Collectors.toList()));
+            }
+            return lines;
         }
 
         private String formatLine(List<String> lines, int lineNumber) {
