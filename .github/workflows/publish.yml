@@ -42,7 +42,9 @@ jobs:
 
       - name: Package with Maven
 #        run: mvn -B package --file documentationtesting/pom.xml
-        run: echo "<html>My doc</html>" > target/docs/index.html
+        run: |
+          mkdir -p target/docs
+          echo "<html>My doc</html>" > target/docs/index.html
 
       - name: Copy docs
         run: |
