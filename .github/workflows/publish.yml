@@ -63,6 +63,12 @@ jobs:
         id: git_diff
         run: echo "::set-output name=DOC_DIFF::$(git diff --cached  | wc -l)"
 #
+      - name: Configure Git user
+        if: steps.git_diff.outputs.DOC_DIFF > 0
+        run: |
+          git config user.email "actions@noreply.github.com"
+          git config user.name "GitHub Actions"
+
       - name: Commit docs
         if: steps.git_diff.outputs.DOC_DIFF > 0
         run: |
