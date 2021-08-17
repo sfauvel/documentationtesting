@@ -54,6 +54,7 @@ jobs:
         run: |
           rm -Rf published_docs
           cp -R target/docs published_docs
+          ls published_docs
 #          rm -Rf docs
 #          cp -R target/docs docs
 #
