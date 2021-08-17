@@ -55,6 +55,7 @@ jobs:
           rm -Rf published_docs
           cp -R target/docs published_docs
           ls published_docs
+          git add published_docs
 #          rm -Rf docs
 #          cp -R target/docs docs
 #
