@@ -30,37 +30,38 @@ jobs:
           git push -f
 #        run: git merge origin/master --allow-unrelated-histories -m "Merge from master"
 
-#  generate_doc:
-#    name: Generate doc
-#    needs: merge_from_master
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Set up JDK 1.8
-#        uses: actions/setup-java@v1
-#        with:
-#          java-version: 1.8
-#
-#      - name: Package with Maven
+  generate_doc:
+    name: Generate doc
+    needs: merge_from_master
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Package with Maven
 #        run: mvn -B package --file documentationtesting/pom.xml
+        run: echo "<html>My doc</html>" > target/docs/index.html
+
+      - name: Copy docs
+        run: |
+          rm -Rf published_docs
+          cp -R target/docs published_docs
+#          rm -Rf docs
+#          cp -R target/docs docs
 #
-#      - name: Copy docs
-#        run: |
-#          rm -Rf published_docs
-#          cp -R docs published_docs
-##          rm -Rf docs
-##          cp -R target/docs docs
+      - name: Retrieve diff
+        id: git_diff
+        run: echo "::set-output name=DOC_DIFF::$(git diff | wc -l)"
 #
-#      - name: Retrieve diff
-#        id: git_diff
-#        run: echo "::set-output name=DOC_DIFF::$(git diff | wc -l)"
-#
-#      - name: Commit docs
-#        if: steps.git_diff.outputs.DOC_DIFF > 0
-#        run: |
-#          echo "==== GIT DIFF ===="
-#          echo "${{ steps.git_diff.outputs.DOC_DIFF }}"
-#          echo "=================="
-#
-#          git add docs
-#          git commit -m "New doc"
-#          git push -f
+      - name: Commit docs
+        if: steps.git_diff.outputs.DOC_DIFF > 0
+        run: |
+          echo "==== GIT DIFF ===="
+          echo "${{ steps.git_diff.outputs.DOC_DIFF }}"
+          echo "=================="
+
+          git add published_docs
+          git commit -m "New doc"
+          git push -f
