@@ -48,7 +48,7 @@ jobs:
 #        run: mvn -B package --file documentationtesting/pom.xml
         run: |
           mkdir -p target/docs
-          echo "<html>My doc</html>" > target/docs/index.html
+          echo "<html>My new doc</html>" > target/docs/index.html
 
       - name: Copy docs
         run: |
