@@ -61,7 +61,7 @@ jobs:
 #
       - name: Retrieve diff
         id: git_diff
-        run: echo "::set-output name=DOC_DIFF::$(git diff | wc -l)"
+        run: echo "::set-output name=DOC_DIFF::$(git diff --cached  | wc -l)"
 #
       - name: Commit docs
         if: steps.git_diff.outputs.DOC_DIFF > 0
