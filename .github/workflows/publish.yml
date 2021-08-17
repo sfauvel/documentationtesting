@@ -1,5 +1,5 @@
 name: Publish and Release
-
+# V1.0
 on:
   push:
     branches: [ ci_workflow ]
