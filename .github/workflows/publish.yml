@@ -25,7 +25,9 @@ jobs:
           git config user.name "GitHub Actions"
 
       - name: Merge from master
-        run: git merge origin/ci_workflow --allow-unrelated-histories -m "Merge from master"
+        run: |
+          git merge origin/ci_workflow --allow-unrelated-histories -m "Merge from master"
+          git push -f
 #        run: git merge origin/master --allow-unrelated-histories -m "Merge from master"
 
 #  generate_doc:
