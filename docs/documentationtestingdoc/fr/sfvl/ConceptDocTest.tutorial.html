@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Performance</title>
+<title>Tutorial</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -441,293 +441,141 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_performance">Performance</a></li>
-<li><a href="#_performances">Performances</a></li>
-<li><a href="#_verify_documentation_with_approvals_library">Verify documentation with <em>Approvals</em> library.</a>
+<li><a href="#_tutorial">Tutorial</a>
 <ul class="sectlevel2">
-<li><a href="#org_sfvl_demo_UsingApprovalsTest_should_give_person_information">Should give person information</a></li>
+<li><a href="#_quick_start">Quick start</a></li>
+<li><a href="#_java_project">Java project</a>
+<ul class="sectlevel3">
+<li><a href="#_ready_to_test_project">Ready to test project</a></li>
+<li><a href="#_use_it_in_your_own_project">Use it in your own project</a></li>
 </ul>
 </li>
-<li><a href="#_check_file_modification_with_git_after_each_test">Check file modification with git after each test.</a>
-<ul class="sectlevel2">
-<li><a href="#org_sfvl_demo_UsingGitAssertingOnEachTestTest_should_give_person_information">Should give person information</a></li>
 </ul>
 </li>
-<li><a href="#_use_git_to_check_file_modification_but_after_all_tests_the_time_shown_not_include_this_verification">Use Git to check file modification but after all tests. The time shown not include this verification.</a>
-<ul class="sectlevel2">
-<li><a href="#org_sfvl_demo_UsingGitWithNoAssertOptionTest_should_give_person_information">Should give person information</a></li>
-</ul>
-</li>
-<li><a href="#_using_junit_assertions_to_test">Using JUnit assertions to test.</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_performance">Performance</h2>
+<h2 id="_tutorial">Tutorial</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_quick_start">Quick start</h3>
 <div class="paragraph">
-<p>We evaluate performance using different approaches.</p>
+<p>You can experiment it simply with almost nothing.</p>
 </div>
-<div class="paragraph">
-<p>This comparison is very light and approximate.
-It&#8217;s just to give an idea of the cost to generate files and compare them.</p>
-</div>
-<div class="paragraph">
-<p>We show below time to execute different types of tests.
-First, we execute a very simple test with JUnit, Approvals and using Git.
-With Git, we execute it with option no-assert or not.
-This option, is used when we launch tests with script to check failure only at the end.</p>
-</div>
-<div class="paragraph">
-<p>We show what each test provide as output to compare a classical test to the approach based on the documentation.
-With Junit, we just display test source code.</p>
-</div>
-<div class="paragraph">
-<p>We see a factor of 7 between JUnit and Git.
-In fact, there is a time taken to build JavaProjectBuilder to be able to parse code and retrieve comments.
-This initialization finished, tests are pretty fast with a factor of 3 with JUnit.
-With Approvals, preformance is less good (but may be optimized).
-This approach is clearly slower than using Junit, but difference is not really signifiant unless there is a lot a tests.
-We execute 1000 tests in less than 1 second.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_performances">Performances</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>We compare performance of tests using different approaches.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use your usual test framework.</p>
+</li>
+<li>
+<p>Create a test that write to a text file.</p>
+</li>
+<li>
+<p>Add to this file result of the execution.</p>
+</li>
+<li>
+<p>Add the file to git.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Using Git, we can verify documentation on each test or not.
-When we run all tests, this verification is done at the end by script that launch tests.
-To have total time using Git without verification on each test, we should add time of global checking.
-This step is fast, it&#8217;s just a shell script with some git commands.</p>
+<p>You now have a non regression test in place.
+Each time you run this test, a change in the file is a regression.</p>
 </div>
-<table class="tableblock frame-all grid-all fit-content">
+<div class="paragraph">
+<p>By the time, you can add useful information to the output file and format it to be more readable.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_java_project">Java project</h3>
+<div class="paragraph">
+<p>If you want to experiment it in a java project, you can use library provided.</p>
+</div>
+<div class="sect3">
+<h4 id="_ready_to_test_project">Ready to test project</h4>
+<div class="paragraph">
+<p>You can use the <a href="https://github.com/sfauvel/TryDocAsTest">TryDocAsTest</a> project.
+It&#8217;s a preconfigure project to start with a complete tool.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_use_it_in_your_own_project">Use it in your own project</h4>
+<div class="paragraph">
+<p>You want to create your own Java project to try this approach.
+The only module you need is <code>documentationtestesting</code> one.</p>
+</div>
+<div class="paragraph">
+<p>Start by writing a test that inherits from <code>org.sfvl.doctesting.junitinheritance.ApprovalsBase</code>.</p>
+</div>
+<div class="paragraph">
+<p>Use <code>write</code> method to write all you want to be in documentation.
+It should be at least input and output.
+When you write output, you don&#8217;t write values expected but only values given by the application.</p>
+</div>
+<div class="paragraph">
+<p>Then run test as usual.
+First time, test fails and a file is produced in <code>src/test/docs</code> with the name of the test.
+The filename ends with <code>received.adoc</code>.</p>
+</div>
+<div class="paragraph">
+<p>Read the file and verify that it looks like as you want.
+If it is the case, rename it with <code>approved.adoc</code> instead of <code>received.adoc</code>.</p>
+</div>
+<div class="paragraph">
+<p>Relaunch tests and they should pass.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example with DemoTest.java</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kn">package</span> <span class="nn">org.sfvl.demo</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.DisplayName</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitinheritance.ApprovalsBase</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Demo of a simple usage to generate documentation.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoTest</span> <span class="kd">extends</span> <span class="nc">ApprovalsBase</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * When adding two simple numbers, the java operator '+' should return the sum of them.
+     */</span>
+    <span class="nd">@Test</span>
+    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Adding 2 simple numbers"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_be_5_when_adding_2_and_3</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+        <span class="n">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d + %d = %d"</span><span class="o">,</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col>
-<col>
-<col>
-<col>
+<col style="width: 100%;">
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Category</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Class</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Time in seconds)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">File generated to validate</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Long</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndALongTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.006</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. There is only one test but it check 100 times the same case.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Long</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitWithALongTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.006</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test. There is only one test but it check 100 times the same case.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndLotOfTests_A_Test</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.241</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndLotOfTests_B_Test</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.569</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitAndLotOfTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.264</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test 1000 cases.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Many</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndManyTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.104</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100 tests are made.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Many</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitAndManyTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.028</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test 100 cases.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingApprovalsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.036</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Verify documentation with <em>Approvals</em> library.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitAssertingOnEachTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.33</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Check file modification with git after each test.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.003</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.035</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="sect1">
+<h2 id="org_sfvl_demo_DemoTest_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When adding two simple numbers, the java operator '+' should return the sum of them.</p>
+</div>
+<div class="paragraph">
+<p>2 + 3 = 5</p>
+</div>
+</div>
+</div></div></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_verify_documentation_with_approvals_library">Verify documentation with <em>Approvals</em> library.</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Demo of a simple usage to generate documentation.</p>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_demo_UsingApprovalsTest_should_give_person_information">Should give person information</h3>
-<div class="paragraph">
-<p>With an instance of Person:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>First Name</strong>: John</p>
-</li>
-<li>
-<p><strong>Last Name</strong>: Doe</p>
-</li>
-<li>
-<p><strong>Year of birth</strong>: 1976</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Results calling methods are:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>age()</strong>: 45 (<em>if we are in 2021</em>)</p>
-</li>
-<li>
-<p><strong>toString()</strong>: John Doe</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_check_file_modification_with_git_after_each_test">Check file modification with git after each test.</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Demo of a simple usage to generate documentation.</p>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_demo_UsingGitAssertingOnEachTestTest_should_give_person_information">Should give person information</h3>
-<div class="paragraph">
-<p>With an instance of Person:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>First Name</strong>: John</p>
-</li>
-<li>
-<p><strong>Last Name</strong>: Doe</p>
-</li>
-<li>
-<p><strong>Year of birth</strong>: 1976</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Results calling methods are:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>age()</strong>: 45 (<em>if we are in 2021</em>)</p>
-</li>
-<li>
-<p><strong>toString()</strong>: John Doe</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_use_git_to_check_file_modification_but_after_all_tests_the_time_shown_not_include_this_verification">Use Git to check file modification but after all tests. The time shown not include this verification.</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Demo of a simple usage to generate documentation.</p>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_demo_UsingGitWithNoAssertOptionTest_should_give_person_information">Should give person information</h3>
-<div class="paragraph">
-<p>With an instance of Person:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>First Name</strong>: John</p>
-</li>
-<li>
-<p><strong>Last Name</strong>: Doe</p>
-</li>
-<li>
-<p><strong>Year of birth</strong>: 1976</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Results calling methods are:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>age()</strong>: 45 (<em>if we are in 2021</em>)</p>
-</li>
-<li>
-<p><strong>toString()</strong>: John Doe</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_using_junit_assertions_to_test">Using JUnit assertions to test.</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@Test</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_give_person_information</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">checkPerson</span><span class="o">();</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">checkPerson</span><span class="o">()</span> <span class="o">{</span>
-    <span class="kd">final</span> <span class="nc">LocalDate</span> <span class="n">now</span> <span class="o">=</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
-    <span class="kd">final</span> <span class="kt">int</span> <span class="n">current_year</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="na">getYear</span><span class="o">();</span>
-    <span class="kd">final</span> <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">45</span><span class="o">;</span>
-    <span class="kd">final</span> <span class="nc">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"John"</span><span class="o">,</span> <span class="s">"Doe"</span><span class="o">,</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">current_year</span> <span class="o">-</span> <span class="n">age</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">23</span><span class="o">));</span>
-
-    <span class="n">assertEquals</span><span class="o">(</span><span class="n">age</span><span class="o">,</span> <span class="n">person</span><span class="o">.</span><span class="na">age</span><span class="o">());</span>
-    <span class="n">assertEquals</span><span class="o">(</span><span class="s">"John Doe"</span><span class="o">,</span> <span class="n">person</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-<span class="o">}</span></code></pre>
 </div>
 </div>
 </div>
