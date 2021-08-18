@@ -79,7 +79,7 @@ jobs:
           ref: ${{env.doc_branch}}
       - name: display nb modified files
         run: |
-          echo "Nb src files modified: ${{steps.check_files.outputs.NB_SRC_MODIFIED}}"
+          echo "Nb src files modified: ${{needs.check_if_sources_modified.steps.check_files.outputs.NB_SRC_MODIFIED}}"
 
       - name: Configure Git user
         run: |
