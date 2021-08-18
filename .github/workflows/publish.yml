@@ -54,9 +54,9 @@ jobs:
       - name: find last release tag
         id: last_release
         run: echo "::set-output name=LAST_RELEASE::$(git describe --abbrev=0 --tags --match "${{env.release_pattern}}")"
-        echo "Last release: ${{ steps.last_release.outputs.LAST_RELEASE }}"
 
       - name: log from last release
+        echo "Last release: ${{ steps.last_release.outputs.LAST_RELEASE }}"
         run: git log --oneline ${{ steps.last_release.outputs.LAST_RELEASE }}..HEAD
 
   check_if_sources_modified:
