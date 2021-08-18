@@ -45,7 +45,7 @@ jobs:
     needs: diff_from_last_release
     outputs:
       run_job: ${{ steps.check_files.outputs.run_job }}
-      NO_SRC_MODIFIED: ${{steps.check_files.outputs.NB_SRC_MODIFIED}} == 0
+      NB_SRC_MODIFIED: ${{steps.check_files.outputs.NB_SRC_MODIFIED}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -74,14 +74,13 @@ jobs:
     steps:
       - name: display nb modified files
         run: |
-          echo "Nb src files modified: ${{needs.check_if_sources_modified.steps.check_files.outputs.NO_SRC_MODIFIED}}"
-          echo "Nb src files modified: ${{needs.check_if_sources_modified.outputs.NO_SRC_MODIFIED}}"
+          echo "Nb src files modified: ${{needs.check_if_sources_modified.outputs.NB_SRC_MODIFIED}}"
 
 
   merge_from_root_branch:
     name: Merge from root branch
     needs: check_if_sources_modified
-    if: needs.check_if_sources_modified.outputs.NO_SRC_MODIFIED
+    if: needs.check_if_sources_modified.outputs.NB_SRC_MODIFIED == 0
     runs-on: ubuntu-latest
 
     steps:
@@ -91,7 +90,7 @@ jobs:
           ref: ${{env.doc_branch}}
       - name: display nb modified files
         run: |
-          echo "Nb src files modified: ${{needs.check_if_sources_modified.steps.check_files.outputs.NO_SRC_MODIFIED}}"
+          echo "Nb src files modified: ${{needs.check_if_sources_modified.outputs.NB_SRC_MODIFIED}}"
 
       - name: Configure Git user
         run: |
