@@ -29,14 +29,9 @@ jobs:
       - name: find last release tag
         id: last_release
         run: |
-          my_local_var=`git describe --abbrev=0 --tags --match "${{env.release_pattern}}"`
-          echo "my_local_var=$my_local_var"
-          echo "::set-output name=LAST_RELEASE::$(git describe --abbrev=0 --tags --match "${{env.release_pattern}}")"
-
-#      - name: log from last release
-#        run: |
-#          echo "Last release: ${{ steps.last_release.outputs.LAST_RELEASE }}"
-#          git log --oneline ${{ steps.last_release.outputs.LAST_RELEASE }}..HEAD
+          last_release_tag=`git describe --abbrev=0 --tags --match "${{env.release_pattern}}"`
+          echo "Last release tag: $last_release_tag"
+          echo "::set-output name=LAST_RELEASE::$last_release_tag"
 
     outputs:
       LAST_RELEASE: ${{ steps.last_release.outputs.LAST_RELEASE }}
