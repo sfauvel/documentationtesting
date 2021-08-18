@@ -11,8 +11,9 @@ on:
 
 env:
   root_branch: 'ci_workflow'
+  doc_branch: 'pages'
   docs_generated: 'docs'
-  docs_published: 'publiched_docs'
+  docs_published: 'published_docs'
 
 jobs:
   merge_from_root_branch:
@@ -23,7 +24,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          ref: pages
+          ref: ${{doc_branch}}
 
       - name: Configure Git user
         run: |
@@ -44,7 +45,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: pages
+          ref: ${{doc_branch}}
 
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
