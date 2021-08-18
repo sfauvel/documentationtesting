@@ -86,7 +86,7 @@ public class ConceptDocTest extends MyFormatter {
                 ":nofooter:",
                 ":fulldoc:",
                 readme,
-                "Here, what you can find as resources on this site",
+                "Here, what resources you can find on this site",
                 table("DocumentationTestingDoc.intro.bis",
                         $(
                                 $(explanationCell(), tutorialCell()),
