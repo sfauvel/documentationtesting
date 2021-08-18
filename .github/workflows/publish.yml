@@ -30,7 +30,7 @@ jobs:
 
       - name: Merge from root branch
         run: |
-          git merge origin/{{ env.root_branch }} --allow-unrelated-histories -m "Merge root branch"
+          git merge origin/${{env.root_branch}} --allow-unrelated-histories -m "Merge root branch"
           git push -f
 #        run: git merge origin/develop --allow-unrelated-histories -m "Merge from develop"
 #        run: git merge origin/master --allow-unrelated-histories -m "Merge from master"
