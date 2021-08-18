@@ -8,6 +8,7 @@ source ./scripts/loadWritingFunction.sh
 # With approvals: file .approved is compared to .received (no need to have git). It not verifies removed tests
 # with git: file .approved is compared with git commited version. It detects tests removed.
 VALIDATION_MODE="git"
+OUTPUT_LOG=tmp/generateDoc.log
 
 # Usage info
 function show_help() {
@@ -53,7 +54,7 @@ function generate_docs() {
       echo -n "Project ${DEMO_NAME}: "
       pushd $DEMO_NAME > /dev/null
       returncode=0
-      ./generateDoc.sh > /dev/null 2>&1 || returncode=$?
+      ./generateDoc.sh > "$OUTPUT_LOG" 2>&1 || returncode=$?
 
 
       if [[ returncode -eq 0 ]]

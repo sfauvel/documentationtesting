@@ -93,6 +93,7 @@ jobs:
           ls
           chmod +x ./generateDoc.sh
           ./generateDoc.sh
+          cat tmp/generateDoc.log
         shell: bash
 
       - name: Copy docs
