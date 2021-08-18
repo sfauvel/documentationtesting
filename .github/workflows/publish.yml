@@ -75,7 +75,7 @@ jobs:
       - name: check modified files
         id: check_files
         run: |
-          echo "Last release: ${{ jobs.diff_from_last_release.steps.last_release.outputs.LAST_RELEASE }}"
+          echo "Last release: ${{ needs.diff_from_last_release.steps.last_release.outputs.LAST_RELEASE }}"
           echo "=============== list modified files ==============="
           git diff --name-only ${{steps.last_release.outputs.LAST_RELEASE}}  HEAD | grep documentationtesting/src/main
           echo "::set-output name=NB_SRC_MODIFIED::$(git diff --name-only ${{ steps.last_release.outputs.LAST_RELEASE }}  HEAD | grep documentationtesting/src/main | wc -l)"
