@@ -41,7 +41,8 @@ jobs:
   diff_from_last_release:
     runs-on: ubuntu-latest
     env:
-      release_pattern: 'release-*'
+#      release_pattern: 'release-*'
+      release_pattern: 'documentationtesting-*'
     steps:
       - uses: actions/checkout@v2
         with:
