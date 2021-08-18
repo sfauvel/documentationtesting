@@ -29,7 +29,7 @@ jobs:
       - name: find last release tag
         id: last_release
         run: |
-          last_release_tag=`git describe --abbrev=0 --tags --match "${{env.release_pattern}}"`
+          last_release_tag=`git describe --abbrev=0 --tags --match "${{env.release_pattern}}" | grep '.*'`
           echo "Last release tag: $last_release_tag"
           echo "::set-output name=LAST_RELEASE::$last_release_tag"
 
