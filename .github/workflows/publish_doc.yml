@@ -1,0 +1,120 @@
+name: Publish doc
+# V1.0
+on:
+  push:
+    branches: [ develop ]
+
+  workflow_dispatch:
+
+env:
+  root_branch: 'develop'
+  doc_branch: 'pages'
+  docs_generated: 'docs'
+  docs_published: 'published_docs'
+  #      release_pattern: 'release-*'
+  release_pattern: 'documentationtesting-*'
+
+jobs:
+  get_last_release_tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: find last release tag
+        id: last_release
+        run: |
+          last_release_tag=`git describe --abbrev=0 --tags --match "${{env.release_pattern}}"`
+          echo "Last release tag: $last_release_tag"
+          echo "::set-output name=LAST_RELEASE::$last_release_tag"
+
+    outputs:
+      LAST_RELEASE: ${{ steps.last_release.outputs.LAST_RELEASE }}
+
+  check_if_sources_modified:
+    needs: get_last_release_tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: check modified files
+        id: check_files
+        run: |
+          nb_src_files_modified=`git diff --name-only ${{ needs.get_last_release_tag.outputs.LAST_RELEASE }} HEAD | grep documentationtesting/src/main | wc -l`
+          echo ":Nb source files modified since last release: $nb_src_files_modified"
+          echo "::set-output name=NB_SRC_MODIFIED::$nb_src_files_modified"
+
+    outputs:
+      NB_SRC_MODIFIED: ${{steps.check_files.outputs.NB_SRC_MODIFIED}}
+
+  merge_from_root_branch:
+    name: Merge from root branch
+    needs: check_if_sources_modified
+    if: needs.check_if_sources_modified.outputs.NB_SRC_MODIFIED == 0
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: ${{env.doc_branch}}
+
+      - name: Configure Git user
+        run: |
+          git config user.email "actions@noreply.github.com"
+          git config user.name "GitHub Actions"
+
+      - name: Merge from root branch
+        run: |
+          git merge origin/${{env.root_branch}} --allow-unrelated-histories -m "Merge root branch"
+          git push -f
+
+  generate_doc:
+    name: Generate doc
+    needs: merge_from_root_branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{env.doc_branch}}
+
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: Package with Maven
+        #        run: mvn -B package --file documentationtesting/pom.xml
+        run: |
+          mkdir -p ${{env.docs_published}}
+          echo "<html>My new doc</html>" > ${{env.docs_published}}/index.html
+
+      - name: Copy docs
+        run: |
+          rm -Rf ${{env.docs_published}}
+          cp -R ${{env.docs_generated}} ${{env.docs_published}}
+      #          rm -Rf docs
+      #          cp -R target/docs docs
+      #
+      - name: Retrieve diff
+        id: git_diff
+        run: |
+          git add ${{env.docs_published}}
+          echo "::set-output name=DOC_DIFF::$(git diff --cached  | wc -l)"
+      #
+      - name: Configure Git user
+        if: steps.git_diff.outputs.DOC_DIFF > 0
+        run: |
+          git config user.email "actions@noreply.github.com"
+          git config user.name "GitHub Actions"
+
+      - name: Commit docs
+        if: steps.git_diff.outputs.DOC_DIFF > 0
+        run: |
+          git add ${{env.docs_published}}
+          git commit -m "New doc"
+          git push -f
