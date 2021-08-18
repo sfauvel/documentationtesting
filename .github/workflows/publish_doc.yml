@@ -88,10 +88,7 @@ jobs:
           java-version: 1.8
 
       - name: Package with Maven
-        #        run: mvn -B package --file documentationtesting/pom.xml
-        run: |
-          mkdir -p ${{env.docs_published}}
-          echo "<html>My new doc</html>" > ${{env.docs_published}}/index.html
+        run: mvn -B package --file documentationtesting/pom.xml
 
       - name: Copy docs
         run: |
