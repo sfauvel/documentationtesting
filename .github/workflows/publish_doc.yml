@@ -90,8 +90,9 @@ jobs:
       - name: Package with Maven
 #        run: mvn -B package --file documentationtesting/pom.xml
         run: |
-          chmod +x generateDoc.sh
-          generateDoc.sh
+          ls
+          chmod +x ./generateDoc.sh
+          ./generateDoc.sh
         shell: bash
 
       - name: Copy docs
