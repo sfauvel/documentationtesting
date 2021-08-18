@@ -10,7 +10,7 @@ env:
   root_branch: 'develop'
   doc_branch: 'pages'
   docs_generated: 'tmp/docs'
-  docs_published: 'published_gendocs'
+  docs_published: 'docs'
   #      release_pattern: 'release-*'
   release_pattern: 'documentationtesting-*'
 
@@ -90,10 +90,9 @@ jobs:
       - name: Package with Maven
 #        run: mvn -B package --file documentationtesting/pom.xml
         run: |
-          ls
           chmod +x ./generateDoc.sh
           ./generateDoc.sh
-          cat tmp/generateDoc.log
+#          cat tmp/generateDoc.log
         shell: bash
 
       - name: Copy docs
