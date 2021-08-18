@@ -77,6 +77,9 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{env.doc_branch}}
+      - name: display nb modified files
+        run: |
+          echo "Nb src files modified: ${{steps.check_files.outputs.NB_SRC_MODIFIED}}"
 
       - name: Configure Git user
         run: |
