@@ -66,7 +66,7 @@ public class BasicDocumentation extends DemoDocumentation {
     private Path getOutputProjectPath() {
         final Path projectPath = new PathProvider().getProjectPath();
         final Path projectFolder = projectPath.getFileName();
-        return Paths.get("..", "..", "docs").resolve(projectFolder);
+        return Paths.get("..", "..", "tmp", "docs").resolve(projectFolder);
     }
 
     private Path getOutputPath(Path outputPath, File asciidocFile) throws IOException {

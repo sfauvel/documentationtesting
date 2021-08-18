@@ -67,7 +67,7 @@
                 <version>${asciidoctor.maven.plugin.version}</version>
                 <configuration>
                     <sourceDirectory>src/test/docs</sourceDirectory>
-                    <outputDirectory>../../docs/${project.artifactId}</outputDirectory>
+                    <outputDirectory>../../tmp/docs/${project.artifactId}</outputDirectory>
                     <preserveDirectories>true</preserveDirectories>
                     <relativeBaseDir>true</relativeBaseDir>
                     <backend>html</backend>

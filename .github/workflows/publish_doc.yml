@@ -9,7 +9,7 @@ on:
 env:
   root_branch: 'develop'
   doc_branch: 'pages'
-  docs_generated: 'docs'
+  docs_generated: 'tmp/docs'
   docs_published: 'published_docs'
   #      release_pattern: 'release-*'
   release_pattern: 'documentationtesting-*'
@@ -88,15 +88,15 @@ jobs:
           java-version: 1.8
 
       - name: Package with Maven
-        run: mvn -B package --file documentationtesting/pom.xml
+#        run: mvn -B package --file documentationtesting/pom.xml
+        run: generateDoc.sh
+        shell: bash
 
       - name: Copy docs
         run: |
           rm -Rf ${{env.docs_published}}
           cp -R ${{env.docs_generated}} ${{env.docs_published}}
-      #          rm -Rf docs
-      #          cp -R target/docs docs
-      #
+
       - name: Retrieve diff
         id: git_diff
         run: |

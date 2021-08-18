@@ -4,7 +4,7 @@ set -euo pipefail
 mvn clean install package
 
 # Generate the root index.html
-DOC_PROJECT_PATH=..
+DOC_PROJECT_PATH=../tmp
 PROJECT_NAME=${PWD##*/}
 DESTINATION_PATH=${DOC_PROJECT_PATH}/docs
 cp ${DESTINATION_PATH}/${PROJECT_NAME}/index.html ${DESTINATION_PATH}/index.html
