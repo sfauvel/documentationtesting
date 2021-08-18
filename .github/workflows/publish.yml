@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       #      release_pattern: 'release-*'
-      release_pattern: 'documentationtesting-*'
+      release_pattern: 'xxxdocumentationtesting-*'
     steps:
       - uses: actions/checkout@v2
         with:
