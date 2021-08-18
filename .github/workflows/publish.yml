@@ -65,7 +65,9 @@ jobs:
       #          echo "::set-output name=NB_SRC_MODIFIED::$(git diff --name-only ${{ needs.get_last_release_tag.outputs.LAST_RELEASE }} HEAD | grep documentationtesting/src/main | wc -l)"
 
       - name: display nb modified files
-        run: echo "Nb src files modified: ${{steps.check_files.outputs.NB_SRC_MODIFIED}}"
+        run: |
+          echo "Nb src files modified: ${{steps.check_files.outputs.NB_SRC_MODIFIED}}"
+
     outputs:
       NB_SRC_MODIFIED: ${{steps.check_files.outputs.NB_SRC_MODIFIED}}
 
