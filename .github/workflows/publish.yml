@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          ref: ${{doc_branch}}
+          ref: ${{env.doc_branch}}
 
       - name: Configure Git user
         run: |
@@ -45,7 +45,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: ${{doc_branch}}
+          ref: ${{env.doc_branch}}
 
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
@@ -55,20 +55,20 @@ jobs:
       - name: Package with Maven
 #        run: mvn -B package --file documentationtesting/pom.xml
         run: |
-          mkdir -p ${{docs_published}}
-          echo "<html>My new doc</html>" > ${{docs_published}}/index.html
+          mkdir -p ${{env.docs_published}}
+          echo "<html>My new doc</html>" > ${{env.docs_published}}/index.html
 
       - name: Copy docs
         run: |
-          rm -Rf ${{docs_published}}
-          cp -R ${{docs_generated}} ${{docs_published}}
+          rm -Rf ${{env.docs_published}}
+          cp -R ${{env.docs_generated}} ${{env.docs_published}}
 #          rm -Rf docs
 #          cp -R target/docs docs
 #
       - name: Retrieve diff
         id: git_diff
         run: |
-          git add ${{docs_published}}
+          git add ${{env.docs_published}}
           echo "::set-output name=DOC_DIFF::$(git diff --cached  | wc -l)"
 #
       - name: Configure Git user
@@ -80,6 +80,6 @@ jobs:
       - name: Commit docs
         if: steps.git_diff.outputs.DOC_DIFF > 0
         run: |
-          git add ${{docs_published}}
+          git add ${{env.docs_published}}
           git commit -m "New doc"
           git push -f
