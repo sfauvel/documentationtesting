@@ -9,7 +9,8 @@ source ./scripts/loadWritingFunction.sh
 # with git: file .approved is compared with git commited version. It detects tests removed.
 VALIDATION_MODE="git"
 ROOT_PATH=$(pwd)
-OUTPUT_LOG=$ROOT_PATH/tmp/generateDoc.log
+OUTPUT_PATH=$ROOT_PATH/tmp
+OUTPUT_LOG=$ROOT_PATH/$OUTPUT_PATH/generateDoc.log
 
 # Usage info
 function show_help() {
@@ -50,6 +51,7 @@ function generate_docs() {
   local TEST_COLOR
   echo "Generate projects documentation..."
   rm -f "$OUTPUT_LOG"
+  mkdir -p "$OUTPUT_PATH"
   for DEMO_NAME in $ALL_DEMOS
   do
       echo -n "Project ${DEMO_NAME}: "
