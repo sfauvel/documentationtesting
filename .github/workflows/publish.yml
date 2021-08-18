@@ -74,7 +74,6 @@ jobs:
           echo "=============== list modified files ==============="
           git diff --name-only ${{steps.last_release.outputs.LAST_RELEASE}}  HEAD | grep documentationtesting/src/main
 #          git diff --name-only HEAD^ HEAD
-
           echo "::set-output name=NB_SRC_MODIFIED::$(git diff --name-only ${{steps.last_release.outputs.LAST_RELEASE}}  HEAD | grep documentationtesting/src/main | wc -l)"
           echo "Nb src files modified: ${{steps.check_files.outputs.NB_SRC_MODIFIED}}"
 #          echo "========== check paths of modified files =========="
