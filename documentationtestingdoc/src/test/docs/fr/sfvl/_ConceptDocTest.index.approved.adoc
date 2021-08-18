@@ -155,7 +155,7 @@ max-width: 75%;
 </style>
 ++++
 endif::[]
-Here, what you can find as resources on this site
+Here, what resources you can find on this site
 
 [cols=2]
 [.DocumentationTestingDoc.intro.bis]
