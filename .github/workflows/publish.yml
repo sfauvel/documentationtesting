@@ -11,6 +11,8 @@ on:
 
 env:
   root_branch: 'ci_workflow'
+  docs_generated: 'docs'
+  docs_published: 'publiched_docs'
 
 jobs:
   merge_from_root_branch:
@@ -52,20 +54,20 @@ jobs:
       - name: Package with Maven
 #        run: mvn -B package --file documentationtesting/pom.xml
         run: |
-          mkdir -p target/docs
-          echo "<html>My new doc</html>" > target/docs/index.html
+          mkdir -p ${{docs_published}}
+          echo "<html>My new doc</html>" > ${{docs_published}}/index.html
 
       - name: Copy docs
         run: |
-          rm -Rf published_docs
-          cp -R target/docs published_docs
+          rm -Rf ${{docs_published}}
+          cp -R ${{docs_generated}} ${{docs_published}}
 #          rm -Rf docs
 #          cp -R target/docs docs
 #
       - name: Retrieve diff
         id: git_diff
         run: |
-          git add published_docs
+          git add ${{docs_published}}
           echo "::set-output name=DOC_DIFF::$(git diff --cached  | wc -l)"
 #
       - name: Configure Git user
@@ -77,10 +79,6 @@ jobs:
       - name: Commit docs
         if: steps.git_diff.outputs.DOC_DIFF > 0
         run: |
-          echo "==== GIT DIFF ===="
-          echo "${{ steps.git_diff.outputs.DOC_DIFF }}"
-          echo "=================="
-
-          git add published_docs
+          git add ${{docs_published}}
           git commit -m "New doc"
           git push -f
