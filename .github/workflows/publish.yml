@@ -28,8 +28,9 @@ jobs:
 
       - name: find last release tag
         id: last_release
+        with:
+          my_local_variable: git describe --abbrev=0 --tags --match "${{env.release_pattern}}"
         run: |
-          my_local_variable=$(git describe --abbrev=0 --tags --match "${{env.release_pattern}}")
           echo "My local variable:$my_local_variable"
           echo "My local variable:${my_local_variable}"
           echo "My local variable:${{my_local_variable}}"
