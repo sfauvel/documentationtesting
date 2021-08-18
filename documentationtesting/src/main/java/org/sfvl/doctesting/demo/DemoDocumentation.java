@@ -11,7 +11,9 @@ import org.sfvl.doctesting.writer.Options;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-
+/**
+ * Add a comment to not check ci is not launched
+ */
 public abstract class DemoDocumentation implements DocumentProducer {
 
     protected final Formatter formatter = new AsciidocFormatter();
