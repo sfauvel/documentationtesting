@@ -4,13 +4,17 @@ on:
   push:
     branches: [ ci_workflow ]
 #  pull_request:
+#    branches: [ develop ]
 #    branches: [ master ]
 
   workflow_dispatch:
 
+env:
+  root_branch: 'ci_workflow'
+
 jobs:
-  merge_from_master:
-    name: Merge from master
+  merge_from_root_branch:
+    name: Merge from root branch
     runs-on: ubuntu-latest
 
     steps:
@@ -24,15 +28,16 @@ jobs:
           git config user.email "actions@noreply.github.com"
           git config user.name "GitHub Actions"
 
-      - name: Merge from master
+      - name: Merge from root branch
         run: |
-          git merge origin/ci_workflow --allow-unrelated-histories -m "Merge from master"
+          git merge origin/{{ env.root_branch }} --allow-unrelated-histories -m "Merge root branch"
           git push -f
+#        run: git merge origin/develop --allow-unrelated-histories -m "Merge from develop"
 #        run: git merge origin/master --allow-unrelated-histories -m "Merge from master"
 
   generate_doc:
     name: Generate doc
-    needs: merge_from_master
+    needs: merge_from_root_branch
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -54,14 +59,14 @@ jobs:
         run: |
           rm -Rf published_docs
           cp -R target/docs published_docs
-          ls published_docs
-          git add published_docs
 #          rm -Rf docs
 #          cp -R target/docs docs
 #
       - name: Retrieve diff
         id: git_diff
-        run: echo "::set-output name=DOC_DIFF::$(git diff --cached  | wc -l)"
+        run: |
+          git add published_docs
+          echo "::set-output name=DOC_DIFF::$(git diff --cached  | wc -l)"
 #
       - name: Configure Git user
         if: steps.git_diff.outputs.DOC_DIFF > 0
