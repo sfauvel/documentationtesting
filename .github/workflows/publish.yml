@@ -60,6 +60,9 @@ jobs:
           echo "Last release: ${{ steps.last_release.outputs.LAST_RELEASE }}"
           git log --oneline ${{ steps.last_release.outputs.LAST_RELEASE }}..HEAD
 
+    outputs:
+      LAST_RELEASE: ${{ steps.last_release.outputs.LAST_RELEASE }}
+
   check_if_sources_modified:
     name: Check files
     needs: diff_from_last_release
