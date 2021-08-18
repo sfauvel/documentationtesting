@@ -56,12 +56,13 @@ jobs:
       - name: check modified files
         id: check_files
         run: |
-#          echo "Last release: ${{ needs.get_last_release_tag.outputs.LAST_RELEASE }}"
-#          echo "=============== list modified files ==============="
-#          git diff --name-only ${{ needs.get_last_release_tag.outputs.LAST_RELEASE }} HEAD | grep documentationtesting/src/main
-#          echo "=============== nb modified files ==============="
-#          git diff --name-only ${{ needs.get_last_release_tag.outputs.LAST_RELEASE }} HEAD | grep documentationtesting/src/main | wc -l
           echo "::set-output name=NB_SRC_MODIFIED::$(git diff --name-only ${{ needs.get_last_release_tag.outputs.LAST_RELEASE }} HEAD | grep documentationtesting/src/main | wc -l)"
+      #          echo "Last release: ${{ needs.get_last_release_tag.outputs.LAST_RELEASE }}"
+      #          echo "=============== list modified files ==============="
+      #          git diff --name-only ${{ needs.get_last_release_tag.outputs.LAST_RELEASE }} HEAD | grep documentationtesting/src/main
+      #          echo "=============== nb modified files ==============="
+      #          git diff --name-only ${{ needs.get_last_release_tag.outputs.LAST_RELEASE }} HEAD | grep documentationtesting/src/main | wc -l
+      #          echo "::set-output name=NB_SRC_MODIFIED::$(git diff --name-only ${{ needs.get_last_release_tag.outputs.LAST_RELEASE }} HEAD | grep documentationtesting/src/main | wc -l)"
 
       - name: display nb modified files
         run: echo "Nb src files modified: ${{steps.check_files.outputs.NB_SRC_MODIFIED}}"
