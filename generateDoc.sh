@@ -49,7 +49,7 @@ function generate_docs() {
   ALL_STATUS_RESULT="${GREEN}OK${NO_COLOR}"
   local TEST_COLOR
   echo "Generate projects documentation..."
-  rm "$OUTPUT_LOG"
+  rm -f "$OUTPUT_LOG"
   for DEMO_NAME in $ALL_DEMOS
   do
       echo -n "Project ${DEMO_NAME}: "
