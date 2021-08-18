@@ -10,7 +10,7 @@ source ./scripts/loadWritingFunction.sh
 VALIDATION_MODE="git"
 ROOT_PATH=$(pwd)
 OUTPUT_PATH=$ROOT_PATH/tmp
-OUTPUT_LOG=$ROOT_PATH/$OUTPUT_PATH/generateDoc.log
+OUTPUT_LOG=$OUTPUT_PATH/generateDoc.log
 
 # Usage info
 function show_help() {
