@@ -15,9 +15,52 @@ ifndef::fulldoc[]
 *To have more information, you can visit https://sfauvel.github.io/documentationtesting/[complete documentation].*
 endif::fulldoc[]
 
-We used to say that tests are the first documentation.
-But a test often looks like that:
+[DocumentationTestingDoc intro]
+--
+//[title]#Principal#
 
+// La comportement d'une application est défini à trois niveaux: dans le code, dans la documentation et dans les tests.
+The behavior of an application is defined at three levels: in the code, in the documentation and in the tests.
+
+// L'approche permet de ne définir le comportement qu'à un seul endroit, le code.
+This approach allows you to *define the behavior in only one place*, the code.
+
+// La documentation est générée et sert de référence pour assurer la non régression.
+The *documentation is generated* and serves as a reference to *ensure non regression*.
+
+// L'objectif de cette approche est d'éliminer cette duplication et l'effort de maintenance associé.
+
+// //L'idée est d'avoir une documentation générée à partir du code afin qu'elle reflète le comportement actuel de l'application.
+// The idea is to have documentation generated from the code so that it reflects the current behavior of the application.
+//
+// //On peut alors valider, après relecture, que ce qui est écrit correspond aux attentes du produit.
+// We can then validate, after proofreading, that what is written corresponds to the expectations of the product.
+//
+// //Ces documents deviennent la référence sur laquelle on s'appuira pour détecter des régressions.
+// // Tout changement sera considéré comme un test en échec.
+// These documents become the reference on which we will rely to detect regressions.
+// Any change will be considered a failed test.
+//
+// //Instead of writing tests, we just writing documentation from the code.
+// //
+// //Each test method is a documentation generator that not indicate expected result but just write the result.
+// //
+// //The user has to verify documentation produced and to validate that it describe the expected behavior.
+// //When documentation changed, test fails and the user needs to validate or not this new behavior.
+//
+It's a mix between link:https://www.amazon.com/Living-Documentation-Cyrille-Martraire/dp/0134689321[living documentation]
+link:https://en.wikipedia.org/wiki/Characterization_test[Golden Master] (or link:https://michaelfeathers.silvrback.com/characterization-testing[characterization-testing]])
+and link:https://en.wikipedia.org/wiki/Behavior-driven_development[Behavior Driven Development].
+--
+
+[INLINE-BLOCK width_40_percent]
+--
+We used to say that *tests are the first documentation*. +
+But a test often looks like that:
+--
+
+[INLINE-BLOCK]
+--
 [source,java]
 ----
 @Test
@@ -28,13 +71,23 @@ public void player_A_won_1_point_and_then_player_B_win_2_points() {
     assertEquals("15-30", game.score());
 }
 ----
+--
 
-Is it really what we want as documentation ?
+// Add a block to force
+--
+--
+
+[INLINE-BLOCK width_40_percent]
+--
+Is it really what we want as documentation ? +
 Is it easy to read and to understand for every one in the project ?
 
-Don't you think it will be a better documentation if  this test look like that ?
-[.INLINE-BLOCK]
-====
+Don't you think *it will be a better documentation* if  this test look like that ?
+--
+
+
+[INLINE-BLOCK sample_background]
+--
 *Tennis*
 
 [%autowidth, cols=5*, stripes=none]
@@ -43,10 +96,21 @@ Don't you think it will be a better documentation if  this test look like that ?
 .2+^.^| *15 - 30*
 | Player B | | &#x2714; | &#x2714;|
 |===
+--
 
 ifndef::env-github[]
 ++++
 <style>
+.width_40_percent {
+    width: 40%
+}
+.width_60_percent {
+    width: 60%
+}
+.sample_background {
+    background-color: aquamarine;
+    padding: 1em;
+}
 table.tableblock.grid-all {
     border-collapse: collapse;
 }
@@ -56,7 +120,7 @@ table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr
 </style>
 ++++
 endif::[]
-====
+
 
 ifndef::env-github[]
 ++++
@@ -70,63 +134,24 @@ ifndef::env-github[]
 ++++
 endif::[]
 
-
-[cols=2]
-[.DocumentationTestingDoc.intro]
-|====
-^.a| == Principal
-
-//L'idée est d'avoir une documentation générée à partir du code afin qu'elle reflète le comportement actuel de l'application.
-The idea is to have documentation generated from the code so that it reflects the current behavior of the application.
-
-//On peut alors valider, après relecture, que ce qui est écrit correspond aux attentes du produit.
-We can then validate, after proofreading, that what is written corresponds to the expectations of the product.
-
-//Ces documents deviennent la référence sur laquelle on s'appuira pour détecter des régressions.
-// Tout changement sera considéré comme un test en échec.
-These documents become the reference on which we will rely to detect regressions.
-Any change will be considered a failed test.
-
-//Instead of writing tests, we just writing documentation from the code.
-//
-//Each test method is a documentation generator that not indicate expected result but just write the result.
-//
-//The user has to verify documentation produced and to validate that it describe the expected behavior.
-//When documentation changed, test fails and the user needs to validate or not this new behavior.
-
-It's a mix between link:https://www.amazon.com/Living-Documentation-Cyrille-Martraire/dp/0134689321[living documentation]
-and link:https://en.wikipedia.org/wiki/Characterization_test[Golden Master] (or link:https://michaelfeathers.silvrback.com/characterization-testing[characterization-testing]]).
-
-
-^.a| == What does it change ?
-
-There is no more assertions to write in tests.
-If the behaviour describe in documentation is right, that's ok.
-
-We focus on documentation so that all our tests are readable by every one.
-We are free to present the information in the way that seems most appropriate to the context.
-
-//This idea comes from writing some code that is only configuration.
-//In that case, writing tests is just rewriting code and there is no real value.
-//But, this information still needs to be checked.
-
-|====
-
-// // Some file explaining it: Explaination
-// * More information of the concept
-// // using git and a test framework: Tutorial
-// * Simplest way to try it
-// // link with exemples page: How To
-// * Examples of what documentation can looks like
-// // link to documentation testing project: Reference
-// * Library to implement it in Java
-
 ifndef::env-github[]
 ++++
 <style>
 table.DocumentationTestingDoc.grid-all > * > tr > * {
     border-width:3px !important;
     border-color:#AAAAAA !important;
+}
+
+.DocumentationTestingDoc.intro .title {
+    font-size: 2em;
+    font-style: italic;
+}
+.DocumentationTestingDoc.intro {
+    padding: 1em;
+    margin-bottom:1em;
+    background-color:#05fdCC;
+    //border: 30px solid #BFBFBF;
+    -webkit-box-shadow: 3px 3px 6px #A9A9A9;
 }
 
 .DocumentationTestingDoc.intro td {
