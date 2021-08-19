@@ -91,6 +91,14 @@ function check_file_differences() {
 }
 
 source ${SCRIPTS_PATH}/loadWritingFunction.sh
-generate_docs
-check_file_differences
+
+IMAGE_ID=$(docker images -q $PYTHON_DOCKER_IMAGE)
+if [[ $IMAGE_ID ]]
+then
+  generate_docs
+  check_file_differences
+else
+  echo "No '$PYTHON_DOCKER_IMAGE' docker image. Uses already generated '.adoc' files."
+fi
+
 ${SCRIPTS_PATH}/convertAdocToHtml.sh ${DOCS_PATH} Documentation.adoc ${DESTINATION_PATH}
