@@ -441,10 +441,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Documentation testing</h1>
 </div>
 <div id="content">
+<div class="openblock DocumentationTestingDoc intro">
+<div class="content">
 <div class="paragraph">
-<p>We used to say that tests are the first documentation.
+<p>The behavior of an application is defined at three levels: in the code, in the documentation and in the tests.</p>
+</div>
+<div class="paragraph">
+<p>This approach allows you to <strong>define the behavior in only one place</strong>, the code.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>documentation is generated</strong> and serves as a reference to <strong>ensure non regression</strong>.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s a mix between <a href="https://www.amazon.com/Living-Documentation-Cyrille-Martraire/dp/0134689321">living documentation</a>
+<a href="https://en.wikipedia.org/wiki/Characterization_test">Golden Master</a> (or <a href="https://michaelfeathers.silvrback.com/characterization-testing">characterization-testing</a>])
+and <a href="https://en.wikipedia.org/wiki/Behavior-driven_development">Behavior Driven Development</a>.</p>
+</div>
+</div>
+</div>
+<div class="openblock INLINE-BLOCK width_40_percent">
+<div class="content">
+<div class="paragraph">
+<p>We used to say that <strong>tests are the first documentation</strong>.<br>
 But a test often looks like that:</p>
 </div>
+</div>
+</div>
+<div class="openblock INLINE-BLOCK">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nd">@Test</span>
@@ -456,14 +480,25 @@ But a test often looks like that:</p>
 <span class="o">}</span></code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="openblock">
+<div class="content">
+
+</div>
+</div>
+<div class="openblock INLINE-BLOCK width_40_percent">
+<div class="content">
 <div class="paragraph">
-<p>Is it really what we want as documentation ?
+<p>Is it really what we want as documentation ?<br>
 Is it easy to read and to understand for every one in the project ?</p>
 </div>
 <div class="paragraph">
-<p>Don&#8217;t you think it will be a better documentation if  this test look like that ?</p>
+<p>Don&#8217;t you think <strong>it will be a better documentation</strong> if  this test look like that ?</p>
 </div>
-<div class="exampleblock INLINE-BLOCK">
+</div>
+</div>
+<div class="openblock INLINE-BLOCK sample_background">
 <div class="content">
 <div class="paragraph">
 <p><strong>Tennis</strong></p>
@@ -492,7 +527,19 @@ Is it easy to read and to understand for every one in the project ?</p>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 <style>
+.width_40_percent {
+    width: 40%
+}
+.width_60_percent {
+    width: 60%
+}
+.sample_background {
+    background-color: aquamarine;
+    padding: 1em;
+}
 table.tableblock.grid-all {
     border-collapse: collapse;
 }
@@ -500,8 +547,6 @@ table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr
     border: 1px solid #dddddd;
 }
 </style>
-</div>
-</div>
 <style>
 .INLINE-BLOCK {
     display: inline-block;
@@ -509,52 +554,22 @@ table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr
     vertical-align: text-top;
 }
 </style>
-<table class="tableblock frame-all grid-all stretch DocumentationTestingDoc intro">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-center valign-top"><div class="content"><div class="sect1">
-<h2 id="_principal">Principal</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The idea is to have documentation generated from the code so that it reflects the current behavior of the application.</p>
-</div>
-<div class="paragraph">
-<p>We can then validate, after proofreading, that what is written corresponds to the expectations of the product.</p>
-</div>
-<div class="paragraph">
-<p>These documents become the reference on which we will rely to detect regressions.
-Any change will be considered a failed test.</p>
-</div>
-<div class="paragraph">
-<p>It&#8217;s a mix between <a href="https://www.amazon.com/Living-Documentation-Cyrille-Martraire/dp/0134689321">living documentation</a>
-and <a href="https://en.wikipedia.org/wiki/Characterization_test">Golden Master</a> (or <a href="https://michaelfeathers.silvrback.com/characterization-testing">characterization-testing</a>]).</p>
-</div>
-</div>
-</div></div></td>
-<td class="tableblock halign-center valign-top"><div class="content"><div class="sect1">
-<h2 id="_what_does_it_change">What does it change ?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>There is no more assertions to write in tests.
-If the behaviour describe in documentation is right, that&#8217;s ok.</p>
-</div>
-<div class="paragraph">
-<p>We focus on documentation so that all our tests are readable by every one.
-We are free to present the information in the way that seems most appropriate to the context.</p>
-</div>
-</div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
 <style>
 table.DocumentationTestingDoc.grid-all > * > tr > * {
     border-width:3px !important;
     border-color:#AAAAAA !important;
+}
+
+.DocumentationTestingDoc.intro .title {
+    font-size: 2em;
+    font-style: italic;
+}
+.DocumentationTestingDoc.intro {
+    padding: 1em;
+    margin-bottom:1em;
+    background-color:#05fdCC;
+    //border: 30px solid #BFBFBF;
+    -webkit-box-shadow: 3px 3px 6px #A9A9A9;
 }
 
 .DocumentationTestingDoc.intro td {
