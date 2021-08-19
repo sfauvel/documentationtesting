@@ -11,6 +11,7 @@ VALIDATION_MODE="git"
 ROOT_PATH=$(pwd)
 OUTPUT_PATH=$ROOT_PATH/tmp
 OUTPUT_LOG=$OUTPUT_PATH/generateDoc.log
+GLOBAL_EXIT_VALUE=0
 
 # Usage info
 function show_help() {
@@ -69,6 +70,7 @@ function generate_docs() {
       else
         ALL_STATUS_RESULT="${RED}FAILED${NO_COLOR}"
         DEMO_STATUS="FAILED"
+        GLOBAL_EXIT_VALUE=1
         TEST_COLOR=${RED}
       fi
 
@@ -101,3 +103,5 @@ set -u
 generate_docs "$MODULES"
 
 restore_shell_options
+
+exit $GLOBAL_EXIT_VALUE
