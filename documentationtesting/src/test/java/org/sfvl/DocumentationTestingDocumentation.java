@@ -18,6 +18,7 @@ import org.sfvl.doctesting.utils.NoTitle;
 import org.sfvl.doctesting.writer.DocumentProducer;
 import org.sfvl.doctesting.writer.Options;
 import org.sfvl.howto.HowTo;
+import org.sfvl.howto.KnownIssues;
 import org.sfvl.howto.Tutorial;
 
 import java.io.FileWriter;
@@ -88,6 +89,7 @@ public class DocumentationTestingDocumentation {
                 ":APPROVAL_EXTENSION_HTML: " + generatePageAndGetPath(ApprovalsExtensionTest.class),
                 ":ASCIIDOC_FORMATTER_HTML: " + generatePageAndGetPath(AsciidocFormatterTest.class),
                 ":DOC_TESTING_DOCUMENTATION_HTML: " + generatePageAndGetPath(DocTestingDocumentation.class),
+                ":KNOWN_ISSUES_HTML:" + generatePageAndGetPath(KnownIssues.class),
                 String.format("include::%s[leveloffset=+1]", DocPath.toAsciiDoc(from))
         );
     }

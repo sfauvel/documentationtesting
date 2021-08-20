@@ -1,0 +1,7 @@
+:toc: left
+:nofooter:
+:stem:
+:source-highlighter: rouge
+:toclevels: 4
+
+include::_KnownIssues.approved.adoc[]

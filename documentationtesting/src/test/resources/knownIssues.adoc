@@ -1,0 +1,19 @@
+= Known issues
+
+== Maven test pass even @AfterAll fail with maven-surefire-plugin 3.0.0-M4
+
+=== Description
+When approved file for the class change, test fails but surefire do not mark this class as failing.
+Tests running in IDE fails but they don't when they are run with `mvn test`.
+
+This is a bug `maven-surefire-plugin 3.0.0-M4` that not handle properly fails on @BeforeAll and @AfterAll methods.
+
+To have some details, you can see:
+
+* https://github.com/junit-team/junit5/issues/2178
+* https://issues.apache.org/jira/browse/SUREFIRE-1688
+
+=== Solution
+
+Do not use `maven-surefire-plugin 3.0.0-M4` version.
+you can use an older or newer version instead.

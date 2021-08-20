@@ -1,0 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+= Known issues
+
+include::_KnownIssues.knownIssues.approved.adoc[leveloffset=+1]
