@@ -2,7 +2,6 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../..
 endif::[]
 
-:nofooter:
 = Ascii doc rendering test
 
 Present how to render some common needs with asciidoc.
