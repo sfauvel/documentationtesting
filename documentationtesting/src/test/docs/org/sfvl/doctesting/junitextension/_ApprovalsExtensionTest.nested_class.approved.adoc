@@ -70,7 +70,6 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../../..
 endif::[]
 
-:nofooter:
 = Demo nested test
 
 Demo of a simple usage to generate documentation.

@@ -2,7 +2,6 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../../..
 endif::[]
 
-:nofooter:
 = Document path
 
 include::_DocPathTest.path_by_type.approved.adoc[leveloffset=+1]

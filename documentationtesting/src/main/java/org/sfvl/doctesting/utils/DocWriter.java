@@ -56,7 +56,6 @@ public class DocWriter {
         return String.join("\n",
                 defineDocPath(clazz),
                 "",
-                ":nofooter:",
                 classDocumentation.getClassDocumentation(clazz)
         );
     }

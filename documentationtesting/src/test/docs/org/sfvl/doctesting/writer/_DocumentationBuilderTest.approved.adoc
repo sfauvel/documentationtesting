@@ -2,7 +2,6 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../../..
 endif::[]
 
-:nofooter:
 = Create a general documentation
 
 You can use the DocumentationBuilder class to generate a documentation.

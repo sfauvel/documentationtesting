@@ -2,7 +2,6 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../..
 endif::[]
 
-:nofooter:
 = Asciidoctor formatter
 
 `AsciidocFormatter` provides high level methods to generate asciidoc text.

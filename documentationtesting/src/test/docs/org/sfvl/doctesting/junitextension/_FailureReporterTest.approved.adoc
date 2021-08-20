@@ -2,7 +2,6 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../../..
 endif::[]
 
-:nofooter:
 = Failure report
 
 include::_FailureReporterTest.report_when_files_are_differents.approved.adoc[leveloffset=+1]

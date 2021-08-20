@@ -25,7 +25,6 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../..
 endif::[]
 
-:nofooter:
 = My test
 
 \include::_MyTest.test_A.approved.adoc[leveloffset=+1]

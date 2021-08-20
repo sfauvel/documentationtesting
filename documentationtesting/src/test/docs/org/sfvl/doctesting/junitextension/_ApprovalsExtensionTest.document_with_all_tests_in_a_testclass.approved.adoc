@@ -34,7 +34,6 @@ Class `MyTest` is in package `org.sfvl.samples`.
 :ROOT_PATH: ../../..
 \endif::[]
 
-:nofooter:
 = My test
 
 \include::_MyTest.test_A.approved.adoc[leveloffset=+1]
