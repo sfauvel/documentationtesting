@@ -17,7 +17,7 @@ Each nested class create a nested title.
 /**
  * Demo of a simple usage to generate documentation.
  */
-class DemoNestedTest {
+public class DemoNestedTest {
     @RegisterExtension
     static final ApprovalsExtension writer = new SimpleApprovalsExtension();
 

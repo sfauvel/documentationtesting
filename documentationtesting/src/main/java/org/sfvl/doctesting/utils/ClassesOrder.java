@@ -1,18 +1,15 @@
 package org.sfvl.doctesting.utils;
 
-import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
+import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.utils.SourceRoot;
 import com.thoughtworks.qdox.JavaProjectBuilder;
 import com.thoughtworks.qdox.model.JavaClass;
 import com.thoughtworks.qdox.model.JavaMethod;
-import com.thoughtworks.qdox.model.JavaModel;
 
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 import java.util.function.Predicate;
@@ -57,48 +54,105 @@ public class ClassesOrder {
         }
 
         public int getLineNumber(Class clazz) {
-            final String packageName = clazz.getPackage().getName();
-            System.out.println("ParsedClassRepository.getLineNumber : " + packageName + " / " + clazz.getName());
-            final String fileAsText = clazz.getName().split("\\$")[0];
-
-            System.out.println("ParsedClassRepository.getLineNumber " + fileAsText);
-            final String[] splitName = fileAsText.split("\\.");
-
-            final String fileName = splitName[splitName.length-1].replaceAll("\\.", "/") + ".java";
-            System.out.println("ParsedClassRepository.getLineNumber " + fileName);
-
-            CompilationUnit cu = sourceRoot.parse(packageName, fileName);
+            CompilationUnit cu = getCompilationUnit(clazz, "ParsedClassRepository.getLineNumber : ");
 
             final MyVisitorLineNumber v = new MyVisitorLineNumber(clazz);
             cu.accept(v, null);
             return v.line;
         }
+
+        public int getLineNumber(Method method) {
+            final Class<?> clazz = method.getDeclaringClass();
+            CompilationUnit cu = getCompilationUnit(clazz, "ParsedClassRe   pository.getLineNumber : ");
+
+            final MyVisitorLineNumber v = new MyVisitorLineNumber(method);
+            cu.accept(v, null);
+            return v.line;
+        }
+
+        /**
+         * Not able to read classes that are not in the public class because we are looking in java file that has the same name of this public class.
+         * @param clazz
+         * @param s
+         * @return
+         */
+        private CompilationUnit getCompilationUnit(Class clazz, String s) {
+            final String packageName = clazz.getPackage().getName();
+            System.out.println(s + packageName + " / " + clazz.getName());
+            final String fileAsText = clazz.getName().split("\\$")[0];
+
+            System.out.println("ParsedClassRepository.getLineNumber " + fileAsText);
+            final String[] splitName = fileAsText.split("\\.");
+
+            final String fileName = splitName[splitName.length - 1].replaceAll("\\.", "/") + ".java";
+            System.out.println("ParsedClassRepository.getLineNumber " + fileName);
+            System.out.println(String.format("packageName=%s, fileName=%s", packageName, fileName));
+            return sourceRoot.parse(packageName, fileName);
+        }
     }
 
-    static class MyVisitorLineNumber  extends VoidVisitorAdapter<Void> {
-        private final Class clazz;
+    static class MyVisitorMethodLineNumber  extends VoidVisitorAdapter<Void> {
+        private final Class<?> clazz;
+        private final Method method;
         int indent = 0;
         int line = -1;
         List<String> fullname = new ArrayList<>();
 
-        public MyVisitorLineNumber(Class clazz) {
+        public MyVisitorMethodLineNumber(Method method) {
+            this.clazz = method.getDeclaringClass();
+            this.method = method;
+        }
 
+        @Override
+        public void visit(MethodDeclaration n, Void arg) {
+            System.out.println("MyVisitorMethodLineNumber.visit " + n.getNameAsString() + "/" + method.getName());
+            // TODO add full signature
+            if (n.getNameAsString().equals(method.getName())) {
+                System.out.println("************* MyVisitorMethodLineNumber.visit Found at " + line );
+                line = n.getBegin().get().line;
+                return;
+            }
+            System.out.println("MyVisitorLineNumber.visit: " + n.getName());
+            //super.visit(n, arg);
+        }
+    }
+
+    static class MyVisitorLineNumber  extends VoidVisitorAdapter<Void> {
+        private final Class<?> clazz;
+        private final Method method;
+        int indent = 0;
+        int line = -1;
+        List<String> fullname = new ArrayList<>();
+
+        public MyVisitorLineNumber(Class<?> clazz) {
             this.clazz = clazz;
+            this.method = null;
+        }
+
+        public MyVisitorLineNumber(Method method) {
+            this.clazz = method.getDeclaringClass();
+            this.method = method;
         }
 
         @Override
         public void visit(ClassOrInterfaceDeclaration n, Void v) {
-//            System.out.println("MyVisitor.visit ("+indent+"): " + n.getName());
+            System.out.println("MyVisitor.visit ("+indent+"): " + n.getName());
 //            System.out.println("           line    : " + n.getBegin().get().line);
             fullname.add(n.getName().asString());
             final String collect = fullname.stream().collect(Collectors.joining("."));
-            System.out.println("MyVisitorLineNumber.visit ("+indent+"):" + collect);
-            System.out.println("   Search:" + clazz.getCanonicalName());
+//            System.out.println("MyVisitorLineNumber.visit ("+indent+"):" + collect);
+//            System.out.println("   Search:" + clazz.getCanonicalName());
             final String fullNameToSearch = clazz.getPackage().getName() + "." + collect;
             System.out.println(String.format("%s = %s : %s", clazz.getCanonicalName(), fullNameToSearch, clazz.getCanonicalName().equals(fullNameToSearch)));
             if (clazz.getCanonicalName().equals(fullNameToSearch)) {
                 System.out.println("*******************************  " + collect);
-                line = n.getBegin().get().line;
+                if (method == null) {
+                    line = n.getBegin().get().line;
+                } else {
+                    final MyVisitorMethodLineNumber myVisitorMethodLineNumber = new MyVisitorMethodLineNumber(method);
+                    myVisitorMethodLineNumber.visit(n, v);
+                    line = myVisitorMethodLineNumber.line;
+                }
                 return;
 //                System.out.println("MyVisitor.visit fullname:" + collect + "(" +n.getBegin().get().line+ ")");
 //                line = n.getBegin().get().line;
@@ -214,14 +268,22 @@ public class ClassesOrder {
     static class MyJavaMethod implements MyJavaModel {
 
         private final JavaMethod javaMethod;
+        private final Method encapsulatedMethod;
 
-        public MyJavaMethod(JavaMethod javaMethod) {
+//        public MyJavaMethod(JavaMethod javaMethod) {
+//            this.javaMethod = javaMethod;
+//        }
+
+        public MyJavaMethod(JavaMethod javaMethod, Method encapsulatedMethod) {
             this.javaMethod = javaMethod;
+            this.encapsulatedMethod = encapsulatedMethod;
         }
 
         @Override
         public int getLineNumber() {
-            return javaMethod.getLineNumber();
+            int parsedLine = parserClassBuilder.getLineNumber(encapsulatedMethod);
+            return parsedLine;
+//            return javaMethod.getLineNumber();
         }
 
         public String getName() {
@@ -258,7 +320,6 @@ public class ClassesOrder {
 
         @Override
         public int getLineNumber() {
-//            return 0;
             return javaModel.getLineNumber();
         }
 
@@ -281,7 +342,7 @@ public class ClassesOrder {
                     new MyJavaMethod(builder.getClassByName(encapsulatedMethod.getDeclaringClass().getName())
                             .getMethods().stream()
                             .filter(m -> encapsulatedMethod.getName().equals(m.getName()))
-                            .findFirst().get()));
+                            .findFirst().get(), encapsulatedMethod));
         }
         @Override
         public String getName() {

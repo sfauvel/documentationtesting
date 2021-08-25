@@ -58,7 +58,7 @@ public class ApprovalsExtensionTest {
 
         doc.write("You can use DisplayName annotation to customize test title");
 
-        doc.write(".Test example using DisplayName", extractSourceWithTag(testClass.getSimpleName(), this.getClass(), testClass), "", "");
+        doc.write(".Test example using DisplayName", extractSourceWithTag(testClass.getSimpleName(), testClass, testClass), "", "");
 
         final String testMethod = FindLambdaMethod.getName(UsingDisplayNameTest::test_A);
         final String filename = "_" + testClass.getSimpleName() + "." + testMethod + ".approved.adoc";
@@ -92,7 +92,7 @@ public class ApprovalsExtensionTest {
         final Class<?> testClass = DemoNestedTest.class;
         runTestAndWriteResultAsComment(testClass);
 
-        doc.write("", "", ".Test example using nested class", extractSourceWithTag(testClass.getSimpleName(), this.getClass(), testClass), "", "");
+        doc.write("", "", ".Test example using nested class", extractSourceWithTag(testClass.getSimpleName(), testClass, testClass), "", "");
 
         final Path generatedFilePath = Paths.get("", getClass().getPackage().getName().split("\\."));
         doc.write("Generated files in `" + DocPath.toAsciiDoc(generatedFilePath) + "`:", "", Files.list(doc.getDocPath().resolve(generatedFilePath))
@@ -289,64 +289,9 @@ public class ApprovalsExtensionTest {
     private String escapedAdocTitle(String line) {
         return line.replaceAll("^= (.*)", "[.title1]#$1#");
     }
+
+
 }
 
-@NotIncludeToDoc
-@OnlyRunProgrammatically
-// tag::UsingDisplayNameTest[]
-@DisplayName("Title for the document")
-class UsingDisplayNameTest {
-    @RegisterExtension
-    static final ApprovalsExtension doc = new SimpleApprovalsExtension();
 
-    @Test
-    @DisplayName("Title for this test")
-    public void test_A() {
-        doc.write("In my *test*");
-    }
-}
-// end::UsingDisplayNameTest[]
-
-@NotIncludeToDoc
-@OnlyRunProgrammatically
-// tag::DemoNestedTest[]
-/**
- * Demo of a simple usage to generate documentation.
- */
-class DemoNestedTest {
-    @RegisterExtension
-    static final ApprovalsExtension writer = new SimpleApprovalsExtension();
-
-    /**
-     * Document of Addition operations.
-     */
-    @Nested
-    class Adding {
-
-        @Test
-        @DisplayName("Adding 2 simple numbers")
-        public void should_be_5_when_adding_2_and_3() {
-            writer.write(String.format("%d + %d = %d", 2, 3, 2 + 3));
-        }
-
-        /**
-         * A nested test.
-         */
-        @Test
-        @DisplayName("Adding 3 simple numbers")
-        public void should_be_9_when_adding_2_3_and_4() {
-            writer.write(String.format("%d + %d + %d = %d", 2, 3, 4, 2 + 3 + 4));
-        }
-    }
-
-    @Nested
-    class Multiply {
-        @Test
-        @DisplayName("Multiply 2 simple numbers")
-        public void should_be_12_when_multiply_4_and_3() {
-            writer.write(String.format("%d * %d = %d", 4, 3, 4 * 3));
-        }
-    }
-}
-// end::DemoNestedTest[]
 
