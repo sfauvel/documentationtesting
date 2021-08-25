@@ -1,11 +1,13 @@
 package org.sfvl.doctesting.junitinheritance;
 
-import com.thoughtworks.qdox.model.JavaClass;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.platform.commons.support.ModifierSupport;
-import org.sfvl.doctesting.utils.*;
+import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.utils.PathProvider;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 
 import java.io.FileWriter;
@@ -81,7 +83,6 @@ public abstract class DocAsTestBase {
     }
 
     protected String buildContent(TestInfo testInfo) {
-        final JavaClass testInfoJavaClass = CodeExtractor.getBuilder().getClassByName(TestInfo.class.getCanonicalName());
         return writer.formatOutput(testInfo.getDisplayName(), testInfo.getTestMethod().get());
     }
 }
