@@ -6,7 +6,6 @@ import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
-import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 
 import java.io.IOException;
@@ -65,10 +64,27 @@ public class ParsedClassRepositoryTest {
     }
 
     @Test
-    public void retrieve_comment_of_a_method() {
+    public void retrieve_comment_of_a_method() throws NoSuchMethodException {
         final ParsedClassRepository parser = new ParsedClassRepository(Config.TEST_PATH);
-        final Method method = FindLambdaMethod.getMethod(ClassWithInformationToExtract::doSomething);
         // >>>
+        final Method method = ClassWithInformationToExtract.class.getMethod("doSomething");
+        final String comment = parser.getComment(method);
+        // <<<
+        doc.write(
+                ".How to extract comment",
+                formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                ".Comment extracted",
+                formatter.blockBuilder("====")
+                        .content(comment)
+                        .build()
+        );
+    }
+
+    @Test
+    public void retrieve_comment_of_a_method_with_parameter() throws NoSuchMethodException {
+        final ParsedClassRepository parser = new ParsedClassRepository(Config.TEST_PATH);
+        // >>>
+        final Method method = ClassWithInformationToExtract.class.getMethod("doSomething", String.class);
         final String comment = parser.getComment(method);
         // <<<
         doc.write(
@@ -95,10 +111,10 @@ public class ParsedClassRepositoryTest {
     }
 
     @Test
-    public void retrieve_line_of_a_method() {
+    public void retrieve_line_of_a_method() throws NoSuchMethodException {
         final ParsedClassRepository parser = new ParsedClassRepository(Config.TEST_PATH);
         // >>>
-        final Method method = FindLambdaMethod.getMethod(ClassWithInformationToExtract::doSomething);
+        final Method method = ClassWithInformationToExtract.class.getMethod("doSomething");
         final int lineNumber = parser.getLineNumber(method);
         // <<<
         doc.write(

@@ -4,6 +4,8 @@ import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.Parameter;
+import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.utils.SourceRoot;
 
@@ -169,7 +171,7 @@ public class ParsedClassRepository {
     static class MyVisitorCommentMethod extends MyMethodVisitor {
         private String comment;
 
-        public MyVisitorCommentMethod(Method method) {
+        public MyVisitorCommentMethod(Method method, Class<?>... parameters) {
             super(method);
         }
 
@@ -191,10 +193,22 @@ public class ParsedClassRepository {
 
         @Override
         public void visit(MethodDeclaration n, Void arg) {
-            // TODO add full signature
-            if (n.getNameAsString().equals(method.getName())) {
-                actionOnMethod(n);
+            if (!n.getNameAsString().equals(method.getName())) {
+                return;
             }
+            if (n.getParameters().size() != method.getParameterCount()) {
+                return;
+            }
+            for (int i = 0; i < method.getParameterCount(); i++) {
+                final com.github.javaparser.ast.body.Parameter paramJavaParser = n.getParameter(i);
+                final Type type = paramJavaParser.getType();
+                final java.lang.reflect.Parameter paramReflect = method.getParameters()[i];
+                // TODO It's a naive implementation.
+                if(!type.toString().equals(paramReflect.getType().getSimpleName())) {
+                    return;
+                }
+            }
+            actionOnMethod(n);
         }
 
         protected abstract void actionOnMethod(MethodDeclaration n);

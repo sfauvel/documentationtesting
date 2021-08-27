@@ -9,6 +9,7 @@ endif::[]
 
 [source,java,indent=0]
 ----
+        final Method method = ClassWithInformationToExtract.class.getMethod("doSomething");
         final String comment = parser.getComment(method);
 
 ----

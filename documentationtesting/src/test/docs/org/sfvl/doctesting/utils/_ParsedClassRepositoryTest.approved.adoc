@@ -12,6 +12,8 @@ include::_ParsedClassRepositoryTest.retrieve_comment_of_a_class.approved.adoc[le
 
 include::_ParsedClassRepositoryTest.retrieve_comment_of_a_method.approved.adoc[leveloffset=+1]
 
+include::_ParsedClassRepositoryTest.retrieve_comment_of_a_method_with_parameter.approved.adoc[leveloffset=+1]
+
 include::_ParsedClassRepositoryTest.retrieve_line_of_a_class.approved.adoc[leveloffset=+1]
 
 include::_ParsedClassRepositoryTest.retrieve_line_of_a_method.approved.adoc[leveloffset=+1]
