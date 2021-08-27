@@ -12,7 +12,7 @@ Each nested class create a nested title.
 
 
 .Test example using nested class
-[source, java, indent=0]
+[source,java,indent=0]
 ----
 /**
  * Demo of a simple usage to generate documentation.

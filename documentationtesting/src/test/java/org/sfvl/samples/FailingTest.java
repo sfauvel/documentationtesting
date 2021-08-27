@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 @NotIncludeToDoc
 @OnlyRunProgrammatically
 public
-// tag::FailingTest[]
+// >>>FailingTest
 class FailingTest {
     @RegisterExtension
     static final ApprovalsExtension doc = new SimpleApprovalsExtension();
@@ -24,3 +24,4 @@ class FailingTest {
         doc.write("Information added after failure are not in the final document.", "");
     }
 }
+// <<<FailingTest

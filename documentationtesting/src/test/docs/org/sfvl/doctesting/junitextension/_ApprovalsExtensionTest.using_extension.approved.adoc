@@ -14,7 +14,7 @@ This extension will check that content of `DocWriter` has not changed since the 
 `DocWriter` passed to the `ApprovalsExtension` is used to indicated what we want to write to the output.
 
 .Test example using `ApprovalsExtension`
-[source, java, indent=0]
+[source,java,indent=0]
 ----
 class MyTest {
     @RegisterExtension

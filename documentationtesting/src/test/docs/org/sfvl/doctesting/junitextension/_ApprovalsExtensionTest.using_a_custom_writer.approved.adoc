@@ -11,7 +11,7 @@ It's possible to give a specific DocWriter to `ApprovalsExtension`
 and modify what it will be written in the final document.
 
 .Test example using `ApprovalsExtension`
-[source, java, indent=0]
+[source,java,indent=0]
 ----
 class MyCustomWriterTest {
 

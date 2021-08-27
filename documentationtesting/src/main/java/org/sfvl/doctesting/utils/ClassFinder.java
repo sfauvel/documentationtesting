@@ -30,4 +30,16 @@ public class ClassFinder {
         return testClasses(packageToScan, m -> true);
     }
 
+
+    public Class<?> getMainFileClass(Class<?> clazz) {
+        Class mainFileClass = null;
+
+        Class enclosingClass = clazz;
+        while (enclosingClass != null) {
+            mainFileClass = enclosingClass;
+            enclosingClass = mainFileClass.getEnclosingClass();
+        }
+        return mainFileClass;
+    }
+
 }

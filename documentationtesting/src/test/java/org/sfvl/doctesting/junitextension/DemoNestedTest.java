@@ -7,12 +7,15 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
 
-@NotIncludeToDoc
-@OnlyRunProgrammatically
-// tag::DemoNestedTest[]
+// With annotation before to add comment in lines to retrieve using : org.sfvl.doctesting.utils.CodeExtractor.CodeExtractorVisitor.extractFromFile
+// The comment is not parse as javadoc by JavaParser
+
+// >>>DemoNestedTest
 /**
  * Demo of a simple usage to generate documentation.
  */
+@NotIncludeToDoc
+@OnlyRunProgrammatically
 public class DemoNestedTest {
     @RegisterExtension
     static final ApprovalsExtension writer = new SimpleApprovalsExtension();
@@ -48,4 +51,4 @@ public class DemoNestedTest {
         }
     }
 }
-// end::DemoNestedTest[]
+// <<<DemoNestedTest

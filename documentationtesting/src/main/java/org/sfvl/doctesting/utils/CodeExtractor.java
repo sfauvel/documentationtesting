@@ -43,9 +43,13 @@ public class CodeExtractor {
     }
 
     public static String getComment(Class<?> clazz) {
-        JavaClass javaClass = builder.getClassByName(clazz.getName());
+        return getComment(clazz, clazz);
+    }
 
-        return Optional.ofNullable(javaClass.getComment()).orElse("");
+    public static String getComment(Class<?> classFile, Class<?> clazz) {
+        final ParsedClassRepository parsedClassRepository = new ParsedClassRepository(Config.TEST_PATH, Config.SOURCE_PATH);
+        String comment = parsedClassRepository.getComment(classFile, clazz);
+        return Optional.ofNullable(comment).orElse("");
     }
 
     public static Optional<String> getComment(Method testMethod) {
@@ -133,6 +137,15 @@ public class CodeExtractor {
             firstEnclosingClass = firstEnclosingClass.getEnclosingClass();
         }
         return firstEnclosingClass;
+    }
+
+    public static String extractPartOfFile(Path path, String tag) {
+        try {
+            final String source = Files.lines(path).collect(Collectors.joining("\n"));
+            return extractCodeBetween(source, TAG_BEGIN+tag, TAG_END+tag);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static class CodeExtractorVisitor extends VoidVisitorAdapter<StringBuffer> {

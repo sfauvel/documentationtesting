@@ -1,0 +1,44 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+[#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_bug_when_annotation_before_comment]
+= Issue: comment not retrieve when an annotation is before the comment
+
+When there is an annotation before the class comment, the comment is not retrieve.
+This is an issue in the JavaParser we used (com.github.javaparser:javaparser-core:3.22.1).
+
+.How to extract comment of a class
+[source, java, indent=0]
+----
+            final String comment = CodeExtractor.getComment(ClassWithAnnotationBeforeComment.class);
+
+----
+
+[.inline]
+====
+[source, java, indent=0]
+----
+include::../../../../../java/org/sfvl/doctesting/utils/CodeExtractorTest.java[tag=ClassWithAnnotationBeforeComment]
+----
+
+
+====
+
+[.inline]
+====
+.Comment extracted from class
+----
+
+----
+
+====
+++++
+<style>
+#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_bug_when_annotation_before_comment ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++
