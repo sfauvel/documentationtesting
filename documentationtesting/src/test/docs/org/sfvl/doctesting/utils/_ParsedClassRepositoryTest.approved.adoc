@@ -1,0 +1,17 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+= Parsed class repository test
+
+Extract information from source code.
+
+include::_ParsedClassRepositoryTest.context.approved.adoc[leveloffset=+1]
+
+include::_ParsedClassRepositoryTest.retrieve_comment_of_a_class.approved.adoc[leveloffset=+1]
+
+include::_ParsedClassRepositoryTest.retrieve_comment_of_a_method.approved.adoc[leveloffset=+1]
+
+include::_ParsedClassRepositoryTest.retrieve_line_of_a_class.approved.adoc[leveloffset=+1]
+
+include::_ParsedClassRepositoryTest.retrieve_line_of_a_method.approved.adoc[leveloffset=+1]

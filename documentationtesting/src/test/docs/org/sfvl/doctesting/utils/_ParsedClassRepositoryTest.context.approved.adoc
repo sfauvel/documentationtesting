@@ -1,0 +1,28 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+[#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_context]
+= Context
+
+Exemples of this chapter use the following class
+.Class from which information is extracted
+
+[source,java,numlines,indent=0]
+----
+package org.sfvl.doctesting.utils;
+
+/**
+ * My comment for ClassWithInformationToExtract.
+ */
+class ClassWithInformationToExtract {
+
+    /**
+     * Description of the method 'doSomething'.
+     */
+    public void doSomething() {
+
+    }
+}
+
+----

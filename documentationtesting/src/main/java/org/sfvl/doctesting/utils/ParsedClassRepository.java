@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Extract information from source code.
+ */
 public class ParsedClassRepository {
 
     private List<SourceRoot> sourceRoots = new ArrayList<>();
@@ -52,6 +55,18 @@ public class ParsedClassRepository {
         return v.comment;
     }
 
+    public String getComment(Method method) {
+        return getComment(method.getDeclaringClass(), method);
+    }
+
+    public String getComment(Class<?> classFile, Method method) {
+        CompilationUnit cu = getCompilationUnit(classFile);
+
+        final MyVisitorComment v = new MyVisitorComment(method);
+        cu.accept(v, null);
+        return v.comment;
+    }
+
     /**
      * Not able to read classes that are not in the public class because we are looking in java file that has the same name of this public class.
      *
@@ -66,11 +81,11 @@ public class ParsedClassRepository {
         for (SourceRoot sourceRoot : sourceRoots) {
             try {
                 return sourceRoot.parse(packageName, fileName);
-            } catch (ParseProblemException e){
+            } catch (ParseProblemException e) {
                 // try with next path
             }
         }
-        throw new RuntimeException(String.format("Enable to parse %s in package %s",fileName, packageName));
+        throw new RuntimeException(String.format("Enable to parse %s in package %s", fileName, packageName));
 
     }
 
@@ -85,27 +100,20 @@ public class ParsedClassRepository {
         return mainFileClass;
     }
 
-    static class MyVisitorMethodLineNumber  extends VoidVisitorAdapter<Void> {
-        private final Class<?> clazz;
-        private final Method method;
+    static class MyVisitorMethodLineNumber extends MyMethodVisitor {
         int line = -1;
 
         public MyVisitorMethodLineNumber(Method method) {
-            this.clazz = method.getDeclaringClass();
-            this.method = method;
+            super(method);
         }
 
         @Override
-        public void visit(MethodDeclaration n, Void arg) {
-            // TODO add full signature
-            if (n.getNameAsString().equals(method.getName())) {
-                line = n.getBegin().get().line;
-                return;
-            }
+        protected void actionOnMethod(MethodDeclaration n) {
+            line = n.getBegin().get().line;
         }
     }
 
-    static class MyVisitorLineNumber  extends MyClassVisitor {
+    static class MyVisitorLineNumber extends MyClassVisitor {
         private final Method method;
         int line = -1;
 
@@ -131,19 +139,68 @@ public class ParsedClassRepository {
         }
     }
 
-    static class MyVisitorComment  extends MyClassVisitor {
+    static class MyVisitorComment extends MyClassVisitor {
+        private final Method method;
         String comment;
 
         public MyVisitorComment(Class<?> clazz) {
             super(clazz);
+            this.method = null;
+        }
+
+        public MyVisitorComment(Method method) {
+            super(method.getDeclaringClass());
+            this.method = method;
         }
 
         @Override
         protected void actionOnClass(ClassOrInterfaceDeclaration n) {
+            if (method == null) {
+                n.getJavadoc().ifPresent(doc -> comment = doc.getDescription().toText());
+            } else {
+                final MyVisitorCommentMethod myVisitorCommentMethod = new MyVisitorCommentMethod(method);
+                myVisitorCommentMethod.visit(n, null);
+                comment = myVisitorCommentMethod.comment;
+            }
+
+        }
+    }
+
+    static class MyVisitorCommentMethod extends MyMethodVisitor {
+        private String comment;
+
+        public MyVisitorCommentMethod(Method method) {
+            super(method);
+        }
+
+        @Override
+        protected void actionOnMethod(MethodDeclaration n) {
             n.getJavadoc().ifPresent(doc -> comment = doc.getDescription().toText());
         }
     }
-    static abstract class MyClassVisitor  extends VoidVisitorAdapter<Void> {
+
+    static abstract class MyMethodVisitor extends VoidVisitorAdapter<Void> {
+        private final Class<?> clazz;
+        private final Method method;
+        private String comment;
+
+        public MyMethodVisitor(Method method) {
+            this.clazz = method.getDeclaringClass();
+            this.method = method;
+        }
+
+        @Override
+        public void visit(MethodDeclaration n, Void arg) {
+            // TODO add full signature
+            if (n.getNameAsString().equals(method.getName())) {
+                actionOnMethod(n);
+            }
+        }
+
+        protected abstract void actionOnMethod(MethodDeclaration n);
+    }
+
+    static abstract class MyClassVisitor extends VoidVisitorAdapter<Void> {
         private final Class<?> clazz;
         List<String> fullname = new ArrayList<>();
         int indent = 0;
@@ -165,7 +222,7 @@ public class ParsedClassRepository {
             super.visit(n, v);
             indent--;
 
-            fullname.remove(fullname.size()-1);
+            fullname.remove(fullname.size() - 1);
         }
 
         protected abstract void actionOnClass(ClassOrInterfaceDeclaration n);
