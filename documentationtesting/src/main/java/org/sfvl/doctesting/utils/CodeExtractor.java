@@ -7,40 +7,20 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.nodeTypes.NodeWithRange;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.utils.SourceRoot;
-import com.thoughtworks.qdox.JavaProjectBuilder;
-import com.thoughtworks.qdox.model.JavaClass;
-import com.thoughtworks.qdox.model.JavaMethod;
-import com.thoughtworks.qdox.model.JavaType;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class CodeExtractor {
     private static final String TAG_BEGIN = ">>>";
     private static final String TAG_END = "<<<";
-    static JavaProjectBuilder builder;
-
-    /**
-     * Init JavaProjectBuilder it's a bit long (more than 100ms).
-     * We init it only once to avoid this low performances.
-     */
-    static {
-        if (builder == null) {
-            final PathProvider pathProvider = new PathProvider();
-            builder = new JavaProjectBuilder();
-            builder.addSourceTree(pathProvider.getProjectPath().resolve(Config.SOURCE_PATH).toFile());
-            builder.addSourceTree(pathProvider.getProjectPath().resolve(Config.TEST_PATH).toFile());
-        }
-    }
-
-    public static JavaProjectBuilder getBuilder() {
-        return builder;
-    }
 
     public static String getComment(Class<?> clazz) {
         return getComment(clazz, clazz);
@@ -52,27 +32,14 @@ public class CodeExtractor {
         return Optional.ofNullable(comment).orElse("");
     }
 
+    public static Optional<String> getComment(Class<?> classFile, Method testMethod) {
+        return Optional.ofNullable(new ParsedClassRepository(Config.TEST_PATH, Config.SOURCE_PATH)
+                .getComment(classFile, testMethod));
+    }
+
     public static Optional<String> getComment(Method testMethod) {
-        return getComment(
-                testMethod.getDeclaringClass(),
-                testMethod.getName(),
-                getJavaClasses(testMethod.getParameterTypes())
-        );
-    }
-
-    public static Optional<String> getComment(Class<?> clazz, String methodName) {
-        return getComment(clazz, methodName, Collections.emptyList());
-    }
-
-    public static Optional<String> getComment(Class<?> clazz, String methodName, List<JavaType> argumentList) {
-        JavaClass javaClass = builder.getClassByName(clazz.getName());
-
-        JavaMethod method = javaClass.getMethod(methodName, argumentList, false);
-        while (method == null && javaClass.getSuperJavaClass() != null) {
-            javaClass = javaClass.getSuperJavaClass();
-            method = javaClass.getMethod(methodName, argumentList, false);
-        }
-        return Optional.ofNullable(method).map(c -> c.getComment());
+        return Optional.ofNullable(new ParsedClassRepository(Config.TEST_PATH, Config.SOURCE_PATH)
+                .getComment(testMethod));
     }
 
     public static String classSource(Class<?> classToExtract) {
@@ -200,13 +167,6 @@ public class CodeExtractor {
         }
 
     }
-
-    public static List<JavaType> getJavaClasses(Class<?>... classes) {
-        return Arrays.stream(classes)
-                .map(clazz -> getBuilder().getClassByName(clazz.getCanonicalName()))
-                .collect(Collectors.toList());
-    }
-
 
     public static String extractPartOfCurrentMethod() {
         return extractPartOfCurrentMethod(Thread.currentThread().getStackTrace()[2], "");

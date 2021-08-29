@@ -4,7 +4,6 @@ import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.utils.SourceRoot;
@@ -17,6 +16,9 @@ import java.util.stream.Collectors;
 
 /**
  * Extract information from source code.
+ *
+ * Extraction from method is a naive implementation.
+ * We compare only class name without checking the scope (package).
  */
 public class ParsedClassRepository {
 
@@ -203,9 +205,17 @@ public class ParsedClassRepository {
                 final com.github.javaparser.ast.body.Parameter paramJavaParser = n.getParameter(i);
                 final Type type = paramJavaParser.getType();
                 final java.lang.reflect.Parameter paramReflect = method.getParameters()[i];
-                // TODO It's a naive implementation.
-                if(!type.toString().equals(paramReflect.getType().getSimpleName())) {
-                    return;
+
+                String typeName = type.toString();
+                if (type.isClassOrInterfaceType()) {
+                    typeName = type.asClassOrInterfaceType().getName().asString();
+                }
+                try {
+                    if (!typeName.equals(paramReflect.getType().getSimpleName())) {
+                        return;
+                    }
+                } catch (Exception e) {
+                    throw e;
                 }
             }
             actionOnMethod(n);
@@ -226,9 +236,9 @@ public class ParsedClassRepository {
         @Override
         public void visit(ClassOrInterfaceDeclaration n, Void v) {
             fullname.add(n.getName().asString());
-            final String fullClassName = fullname.stream().collect(Collectors.joining("."));
+            final String fullClassName = fullname.stream().collect(Collectors.joining("$"));
             final String fullNameToSearch = clazz.getPackage().getName() + "." + fullClassName;
-            if (clazz.getCanonicalName().equals(fullNameToSearch)) {
+            if (clazz.getName().equals(fullNameToSearch)) {
                 actionOnClass(n);
                 return;
             }

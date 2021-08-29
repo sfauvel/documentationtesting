@@ -1,0 +1,20 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+[#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_retrieve_comment_of_a_method_with_list_parameter]
+= Retrieve comment of a method with list parameter
+
+.How to extract comment
+
+[source,java,indent=0]
+----
+        final Method method = ClassWithInformationToExtract.class.getMethod("doSomething", List.class);
+        final String comment = parser.getComment(method);
+
+----
+
+.Comment extracted
+====
+Do something with a List<String>.
+====

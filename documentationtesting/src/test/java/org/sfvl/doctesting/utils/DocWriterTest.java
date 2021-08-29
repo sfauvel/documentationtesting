@@ -232,21 +232,11 @@ class DocWriterTest {
     }
 
     @Test
-    @AsciidocFormatterTest.TestOption(includeMethodDoc = "formatTitle")
     @DisplayName("Formatted title")
     public void title(TestInfo testinfo) throws NoSuchMethodException {
-        JavaProjectBuilder builder = new JavaProjectBuilder();
-        final JavaClass stringClass = builder.getClassByName(String.class.getCanonicalName());
-        final JavaClass methodClass = builder.getClassByName(Method.class.getCanonicalName());
-
-        final Optional<AsciidocFormatterTest.TestOption> annotation = Optional.ofNullable(testinfo.getTestMethod()
-                .get()
-                .getAnnotation(AsciidocFormatterTest.TestOption.class));
-        annotation.map(AsciidocFormatterTest.TestOption::includeMethodDoc)
-                .filter(name -> !name.isEmpty())
-                .map(methodName -> CodeExtractor.getComment(DocWriter.class, methodName, Arrays.asList(stringClass, methodClass)))
-                .ifPresent(doc -> write(doc.get() + "\n"));
-
+        final Method method1 = DocWriter.class.getDeclaredMethod("formatTitle", String.class, Method.class);
+        CodeExtractor.getComment(method1)
+                .ifPresent(doc -> write(doc + "\n"));
 
         final Method method = FindLambdaMethod.getMethod(DocWriterTest::simple_method_to_format_title);
         final Method method_with_test_info = FindLambdaMethod.getMethod(DocWriterTest::test_method_with_test_info);

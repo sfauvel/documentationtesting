@@ -372,7 +372,7 @@ class CodeExtractorTest {
                     formatter.sourceCode(fileContent),
                     ".Content extracted",
                     formatter.sourceCode(codeFromFile)
-                    );
+            );
         }
 
         public String method_with_code_to_extract() {
@@ -706,9 +706,10 @@ class CodeExtractorTest {
                         "");
 
                 // >>>1
+                final Method method = ClassWithCommentToExtract.class.getDeclaredMethod("methodWithoutParameters");
                 final Optional<String> comment = CodeExtractor.getComment(
                         ClassWithCommentToExtract.class,
-                        "methodWithoutParameters"
+                        method
                 );
                 // <<<1
 
@@ -721,10 +722,10 @@ class CodeExtractorTest {
                         "");
 
                 // >>>2
+                final Method method = ClassWithCommentToExtract.class.getDeclaredMethod("methodWithParameters", int.class, String.class);
                 final Optional<String> comment = CodeExtractor.getComment(
                         ClassWithCommentToExtract.class,
-                        "methodWithParameters",
-                        CodeExtractor.getJavaClasses(int.class, String.class)
+                        method
                 );
                 // <<<2
 
@@ -767,7 +768,7 @@ class CodeExtractorTest {
 
                 // >>>5
                 final Method methodWithComment = FindLambdaMethod.getMethod(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract::methodInSubClass);
-                final Optional<String> comment = CodeExtractor.getComment(methodWithComment);
+                final Optional<String> comment = CodeExtractor.getComment(this.getClass(), methodWithComment);
                 // <<<5
 
                 formatCommentExtracted("From method",

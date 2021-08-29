@@ -1,5 +1,7 @@
 package org.sfvl.doctesting.utils;
 
+import java.util.List;
+
 /**
  * My comment for ClassWithInformationToExtract.
  */
@@ -15,6 +17,24 @@ class ClassWithInformationToExtract {
      * Do something with a String.
      */
     public void doSomething(String param) {
+    }
+
+    /**
+     * Do something with a java.lang.Character.
+     */
+    public void doSomething(java.lang.Character param) {
+    }
+
+    /**
+     * Do something with a List<String>.
+     */
+    public void doSomething(List<String> param) {
+    }
+
+    /**
+     * Do something with a String[].
+     */
+    public void doSomething(String[] param) {
     }
 
     /**
