@@ -225,26 +225,24 @@ public class ParsedClassRepository {
     }
 
     static abstract class MyClassVisitor extends VoidVisitorAdapter<Void> {
-        private final Class<?> clazz;
-        List<String> fullname = new ArrayList<>();
-        int indent = 0;
+        private final Class<?> classToSearch;
+        private final List<String> fullname = new ArrayList<>();
 
         public MyClassVisitor(Class<?> clazz) {
-            this.clazz = clazz;
+            this.classToSearch = clazz;
         }
 
         @Override
         public void visit(ClassOrInterfaceDeclaration n, Void v) {
             fullname.add(n.getName().asString());
+
             final String fullClassName = fullname.stream().collect(Collectors.joining("$"));
-            final String fullNameToSearch = clazz.getPackage().getName() + "." + fullClassName;
-            if (clazz.getName().equals(fullNameToSearch)) {
+            final String currentFullName = classToSearch.getPackage().getName() + "." + fullClassName;
+            if (classToSearch.getName().equals(currentFullName)) {
                 actionOnClass(n);
                 return;
             }
-            indent++;
             super.visit(n, v);
-            indent--;
 
             fullname.remove(fullname.size() - 1);
         }

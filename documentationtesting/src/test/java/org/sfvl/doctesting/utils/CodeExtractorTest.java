@@ -162,8 +162,8 @@ class CodeExtractorTest {
                             extractMarkedCode(testInfo, "2"),
                             "");
 
+                    doc.write(".Exception thrown");
                     doc.writeInline(
-                            ".Exception thrown",
                             "++++",
                             e.getProblems().stream()
                                     .map(c -> c.getCause().map(Throwable::toString).orElse("??"))

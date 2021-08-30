@@ -2,7 +2,7 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../../..
 endif::[]
 
-= Parsed class repository test
+= ParsedClassRepository
 
 Extract information from source code.
 
@@ -11,18 +11,22 @@ We compare only class name without checking the scope (package).
 
 include::_ParsedClassRepositoryTest.context.approved.adoc[leveloffset=+1]
 
-include::_ParsedClassRepositoryTest.retrieve_comment_of_a_class.approved.adoc[leveloffset=+1]
+== Retrieve comment
 
-include::_ParsedClassRepositoryTest.retrieve_comment_of_a_method.approved.adoc[leveloffset=+1]
+include::_ParsedClassRepositoryTest.RetrieveComment.retrieve_comment_of_a_class.approved.adoc[leveloffset=+2]
 
-include::_ParsedClassRepositoryTest.retrieve_comment_of_a_method_with_parameter.approved.adoc[leveloffset=+1]
+include::_ParsedClassRepositoryTest.RetrieveComment.retrieve_comment_of_a_method.approved.adoc[leveloffset=+2]
 
-include::_ParsedClassRepositoryTest.retrieve_comment_of_a_method_with_parameter_with_scope.approved.adoc[leveloffset=+1]
+include::_ParsedClassRepositoryTest.RetrieveComment.retrieve_comment_of_a_method_with_parameter.approved.adoc[leveloffset=+2]
 
-include::_ParsedClassRepositoryTest.retrieve_comment_of_a_method_with_list_parameter.approved.adoc[leveloffset=+1]
+include::_ParsedClassRepositoryTest.RetrieveComment.retrieve_comment_of_a_method_with_parameter_with_scope.approved.adoc[leveloffset=+2]
 
-include::_ParsedClassRepositoryTest.retrieve_comment_of_a_method_with_array_parameter.approved.adoc[leveloffset=+1]
+include::_ParsedClassRepositoryTest.RetrieveComment.retrieve_comment_of_a_method_with_list_parameter.approved.adoc[leveloffset=+2]
 
-include::_ParsedClassRepositoryTest.retrieve_line_of_a_class.approved.adoc[leveloffset=+1]
+include::_ParsedClassRepositoryTest.RetrieveComment.retrieve_comment_of_a_method_with_array_parameter.approved.adoc[leveloffset=+2]
 
-include::_ParsedClassRepositoryTest.retrieve_line_of_a_method.approved.adoc[leveloffset=+1]
+== Retrieve line number
+
+include::_ParsedClassRepositoryTest.RetrieveLineNumber.retrieve_line_of_a_class.approved.adoc[leveloffset=+2]
+
+include::_ParsedClassRepositoryTest.RetrieveLineNumber.retrieve_line_of_a_method.approved.adoc[leveloffset=+2]
