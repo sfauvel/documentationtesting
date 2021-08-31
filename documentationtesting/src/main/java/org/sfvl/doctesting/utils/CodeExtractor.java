@@ -13,14 +13,13 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class CodeExtractor {
     private static final String TAG_BEGIN = ">>>";
     private static final String TAG_END = "<<<";
+    private static final ClassFinder classFinder = new ClassFinder();
 
     public static String getComment(Class<?> clazz) {
         return getComment(clazz, clazz);
@@ -80,32 +79,6 @@ public class CodeExtractor {
         return code.substring(code.indexOf("{") + 1, code.lastIndexOf("}"));
     }
 
-    public static List<Class<?>> enclosingClasses(Class<?> clazz) {
-        final ArrayList<Class<?>> classes = new ArrayList<>();
-        Class<?> enclosingClass = clazz;
-        do {
-            classes.add(0, enclosingClass);
-            enclosingClass = enclosingClass.getEnclosingClass();
-        } while (enclosingClass != null);
-        return classes;
-    }
-
-    public static Class<?> getFirstEnclosingClassBefore(Method method, Class<?> clazzBefore) {
-        return getFirstEnclosingClassBefore(method.getDeclaringClass(), clazzBefore);
-
-    }
-
-    public static Class<?> getFirstEnclosingClassBefore(Class<?> clazz, Class<?> clazzBefore) {
-        if (clazz.equals(clazzBefore)) {
-            return clazz;
-        }
-        Class<?> firstEnclosingClass = clazz;
-        while (firstEnclosingClass.getEnclosingClass() != null && !firstEnclosingClass.getEnclosingClass().equals(clazzBefore)) {
-            firstEnclosingClass = firstEnclosingClass.getEnclosingClass();
-        }
-        return firstEnclosingClass;
-    }
-
     public static String extractPartOfFile(Path path, String tag) {
         try {
             final String source = Files.lines(path).collect(Collectors.joining("\n"));
@@ -123,7 +96,7 @@ public class CodeExtractor {
 
         public CodeExtractorVisitor(Class<?> classToExtract) {
             sourcePath = Config.TEST_PATH;
-            classToDetermineFile = getFirstEnclosingClassBefore(classToExtract, null);
+            classToDetermineFile = classFinder.getMainFileClass(classToExtract);
             classPackage = classToExtract.getPackage();
 
             SourceRoot sourceRoot = new SourceRoot(sourcePath);

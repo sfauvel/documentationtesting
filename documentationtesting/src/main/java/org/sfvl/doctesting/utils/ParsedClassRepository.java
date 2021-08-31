@@ -2,6 +2,7 @@ package org.sfvl.doctesting.utils;
 
 import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.PackageDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.type.Type;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
  */
 public class ParsedClassRepository {
 
+    private static final ClassFinder classFinder = new ClassFinder();
     private List<SourceRoot> sourceRoots = new ArrayList<>();
 
     public ParsedClassRepository(Path... paths) {
@@ -79,7 +81,7 @@ public class ParsedClassRepository {
      */
     private CompilationUnit getCompilationUnit(Class clazz) {
         final String packageName = clazz.getPackage().getName();
-        final Class<?> mainFileClass = getMainFileClass(clazz);
+        final Class<?> mainFileClass = classFinder.getMainFileClass(clazz);
 
         final String fileName = mainFileClass.getSimpleName() + ".java";
         for (SourceRoot sourceRoot : sourceRoots) {
@@ -91,17 +93,6 @@ public class ParsedClassRepository {
         }
         throw new RuntimeException(String.format("Enable to parse %s in package %s", fileName, packageName));
 
-    }
-
-    private Class<?> getMainFileClass(Class<?> clazz) {
-        Class mainFileClass = null;
-
-        Class enclosingClass = clazz;
-        while (enclosingClass != null) {
-            mainFileClass = enclosingClass;
-            enclosingClass = mainFileClass.getEnclosingClass();
-        }
-        return mainFileClass;
     }
 
     static class MyVisitorMethodLineNumber extends MyMethodVisitor {
@@ -227,9 +218,15 @@ public class ParsedClassRepository {
     static abstract class MyClassVisitor extends VoidVisitorAdapter<Void> {
         private final Class<?> classToSearch;
         private final List<String> fullname = new ArrayList<>();
+        private String packageName;
 
         public MyClassVisitor(Class<?> clazz) {
             this.classToSearch = clazz;
+        }
+
+        @Override
+        public void visit(PackageDeclaration n, Void v) {
+            packageName = n.getNameAsString();
         }
 
         @Override
@@ -237,12 +234,14 @@ public class ParsedClassRepository {
             fullname.add(n.getName().asString());
 
             final String fullClassName = fullname.stream().collect(Collectors.joining("$"));
-            final String currentFullName = classToSearch.getPackage().getName() + "." + fullClassName;
+            final String currentFullName = packageName + "." + fullClassName;
             if (classToSearch.getName().equals(currentFullName)) {
                 actionOnClass(n);
                 return;
             }
-            super.visit(n, v);
+            if (classToSearch.getName().startsWith(currentFullName)) {
+                super.visit(n, v);
+            }
 
             fullname.remove(fullname.size() - 1);
         }

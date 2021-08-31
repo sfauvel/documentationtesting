@@ -33,10 +33,6 @@ include::_CodeExtractorTest.ExtractCode.ExtractPartOfCode.tag_beginning_with_sam
 
 include::_CodeExtractorTest.ExtractCode.ExtractPartOfCode.tag_beginning_with_same_inner_tag_name.approved.adoc[leveloffset=+3]
 
-include::_CodeExtractorTest.ExtractCode.extract_enclosing_classes.approved.adoc[leveloffset=+2]
-
-include::_CodeExtractorTest.ExtractCode.extract_first_enclosing_classes_before_another.approved.adoc[leveloffset=+2]
-
 == Extract comment
 
 include::_CodeExtractorTest.ExtractComment.extract_class_comment.approved.adoc[leveloffset=+2]

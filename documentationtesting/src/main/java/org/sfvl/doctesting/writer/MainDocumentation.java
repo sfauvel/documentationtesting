@@ -33,6 +33,7 @@ public class MainDocumentation {
     private static final PathProvider pathProvider = new PathProvider();
     protected final Formatter formatter;
     private final Path docRootPath;
+    private static final ClassFinder classFinder = new ClassFinder();
 
     public MainDocumentation withPackageLocation(Package packageLocation) {
         this.packageLocation = packageLocation;
@@ -145,7 +146,7 @@ public class MainDocumentation {
     private Set<Class<?>> getClassesWithTest(String packageToScan) {
 
         return getAnnotatedMethod(Test.class, packageToScan).stream()
-                .map(method -> CodeExtractor.getFirstEnclosingClassBefore(method, null))
+                .map(method -> classFinder.getMainFileClass(method.getDeclaringClass()))
                 .collect(Collectors.toSet());
     }
 

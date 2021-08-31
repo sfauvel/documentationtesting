@@ -20,7 +20,7 @@ public class ClassFinder {
                 .filter(methodFilter);
 
         return methodsAnnotatedWith
-                .map(method -> CodeExtractor.getFirstEnclosingClassBefore(method, null))
+                .map(method -> getMainFileClass(method.getDeclaringClass()))
                 .distinct()
                 .sorted(Comparator.comparing(Class::getName))
                 .collect(Collectors.toList());
@@ -32,14 +32,9 @@ public class ClassFinder {
 
 
     public Class<?> getMainFileClass(Class<?> clazz) {
-        Class mainFileClass = null;
-
-        Class enclosingClass = clazz;
-        while (enclosingClass != null) {
-            mainFileClass = enclosingClass;
-            enclosingClass = mainFileClass.getEnclosingClass();
-        }
-        return mainFileClass;
+        return clazz.getEnclosingClass() != null
+                ? getMainFileClass(clazz.getEnclosingClass())
+                : clazz;
     }
 
 }
