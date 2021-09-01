@@ -29,6 +29,11 @@ public class DocWriter {
     }
 
     public String formatOutput(String displayName, Method testMethod) {
+        return formatOutput(displayName, testMethod.getDeclaringClass(), testMethod);
+    }
+
+    public String formatOutput(String displayName, Class<?> classFile, Method testMethod) {
+
         boolean isTitle = testMethod.getAnnotation(NoTitle.class) == null;
         String title = isTitle
                 ? String.join("",
@@ -41,7 +46,7 @@ public class DocWriter {
                 defineDocPath(testMethod.getDeclaringClass()),
                 "\n\n",
                 title,
-                CodeExtractor.getComment(testMethod).map(comment -> comment + "\n\n").orElse(""),
+                CodeExtractor.getComment(classFile, testMethod).map(comment -> comment + "\n\n").orElse(""),
                 read());
     }
 

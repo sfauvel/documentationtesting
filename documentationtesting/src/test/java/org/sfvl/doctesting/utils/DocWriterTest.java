@@ -11,6 +11,7 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.samples.MyTest;
+import org.sfvl.samples.MyTestWithoutTitle;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -108,27 +109,17 @@ class DocWriterTest {
     @DisplayName("DocWriter without title")
     public void doc_writer_without_title(TestInfo testInfo) throws NoSuchMethodException {
 
-        // >>>test_class
-        class MyTest {
-            @Test
-            @NoTitle
-            public void my_method() {
-                // my doc generation
-            }
-        }
-        // <<<test_class
-
         // >>>
         final DocWriter doc = new DocWriter();
         doc.write("Some text added to show DocWriter output.");
         final String output = doc.formatOutput(
                 "Do not display this title",
-                MyTest.class.getMethod("my_method")
+                MyTestWithoutTitle.class.getMethod("my_method")
         );
         // <<<
 
         DocWriterTest.doc.write(".Test with NoTitle annotation",
-                formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod("test_class")),
+                formatter.sourceCode(CodeExtractor.classSource(MyTestWithoutTitle.class)),
                 "", "");
 
         DocWriterTest.doc.write(".DocWriter usage",
@@ -280,5 +271,3 @@ class DocWriterTest {
     }
 // end::MyTestWithComment[]
 }
-
-

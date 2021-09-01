@@ -11,15 +11,15 @@ import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @ClassToDocument(clazz = ParsedClassRepository.class)
-@DisplayName(value="ParsedClassRepository")
+@DisplayName(value = "ParsedClassRepository")
 public class ParsedClassRepositoryTest {
     Formatter formatter = new AsciidocFormatter();
     @RegisterExtension
@@ -49,108 +49,124 @@ public class ParsedClassRepositoryTest {
 
     }
 
+    interface SupplierWithException<T> {
+        T run() throws Exception;
+    }
+
     @Nested
     public class RetrieveComment {
-        @Test
-        public void retrieve_comment_of_a_class() {
-            final ParsedClassRepository parser = new ParsedClassRepository(Config.TEST_PATH);
-            // >>>
-            final String comment = parser.getComment(ClassWithInformationToExtract.class);
-            // <<<
+        final ParsedClassRepository parser = new ParsedClassRepository(Config.TEST_PATH);
+
+        public void retrieve_comment(SupplierWithException<String> r, String code) {
+            Optional<Exception> exception = Optional.empty();
+            String comment = "";
+            try {
+                comment = r.run();
+            } catch (Exception e) {
+                exception = Optional.of(e);
+            }
             doc.write(
                     ".How to extract comment",
-                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
-                    ".Comment extracted",
+                    formatter.sourceCode(code),
+                    exception.map(e -> ".Exception").orElse(".Comment extracted"),
                     formatter.blockBuilder("====")
-                            .content(comment)
+                            .content(exception.map(Exception::toString).orElse(comment))
                             .build()
             );
-
         }
 
         @Test
-        public void retrieve_comment_of_a_method() throws NoSuchMethodException {
-            final ParsedClassRepository parser = new ParsedClassRepository(Config.TEST_PATH);
-            // >>>
-            final Method method = ClassWithInformationToExtract.class.getMethod("doSomething");
-            final String comment = parser.getComment(method);
-            // <<<
-            doc.write(
-                    ".How to extract comment",
-                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
-                    ".Comment extracted",
-                    formatter.blockBuilder("====")
-                            .content(comment)
-                            .build()
-            );
+        public void retrieve_comment_of_a_class() {
+            retrieve_comment(() -> {
+                        // >>>
+                        final String comment = parser.getComment(ClassWithInformationToExtract.class);
+                        // <<<
+                        return comment;
+                    }
+                    , CodeExtractor.extractPartOfCurrentMethod());
+        }
+
+        @Test
+        public void retrieve_comment_of_a_method() {
+            retrieve_comment(() -> {
+                        // >>>
+                        final Method method = ClassWithInformationToExtract.class.getMethod("doSomething");
+                        final String comment = parser.getComment(method);
+                        // <<<
+                        return comment;
+                    }
+                    , CodeExtractor.extractPartOfCurrentMethod());
+        }
+
+        /**
+         * We are not able to deal with local classes(those defined in method).
+         * @throws NoSuchMethodException
+         */
+        @Test
+        public void retrieve_comment_of_local_class_defined_in_a_method() throws NoSuchMethodException {
+            retrieve_comment(() -> {
+                        // >>>
+                        /**
+                         * Comment of local class defined in method.
+                         */
+                        class MyLocalClass {
+                            public void doSomething() {
+
+                            }
+                        }
+                        final String comment = parser.getComment(MyLocalClass.class);
+                        // <<<
+                        return comment;
+                    }
+                    , CodeExtractor.extractPartOfCurrentMethod());
         }
 
         @Test
         public void retrieve_comment_of_a_method_with_parameter() throws NoSuchMethodException {
-            final ParsedClassRepository parser = new ParsedClassRepository(Config.TEST_PATH);
-            // >>>
-            final Method method = ClassWithInformationToExtract.class.getMethod("doSomething", String.class);
-            final String comment = parser.getComment(method);
-            // <<<
-            doc.write(
-                    ".How to extract comment",
-                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
-                    ".Comment extracted",
-                    formatter.blockBuilder("====")
-                            .content(comment)
-                            .build()
-            );
+            retrieve_comment(() -> {
+                        // >>>
+                        final Method method = ClassWithInformationToExtract.class.getMethod("doSomething", String.class);
+                        final String comment = parser.getComment(method);
+                        // <<<
+                        return comment;
+                    }
+                    , CodeExtractor.extractPartOfCurrentMethod());
         }
 
         @Test
         public void retrieve_comment_of_a_method_with_parameter_with_scope() throws NoSuchMethodException {
-            final ParsedClassRepository parser = new ParsedClassRepository(Config.TEST_PATH);
-            // >>>
-            final Method method = ClassWithInformationToExtract.class.getMethod("doSomething", Character.class);
-            final String comment = parser.getComment(method);
-            // <<<
-            doc.write(
-                    ".How to extract comment",
-                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
-                    ".Comment extracted",
-                    formatter.blockBuilder("====")
-                            .content(comment)
-                            .build()
-            );
+            retrieve_comment(() -> {
+                        // >>>
+                        final Method method = ClassWithInformationToExtract.class.getMethod("doSomething", Character.class);
+                        final String comment = parser.getComment(method);
+                        // <<<
+                        return comment;
+                    }
+                    , CodeExtractor.extractPartOfCurrentMethod());
         }
 
         @Test
         public void retrieve_comment_of_a_method_with_list_parameter() throws NoSuchMethodException {
-            final ParsedClassRepository parser = new ParsedClassRepository(Config.TEST_PATH);
-            // >>>
-            final Method method = ClassWithInformationToExtract.class.getMethod("doSomething", List.class);
-            final String comment = parser.getComment(method);
-            // <<<
-            doc.write(
-                    ".How to extract comment",
-                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
-                    ".Comment extracted",
-                    formatter.blockBuilder("====")
-                            .content(comment)
-                            .build()
-            );
+            retrieve_comment(() -> {
+                        // >>>
+                        final Method method = ClassWithInformationToExtract.class.getMethod("doSomething", List.class);
+                        final String comment = parser.getComment(method);
+                        // <<<
+                        return comment;
+                    }
+                    , CodeExtractor.extractPartOfCurrentMethod());
         }
 
         @Test
         public void retrieve_comment_of_a_method_with_array_parameter() throws NoSuchMethodException {
-            final ParsedClassRepository parser = new ParsedClassRepository(Config.TEST_PATH);
-            // >>>
-            final Method method = ClassWithInformationToExtract.class.getMethod("doSomething", String[].class);
-            final String comment = parser.getComment(method);
-            // <<<
-            doc.write(
-                    ".How to extract comment",
-                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
-                    ".Comment extracted",
-                    formatter.blockBuilder("====")
-                            .content(comment)
-                            .build()
-            );
+            retrieve_comment(() -> {
+                        // >>>
+                        final Method method = ClassWithInformationToExtract.class.getMethod("doSomething", String[].class);
+                        final String comment = parser.getComment(method);
+                        // <<<
+                        return comment;
+                    }
+                    , CodeExtractor.extractPartOfCurrentMethod());
         }
     }
 

@@ -12,14 +12,13 @@ It can be useful when you want to include this file in another test for example.
 
 [source,java,indent=0]
 ----
-        class MyTest {
-            @Test
-            @NoTitle
-            public void my_method() {
-                // my doc generation
-            }
-        }
-
+public class MyTestWithoutTitle {
+    @Test
+    @NoTitle
+    public void my_method() {
+        // my doc generation
+    }
+}
 ----
 
 
@@ -31,7 +30,7 @@ It can be useful when you want to include this file in another test for example.
         doc.write("Some text added to show DocWriter output.");
         final String output = doc.formatOutput(
                 "Do not display this title",
-                MyTest.class.getMethod("my_method")
+                MyTestWithoutTitle.class.getMethod("my_method")
         );
 
 ----
@@ -40,7 +39,7 @@ It can be useful when you want to include this file in another test for example.
 .Output provided
 ....
 ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../../..
+:ROOT_PATH: ../../..
 endif::[]
 
 Some text added to show DocWriter output.

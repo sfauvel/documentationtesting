@@ -9,7 +9,7 @@ endif::[]
 
 [source,java,indent=0]
 ----
-            final String comment = parser.getComment(ClassWithInformationToExtract.class);
+                        final String comment = parser.getComment(ClassWithInformationToExtract.class);
 
 ----
 
