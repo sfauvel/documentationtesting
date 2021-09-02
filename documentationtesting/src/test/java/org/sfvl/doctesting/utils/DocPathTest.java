@@ -196,8 +196,40 @@ public class DocPathTest {
         @Test
         public void path_from_a_package() {
             // >>>
-            final Class<MyTest> clazz = org.sfvl.samples.MyTest.class;
+            final Class<?> clazz = org.sfvl.samples.MyTest.class;
             final Path path = DocPath.toPath(clazz.getPackage());
+            final String pathText = DocPath.toAsciiDoc(path);
+            // <<<
+            doc.write(
+                    ".Code",
+                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    "Result",
+                    formatter.blockBuilder("====")
+                            .content(pathText)
+                            .build());
+        }
+
+        @Test
+        public void path_from_a_class() {
+            // >>>
+            final Class<?> clazz = org.sfvl.samples.MyTest.class;
+            final Path path = DocPath.toPath(clazz);
+            final String pathText = DocPath.toAsciiDoc(path);
+            // <<<
+            doc.write(
+                    ".Code",
+                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    "Result",
+                    formatter.blockBuilder("====")
+                            .content(pathText)
+                            .build());
+        }
+
+        @Test
+        public void path_from_a_nested_class() {
+            // >>>
+            final Class<?> clazz = org.sfvl.samples.MyTestWithNestedClass.MyNestedClass.class;
+            final Path path = DocPath.toPath(clazz);
             final String pathText = DocPath.toAsciiDoc(path);
             // <<<
             doc.write(

@@ -69,6 +69,12 @@ public class DocPath {
         return Paths.get(aPackage.getName().replace('.', File.separatorChar));
     }
 
+    public static Path toPath(Class<?> clazz) {
+        final Class<?> mainClass = new ClassFinder().getMainFileClass(clazz);
+        return toPath(clazz.getPackage())
+                .resolve(String.format("%s.java", mainClass.getSimpleName()));
+    }
+
     public static String toAsciiDoc(Path path) {
         return path.toString().replace(File.separatorChar, '/');
     }
