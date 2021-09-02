@@ -2,7 +2,6 @@ package org.sfvl.doctesting.utils;
 
 import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.PackageDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.type.Type;
@@ -215,7 +214,7 @@ public class ParsedClassRepository {
     }
 
     static abstract class MyClassVisitor extends VoidVisitorAdapter<Void> {
-        private final Class<?> classToSearch;
+        protected final Class<?> classToSearch;
 
         public MyClassVisitor(Class<?> clazz) {
             this.classToSearch = clazz;
