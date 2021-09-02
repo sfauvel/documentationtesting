@@ -9,11 +9,13 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.test_tools.SupplierWithException;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -47,10 +49,6 @@ public class ParsedClassRepositoryTest {
                 ""
         );
 
-    }
-
-    interface SupplierWithException<T> {
-        T run() throws Exception;
     }
 
     @Nested
@@ -197,6 +195,65 @@ public class ParsedClassRepositoryTest {
                     formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
                     String.format("Line found: *%d*", lineNumber)
             );
+        }
+    }
+
+    @Test
+    public void create_ParsedClassRepository() {
+        doc.write(String.format("We can build a %s with several paths.", ParsedClassRepository.class.getSimpleName()),
+                "When path does not exist, an Exception was thrown.",
+                "Empty path will not be added.",
+                "When you do not have one of the default directories,",
+                "you can set it with an empty value to not throw an exception.");
+
+        writeResultOfParsedClassRepositoryInstanciation(() -> {
+            // >>>1
+            final ParsedClassRepository repository = new ParsedClassRepository(
+                    Paths.get("src/test/java")
+            );
+            // <<<1
+            return repository;
+        },CodeExtractor.extractPartOfCurrentMethod("1"));
+
+        writeResultOfParsedClassRepositoryInstanciation(() -> {
+            // >>>2
+            final ParsedClassRepository repository = new ParsedClassRepository(
+                    Paths.get("src/main/java"),
+                    Paths.get("src/test/java")
+            );
+            // <<<2
+            return repository;
+        },CodeExtractor.extractPartOfCurrentMethod("2"));
+
+        writeResultOfParsedClassRepositoryInstanciation(() -> {
+            // >>>empty_path
+            final ParsedClassRepository repository = new ParsedClassRepository(
+                    Paths.get(""),
+                    Paths.get("src/test/java")
+            );
+            // <<<empty_path
+            return repository;
+        },CodeExtractor.extractPartOfCurrentMethod("empty_path"));
+
+        writeResultOfParsedClassRepositoryInstanciation(() -> {
+            // >>>3
+            final ParsedClassRepository repository = new ParsedClassRepository(
+                    Paths.get("src/UNKNOWN/java")
+            );
+            // <<<3
+            return repository;
+        },CodeExtractor.extractPartOfCurrentMethod("3"));
+    }
+
+    private void writeResultOfParsedClassRepositoryInstanciation(SupplierWithException<?> supplier, String sourceCode) {
+        doc.write(formatter.sourceCode(sourceCode));
+        try {
+            supplier.run();
+            doc.write("Object is created");
+        } catch (Exception e) {
+            doc.write(formatter.blockBuilder("====")
+                    .content(e.toString())
+                    .build());
         }
     }
 

@@ -26,7 +26,9 @@ public class ParsedClassRepository {
 
     public ParsedClassRepository(Path... paths) {
         for (Path path : paths) {
-            sourceRoots.add(new SourceRoot(path));
+            if (!path.toString().isEmpty()) {
+                sourceRoots.add(new SourceRoot(path));
+            }
         }
     }
 
@@ -219,30 +221,30 @@ public class ParsedClassRepository {
             this.classToSearch = clazz;
             if (clazz.isLocalClass()) {
                 /* TODO Local class is a classs defined in a method: https://docs.oracle.com/javase/tutorial/java/javaOO/localclasses.html
-                * It's more complexe to define retrieve the class so we decide to not deal with it at first.
-                * getCanonicalName return null
-                * getName return class name but not contain method name.
-                * Class name is prefix by $[Number] (ex: ParentClass$1MyClass, ParentClass$2MyClass
-                * All local classes in a class have the same parent but we can have the same class name if it defines in different methods.
-                * In that case, the name will be the same so the number behind '$' is incremented.
-                * When
-                * Class XXX {
-                *   Class YYY {}
-                * }
-                * => XXX$YYY
-                * Class XXX {
-                *   void foo() {
-                *       Class YYY {}
-                *   }
-                *   void bar() {
-                *       Class ZZZ {}
-                *       Class YYY {}
-                *   }
-                * }
-                * => XXX$1YYY
-                * => XXX$1ZZZ
-                * => XXX$2YYY
-                */
+                 * It's more complexe to define retrieve the class so we decide to not deal with it at first.
+                 * getCanonicalName return null
+                 * getName return class name but not contain method name.
+                 * Class name is prefix by $[Number] (ex: ParentClass$1MyClass, ParentClass$2MyClass
+                 * All local classes in a class have the same parent but we can have the same class name if it defines in different methods.
+                 * In that case, the name will be the same so the number behind '$' is incremented.
+                 * When
+                 * Class XXX {
+                 *   Class YYY {}
+                 * }
+                 * => XXX$YYY
+                 * Class XXX {
+                 *   void foo() {
+                 *       Class YYY {}
+                 *   }
+                 *   void bar() {
+                 *       Class ZZZ {}
+                 *       Class YYY {}
+                 *   }
+                 * }
+                 * => XXX$1YYY
+                 * => XXX$1ZZZ
+                 * => XXX$2YYY
+                 */
                 throw new RuntimeException("Local classes are not handled");
             }
         }
