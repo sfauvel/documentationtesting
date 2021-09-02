@@ -1,0 +1,21 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+[#org_sfvl_doctesting_utils_DocPathTest_MethodToPath_file_of_a_class]
+= File of a class
+
+.Code
+
+[source,java,indent=0]
+----
+            final Class<?> clazz = org.sfvl.samples.MyTest.class;
+            final Path path = DocPath.toFile(clazz);
+            final String pathText = DocPath.toAsciiDoc(path);
+
+----
+
+Result
+====
+MyTest.java
+====

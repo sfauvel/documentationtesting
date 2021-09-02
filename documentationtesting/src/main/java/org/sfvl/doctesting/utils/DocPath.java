@@ -70,9 +70,12 @@ public class DocPath {
     }
 
     public static Path toPath(Class<?> clazz) {
+        return toPath(clazz.getPackage()).resolve(toFile(clazz));
+    }
+
+    public static Path toFile(Class<?> clazz) {
         final Class<?> mainClass = new ClassFinder().getMainFileClass(clazz);
-        return toPath(clazz.getPackage())
-                .resolve(String.format("%s.java", mainClass.getSimpleName()));
+        return Paths.get(String.format("%s.java", mainClass.getSimpleName()));
     }
 
     public static String toAsciiDoc(Path path) {

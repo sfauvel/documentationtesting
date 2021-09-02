@@ -240,6 +240,41 @@ public class DocPathTest {
                             .content(pathText)
                             .build());
         }
+
+        @Test
+        public void file_of_a_class() {
+            // >>>
+            final Class<?> clazz = org.sfvl.samples.MyTest.class;
+            final Path path = DocPath.toFile(clazz);
+            final String pathText = DocPath.toAsciiDoc(path);
+            // <<<
+            doc.write(
+                    ".Code",
+                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    "Result",
+                    formatter.blockBuilder("====")
+                            .content(pathText)
+                            .build());
+        }
+
+        /**
+         * With a nested class, the file is that of the main class of the file.
+         */
+        @Test
+        public void file_of_a_nested_class() {
+            // >>>
+            final Class<?> clazz = org.sfvl.samples.MyTestWithNestedClass.MyNestedClass.class;
+            final Path path = DocPath.toFile(clazz);
+            final String pathText = DocPath.toAsciiDoc(path);
+            // <<<
+            doc.write(
+                    ".Code",
+                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    "Result",
+                    formatter.blockBuilder("====")
+                            .content(pathText)
+                            .build());
+        }
     }
 
     String callResult(CallsRecorder recorder, Path path) {
