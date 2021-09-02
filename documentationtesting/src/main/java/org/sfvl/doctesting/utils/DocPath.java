@@ -66,9 +66,7 @@ public class DocPath {
     }
 
     public static Path toPath(Package aPackage) {
-        return Arrays.stream(aPackage.getName().split("\\."))
-                .map(Paths::get)
-                .reduce(Paths.get(""), Path::resolve);
+        return Paths.get(aPackage.getName().replace('.', File.separatorChar));
     }
 
     public static String toAsciiDoc(Path path) {

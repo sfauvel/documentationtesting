@@ -11,3 +11,7 @@ include::_DocPathTest.path_by_type_with_method.approved.adoc[leveloffset=+1]
 include::_DocPathTest.nested_class.approved.adoc[leveloffset=+1]
 
 include::_DocPathTest.make_path_independent_of_operating_system.approved.adoc[leveloffset=+1]
+
+== Method 'toPath'
+
+include::_DocPathTest.MethodToPath.path_from_a_package.approved.adoc[leveloffset=+2]
