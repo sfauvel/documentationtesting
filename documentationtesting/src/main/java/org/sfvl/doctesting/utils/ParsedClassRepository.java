@@ -175,7 +175,6 @@ public class ParsedClassRepository {
     static abstract class MyMethodVisitor extends VoidVisitorAdapter<Void> {
         private final Class<?> clazz;
         private final Method method;
-        private String comment;
 
         public MyMethodVisitor(Method method) {
             this.clazz = method.getDeclaringClass();

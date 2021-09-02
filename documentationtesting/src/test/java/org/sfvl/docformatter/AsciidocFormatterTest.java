@@ -309,7 +309,7 @@ public class AsciidocFormatterTest {
     }
 
     public String extractMethod(TestInfo testinfo) {
-        final String body = extractMethod(this.getClass(), testinfo.getTestMethod().get().getName());
+        final String body = CodeExtractor.extractMethodBody(testinfo.getTestMethod().get());
         final String[] split = body.split("\n");
         final String bodyFormatted = Arrays.stream(Arrays.copyOfRange(split, 1, split.length - 1))
                 .collect(Collectors.joining("\n"));

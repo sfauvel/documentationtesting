@@ -20,7 +20,6 @@ class MyTestWithNestedClass {
     }
 
     public class MyNestedClass {
-
     }
 }
 // <<<MyTestWithNestedClass

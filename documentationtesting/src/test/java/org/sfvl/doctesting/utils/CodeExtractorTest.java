@@ -198,6 +198,15 @@ class CodeExtractorTest {
                 codeWithMethod = code;
             }
 
+            String codeWithMethodInNestedClass;
+            {
+                // >>>MethodInNestedClass
+                Method method = FindLambdaMethod.getMethod(ClassWithNestedClass.NestedClass::nestedMethod);
+                String code = CodeExtractor.methodSource(method);
+                // <<<MethodInNestedClass
+                codeWithMethodInNestedClass = code;
+            }
+
             doc.write(".How to extract code of a method",
                     extractMarkedCode(testInfo, "1"),
                     "");
@@ -235,6 +244,21 @@ class CodeExtractorTest {
                         formatSourceCode(codeWithMethod)
                 );
             }
+
+
+            doc.write(".How to extract code of a method in a nested class",
+                    extractMarkedCode(testInfo, "MethodInNestedClass"),
+                    "");
+
+            doc.writeInline(
+                    ".Source code from file",
+                    includeSourceWithTag("ClassWithNestedClass", ClassWithNestedClass.class)
+            );
+
+            doc.writeInline(
+                    ".Source code extracted",
+                    formatSourceCode(codeWithMethodInNestedClass)
+            );
 
             {
                 // >>>3
