@@ -72,6 +72,7 @@ function generate_docs() {
         DEMO_STATUS="FAILED"
         GLOBAL_EXIT_VALUE=1
         TEST_COLOR=${RED}
+        cat $OUTPUT_LOG
       fi
 
       echo -e  "${TEST_COLOR}${DEMO_STATUS}${NO_COLOR}"
