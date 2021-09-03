@@ -252,7 +252,8 @@ public class ParsedClassRepositoryTest {
             doc.write("Object is created");
         } catch (Exception e) {
             doc.write(formatter.blockBuilder("====")
-                    .content(e.toString())
+                    // We replace Windows path to always obtains the same output in Windows and Linux.
+                    .content(e.toString().replaceAll("src\\\\(.*)\\\\java", "src/$1/java"))
                     .build());
         }
     }
