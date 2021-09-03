@@ -566,7 +566,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_method">Retrieve line of a method</a></li>
 </ul>
 </li>
-<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_create_ParsedClassRepository">Create ParsedClassRepository</a></li>
+<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_create_ParsedClassRepository">Create ParsedClassRepository</a>
+<ul class="sectlevel4">
+<li><a href="#_object_creation">Object creation</a></li>
+<li><a href="#_exception">Exception</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_class_documentation_test">Class documentation test</a>
@@ -3455,50 +3460,68 @@ We compare only class name without checking the scope (package).</p>
 </pre></td></tr></tbody></table></code></pre>
 </div>
 </div>
+<style>
+#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_context ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
 </div>
 <div class="sect3">
 <h4 id="_retrieve_comment">Retrieve comment</h4>
 <div class="sect4">
 <h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_class">Retrieve comment of a class</h5>
-<div class="listingblock">
+<div class="listingblock inline">
 <div class="title">How to extract comment</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
 </div>
 </div>
-<div class="exampleblock">
-<div class="title">Example 2. Comment extracted</div>
+<div class="listingblock inline">
+<div class="title">Comment extracted</div>
 <div class="content">
-<div class="paragraph">
-<p>My comment for ClassWithInformationToExtract.</p>
+<pre>My comment for ClassWithInformationToExtract.</pre>
 </div>
 </div>
-</div>
+<style>
+#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_class ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
 </div>
 <div class="sect4">
 <h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method">Retrieve comment of a method</h5>
-<div class="listingblock">
+<div class="listingblock inline">
 <div class="title">How to extract comment</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">);</span>
-<span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span>
+        <span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
 </div>
 </div>
-<div class="exampleblock">
-<div class="title">Example 3. Comment extracted</div>
+<div class="listingblock inline">
+<div class="title">Comment extracted</div>
 <div class="content">
-<div class="paragraph">
-<p>Description of the method 'doSomething'.</p>
+<pre>Description of the method 'doSomething'.</pre>
 </div>
 </div>
-</div>
+<style>
+#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
 </div>
 <div class="sect4">
 <h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_local_class_defined_in_a_method">Retrieve comment of local class defined in a method</h5>
 <div class="paragraph">
 <p>We are not able to deal with local classes(those defined in method).</p>
 </div>
-<div class="listingblock">
+<div class="listingblock inline">
 <div class="title">How to extract comment</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
@@ -3509,89 +3532,118 @@ We compare only class name without checking the scope (package).</p>
 
     <span class="o">}</span>
 <span class="o">}</span>
-<span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">MyLocalClass</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
+<span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">MyLocalClass</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
 </div>
 </div>
-<div class="exampleblock">
-<div class="title">Example 4. Exception</div>
+<div class="listingblock inline">
+<div class="title">Exception</div>
 <div class="content">
-<div class="paragraph">
-<p>java.lang.RuntimeException: Local classes are not handled</p>
+<pre>java.lang.RuntimeException: Local classes are not handled</pre>
 </div>
 </div>
-</div>
+<style>
+#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_local_class_defined_in_a_method ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
 </div>
 <div class="sect4">
 <h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_parameter">Retrieve comment of a method with parameter</h5>
-<div class="listingblock">
+<div class="listingblock inline">
 <div class="title">How to extract comment</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-<span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span>
+        <span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
 </div>
 </div>
-<div class="exampleblock">
-<div class="title">Example 5. Comment extracted</div>
+<div class="listingblock inline">
+<div class="title">Comment extracted</div>
 <div class="content">
-<div class="paragraph">
-<p>Do something with a String.</p>
+<pre>Do something with a String.</pre>
 </div>
 </div>
-</div>
+<style>
+#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_parameter ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
 </div>
 <div class="sect4">
 <h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_parameter_with_scope">Retrieve comment of a method with parameter with scope</h5>
-<div class="listingblock">
+<div class="listingblock inline">
 <div class="title">How to extract comment</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">,</span> <span class="nc">Character</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-<span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span>
+        <span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">,</span> <span class="nc">Character</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
 </div>
 </div>
-<div class="exampleblock">
-<div class="title">Example 6. Comment extracted</div>
+<div class="listingblock inline">
+<div class="title">Comment extracted</div>
 <div class="content">
-<div class="paragraph">
-<p>Do something with a java.lang.Character.</p>
+<pre>Do something with a java.lang.Character.</pre>
 </div>
 </div>
-</div>
+<style>
+#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_parameter_with_scope ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
 </div>
 <div class="sect4">
 <h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_list_parameter">Retrieve comment of a method with list parameter</h5>
-<div class="listingblock">
+<div class="listingblock inline">
 <div class="title">How to extract comment</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">,</span> <span class="nc">List</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-<span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span>
+        <span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">,</span> <span class="nc">List</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
 </div>
 </div>
-<div class="exampleblock">
-<div class="title">Example 7. Comment extracted</div>
+<div class="listingblock inline">
+<div class="title">Comment extracted</div>
 <div class="content">
-<div class="paragraph">
-<p>Do something with a List&lt;String&gt;.</p>
+<pre>Do something with a List&lt;String&gt;.</pre>
 </div>
 </div>
-</div>
+<style>
+#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_list_parameter ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
 </div>
 <div class="sect4">
 <h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_array_parameter">Retrieve comment of a method with array parameter</h5>
-<div class="listingblock">
+<div class="listingblock inline">
 <div class="title">How to extract comment</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">,</span> <span class="nc">String</span><span class="o">[].</span><span class="na">class</span><span class="o">);</span>
-<span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span>
+        <span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">,</span> <span class="nc">String</span><span class="o">[].</span><span class="na">class</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
 </div>
 </div>
-<div class="exampleblock">
-<div class="title">Example 8. Comment extracted</div>
+<div class="listingblock inline">
+<div class="title">Comment extracted</div>
 <div class="content">
-<div class="paragraph">
-<p>Do something with a String[].</p>
+<pre>Do something with a String[].</pre>
 </div>
 </div>
-</div>
+<style>
+#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_array_parameter ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
 </div>
 </div>
 <div class="sect3">
@@ -3607,19 +3659,33 @@ We compare only class name without checking the scope (package).</p>
 <div class="paragraph">
 <p>Line found: <strong>8</strong></p>
 </div>
+<style>
+#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_class ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
 </div>
 <div class="sect4">
 <h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_method">Retrieve line of a method</h5>
 <div class="listingblock">
 <div class="title">How to get the first line of a method</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">);</span>
-<span class="kd">final</span> <span class="kt">int</span> <span class="n">lineNumber</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getLineNumber</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">lineNumber</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getLineNumber</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Line found: <strong>13</strong></p>
 </div>
+<style>
+#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_method ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
 </div>
 </div>
 <div class="sect3">
@@ -3631,51 +3697,49 @@ Empty path will not be added.
 When you do not have one of the default directories,
 you can set it with an empty value to not throw an exception.</p>
 </div>
+<div class="sect4">
+<h5 id="_object_creation">Object creation</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">ParsedClassRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParsedClassRepository</span><span class="o">(</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">ParsedClassRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParsedClassRepository</span><span class="o">(</span>
         <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"src/test/java"</span><span class="o">)</span>
 <span class="o">);</span></code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Object is created</p>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">ParsedClassRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParsedClassRepository</span><span class="o">(</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">ParsedClassRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParsedClassRepository</span><span class="o">(</span>
         <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"src/main/java"</span><span class="o">),</span>
         <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"src/test/java"</span><span class="o">)</span>
 <span class="o">);</span></code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Object is created</p>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">ParsedClassRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParsedClassRepository</span><span class="o">(</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">ParsedClassRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParsedClassRepository</span><span class="o">(</span>
         <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">""</span><span class="o">),</span>
         <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"src/test/java"</span><span class="o">)</span>
 <span class="o">);</span></code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Object is created</p>
 </div>
+<div class="sect4">
+<h5 id="_exception">Exception</h5>
 <div class="listingblock">
+<div class="title">java.lang.IllegalArgumentException: Only directories are allowed as root path: src/UNKNOWN/java</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">ParsedClassRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParsedClassRepository</span><span class="o">(</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">ParsedClassRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParsedClassRepository</span><span class="o">(</span>
         <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"src/UNKNOWN/java"</span><span class="o">)</span>
 <span class="o">);</span></code></pre>
 </div>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>java.lang.IllegalArgumentException: Only directories are allowed as root path: src/UNKNOWN/java</p>
-</div>
-</div>
+<style>
+#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_create_ParsedClassRepository ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
 </div>
 </div>
 </div>
