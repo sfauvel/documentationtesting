@@ -771,9 +771,16 @@ to add it without processed content and send it directly to the output.</p>
 ++++
 This text should be black.
 
-[.withColor]#This text shoud be blue.#
+[withColor]#This text shoud be blue.#
 
-This text is not anymore blue.</code></pre>
+This text should be black.
+
+[withColor]
+--
+This section formed by several lines in asciidoc
+should be blue.
+--
+This text should be black.</code></pre>
 </div>
 </div>
 <div class="exampleblock">
@@ -791,53 +798,18 @@ This text is not anymore blue.</code></pre>
 <p><span class="withColor">This text shoud be blue.</span></p>
 </div>
 <div class="paragraph">
-<p>This text is not anymore blue.</p>
-</div>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Asciidoc content</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="html">++++
-<span class="nt">&lt;style&gt;</span>
-<span class="nc">.withColor</span> <span class="p">{</span>
-   <span class="nl">color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nt">&lt;/style&gt;</span>
-++++
-This text should be black.
-[.withColor]
---
-This section formed by several lines
-
-should be blue.
---
-This text is not anymore blue.</code></pre>
-</div>
-</div>
-<div class="exampleblock">
-<div class="title">Example 3. Content rendering</div>
-<div class="content">
-<style>
-.withColor {
-   color: blue;
-}
-</style>
-<div class="paragraph">
 <p>This text should be black.</p>
 </div>
 <div class="openblock withColor">
 <div class="content">
 <div class="paragraph">
-<p>This section formed by several lines</p>
-</div>
-<div class="paragraph">
-<p>should be blue.</p>
+<p>This section formed by several lines in asciidoc
+should be blue.</p>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>This text is not anymore blue.</p>
+<p>This text should be black.</p>
 </div>
 </div>
 </div>

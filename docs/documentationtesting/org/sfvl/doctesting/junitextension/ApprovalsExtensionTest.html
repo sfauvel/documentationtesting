@@ -635,7 +635,7 @@ Each nested class create a nested title.</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
  * Demo of a simple usage to generate documentation.
  */</span>
-<span class="kd">class</span> <span class="nc">DemoNestedTest</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoNestedTest</span> <span class="o">{</span>
     <span class="nd">@RegisterExtension</span>
     <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
 
@@ -694,8 +694,7 @@ Each nested class create a nested title.</p>
 <div class="listingblock">
 <div class="title">Document generated</div>
 <div class="content">
-<pre>:nofooter:
-= Demo nested test
+<pre>= Demo nested test
 
 Demo of a simple usage to generate documentation.
 
@@ -796,7 +795,6 @@ include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ad
 :ROOT_PATH: ../../..
 endif::[]
 
-:nofooter:
 = My test
 
 include::_MyTest.test_A.approved.adoc[leveloffset=+1]</pre>

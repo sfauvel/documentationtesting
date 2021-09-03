@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Documentation Testing Library</title>
+<title>Known issues</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,173 +436,86 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
-<h1>Documentation Testing Library</h1>
+<h1>Known issues</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel2">
+<li><a href="#_known_issues">Known issues</a>
+<ul class="sectlevel3">
+<li><a href="#_maven_test_pass_even_afterall_fail_with_maven_surefire_plugin_3_0_0_m4">Maven test pass even @AfterAll fail with maven-surefire-plugin 3.0.0-M4</a>
+<ul class="sectlevel4">
+<li><a href="#_description">Description</a></li>
+<li><a href="#_solution">Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div id="content">
+<div class="sect2">
+<h3 id="_known_issues">Known issues</h3>
+<div class="sect3">
+<h4 id="_maven_test_pass_even_afterall_fail_with_maven_surefire_plugin_3_0_0_m4">Maven test pass even @AfterAll fail with maven-surefire-plugin 3.0.0-M4</h4>
+<div class="sect4">
+<h5 id="_description">Description</h5>
 <div class="paragraph">
-<p>:KNOWN_ISSUES_HTML:org/sfvl/howto/KnownIssues.html
-:leveloffset: +1</p>
-</div>
-<style>
-.icon-header .imageblock {
-    display: inline-block;
-    margin-left: 5px;
-}
-.icon-header {
-    display: flex;
-    justify-content: flex-end;
-
-    position: absolute;
-    top: -4.5em;
-    right: 2em;
-}
-</style>
-<div class="openblock icon-header">
-<div class="content">
-<div class="imageblock">
-<div class="content">
-<a class="image" href="https://github.com/sfauvel/documentationtesting/tree/master/documentationtesting"><img src="./github.svg" alt="github" width="30px"></a>
-</div>
-</div>
-</div>
-</div>
-<div class="openblock intro">
-<div class="content">
-<div class="paragraph">
-<p>A java library that make your living documentation your non regression tests</p>
-</div>
-</div>
-</div>
-<div class="paragraph button_link">
-<p><a href="./org/sfvl/howto/Tutorial.html">GET STARTED</a></p>
-</div>
-<div class="openblock section">
-<div class="title">How to guides</div>
-<div class="content">
-<div class="paragraph subtitle">
-<p>Problem-oriented</p>
+<p>When approved file for the class change, test fails but surefire do not mark this class as failing.
+Tests running in IDE fails but they don&#8217;t when they are run with <code>mvn test</code>.</p>
 </div>
 <div class="paragraph">
-<p>Section <a href="./org/sfvl/howto/HowTo.html">How to</a>
-shows how to do some common needs.</p>
+<p>This is a bug <code>maven-surefire-plugin 3.0.0-M4</code> that not handle properly fails on @BeforeAll and @AfterAll methods.</p>
 </div>
-</div>
-</div>
-<div class="openblock section">
-<div class="title">Explanation</div>
-<div class="content">
-<div class="paragraph subtitle">
-<p>Understanding-oriented</p>
+<div class="paragraph">
+<p>To have some details, you can see:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="./org/sfvl/doctesting/junitextension/ApprovalsExtensionTest.html">JUnit extension embedded Approvals</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Name file associate to each test</p>
+<p><a href="https://github.com/junit-team/junit5/issues/2178" class="bare">https://github.com/junit-team/junit5/issues/2178</a></p>
 </li>
 <li>
-<p>Execute verification after test</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Generation of a general documentation that aggregate all test files</p>
-</li>
-<li>
-<p>Tools to extract parts of code</p>
-</li>
-<li>
-<p><a href="./org/sfvl/docformatter/AsciidocFormatterTest.html">API to transform text</a>
-to output format</p>
+<p><a href="https://issues.apache.org/jira/browse/SUREFIRE-1688" class="bare">https://issues.apache.org/jira/browse/SUREFIRE-1688</a></p>
 </li>
 </ul>
 </div>
 </div>
-</div>
-<div class="openblock section">
-<div class="title">Reference</div>
-<div class="content">
-<div class="paragraph subtitle">
-<p>Information-oriented</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="./org/sfvl/doctesting/DocTestingDocumentation.html">Doc testing documentation</a>
-: Tools to make test validating generated files.</p>
-</li>
-<li>
-<p><a href="./org/sfvl/docformatter/AsciidocFormatterTest.html">Asciidoc formatter test</a>
-: Utilities to format documentation.</p>
-</li>
-<li>
-<p><a href="./{KNOWN_ISSUES_HTML}">Known issues</a></p>
-</li>
-</ul>
+<div class="sect4">
+<h5 id="_solution">Solution</h5>
+<div class="paragraph">
+<p>Do not use <code>maven-surefire-plugin 3.0.0-M4</code> version.
+you can use an older or newer version instead.</p>
 </div>
 </div>
 </div>
-<style>
-
-.section {
-    margin: 1em;
-    padding: 1em;
-    background-color: #05fdCC;
-    box-shadow: 5px 5px 5px #084f34;
-}
-.section .title {
-    font-size: 2em;
-}
-.section .subtitle {
-    color: #888888;
-}
-
-.intro {
-    text-align: center;
-    margin-top: 2em;
-    margin-bottom: 2em;
-}
-.intro p {
-    font-size: 1.5em;
-    font-style: italic;
-    color: #0c6a47;
-}
-
-body {
-    background: #0fd289;
-}
-
-#header > h1:only-child
-{
-    border-bottom-width: 0px;
-
-    font-size: 2.5em;
-    font-weight: bold;
-    text-align: center;
-}
-
-.button_link p {
-    text-align: center;
-    letter-spacing: 0.3em;
-}
-
-.button_link a {
-    padding: 0.75em 2em;
-    border-radius: 2em;
-    display: inline-block;
-    color: #000;
-    background-color: #0e9361;
-    box-sizing: border-box;
-    box-shadow: 5px 5px 5px #084f34;
-    text-decoration: none;
-}
-</style>
 </div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>

@@ -480,6 +480,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel3">
 <li><a href="#org_sfvl_doctesting_utils_ClassFinderTest_find_test_classes_in_a_package">Find test classes in a package</a></li>
 <li><a href="#org_sfvl_doctesting_utils_ClassFinderTest_find_test_classes_in_a_package_with_filter">Find test classes in a package with filter</a></li>
+<li><a href="#org_sfvl_doctesting_utils_ClassFinderTest_find_root_class_from_enclosing_class">Find root class from enclosing class</a></li>
 </ul>
 </li>
 <li><a href="#_classes_order_test">Classes order test</a>
@@ -498,16 +499,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_of_an_other_class_in_file">Extract code of a non public class in file</a></li>
 <li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_from_method">Extract code from method</a></li>
 <li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_part_of_code_from_method">Extract a part of code from method</a></li>
+<li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_part_of_code_from_file">Extract a part of code from a file</a></li>
 <li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_a_part_of_code_from_the_current_method">Extract a part of code from the current method</a></li>
 <li><a href="#_extract_part_of_code">Extract part of code</a></li>
-<li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_enclosing_classes">Extract enclosing classes</a></li>
-<li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_first_enclosing_classes_before_another">Extract first enclosing classes before another</a></li>
 </ul>
 </li>
 <li><a href="#_extract_comment">Extract comment</a>
 <ul class="sectlevel4">
 <li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_extract_class_comment">Extract class comment</a></li>
 <li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_extract_method_comment">Extract method comment</a></li>
+<li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_bug_when_annotation_before_comment">Issue: comment not retrieve when an annotation is before the comment</a></li>
 </ul>
 </li>
 </ul>
@@ -524,6 +525,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_utils_DocPathTest_path_by_type_with_method">Path by type with method</a></li>
 <li><a href="#org_sfvl_doctesting_utils_DocPathTest_nested_class">Nested class</a></li>
 <li><a href="#org_sfvl_doctesting_utils_DocPathTest_make_path_independent_of_operating_system">Make path independent of operating system</a></li>
+<li><a href="#_method_topath">Method 'toPath'</a>
+<ul class="sectlevel4">
+<li><a href="#org_sfvl_doctesting_utils_DocPathTest_MethodToPath_path_from_a_package">Path from a package</a></li>
+<li><a href="#org_sfvl_doctesting_utils_DocPathTest_MethodToPath_path_from_a_class">Path from a class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_DocPathTest_MethodToPath_path_from_a_nested_class">Path from a nested class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_DocPathTest_MethodToPath_file_of_a_class">File of a class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_DocPathTest_MethodToPath_file_of_a_nested_class">File of a nested class</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_docwriter">DocWriter</a>
@@ -534,6 +544,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_utils_DocWriterTest_format_title">Format title</a></li>
 <li><a href="#org_sfvl_doctesting_utils_DocWriterTest_add_description_using_comment">Add description</a></li>
 <li><a href="#org_sfvl_doctesting_utils_DocWriterTest_title">Formatted title</a></li>
+</ul>
+</li>
+<li><a href="#_parsedclassrepository">ParsedClassRepository</a>
+<ul class="sectlevel3">
+<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_context">Context</a></li>
+<li><a href="#_retrieve_comment">Retrieve comment</a>
+<ul class="sectlevel4">
+<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_class">Retrieve comment of a class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method">Retrieve comment of a method</a></li>
+<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_local_class_defined_in_a_method">Retrieve comment of local class defined in a method</a></li>
+<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_parameter">Retrieve comment of a method with parameter</a></li>
+<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_parameter_with_scope">Retrieve comment of a method with parameter with scope</a></li>
+<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_list_parameter">Retrieve comment of a method with list parameter</a></li>
+<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_array_parameter">Retrieve comment of a method with array parameter</a></li>
+</ul>
+</li>
+<li><a href="#_retrieve_line_number">Retrieve line number</a>
+<ul class="sectlevel4">
+<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_class">Retrieve line of a class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_method">Retrieve line of a method</a></li>
+</ul>
+</li>
+<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_create_ParsedClassRepository">Create ParsedClassRepository</a></li>
 </ul>
 </li>
 <li><a href="#_class_documentation_test">Class documentation test</a>
@@ -744,7 +777,7 @@ Each nested class create a nested title.</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
  * Demo of a simple usage to generate documentation.
  */</span>
-<span class="kd">class</span> <span class="nc">DemoNestedTest</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoNestedTest</span> <span class="o">{</span>
     <span class="nd">@RegisterExtension</span>
     <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
 
@@ -803,8 +836,7 @@ Each nested class create a nested title.</p>
 <div class="listingblock">
 <div class="title">Document generated</div>
 <div class="content">
-<pre>:nofooter:
-= Demo nested test
+<pre>= Demo nested test
 
 Demo of a simple usage to generate documentation.
 
@@ -903,7 +935,6 @@ include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ad
 :ROOT_PATH: ../../..
 endif::[]
 
-:nofooter:
 = My test
 
 include::_MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
@@ -1272,6 +1303,34 @@ If all test methods of a class are excluded, then the class will not be return a
 </ul>
 </div>
 </div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_ClassFinderTest_find_root_class_from_enclosing_class">Find root class from enclosing class</h4>
+<div class="listingblock">
+<div class="title">Class used</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">FirstClass</span> <span class="o">{</span>
+    <span class="kd">class</span> <span class="nc">SecondClass</span> <span class="o">{</span>
+        <span class="kd">class</span> <span class="nc">ThirdClass</span> <span class="o">{</span>
+
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="title">Code to find root class from an enclosing class</div>
+<div class="content">
+<pre>final ClassFinder finder = new ClassFinder();
+Class&lt;?&gt; clazz = finder.getMainFileClass(FirstClass.SecondClass.ThirdClass.class);</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">FirstClass</span></code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_classes_order_test">Classes order test</h3>
@@ -1528,10 +1587,10 @@ To be able to extract it, we have to explicitly give source file.</p>
 <div class="listingblock">
 <div class="title">Source code to extract</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@NotIncludeToDoc</span>
-<span class="cm">/**
+<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
  * Comment of the class.
  */</span>
+<span class="nd">@NotIncludeToDoc</span>
 <span class="kd">class</span> <span class="nc">ClassNestedWithCommentToExtract</span> <span class="o">{</span>
 
     <span class="cm">/**
@@ -1580,6 +1639,7 @@ To be able to extract it, we have to explicitly give source file.</p>
 </div>
 </div>
 <div class="exampleblock inline">
+<div class="title">Example 1. Exception thrown</div>
 <div class="content">
 java.nio.file.NoSuchFileException: src/test/java/org/sfvl/doctesting/utils/ClassNestedWithCommentToExtract.java
 </div>
@@ -1635,6 +1695,41 @@ It&#8217;s also possible to retrieve only the method body.</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
 <span class="o">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">How to extract code of a method in a nested class</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nc">ClassWithNestedClass</span><span class="o">.</span><span class="na">NestedClass</span><span class="o">::</span><span class="n">nestedMethod</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">methodSource</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">Source code from file</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClassWithNestedClass</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">NestedClass</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">nestedMethod</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="mi">2</span><span class="o">;</span> <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">Source code extracted</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">nestedMethod</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="mi">2</span><span class="o">;</span> <span class="o">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -1787,6 +1882,45 @@ In that case, all parts matching the text will be returned.</p>
 </div>
 <style>
 #org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_part_of_code_from_method ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+</div>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_part_of_code_from_file">Extract a part of code from a file</h5>
+<div class="listingblock">
+<div class="title">How to extract part of a method code</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfFile</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="s">"import"</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">File content</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kn">package</span> <span class="nn">org.sfvl.doctesting.sample</span><span class="o">;</span>
+
+<span class="c1">// &gt;&gt;&gt;import</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Math</span><span class="o">.*;</span>
+<span class="c1">// &lt;&lt;&lt;import</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FileWithCodeToExtract</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">absoluteValue</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">abs</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Content extracted</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kn">import</span> <span class="nn">static</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Math</span><span class="o">.*;</span></code></pre>
+</div>
+</div>
+<style>
+#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_part_of_code_from_file ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
@@ -2026,83 +2160,6 @@ In that case, all parts matching the text will be returned.</p>
 </style>
 </div>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_enclosing_classes">Extract enclosing classes</h5>
-<div class="paragraph">
-<p>Class list of <code>org.sfvl.doctesting.utils.CodeExtractorTest</code> give :</p>
-</div>
-<table class="tableblock frame-all grid-all fit-content">
-<colgroup>
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CodeExtractorTest</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Class list of <code>org.sfvl.doctesting.sample.MyClass.MySubClass.ASubClassOfMySubClass</code> give :</p>
-</div>
-<table class="tableblock frame-all grid-all fit-content">
-<colgroup>
-<col>
-<col>
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MyClass</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MySubClass</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ASubClassOfMySubClass</p></td>
-</tr>
-</tbody>
-</table>
-<style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_enclosing_classes ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-</div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_first_enclosing_classes_before_another">Extract first enclosing classes before another</h5>
-<div class="paragraph">
-<p>Extract from class <code>org.sfvl.doctesting.sample.MyClass$MySubClass$ASubClassOfMySubClass</code> using <code>CodeExtractor.getFirstEnclosingClassBefore</code></p>
-</div>
-<div class="paragraph">
-<p>First class of <code>ASubClassOfMySubClass</code> before <code>ASubClassOfMySubClass</code> give :</p>
-</div>
-<div class="paragraph">
-<p><code><strong>ASubClassOfMySubClass</strong></code></p>
-</div>
-<div class="paragraph">
-<p>First class of <code>ASubClassOfMySubClass</code> before <code>MySubClass</code> give :</p>
-</div>
-<div class="paragraph">
-<p><code><strong>ASubClassOfMySubClass</strong></code></p>
-</div>
-<div class="paragraph">
-<p>First class of <code>ASubClassOfMySubClass</code> before <code>MyClass</code> give :</p>
-</div>
-<div class="paragraph">
-<p><code><strong>MySubClass</strong></code></p>
-</div>
-<div class="paragraph">
-<p>First class of <code>ASubClassOfMySubClass</code> before <code>null</code> give :</p>
-</div>
-<div class="paragraph">
-<p><code><strong>MyClass</strong></code></p>
-</div>
-<style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_first_enclosing_classes_before_another ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-</div>
 </div>
 <div class="sect3">
 <h4 id="_extract_comment">Extract comment</h4>
@@ -2192,17 +2249,17 @@ In that case, all parts matching the text will be returned.</p>
 <div class="listingblock">
 <div class="title">How to extract comment of class that is not the main class of his file.</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">ClassNestedWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">CodeExtractorTest</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">ClassNestedWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="exampleblock inline">
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@NotIncludeToDoc</span>
-<span class="cm">/**
+<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
  * Comment of the class.
  */</span>
+<span class="nd">@NotIncludeToDoc</span>
 <span class="kd">class</span> <span class="nc">ClassNestedWithCommentToExtract</span> <span class="o">{</span>
 
     <span class="cm">/**
@@ -2275,9 +2332,10 @@ In that case, all parts matching the text will be returned.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getDeclaredMethod</span><span class="o">(</span><span class="s">"methodWithoutParameters"</span><span class="o">);</span>
+<span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span>
         <span class="nc">ClassWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="s">"methodWithoutParameters"</span>
+        <span class="n">method</span>
 <span class="o">);</span></code></pre>
 </div>
 </div>
@@ -2296,10 +2354,10 @@ In that case, all parts matching the text will be returned.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getDeclaredMethod</span><span class="o">(</span><span class="s">"methodWithParameters"</span><span class="o">,</span> <span class="kt">int</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span>
         <span class="nc">ClassWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="s">"methodWithParameters"</span><span class="o">,</span>
-        <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getJavaClasses</span><span class="o">(</span><span class="kt">int</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+        <span class="n">method</span>
 <span class="o">);</span></code></pre>
 </div>
 </div>
@@ -2357,7 +2415,7 @@ In that case, all parts matching the text will be returned.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">methodWithComment</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nc">ClassNestedWithCommentToExtract</span><span class="o">.</span><span class="na">SubClassNestedWithCommentToExtract</span><span class="o">::</span><span class="n">methodInSubClass</span><span class="o">);</span>
-<span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">methodWithComment</span><span class="o">);</span></code></pre>
+<span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">getClass</span><span class="o">(),</span> <span class="n">methodWithComment</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="exampleblock inline">
@@ -2372,6 +2430,45 @@ In that case, all parts matching the text will be returned.</p>
 </div>
 <style>
 #org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_extract_method_comment ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+</div>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_bug_when_annotation_before_comment">Issue: comment not retrieve when an annotation is before the comment</h5>
+<div class="paragraph">
+<p>When there is an annotation before the class comment, the comment is not retrieve.
+This is an issue in the JavaParser we used (com.github.javaparser:javaparser-core:3.22.1).</p>
+</div>
+<div class="listingblock">
+<div class="title">How to extract comment of a class</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">ClassWithAnnotationBeforeComment</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock inline">
+<div class="content">
+<div class="listingblock">
+<div class="title">Comment extracted from class</div>
+<div class="content">
+<pre></pre>
+</div>
+</div>
+</div>
+</div>
+<style>
+#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_bug_when_annotation_before_comment ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
@@ -2916,6 +3013,117 @@ Otherwise, the test could fail when executed on another operating system.</p>
 <p><strong>asciiDocPath = src/main/java</strong></p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_method_topath">Method 'toPath'</h4>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_DocPathTest_MethodToPath_path_from_a_package">Path from a package</h5>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">clazz</span> <span class="o">=</span> <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">samples</span><span class="o">.</span><span class="na">MyTest</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+<span class="kd">final</span> <span class="nc">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="nc">DocPath</span><span class="o">.</span><span class="na">toPath</span><span class="o">(</span><span class="n">clazz</span><span class="o">.</span><span class="na">getPackage</span><span class="o">());</span>
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">pathText</span> <span class="o">=</span> <span class="nc">DocPath</span><span class="o">.</span><span class="na">toAsciiDoc</span><span class="o">(</span><span class="n">path</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Result</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>org/sfvl/samples</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_DocPathTest_MethodToPath_path_from_a_class">Path from a class</h5>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">clazz</span> <span class="o">=</span> <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">samples</span><span class="o">.</span><span class="na">MyTest</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+<span class="kd">final</span> <span class="nc">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="nc">DocPath</span><span class="o">.</span><span class="na">toPath</span><span class="o">(</span><span class="n">clazz</span><span class="o">);</span>
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">pathText</span> <span class="o">=</span> <span class="nc">DocPath</span><span class="o">.</span><span class="na">toAsciiDoc</span><span class="o">(</span><span class="n">path</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Result</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>org/sfvl/samples/MyTest.java</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_DocPathTest_MethodToPath_path_from_a_nested_class">Path from a nested class</h5>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">clazz</span> <span class="o">=</span> <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">samples</span><span class="o">.</span><span class="na">MyTestWithNestedClass</span><span class="o">.</span><span class="na">MyNestedClass</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+<span class="kd">final</span> <span class="nc">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="nc">DocPath</span><span class="o">.</span><span class="na">toPath</span><span class="o">(</span><span class="n">clazz</span><span class="o">);</span>
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">pathText</span> <span class="o">=</span> <span class="nc">DocPath</span><span class="o">.</span><span class="na">toAsciiDoc</span><span class="o">(</span><span class="n">path</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Result</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>org/sfvl/samples/MyTestWithNestedClass.java</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_DocPathTest_MethodToPath_file_of_a_class">File of a class</h5>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">clazz</span> <span class="o">=</span> <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">samples</span><span class="o">.</span><span class="na">MyTest</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+<span class="kd">final</span> <span class="nc">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="nc">DocPath</span><span class="o">.</span><span class="na">toFile</span><span class="o">(</span><span class="n">clazz</span><span class="o">);</span>
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">pathText</span> <span class="o">=</span> <span class="nc">DocPath</span><span class="o">.</span><span class="na">toAsciiDoc</span><span class="o">(</span><span class="n">path</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Result</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>MyTest.java</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_DocPathTest_MethodToPath_file_of_a_nested_class">File of a nested class</h5>
+<div class="paragraph">
+<p>With a nested class, the file is that of the main class of the file.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">clazz</span> <span class="o">=</span> <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">samples</span><span class="o">.</span><span class="na">MyTestWithNestedClass</span><span class="o">.</span><span class="na">MyNestedClass</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+<span class="kd">final</span> <span class="nc">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="nc">DocPath</span><span class="o">.</span><span class="na">toFile</span><span class="o">(</span><span class="n">clazz</span><span class="o">);</span>
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">pathText</span> <span class="o">=</span> <span class="nc">DocPath</span><span class="o">.</span><span class="na">toAsciiDoc</span><span class="o">(</span><span class="n">path</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Result</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>MyTestWithNestedClass.java</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_docwriter">DocWriter</h3>
@@ -2966,8 +3174,7 @@ What is wrote on DocWriter is not used in this case.</p>
 <div class="literalblock">
 <div class="title">Output provided</div>
 <div class="content">
-<pre>:nofooter:
-= My test
+<pre>= My test
 
 include::_MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
 </div>
@@ -2982,7 +3189,7 @@ It can be useful when you want to include this file in another test for example.
 <div class="listingblock">
 <div class="title">Test with NoTitle annotation</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">MyTest</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyTestWithoutTitle</span> <span class="o">{</span>
     <span class="nd">@Test</span>
     <span class="nd">@NoTitle</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">my_method</span><span class="o">()</span> <span class="o">{</span>
@@ -2998,7 +3205,7 @@ It can be useful when you want to include this file in another test for example.
 <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"Some text added to show DocWriter output."</span><span class="o">);</span>
 <span class="kd">final</span> <span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span>
         <span class="s">"Do not display this title"</span><span class="o">,</span>
-        <span class="nc">MyTest</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"my_method"</span><span class="o">)</span>
+        <span class="nc">MyTestWithoutTitle</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"my_method"</span><span class="o">)</span>
 <span class="o">);</span></code></pre>
 </div>
 </div>
@@ -3136,6 +3343,340 @@ It returns either DisplayName annotation value or method name.</p>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_parsedclassrepository">ParsedClassRepository</h3>
+<div class="paragraph">
+<p>Extract information from source code.</p>
+</div>
+<div class="paragraph">
+<p>Extraction from method is a naive implementation.
+We compare only class name without checking the scope (package).</p>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_context">Context</h4>
+<div class="paragraph">
+<p>Exemples of this chapter use the following class
+.Class from which information is extracted</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+</pre></td><td class="code"><pre><span class="kn">package</span> <span class="nn">org.sfvl.doctesting.utils</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="cm">/**
+ * My comment for ClassWithInformationToExtract.
+ */</span>
+<span class="kd">class</span> <span class="nc">ClassWithInformationToExtract</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Description of the method 'doSomething'.
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Do something with a String.
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">(</span><span class="nc">String</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Do something with a java.lang.Character.
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Character</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Do something with a List&lt;String&gt;.
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Do something with a String[].
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Do something with an Integer.
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">(</span><span class="kt">int</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_retrieve_comment">Retrieve comment</h4>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_class">Retrieve comment of a class</h5>
+<div class="listingblock">
+<div class="title">How to extract comment</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 2. Comment extracted</div>
+<div class="content">
+<div class="paragraph">
+<p>My comment for ClassWithInformationToExtract.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method">Retrieve comment of a method</h5>
+<div class="listingblock">
+<div class="title">How to extract comment</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">);</span>
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 3. Comment extracted</div>
+<div class="content">
+<div class="paragraph">
+<p>Description of the method 'doSomething'.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_local_class_defined_in_a_method">Retrieve comment of local class defined in a method</h5>
+<div class="paragraph">
+<p>We are not able to deal with local classes(those defined in method).</p>
+</div>
+<div class="listingblock">
+<div class="title">How to extract comment</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
+ * Comment of local class defined in method.
+ */</span>
+<span class="kd">class</span> <span class="nc">MyLocalClass</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">MyLocalClass</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 4. Exception</div>
+<div class="content">
+<div class="paragraph">
+<p>java.lang.RuntimeException: Local classes are not handled</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_parameter">Retrieve comment of a method with parameter</h5>
+<div class="listingblock">
+<div class="title">How to extract comment</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 5. Comment extracted</div>
+<div class="content">
+<div class="paragraph">
+<p>Do something with a String.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_parameter_with_scope">Retrieve comment of a method with parameter with scope</h5>
+<div class="listingblock">
+<div class="title">How to extract comment</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">,</span> <span class="nc">Character</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 6. Comment extracted</div>
+<div class="content">
+<div class="paragraph">
+<p>Do something with a java.lang.Character.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_list_parameter">Retrieve comment of a method with list parameter</h5>
+<div class="listingblock">
+<div class="title">How to extract comment</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">,</span> <span class="nc">List</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 7. Comment extracted</div>
+<div class="content">
+<div class="paragraph">
+<p>Do something with a List&lt;String&gt;.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_array_parameter">Retrieve comment of a method with array parameter</h5>
+<div class="listingblock">
+<div class="title">How to extract comment</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">,</span> <span class="nc">String</span><span class="o">[].</span><span class="na">class</span><span class="o">);</span>
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 8. Comment extracted</div>
+<div class="content">
+<div class="paragraph">
+<p>Do something with a String[].</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_retrieve_line_number">Retrieve line number</h4>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_class">Retrieve line of a class</h5>
+<div class="listingblock">
+<div class="title">How to get the first line of a class</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="kt">int</span> <span class="n">lineNumber</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getLineNumber</span><span class="o">(</span><span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Line found: <strong>8</strong></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_method">Retrieve line of a method</h5>
+<div class="listingblock">
+<div class="title">How to get the first line of a method</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">);</span>
+<span class="kd">final</span> <span class="kt">int</span> <span class="n">lineNumber</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getLineNumber</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Line found: <strong>13</strong></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_create_ParsedClassRepository">Create ParsedClassRepository</h4>
+<div class="paragraph">
+<p>We can build a ParsedClassRepository with several paths.
+When path does not exist, an Exception was thrown.
+Empty path will not be added.
+When you do not have one of the default directories,
+you can set it with an empty value to not throw an exception.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">ParsedClassRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParsedClassRepository</span><span class="o">(</span>
+        <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"src/test/java"</span><span class="o">)</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Object is created</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">ParsedClassRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParsedClassRepository</span><span class="o">(</span>
+        <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"src/main/java"</span><span class="o">),</span>
+        <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"src/test/java"</span><span class="o">)</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Object is created</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">ParsedClassRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParsedClassRepository</span><span class="o">(</span>
+        <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">""</span><span class="o">),</span>
+        <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"src/test/java"</span><span class="o">)</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Object is created</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">ParsedClassRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParsedClassRepository</span><span class="o">(</span>
+        <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"src/UNKNOWN/java"</span><span class="o">)</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>java.lang.IllegalArgumentException: Only directories are allowed as root path: src/UNKNOWN/java</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -3325,66 +3866,7 @@ include::_ClassDocumentationTest_DemoNestedTest.Multiply.should_be_12_when_multi
 <div class="listingblock">
 <div class="title">Test example using <code>ApprovalsExtension</code></div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
- * Demo of a simple usage to generate documentation.
- */</span>
-<span class="nd">@NotIncludeToDoc</span>
-<span class="kd">class</span> <span class="nc">ClassDocumentationTest_DemoNestedTest</span> <span class="o">{</span>
-
-    <span class="nd">@RegisterExtension</span>
-    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
-
-    <span class="cm">/**
-     * Document of Addition operations.
-     */</span>
-    <span class="nd">@Nested</span>
-    <span class="kd">class</span> <span class="nc">Adding</span> <span class="o">{</span>
-
-        <span class="nd">@Test</span>
-        <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Adding 2 simple numbers"</span><span class="o">)</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_be_5_when_adding_2_and_3</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d + %d = %d"</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="o">));</span>
-        <span class="o">}</span>
-
-        <span class="cm">/**
-         * A nested test.
-         */</span>
-        <span class="nd">@Test</span>
-        <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Adding 3 simple numbers"</span><span class="o">)</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_be_9_when_adding_2_3_and_4</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d + %d + %d = %d"</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="o">));</span>
-        <span class="o">}</span>
-
-        <span class="cm">/**
-         * Addition negative numbers.
-         */</span>
-        <span class="nd">@Nested</span>
-        <span class="kd">class</span> <span class="nc">AddingNegativeNumber</span> <span class="o">{</span>
-            <span class="nd">@Test</span>
-            <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Adding 2 negative numbers"</span><span class="o">)</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_be_minus_8_when_adding_minus_3_and_minus_5</span><span class="o">()</span> <span class="o">{</span>
-                <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d + %d = %d"</span><span class="o">,</span> <span class="o">-</span><span class="mi">3</span><span class="o">,</span> <span class="o">-</span><span class="mi">5</span><span class="o">,</span> <span class="o">(-</span><span class="mi">3</span><span class="o">)</span> <span class="o">+</span> <span class="o">(-</span><span class="mi">5</span><span class="o">)));</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="cm">/**
-     * A method between two nested classes is between those classes in final documentatiton.
-     */</span>
-    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">method_between_two_nested_classes</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"This is the documentation generated in test"</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Nested</span>
-    <span class="kd">class</span> <span class="nc">Multiply</span> <span class="o">{</span>
-        <span class="nd">@Test</span>
-        <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Multiply 2 simple numbers"</span><span class="o">)</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_be_12_when_multiply_4_and_3</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%d * %d = %d"</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">3</span><span class="o">));</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"></code></pre>
 </div>
 </div>
 </div>
