@@ -7,6 +7,7 @@ endif::[]
 
 We are not able to deal with local classes(those defined in method).
 
+[.inline]
 .How to extract comment
 
 [source,java,indent=0]
@@ -19,11 +20,21 @@ We are not able to deal with local classes(those defined in method).
 
                             }
                         }
-                        final String comment = parser.getComment(MyLocalClass.class);
+                        String comment = parser.getComment(MyLocalClass.class);
 
 ----
 
+[.inline]
 .Exception
-====
+----
 java.lang.RuntimeException: Local classes are not handled
-====
+----
+++++
+<style>
+#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_local_class_defined_in_a_method ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++

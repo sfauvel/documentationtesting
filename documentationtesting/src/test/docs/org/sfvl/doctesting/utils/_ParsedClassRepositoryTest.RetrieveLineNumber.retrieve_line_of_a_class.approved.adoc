@@ -14,3 +14,12 @@ endif::[]
 ----
 
 Line found: *8*
+++++
+<style>
+#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_class ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++
