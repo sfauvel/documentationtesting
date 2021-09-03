@@ -1,8 +1,6 @@
 package org.sfvl.doctesting.utils;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
@@ -16,9 +14,12 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @ClassToDocument(clazz = ParsedClassRepository.class)
 @DisplayName(value = "ParsedClassRepository")
@@ -26,6 +27,24 @@ public class ParsedClassRepositoryTest {
     Formatter formatter = new AsciidocFormatter();
     @RegisterExtension
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
+
+    @AfterEach
+    public void addSyle(TestInfo testInfo) {
+        final String title = "_" + doc.getDocWriter().formatTitle(testInfo.getDisplayName(), testInfo.getTestMethod().get())
+                .replaceAll(" ", "_")
+                .toLowerCase();
+        // Id automatically added when toc is activate but not on H1 title so we add one.
+        doc.write("",
+                "++++",
+                "<style>",
+                "#" + doc.getDocWriter().titleId(testInfo.getTestMethod().get()) + " ~ .inline {",
+                "   display: inline-block;",
+                "   vertical-align: top;",
+                "   margin-right: 2em;",
+                "}",
+                "</style>",
+                "++++");
+    }
 
     @Test
     public void context() {
@@ -64,10 +83,12 @@ public class ParsedClassRepositoryTest {
                 exception = Optional.of(e);
             }
             doc.write(
+                    "[.inline]",
                     ".How to extract comment",
                     formatter.sourceCode(code),
+                    "[.inline]",
                     exception.map(e -> ".Exception").orElse(".Comment extracted"),
-                    formatter.blockBuilder("====")
+                    formatter.blockBuilder("----")
                             .content(exception.map(Exception::toString).orElse(comment))
                             .build()
             );
@@ -77,7 +98,7 @@ public class ParsedClassRepositoryTest {
         public void retrieve_comment_of_a_class() {
             retrieve_comment(() -> {
                         // >>>
-                        final String comment = parser.getComment(ClassWithInformationToExtract.class);
+                        String comment = parser.getComment(ClassWithInformationToExtract.class);
                         // <<<
                         return comment;
                     }
@@ -88,8 +109,9 @@ public class ParsedClassRepositoryTest {
         public void retrieve_comment_of_a_method() {
             retrieve_comment(() -> {
                         // >>>
-                        final Method method = ClassWithInformationToExtract.class.getMethod("doSomething");
-                        final String comment = parser.getComment(method);
+                        Method method = ClassWithInformationToExtract.class
+                                .getMethod("doSomething");
+                        String comment = parser.getComment(method);
                         // <<<
                         return comment;
                     }
@@ -98,6 +120,7 @@ public class ParsedClassRepositoryTest {
 
         /**
          * We are not able to deal with local classes(those defined in method).
+         *
          * @throws NoSuchMethodException
          */
         @Test
@@ -112,7 +135,7 @@ public class ParsedClassRepositoryTest {
 
                             }
                         }
-                        final String comment = parser.getComment(MyLocalClass.class);
+                        String comment = parser.getComment(MyLocalClass.class);
                         // <<<
                         return comment;
                     }
@@ -123,8 +146,9 @@ public class ParsedClassRepositoryTest {
         public void retrieve_comment_of_a_method_with_parameter() throws NoSuchMethodException {
             retrieve_comment(() -> {
                         // >>>
-                        final Method method = ClassWithInformationToExtract.class.getMethod("doSomething", String.class);
-                        final String comment = parser.getComment(method);
+                        Method method = ClassWithInformationToExtract.class
+                                .getMethod("doSomething", String.class);
+                        String comment = parser.getComment(method);
                         // <<<
                         return comment;
                     }
@@ -135,8 +159,9 @@ public class ParsedClassRepositoryTest {
         public void retrieve_comment_of_a_method_with_parameter_with_scope() throws NoSuchMethodException {
             retrieve_comment(() -> {
                         // >>>
-                        final Method method = ClassWithInformationToExtract.class.getMethod("doSomething", Character.class);
-                        final String comment = parser.getComment(method);
+                        Method method = ClassWithInformationToExtract.class
+                                .getMethod("doSomething", Character.class);
+                        String comment = parser.getComment(method);
                         // <<<
                         return comment;
                     }
@@ -147,8 +172,9 @@ public class ParsedClassRepositoryTest {
         public void retrieve_comment_of_a_method_with_list_parameter() throws NoSuchMethodException {
             retrieve_comment(() -> {
                         // >>>
-                        final Method method = ClassWithInformationToExtract.class.getMethod("doSomething", List.class);
-                        final String comment = parser.getComment(method);
+                        Method method = ClassWithInformationToExtract.class
+                                .getMethod("doSomething", List.class);
+                        String comment = parser.getComment(method);
                         // <<<
                         return comment;
                     }
@@ -159,8 +185,9 @@ public class ParsedClassRepositoryTest {
         public void retrieve_comment_of_a_method_with_array_parameter() throws NoSuchMethodException {
             retrieve_comment(() -> {
                         // >>>
-                        final Method method = ClassWithInformationToExtract.class.getMethod("doSomething", String[].class);
-                        final String comment = parser.getComment(method);
+                        Method method = ClassWithInformationToExtract.class
+                                .getMethod("doSomething", String[].class);
+                        String comment = parser.getComment(method);
                         // <<<
                         return comment;
                     }
@@ -187,14 +214,55 @@ public class ParsedClassRepositoryTest {
         public void retrieve_line_of_a_method() throws NoSuchMethodException {
             final ParsedClassRepository parser = new ParsedClassRepository(Config.TEST_PATH);
             // >>>
-            final Method method = ClassWithInformationToExtract.class.getMethod("doSomething");
-            final int lineNumber = parser.getLineNumber(method);
+            Method method = ClassWithInformationToExtract.class.getMethod("doSomething");
+            int lineNumber = parser.getLineNumber(method);
             // <<<
             doc.write(
                     ".How to get the first line of a method",
                     formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
                     String.format("Line found: *%d*", lineNumber)
             );
+        }
+    }
+
+    class CodeExecutor {
+        private final SupplierWithException<?> supplier;
+        private final String sourceCode;
+
+        CodeExecutor(SupplierWithException<?> supplier, String sourceCode) {
+            this.supplier = supplier;
+            this.sourceCode = sourceCode;
+        }
+
+        CodeResult execute() {
+            try {
+                supplier.run();
+                return new CodeResult("Object creation", formatter.sourceCode(sourceCode));
+            } catch (Exception e) {
+                return new CodeResult("Exception",
+                        "." + e.toString().replaceAll("src\\\\(.*)\\\\java", "src/$1/java")
+                                + "\n" + formatter.sourceCode(sourceCode));
+
+            }
+        }
+
+    }
+
+    class CodeResult {
+        private final String description;
+        private final String category;
+
+        public CodeResult(String category, String description) {
+            this.category = category;
+            this.description = description;
+        }
+
+        public String category() {
+            return category;
+        }
+
+        public String description() {
+            return description;
         }
     }
 
@@ -206,56 +274,59 @@ public class ParsedClassRepositoryTest {
                 "When you do not have one of the default directories,",
                 "you can set it with an empty value to not throw an exception.");
 
-        writeResultOfParsedClassRepositoryInstanciation(() -> {
-            // >>>1
-            final ParsedClassRepository repository = new ParsedClassRepository(
+
+        List<CodeExecutor> list = new ArrayList<CodeExecutor>();
+        list.add(new CodeExecutor(() -> {
+            // >>>OnePath
+            ParsedClassRepository repository = new ParsedClassRepository(
                     Paths.get("src/test/java")
             );
-            // <<<1
+            // <<<OnePath
             return repository;
-        },CodeExtractor.extractPartOfCurrentMethod("1"));
+        }, CodeExtractor.extractPartOfCurrentMethod("OnePath")));
 
-        writeResultOfParsedClassRepositoryInstanciation(() -> {
-            // >>>2
-            final ParsedClassRepository repository = new ParsedClassRepository(
+        list.add(new CodeExecutor(() -> {
+            // >>>TwoPaths
+            ParsedClassRepository repository = new ParsedClassRepository(
                     Paths.get("src/main/java"),
                     Paths.get("src/test/java")
             );
-            // <<<2
+            // <<<TwoPaths
             return repository;
-        },CodeExtractor.extractPartOfCurrentMethod("2"));
+        }, CodeExtractor.extractPartOfCurrentMethod("TwoPaths")));
 
-        writeResultOfParsedClassRepositoryInstanciation(() -> {
-            // >>>empty_path
-            final ParsedClassRepository repository = new ParsedClassRepository(
+        list.add(new CodeExecutor(() -> {
+            // >>>EmptyPath
+            ParsedClassRepository repository = new ParsedClassRepository(
                     Paths.get(""),
                     Paths.get("src/test/java")
             );
-            // <<<empty_path
+            // <<<EmptyPath
             return repository;
-        },CodeExtractor.extractPartOfCurrentMethod("empty_path"));
+        }, CodeExtractor.extractPartOfCurrentMethod("EmptyPath")));
 
-        writeResultOfParsedClassRepositoryInstanciation(() -> {
-            // >>>3
-            final ParsedClassRepository repository = new ParsedClassRepository(
+        list.add(new CodeExecutor(() -> {
+            // >>>UnknownPath
+            ParsedClassRepository repository = new ParsedClassRepository(
                     Paths.get("src/UNKNOWN/java")
             );
-            // <<<3
+            // <<<UnknownPath
             return repository;
-        },CodeExtractor.extractPartOfCurrentMethod("3"));
-    }
+        }, CodeExtractor.extractPartOfCurrentMethod("UnknownPath")));
 
-    private void writeResultOfParsedClassRepositoryInstanciation(SupplierWithException<?> supplier, String sourceCode) {
-        doc.write(formatter.sourceCode(sourceCode));
-        try {
-            supplier.run();
-            doc.write("Object is created");
-        } catch (Exception e) {
-            doc.write(formatter.blockBuilder("====")
-                    // We replace Windows path to always obtains the same output in Windows and Linux.
-                    .content(e.toString().replaceAll("src\\\\(.*)\\\\java", "src/$1/java"))
-                    .build());
-        }
+
+        final Map<String, List<CodeResult>> map = list.stream()
+                .map(CodeExecutor::execute)
+                .collect(Collectors.groupingBy(CodeResult::category));
+
+        final String[] lines = map.entrySet().stream()
+                .flatMap(e -> Stream.concat(
+                        Stream.of("", "", formatter.title(2, e.getKey()).trim()),
+                        e.getValue().stream().map(x -> x.description())
+                ))
+                .toArray(String[]::new);
+
+        doc.write(lines);
     }
 
 }

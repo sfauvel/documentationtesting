@@ -9,9 +9,18 @@ endif::[]
 
 [source,java,indent=0]
 ----
-            final Method method = ClassWithInformationToExtract.class.getMethod("doSomething");
-            final int lineNumber = parser.getLineNumber(method);
+            Method method = ClassWithInformationToExtract.class.getMethod("doSomething");
+            int lineNumber = parser.getLineNumber(method);
 
 ----
 
 Line found: *13*
+++++
+<style>
+#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_method ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++

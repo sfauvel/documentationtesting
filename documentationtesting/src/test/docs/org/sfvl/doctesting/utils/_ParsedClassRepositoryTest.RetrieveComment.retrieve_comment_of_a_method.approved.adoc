@@ -5,16 +5,28 @@ endif::[]
 [#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method]
 = Retrieve comment of a method
 
+[.inline]
 .How to extract comment
 
 [source,java,indent=0]
 ----
-                        final Method method = ClassWithInformationToExtract.class.getMethod("doSomething");
-                        final String comment = parser.getComment(method);
+                        Method method = ClassWithInformationToExtract.class
+                                .getMethod("doSomething");
+                        String comment = parser.getComment(method);
 
 ----
 
+[.inline]
 .Comment extracted
-====
+----
 Description of the method 'doSomething'.
-====
+----
+++++
+<style>
+#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++

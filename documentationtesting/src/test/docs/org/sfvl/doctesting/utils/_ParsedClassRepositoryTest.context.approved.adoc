@@ -57,3 +57,13 @@ class ClassWithInformationToExtract {
 }
 
 ----
+
+++++
+<style>
+#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_context ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++
