@@ -20,6 +20,7 @@ public class DocTestingDocumentation {
 
 
     protected final Formatter formatter = new AsciidocFormatter();
+    private static final ClassFinder classFinder = new ClassFinder();
 
     @Test
     @NoTitle
@@ -84,7 +85,7 @@ public class DocTestingDocumentation {
     }
 
     private List<Class<?>> getClassesToDocument() {
-        final List<Class<?>> classes = new ClassFinder().testClasses(DocTestingDocumentation.class.getPackage(),
+        final List<Class<?>> classes = classFinder.testClasses(DocTestingDocumentation.class.getPackage(),
                 this::toBeInclude);
         classes.remove(this.getClass());
         return classes;

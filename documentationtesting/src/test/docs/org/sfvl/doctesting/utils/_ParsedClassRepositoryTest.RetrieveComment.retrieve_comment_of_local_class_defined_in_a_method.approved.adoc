@@ -1,0 +1,29 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+[#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_local_class_defined_in_a_method]
+= Retrieve comment of local class defined in a method
+
+We are not able to deal with local classes(those defined in method).
+
+.How to extract comment
+
+[source,java,indent=0]
+----
+                        /**
+                         * Comment of local class defined in method.
+                         */
+                        class MyLocalClass {
+                            public void doSomething() {
+
+                            }
+                        }
+                        final String comment = parser.getComment(MyLocalClass.class);
+
+----
+
+.Exception
+====
+java.lang.RuntimeException: Local classes are not handled
+====

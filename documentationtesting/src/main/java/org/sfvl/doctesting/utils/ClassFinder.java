@@ -20,7 +20,7 @@ public class ClassFinder {
                 .filter(methodFilter);
 
         return methodsAnnotatedWith
-                .map(method -> CodeExtractor.getFirstEnclosingClassBefore(method, null))
+                .map(method -> getMainFileClass(method.getDeclaringClass()))
                 .distinct()
                 .sorted(Comparator.comparing(Class::getName))
                 .collect(Collectors.toList());
@@ -28,6 +28,13 @@ public class ClassFinder {
 
     public List<Class<?>> testClasses(Package packageToScan) {
         return testClasses(packageToScan, m -> true);
+    }
+
+
+    public Class<?> getMainFileClass(Class<?> clazz) {
+        return clazz.getEnclosingClass() != null
+                ? getMainFileClass(clazz.getEnclosingClass())
+                : clazz;
     }
 
 }

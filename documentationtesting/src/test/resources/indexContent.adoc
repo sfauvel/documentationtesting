@@ -80,6 +80,7 @@ Information-oriented
 : Tools to make test validating generated files.
 * link:{ROOT_PATH}/{ASCIIDOC_FORMATTER_HTML}[Asciidoc formatter test]
 : Utilities to format documentation.
+* link:{ROOT_PATH}/{KNOWN_ISSUES_HTML}[Known issues]
 --
 
 ++++

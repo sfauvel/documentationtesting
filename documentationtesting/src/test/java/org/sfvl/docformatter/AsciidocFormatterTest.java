@@ -289,7 +289,13 @@ public class AsciidocFormatterTest {
 
         annotation.map(TestOption::includeMethodDoc)
                 .filter(methodName -> !methodName.isEmpty())
-                .map(methodName -> CodeExtractor.getComment(AsciidocFormatter.class, methodName))
+                .map(methodName -> {
+                    try {
+                        return CodeExtractor.getComment(AsciidocFormatter.class.getDeclaredMethod(methodName));
+                    } catch (NoSuchMethodException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
                 .ifPresent(comment -> doc.write(comment.get(), ""));
 
         doc.write("", "[red]##_Usage_##", "[source,java,indent=0]", "----", extractMethod(testinfo), "----", "");
@@ -303,7 +309,7 @@ public class AsciidocFormatterTest {
     }
 
     public String extractMethod(TestInfo testinfo) {
-        final String body = extractMethod(this.getClass(), testinfo.getTestMethod().get().getName());
+        final String body = CodeExtractor.extractMethodBody(testinfo.getTestMethod().get());
         final String[] split = body.split("\n");
         final String bodyFormatted = Arrays.stream(Arrays.copyOfRange(split, 1, split.length - 1))
                 .collect(Collectors.joining("\n"));

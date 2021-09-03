@@ -1,0 +1,5 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+include::../../../../resources/knownIssues.adoc[leveloffset=+1]

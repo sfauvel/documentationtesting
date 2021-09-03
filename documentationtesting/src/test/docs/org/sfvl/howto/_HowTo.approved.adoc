@@ -1,7 +1,7 @@
-:toc: left
-:nofooter:
-:stem:
-:source-highlighter: rouge
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
 = How to
 
 include::_HowTo.getting_started.approved.adoc[leveloffset=+1]

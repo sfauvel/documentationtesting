@@ -2,7 +2,6 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../../..
 endif::[]
 
-:nofooter:
 = Approvals extension
 
 JUnit5 extension that verify written document matches with approved one.

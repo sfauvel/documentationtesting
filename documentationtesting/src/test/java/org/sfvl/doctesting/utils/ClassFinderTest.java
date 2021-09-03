@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 
@@ -11,6 +12,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ClassFinderTest {
+
+    Formatter formatter = new AsciidocFormatter();
+
     @RegisterExtension
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
@@ -61,5 +65,29 @@ public class ClassFinderTest {
                 classesFound);
     }
 
+    @Test
+    public void find_root_class_from_enclosing_class() {
+        // >>>
+        final ClassFinder finder = new ClassFinder();
+        Class<?> clazz = finder.getMainFileClass(FirstClass.SecondClass.ThirdClass.class);
+        // <<<
+
+        doc.write(".Class used",
+                formatter.sourceCode(CodeExtractor.extractPartOfFile(new DocPath(this.getClass()).test().path(), clazz.getSimpleName())),
+                ".Code to find root class from an enclosing class",
+                CodeExtractor.extractPartOfCurrentMethod(),
+                ".Result",
+                formatter.sourceCode(clazz.getSimpleName()));
+    }
 
 }
+
+// >>>FirstClass
+class FirstClass {
+    class SecondClass {
+        class ThirdClass {
+
+        }
+    }
+}
+// <<<FirstClass

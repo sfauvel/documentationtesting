@@ -14,10 +14,10 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <junit.version>5.4.1</junit.version>
         <xchart.version>3.6.1</xchart.version>
-        <documentationtesting.version>1.1.4-SNAPSHOT</documentationtesting.version>
+        <documentationtesting.version>1.1.5-SNAPSHOT</documentationtesting.version>
         <asciidoctor.maven.plugin.version>2.1.0</asciidoctor.maven.plugin.version>
     </properties>
 

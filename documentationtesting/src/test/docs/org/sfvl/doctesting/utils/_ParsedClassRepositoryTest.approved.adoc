@@ -1,0 +1,36 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+= ParsedClassRepository
+
+Extract information from source code.
+
+Extraction from method is a naive implementation.
+We compare only class name without checking the scope (package).
+
+include::_ParsedClassRepositoryTest.context.approved.adoc[leveloffset=+1]
+
+== Retrieve comment
+
+include::_ParsedClassRepositoryTest.RetrieveComment.retrieve_comment_of_a_class.approved.adoc[leveloffset=+2]
+
+include::_ParsedClassRepositoryTest.RetrieveComment.retrieve_comment_of_a_method.approved.adoc[leveloffset=+2]
+
+include::_ParsedClassRepositoryTest.RetrieveComment.retrieve_comment_of_local_class_defined_in_a_method.approved.adoc[leveloffset=+2]
+
+include::_ParsedClassRepositoryTest.RetrieveComment.retrieve_comment_of_a_method_with_parameter.approved.adoc[leveloffset=+2]
+
+include::_ParsedClassRepositoryTest.RetrieveComment.retrieve_comment_of_a_method_with_parameter_with_scope.approved.adoc[leveloffset=+2]
+
+include::_ParsedClassRepositoryTest.RetrieveComment.retrieve_comment_of_a_method_with_list_parameter.approved.adoc[leveloffset=+2]
+
+include::_ParsedClassRepositoryTest.RetrieveComment.retrieve_comment_of_a_method_with_array_parameter.approved.adoc[leveloffset=+2]
+
+== Retrieve line number
+
+include::_ParsedClassRepositoryTest.RetrieveLineNumber.retrieve_line_of_a_class.approved.adoc[leveloffset=+2]
+
+include::_ParsedClassRepositoryTest.RetrieveLineNumber.retrieve_line_of_a_method.approved.adoc[leveloffset=+2]
+
+include::_ParsedClassRepositoryTest.create_ParsedClassRepository.approved.adoc[leveloffset=+1]

@@ -1,30 +1,28 @@
 package org.sfvl.doctesting.utils;
 
-import com.thoughtworks.qdox.JavaProjectBuilder;
-import com.thoughtworks.qdox.model.JavaClass;
-import com.thoughtworks.qdox.model.JavaMethod;
-import com.thoughtworks.qdox.model.JavaModel;
-
 import java.lang.reflect.Method;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ClassesOrder {
+
     PathProvider pathProvider = new PathProvider();
 
-    private static JavaProjectBuilder builder;
+    private static ParsedClassRepository parserClassBuilder;
 
     public ClassesOrder() {
-        if (builder == null) {
-            builder = createJavaProjectBuilderWithTestPath();
+        if (parserClassBuilder == null) {
+            parserClassBuilder = createParsedeClassBuilderWithTestPath();
         }
     }
 
     public static interface EncapsulateDeclared<T> {
-        JavaModel getJavaModel();
 
         int getLineNumber();
 
@@ -33,53 +31,47 @@ public class ClassesOrder {
         T getEncapsulatedObject();
     }
 
-    public abstract static class EncapsulateJavaModel<T, J extends JavaModel> implements EncapsulateDeclared<T> {
+    public abstract static class EncapsulateJavaModel<T> implements EncapsulateDeclared<T> {
         private final T encapsulatedObject;
-        private final J javaModel;
 
-        public EncapsulateJavaModel(T encapsulatedObject, J javaModel) {
+        public EncapsulateJavaModel(T encapsulatedObject) {
             this.encapsulatedObject = encapsulatedObject;
-            this.javaModel = javaModel;
         }
 
         public T getEncapsulatedObject() {
             return encapsulatedObject;
         }
 
+    }
+
+    public static class EncapsulateDeclaredClass extends EncapsulateJavaModel<Class<?>> {
+        public EncapsulateDeclaredClass(Class<?> encapsulatedClass) {
+            super(encapsulatedClass);
+        }
         @Override
-        public J getJavaModel() {
-            return javaModel;
+        public String getName() {
+            return getEncapsulatedObject().getSimpleName();
         }
 
         @Override
         public int getLineNumber() {
-            return javaModel.getLineNumber();
+            return parserClassBuilder.getLineNumber(getEncapsulatedObject());
         }
-
 
     }
 
-    public static class EncapsulateDeclaredClass extends EncapsulateJavaModel<Class<?>, JavaClass> {
-        public EncapsulateDeclaredClass(Class<?> encapsulatedClass) {
-            super(encapsulatedClass, builder.getClassByName(encapsulatedClass.getName()));
-        }
-        @Override
-        public String getName() {
-            return getJavaModel().getName();
-        }
-    }
-
-    public static class EncapsulateDeclaredMethod extends EncapsulateJavaModel<Method, JavaMethod> {
+    public static class EncapsulateDeclaredMethod extends EncapsulateJavaModel<Method> {
         public EncapsulateDeclaredMethod(Method encapsulatedMethod) {
-            super(encapsulatedMethod,
-                    builder.getClassByName(encapsulatedMethod.getDeclaringClass().getName())
-                            .getMethods().stream()
-                            .filter(m -> encapsulatedMethod.getName().equals(m.getName()))
-                            .findFirst().get());
+            super(encapsulatedMethod);
         }
         @Override
         public String getName() {
-            return getJavaModel().getName();
+            return getEncapsulatedObject().getName();
+        }
+
+        @Override
+        public int getLineNumber() {
+            return parserClassBuilder.getLineNumber(getEncapsulatedObject());
         }
     }
 
@@ -91,14 +83,9 @@ public class ClassesOrder {
         final Class<?>[] declaredClasses = clazz.getDeclaredClasses();
         final Method[] declaredMethods = clazz.getDeclaredMethods();
 
-        final Set<String> methodsNameInSource = builder.getClassByName(clazz.getName())
-                .getMethods().stream()
-                .map(JavaMethod::getName)
-                .collect(Collectors.toSet());
-
         Map<String, EncapsulateDeclared> methodsByName = Arrays.stream(declaredMethods)
                 .filter(methodFilter)
-                .filter(m -> methodsNameInSource.contains(m.getName()))
+                .filter(m -> !m.isSynthetic())
                 .collect(Collectors.toMap(
                         Method::getName,
                         m -> new EncapsulateDeclaredMethod(m)
@@ -120,12 +107,9 @@ public class ClassesOrder {
 
     }
 
-    private JavaProjectBuilder createJavaProjectBuilderWithTestPath() {
-        JavaProjectBuilder builder = new JavaProjectBuilder();
-
-
+    private ParsedClassRepository createParsedeClassBuilderWithTestPath() {
         final Path testPath = pathProvider.getProjectPath().resolve(Config.TEST_PATH);
-        builder.addSourceTree(testPath.toFile());
+        ParsedClassRepository builder = new ParsedClassRepository(testPath);
         return builder;
     }
 }

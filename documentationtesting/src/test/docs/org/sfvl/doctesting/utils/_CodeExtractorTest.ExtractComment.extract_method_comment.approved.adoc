@@ -18,9 +18,10 @@ include::../../../../../java/org/sfvl/doctesting/sample/ClassWithCommentToExtrac
 How to extract comment of a method
 [source, java, indent=0]
 ----
+                final Method method = ClassWithCommentToExtract.class.getDeclaredMethod("methodWithoutParameters");
                 final Optional<String> comment = CodeExtractor.getComment(
                         ClassWithCommentToExtract.class,
-                        "methodWithoutParameters"
+                        method
                 );
 
 ----
@@ -36,10 +37,10 @@ Comment of the method without parameters.
 How to extract comment of a method with parameters
 [source, java, indent=0]
 ----
+                final Method method = ClassWithCommentToExtract.class.getDeclaredMethod("methodWithParameters", int.class, String.class);
                 final Optional<String> comment = CodeExtractor.getComment(
                         ClassWithCommentToExtract.class,
-                        "methodWithParameters",
-                        CodeExtractor.getJavaClasses(int.class, String.class)
+                        method
                 );
 
 ----
@@ -88,7 +89,7 @@ How to extract comment of a method of an inner class
 [source, java, indent=0]
 ----
                 final Method methodWithComment = FindLambdaMethod.getMethod(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract::methodInSubClass);
-                final Optional<String> comment = CodeExtractor.getComment(methodWithComment);
+                final Optional<String> comment = CodeExtractor.getComment(this.getClass(), methodWithComment);
 
 ----
 

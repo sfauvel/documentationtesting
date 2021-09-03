@@ -4,18 +4,17 @@
 
     <groupId>org.sfvl</groupId>
     <artifactId>documentationtesting</artifactId>
-    <version>1.1.4-SNAPSHOT</version>
+    <version>1.1.5-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <junit.version>5.8.0-M1</junit.version>
         <mockito.version>2.25.1</mockito.version>
-        <qdox.version>2.0-M10</qdox.version>
         <reflections.version>0.9.11</reflections.version>
         <approvaltests.version>4.0.2</approvaltests.version>
-        <javaparser.version>3.16.2</javaparser.version>
+        <javaparser.version>3.22.1</javaparser.version>
         <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -137,11 +136,6 @@
             <groupId>com.approvaltests</groupId>
             <artifactId>approvaltests</artifactId>
             <version>${approvaltests.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.thoughtworks.qdox</groupId>
-            <artifactId>qdox</artifactId>
-            <version>${qdox.version}</version>
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>

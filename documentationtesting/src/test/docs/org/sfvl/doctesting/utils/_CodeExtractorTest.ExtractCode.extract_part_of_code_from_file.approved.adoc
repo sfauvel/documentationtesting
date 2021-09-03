@@ -1,0 +1,48 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+[#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_part_of_code_from_file]
+= Extract a part of code from a file
+
+.How to extract part of a method code
+[source, java, indent=0]
+----
+            String code = CodeExtractor.extractPartOfFile(path, "import");
+
+----
+
+.File content
+
+[source,java,indent=0]
+----
+package org.sfvl.doctesting.sample;
+
+// >>>import
+import static java.lang.Math.*;
+// <<<import
+
+public class FileWithCodeToExtract {
+
+    public int absoluteValue(int value) {
+        return abs(value);
+    }
+}
+----
+
+.Content extracted
+
+[source,java,indent=0]
+----
+import static java.lang.Math.*;
+
+----
+++++
+<style>
+#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_part_of_code_from_file ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++

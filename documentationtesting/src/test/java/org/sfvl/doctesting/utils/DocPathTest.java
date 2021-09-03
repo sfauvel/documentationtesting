@@ -1,6 +1,7 @@
 package org.sfvl.doctesting.utils;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.mockito.Mockito;
@@ -138,17 +139,17 @@ public class DocPathTest {
         final Class<?> clazz = MyClass.MySubClass.class;
 
         doc.write(String.format("Name for nested class `%s` is `%s`.",
-                clazz.getName(),
-                new DocPath(clazz).name()),
+                        clazz.getName(),
+                        new DocPath(clazz).name()),
                 "",
                 ""
         );
 
         final Method method = FindLambdaMethod.getMethod(MyClass.MySubClass::doSomething);
         doc.write(String.format("Name for method `%s` in nested class `%s` is `%s`.",
-                method.getName(),
-                method.getDeclaringClass().getName(),
-                new DocPath(method).name()),
+                        method.getName(),
+                        method.getDeclaringClass().getName(),
+                        new DocPath(method).name()),
                 ""
         );
     }
@@ -189,11 +190,98 @@ public class DocPathTest {
 
     }
 
-     String callResult(CallsRecorder recorder, Path path) {
-       return String.format("%s | %s", recorder.lastCall(), DocPath.toAsciiDoc(path));
-     }
+    @Nested
+    @DisplayName(value = "Method 'toPath'")
+    class MethodToPath {
+        @Test
+        public void path_from_a_package() {
+            // >>>
+            final Class<?> clazz = org.sfvl.samples.MyTest.class;
+            final Path path = DocPath.toPath(clazz.getPackage());
+            final String pathText = DocPath.toAsciiDoc(path);
+            // <<<
+            doc.write(
+                    ".Code",
+                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    "Result",
+                    formatter.blockBuilder("====")
+                            .content(pathText)
+                            .build());
+        }
 
-     String callResult(CallsRecorder recorder, String t) {
+        @Test
+        public void path_from_a_class() {
+            // >>>
+            final Class<?> clazz = org.sfvl.samples.MyTest.class;
+            final Path path = DocPath.toPath(clazz);
+            final String pathText = DocPath.toAsciiDoc(path);
+            // <<<
+            doc.write(
+                    ".Code",
+                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    "Result",
+                    formatter.blockBuilder("====")
+                            .content(pathText)
+                            .build());
+        }
+
+        @Test
+        public void path_from_a_nested_class() {
+            // >>>
+            final Class<?> clazz = org.sfvl.samples.MyTestWithNestedClass.MyNestedClass.class;
+            final Path path = DocPath.toPath(clazz);
+            final String pathText = DocPath.toAsciiDoc(path);
+            // <<<
+            doc.write(
+                    ".Code",
+                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    "Result",
+                    formatter.blockBuilder("====")
+                            .content(pathText)
+                            .build());
+        }
+
+        @Test
+        public void file_of_a_class() {
+            // >>>
+            final Class<?> clazz = org.sfvl.samples.MyTest.class;
+            final Path path = DocPath.toFile(clazz);
+            final String pathText = DocPath.toAsciiDoc(path);
+            // <<<
+            doc.write(
+                    ".Code",
+                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    "Result",
+                    formatter.blockBuilder("====")
+                            .content(pathText)
+                            .build());
+        }
+
+        /**
+         * With a nested class, the file is that of the main class of the file.
+         */
+        @Test
+        public void file_of_a_nested_class() {
+            // >>>
+            final Class<?> clazz = org.sfvl.samples.MyTestWithNestedClass.MyNestedClass.class;
+            final Path path = DocPath.toFile(clazz);
+            final String pathText = DocPath.toAsciiDoc(path);
+            // <<<
+            doc.write(
+                    ".Code",
+                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    "Result",
+                    formatter.blockBuilder("====")
+                            .content(pathText)
+                            .build());
+        }
+    }
+
+    String callResult(CallsRecorder recorder, Path path) {
+        return String.format("%s | %s", recorder.lastCall(), DocPath.toAsciiDoc(path));
+    }
+
+    String callResult(CallsRecorder recorder, String t) {
         return String.format("%s | %s", recorder.lastCall(), t);
     }
 

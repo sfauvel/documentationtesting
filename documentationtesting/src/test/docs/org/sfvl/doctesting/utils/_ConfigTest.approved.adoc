@@ -2,7 +2,6 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../../..
 endif::[]
 
-:nofooter:
 = Configuration
 
 include::_ConfigTest.default_values.approved.adoc[leveloffset=+1]

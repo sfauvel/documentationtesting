@@ -33,51 +33,34 @@ public class UseYourOwnStyle {
                 "}",
                 "</style>",
                 "++++");
-        {
-            final String text = String.join("\n",
-                    "This text should be black.\n",
-                    "[.withColor]#This text shoud be blue.#\n",
-                    "This text is not anymore blue."
-            );
 
-            final String content = String.format("%s\n%s", style, text);
+        final String text = String.join("\n",
+                "This text should be black.",
+                "",
+                "[withColor]#This text shoud be blue.#",
+                "",
+                "This text should be black.",
+                "",
+                "[withColor]",
+                "--",
+                "This section formed by several lines in asciidoc",
+                "should be blue.",
+                "--",
+                "This text should be black."
+        );
 
-            doc.write(formatter.sourceCodeBuilder("html")
-                    .title("Asciidoc content")
-                    .source(content)
-                    .build(),
-                    "", "");
+        final String content = String.format("%s\n%s", style, text);
 
-            doc.write(formatter.blockBuilder("====")
-                    .title("Content rendering")
-                    .content(content)
-                    .build(),
-                    "", "");
-        }
-        {
-            final String text = String.join("\n",
-                    "This text should be black.",
-                    "[.withColor]",
-                    "--",
-                    "This section formed by several lines\n",
-                    "should be blue.",
-                    "--",
-                    "This text is not anymore blue."
-            );
+        doc.write(formatter.sourceCodeBuilder("html")
+                .title("Asciidoc content")
+                .source(content)
+                .build(),
+                "", "");
 
-            final String content = String.format("%s\n%s", style, text);
-
-            doc.write(formatter.sourceCodeBuilder("html")
-                    .title("Asciidoc content")
-                    .source(content)
-                    .build(),
-                    "", "");
-
-            doc.write(formatter.blockBuilder("====")
-                    .title("Content rendering")
-                    .content(content)
-                    .build(),
-                    "", "");
-        }
+        doc.write(formatter.blockBuilder("====")
+                .title("Content rendering")
+                .content(content)
+                .build(),
+                "", "");
     }
 }

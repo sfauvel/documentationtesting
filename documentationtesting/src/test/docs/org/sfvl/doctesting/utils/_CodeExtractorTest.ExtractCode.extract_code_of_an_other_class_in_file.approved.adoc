@@ -50,10 +50,9 @@ Non public class in a file could not be retrieve without giving main class of th
                             ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract.class);
 
 ----
-
+.Exception thrown
 [.inline]
 ====
-.Exception thrown
 ++++
 java.nio.file.NoSuchFileException: src/test/java/org/sfvl/doctesting/utils/ClassNestedWithCommentToExtract.java
 ++++

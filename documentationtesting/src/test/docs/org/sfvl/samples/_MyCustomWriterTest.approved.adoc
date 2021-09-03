@@ -2,7 +2,6 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../..
 endif::[]
 
-:nofooter:
 = My custom writer test
 
 include::_MyCustomWriterTest.test_A.approved.adoc[leveloffset=+1]

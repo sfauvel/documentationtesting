@@ -41,6 +41,31 @@ include::../../../../../java/org/sfvl/doctesting/sample/SimpleClass.java[tag=cla
     }
 ----
 ====
+.How to extract code of a method in a nested class
+[source, java, indent=0]
+----
+                Method method = FindLambdaMethod.getMethod(ClassWithNestedClass.NestedClass::nestedMethod);
+                String code = CodeExtractor.methodSource(method);
+
+----
+
+[.inline]
+====
+.Source code from file
+[source, java, indent=0]
+----
+include::../../../../../java/org/sfvl/doctesting/sample/ClassWithNestedClass.java[tag=ClassWithNestedClass]
+----
+====
+
+[.inline]
+====
+.Source code extracted
+[source, java, indent=0]
+----
+        public int nestedMethod() { return 2; }
+----
+====
 .How to extract body of a method
 [source, java, indent=0]
 ----

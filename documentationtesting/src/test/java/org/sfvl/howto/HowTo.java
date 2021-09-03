@@ -21,32 +21,7 @@ import java.util.Optional;
 public class HowTo {
 
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension() {
-        @Override
-        public void afterAll(ExtensionContext extensionContext) throws Exception {
-            final Class<?> currentClass = extensionContext.getTestClass().get();
-//            if (isNestedClass(currentClass)) {
-//                return;
-//            }
-            final ClassDocumentation classDocumentation = new ClassDocumentation() {
-                protected Optional<String> relatedClassDescription(Class<?> fromClass) {
-                    return Optional.ofNullable(fromClass.getAnnotation(ClassToDocument.class))
-                            .map(ClassToDocument::clazz)
-                            .map(CodeExtractor::getComment);
-                }
-            };
-            final String content = String.join("\n",
-                    ":toc: left",
-                    ":nofooter:",
-                    ":stem:",
-                    ":source-highlighter: rouge",
-                    classDocumentation.getClassDocumentation(currentClass)
-            );
-            final Class<?> testClass = extensionContext.getTestClass().get();
-
-            verifyDoc(content, new DocPath(testClass));
-        }
-    };
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     private final AsciidocFormatter formatter = new AsciidocFormatter();
 

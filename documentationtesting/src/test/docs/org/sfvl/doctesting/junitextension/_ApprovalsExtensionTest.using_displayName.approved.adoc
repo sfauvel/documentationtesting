@@ -8,7 +8,7 @@ endif::[]
 
 // Test result for UsingDisplayNameTest: Success
 You can use DisplayName annotation to customize test title.Test example using DisplayName
-[source, java, indent=0]
+[source,java,indent=0]
 ----
 @DisplayName("Title for the document")
 class UsingDisplayNameTest {

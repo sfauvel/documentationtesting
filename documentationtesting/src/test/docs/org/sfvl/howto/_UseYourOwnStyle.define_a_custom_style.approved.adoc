@@ -21,9 +21,16 @@ to add it without processed content and send it directly to the output.
 ++++
 This text should be black.
 
-[.withColor]#This text shoud be blue.#
+[withColor]#This text shoud be blue.#
 
-This text is not anymore blue.
+This text should be black.
+
+[withColor]
+--
+This section formed by several lines in asciidoc
+should be blue.
+--
+This text should be black.
 ----
 
 .Content rendering
@@ -37,47 +44,15 @@ This text is not anymore blue.
 ++++
 This text should be black.
 
-[.withColor]#This text shoud be blue.#
+[withColor]#This text shoud be blue.#
 
-This text is not anymore blue.
-====
-
-.Asciidoc content
-[source,html,indent=0]
-----
-++++
-<style>
-.withColor {
-   color: blue;
-}
-</style>
-++++
 This text should be black.
-[.withColor]
---
-This section formed by several lines
 
+[withColor]
+--
+This section formed by several lines in asciidoc
 should be blue.
 --
-This text is not anymore blue.
-----
-
-.Content rendering
-====
-++++
-<style>
-.withColor {
-   color: blue;
-}
-</style>
-++++
 This text should be black.
-[.withColor]
---
-This section formed by several lines
-
-should be blue.
---
-This text is not anymore blue.
 ====
 

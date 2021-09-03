@@ -1,13 +1,13 @@
 package org.sfvl.doctesting.junitextension;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
-import org.sfvl.doctesting.utils.CodeExtractor;
-import org.sfvl.doctesting.utils.DocPath;
-import org.sfvl.doctesting.utils.DocWriter;
-import org.sfvl.doctesting.utils.OnePath;
+import org.sfvl.doctesting.utils.*;
 import org.sfvl.samples.FailingTest;
 import org.sfvl.samples.MyCustomWriterTest;
 import org.sfvl.samples.MyTest;
@@ -58,7 +58,7 @@ public class ApprovalsExtensionTest {
 
         doc.write("You can use DisplayName annotation to customize test title");
 
-        doc.write(".Test example using DisplayName", extractSourceWithTag(testClass.getSimpleName(), this.getClass(), testClass), "", "");
+        doc.write(".Test example using DisplayName", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
         final String testMethod = FindLambdaMethod.getName(UsingDisplayNameTest::test_A);
         final String filename = "_" + testClass.getSimpleName() + "." + testMethod + ".approved.adoc";
@@ -92,7 +92,7 @@ public class ApprovalsExtensionTest {
         final Class<?> testClass = DemoNestedTest.class;
         runTestAndWriteResultAsComment(testClass);
 
-        doc.write("", "", ".Test example using nested class", extractSourceWithTag(testClass.getSimpleName(), this.getClass(), testClass), "", "");
+        doc.write("", "", ".Test example using nested class", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
         final Path generatedFilePath = Paths.get("", getClass().getPackage().getName().split("\\."));
         doc.write("Generated files in `" + DocPath.toAsciiDoc(generatedFilePath) + "`:", "", Files.list(doc.getDocPath().resolve(generatedFilePath))
@@ -172,7 +172,7 @@ public class ApprovalsExtensionTest {
 
         Predicate<String> isStackLine = line -> line.startsWith("	at ");
 
-        // We truncate stack trace to avoid to have an ouput that change from on execution from another.
+        // We include stack trace from a file that is not approved to avoid a failure if it changes from on execution from another.
 
         final String stackTraceFileName = String.format("_%s.ExceptionStackTrace.adoc",
                 new DocPath(info.getTestMethod().get()).name());
@@ -256,14 +256,14 @@ public class ApprovalsExtensionTest {
     }
 
     private String extractSourceWithTag(String tag, Class<?> classToIdentifySourceClass, Class<?> testClass) {
-        final String source = String.join("\n",
-                "[source, java, indent=0]",
-                "----",
-                CodeExtractor.extractCodeBetween(CodeExtractor.classSource(classToIdentifySourceClass, testClass), "tag::" + tag + "[]", "end::" + tag + "[]").trim(),
-                "----");
-        return source;
+        final Class<?> mainFileClass = new ClassFinder().getMainFileClass(classToIdentifySourceClass);
+        final Path path = new DocPath(mainFileClass).test().path();
+        final String javaSource = CodeExtractor.extractPartOfFile(path, tag)
+                .replaceAll("(^|\n)@" + NotIncludeToDoc.class.getSimpleName(), "")
+                .replaceAll("(^|\n)@" + OnlyRunProgrammatically.class.getSimpleName(), "");
+         return formatter.sourceCode(javaSource.trim()).trim();
     }
-
+    
     private String extractSourceWithTag(String tag, Class<?> testClass) {
         return extractSourceWithTag(tag, testClass, testClass);
     }
@@ -289,64 +289,9 @@ public class ApprovalsExtensionTest {
     private String escapedAdocTitle(String line) {
         return line.replaceAll("^= (.*)", "[.title1]#$1#");
     }
+
+
 }
 
-@NotIncludeToDoc
-@OnlyRunProgrammatically
-// tag::UsingDisplayNameTest[]
-@DisplayName("Title for the document")
-class UsingDisplayNameTest {
-    @RegisterExtension
-    static final ApprovalsExtension doc = new SimpleApprovalsExtension();
 
-    @Test
-    @DisplayName("Title for this test")
-    public void test_A() {
-        doc.write("In my *test*");
-    }
-}
-// end::UsingDisplayNameTest[]
-
-@NotIncludeToDoc
-@OnlyRunProgrammatically
-// tag::DemoNestedTest[]
-/**
- * Demo of a simple usage to generate documentation.
- */
-class DemoNestedTest {
-    @RegisterExtension
-    static final ApprovalsExtension writer = new SimpleApprovalsExtension();
-
-    /**
-     * Document of Addition operations.
-     */
-    @Nested
-    class Adding {
-
-        @Test
-        @DisplayName("Adding 2 simple numbers")
-        public void should_be_5_when_adding_2_and_3() {
-            writer.write(String.format("%d + %d = %d", 2, 3, 2 + 3));
-        }
-
-        /**
-         * A nested test.
-         */
-        @Test
-        @DisplayName("Adding 3 simple numbers")
-        public void should_be_9_when_adding_2_3_and_4() {
-            writer.write(String.format("%d + %d + %d = %d", 2, 3, 4, 2 + 3 + 4));
-        }
-    }
-
-    @Nested
-    class Multiply {
-        @Test
-        @DisplayName("Multiply 2 simple numbers")
-        public void should_be_12_when_multiply_4_and_3() {
-            writer.write(String.format("%d * %d = %d", 4, 3, 4 * 3));
-        }
-    }
-}
-// end::DemoNestedTest[]
 

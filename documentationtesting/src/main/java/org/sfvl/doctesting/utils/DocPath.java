@@ -66,9 +66,16 @@ public class DocPath {
     }
 
     public static Path toPath(Package aPackage) {
-        return Arrays.stream(aPackage.getName().split("\\."))
-                .map(Paths::get)
-                .reduce(Paths.get(""), Path::resolve);
+        return Paths.get(aPackage.getName().replace('.', File.separatorChar));
+    }
+
+    public static Path toPath(Class<?> clazz) {
+        return toPath(clazz.getPackage()).resolve(toFile(clazz));
+    }
+
+    public static Path toFile(Class<?> clazz) {
+        final Class<?> mainClass = new ClassFinder().getMainFileClass(clazz);
+        return Paths.get(String.format("%s.java", mainClass.getSimpleName()));
     }
 
     public static String toAsciiDoc(Path path) {

@@ -1,25 +1,22 @@
 package org.sfvl.doctesting.utils;
 
-import com.thoughtworks.qdox.JavaProjectBuilder;
-import com.thoughtworks.qdox.model.JavaClass;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
-import org.sfvl.docformatter.AsciidocFormatterTest;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.samples.MyTest;
+import org.sfvl.samples.MyTestWithoutTitle;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -112,27 +109,17 @@ class DocWriterTest {
     @DisplayName("DocWriter without title")
     public void doc_writer_without_title(TestInfo testInfo) throws NoSuchMethodException {
 
-        // >>>test_class
-        class MyTest {
-            @Test
-            @NoTitle
-            public void my_method() {
-                // my doc generation
-            }
-        }
-        // <<<test_class
-
         // >>>
         final DocWriter doc = new DocWriter();
         doc.write("Some text added to show DocWriter output.");
         final String output = doc.formatOutput(
                 "Do not display this title",
-                MyTest.class.getMethod("my_method")
+                MyTestWithoutTitle.class.getMethod("my_method")
         );
         // <<<
 
         DocWriterTest.doc.write(".Test with NoTitle annotation",
-                formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod("test_class")),
+                formatter.sourceCode(CodeExtractor.classSource(MyTestWithoutTitle.class)),
                 "", "");
 
         DocWriterTest.doc.write(".DocWriter usage",
@@ -232,21 +219,11 @@ class DocWriterTest {
     }
 
     @Test
-    @AsciidocFormatterTest.TestOption(includeMethodDoc = "formatTitle")
     @DisplayName("Formatted title")
     public void title(TestInfo testinfo) throws NoSuchMethodException {
-        JavaProjectBuilder builder = new JavaProjectBuilder();
-        final JavaClass stringClass = builder.getClassByName(String.class.getCanonicalName());
-        final JavaClass methodClass = builder.getClassByName(Method.class.getCanonicalName());
-
-        final Optional<AsciidocFormatterTest.TestOption> annotation = Optional.ofNullable(testinfo.getTestMethod()
-                .get()
-                .getAnnotation(AsciidocFormatterTest.TestOption.class));
-        annotation.map(AsciidocFormatterTest.TestOption::includeMethodDoc)
-                .filter(name -> !name.isEmpty())
-                .map(methodName -> CodeExtractor.getComment(DocWriter.class, methodName, Arrays.asList(stringClass, methodClass)))
-                .ifPresent(doc -> write(doc.get() + "\n"));
-
+        final Method method1 = DocWriter.class.getDeclaredMethod("formatTitle", String.class, Method.class);
+        CodeExtractor.getComment(method1)
+                .ifPresent(doc -> write(doc + "\n"));
 
         final Method method = FindLambdaMethod.getMethod(DocWriterTest::simple_method_to_format_title);
         final Method method_with_test_info = FindLambdaMethod.getMethod(DocWriterTest::test_method_with_test_info);
@@ -294,5 +271,3 @@ class DocWriterTest {
     }
 // end::MyTestWithComment[]
 }
-
-

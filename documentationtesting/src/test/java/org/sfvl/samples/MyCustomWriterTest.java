@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
 @NotIncludeToDoc
 @org.sfvl.test_tools.OnlyRunProgrammatically
 public
-// tag::MyCustomWriterTest[]
+// >>>MyCustomWriterTest
 class MyCustomWriterTest {
 
     @RegisterExtension
@@ -42,4 +42,4 @@ class MyCustomWriterTest {
     }
 
 }
-// end::MyCustomWriterTest[]
+// <<<MyCustomWriterTest

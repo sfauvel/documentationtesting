@@ -2,7 +2,6 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../../..
 endif::[]
 
-:nofooter:
 = DocWriter
 
 include::_DocWriterTest.doc_writer_usage.approved.adoc[leveloffset=+1]

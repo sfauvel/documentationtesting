@@ -9,7 +9,7 @@ import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 @NotIncludeToDoc
 @org.sfvl.test_tools.OnlyRunProgrammatically
 public
-// tag::MyTest[]
+// >>>MyTest
 class MyTest {
     @RegisterExtension
     static final ApprovalsExtension doc = new SimpleApprovalsExtension();
@@ -20,4 +20,4 @@ class MyTest {
     }
 
 }
-// end::MyTest[]
+// <<<MyTest

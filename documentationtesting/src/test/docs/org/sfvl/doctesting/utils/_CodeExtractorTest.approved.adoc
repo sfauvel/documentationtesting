@@ -2,7 +2,6 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../../..
 endif::[]
 
-:nofooter:
 = CodeExtractor
 
 It is often useful to retrieve information from the source code itself.
@@ -20,6 +19,8 @@ include::_CodeExtractorTest.ExtractCode.extract_code_from_method.approved.adoc[l
 
 include::_CodeExtractorTest.ExtractCode.extract_part_of_code_from_method.approved.adoc[leveloffset=+2]
 
+include::_CodeExtractorTest.ExtractCode.extract_part_of_code_from_file.approved.adoc[leveloffset=+2]
+
 include::_CodeExtractorTest.ExtractCode.extract_a_part_of_code_from_the_current_method.approved.adoc[leveloffset=+2]
 
 === Extract part of code
@@ -32,12 +33,10 @@ include::_CodeExtractorTest.ExtractCode.ExtractPartOfCode.tag_beginning_with_sam
 
 include::_CodeExtractorTest.ExtractCode.ExtractPartOfCode.tag_beginning_with_same_inner_tag_name.approved.adoc[leveloffset=+3]
 
-include::_CodeExtractorTest.ExtractCode.extract_enclosing_classes.approved.adoc[leveloffset=+2]
-
-include::_CodeExtractorTest.ExtractCode.extract_first_enclosing_classes_before_another.approved.adoc[leveloffset=+2]
-
 == Extract comment
 
 include::_CodeExtractorTest.ExtractComment.extract_class_comment.approved.adoc[leveloffset=+2]
 
 include::_CodeExtractorTest.ExtractComment.extract_method_comment.approved.adoc[leveloffset=+2]
+
+include::_CodeExtractorTest.ExtractComment.bug_when_annotation_before_comment.approved.adoc[leveloffset=+2]

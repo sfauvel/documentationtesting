@@ -7,12 +7,11 @@ import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
-import org.sfvl.doctesting.sample.ClassWithCommentToExtract;
-import org.sfvl.doctesting.sample.ClassWithMethodToExtract;
-import org.sfvl.doctesting.sample.MyClass;
-import org.sfvl.doctesting.sample.SimpleClass;
+import org.sfvl.doctesting.sample.*;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -163,8 +162,8 @@ class CodeExtractorTest {
                             extractMarkedCode(testInfo, "2"),
                             "");
 
+                    doc.write(".Exception thrown");
                     doc.writeInline(
-                            ".Exception thrown",
                             "++++",
                             e.getProblems().stream()
                                     .map(c -> c.getCause().map(Throwable::toString).orElse("??"))
@@ -197,6 +196,15 @@ class CodeExtractorTest {
                 String code = CodeExtractor.methodSource(method);
                 // <<<2
                 codeWithMethod = code;
+            }
+
+            String codeWithMethodInNestedClass;
+            {
+                // >>>MethodInNestedClass
+                Method method = FindLambdaMethod.getMethod(ClassWithNestedClass.NestedClass::nestedMethod);
+                String code = CodeExtractor.methodSource(method);
+                // <<<MethodInNestedClass
+                codeWithMethodInNestedClass = code;
             }
 
             doc.write(".How to extract code of a method",
@@ -236,6 +244,21 @@ class CodeExtractorTest {
                         formatSourceCode(codeWithMethod)
                 );
             }
+
+
+            doc.write(".How to extract code of a method in a nested class",
+                    extractMarkedCode(testInfo, "MethodInNestedClass"),
+                    "");
+
+            doc.writeInline(
+                    ".Source code from file",
+                    includeSourceWithTag("ClassWithNestedClass", ClassWithNestedClass.class)
+            );
+
+            doc.writeInline(
+                    ".Source code extracted",
+                    formatSourceCode(codeWithMethodInNestedClass)
+            );
 
             {
                 // >>>3
@@ -348,6 +371,32 @@ class CodeExtractorTest {
                         formatSourceCode(codePart2));
 
             }
+        }
+
+        @Test
+        @DisplayName(value = "Extract a part of code from a file")
+        public void extract_part_of_code_from_file(TestInfo testInfo) {
+            final Class<FileWithCodeToExtract> clazz = FileWithCodeToExtract.class;
+            final Path path = new DocPath(clazz).test().path();
+            // >>>1
+            String code = CodeExtractor.extractPartOfFile(path, "import");
+            // <<<1
+            String codeFromFile = code;
+
+            String fileContent = "";
+            try {
+                fileContent = Files.lines(path).collect(Collectors.joining("\n"));
+            } catch (IOException e) {
+            }
+
+            doc.write(".How to extract part of a method code",
+                    extractMarkedCode(testInfo, "1"),
+                    "",
+                    ".File content",
+                    formatter.sourceCode(fileContent),
+                    ".Content extracted",
+                    formatter.sourceCode(codeFromFile)
+            );
         }
 
         public String method_with_code_to_extract() {
@@ -529,73 +578,6 @@ class CodeExtractorTest {
             }
 
         }
-
-        @Test
-        public void extract_enclosing_classes(TestInfo testInfo) throws NoSuchMethodException {
-            {
-                final Class<?> clazz = CodeExtractorTest.class;
-                doc.write("[%autowidth]", "Class list of `" + clazz.getCanonicalName() + "` give :",
-                        "",
-                        "[%autowidth]",
-                        "|====",
-                        CodeExtractor.enclosingClasses(clazz).stream()
-                                .map(Class::getSimpleName)
-                                .collect(Collectors.joining(" | ", "| ", "")),
-                        "|====",
-                        "", ""
-                );
-            }
-            {
-                final Class<?> clazz = MyClass.MySubClass.ASubClassOfMySubClass.class;
-                doc.write("Class list of `" + clazz.getCanonicalName() + "` give :",
-                        "",
-                        "[%autowidth]",
-                        "|====",
-                        CodeExtractor.enclosingClasses(clazz).stream()
-                                .map(Class::getSimpleName)
-                                .collect(Collectors.joining(" | ", "| ", "")),
-                        "|====",
-                        "", ""
-                );
-            }
-
-        }
-
-        @Test
-        public void extract_first_enclosing_classes_before_another(TestInfo testInfo) throws NoSuchMethodException {
-
-            BiConsumer<Class<?>, Class<?>> write_enclosing = (clazz, clazzBefore) -> {
-                doc.write(String.format("First class of `%s` before `%s` give :",
-                        clazz.getSimpleName(),
-                        (clazzBefore == null ? "null" : clazzBefore.getSimpleName())
-                        ),
-                        "",
-                        "`*" + CodeExtractor.getFirstEnclosingClassBefore(clazz, clazzBefore).getSimpleName() + "*`",
-                        "", ""
-                );
-            };
-
-            final Class<?> fromClass = MyClass.MySubClass.ASubClassOfMySubClass.class;
-            doc.write("Extract from class `" + fromClass.getName()
-                    + "` using `" + "CodeExtractor.getFirstEnclosingClassBefore" + "`\n\n");
-
-            write_enclosing.accept(
-                    fromClass,
-                    MyClass.MySubClass.ASubClassOfMySubClass.class);
-
-            write_enclosing.accept(
-                    fromClass,
-                    MyClass.MySubClass.class);
-
-
-            write_enclosing.accept(
-                    fromClass,
-                    MyClass.class);
-
-            write_enclosing.accept(
-                    fromClass,
-                    null);
-        }
     }
     // tag::NestedClass[]
 
@@ -617,6 +599,7 @@ class CodeExtractorTest {
     @Nested
     @DisplayName(value = "Extract comment")
     class ExtractComment {
+        /* TODO when annotation is before the comment, comment is not read. This a JavaParser bug. */
 
         @Test
         @DisplayName(value = "Extract class comment")
@@ -659,7 +642,7 @@ class CodeExtractorTest {
 
 
                 // >>>3
-                final String comment = CodeExtractor.getComment(ClassNestedWithCommentToExtract.class);
+                final String comment = CodeExtractor.getComment(CodeExtractorTest.class, ClassNestedWithCommentToExtract.class);
                 // <<<3
 
                 doc.writeInline(includeSourceWithTag("classNestedWithCommentToExtract"), "", "");
@@ -680,9 +663,10 @@ class CodeExtractorTest {
                         "");
 
                 // >>>1
+                final Method method = ClassWithCommentToExtract.class.getDeclaredMethod("methodWithoutParameters");
                 final Optional<String> comment = CodeExtractor.getComment(
                         ClassWithCommentToExtract.class,
-                        "methodWithoutParameters"
+                        method
                 );
                 // <<<1
 
@@ -695,10 +679,10 @@ class CodeExtractorTest {
                         "");
 
                 // >>>2
+                final Method method = ClassWithCommentToExtract.class.getDeclaredMethod("methodWithParameters", int.class, String.class);
                 final Optional<String> comment = CodeExtractor.getComment(
                         ClassWithCommentToExtract.class,
-                        "methodWithParameters",
-                        CodeExtractor.getJavaClasses(int.class, String.class)
+                        method
                 );
                 // <<<2
 
@@ -741,12 +725,34 @@ class CodeExtractorTest {
 
                 // >>>5
                 final Method methodWithComment = FindLambdaMethod.getMethod(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract::methodInSubClass);
-                final Optional<String> comment = CodeExtractor.getComment(methodWithComment);
+                final Optional<String> comment = CodeExtractor.getComment(this.getClass(), methodWithComment);
                 // <<<5
 
                 formatCommentExtracted("From method",
                         comment.orElse(""));
             }
+        }
+
+        /**
+         * When there is an annotation before the class comment, the comment is not retrieve.
+         * This is an issue in the JavaParser we used (com.github.javaparser:javaparser-core:3.22.1).
+         */
+        @Test
+        @DisplayName(value = "Issue: comment not retrieve when an annotation is before the comment")
+        public void bug_when_annotation_before_comment(TestInfo testInfo) {
+            doc.write(
+                    ".How to extract comment of a class",
+                    extractMarkedCode(testInfo, "1"),
+                    "");
+
+            // >>>1
+            final String comment = CodeExtractor.getComment(ClassWithAnnotationBeforeComment.class);
+            // <<<1
+
+            doc.writeInline(includeSourceWithTag(ClassWithAnnotationBeforeComment.class.getSimpleName(), CodeExtractorTest.class), "", "");
+
+            formatCommentExtracted("Comment extracted from class",
+                    comment);
         }
     }
 
@@ -787,11 +793,13 @@ class CodeExtractorTest {
 
 }
 
+
 // tag::classNestedWithCommentToExtract[]
-@NotIncludeToDoc
+
 /**
  * Comment of the class.
  */
+@NotIncludeToDoc
 class ClassNestedWithCommentToExtract {
 
     /**
@@ -808,3 +816,4 @@ class ClassNestedWithCommentToExtract {
     }
 }
 // end::classNestedWithCommentToExtract[]
+

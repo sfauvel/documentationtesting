@@ -1,0 +1,31 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+[#org_sfvl_doctesting_utils_ClassFinderTest_find_root_class_from_enclosing_class]
+= Find root class from enclosing class
+
+.Class used
+
+[source,java,indent=0]
+----
+class FirstClass {
+    class SecondClass {
+        class ThirdClass {
+
+        }
+    }
+}
+
+----
+
+.Code to find root class from an enclosing class
+        final ClassFinder finder = new ClassFinder();
+        Class<?> clazz = finder.getMainFileClass(FirstClass.SecondClass.ThirdClass.class);
+
+.Result
+
+[source,java,indent=0]
+----
+FirstClass
+----

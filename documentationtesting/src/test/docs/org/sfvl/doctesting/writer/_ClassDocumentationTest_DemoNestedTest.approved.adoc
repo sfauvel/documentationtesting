@@ -2,7 +2,6 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../../..
 endif::[]
 
-:nofooter:
 = Class documentation test_ demo nested test
 
 Demo of a simple usage to generate documentation.
