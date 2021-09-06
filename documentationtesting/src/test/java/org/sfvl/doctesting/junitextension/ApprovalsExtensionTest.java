@@ -40,14 +40,34 @@ public class ApprovalsExtensionTest {
 
         runTestAndWriteResultAsComment(testClass);
 
-        doc.write("This is an example to create a simple test using `" + ApprovalsExtension.class.getSimpleName() + "`.", "", "You have to write a class and add `" + RegisterExtension.class.getSimpleName() + "` annotation on an attribute.", "This extension will check that content of `" + DocWriter.class.getSimpleName() + "` has not changed since the last time.", "`" + DocWriter.class.getSimpleName() + "` passed to the `" + ApprovalsExtension.class.getSimpleName() + "` is used to indicated what we want to write to the output.", "", "");
+        if (false) {
+            // >>>doc.write
+            doc.write
+            // <<<doc.write
+                    ("");
+        }
+
+        final String methodToWrite = CodeExtractor.extractPartOfCurrentMethod("doc.write").trim();
+
+        doc.write("This is an example to create a simple test using `" + ApprovalsExtension.class.getSimpleName() + "`.",
+                "",
+                "You have to write a class and add register an `" + ApprovalsExtension.class.getSimpleName() + "` attribute using .`" + RegisterExtension.class.getSimpleName() + "` annotation.",
+                "This extension will check that everything wrote using `" + methodToWrite + "` method has not changed since the last execution.",
+                "", "");
 
         doc.write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
         final Method method = FindLambdaMethod.getMethod(MyTest::test_A);
         final Path approvedPath = new DocPath(method).approved().from(this.getClass());
-        doc.write("When executing test method `" + method.getName() + "`, a file `" + approvedPath.getFileName() + "` is generated and contains the following text",
-                "----", formatter.include(approvedPath.toString()), "----", "Filename and title come from method name.", "The chapter content contains what was written using `" + DocWriter.class.getSimpleName() + "`");
+        final Path receivedPath = new DocPath(method).received().from(this.getClass());
+        doc.write("When executing test method `" + method.getName() + "`, a file `" + receivedPath.getFileName() + "` is generated and contains the following text",
+                "----",
+                formatter.include(approvedPath.toString()),
+                "----",
+                "If this file is identical to the `" + approvedPath.getFileName() + "`, then the test is a success and `" + receivedPath.getFileName() + "` is removed.",
+                "Otherwise, test fails and we can compare those two files to see what has changed.",
+                "",
+                "File name and title come from method name.", "The chapter content contains what was written using `" + methodToWrite + "`.");
     }
 
     @Test
@@ -70,6 +90,8 @@ public class ApprovalsExtensionTest {
         final Class<?> testClass = MyCustomWriterTest.class;
 
         runTestAndWriteResultAsComment(testClass);
+
+        // You have to write a class and add RegisterExtension annotation on an attribute. This extension will check that content of DocWriter has not changed since the last time. DocWriter passed to the ApprovalsExtension is used to indicated what we want to write to the output.
 
         doc.write("It's possible to give a specific DocWriter to `" + ApprovalsExtension.class.getSimpleName() + "`",
                 "and modify what it will be written in the final document.",
@@ -261,9 +283,9 @@ public class ApprovalsExtensionTest {
         final String javaSource = CodeExtractor.extractPartOfFile(path, tag)
                 .replaceAll("(^|\n)@" + NotIncludeToDoc.class.getSimpleName(), "")
                 .replaceAll("(^|\n)@" + OnlyRunProgrammatically.class.getSimpleName(), "");
-         return formatter.sourceCode(javaSource.trim()).trim();
+        return formatter.sourceCode(javaSource.trim()).trim();
     }
-    
+
     private String extractSourceWithTag(String tag, Class<?> testClass) {
         return extractSourceWithTag(tag, testClass, testClass);
     }

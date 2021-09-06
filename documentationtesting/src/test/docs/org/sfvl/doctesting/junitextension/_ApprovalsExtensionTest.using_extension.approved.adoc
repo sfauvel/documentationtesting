@@ -9,9 +9,8 @@ endif::[]
 // Test result for MyTest: Success
 This is an example to create a simple test using `ApprovalsExtension`.
 
-You have to write a class and add `RegisterExtension` annotation on an attribute.
-This extension will check that content of `DocWriter` has not changed since the last time.
-`DocWriter` passed to the `ApprovalsExtension` is used to indicated what we want to write to the output.
+You have to write a class and add register an `ApprovalsExtension` attribute using .`RegisterExtension` annotation.
+This extension will check that everything wrote using `doc.write` method has not changed since the last execution.
 
 .Test example using `ApprovalsExtension`
 [source,java,indent=0]
@@ -28,9 +27,12 @@ class MyTest {
 }
 ----
 
-When executing test method `test_A`, a file `_MyTest.test_A.approved.adoc` is generated and contains the following text
+When executing test method `test_A`, a file `_MyTest.test_A.received.adoc` is generated and contains the following text
 ----
 include::../../samples/_MyTest.test_A.approved.adoc[]
 ----
-Filename and title come from method name.
-The chapter content contains what was written using `DocWriter`
+If this file is identical to the `_MyTest.test_A.approved.adoc`, then the test is a success and `_MyTest.test_A.received.adoc` is removed.
+Otherwise, test fails and we can compare those two files to see what has changed.
+
+File name and title come from method name.
+The chapter content contains what was written using `doc.write`.
