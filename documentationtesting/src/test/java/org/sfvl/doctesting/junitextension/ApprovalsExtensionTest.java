@@ -7,10 +7,14 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
-import org.sfvl.doctesting.utils.*;
+import org.sfvl.doctesting.utils.ClassFinder;
+import org.sfvl.doctesting.utils.CodeExtractor;
+import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.doctesting.utils.OnePath;
 import org.sfvl.samples.FailingTest;
 import org.sfvl.samples.MyCustomWriterTest;
 import org.sfvl.samples.MyTest;
+import org.sfvl.samples.justone.OneTest;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
 import org.sfvl.test_tools.TestRunnerFromTest;
 
@@ -36,15 +40,15 @@ public class ApprovalsExtensionTest {
     @Test
     @DisplayName(value = "Creating a test using ApprovalsExtension")
     public void using_extension() {
-        final Class<?> testClass = MyTest.class;
+        final Class<?> testClass = OneTest.class;
 
         runTestAndWriteResultAsComment(testClass);
 
         if (false) {
             // >>>doc.write
             doc.write
-            // <<<doc.write
-                    ("");
+                    // <<<doc.write
+                            ("");
         }
 
         final String methodToWrite = CodeExtractor.extractPartOfCurrentMethod("doc.write").trim();
@@ -57,7 +61,7 @@ public class ApprovalsExtensionTest {
 
         doc.write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
-        final Method method = FindLambdaMethod.getMethod(MyTest::test_A);
+        final Method method = FindLambdaMethod.getMethod(OneTest::test_A);
         final Path approvedPath = new DocPath(method).approved().from(this.getClass());
         final Path receivedPath = new DocPath(method).received().from(this.getClass());
         doc.write("When executing test method `" + method.getName() + "`, a file `" + receivedPath.getFileName() + "` is generated and contains the following text",
@@ -68,6 +72,24 @@ public class ApprovalsExtensionTest {
                 "Otherwise, test fails and we can compare those two files to see what has changed.",
                 "",
                 "File name and title come from method name.", "The chapter content contains what was written using `" + methodToWrite + "`.");
+
+        final Path docFolder = new DocPath(method).approved().folder();
+
+        try {
+            final String filesInDocFolder = Files.list(docFolder)
+                    .map(f -> "* " + f.getFileName().toString())
+                    .sorted()
+                    .collect(Collectors.joining("\n"));
+
+            doc.write("", "",
+                    String.format("Files in folder `%s`", docFolder),
+                    "",
+                    filesInDocFolder);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     @Test
