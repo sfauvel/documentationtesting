@@ -6,7 +6,7 @@ endif::[]
 = Creating a test using ApprovalsExtension
 
 
-// Test result for MyTest: Success
+// Test result for OneTest: Success
 This is an example to create a simple test using `ApprovalsExtension`.
 
 You have to write a class and add register an `ApprovalsExtension` attribute using .`RegisterExtension` annotation.
@@ -15,7 +15,13 @@ This extension will check that everything wrote using `doc.write` method has not
 .Test example using `ApprovalsExtension`
 [source,java,indent=0]
 ----
-class MyTest {
+package org.sfvl.samples.justone;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+public class OneTest {
     @RegisterExtension
     static final ApprovalsExtension doc = new SimpleApprovalsExtension();
 
@@ -27,12 +33,17 @@ class MyTest {
 }
 ----
 
-When executing test method `test_A`, a file `_MyTest.test_A.received.adoc` is generated and contains the following text
+When executing test method `test_A`, a file `_OneTest.test_A.received.adoc` is generated and contains the following text
 ----
-include::../../samples/_MyTest.test_A.approved.adoc[]
+include::../../samples/justone/_OneTest.test_A.approved.adoc[]
 ----
-If this file is identical to the `_MyTest.test_A.approved.adoc`, then the test is a success and `_MyTest.test_A.received.adoc` is removed.
+If this file is identical to the `_OneTest.test_A.approved.adoc`, then the test is a success and `_OneTest.test_A.received.adoc` is removed.
 Otherwise, test fails and we can compare those two files to see what has changed.
 
 File name and title come from method name.
 The chapter content contains what was written using `doc.write`.
+
+Files in folder `src/test/docs/org/sfvl/samples/justone`
+
+* _OneTest.approved.adoc
+* _OneTest.test_A.approved.adoc
