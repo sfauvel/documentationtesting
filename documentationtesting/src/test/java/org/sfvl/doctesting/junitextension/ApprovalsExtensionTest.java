@@ -82,7 +82,7 @@ public class ApprovalsExtensionTest {
                     .collect(Collectors.joining("\n"));
 
             doc.write("", "",
-                    String.format("Files in folder `%s`", docFolder),
+                    String.format("Files in folder `%s`",DocPath.toAsciiDoc(docFolder)),
                     "",
                     filesInDocFolder);
         } catch (IOException e) {
