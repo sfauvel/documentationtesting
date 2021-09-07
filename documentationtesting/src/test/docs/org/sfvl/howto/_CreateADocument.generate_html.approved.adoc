@@ -1,0 +1,83 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+[#org_sfvl_howto_CreateADocument_generate_html]
+= Generate html
+
+:underscore: _
+
+To convert `.adoc` to `.html`, we use `asciidoctor-maven-plugin` plugin.
+By default, files started with `{underscore}` are not converted to HTML.
+
+All the `approved` files we generate start with `{underscore}`.
+They are only chapters that need to be include in a file to be converted into HTML.
+So, it's easier to reuse these files and organize the documentation.
+
+To have a file that not start with `{underscore}`, we need to generate it.
+We can do that in a method annoted with `AfterAll`.
+In this file, we can add `include` to all files we want to aggregate.
+
+If you just want to publish the documentation created in a test class,
+you can create a file with the name of the class (without {underscore})
+and add an `include` to the `approved` file of the same class.
+
+
+// Test result for HtmlTest: Success
+.Example of class creating a file to convert into HTML
+
+[source,java,indent=0]
+----
+package org.sfvl.samples.generateHtml;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.doctesting.utils.DocPath;
+
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class HtmlTest {
+    @RegisterExtension
+    static final ApprovalsExtension doc = new SimpleApprovalsExtension();
+
+    @AfterAll
+    public static void generatePage(TestInfo info) throws IOException {
+        final DocPath docPath = new DocPath(info.getTestClass().get());
+        String includeContent = String.join("\n",
+                ":toc: left",
+                ":nofooter:",
+                "",
+                String.format("include::%s[]", docPath.approved().fullname()));
+
+        try (FileWriter fileWriter = new FileWriter(docPath.page().path().toFile())) {
+            fileWriter.write(includeContent);
+        }
+    }
+
+    @Test
+    public void test_A() {
+        doc.write("In my *test*");
+    }
+
+}
+----
+
+
+Files in folder `src/test/docs/org/sfvl/samples/generateHtml`
+
+* HtmlTest.adoc
+* _HtmlTest.approved.adoc
+* _HtmlTest.test_A.approved.adoc
+
+.Content of the file `src/test/docs/org/sfvl/samples/generateHtml/HtmlTest.adoc`
+----
+:toc: left
+:nofooter:
+
+\include::_HtmlTest.approved.adoc[]
+----

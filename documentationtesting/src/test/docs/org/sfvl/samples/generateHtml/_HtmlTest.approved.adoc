@@ -1,0 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../../..
+endif::[]
+
+= Html test
+
+include::_HtmlTest.test_A.approved.adoc[leveloffset=+1]
