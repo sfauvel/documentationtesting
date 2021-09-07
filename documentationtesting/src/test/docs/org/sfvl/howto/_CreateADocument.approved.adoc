@@ -7,6 +7,8 @@ endif::[]
 DocumentationBuilder provides an easy way to create a document.
 It's useful to creates pages with a free structure in which we can select files to include.
 
+include::_CreateADocument.generate_html.approved.adoc[leveloffset=+1]
+
 include::_CreateADocument.simplest_way_to_create_a_document.approved.adoc[leveloffset=+1]
 
 include::_CreateADocument.reuse_sub_parts_of_document.approved.adoc[leveloffset=+1]

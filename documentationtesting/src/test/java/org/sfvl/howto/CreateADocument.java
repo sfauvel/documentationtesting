@@ -5,12 +5,16 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
+import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.OnePath;
 import org.sfvl.doctesting.writer.Document;
+import org.sfvl.samples.generateHtml.HtmlTest;
+import org.sfvl.test_tools.OnlyRunProgrammatically;
+import org.sfvl.test_tools.TestRunnerFromTest;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,6 +22,7 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * DocumentationBuilder provides an easy way to create a document.
@@ -34,6 +39,90 @@ public class CreateADocument {
     private Path includeFromTo(Object fromClass, OnePath to) {
         final DocPath from = new DocPath(fromClass.getClass());
         return from.approved().folder().relativize(to.path());
+    }
+
+    /**
+     * :underscore: _
+     *
+     * To convert `.adoc` to `.html`, we use `asciidoctor-maven-plugin` plugin.
+     * By default, files started with `{underscore}` are not converted to HTML.
+     *
+     * All the `approved` files we generate start with `{underscore}`.
+     * They are only chapters that need to be include in a file to be converted into HTML.
+     * So, it's easier to reuse these files and organize the documentation.
+     *
+     * To have a file that not start with `{underscore}`, we need to generate it.
+     * We can do that in a method annoted with `AfterAll`.
+     * In this file, we can add `include` to all files we want to aggregate.
+     *
+     * If you just want to publish the documentation created in a test class,
+     * you can create a file with the name of the class (without {underscore})
+     * and add an `include` to the `approved` file of the same class.
+     */
+    @Test
+    public void generate_html() {
+        final Class<?> testClass = HtmlTest.class;
+        final DocPath docPath = new DocPath(testClass);
+
+        runTestAndWriteResultAsComment(testClass);
+
+        final String source = getLines(docPath.test().path())
+                .filter(line -> !line.contains(NotIncludeToDoc.class.getSimpleName()))
+                .filter(line -> !line.contains(OnlyRunProgrammatically.class.getSimpleName()))
+                .collect(Collectors.joining("\n"));
+
+        final Path docFolder = docPath.approved().folder();
+
+        final String filesInDocFolder;
+            filesInDocFolder = getFiles(docFolder)
+                    .map(f -> "* " + f.getFileName().toString())
+                    .sorted()
+                    .collect(Collectors.joining("\n"));
+
+
+        doc.write(".Example of class creating a file to convert into HTML", formatter.sourceCode(source));
+
+        doc.write("", "",
+                String.format("Files in folder `%s`", DocPath.toAsciiDoc(docFolder)),
+                "",
+                filesInDocFolder);
+
+        final Path path = docPath.page().path();
+        final String contentOfGeneratedFile = escapeIncludeInstruction(getLines(path).collect(Collectors.joining("\n")));
+
+        doc.write("", "",
+                String.format(".Content of the file `%s`", DocPath.toAsciiDoc(path)),
+                formatter.blockBuilder("----")
+                        .content(contentOfGeneratedFile).build());
+
+    }
+
+    private Stream<Path> getFiles(Path docFolder) {
+        try {
+            return Files.list(docFolder);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Stream<String> getLines(Path path) {
+        try {
+            return Files.lines(path);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // TODO code from ClassDocumentationTest : remove duplication
+    public static String escapeIncludeInstruction(String defaultContent) {
+        return defaultContent.replaceAll("(^|\\n)include", "\n\\\\include");
+    }
+
+    // TODO code from ApprovalsExtensionTesting : remove duplication
+    private void runTestAndWriteResultAsComment(Class<?> testClass) {
+        final TestRunnerFromTest.Results results = new TestRunnerFromTest().runTestClass(testClass);
+        String[] texts = new String[]{"", String.format("// Test result for %s: %s", testClass.getSimpleName(), results.sucess() ? "Success" : "Fails"), ""};
+        doc.write(texts);
     }
 
 

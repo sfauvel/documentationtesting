@@ -47,6 +47,53 @@ public class HowTo {
 
     }
 
+    @Test
+    @NoTitle
+    public void create_a_test() {
+        doc.write(getInclude(ApprovalsExtensionTest::using_extension, 0));
+    }
+
+    @Test
+    @NoTitle
+    public void format_text() {
+        // >>>
+        Formatter formatter = new AsciidocFormatter();
+        final String text = formatter.listItems("Item A", "Item B", "Item C");
+        // <<<
+        doc.write(formatter.title(1, "Format text"),
+                "",
+                "To format text, we can use a formatter that hide technical syntax of the markup language used.",
+                "",
+                ".Formatter usage",
+                CodeExtractor.extractPartOfCurrentMethod(),
+                "",
+                formatter.blockBuilder("----")
+                        .title("Text generated")
+                        .content(text)
+                        .build(),
+                "",
+                formatter.blockBuilder("====")
+                        .title("Final rendering")
+                        .content(text)
+                        .build(),
+                "",
+                "You can take a look at the " + linkToClass(AsciidocFormatterTest.class, "formatter's full documentation")
+                        + " to get an idea of the features available."
+        );
+    }
+
+    @Test
+    @NoTitle
+    public void create_a_document() {
+        doc.write(getInclude(CreateADocument::generate_html, 0));
+    }
+
+    @Test
+    @NoTitle
+    public void use_your_own_style() {
+        doc.write(getInclude(UseYourOwnStyle.class, 0));
+    }
+
     private void generatePage(Class<?> clazz) throws IOException {
         generatePage(new DocPath(clazz));
     }
@@ -88,53 +135,6 @@ public class HowTo {
         return String.format("link:%s[%s]\n",
                 DocPath.toAsciiDoc(Paths.get("{"+Config.DOC_PATH_TAG+"}").resolve(docPath.doc().path())),
                 title);
-    }
-
-    @Test
-    @NoTitle
-    public void create_a_test() {
-        doc.write(getInclude(ApprovalsExtensionTest::using_extension, 0));
-    }
-
-    @Test
-    @NoTitle
-    public void format_text() {
-        // >>>
-        Formatter formatter = new AsciidocFormatter();
-        final String text = formatter.listItems("Item A", "Item B", "Item C");
-        // <<<
-        doc.write(formatter.title(1, "Format text"),
-                "",
-                "To format text, we can use a formatter that hide technical syntax of the markup language used.",
-                "",
-                ".Formatter usage",
-                CodeExtractor.extractPartOfCurrentMethod(),
-                "",
-                formatter.blockBuilder("----")
-                        .title("Text generated")
-                        .content(text)
-                        .build(),
-                "",
-                formatter.blockBuilder("====")
-                        .title("Final rendering")
-                        .content(text)
-                        .build(),
-                "",
-                "You can take a look at the " + linkToClass(AsciidocFormatterTest.class, "formatter's full documentation")
-                        + " to get an idea of the features available."
-        );
-    }
-
-    @Test
-    @NoTitle
-    public void create_a_document() {
-        doc.write(getInclude(CreateADocument.class, 0));
-    }
-
-    @Test
-    @NoTitle
-    public void use_your_own_style() {
-        doc.write(getInclude(UseYourOwnStyle.class, 0));
     }
 
     public String getInclude(Class aClass, int offset) {

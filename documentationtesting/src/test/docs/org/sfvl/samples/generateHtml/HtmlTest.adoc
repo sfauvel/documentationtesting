@@ -1,0 +1,4 @@
+:toc: left
+:nofooter:
+
+include::_HtmlTest.approved.adoc[]

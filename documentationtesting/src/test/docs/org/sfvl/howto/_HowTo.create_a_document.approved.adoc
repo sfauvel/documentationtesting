@@ -2,4 +2,4 @@ ifndef::ROOT_PATH[]
 :ROOT_PATH: ../../..
 endif::[]
 
-include::_CreateADocument.approved.adoc[leveloffset=+0]
+include::_CreateADocument.generate_html.approved.adoc[leveloffset=+0]
