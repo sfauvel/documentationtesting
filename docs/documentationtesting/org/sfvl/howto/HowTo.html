@@ -517,7 +517,13 @@ This extension will check that everything wrote using <code>doc.write</code> met
 <div class="listingblock">
 <div class="title">Test example using <code>ApprovalsExtension</code></div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">MyTest</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="kn">package</span> <span class="nn">org.sfvl.samples.justone</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.extension.RegisterExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.ApprovalsExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.SimpleApprovalsExtension</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OneTest</span> <span class="o">{</span>
     <span class="nd">@RegisterExtension</span>
     <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
 
@@ -530,23 +536,36 @@ This extension will check that everything wrote using <code>doc.write</code> met
 </div>
 </div>
 <div class="paragraph">
-<p>When executing test method <code>test_A</code>, a file <code>_MyTest.test_A.received.adoc</code> is generated and contains the following text</p>
+<p>When executing test method <code>test_A</code>, a file <code>_OneTest.test_A.received.adoc</code> is generated and contains the following text</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>[#org_sfvl_samples_MyTest_test_A]
+<pre>[#org_sfvl_samples_justone_OneTest_test_A]
 = Test A
 
 In my *test*</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If this file is identical to the <code>_MyTest.test_A.approved.adoc</code>, then the test is a success and <code>_MyTest.test_A.received.adoc</code> is removed.
+<p>If this file is identical to the <code>_OneTest.test_A.approved.adoc</code>, then the test is a success and <code>_OneTest.test_A.received.adoc</code> is removed.
 Otherwise, test fails and we can compare those two files to see what has changed.</p>
 </div>
 <div class="paragraph">
 <p>File name and title come from method name.
 The chapter content contains what was written using <code>doc.write</code>.</p>
+</div>
+<div class="paragraph">
+<p>Files in folder <code>src/test/docs/org/sfvl/samples/justone</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>_OneTest.approved.adoc</p>
+</li>
+<li>
+<p>_OneTest.test_A.approved.adoc</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
