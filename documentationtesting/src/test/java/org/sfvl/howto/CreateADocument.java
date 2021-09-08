@@ -113,9 +113,9 @@ public class CreateADocument {
         }
     }
 
-    // TODO code from ClassDocumentationTest : remove duplication
+    // TODO code from ClassDocumentationTest : remove duplication + fix $1
     public static String escapeIncludeInstruction(String defaultContent) {
-        return defaultContent.replaceAll("(^|\\n)include", "\n\\\\include");
+        return defaultContent.replaceAll("(^|\\n)include", "$1\\\\include");
     }
 
     // TODO code from ApprovalsExtensionTesting : remove duplication
