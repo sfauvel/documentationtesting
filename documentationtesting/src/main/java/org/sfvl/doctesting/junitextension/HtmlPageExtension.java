@@ -5,32 +5,31 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.sfvl.doctesting.utils.DocPath;
 
 import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Path;
 
 public class HtmlPageExtension implements AfterAllCallback {
 
     @Override
-    public void afterAll(ExtensionContext extensionContext) throws Exception {
-        final DocPath docPath = new DocPath(extensionContext.getTestClass().get());
+    public void afterAll(ExtensionContext extensionContext) {
+        generate(extensionContext.getTestClass().get());
+    }
 
-        String includeContent = content(docPath);
-
-        try (FileWriter fileWriter = new FileWriter(docPath.page().path().toFile())) {
-            fileWriter.write(includeContent);
+    public void generate(Class<?> clazz) {
+        final Path path = getFilePath(clazz);
+        try (FileWriter fileWriter = new FileWriter(path.toFile())) {
+            fileWriter.write(content(clazz));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public String content(DocPath docPath) {
-        String includeContent = header();
-        if (!includeContent.isEmpty()) {
-            includeContent += "\n";
-        }
-        includeContent += String.format("include::%s[]", docPath.approved().fullname());
-        return includeContent;
+    public Path getFilePath(Class<?> clazz) {
+        return new DocPath(clazz).page().path();
     }
 
-    public String header() {
-        return "";
+    public String content(Class<?> clazz) {
+        return String.format("include::%s[]", new DocPath(clazz).approved().from(getFilePath(clazz).getParent()));
     }
-
 
 }

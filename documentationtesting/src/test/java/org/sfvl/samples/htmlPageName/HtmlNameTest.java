@@ -1,4 +1,4 @@
-package org.sfvl.samples.htmlPageHeader;
+package org.sfvl.samples.htmlPageName;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -7,19 +7,20 @@ import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.HtmlPageExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @NotIncludeToDoc
 @OnlyRunProgrammatically
-@ExtendWith(HtmlHeaderTest.HtmlPageHeaderExtension.class)
-public class HtmlHeaderTest {
+@ExtendWith(HtmlNameTest.HtmlPageHeaderExtension.class)
+public class HtmlNameTest {
     static class HtmlPageHeaderExtension extends HtmlPageExtension {
         @Override
-        public String content(Class<?> clazz) {
-            return String.join("\n",
-                    ":toc: left",
-                    ":nofooter:",
-                    super.content(clazz));
+        public Path getFilePath(Class<?> clazz) {
+            return new DocPath(clazz).page().folder().resolve("index.adoc");
         }
     }
 

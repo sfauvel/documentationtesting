@@ -3,15 +3,13 @@ package org.sfvl;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.AsciidocFormatterTest;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.DocTestingDocumentation;
-import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
-import org.sfvl.doctesting.junitextension.FindLambdaMethod;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.doctesting.junitextension.*;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.NoTitle;
@@ -31,7 +29,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 @DisplayName(value = "Documentation Testing Library")
+@ExtendWith(DocumentationTestingDocumentation.HtmlPage.class)
 public class DocumentationTestingDocumentation {
+
+    static class HtmlPage extends HtmlPageExtension {
+        @Override
+        public String content(Class<?> clazz) {
+            return String.join("\n",
+                    doc.getDocWriter().defineDocPath(Paths.get(".")),
+                    ":nofooter:",
+                    super.content(clazz));
+        }
+
+        @Override
+        public Path getFilePath(Class<?> clazz) {
+            return Config.DOC_PATH.resolve("index.adoc");
+        }
+    }
 
     @RegisterExtension
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
@@ -42,35 +56,6 @@ public class DocumentationTestingDocumentation {
 
     protected String getHeader() {
         return "include::../../../readme.adoc[leveloffset=+1]";
-    }
-
-    @AfterAll
-    static public void writeIndexPage() throws IOException {
-        final DocPath docPath = new DocPath(DocumentationTestingDocumentation.class);
-        String content = String.join("\n",
-                doc.getDocWriter().defineDocPath(Paths.get(".")),
-                ":nofooter:",
-                "include::" + docPath.approved().from(Config.DOC_PATH).toString() + "[]");
-
-        final Path indexFile = Config.DOC_PATH.resolve("index.adoc");
-        try (FileWriter fileWriter = new FileWriter(indexFile.toFile())) {
-            fileWriter.write(content);
-        }
-    }
-
-    private void generatePage(DocPath docPath) throws IOException {
-        String includeContent = String.join("\n",
-                ":toc: left",
-                ":nofooter:",
-                ":stem:",
-                ":source-highlighter: rouge",
-                ":toclevels: 4",
-                "",
-                String.format("include::%s[]", docPath.approved().fullname()));
-
-        try (FileWriter fileWriter = new FileWriter(docPath.page().path().toFile())) {
-            fileWriter.write(includeContent);
-        }
     }
 
     @Test
@@ -112,13 +97,24 @@ public class DocumentationTestingDocumentation {
     }
 
     private String generatePageAndGetPath(Class<?> clazz) {
-        final DocPath docPath = new DocPath(clazz);
-        try {
-            generatePage(docPath);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return DocPath.toAsciiDoc(docPath.doc().path());
+        generatePage(clazz);
+        return DocPath.toAsciiDoc(new DocPath(clazz).doc().path());
+    }
+
+    private void generatePage(Class<?> clazz) {
+        new HtmlPageExtension() {
+            @Override
+            public String content(Class<?> clazz) {
+                return String.join("\n",
+                        ":toc: left",
+                        ":nofooter:",
+                        ":stem:",
+                        ":source-highlighter: rouge",
+                        ":toclevels: 4",
+                        "",
+                        String.format("include::%s[]", new DocPath(clazz).approved().fullname()));
+            }
+        }.generate(clazz);
     }
 
     public <T> String linkToMethod(FindLambdaMethod.SerializableConsumer<T> methodToInclude) {

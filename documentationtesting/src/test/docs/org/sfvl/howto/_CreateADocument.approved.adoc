@@ -11,6 +11,8 @@ include::_CreateADocument.generate_html.approved.adoc[leveloffset=+1]
 
 include::_CreateADocument.generate_header_html.approved.adoc[leveloffset=+1]
 
+include::_CreateADocument.change_name_for_html.approved.adoc[leveloffset=+1]
+
 include::_CreateADocument.simplest_way_to_create_a_document.approved.adoc[leveloffset=+1]
 
 include::_CreateADocument.reuse_sub_parts_of_document.approved.adoc[leveloffset=+1]

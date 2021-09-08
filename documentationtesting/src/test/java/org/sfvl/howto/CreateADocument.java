@@ -15,6 +15,7 @@ import org.sfvl.doctesting.utils.OnePath;
 import org.sfvl.doctesting.writer.Document;
 import org.sfvl.samples.generateHtml.HtmlTest;
 import org.sfvl.samples.htmlPageHeader.HtmlHeaderTest;
+import org.sfvl.samples.htmlPageName.HtmlNameTest;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
 import org.sfvl.test_tools.TestRunnerFromTest;
 
@@ -116,17 +117,52 @@ public class CreateADocument {
 
         doc.write(String.format("By default, `%s` create a file with only one include of the `approved` class file.", HtmlPageExtension.class.getSimpleName()),
                 "This file is the right place to specify some specific information on how displaying the page.",
-                String.format("We can doing it extending `%s` and redefined header content and add options we need.", HtmlPageExtension.class.getSimpleName()),
-                "By default, this header is empty.",
+                String.format("We can doing it extending `%s` and redefined content to add options we need.", HtmlPageExtension.class.getSimpleName()),
+                "Here, we create an inner class but we can use a main class to reuse it in several tests.",
                 "", "");
 
-        doc.write(".Example to customize header of file to convert into HTML", formatter.sourceCode(source));
+        doc.write(".Example to add header into file to convert into HTML", formatter.sourceCode(source));
 
         doc.write("", "",
                 String.format(".Content of the file `%s`", DocPath.toAsciiDoc(path)),
                 formatter.blockBuilder("----")
                         .content(contentOfGeneratedFile).build());
     }
+
+    @Test
+    public void change_name_for_html() {
+        final Class<?> testClass = HtmlNameTest.class;
+        final DocPath docPath = new DocPath(testClass);
+
+        runTestAndWriteResultAsComment(testClass);
+
+        final String source = getLines(docPath.test().path())
+                .filter(line -> !line.contains(NotIncludeToDoc.class.getSimpleName()))
+                .filter(line -> !line.contains(OnlyRunProgrammatically.class.getSimpleName()))
+                .collect(Collectors.joining("\n"));
+
+        doc.write(String.format("By default, `%s` create a file with a name coming from the class", HtmlPageExtension.class.getSimpleName()),
+                String.format("To change it, we can extending `%s` and redefined name method.", HtmlPageExtension.class.getSimpleName()),
+                "", "");
+
+        final Path docFolder = docPath.approved().folder();
+
+        final String filesInDocFolder;
+        filesInDocFolder = getFiles(docFolder)
+                .map(f -> "* " + f.getFileName().toString())
+                .sorted()
+                .collect(Collectors.joining("\n"));
+
+        doc.write(".Example of class creating a file to convert into HTML", formatter.sourceCode(source));
+
+        doc.write("", "",
+                String.format("Files in folder `%s`", DocPath.toAsciiDoc(docFolder)),
+                "",
+                filesInDocFolder);
+
+
+    }
+
 
     private Stream<Path> getFiles(Path docFolder) {
         try {
