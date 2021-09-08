@@ -12,12 +12,25 @@ public class HtmlPageExtension implements AfterAllCallback {
     public void afterAll(ExtensionContext extensionContext) throws Exception {
         final DocPath docPath = new DocPath(extensionContext.getTestClass().get());
 
-        String includeContent = String.join("\n",
-                String.format("include::%s[]", docPath.approved().fullname()));
+        String includeContent = content(docPath);
 
         try (FileWriter fileWriter = new FileWriter(docPath.page().path().toFile())) {
             fileWriter.write(includeContent);
         }
     }
+
+    public String content(DocPath docPath) {
+        String includeContent = header();
+        if (!includeContent.isEmpty()) {
+            includeContent += "\n";
+        }
+        includeContent += String.format("include::%s[]", docPath.approved().fullname());
+        return includeContent;
+    }
+
+    public String header() {
+        return "";
+    }
+
 
 }

@@ -7,12 +7,14 @@ import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.HtmlPageExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.OnePath;
 import org.sfvl.doctesting.writer.Document;
 import org.sfvl.samples.generateHtml.HtmlTest;
+import org.sfvl.samples.htmlPageHeader.HtmlHeaderTest;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
 import org.sfvl.test_tools.TestRunnerFromTest;
 
@@ -95,6 +97,35 @@ public class CreateADocument {
                 formatter.blockBuilder("----")
                         .content(contentOfGeneratedFile).build());
 
+    }
+
+    @Test
+    public void generate_header_html() {
+        final Class<?> testClass = HtmlHeaderTest.class;
+        final DocPath docPath = new DocPath(testClass);
+
+        runTestAndWriteResultAsComment(testClass);
+
+        final String source = getLines(docPath.test().path())
+                .filter(line -> !line.contains(NotIncludeToDoc.class.getSimpleName()))
+                .filter(line -> !line.contains(OnlyRunProgrammatically.class.getSimpleName()))
+                .collect(Collectors.joining("\n"));
+
+        final Path path = docPath.page().path();
+        final String contentOfGeneratedFile = escapeIncludeInstruction(getLines(path).collect(Collectors.joining("\n")));
+
+        doc.write(String.format("By default, `%s` create a file with only one include of the `approved` class file.", HtmlPageExtension.class.getSimpleName()),
+                "This file is the right place to specify some specific information on how displaying the page.",
+                String.format("We can doing it extending `%s` and redefined header content and add options we need.", HtmlPageExtension.class.getSimpleName()),
+                "By default, this header is empty.",
+                "", "");
+
+        doc.write(".Example to customize header of file to convert into HTML", formatter.sourceCode(source));
+
+        doc.write("", "",
+                String.format(".Content of the file `%s`", DocPath.toAsciiDoc(path)),
+                formatter.blockBuilder("----")
+                        .content(contentOfGeneratedFile).build());
     }
 
     private Stream<Path> getFiles(Path docFolder) {

@@ -1,0 +1,56 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+[#org_sfvl_howto_CreateADocument_generate_header_html]
+= Generate header html
+
+
+// Test result for HtmlHeaderTest: Success
+By default, `HtmlPageExtension` create a file with only one include of the `approved` class file.
+This file is the right place to specify some specific information on how displaying the page.
+We can doing it extending `HtmlPageExtension` and redefined header content and add options we need.
+By default, this header is empty.
+
+.Example to customize header of file to convert into HTML
+
+[source,java,indent=0]
+----
+package org.sfvl.samples.htmlPageHeader;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.HtmlPageExtension;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+
+@ExtendWith(HtmlHeaderTest.HtmlPageHeaderExtension.class)
+public class HtmlHeaderTest {
+    static class HtmlPageHeaderExtension extends HtmlPageExtension {
+        @Override
+        public String header() {
+            return String.join("\n",
+                    ":toc: left",
+                    ":nofooter:");
+        }
+    }
+
+    @RegisterExtension
+    static final ApprovalsExtension doc = new SimpleApprovalsExtension();
+
+    @Test
+    public void test_A() {
+        doc.write("In my *test*");
+    }
+
+}
+----
+
+
+.Content of the file `src/test/docs/org/sfvl/samples/htmlPageHeader/HtmlHeaderTest.adoc`
+----
+:toc: left
+:nofooter:
+\include::_HtmlHeaderTest.approved.adoc[]
+----
