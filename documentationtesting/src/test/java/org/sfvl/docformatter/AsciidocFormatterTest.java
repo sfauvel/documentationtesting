@@ -40,6 +40,9 @@ public class AsciidocFormatterTest {
 
         /// The name of the method in AsciidocFormatter that used to get documentation.
         String includeMethodDoc() default "";
+
+        /// False to have generic output. True to have output of a normal test.
+        boolean normalOutput() default false;
     }
 
     @Test
@@ -170,6 +173,40 @@ public class AsciidocFormatterTest {
                     .content("Into the block")
                     .build();
         }
+
+        /**
+         * To display asciidoc in a block, it's necessary to escape some keyword
+         * that are interpreted even in an uninterpreted block.
+         *
+         * With this option, all lines starting by `include::` add an anti-slash to escape this directive.
+         */
+        @Test
+        @DisplayName("Escape asciidoc")
+        @TestOption(normalOutput = true)
+        public void escape_asciidoc(TestInfo testinfo) {
+
+            // >>>
+            output = formatter.blockBuilder("----")
+                    .escapeSpecialKeywords()
+                    .content("include::MyFile.txt[]")
+                    .build();
+            // <<<
+            doc.write("",
+                    "[red]##_Usage_##", "[source,java,indent=0]",
+                    "----",
+                    CodeExtractor.extractPartOfCurrentMethod(),
+                    "----", "");
+
+            doc.write("", "[red]##_Render_##", "", output, "");
+            doc.write(":antislash: \\",
+                    "[red]##_Asciidoc generated_##",
+                    "[subs=attributes+]",  // add interpretation of attributes
+                    "------",
+                    output.replace("\\", "{antislash}"),  // replace \ by an attribute to be able to display the escaped value
+                    "------", "");
+
+            doc.write("", "___", "");
+        }
     }
 
     @Test
@@ -286,13 +323,15 @@ public class AsciidocFormatterTest {
         final Optional<TestOption> annotation = Optional.ofNullable(testinfo.getTestMethod()
                 .get()
                 .getAnnotation(TestOption.class));
-
+        if (annotation.map(TestOption::normalOutput).orElse(false)) {
+            return;
+        }
         annotation.map(TestOption::includeMethodDoc)
                 .filter(methodName -> !methodName.isEmpty())
                 .map(methodName -> {
                     try {
                         return CodeExtractor.getComment(AsciidocFormatter.class.getDeclaredMethod(methodName));
-                    } catch (NoSuchMethodException e) {
+                    } catch (NoSuchMethodException e) { // TODO check if this catch is necessary
                         throw new RuntimeException(e);
                     }
                 })
@@ -303,7 +342,12 @@ public class AsciidocFormatterTest {
         if (annotation.map(TestOption::showRender).orElse(true)) {
             doc.write("", "[red]##_Render_##", "", output, "");
         }
-        doc.write("\n[red]##_Asciidoc generated_##", "------", output.replaceAll("(^|\\n)include", "$1\\\\include"), "------", "");
+        doc.write("\n[red]##_Asciidoc generated_##",
+                formatter.blockBuilder("------")
+                        .escapeSpecialKeywords()
+                        .content(output)
+                        .build(),
+                "");
 
         doc.write("", "___", "");
     }

@@ -91,11 +91,12 @@ public class CreateADocument {
                 filesInDocFolder);
 
         final Path path = docPath.page().path();
-        final String contentOfGeneratedFile = escapeIncludeInstruction(getLines(path).collect(Collectors.joining("\n")));
+        final String contentOfGeneratedFile = getLines(path).collect(Collectors.joining("\n"));
 
         doc.write("", "",
                 String.format(".Content of the file `%s`", DocPath.toAsciiDoc(path)),
                 formatter.blockBuilder("----")
+                        .escapeSpecialKeywords()
                         .content(contentOfGeneratedFile).build());
 
     }
@@ -113,7 +114,7 @@ public class CreateADocument {
                 .collect(Collectors.joining("\n"));
 
         final Path path = docPath.page().path();
-        final String contentOfGeneratedFile = escapeIncludeInstruction(getLines(path).collect(Collectors.joining("\n")));
+        final String contentOfGeneratedFile = getLines(path).collect(Collectors.joining("\n"));
 
         doc.write(String.format("By default, `%s` create a file with only one include of the `approved` class file.", HtmlPageExtension.class.getSimpleName()),
                 "This file is the right place to specify some specific information on how displaying the page.",
@@ -126,6 +127,7 @@ public class CreateADocument {
         doc.write("", "",
                 String.format(".Content of the file `%s`", DocPath.toAsciiDoc(path)),
                 formatter.blockBuilder("----")
+                        .escapeSpecialKeywords()
                         .content(contentOfGeneratedFile).build());
     }
 
@@ -178,11 +180,6 @@ public class CreateADocument {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    // TODO code from ClassDocumentationTest : remove duplication + fix $1
-    public static String escapeIncludeInstruction(String defaultContent) {
-        return defaultContent.replaceAll("(^|\\n)include", "$1\\\\include");
     }
 
     // TODO code from ApprovalsExtensionTesting : remove duplication

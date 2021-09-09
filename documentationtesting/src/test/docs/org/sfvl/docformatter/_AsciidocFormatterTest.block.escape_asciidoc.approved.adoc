@@ -1,0 +1,38 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+[#org_sfvl_docformatter_AsciidocFormatterTest_block_escape_asciidoc]
+= Escape asciidoc
+
+To display asciidoc in a block, it's necessary to escape some keyword
+that are interpreted even in an uninterpreted block.
+
+With this option, all lines starting by `include::` add an anti-slash to escape this directive.
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+            output = formatter.blockBuilder("----")
+                    .escapeSpecialKeywords()
+                    .content("include::MyFile.txt[]")
+                    .build();
+
+----
+
+[red]##_Render_##
+
+----
+\include::MyFile.txt[]
+----
+:antislash: \
+[red]##_Asciidoc generated_##
+[subs=attributes+]
+------
+----
+{antislash}include::MyFile.txt[]
+----
+------
+
+___
