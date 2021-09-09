@@ -1,6 +1,5 @@
 package org.sfvl;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,8 +17,8 @@ import org.sfvl.doctesting.writer.Options;
 import org.sfvl.howto.HowTo;
 import org.sfvl.howto.KnownIssues;
 import org.sfvl.howto.Tutorial;
+import org.sfvl.test_tools.IntermediateHtmlPage;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -97,24 +96,8 @@ public class DocumentationTestingDocumentation {
     }
 
     private String generatePageAndGetPath(Class<?> clazz) {
-        generatePage(clazz);
+        new IntermediateHtmlPage().generate(clazz);
         return DocPath.toAsciiDoc(new DocPath(clazz).doc().path());
-    }
-
-    private void generatePage(Class<?> clazz) {
-        new HtmlPageExtension() {
-            @Override
-            public String content(Class<?> clazz) {
-                return String.join("\n",
-                        ":toc: left",
-                        ":nofooter:",
-                        ":stem:",
-                        ":source-highlighter: rouge",
-                        ":toclevels: 4",
-                        "",
-                        String.format("include::%s[]", new DocPath(clazz).approved().fullname()));
-            }
-        }.generate(clazz);
     }
 
     public <T> String linkToMethod(FindLambdaMethod.SerializableConsumer<T> methodToInclude) {
