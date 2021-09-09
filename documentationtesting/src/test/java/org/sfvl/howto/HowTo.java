@@ -84,7 +84,11 @@ public class HowTo {
     @Test
     @NoTitle
     public void create_a_document() {
-        doc.write(getInclude(CreateADocument::generate_html, 0));
+        doc.write(
+                getInclude(CreateADocument::generate_html, 0),
+                "",
+                "For more features, you can look at the " + linkToClass(CreateADocument.class, "documentation on creating a document").trim() + "."
+        );
     }
 
     @Test

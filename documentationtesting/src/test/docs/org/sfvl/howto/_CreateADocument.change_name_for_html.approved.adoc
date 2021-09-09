@@ -3,7 +3,7 @@ ifndef::ROOT_PATH[]
 endif::[]
 
 [#org_sfvl_howto_CreateADocument_change_name_for_html]
-= Change name for html
+= Define name and path for the output file
 
 
 // Test result for HtmlNameTest: Success

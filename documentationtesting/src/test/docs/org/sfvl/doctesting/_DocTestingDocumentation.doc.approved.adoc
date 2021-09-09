@@ -45,6 +45,8 @@ include::utils/_ParsedClassRepositoryTest.approved.adoc[leveloffset=+1]
 
 include::writer/_ClassDocumentationTest.approved.adoc[leveloffset=+1]
 
+include::writer/_CreateADocument.approved.adoc[leveloffset=+1]
+
 include::writer/_DocumentationBuilderTest.approved.adoc[leveloffset=+1]
 
 include::writer/_MainDocumentationTest.approved.adoc[leveloffset=+1]
