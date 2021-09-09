@@ -6,9 +6,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
-import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.HtmlPageExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.OnePath;
@@ -17,7 +15,7 @@ import org.sfvl.samples.generateHtml.HtmlTest;
 import org.sfvl.samples.htmlPageHeader.HtmlHeaderTest;
 import org.sfvl.samples.htmlPageName.HtmlNameTest;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
-import org.sfvl.test_tools.TestRunnerFromTest;
+import org.sfvl.test_tools.ProjectTestExtension;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -36,7 +34,7 @@ public class CreateADocument {
     private AsciidocFormatter formatter = new AsciidocFormatter();
 
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ProjectTestExtension doc = new ProjectTestExtension();
 
 
     private Path includeFromTo(Object fromClass, OnePath to) {
@@ -67,7 +65,7 @@ public class CreateADocument {
         final Class<?> testClass = HtmlTest.class;
         final DocPath docPath = new DocPath(testClass);
 
-        runTestAndWriteResultAsComment(testClass);
+        doc.runTestAndWriteResultAsComment(testClass);
 
         final String source = getLines(docPath.test().path())
                 .filter(line -> !line.contains(NotIncludeToDoc.class.getSimpleName()))
@@ -106,7 +104,7 @@ public class CreateADocument {
         final Class<?> testClass = HtmlHeaderTest.class;
         final DocPath docPath = new DocPath(testClass);
 
-        runTestAndWriteResultAsComment(testClass);
+        doc.runTestAndWriteResultAsComment(testClass);
 
         final String source = getLines(docPath.test().path())
                 .filter(line -> !line.contains(NotIncludeToDoc.class.getSimpleName()))
@@ -136,7 +134,7 @@ public class CreateADocument {
         final Class<?> testClass = HtmlNameTest.class;
         final DocPath docPath = new DocPath(testClass);
 
-        runTestAndWriteResultAsComment(testClass);
+        doc.runTestAndWriteResultAsComment(testClass);
 
         final String source = getLines(docPath.test().path())
                 .filter(line -> !line.contains(NotIncludeToDoc.class.getSimpleName()))
@@ -181,14 +179,6 @@ public class CreateADocument {
             throw new RuntimeException(e);
         }
     }
-
-    // TODO code from ApprovalsExtensionTesting : remove duplication
-    private void runTestAndWriteResultAsComment(Class<?> testClass) {
-        final TestRunnerFromTest.Results results = new TestRunnerFromTest().runTestClass(testClass);
-        String[] texts = new String[]{"", String.format("// Test result for %s: %s", testClass.getSimpleName(), results.sucess() ? "Success" : "Fails"), ""};
-        doc.write(texts);
-    }
-
 
     /**
      * Creating a document is just writing a file.
