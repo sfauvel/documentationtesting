@@ -68,12 +68,12 @@ public class DocumentationTestingDocumentation {
         final Path from = docPath.resource().from(new DocPath(this.getClass()).approved());
 
         return String.join("\n",
-                ":TUTORIAL_HTML: " + generatePageAndGetPath(Tutorial.class),
-                ":HOW_TO_HTML: " + generatePageAndGetPath(HowTo.class),
-                ":APPROVAL_EXTENSION_HTML: " + generatePageAndGetPath(ApprovalsExtensionTest.class),
-                ":ASCIIDOC_FORMATTER_HTML: " + generatePageAndGetPath(AsciidocFormatterTest.class),
-                ":DOC_TESTING_DOCUMENTATION_HTML: " + generatePageAndGetPath(DocTestingDocumentation.class),
-                ":KNOWN_ISSUES_HTML:" + generatePageAndGetPath(KnownIssues.class),
+                formatter.attribute("TUTORIAL_HTML", generatePageAndGetPath(Tutorial.class)),
+                formatter.attribute("HOW_TO_HTML", generatePageAndGetPath(HowTo.class)),
+                formatter.attribute("APPROVAL_EXTENSION_HTML", generatePageAndGetPath(ApprovalsExtensionTest.class)),
+                formatter.attribute("ASCIIDOC_FORMATTER_HTML", generatePageAndGetPath(AsciidocFormatterTest.class)),
+                formatter.attribute("DOC_TESTING_DOCUMENTATION_HTML", generatePageAndGetPath(DocTestingDocumentation.class)),
+                formatter.attribute("KNOWN_ISSUES_HTML", generatePageAndGetPath(KnownIssues.class)),
                 String.format("include::%s[leveloffset=+1]", DocPath.toAsciiDoc(from))
         );
     }

@@ -317,6 +317,12 @@ public class AsciidocFormatterTest {
         ));
     }
 
+    @Test
+    @DisplayName("Attribute")
+    public void should_add_an_attribute() throws IOException {
+        output = formatter.attribute("MY_ATTRIBUTE", "The value");
+    }
+
     @AfterEach
     public void displaySource(TestInfo testinfo) {
 

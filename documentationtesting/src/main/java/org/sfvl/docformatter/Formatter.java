@@ -55,6 +55,8 @@ public interface Formatter {
 
     SourceCodeBuilder sourceCodeBuilder(String language);
 
+    String attribute(String attribute, String value);
+
     public static enum Block {
         LITERAL;
     }

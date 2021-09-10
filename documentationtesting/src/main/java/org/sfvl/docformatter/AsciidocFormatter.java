@@ -201,6 +201,11 @@ public class AsciidocFormatter implements Formatter {
         return new AsciidocSourceCodeBuilder(language);
     }
 
+    @Override
+    public String attribute(String attribute, String value) {
+        return String.format(":%s: %s", attribute, value);
+    }
+
     public static class AsciidocBlockBuilder extends AsciidocGenericBlockBuilder<BlockBuilder>
             implements BlockBuilder {
 

@@ -1,0 +1,24 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+
+[#org_sfvl_docformatter_AsciidocFormatterTest_should_add_an_attribute]
+= Attribute
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+        output = formatter.attribute("MY_ATTRIBUTE", "The value");
+----
+
+[red]##_Render_##
+
+:MY_ATTRIBUTE: The value
+
+[red]##_Asciidoc generated_##
+------
+:MY_ATTRIBUTE: The value
+------
+
+___

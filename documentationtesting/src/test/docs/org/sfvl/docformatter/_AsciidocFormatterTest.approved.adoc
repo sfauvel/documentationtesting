@@ -68,3 +68,5 @@ include::_AsciidocFormatterTest.Include.include_with_a_range_of_lines.approved.a
 include::_AsciidocFormatterTest.should_format_table.approved.adoc[leveloffset=+1]
 
 include::_AsciidocFormatterTest.should_format_table_with_header.approved.adoc[leveloffset=+1]
+
+include::_AsciidocFormatterTest.should_add_an_attribute.approved.adoc[leveloffset=+1]
