@@ -1,6 +1,6 @@
 package org.sfvl.doctesting.demo;
 
-import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.utils.ClassFinder;
 import org.sfvl.doctesting.utils.PathProvider;

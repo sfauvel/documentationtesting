@@ -1,4 +1,7 @@
-package org.sfvl.docformatter;
+package org.sfvl.docformatter.asciidoc;
+
+import org.sfvl.docformatter.*;
+import org.sfvl.docformatter.Formatter;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -164,7 +167,6 @@ public class AsciidocFormatter implements Formatter {
                 + "----\n";
     }
 
-    @Override
     public Source source(String filename) {
         return new Source(filename);
     }

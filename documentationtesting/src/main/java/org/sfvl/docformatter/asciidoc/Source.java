@@ -1,4 +1,4 @@
-package org.sfvl.docformatter;
+package org.sfvl.docformatter.asciidoc;
 
 import java.util.Arrays;
 import java.util.Objects;
