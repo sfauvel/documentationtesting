@@ -94,7 +94,6 @@
                                 <include>**/*.svg</include>
                             </includes>
                         </resource>
-                        ...
                     </resources>
                 </configuration>
 

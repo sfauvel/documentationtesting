@@ -1,3 +1,7 @@
+ifndef::ROOT_PATH[]
+:ROOT_PATH: ../../..
+endif::[]
+:stylesdir: {ROOT_PATH}/../resources/styles
 :toc: left
 :nofooter:
 :stem:
@@ -5,3 +9,10 @@
 :toclevels: 4
 
 include::_InstallingLibrary.approved.adoc[]
+
+[subs=attributes+]
+++++
+<style>
+include::{stylesdir}/documentation.css[]
+</style>
+++++

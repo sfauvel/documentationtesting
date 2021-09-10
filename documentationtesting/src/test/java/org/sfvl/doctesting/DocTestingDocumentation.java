@@ -33,8 +33,7 @@ public class DocTestingDocumentation {
                 getOptions(),
                 formatter.title(1, "Document testing tool"),
                 generalInformation(formatter),
-                includeClasses(formatter),
-                getStyle()
+                includeClasses(formatter)
                 );
     }
 
@@ -43,19 +42,6 @@ public class DocTestingDocumentation {
                 new Options(formatter).withCode().trim(),
                 new Option("toclevels", "4").format()
         );
-    }
-
-    private String getStyle() {
-        String style = String.join("\n", "++++",
-                "<style>",
-                "#content {",
-                "   max-width: unset;",
-                "   padding-left: 5%;",
-                "   padding-right: 5%;",
-                "}",
-                "</style>",
-                "++++");
-        return style;
     }
 
     protected String generalInformation(Formatter formatter) {
