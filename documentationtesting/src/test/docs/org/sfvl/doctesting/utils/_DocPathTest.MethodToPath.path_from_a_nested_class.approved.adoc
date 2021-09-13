@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [#org_sfvl_doctesting_utils_DocPathTest_MethodToPath_path_from_a_nested_class]
 = Path from a nested class

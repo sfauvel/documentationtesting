@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_beginning_with_same_outer_tag_name]
 = Tag beginning with same outer tag name

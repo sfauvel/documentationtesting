@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_nested_class]
 = Nested class
@@ -66,9 +64,7 @@ Generated files in `org/sfvl/doctesting/junitextension`:
 
 .Document generated
 ----
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 = Demo nested test
 

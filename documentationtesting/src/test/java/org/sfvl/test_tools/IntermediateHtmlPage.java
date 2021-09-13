@@ -24,6 +24,9 @@ public class IntermediateHtmlPage extends HtmlPageExtension {
                 "<style>",
                 "include::{stylesdir}/documentation.css[]",
                 "</style>",
+                "<script type=\"text/javascript\">",
+                "include::{stylesdir}/documentation.js[]",
+                "</script>",
                 "++++"
         );
     }

@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 [#org_sfvl_howto_CreateADocument_generate_header_html]
 = Customize document options

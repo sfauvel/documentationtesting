@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 
 :TUTORIAL_HTML: org/sfvl/howto/Tutorial.html
 :HOW_TO_HTML: org/sfvl/howto/HowTo.html

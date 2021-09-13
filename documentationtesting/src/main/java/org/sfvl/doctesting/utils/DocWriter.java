@@ -74,10 +74,7 @@ public class DocWriter {
     }
 
     public String defineDocPath(Path relativePathToRoot) {
-        return String.join("\n",
-                "ifndef::" + Config.DOC_PATH_TAG + "[]",
-                ":" + Config.DOC_PATH_TAG + ": " + DocPath.toAsciiDoc(relativePathToRoot),
-                "endif::[]");
+        return String.format("ifndef::%s[:%s: %s]", Config.DOC_PATH_TAG, Config.DOC_PATH_TAG, DocPath.toAsciiDoc(relativePathToRoot));
     }
 
     public String titleId(Method testMethod) {

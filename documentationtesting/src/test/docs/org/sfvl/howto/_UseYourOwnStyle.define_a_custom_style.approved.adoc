@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 [#org_sfvl_howto_UseYourOwnStyle_define_a_custom_style]
 = Define a custom style

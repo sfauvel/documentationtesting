@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 include::_CreateADocument.generate_html.approved.adoc[leveloffset=+0]
 

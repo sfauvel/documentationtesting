@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [#org_sfvl_samples_htmlPageHeader_HtmlHeaderTest_test_A]
 = Test A

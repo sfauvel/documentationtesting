@@ -4,3 +4,25 @@
    padding-left: 5%;
    padding-right: 5%;
 }
+
+.sectlevel3 {
+    display: none;
+    height: 0;
+    opacity:0;
+}
+
+.sectlevel2>li {
+    padding-left: 0.5em;
+}
+.sectlevel2>li.open {
+    font-weight: bold;
+    background-color: #f0f0f0;
+    padding: 0.5em;
+}
+
+.sectlevel2>li.open .sectlevel3 {
+    display: block;
+    height: auto;
+    opacity:1;
+    font-weight: normal;
+}

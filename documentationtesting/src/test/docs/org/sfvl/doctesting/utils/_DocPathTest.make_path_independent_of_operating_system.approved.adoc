@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [#org_sfvl_doctesting_utils_DocPathTest_make_path_independent_of_operating_system]
 = Make path independent of operating system
