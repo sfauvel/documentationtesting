@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [#fr_xebia_katas_gildedrose_InnTest_example_of_evolution_by_item]
 = Example of evolution by item

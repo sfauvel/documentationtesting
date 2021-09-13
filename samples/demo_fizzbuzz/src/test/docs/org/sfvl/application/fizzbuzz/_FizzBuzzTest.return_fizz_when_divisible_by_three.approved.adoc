@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [#org_sfvl_application_fizzbuzz_FizzBuzzTest_return_fizz_when_divisible_by_three]
 = Return fizz when divisible by three
