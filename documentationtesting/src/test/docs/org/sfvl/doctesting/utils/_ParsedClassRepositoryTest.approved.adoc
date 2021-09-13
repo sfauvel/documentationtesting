@@ -32,3 +32,5 @@ include::_ParsedClassRepositoryTest.RetrieveLineNumber.retrieve_line_of_a_class.
 include::_ParsedClassRepositoryTest.RetrieveLineNumber.retrieve_line_of_a_method.approved.adoc[leveloffset=+2]
 
 include::_ParsedClassRepositoryTest.create_ParsedClassRepository.approved.adoc[leveloffset=+1]
+
+include::_ParsedClassRepositoryTest.parsed_classes_only_once.approved.adoc[leveloffset=+1]
