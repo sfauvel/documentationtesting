@@ -15,6 +15,7 @@ public class IntermediateHtmlPage extends HtmlPageExtension {
                 ":nofooter:",
                 ":stem:",
                 ":source-highlighter: rouge",
+                ":rouge-style: thankful_eyes",
                 ":toclevels: 4",
                 "",
                 String.format("include::%s[]", new DocPath(clazz).approved().fullname()),
