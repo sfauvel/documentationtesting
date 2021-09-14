@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Performance</title>
+<title>Create a document</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,510 +438,482 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
+<h1>Create a document</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_performance">Performance</a></li>
-<li><a href="#_performances">Performances</a></li>
-<li><a href="#_verify_documentation_with_approvals_library">Verify documentation with <em>Approvals</em> library.</a>
-<ul class="sectlevel2">
-<li><a href="#org_sfvl_demo_UsingApprovalsTest_should_give_person_information">Should give person information</a></li>
-</ul>
-</li>
-<li><a href="#_check_file_modification_with_git_after_each_test">Check file modification with git after each test.</a>
-<ul class="sectlevel2">
-<li><a href="#org_sfvl_demo_UsingGitAssertingOnEachTestTest_should_give_person_information">Should give person information</a></li>
-</ul>
-</li>
-<li><a href="#_use_git_to_check_file_modification_but_after_all_tests_the_time_shown_not_include_this_verification">Use Git to check file modification but after all tests. The time shown not include this verification.</a>
-<ul class="sectlevel2">
-<li><a href="#org_sfvl_demo_UsingGitWithNoAssertOptionTest_should_give_person_information">Should give person information</a></li>
-</ul>
-</li>
-<li><a href="#_using_junit_assertions_to_test">Using JUnit assertions to test.</a></li>
+<li><a href="#org_sfvl_howto_CreateADocument_generate_html">Generate html</a></li>
+<li><a href="#org_sfvl_howto_CreateADocument_generate_header_html">Customize document options</a></li>
+<li><a href="#org_sfvl_howto_CreateADocument_change_name_for_html">Define name and path for the output file</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="_performance">Performance</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>We evaluate performance using different approaches.</p>
-</div>
-<div class="paragraph">
-<p>This comparison is very light and approximate.
-It&#8217;s just to give an idea of the cost to generate files and compare them.</p>
-</div>
-<div class="paragraph">
-<p>We show below time to execute different types of tests.
-First, we execute a very simple test with JUnit, Approvals and using Git.
-With Git, we execute it with option no-assert or not.
-This option, is used when we launch tests with script to check failure only at the end.</p>
-</div>
-<div class="paragraph">
-<p>We show what each test provide as output to compare a classical test to the approach based on the documentation.
-With Junit, we just display test source code.</p>
-</div>
-<div class="paragraph">
-<p>We see a factor of 7 between JUnit and Git.
-In fact, there is a time taken to build JavaProjectBuilder to be able to parse code and retrieve comments.
-This initialization finished, tests are pretty fast with a factor of 3 with JUnit.
-With Approvals, preformance is less good (but may be optimized).
-This approach is clearly slower than using Junit, but difference is not really signifiant unless there is a lot a tests.
-We execute 1000 tests in less than 1 second.</p>
+<p>We call <code>document</code> one page of the documentation which corresponds to an HTML page.
+These <code>documents</code> are converted from the <code>.adoc</code> files.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_performances">Performances</h2>
+<h2 id="org_sfvl_howto_CreateADocument_generate_html">Generate html</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>We compare performance of tests using different approaches.</p>
+<p>To convert <code>.adoc</code> to <code>.html</code>, we use <code>asciidoctor-maven-plugin</code> plugin.
+By default, files started with <code>_</code> are not converted to HTML.</p>
 </div>
 <div class="paragraph">
-<p>Using Git, we can verify documentation on each test or not.
-When we run all tests, this verification is done at the end by script that launch tests.
-To have total time using Git without verification on each test, we should add time of global checking.
-This step is fast, it&#8217;s just a shell script with some git commands.</p>
-</div>
-<table class="tableblock frame-all grid-all fit-content">
-<colgroup>
-<col>
-<col>
-<col>
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Category</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Class</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Time in seconds)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Long</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndALongTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.03</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. There is only one test but it check 100 times the same case.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Long</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitWithALongTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.004</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test. There is only one test but it check 100 times the same case.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndLotOfTests_A_Test</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.573</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndLotOfTests_B_Test</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.073</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100O tests are made.This test is run twice to have at least one execution with JavaProjectBuilder already initialized.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lot</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitAndLotOfTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.593</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test 1000 cases.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Many</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionAndManyTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.091</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification. 100 tests are made.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Many</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitAndManyTestsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.05</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test 100 cases.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingApprovalsTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.065</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Verify documentation with <em>Approvals</em> library.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitAssertingOnEachTestTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.182</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Check file modification with git after each test.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingGitWithNoAssertOptionTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.325</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use Git to check file modification but after all tests. The time shown not include this verification.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Simple</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UsingJUnitTest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.001</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Using JUnit assertions to test.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_verify_documentation_with_approvals_library">Verify documentation with <em>Approvals</em> library.</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Demo of a simple usage to generate documentation.</p>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_demo_UsingApprovalsTest_should_give_person_information">Should give person information</h3>
-<div class="paragraph">
-<p>With an instance of Person:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>First Name</strong>: John</p>
-</li>
-<li>
-<p><strong>Last Name</strong>: Doe</p>
-</li>
-<li>
-<p><strong>Year of birth</strong>: 1976</p>
-</li>
-</ul>
+<p>All the <code>approved</code> files we generate start with <code>_</code>.
+They are only chapters that need to be include in a file to be converted into HTML.
+So, it&#8217;s easier to reuse these files and organize the documentation.</p>
 </div>
 <div class="paragraph">
-<p>Results calling methods are:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>age()</strong>: 45 (<em>if we are in 2021</em>)</p>
-</li>
-<li>
-<p><strong>toString()</strong>: John Doe</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_check_file_modification_with_git_after_each_test">Check file modification with git after each test.</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Demo of a simple usage to generate documentation.</p>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_demo_UsingGitAssertingOnEachTestTest_should_give_person_information">Should give person information</h3>
-<div class="paragraph">
-<p>With an instance of Person:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>First Name</strong>: John</p>
-</li>
-<li>
-<p><strong>Last Name</strong>: Doe</p>
-</li>
-<li>
-<p><strong>Year of birth</strong>: 1976</p>
-</li>
-</ul>
+<p>To have a file that not start with <code>_</code>, we need to generate it.
+We can do that in a method annoted with <code>AfterAll</code>.
+In this file, we can add <code>include</code> to all files we want to aggregate.</p>
 </div>
 <div class="paragraph">
-<p>Results calling methods are:</p>
+<p>If you just want to publish the documentation created in a test class,
+you can create a file with the name of the class (without _)
+and add an <code>include</code> to the <code>approved</code> file of the same class.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>age()</strong>: 45 (<em>if we are in 2021</em>)</p>
-</li>
-<li>
-<p><strong>toString()</strong>: John Doe</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_use_git_to_check_file_modification_but_after_all_tests_the_time_shown_not_include_this_verification">Use Git to check file modification but after all tests. The time shown not include this verification.</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Demo of a simple usage to generate documentation.</p>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_demo_UsingGitWithNoAssertOptionTest_should_give_person_information">Should give person information</h3>
-<div class="paragraph">
-<p>With an instance of Person:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>First Name</strong>: John</p>
-</li>
-<li>
-<p><strong>Last Name</strong>: Doe</p>
-</li>
-<li>
-<p><strong>Year of birth</strong>: 1976</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Results calling methods are:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>age()</strong>: 45 (<em>if we are in 2021</em>)</p>
-</li>
-<li>
-<p><strong>toString()</strong>: John Doe</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_using_junit_assertions_to_test">Using JUnit assertions to test.</h2>
-<div class="sectionbody">
 <div class="listingblock">
+<div class="title">Example of class creating a file to convert into HTML</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@Test</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">should_give_person_information</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">checkPerson</span><span class="o">();</span>
-<span class="o">}</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="kn">package</span> <span class="nn">org.sfvl.samples.generateHtml</span><span class="o">;</span>
 
-<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">checkPerson</span><span class="o">()</span> <span class="o">{</span>
-    <span class="kd">final</span> <span class="nc">LocalDate</span> <span class="n">now</span> <span class="o">=</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
-    <span class="kd">final</span> <span class="kt">int</span> <span class="n">current_year</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="na">getYear</span><span class="o">();</span>
-    <span class="kd">final</span> <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">45</span><span class="o">;</span>
-    <span class="kd">final</span> <span class="nc">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"John"</span><span class="o">,</span> <span class="s">"Doe"</span><span class="o">,</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">current_year</span> <span class="o">-</span> <span class="n">age</span><span class="o">,</span> <span class="mi">11</span><span class="o">,</span> <span class="mi">23</span><span class="o">));</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.extension.ExtendWith</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.extension.RegisterExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.ApprovalsExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.HtmlPageExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.SimpleApprovalsExtension</span><span class="o">;</span>
 
-    <span class="n">assertEquals</span><span class="o">(</span><span class="n">age</span><span class="o">,</span> <span class="n">person</span><span class="o">.</span><span class="na">age</span><span class="o">());</span>
-    <span class="n">assertEquals</span><span class="o">(</span><span class="s">"John Doe"</span><span class="o">,</span> <span class="n">person</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+<span class="nd">@ExtendWith</span><span class="o">(</span><span class="nc">HtmlPageExtension</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HtmlTest</span> <span class="o">{</span>
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
+    <span class="o">}</span>
+
 <span class="o">}</span></code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Files in folder <code>src/test/docs/org/sfvl/samples/generateHtml</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>HtmlTest.adoc</p>
+</li>
+<li>
+<p>_HtmlTest.approved.adoc</p>
+</li>
+<li>
+<p>_HtmlTest.test_A.approved.adoc</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Content of the file <code>src/test/docs/org/sfvl/samples/generateHtml/HtmlTest.adoc</code></div>
+<div class="content">
+<pre>include::_HtmlTest.approved.adoc[]</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_howto_CreateADocument_generate_header_html">Customize document options</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, <code>HtmlPageExtension</code> create a file with only one include of the <code>approved</code> class file.
+This file is the right place to specify some specific information on how displaying the page.
+We can doing it extending <code>HtmlPageExtension</code> and redefined content to add options we need.
+Here, we create an inner class but we can use a main class to reuse it in several tests.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example to add header into file to convert into HTML</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kn">package</span> <span class="nn">org.sfvl.samples.htmlPageHeader</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.extension.ExtendWith</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.extension.RegisterExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.ApprovalsExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.HtmlPageExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.SimpleApprovalsExtension</span><span class="o">;</span>
+
+<span class="nd">@ExtendWith</span><span class="o">(</span><span class="nc">HtmlHeaderTest</span><span class="o">.</span><span class="na">HtmlPageHeaderExtension</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HtmlHeaderTest</span> <span class="o">{</span>
+    <span class="kd">static</span> <span class="kd">class</span> <span class="nc">HtmlPageHeaderExtension</span> <span class="kd">extends</span> <span class="nc">HtmlPageExtension</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="nc">String</span> <span class="nf">content</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">clazz</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nc">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">"\n"</span><span class="o">,</span>
+                    <span class="s">":toc: left"</span><span class="o">,</span>
+                    <span class="s">":nofooter:"</span><span class="o">,</span>
+                    <span class="kd">super</span><span class="o">.</span><span class="na">content</span><span class="o">(</span><span class="n">clazz</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Content of the file <code>src/test/docs/org/sfvl/samples/htmlPageHeader/HtmlHeaderTest.adoc</code></div>
+<div class="content">
+<pre>:toc: left
+:nofooter:
+include::_HtmlHeaderTest.approved.adoc[]</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_howto_CreateADocument_change_name_for_html">Define name and path for the output file</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, <code>HtmlPageExtension</code> create a file with a name coming from the class
+To change it, we can extending <code>HtmlPageExtension</code> and redefined name method.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of class creating a file to convert into HTML</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kn">package</span> <span class="nn">org.sfvl.samples.htmlPageName</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.extension.ExtendWith</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.extension.RegisterExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.ApprovalsExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.HtmlPageExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.SimpleApprovalsExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.utils.DocPath</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.nio.file.Path</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.nio.file.Paths</span><span class="o">;</span>
+
+<span class="nd">@ExtendWith</span><span class="o">(</span><span class="nc">HtmlNameTest</span><span class="o">.</span><span class="na">HtmlPageHeaderExtension</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HtmlNameTest</span> <span class="o">{</span>
+    <span class="kd">static</span> <span class="kd">class</span> <span class="nc">HtmlPageHeaderExtension</span> <span class="kd">extends</span> <span class="nc">HtmlPageExtension</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="nc">Path</span> <span class="nf">getFilePath</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">clazz</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nf">DocPath</span><span class="o">(</span><span class="n">clazz</span><span class="o">).</span><span class="na">page</span><span class="o">().</span><span class="na">folder</span><span class="o">().</span><span class="na">resolve</span><span class="o">(</span><span class="s">"index.adoc"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Files in folder <code>src/test/docs/org/sfvl/samples/htmlPageName</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>_HtmlNameTest.approved.adoc</p>
+</li>
+<li>
+<p>_HtmlNameTest.test_A.approved.adoc</p>
+</li>
+<li>
+<p>index.adoc</p>
+</li>
+</ul>
+</div>
+<style>
+
+#content {
+   max-width: unset;
+   padding-left: 5%;
+   padding-right: 5%;
+}
+
+
+#toc.toc2 {
+    background: #0fd289;
+    box-shadow: 5px 5px 5px #084f34;
+    font-size: 1.1em;
+}
+
+#toc.toc2 a {
+    color: #7a2518;
+}
+
+#toc.toc2 #toctitle {
+    font-family: "Noto Serif","DejaVu Serif",serif;
+    font-style: italic;
+
+    color: #7a2518;
+}
+
+body {
+    background: #05fdCC !important;
+}
+
+h1, h2 {
+    font-family: "Noto Serif","DejaVu Serif",serif;
+    font-style: italic;
+
+    color: #7a2518;
+    font-weight: 400;
+}
+
+:not(pre):not([class^="L"]) > code {
+    background: #0fd289;
+}
+
+.listingblock .content pre, .listingblock .content pre:not(.highlight) {
+    background: #7a2518;
+    box-shadow: 5px 5px 5px #084f34;
+}
+
+.literalblock pre, .listingblock > .content > pre:not(.highlight),
+.exampleblock > .content {
+    background: #0fd289;
+    box-shadow: 5px 5px 5px #084f34;
+}
+
+
+.sectlevel3 {
+    display: none;
+    height: 0;
+    opacity:0;
+}
+
+.sectlevel2>li {
+    padding-left: 0.5em;
+}
+.sectlevel2>li.open {
+    font-weight: bold;
+    background-color: #f0f0f0;
+    padding: 0.5em;
+}
+
+.sectlevel2>li.open .sectlevel3 {
+    display: block;
+    height: auto;
+    opacity:1;
+    font-weight: normal;
+}
+</style>
+<script type="text/javascript">
+function toggleMenuOnClick(menuItem) {
+    menuItem.getElementsByTagName("a")[0].addEventListener(
+        'click',
+        event => {
+            document.querySelectorAll(".sectlevel2 > li").forEach(function(element) {
+                if (element != menuItem) {
+                    element.classList.remove("menu_open");
+                }
+            });
+            event.currentTarget.parentNode.classList.toggle("menu_open");
+        }
+    );
+}
+
+window.addEventListener( "load",
+    function() {
+        menusLevel2 = document.querySelectorAll(".sectlevel2 > li");
+        menusLevel2.forEach(toggleMenuOnClick);
+     }
+);
+</script>
 </div>
 </div>
 </div>
 <style>
 pre.rouge table td { padding: 5px; }
 pre.rouge table pre { margin: 0; }
-pre.rouge .cm {
-  color: #999988;
+pre.rouge {
+  color: #faf6e4;
+  background-color: #122b3b;
+}
+pre.rouge .gl {
+  color: #dee5e7;
+  background-color: #4e5d62;
+}
+pre.rouge .gp {
+  color: #a8e1fe;
+  font-weight: bold;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6c8b9f;
   font-style: italic;
 }
 pre.rouge .cp {
-  color: #999999;
+  color: #b2fd6d;
   font-weight: bold;
-}
-pre.rouge .c1 {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .cs {
-  color: #999999;
-  font-weight: bold;
-  font-style: italic;
-}
-pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
-  color: #999988;
-  font-style: italic;
 }
 pre.rouge .err {
-  color: #a61717;
-  background-color: #e3d2d2;
-}
-pre.rouge .gd {
-  color: #000000;
-  background-color: #ffdddd;
-}
-pre.rouge .ge {
-  color: #000000;
-  font-style: italic;
+  color: #fefeec;
+  background-color: #cc0000;
 }
 pre.rouge .gr {
-  color: #aa0000;
+  color: #cc0000;
+  font-weight: bold;
+  font-style: italic;
 }
-pre.rouge .gh {
-  color: #999999;
+pre.rouge .k, pre.rouge .kd, pre.rouge .kv {
+  color: #f6dd62;
+  font-weight: bold;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #4df4ff;
+  font-weight: bold;
+}
+pre.rouge .p, pre.rouge .pi {
+  color: #4df4ff;
+}
+pre.rouge .gd {
+  color: #cc0000;
 }
 pre.rouge .gi {
-  color: #000000;
-  background-color: #ddffdd;
+  color: #b2fd6d;
 }
-pre.rouge .go {
-  color: #888888;
-}
-pre.rouge .gp {
-  color: #555555;
+pre.rouge .ge {
+  font-style: italic;
 }
 pre.rouge .gs {
   font-weight: bold;
 }
-pre.rouge .gu {
-  color: #aaaaaa;
-}
 pre.rouge .gt {
-  color: #aa0000;
+  color: #dee5e7;
+  background-color: #4e5d62;
 }
 pre.rouge .kc {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kd {
-  color: #000000;
+  color: #f696db;
   font-weight: bold;
 }
 pre.rouge .kn {
-  color: #000000;
+  color: #ffb000;
   font-weight: bold;
 }
 pre.rouge .kp {
-  color: #000000;
+  color: #ffb000;
   font-weight: bold;
 }
 pre.rouge .kr {
-  color: #000000;
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .gh {
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #ffb000;
   font-weight: bold;
 }
 pre.rouge .kt {
-  color: #445588;
-  font-weight: bold;
-}
-pre.rouge .k, pre.rouge .kv {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .mf {
-  color: #009999;
-}
-pre.rouge .mh {
-  color: #009999;
-}
-pre.rouge .il {
-  color: #009999;
-}
-pre.rouge .mi {
-  color: #009999;
-}
-pre.rouge .mo {
-  color: #009999;
-}
-pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
-  color: #009999;
-}
-pre.rouge .sb {
-  color: #d14;
-}
-pre.rouge .sc {
-  color: #d14;
-}
-pre.rouge .sd {
-  color: #d14;
-}
-pre.rouge .s2 {
-  color: #d14;
-}
-pre.rouge .se {
-  color: #d14;
-}
-pre.rouge .sh {
-  color: #d14;
-}
-pre.rouge .si {
-  color: #d14;
-}
-pre.rouge .sx {
-  color: #d14;
-}
-pre.rouge .sr {
-  color: #009926;
-}
-pre.rouge .s1 {
-  color: #d14;
-}
-pre.rouge .ss {
-  color: #990073;
-}
-pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
-  color: #d14;
-}
-pre.rouge .na {
-  color: #008080;
-}
-pre.rouge .bp {
-  color: #999999;
-}
-pre.rouge .nb {
-  color: #0086B3;
-}
-pre.rouge .nc {
-  color: #445588;
+  color: #b2fd6d;
   font-weight: bold;
 }
 pre.rouge .no {
-  color: #008080;
+  color: #b2fd6d;
+  font-weight: bold;
+}
+pre.rouge .nc {
+  color: #b2fd6d;
+  font-weight: bold;
 }
 pre.rouge .nd {
-  color: #3c5d5d;
-  font-weight: bold;
-}
-pre.rouge .ni {
-  color: #800080;
-}
-pre.rouge .ne {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nf, pre.rouge .fm {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nl {
-  color: #990000;
+  color: #b2fd6d;
   font-weight: bold;
 }
 pre.rouge .nn {
-  color: #555555;
-}
-pre.rouge .nt {
-  color: #000080;
-}
-pre.rouge .vc {
-  color: #008080;
-}
-pre.rouge .vg {
-  color: #008080;
-}
-pre.rouge .vi {
-  color: #008080;
-}
-pre.rouge .nv, pre.rouge .vm {
-  color: #008080;
-}
-pre.rouge .ow {
-  color: #000000;
+  color: #b2fd6d;
   font-weight: bold;
 }
-pre.rouge .o {
-  color: #000000;
+pre.rouge .bp {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+pre.rouge .ne {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .nt {
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #f696db;
+  font-weight: bold;
+}
+pre.rouge .ld {
+  color: #f696db;
+  font-weight: bold;
+}
+pre.rouge .ss {
+  color: #f696db;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sb, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .sh, pre.rouge .sx, pre.rouge .sr, pre.rouge .s1 {
+  color: #fff0a6;
+  font-weight: bold;
+}
+pre.rouge .se {
+  color: #4df4ff;
+  font-weight: bold;
+}
+pre.rouge .sc {
+  color: #4df4ff;
+  font-weight: bold;
+}
+pre.rouge .si {
+  color: #4df4ff;
+  font-weight: bold;
+}
+pre.rouge .nb {
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #999999;
   font-weight: bold;
 }
 pre.rouge .w {
-  color: #bbbbbb;
+  color: #BBBBBB;
 }
-pre.rouge {
-  background-color: #f8f8f8;
+pre.rouge .go {
+  color: #BBBBBB;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #a8e1fe;
+}
+pre.rouge .py {
+  color: #a8e1fe;
+}
+pre.rouge .na {
+  color: #a8e1fe;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #a8e1fe;
+  font-weight: bold;
 }
 </style>
 <script type="text/x-mathjax-config">

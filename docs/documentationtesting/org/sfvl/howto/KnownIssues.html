@@ -489,6 +489,104 @@ Tests running in IDE fails but they don&#8217;t when they are run with <code>mvn
 <p>Do not use <code>maven-surefire-plugin 3.0.0-M4</code> version.
 you can use an older or newer version instead.</p>
 </div>
+<style>
+
+#content {
+   max-width: unset;
+   padding-left: 5%;
+   padding-right: 5%;
+}
+
+
+#toc.toc2 {
+    background: #0fd289;
+    box-shadow: 5px 5px 5px #084f34;
+    font-size: 1.1em;
+}
+
+#toc.toc2 a {
+    color: #7a2518;
+}
+
+#toc.toc2 #toctitle {
+    font-family: "Noto Serif","DejaVu Serif",serif;
+    font-style: italic;
+
+    color: #7a2518;
+}
+
+body {
+    background: #05fdCC !important;
+}
+
+h1, h2 {
+    font-family: "Noto Serif","DejaVu Serif",serif;
+    font-style: italic;
+
+    color: #7a2518;
+    font-weight: 400;
+}
+
+:not(pre):not([class^="L"]) > code {
+    background: #0fd289;
+}
+
+.listingblock .content pre, .listingblock .content pre:not(.highlight) {
+    background: #7a2518;
+    box-shadow: 5px 5px 5px #084f34;
+}
+
+.literalblock pre, .listingblock > .content > pre:not(.highlight),
+.exampleblock > .content {
+    background: #0fd289;
+    box-shadow: 5px 5px 5px #084f34;
+}
+
+
+.sectlevel3 {
+    display: none;
+    height: 0;
+    opacity:0;
+}
+
+.sectlevel2>li {
+    padding-left: 0.5em;
+}
+.sectlevel2>li.open {
+    font-weight: bold;
+    background-color: #f0f0f0;
+    padding: 0.5em;
+}
+
+.sectlevel2>li.open .sectlevel3 {
+    display: block;
+    height: auto;
+    opacity:1;
+    font-weight: normal;
+}
+</style>
+<script type="text/javascript">
+function toggleMenuOnClick(menuItem) {
+    menuItem.getElementsByTagName("a")[0].addEventListener(
+        'click',
+        event => {
+            document.querySelectorAll(".sectlevel2 > li").forEach(function(element) {
+                if (element != menuItem) {
+                    element.classList.remove("menu_open");
+                }
+            });
+            event.currentTarget.parentNode.classList.toggle("menu_open");
+        }
+    );
+}
+
+window.addEventListener( "load",
+    function() {
+        menusLevel2 = document.querySelectorAll(".sectlevel2 > li");
+        menusLevel2.forEach(toggleMenuOnClick);
+     }
+);
+</script>
 </div>
 </div>
 </div>

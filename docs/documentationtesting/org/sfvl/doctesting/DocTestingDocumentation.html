@@ -572,6 +572,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_exception">Exception</a></li>
 </ul>
 </li>
+<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_parsed_classes_only_once">Parsed classes only once</a></li>
 </ul>
 </li>
 <li><a href="#_class_documentation_test">Class documentation test</a>
@@ -580,6 +581,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_writer_ClassDocumentationTest_title_level">Title level</a></li>
 <li><a href="#org_sfvl_doctesting_writer_ClassDocumentationTest_customize_output">Customize output</a></li>
 <li><a href="#org_sfvl_doctesting_writer_ClassDocumentationTest_nested_class_documentation">Test class documentation with nested classes</a></li>
+</ul>
+</li>
+<li><a href="#_create_a_document">Create a document</a>
+<ul class="sectlevel3">
+<li><a href="#org_sfvl_doctesting_writer_CreateADocument_simplest_way_to_create_a_document">Simplest way to create a document</a>
+<ul class="sectlevel4">
+<li><a href="#_my_title">My title</a></li>
+</ul>
+</li>
+<li><a href="#org_sfvl_doctesting_writer_CreateADocument_reuse_sub_parts_of_document">Reuse sub parts of document</a>
+<ul class="sectlevel4">
+<li><a href="#_my_title_2">My title</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_create_a_general_documentation">Create a general documentation</a>
@@ -958,9 +973,7 @@ include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ad
 <div class="listingblock">
 <div class="title">Document generated</div>
 <div class="content">
-<pre>ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../..
-endif::[]
+<pre>ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 = My test
 
@@ -1017,9 +1030,7 @@ It&#8217;s help to understand and investigate on the problem.</p>
 <div class="listingblock">
 <div class="title">Document generated (exception stack trace is truncated)</div>
 <div class="content">
-<pre>ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../..
-endif::[]
+<pre>ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 [#org_sfvl_samples_FailingTest_failing_test]
 = Failing test
@@ -3764,6 +3775,83 @@ you can set it with an empty value to not throw an exception.</p>
 </style>
 </div>
 </div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_parsed_classes_only_once">Parsed classes only once</h4>
+<div class="paragraph">
+<p>The <code>ParsedClassRepository</code> have a cache to avoid parsing twice the same class.</p>
+</div>
+<div class="paragraph">
+<p>Below, we show calls to <code>parse</code> method when we call a method of <code>ParsedClassRepository</code>.
+<code>clearCache</code> method clears the cache and classes need to parse again.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>clearCache()</p>
+</li>
+<li>
+<p>getComment(ApprovalsExtensionTest.class)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>parse(org.sfvl.doctesting.junitextension, ApprovalsExtensionTest.java.class)</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>getComment(DocPathTest.class)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>parse(org.sfvl.doctesting.utils, DocPathTest.java.class)</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>getComment(ApprovalsExtensionTest.class)</p>
+</li>
+<li>
+<p>getComment(ApprovalsExtensionTest.class, using_extension)</p>
+</li>
+<li>
+<p>getComment(FailureReporterTest.class)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>parse(org.sfvl.doctesting.junitextension, FailureReporterTest.java.class)</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>clearCache()</p>
+</li>
+<li>
+<p>getComment(ApprovalsExtensionTest.class)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>parse(org.sfvl.doctesting.junitextension, ApprovalsExtensionTest.java.class)</strong></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<style>
+#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_parsed_classes_only_once ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_class_documentation_test">Class documentation test</h3>
@@ -3954,6 +4042,155 @@ include::_ClassDocumentationTest_DemoNestedTest.Multiply.should_be_12_when_multi
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"></code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_a_document">Create a document</h3>
+<div class="paragraph">
+<p>DocumentationBuilder provides an easy way to create a document.
+It&#8217;s useful to creates pages with a free structure in which we can select files to include.</p>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_writer_CreateADocument_simplest_way_to_create_a_document">Simplest way to create a document</h4>
+<div class="paragraph">
+<p>Creating a document is just writing a file.
+We can use a <a href="https://en.wikipedia.org/wiki/Markup_language">markup language</a> to easily writing a formatted document.</p>
+</div>
+<div class="listingblock">
+<div class="title">Usage</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">MyDocument</span> <span class="o">{</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">content</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">"\n"</span><span class="o">,</span>
+                <span class="s">"= My title"</span><span class="o">,</span>
+                <span class="s">"Text of the document"</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="k">new</span> <span class="nf">Document</span><span class="o">(</span><span class="k">new</span> <span class="nc">MyDocument</span><span class="o">().</span><span class="na">content</span><span class="o">()).</span><span class="na">saveAs</span><span class="o">(</span><span class="n">outputFile</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Document generated</div>
+<div class="content">
+<pre>= My title
+Text of the document</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>final rendering</em></p>
+</div>
+<div class="sect4 adocRendering">
+<h5 id="_my_title">My title</h5>
+<div class="paragraph">
+<p>Text of the document</p>
+</div>
+<style>
+.adocRendering {
+    padding: 1em;
+    background: #fffef7;
+    border-color: #e0e0dc;
+    -webkit-box-shadow: 0 1px 4px #e0e0dc;
+    box-shadow: 0 1px 4px #e0e0dc;
+}
+</style>
+</div>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_writer_CreateADocument_reuse_sub_parts_of_document">Reuse sub parts of document</h4>
+<div class="paragraph">
+<p>To build a document, we can reuse some code that generate a part of document.
+To do that, we can use:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a method in the same class</p>
+</li>
+<li>
+<p>use another class</p>
+</li>
+<li>
+<p>a lambda</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Usage</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">Header</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Formatter</span> <span class="n">formatter</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Header</span><span class="o">(</span><span class="nc">Formatter</span> <span class="n">formatter</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">formatter</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">content</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">formatter</span><span class="o">.</span><span class="na">paragraph</span><span class="o">(</span>
+                <span class="s">":toc: left"</span><span class="o">,</span>
+                <span class="s">":nofooter:"</span><span class="o">,</span>
+                <span class="s">":stem:"</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">MyDocument</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Formatter</span> <span class="n">formatter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AsciidocFormatter</span><span class="o">();</span>
+
+    <span class="kd">private</span> <span class="nc">Function</span><span class="o">&lt;</span><span class="nc">Formatter</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">title</span> <span class="o">=</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span><span class="o">.</span><span class="na">title</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">"My title"</span><span class="o">);</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="nf">description</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Text of the document"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">content</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">"\n"</span><span class="o">,</span>
+                <span class="c1">// Using another class.</span>
+                <span class="k">new</span> <span class="nf">Header</span><span class="o">(</span><span class="n">formatter</span><span class="o">).</span><span class="na">content</span><span class="o">(),</span>
+                <span class="c1">// Using a lambda</span>
+                <span class="n">title</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">formatter</span><span class="o">),</span>
+                <span class="c1">// Using a method in the same class.</span>
+                <span class="n">description</span><span class="o">()</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="k">new</span> <span class="nf">Document</span><span class="o">(</span><span class="k">new</span> <span class="nc">MyDocument</span><span class="o">().</span><span class="na">content</span><span class="o">()).</span><span class="na">saveAs</span><span class="o">(</span><span class="n">outputFile</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Document generated</div>
+<div class="content">
+<pre>:toc: left
+:nofooter:
+:stem:
+
+
+
+= My title
+
+Text of the document</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>final rendering</em></p>
+</div>
+<div class="sect4 adocRendering">
+<h5 id="_my_title_2">My title</h5>
+<div class="paragraph">
+<p>Text of the document</p>
+</div>
+<style>
+.adocRendering {
+    padding: 1em;
+    background: #fffef7;
+    border-color: #e0e0dc;
+    -webkit-box-shadow: 0 1px 4px #e0e0dc;
+    box-shadow: 0 1px 4px #e0e0dc;
+}
+</style>
 </div>
 </div>
 </div>
@@ -4392,12 +4629,103 @@ My description without included any test documentation.</pre>
 </div>
 </div>
 <style>
+
 #content {
    max-width: unset;
    padding-left: 5%;
    padding-right: 5%;
 }
+
+
+#toc.toc2 {
+    background: #0fd289;
+    box-shadow: 5px 5px 5px #084f34;
+    font-size: 1.1em;
+}
+
+#toc.toc2 a {
+    color: #7a2518;
+}
+
+#toc.toc2 #toctitle {
+    font-family: "Noto Serif","DejaVu Serif",serif;
+    font-style: italic;
+
+    color: #7a2518;
+}
+
+body {
+    background: #05fdCC !important;
+}
+
+h1, h2 {
+    font-family: "Noto Serif","DejaVu Serif",serif;
+    font-style: italic;
+
+    color: #7a2518;
+    font-weight: 400;
+}
+
+:not(pre):not([class^="L"]) > code {
+    background: #0fd289;
+}
+
+.listingblock .content pre, .listingblock .content pre:not(.highlight) {
+    background: #7a2518;
+    box-shadow: 5px 5px 5px #084f34;
+}
+
+.literalblock pre, .listingblock > .content > pre:not(.highlight),
+.exampleblock > .content {
+    background: #0fd289;
+    box-shadow: 5px 5px 5px #084f34;
+}
+
+
+.sectlevel3 {
+    display: none;
+    height: 0;
+    opacity:0;
+}
+
+.sectlevel2>li {
+    padding-left: 0.5em;
+}
+.sectlevel2>li.open {
+    font-weight: bold;
+    background-color: #f0f0f0;
+    padding: 0.5em;
+}
+
+.sectlevel2>li.open .sectlevel3 {
+    display: block;
+    height: auto;
+    opacity:1;
+    font-weight: normal;
+}
 </style>
+<script type="text/javascript">
+function toggleMenuOnClick(menuItem) {
+    menuItem.getElementsByTagName("a")[0].addEventListener(
+        'click',
+        event => {
+            document.querySelectorAll(".sectlevel2 > li").forEach(function(element) {
+                if (element != menuItem) {
+                    element.classList.remove("menu_open");
+                }
+            });
+            event.currentTarget.parentNode.classList.toggle("menu_open");
+        }
+    );
+}
+
+window.addEventListener( "load",
+    function() {
+        menusLevel2 = document.querySelectorAll(".sectlevel2 > li");
+        menusLevel2.forEach(toggleMenuOnClick);
+     }
+);
+</script>
 </div>
 </div>
 </div>
@@ -4406,212 +4734,175 @@ My description without included any test documentation.</pre>
 <style>
 pre.rouge table td { padding: 5px; }
 pre.rouge table pre { margin: 0; }
-pre.rouge .cm {
-  color: #999988;
+pre.rouge {
+  color: #faf6e4;
+  background-color: #122b3b;
+}
+pre.rouge .gl {
+  color: #dee5e7;
+  background-color: #4e5d62;
+}
+pre.rouge .gp {
+  color: #a8e1fe;
+  font-weight: bold;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6c8b9f;
   font-style: italic;
 }
 pre.rouge .cp {
-  color: #999999;
+  color: #b2fd6d;
   font-weight: bold;
-}
-pre.rouge .c1 {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .cs {
-  color: #999999;
-  font-weight: bold;
-  font-style: italic;
-}
-pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
-  color: #999988;
-  font-style: italic;
 }
 pre.rouge .err {
-  color: #a61717;
-  background-color: #e3d2d2;
-}
-pre.rouge .gd {
-  color: #000000;
-  background-color: #ffdddd;
-}
-pre.rouge .ge {
-  color: #000000;
-  font-style: italic;
+  color: #fefeec;
+  background-color: #cc0000;
 }
 pre.rouge .gr {
-  color: #aa0000;
+  color: #cc0000;
+  font-weight: bold;
+  font-style: italic;
 }
-pre.rouge .gh {
-  color: #999999;
+pre.rouge .k, pre.rouge .kd, pre.rouge .kv {
+  color: #f6dd62;
+  font-weight: bold;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #4df4ff;
+  font-weight: bold;
+}
+pre.rouge .p, pre.rouge .pi {
+  color: #4df4ff;
+}
+pre.rouge .gd {
+  color: #cc0000;
 }
 pre.rouge .gi {
-  color: #000000;
-  background-color: #ddffdd;
+  color: #b2fd6d;
 }
-pre.rouge .go {
-  color: #888888;
-}
-pre.rouge .gp {
-  color: #555555;
+pre.rouge .ge {
+  font-style: italic;
 }
 pre.rouge .gs {
   font-weight: bold;
 }
-pre.rouge .gu {
-  color: #aaaaaa;
-}
 pre.rouge .gt {
-  color: #aa0000;
+  color: #dee5e7;
+  background-color: #4e5d62;
 }
 pre.rouge .kc {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kd {
-  color: #000000;
+  color: #f696db;
   font-weight: bold;
 }
 pre.rouge .kn {
-  color: #000000;
+  color: #ffb000;
   font-weight: bold;
 }
 pre.rouge .kp {
-  color: #000000;
+  color: #ffb000;
   font-weight: bold;
 }
 pre.rouge .kr {
-  color: #000000;
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .gh {
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #ffb000;
   font-weight: bold;
 }
 pre.rouge .kt {
-  color: #445588;
-  font-weight: bold;
-}
-pre.rouge .k, pre.rouge .kv {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .mf {
-  color: #009999;
-}
-pre.rouge .mh {
-  color: #009999;
-}
-pre.rouge .il {
-  color: #009999;
-}
-pre.rouge .mi {
-  color: #009999;
-}
-pre.rouge .mo {
-  color: #009999;
-}
-pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
-  color: #009999;
-}
-pre.rouge .sb {
-  color: #d14;
-}
-pre.rouge .sc {
-  color: #d14;
-}
-pre.rouge .sd {
-  color: #d14;
-}
-pre.rouge .s2 {
-  color: #d14;
-}
-pre.rouge .se {
-  color: #d14;
-}
-pre.rouge .sh {
-  color: #d14;
-}
-pre.rouge .si {
-  color: #d14;
-}
-pre.rouge .sx {
-  color: #d14;
-}
-pre.rouge .sr {
-  color: #009926;
-}
-pre.rouge .s1 {
-  color: #d14;
-}
-pre.rouge .ss {
-  color: #990073;
-}
-pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
-  color: #d14;
-}
-pre.rouge .na {
-  color: #008080;
-}
-pre.rouge .bp {
-  color: #999999;
-}
-pre.rouge .nb {
-  color: #0086B3;
-}
-pre.rouge .nc {
-  color: #445588;
+  color: #b2fd6d;
   font-weight: bold;
 }
 pre.rouge .no {
-  color: #008080;
+  color: #b2fd6d;
+  font-weight: bold;
+}
+pre.rouge .nc {
+  color: #b2fd6d;
+  font-weight: bold;
 }
 pre.rouge .nd {
-  color: #3c5d5d;
-  font-weight: bold;
-}
-pre.rouge .ni {
-  color: #800080;
-}
-pre.rouge .ne {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nf, pre.rouge .fm {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nl {
-  color: #990000;
+  color: #b2fd6d;
   font-weight: bold;
 }
 pre.rouge .nn {
-  color: #555555;
-}
-pre.rouge .nt {
-  color: #000080;
-}
-pre.rouge .vc {
-  color: #008080;
-}
-pre.rouge .vg {
-  color: #008080;
-}
-pre.rouge .vi {
-  color: #008080;
-}
-pre.rouge .nv, pre.rouge .vm {
-  color: #008080;
-}
-pre.rouge .ow {
-  color: #000000;
+  color: #b2fd6d;
   font-weight: bold;
 }
-pre.rouge .o {
-  color: #000000;
+pre.rouge .bp {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+pre.rouge .ne {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .nt {
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #f696db;
+  font-weight: bold;
+}
+pre.rouge .ld {
+  color: #f696db;
+  font-weight: bold;
+}
+pre.rouge .ss {
+  color: #f696db;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sb, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .sh, pre.rouge .sx, pre.rouge .sr, pre.rouge .s1 {
+  color: #fff0a6;
+  font-weight: bold;
+}
+pre.rouge .se {
+  color: #4df4ff;
+  font-weight: bold;
+}
+pre.rouge .sc {
+  color: #4df4ff;
+  font-weight: bold;
+}
+pre.rouge .si {
+  color: #4df4ff;
+  font-weight: bold;
+}
+pre.rouge .nb {
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #999999;
   font-weight: bold;
 }
 pre.rouge .w {
-  color: #bbbbbb;
+  color: #BBBBBB;
 }
-pre.rouge {
-  background-color: #f8f8f8;
+pre.rouge .go {
+  color: #BBBBBB;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #a8e1fe;
+}
+pre.rouge .py {
+  color: #a8e1fe;
+}
+pre.rouge .na {
+  color: #a8e1fe;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #a8e1fe;
+  font-weight: bold;
 }
 </style>
 <script type="text/x-mathjax-config">

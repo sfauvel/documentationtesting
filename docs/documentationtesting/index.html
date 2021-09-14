@@ -441,10 +441,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Documentation Testing Library</h1>
 </div>
 <div id="content">
-<div class="paragraph">
-<p>:KNOWN_ISSUES_HTML:org/sfvl/howto/KnownIssues.html
-:leveloffset: +1</p>
-</div>
 <style>
 .icon-header .imageblock {
     display: inline-block;
@@ -542,13 +538,19 @@ to output format</p>
 : Utilities to format documentation.</p>
 </li>
 <li>
-<p><a href="./{KNOWN_ISSUES_HTML}">Known issues</a></p>
+<p><a href="./org/sfvl/howto/KnownIssues.html">Known issues</a></p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <style>
+/*
+body {
+    background: yellow;
+    color: blue;
+}*/
+
 
 .section {
     margin: 1em;
@@ -578,7 +580,12 @@ body {
     background: #0fd289;
 }
 
+ifdef::is-html-doc[]
 #header > h1:only-child
+endif::[]
+ifndef::is-html-doc[]
+#content > h1:first-child:not([class]) /* In Intellij viewer */
+endif::[]
 {
     border-bottom-width: 0px;
 

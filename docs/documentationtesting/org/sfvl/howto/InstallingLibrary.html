@@ -475,216 +475,277 @@ To use it, you need to download and install it.</p>
 <span class="nt">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
+<style>
+
+#content {
+   max-width: unset;
+   padding-left: 5%;
+   padding-right: 5%;
+}
+
+
+#toc.toc2 {
+    background: #0fd289;
+    box-shadow: 5px 5px 5px #084f34;
+    font-size: 1.1em;
+}
+
+#toc.toc2 a {
+    color: #7a2518;
+}
+
+#toc.toc2 #toctitle {
+    font-family: "Noto Serif","DejaVu Serif",serif;
+    font-style: italic;
+
+    color: #7a2518;
+}
+
+body {
+    background: #05fdCC !important;
+}
+
+h1, h2 {
+    font-family: "Noto Serif","DejaVu Serif",serif;
+    font-style: italic;
+
+    color: #7a2518;
+    font-weight: 400;
+}
+
+:not(pre):not([class^="L"]) > code {
+    background: #0fd289;
+}
+
+.listingblock .content pre, .listingblock .content pre:not(.highlight) {
+    background: #7a2518;
+    box-shadow: 5px 5px 5px #084f34;
+}
+
+.literalblock pre, .listingblock > .content > pre:not(.highlight),
+.exampleblock > .content {
+    background: #0fd289;
+    box-shadow: 5px 5px 5px #084f34;
+}
+
+
+.sectlevel3 {
+    display: none;
+    height: 0;
+    opacity:0;
+}
+
+.sectlevel2>li {
+    padding-left: 0.5em;
+}
+.sectlevel2>li.open {
+    font-weight: bold;
+    background-color: #f0f0f0;
+    padding: 0.5em;
+}
+
+.sectlevel2>li.open .sectlevel3 {
+    display: block;
+    height: auto;
+    opacity:1;
+    font-weight: normal;
+}
+</style>
+<script type="text/javascript">
+function toggleMenuOnClick(menuItem) {
+    menuItem.getElementsByTagName("a")[0].addEventListener(
+        'click',
+        event => {
+            document.querySelectorAll(".sectlevel2 > li").forEach(function(element) {
+                if (element != menuItem) {
+                    element.classList.remove("menu_open");
+                }
+            });
+            event.currentTarget.parentNode.classList.toggle("menu_open");
+        }
+    );
+}
+
+window.addEventListener( "load",
+    function() {
+        menusLevel2 = document.querySelectorAll(".sectlevel2 > li");
+        menusLevel2.forEach(toggleMenuOnClick);
+     }
+);
+</script>
 </div>
 <style>
 pre.rouge table td { padding: 5px; }
 pre.rouge table pre { margin: 0; }
-pre.rouge .cm {
-  color: #999988;
+pre.rouge {
+  color: #faf6e4;
+  background-color: #122b3b;
+}
+pre.rouge .gl {
+  color: #dee5e7;
+  background-color: #4e5d62;
+}
+pre.rouge .gp {
+  color: #a8e1fe;
+  font-weight: bold;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6c8b9f;
   font-style: italic;
 }
 pre.rouge .cp {
-  color: #999999;
+  color: #b2fd6d;
   font-weight: bold;
-}
-pre.rouge .c1 {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .cs {
-  color: #999999;
-  font-weight: bold;
-  font-style: italic;
-}
-pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
-  color: #999988;
-  font-style: italic;
 }
 pre.rouge .err {
-  color: #a61717;
-  background-color: #e3d2d2;
-}
-pre.rouge .gd {
-  color: #000000;
-  background-color: #ffdddd;
-}
-pre.rouge .ge {
-  color: #000000;
-  font-style: italic;
+  color: #fefeec;
+  background-color: #cc0000;
 }
 pre.rouge .gr {
-  color: #aa0000;
+  color: #cc0000;
+  font-weight: bold;
+  font-style: italic;
 }
-pre.rouge .gh {
-  color: #999999;
+pre.rouge .k, pre.rouge .kd, pre.rouge .kv {
+  color: #f6dd62;
+  font-weight: bold;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #4df4ff;
+  font-weight: bold;
+}
+pre.rouge .p, pre.rouge .pi {
+  color: #4df4ff;
+}
+pre.rouge .gd {
+  color: #cc0000;
 }
 pre.rouge .gi {
-  color: #000000;
-  background-color: #ddffdd;
+  color: #b2fd6d;
 }
-pre.rouge .go {
-  color: #888888;
-}
-pre.rouge .gp {
-  color: #555555;
+pre.rouge .ge {
+  font-style: italic;
 }
 pre.rouge .gs {
   font-weight: bold;
 }
-pre.rouge .gu {
-  color: #aaaaaa;
-}
 pre.rouge .gt {
-  color: #aa0000;
+  color: #dee5e7;
+  background-color: #4e5d62;
 }
 pre.rouge .kc {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kd {
-  color: #000000;
+  color: #f696db;
   font-weight: bold;
 }
 pre.rouge .kn {
-  color: #000000;
+  color: #ffb000;
   font-weight: bold;
 }
 pre.rouge .kp {
-  color: #000000;
+  color: #ffb000;
   font-weight: bold;
 }
 pre.rouge .kr {
-  color: #000000;
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .gh {
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #ffb000;
   font-weight: bold;
 }
 pre.rouge .kt {
-  color: #445588;
-  font-weight: bold;
-}
-pre.rouge .k, pre.rouge .kv {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .mf {
-  color: #009999;
-}
-pre.rouge .mh {
-  color: #009999;
-}
-pre.rouge .il {
-  color: #009999;
-}
-pre.rouge .mi {
-  color: #009999;
-}
-pre.rouge .mo {
-  color: #009999;
-}
-pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
-  color: #009999;
-}
-pre.rouge .sb {
-  color: #d14;
-}
-pre.rouge .sc {
-  color: #d14;
-}
-pre.rouge .sd {
-  color: #d14;
-}
-pre.rouge .s2 {
-  color: #d14;
-}
-pre.rouge .se {
-  color: #d14;
-}
-pre.rouge .sh {
-  color: #d14;
-}
-pre.rouge .si {
-  color: #d14;
-}
-pre.rouge .sx {
-  color: #d14;
-}
-pre.rouge .sr {
-  color: #009926;
-}
-pre.rouge .s1 {
-  color: #d14;
-}
-pre.rouge .ss {
-  color: #990073;
-}
-pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
-  color: #d14;
-}
-pre.rouge .na {
-  color: #008080;
-}
-pre.rouge .bp {
-  color: #999999;
-}
-pre.rouge .nb {
-  color: #0086B3;
-}
-pre.rouge .nc {
-  color: #445588;
+  color: #b2fd6d;
   font-weight: bold;
 }
 pre.rouge .no {
-  color: #008080;
+  color: #b2fd6d;
+  font-weight: bold;
+}
+pre.rouge .nc {
+  color: #b2fd6d;
+  font-weight: bold;
 }
 pre.rouge .nd {
-  color: #3c5d5d;
-  font-weight: bold;
-}
-pre.rouge .ni {
-  color: #800080;
-}
-pre.rouge .ne {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nf, pre.rouge .fm {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nl {
-  color: #990000;
+  color: #b2fd6d;
   font-weight: bold;
 }
 pre.rouge .nn {
-  color: #555555;
-}
-pre.rouge .nt {
-  color: #000080;
-}
-pre.rouge .vc {
-  color: #008080;
-}
-pre.rouge .vg {
-  color: #008080;
-}
-pre.rouge .vi {
-  color: #008080;
-}
-pre.rouge .nv, pre.rouge .vm {
-  color: #008080;
-}
-pre.rouge .ow {
-  color: #000000;
+  color: #b2fd6d;
   font-weight: bold;
 }
-pre.rouge .o {
-  color: #000000;
+pre.rouge .bp {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+pre.rouge .ne {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .nt {
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #f696db;
+  font-weight: bold;
+}
+pre.rouge .ld {
+  color: #f696db;
+  font-weight: bold;
+}
+pre.rouge .ss {
+  color: #f696db;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sb, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .sh, pre.rouge .sx, pre.rouge .sr, pre.rouge .s1 {
+  color: #fff0a6;
+  font-weight: bold;
+}
+pre.rouge .se {
+  color: #4df4ff;
+  font-weight: bold;
+}
+pre.rouge .sc {
+  color: #4df4ff;
+  font-weight: bold;
+}
+pre.rouge .si {
+  color: #4df4ff;
+  font-weight: bold;
+}
+pre.rouge .nb {
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #999999;
   font-weight: bold;
 }
 pre.rouge .w {
-  color: #bbbbbb;
+  color: #BBBBBB;
 }
-pre.rouge {
-  background-color: #f8f8f8;
+pre.rouge .go {
+  color: #BBBBBB;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #a8e1fe;
+}
+pre.rouge .py {
+  color: #a8e1fe;
+}
+pre.rouge .na {
+  color: #a8e1fe;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #a8e1fe;
+  font-weight: bold;
 }
 </style>
 <script type="text/x-mathjax-config">
