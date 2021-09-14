@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [#com_adaptionsoft_games_uglytrivia_GameTest_player_stay_in_penality_box]
 = Player stay in penality box

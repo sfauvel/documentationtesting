@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 = Asciidoctor formatter
 
@@ -47,6 +45,8 @@ include::_AsciidocFormatterTest.block.should_format_block_with_enum.approved.ado
 
 include::_AsciidocFormatterTest.block.should_format_block.approved.adoc[leveloffset=+2]
 
+include::_AsciidocFormatterTest.block.escape_asciidoc.approved.adoc[leveloffset=+2]
+
 include::_AsciidocFormatterTest.should_format_source_code_with_a_builder.approved.adoc[leveloffset=+1]
 
 include::_AsciidocFormatterTest.should_format_source_code_with_a_minimal_builder.approved.adoc[leveloffset=+1]
@@ -66,3 +66,5 @@ include::_AsciidocFormatterTest.Include.include_with_a_range_of_lines.approved.a
 include::_AsciidocFormatterTest.should_format_table.approved.adoc[leveloffset=+1]
 
 include::_AsciidocFormatterTest.should_format_table_with_header.approved.adoc[leveloffset=+1]
+
+include::_AsciidocFormatterTest.should_add_an_attribute.approved.adoc[leveloffset=+1]

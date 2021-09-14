@@ -1,7 +1,20 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+:stylesdir: {ROOT_PATH}/../resources/styles
 :toc: left
 :nofooter:
 :stem:
 :source-highlighter: rouge
+:rouge-style: thankful_eyes
 :toclevels: 4
 
 include::_AsciidocFormatterTest.approved.adoc[]
+
+[subs=attributes+]
+++++
+<style>
+include::{stylesdir}/documentation.css[]
+</style>
+<script type="text/javascript">
+include::{stylesdir}/documentation.js[]
+</script>
+++++

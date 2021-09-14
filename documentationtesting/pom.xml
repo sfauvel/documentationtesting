@@ -4,7 +4,7 @@
 
     <groupId>org.sfvl</groupId>
     <artifactId>documentationtesting</artifactId>
-    <version>1.1.5-SNAPSHOT</version>
+    <version>1.1.6-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -94,7 +94,6 @@
                                 <include>**/*.svg</include>
                             </includes>
                         </resource>
-                        ...
                     </resources>
                 </configuration>
 

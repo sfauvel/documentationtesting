@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [#org_sfvl_doctesting_utils_DocWriterTest_format_title]
 = Format title
@@ -9,9 +7,7 @@ When display name is different from test method name, displayName is used as tit
 
 Calling formatOutput with DisplayName="My title" and Method=format_title provides
 ****
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 //[#org_sfvl_doctesting_utils_DocWriterTest_format_title]
 = My title
@@ -22,9 +18,7 @@ When display name is the same as test method name, name is reformatted.
 
 Calling formatOutput with DisplayName="format_title()" and Method=format_title provides
 ****
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 //[#org_sfvl_doctesting_utils_DocWriterTest_format_title]
 = Format title
@@ -35,9 +29,7 @@ Test method could have TestInfo parameter.
 
 Calling formatOutput with DisplayName="test_method_with_test_info(TestInfo)" and Method=test_method_with_test_info provides
 ****
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 //[#org_sfvl_doctesting_utils_DocWriterTest_test_method_with_test_info]
 = Test method with test info

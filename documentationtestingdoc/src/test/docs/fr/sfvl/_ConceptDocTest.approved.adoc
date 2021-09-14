@@ -1,7 +1,5 @@
 :notitle:
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 
 = Concept doc test
 

@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 [#org_sfvl_docformatter_AsciidocFormatterTest_should_format_source_code_with_a_minimal_builder]
 = Source code using a minimal builder

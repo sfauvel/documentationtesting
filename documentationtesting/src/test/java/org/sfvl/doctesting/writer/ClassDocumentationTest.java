@@ -1,12 +1,10 @@
 package org.sfvl.doctesting.writer;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.docformatter.AsciidocFormatter;
-import org.sfvl.docformatter.Formatter;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
@@ -59,7 +57,8 @@ class ClassDocumentationTest {
         doc.write("",
                 formatter.sourceCodeBuilder()
                         .title("Document generated")
-                        .source(escapeIncludeInstruction(defaultContent))
+                        .escapeSpecialKeywords()
+                        .source(defaultContent)
                         .build(), "");
 
         doc.write("",
@@ -98,7 +97,8 @@ class ClassDocumentationTest {
 
         doc.write(formatter.sourceCodeBuilder()
                 .title("Title generated with a specific level")
-                .source(escapeIncludeInstruction(defaultContent))
+                .escapeSpecialKeywords()
+                .source(defaultContent)
                 .build());
     }
 
@@ -108,10 +108,6 @@ class ClassDocumentationTest {
                 .filter(line -> !line.startsWith("package"))
                 .filter(line -> !line.startsWith("import"))
                 .collect(Collectors.joining("\n"));
-    }
-
-    public static String escapeIncludeInstruction(String defaultContent) {
-        return defaultContent.replaceAll("(^|\\n)include", "\n\\\\include");
     }
 
     @Test
@@ -142,7 +138,8 @@ class ClassDocumentationTest {
         doc.write("",
                 formatter.sourceCodeBuilder()
                         .title("Default document generated")
-                        .content(escapeIncludeInstruction(defaultContent))
+                        .escapeSpecialKeywords()
+                        .content(defaultContent)
                         .build());
 
         doc.write("",
@@ -154,7 +151,8 @@ class ClassDocumentationTest {
         doc.write("",
                 formatter.sourceCodeBuilder()
                         .title("Custom document generated")
-                        .content(escapeIncludeInstruction(customContent))
+                        .escapeSpecialKeywords()
+                        .content(customContent)
                         .build());
     }
 
@@ -180,7 +178,8 @@ class ClassDocumentationTest {
         doc.write("",
                 formatter.sourceCodeBuilder()
                         .title("Document generated")
-                        .source(escapeIncludeInstruction(defaultContent))
+                        .escapeSpecialKeywords()
+                        .source(defaultContent)
                         .build(), "");
 
         doc.write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`",

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
 import org.sfvl.Person;
-import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.demo.DemoDocumentation;
 import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
 import org.sfvl.doctesting.utils.Config;

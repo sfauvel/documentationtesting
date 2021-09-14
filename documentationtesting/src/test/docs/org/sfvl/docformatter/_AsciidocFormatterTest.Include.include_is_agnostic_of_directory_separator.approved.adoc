@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 [#org_sfvl_docformatter_AsciidocFormatterTest_Include_include_is_agnostic_of_directory_separator]
 = Include is agnostic of directory separator

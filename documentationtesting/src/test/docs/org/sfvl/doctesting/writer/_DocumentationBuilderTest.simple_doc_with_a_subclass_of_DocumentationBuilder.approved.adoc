@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [#org_sfvl_doctesting_writer_DocumentationBuilderTest_simple_doc_with_a_subclass_of_DocumentationBuilder]
 = Simple doc with a subclass of DocumentationBuilder

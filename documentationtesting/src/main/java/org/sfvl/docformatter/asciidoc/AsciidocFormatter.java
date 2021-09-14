@@ -1,4 +1,7 @@
-package org.sfvl.docformatter;
+package org.sfvl.docformatter.asciidoc;
+
+import org.sfvl.docformatter.*;
+import org.sfvl.docformatter.Formatter;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -164,7 +167,6 @@ public class AsciidocFormatter implements Formatter {
                 + "----\n";
     }
 
-    @Override
     public Source source(String filename) {
         return new Source(filename);
     }
@@ -201,12 +203,18 @@ public class AsciidocFormatter implements Formatter {
         return new AsciidocSourceCodeBuilder(language);
     }
 
+    @Override
+    public String attribute(String attribute, String value) {
+        return String.format(":%s: %s", attribute, value);
+    }
+
     public static class AsciidocBlockBuilder extends AsciidocGenericBlockBuilder<BlockBuilder>
             implements BlockBuilder {
 
         public AsciidocBlockBuilder(String delimiter) {
             super(BlockBuilder.class, delimiter);
         }
+
     }
 
     public static class AsciidocGenericBlockBuilder<T> implements GenericBlockBuilder<T> {
@@ -215,6 +223,7 @@ public class AsciidocFormatter implements Formatter {
         protected Optional<String> title = Optional.empty();
         protected String content = "";
         protected final Map<String, String> mapOptions = new LinkedHashMap<>();
+        protected boolean escapeSpecialKeywords = false;
 
         public AsciidocGenericBlockBuilder(Class<T> selfType, String delimiter) {
             this.myself = selfType.cast(this);
@@ -233,6 +242,12 @@ public class AsciidocFormatter implements Formatter {
             return myself;
         }
 
+        @Override
+        public T escapeSpecialKeywords() {
+            this.escapeSpecialKeywords = true;
+            return myself;
+        }
+
         protected T withOption(String option) {
             return withOption(option, null);
         }
@@ -248,7 +263,13 @@ public class AsciidocFormatter implements Formatter {
             return String.format("%s%s%s",
                     title.map(t -> "." + t + "\n").orElse(""),
                     buildOptions().map(opt -> opt + "\n").orElse(""),
-                    String.format("%s\n%s\n%s", delimiter, content, delimiter));
+                    String.format("%s\n%s\n%s", delimiter, formatContent(), delimiter));
+        }
+
+        private String formatContent() {
+            return escapeSpecialKeywords
+                    ? content.replaceAll("(^|\\n)include", "$1\\\\include")
+                    : content;
         }
 
         private Optional<String> buildOptions() {

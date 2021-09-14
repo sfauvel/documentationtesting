@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_failing_test_output]
 = Failing test output
@@ -33,9 +31,7 @@ class FailingTest {
 
 .Document generated (exception stack trace is truncated)
 ------
-\ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../..
-\endif::[]
+\ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 [#org_sfvl_samples_FailingTest_failing_test]
 = Failing test
@@ -76,9 +72,7 @@ include::_ApprovalsExtensionTest.failing_test_output.ExceptionStackTrace.adoc[li
 _final rendering_
 [.adocRendering]
 --
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 [#org_sfvl_samples_FailingTest_failing_test]
 [.title1]#Failing test#

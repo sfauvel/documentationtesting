@@ -3,7 +3,7 @@ package org.sfvl.doctesting.writer;
 import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
-import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.utils.*;
 

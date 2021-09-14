@@ -1,8 +1,6 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_howto_CreateADocument_simplest_way_to_create_a_document]
+[#org_sfvl_doctesting_writer_CreateADocument_simplest_way_to_create_a_document]
 = Simplest way to create a document
 
 Creating a document is just writing a file.

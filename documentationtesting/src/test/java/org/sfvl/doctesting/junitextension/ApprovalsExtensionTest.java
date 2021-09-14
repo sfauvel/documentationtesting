@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.utils.ClassFinder;
 import org.sfvl.doctesting.utils.CodeExtractor;
@@ -16,7 +16,7 @@ import org.sfvl.samples.MyCustomWriterTest;
 import org.sfvl.samples.MyTest;
 import org.sfvl.samples.justone.OneTest;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
-import org.sfvl.test_tools.TestRunnerFromTest;
+import org.sfvl.test_tools.ProjectTestExtension;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -35,14 +35,17 @@ public class ApprovalsExtensionTest {
 
     private AsciidocFormatter formatter = new AsciidocFormatter();
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ProjectTestExtension doc = new ProjectTestExtension();
 
     @Test
     @DisplayName(value = "Creating a test using ApprovalsExtension")
     public void using_extension() {
         final Class<?> testClass = OneTest.class;
 
-        runTestAndWriteResultAsComment(testClass);
+        //        final TestRunnerFromTest.Results results = new TestRunnerFromTest().runTestClass(testClass);
+//        String[] texts = new String[]{"", String.format("// Test result for %s: %s", testClass.getSimpleName(), results.sucess() ? "Success" : "Fails"), ""};
+//        doc.write(texts);
+        doc.runTestAndWriteResultAsComment(testClass);
 
         if (false) {
             // >>>doc.write
@@ -96,7 +99,10 @@ public class ApprovalsExtensionTest {
     public void using_displayName() throws IOException {
         final Class<?> testClass = UsingDisplayNameTest.class;
 
-        runTestAndWriteResultAsComment(testClass);
+        //        final TestRunnerFromTest.Results results = new TestRunnerFromTest().runTestClass(testClass);
+//        String[] texts = new String[]{"", String.format("// Test result for %s: %s", testClass.getSimpleName(), results.sucess() ? "Success" : "Fails"), ""};
+//        doc.write(texts);
+        doc.runTestAndWriteResultAsComment(testClass);
 
         doc.write("You can use DisplayName annotation to customize test title");
 
@@ -111,7 +117,10 @@ public class ApprovalsExtensionTest {
     public void using_a_custom_writer() {
         final Class<?> testClass = MyCustomWriterTest.class;
 
-        runTestAndWriteResultAsComment(testClass);
+        //        final TestRunnerFromTest.Results results = new TestRunnerFromTest().runTestClass(testClass);
+//        String[] texts = new String[]{"", String.format("// Test result for %s: %s", testClass.getSimpleName(), results.sucess() ? "Success" : "Fails"), ""};
+//        doc.write(texts);
+        doc.runTestAndWriteResultAsComment(testClass);
 
         // You have to write a class and add RegisterExtension annotation on an attribute. This extension will check that content of DocWriter has not changed since the last time. DocWriter passed to the ApprovalsExtension is used to indicated what we want to write to the output.
 
@@ -134,7 +143,10 @@ public class ApprovalsExtensionTest {
         doc.write("Nested class can be used to organize tests.", "Each nested class create a nested title.", "");
 
         final Class<?> testClass = DemoNestedTest.class;
-        runTestAndWriteResultAsComment(testClass);
+        //        final TestRunnerFromTest.Results results = new TestRunnerFromTest().runTestClass(testClass);
+//        String[] texts = new String[]{"", String.format("// Test result for %s: %s", testClass.getSimpleName(), results.sucess() ? "Success" : "Fails"), ""};
+//        doc.write(texts);
+        doc.runTestAndWriteResultAsComment(testClass);
 
         doc.write("", "", ".Test example using nested class", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
@@ -172,7 +184,10 @@ public class ApprovalsExtensionTest {
         doc.write("At the end of a test, a file is created including files generated on each test.", "", "`" + ApprovalsExtension.class.getSimpleName() + "` must be static to be able to run `" + AfterAll.class.getSimpleName() + "` callback.");
 
         final Class<?> testClass = MyTest.class;
-        runTestAndWriteResultAsComment(testClass);
+        //        final TestRunnerFromTest.Results results = new TestRunnerFromTest().runTestClass(testClass);
+//        String[] texts = new String[]{"", String.format("// Test result for %s: %s", testClass.getSimpleName(), results.sucess() ? "Success" : "Fails"), ""};
+//        doc.write(texts);
+        doc.runTestAndWriteResultAsComment(testClass);
 
         doc.write("", "", ".Test example used to generate class document", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
@@ -206,7 +221,10 @@ public class ApprovalsExtensionTest {
         doc.write("When the test fails, the reason (exception) is written into the generated document.", "");
 
         final Class<?> testClass = FailingTest.class;
-        runTestAndWriteResultAsComment(testClass);
+        //        final TestRunnerFromTest.Results results = new TestRunnerFromTest().runTestClass(testClass);
+//        String[] texts = new String[]{"", String.format("// Test result for %s: %s", testClass.getSimpleName(), results.sucess() ? "Success" : "Fails"), ""};
+//        doc.write(texts);
+        doc.runTestAndWriteResultAsComment(testClass);
 
         doc.write("", "", ".Test example used to generate class document", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
@@ -291,12 +309,6 @@ public class ApprovalsExtensionTest {
                         .replace(INCLUDE_KEYWORD_TO_SUBSTITUTE, include_stacktrace_asciidoc),
                 "--");
 
-    }
-
-    private void runTestAndWriteResultAsComment(Class<?> testClass) {
-        final TestRunnerFromTest.Results results = new TestRunnerFromTest().runTestClass(testClass);
-        String[] texts = new String[]{"", String.format("// Test result for %s: %s", testClass.getSimpleName(), results.sucess() ? "Success" : "Fails"), ""};
-        doc.write(texts);
     }
 
     private String extractSourceWithTag(String tag, Class<?> classToIdentifySourceClass, Class<?> testClass) {

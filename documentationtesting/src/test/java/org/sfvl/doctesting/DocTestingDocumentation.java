@@ -2,7 +2,7 @@ package org.sfvl.doctesting;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
@@ -33,8 +33,7 @@ public class DocTestingDocumentation {
                 getOptions(),
                 formatter.title(1, "Document testing tool"),
                 generalInformation(formatter),
-                includeClasses(formatter),
-                getStyle()
+                includeClasses(formatter)
                 );
     }
 
@@ -43,19 +42,6 @@ public class DocTestingDocumentation {
                 new Options(formatter).withCode().trim(),
                 new Option("toclevels", "4").format()
         );
-    }
-
-    private String getStyle() {
-        String style = String.join("\n", "++++",
-                "<style>",
-                "#content {",
-                "   max-width: unset;",
-                "   padding-left: 5%;",
-                "   padding-right: 5%;",
-                "}",
-                "</style>",
-                "++++");
-        return style;
     }
 
     protected String generalInformation(Formatter formatter) {

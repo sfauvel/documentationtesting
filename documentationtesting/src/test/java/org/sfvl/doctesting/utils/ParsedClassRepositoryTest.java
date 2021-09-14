@@ -1,12 +1,12 @@
 package org.sfvl.doctesting.utils;
 
+import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.utils.SourceRoot;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
-import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.ClassToDocument;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.doctesting.junitextension.*;
 import org.sfvl.test_tools.SupplierWithException;
 
 import java.io.IOException;
@@ -14,10 +14,9 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -329,4 +328,74 @@ public class ParsedClassRepositoryTest {
         doc.write(lines);
     }
 
+    @Test
+    public void parsed_classes_only_once() {
+        final List<String> calls = new ArrayList<>();
+        AtomicInteger depth = new AtomicInteger();
+
+        Consumer<String> recordCall = call -> {
+            calls.add(String.join("", Collections.nCopies(depth.get(), "*")) + " " + call);
+        };
+        final SourceRoot sourceRoot = new SourceRoot(Config.TEST_PATH) {
+            @Override
+            public CompilationUnit parse(String startPackage, String filename) {
+                depth.addAndGet(1);
+                recordCall.accept(String.format("*parse(%s, %s.class)*", startPackage, filename));
+                final CompilationUnit parse = super.parse(startPackage, filename);
+                depth.addAndGet(-1);
+                return parse;
+            }
+        };
+        final ParsedClassRepository parsedClassRepository = new ParsedClassRepository(sourceRoot) {
+            @Override
+            public String getComment(Class<?> clazz) {
+                depth.addAndGet(1);
+                recordCall.accept(String.format("%s(%s.class)",
+                        Thread.currentThread().getStackTrace()[1].getMethodName(),
+                        clazz.getSimpleName()));
+                final String comment = super.getComment(clazz);
+                depth.addAndGet(-1);
+                return comment;
+            }
+
+            @Override
+            public String getComment(Class<?> classFile, Method method) {
+                depth.addAndGet(1);
+                recordCall.accept(String.format("%s(%s.class, %s)",
+                        Thread.currentThread().getStackTrace()[1].getMethodName(),
+                        classFile.getSimpleName(),
+                        method.getName()));
+                final String comment = super.getComment(classFile, method);
+                depth.addAndGet(-1);
+                return comment;
+            }
+
+            @Override
+            public void clearCache() {
+                depth.addAndGet(1);
+                recordCall.accept(String.format("%s()", Thread.currentThread().getStackTrace()[1].getMethodName()));
+                super.clearCache();
+                depth.addAndGet(-1);
+            }
+        };
+
+        doc.write(String.format("The `%s` have a cache to avoid parsing twice the same class.", ParsedClassRepository.class.getSimpleName()),
+                "",
+                String.format("Below, we show calls to `parse` method when we call a method of `%s`.", ParsedClassRepository.class.getSimpleName()),
+                String.format("`%s` method clears the cache and classes need to parse again.", FindLambdaMethod.getMethod(ParsedClassRepository::clearCache).getName()),
+                "", "");
+
+        parsedClassRepository.clearCache();
+        parsedClassRepository.getComment(ApprovalsExtensionTest.class);
+        parsedClassRepository.getComment(DocPathTest.class);
+        parsedClassRepository.getComment(ApprovalsExtensionTest.class);
+        parsedClassRepository.getComment(FindLambdaMethod.getMethod(ApprovalsExtensionTest::using_extension));
+        parsedClassRepository.getComment(FailureReporterTest.class);
+        parsedClassRepository.clearCache();
+        parsedClassRepository.getComment(ApprovalsExtensionTest.class);
+
+        doc.write("====",
+                String.join("\n", calls),
+                "====", "");
+    }
 }

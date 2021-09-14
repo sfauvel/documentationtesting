@@ -1,6 +1,4 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 :toc: left
 :nofooter:
@@ -45,17 +43,8 @@ include::utils/_ParsedClassRepositoryTest.approved.adoc[leveloffset=+1]
 
 include::writer/_ClassDocumentationTest.approved.adoc[leveloffset=+1]
 
+include::writer/_CreateADocument.approved.adoc[leveloffset=+1]
+
 include::writer/_DocumentationBuilderTest.approved.adoc[leveloffset=+1]
 
 include::writer/_MainDocumentationTest.approved.adoc[leveloffset=+1]
-
-
-++++
-<style>
-#content {
-   max-width: unset;
-   padding-left: 5%;
-   padding-right: 5%;
-}
-</style>
-++++

@@ -1,11 +1,9 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: ../..
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 
 :TUTORIAL_HTML: org/sfvl/howto/Tutorial.html
 :HOW_TO_HTML: org/sfvl/howto/HowTo.html
 :APPROVAL_EXTENSION_HTML: org/sfvl/doctesting/junitextension/ApprovalsExtensionTest.html
 :ASCIIDOC_FORMATTER_HTML: org/sfvl/docformatter/AsciidocFormatterTest.html
 :DOC_TESTING_DOCUMENTATION_HTML: org/sfvl/doctesting/DocTestingDocumentation.html
-:KNOWN_ISSUES_HTML:org/sfvl/howto/KnownIssues.html
+:KNOWN_ISSUES_HTML: org/sfvl/howto/KnownIssues.html
 include::../../../resources/indexContent.adoc[leveloffset=+1]

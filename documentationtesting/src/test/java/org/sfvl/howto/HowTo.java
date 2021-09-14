@@ -1,22 +1,21 @@
 package org.sfvl.howto;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.docformatter.AsciidocFormatter;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.AsciidocFormatterTest;
 import org.sfvl.docformatter.Formatter;
-import org.sfvl.doctesting.junitextension.*;
+import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
+import org.sfvl.doctesting.junitextension.FindLambdaMethod;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.*;
-import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.writer.Classes;
+import org.sfvl.test_tools.IntermediateHtmlPage;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Optional;
 
 public class HowTo {
 
@@ -85,7 +84,11 @@ public class HowTo {
     @Test
     @NoTitle
     public void create_a_document() {
-        doc.write(getInclude(CreateADocument::generate_html, 0));
+        doc.write(
+                getInclude(CreateADocument::generate_html, 0),
+                "",
+                "For more features, you can look at the " + linkToClass(CreateADocument.class, "documentation on creating a document").trim() + "."
+        );
     }
 
     @Test
@@ -94,23 +97,8 @@ public class HowTo {
         doc.write(getInclude(UseYourOwnStyle.class, 0));
     }
 
-    private void generatePage(Class<?> clazz) throws IOException {
-        generatePage(new DocPath(clazz));
-    }
-
-    private void generatePage(DocPath docPath) throws IOException {
-        String includeContent = String.join("\n",
-                ":toc: left",
-                ":nofooter:",
-                ":stem:",
-                ":source-highlighter: rouge",
-                ":toclevels: 4",
-                "",
-                String.format("include::%s[]", docPath.approved().from(this.getClass())));
-
-        try (FileWriter fileWriter = new FileWriter(docPath.page().path().toFile())) {
-            fileWriter.write(includeContent);
-        }
+    private void generatePage(Class<?> clazz) {
+        new IntermediateHtmlPage().generate(clazz);
     }
 
     private String linkToClass(Class<?> clazz) {
@@ -126,11 +114,7 @@ public class HowTo {
 
     private String linkToClass(Class<?> clazz, String title) {
         final DocPath docPath = new DocPath(clazz);
-        try {
-            generatePage(docPath);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        generatePage(clazz);
 
         return String.format("link:%s[%s]\n",
                 DocPath.toAsciiDoc(Paths.get("{"+Config.DOC_PATH_TAG+"}").resolve(docPath.doc().path())),

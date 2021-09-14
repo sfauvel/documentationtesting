@@ -46,14 +46,14 @@ public interface Formatter {
 
     String sourceFragment(String s, String interestingCode);
 
-    Source source(String s);
-
     BlockBuilder blockBuilder(Block block);
     BlockBuilder blockBuilder(String delimiter);
 
     SourceCodeBuilder sourceCodeBuilder();
 
     SourceCodeBuilder sourceCodeBuilder(String language);
+
+    String attribute(String attribute, String value);
 
     public static enum Block {
         LITERAL;

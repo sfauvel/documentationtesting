@@ -10,8 +10,7 @@ import com.github.javaparser.utils.SourceRoot;
 
 import java.lang.reflect.Method;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Extract information from source code.
@@ -23,13 +22,22 @@ public class ParsedClassRepository {
 
     private static final ClassFinder classFinder = new ClassFinder();
     private List<SourceRoot> sourceRoots = new ArrayList<>();
+    private static Map<Class<?>, CompilationUnit> parsedClassCache = new HashMap<>();
 
     public ParsedClassRepository(Path... paths) {
-        for (Path path : paths) {
-            if (!path.toString().isEmpty()) {
-                sourceRoots.add(new SourceRoot(path));
-            }
-        }
+
+        this(Arrays.stream(paths)
+                .filter(path -> !path.toString().isEmpty())
+                .map(path -> new SourceRoot(path))
+                .toArray(SourceRoot[]::new));
+    }
+
+    public ParsedClassRepository(SourceRoot... sourceRoots) {
+        this.sourceRoots.addAll(Arrays.asList(sourceRoots));
+    }
+
+    public void clearCache() {
+        parsedClassCache.clear();
     }
 
     public int getLineNumber(Class clazz) {
@@ -80,13 +88,18 @@ public class ParsedClassRepository {
      * @return
      */
     private CompilationUnit getCompilationUnit(Class clazz) {
+        final CompilationUnit compilationUnit = parsedClassCache.get(clazz);
+        if (compilationUnit != null) return compilationUnit;
+
         final String packageName = clazz.getPackage().getName();
         final Class<?> mainFileClass = classFinder.getMainFileClass(clazz);
 
         final String fileName = mainFileClass.getSimpleName() + ".java";
         for (SourceRoot sourceRoot : sourceRoots) {
             try {
-                return sourceRoot.parse(packageName, fileName);
+                final CompilationUnit parse = sourceRoot.parse(packageName, fileName);
+                parsedClassCache.put(clazz, parse);
+                return parse;
             } catch (ParseProblemException e) {
                 // try with next path
             }
