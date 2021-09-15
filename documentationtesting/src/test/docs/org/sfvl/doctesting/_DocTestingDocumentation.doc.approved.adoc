@@ -1,17 +1,5 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-:toc: left
-:nofooter:
-:stem:
-:source-highlighter: rouge
-:toclevels: 4
-
-
-
-
-= Document testing tool
-
-
 This document describes usage of classes to create test from generated documentation.
 
 * <<ApprovalsExtension>>: JUnit extension to check document.
