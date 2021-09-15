@@ -150,21 +150,9 @@ public class CreateADocument {
                         "----"),
                 String.join("\n",
                         "_final rendering_",
-                        "[.adocRendering]",
+                        "[.includeblock]",
                         view_rendering));
 
-        String style = "++++\n" +
-                "<style>\n" +
-                ".adocRendering {\n" +
-                "    padding: 1em;\n" +
-                "    background: #fffef7;\n" +
-                "    border-color: #e0e0dc;\n" +
-                "    -webkit-box-shadow: 0 1px 4px #e0e0dc;\n" +
-                "    box-shadow: 0 1px 4px #e0e0dc;\n" +
-                "}\n" +
-                "</style>\n" +
-                "++++";
-        doc.write("", style, "");
     }
 
     public void writeColumns(String... cells) {

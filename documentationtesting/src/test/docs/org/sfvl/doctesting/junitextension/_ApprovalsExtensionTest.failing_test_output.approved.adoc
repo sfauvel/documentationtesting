@@ -49,14 +49,7 @@ include::_ApprovalsExtensionTest.failing_test_output.ExceptionStackTrace.adoc[li
 
 ++++
 <style>
-.adocRendering {
-    padding: 1em;
-    background: #fffef7;
-    border-color: #e0e0dc;
-    -webkit-box-shadow: 0 1px 4px #e0e0dc;
-    box-shadow: 0 1px 4px #e0e0dc;
-}
-.adocRendering .title1 {
+.includeblock .title1 {
     font-size: 2em;
     font-family: "Open Sans","DejaVu Sans",sans-serif;
     font-weight: 300;
@@ -70,7 +63,7 @@ include::_ApprovalsExtensionTest.failing_test_output.ExceptionStackTrace.adoc[li
 ++++
 
 _final rendering_
-[.adocRendering]
+[.includeblock]
 --
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 

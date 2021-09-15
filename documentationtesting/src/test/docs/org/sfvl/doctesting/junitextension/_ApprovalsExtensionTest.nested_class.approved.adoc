@@ -83,18 +83,6 @@ Document of Addition operations.
 \include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]
 ----
 
-++++
-<style>
-.adocRendering {
-    padding: 1em;
-    background: #fffef7;
-    border-color: #e0e0dc;
-    -webkit-box-shadow: 0 1px 4px #e0e0dc;
-    box-shadow: 0 1px 4px #e0e0dc;
-}
-</style>
-++++
-
 _final rendering_
-[.adocRendering]
+[.includeblock]
 include::_DemoNestedTest.approved.adoc[leveloffset=+1]

@@ -1,3 +1,7 @@
+/*
+Own classes:
+includeblock: format an include as a block.
+*/
 
 :root {
   --bg1: #05fdCC;
@@ -11,6 +15,18 @@
    max-width: unset;
    padding-left: 5%;
    padding-right: 5%;
+}
+
+table {
+    background: var(--bg1);
+}
+
+table.tableblock, th.tableblock, td.tableblock {
+    border-color: black;
+}
+
+th.tableblock {
+    background: var(--bg2);
 }
 
 #toc.toc2, #project_home {
@@ -65,17 +81,26 @@ h1, h2 {
     background: var(--bg2);
 }
 
-.listingblock .content pre, .listingblock .content pre:not(.highlight) {
+.listingblock .content pre,
+.listingblock .content pre:not(.highlight) {
     background: var(--title-color);
     box-shadow: 5px 5px 5px var(--shadow_color);
 }
 
-.literalblock pre, .listingblock > .content > pre:not(.highlight),
+.includeblock{
+    padding: 1em;
+    background: #fffef7;
+    box-shadow: 5px 5px 5px var(--shadow_color);
+}
+
+.literalblock pre,
+.listingblock > .content > pre:not(.highlight),
 .exampleblock > .content {
     background: var(--bg2);
     box-shadow: 5px 5px 5px var(--shadow_color);
 }
 
+/* Menu */
 
 .sectlevel3 {
     display: none;

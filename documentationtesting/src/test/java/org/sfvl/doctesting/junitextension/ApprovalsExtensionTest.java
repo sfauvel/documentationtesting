@@ -164,18 +164,10 @@ public class ApprovalsExtensionTest {
                 .collect(Collectors.joining("\n"))
                 .replaceAll("\\ninclude::", "\n\\\\include::"), "----");
 
-        String style = "++++\n" +
-                "<style>\n" +
-                ".adocRendering {\n" +
-                "    padding: 1em;\n" +
-                "    background: #fffef7;\n" +
-                "    border-color: #e0e0dc;\n" +
-                "    -webkit-box-shadow: 0 1px 4px #e0e0dc;\n" +
-                "    box-shadow: 0 1px 4px #e0e0dc;\n" +
-                "}\n" +
-                "</style>\n" +
-                "++++";
-        doc.write("", "", style, "", "_final rendering_", "[.adocRendering]", formatter.include("_" + testClass.getSimpleName() + ".approved.adoc", 1));
+        doc.write("", "", "_final rendering_",
+                "[.includeblock]",
+                formatter.include("_" + testClass.getSimpleName() + ".approved.adoc", 1)
+                );
 
     }
 
@@ -196,18 +188,7 @@ public class ApprovalsExtensionTest {
 
         doc.write("", "", adocFileSourceEscaped(approved));
 
-        String style = "++++\n" +
-                "<style>\n" +
-                ".adocRendering {\n" +
-                "    padding: 1em;\n" +
-                "    background: #fffef7;\n" +
-                "    border-color: #e0e0dc;\n" +
-                "    -webkit-box-shadow: 0 1px 4px #e0e0dc;\n" +
-                "    box-shadow: 0 1px 4px #e0e0dc;\n" +
-                "}\n" +
-                "</style>\n" +
-                "++++";
-        doc.write("", "", style, "", "_final rendering_", "[.adocRendering]", formatter.include(approved.from(this.getClass()).toString(), 1));
+        doc.write("", "", "_final rendering_", "[.includeblock]", formatter.include(approved.from(this.getClass()).toString(), 1));
 
     }
 
@@ -276,14 +257,7 @@ public class ApprovalsExtensionTest {
         String style = String.join("\n",
                 "++++",
                 "<style>",
-                ".adocRendering {",
-                "    padding: 1em;",
-                "    background: #fffef7;",
-                "    border-color: #e0e0dc;",
-                "    -webkit-box-shadow: 0 1px 4px #e0e0dc;",
-                "    box-shadow: 0 1px 4px #e0e0dc;",
-                "}",
-                ".adocRendering .title1 {",
+                ".includeblock .title1 {",
                 "    font-size: 2em;",
                 "    font-family: \"Open Sans\",\"DejaVu Sans\",sans-serif;",
                 "    font-weight: 300;",
@@ -301,7 +275,7 @@ public class ApprovalsExtensionTest {
                 style,
                 "",
                 "_final rendering_",
-                "[.adocRendering]",
+                "[.includeblock]",
                 "--",
                 cutLines.stream()
                         .map(this::escapedAdocTitle)
