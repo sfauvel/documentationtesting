@@ -892,19 +892,10 @@ include::_DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[
 include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]</pre>
 </div>
 </div>
-<style>
-.adocRendering {
-    padding: 1em;
-    background: #fffef7;
-    border-color: #e0e0dc;
-    -webkit-box-shadow: 0 1px 4px #e0e0dc;
-    box-shadow: 0 1px 4px #e0e0dc;
-}
-</style>
 <div class="paragraph">
 <p><em>final rendering</em></p>
 </div>
-<div class="sect4 adocRendering">
+<div class="sect4 includeblock">
 <h5 id="_demo_nested_test">Demo nested test</h5>
 <div class="paragraph">
 <p>Demo of a simple usage to generate documentation.</p>
@@ -977,19 +968,10 @@ include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ad
 include::_MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
 </div>
 </div>
-<style>
-.adocRendering {
-    padding: 1em;
-    background: #fffef7;
-    border-color: #e0e0dc;
-    -webkit-box-shadow: 0 1px 4px #e0e0dc;
-    box-shadow: 0 1px 4px #e0e0dc;
-}
-</style>
 <div class="paragraph">
 <p><em>final rendering</em></p>
 </div>
-<div class="sect4 adocRendering">
+<div class="sect4 includeblock">
 <h5 id="_my_test">My test</h5>
 <div class="sect5">
 <h6 id="org_sfvl_samples_MyTest_test_A">Test A</h6>
@@ -1046,14 +1028,7 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 </div>
 </div>
 <style>
-.adocRendering {
-    padding: 1em;
-    background: #fffef7;
-    border-color: #e0e0dc;
-    -webkit-box-shadow: 0 1px 4px #e0e0dc;
-    box-shadow: 0 1px 4px #e0e0dc;
-}
-.adocRendering .title1 {
+.includeblock .title1 {
     font-size: 2em;
     font-family: "Open Sans","DejaVu Sans",sans-serif;
     font-weight: 300;
@@ -1067,7 +1042,7 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 <div class="paragraph">
 <p><em>final rendering</em></p>
 </div>
-<div class="openblock adocRendering">
+<div class="openblock includeblock">
 <div class="content">
 <div id="org_sfvl_samples_FailingTest_failing_test" class="paragraph">
 <p><span class="title1">Failing test</span></p>
@@ -3259,7 +3234,7 @@ It can be useful when you want to include this file in another test for example.
 <div class="paragraph">
 <p>Calling formatOutput with DisplayName="My title" and Method=format_title provides</p>
 </div>
-<div class="sidebarblock">
+<div class="exampleblock">
 <div class="content">
 <div class="paragraph">
 <p>= My title</p>
@@ -3272,7 +3247,7 @@ It can be useful when you want to include this file in another test for example.
 <div class="paragraph">
 <p>Calling formatOutput with DisplayName="format_title()" and Method=format_title provides</p>
 </div>
-<div class="sidebarblock">
+<div class="exampleblock">
 <div class="content">
 <div class="paragraph">
 <p>= Format title</p>
@@ -3285,7 +3260,7 @@ It can be useful when you want to include this file in another test for example.
 <div class="paragraph">
 <p>Calling formatOutput with DisplayName="test_method_with_test_info(TestInfo)" and Method=test_method_with_test_info provides</p>
 </div>
-<div class="sidebarblock">
+<div class="exampleblock">
 <div class="content">
 <div class="paragraph">
 <p>= Test method with test info</p>
@@ -4079,20 +4054,11 @@ Text of the document</pre>
 <div class="paragraph">
 <p><em>final rendering</em></p>
 </div>
-<div class="sect4 adocRendering">
+<div class="sect4 includeblock">
 <h5 id="_my_title">My title</h5>
 <div class="paragraph">
 <p>Text of the document</p>
 </div>
-<style>
-.adocRendering {
-    padding: 1em;
-    background: #fffef7;
-    border-color: #e0e0dc;
-    -webkit-box-shadow: 0 1px 4px #e0e0dc;
-    box-shadow: 0 1px 4px #e0e0dc;
-}
-</style>
 </div>
 </div>
 <div class="sect3">
@@ -4174,20 +4140,11 @@ Text of the document</pre>
 <div class="paragraph">
 <p><em>final rendering</em></p>
 </div>
-<div class="sect4 adocRendering">
+<div class="sect4 includeblock">
 <h5 id="_my_title_2">My title</h5>
 <div class="paragraph">
 <p>Text of the document</p>
 </div>
-<style>
-.adocRendering {
-    padding: 1em;
-    background: #fffef7;
-    border-color: #e0e0dc;
-    -webkit-box-shadow: 0 1px 4px #e0e0dc;
-    box-shadow: 0 1px 4px #e0e0dc;
-}
-</style>
 </div>
 </div>
 </div>
@@ -4629,6 +4586,10 @@ My description without included any test documentation.</pre>
     <a title="home" href="../../../index.html">Doc as test</a>
 </div>
 <style>
+/*
+Own classes:
+includeblock: format an include as a block.
+*/
 
 :root {
   --bg1: #05fdCC;
@@ -4642,6 +4603,18 @@ My description without included any test documentation.</pre>
    max-width: unset;
    padding-left: 5%;
    padding-right: 5%;
+}
+
+table {
+    background: var(--bg1);
+}
+
+table.tableblock, th.tableblock, td.tableblock {
+    border-color: black;
+}
+
+th.tableblock {
+    background: var(--bg2);
 }
 
 #toc.toc2, #project_home {
@@ -4696,17 +4669,26 @@ h1, h2 {
     background: var(--bg2);
 }
 
-.listingblock .content pre, .listingblock .content pre:not(.highlight) {
+.listingblock .content pre,
+.listingblock .content pre:not(.highlight) {
     background: var(--title-color);
     box-shadow: 5px 5px 5px var(--shadow_color);
 }
 
-.literalblock pre, .listingblock > .content > pre:not(.highlight),
+.includeblock{
+    padding: 1em;
+    background: #fffef7;
+    box-shadow: 5px 5px 5px var(--shadow_color);
+}
+
+.literalblock pre,
+.listingblock > .content > pre:not(.highlight),
 .exampleblock > .content {
     background: var(--bg2);
     box-shadow: 5px 5px 5px var(--shadow_color);
 }
 
+/* Menu */
 
 .sectlevel3 {
     display: none;
