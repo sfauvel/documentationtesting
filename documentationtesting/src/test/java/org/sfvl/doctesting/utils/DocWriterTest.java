@@ -197,7 +197,7 @@ class DocWriterTest {
         doc.write(String.format("Calling formatOutput with DisplayName=\"%s\" and Method=%s provides",
                 displayName, testMethod.getName()), "");
 
-        doc.write("****", output, "****", "");
+        doc.write("====", output, "====", "");
     }
 
     public String includeSourceWithTag(String tag) {

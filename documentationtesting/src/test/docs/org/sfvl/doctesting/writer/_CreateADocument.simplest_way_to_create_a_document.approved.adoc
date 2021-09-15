@@ -29,16 +29,5 @@ We can use a link:https://en.wikipedia.org/wiki/Markup_language[markup language]
 Text of the document
 ----
 _final rendering_
-[.adocRendering]
+[.includeblock]
 include::_DocumentVerySimple.approved.adoc[leveloffset=+1]
-++++
-<style>
-.adocRendering {
-    padding: 1em;
-    background: #fffef7;
-    border-color: #e0e0dc;
-    -webkit-box-shadow: 0 1px 4px #e0e0dc;
-    box-shadow: 0 1px 4px #e0e0dc;
-}
-</style>
-++++
