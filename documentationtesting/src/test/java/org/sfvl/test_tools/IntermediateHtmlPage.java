@@ -22,6 +22,7 @@ public class IntermediateHtmlPage extends HtmlPageExtension {
                 "",
                 "[subs=attributes+]",
                 "++++",
+                "include::{stylesdir}/logo.adoc[]",
                 "<style>",
                 "include::{stylesdir}/documentation.css[]",
                 "</style>",

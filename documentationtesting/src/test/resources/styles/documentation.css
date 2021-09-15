@@ -1,15 +1,41 @@
 
+:root {
+  --bg1: #05fdCC;
+  --bg2: #0fd289;
+  --logo_height: 100px
+  --shadow_color: #084f34;
+  --title-color: #7a2518;
+}
+
 #content {
    max-width: unset;
    padding-left: 5%;
    padding-right: 5%;
 }
 
+#toc.toc2, #project_home {
+    background: var(--bg2);
+    box-shadow: 5px 5px 5px var(--shadow_color);
+    font-size: 1.1em;
+    width: 260px; /* Do not use 'em' to be independent of the font-size */
+    padding: 1.25em 1em;
+    position: fixed;
+    left: 0;
+}
 
 #toc.toc2 {
-    background: #0fd289;
-    box-shadow: 5px 5px 5px #084f34;
-    font-size: 1.1em;
+    top: var(--logo_height); /* Height of the project_home */
+    overflow: scroll; /* To avoid menu position change when scoll bar appear */
+    scrollbar-color: var(--bg1) var(--bg2);
+}
+
+#project_home {
+    top: 0;
+    height: var(--logo_height); /* toc2 need to be position after this height */
+
+    font-family: "Noto Serif","DejaVu Serif",serif;
+    font-style: italic;
+    font-size:2em;
 }
 
 #toc.toc2 a {
@@ -20,34 +46,34 @@
     font-family: "Noto Serif","DejaVu Serif",serif;
     font-style: italic;
 
-    color: #7a2518;
+    color: var(--title-color);
 }
 
 body {
-    background: #05fdCC !important;
+    background: var(--bg1) !important;
 }
 
 h1, h2 {
     font-family: "Noto Serif","DejaVu Serif",serif;
     font-style: italic;
 
-    color: #7a2518;
+    color: var(--title-color);
     font-weight: 400;
 }
 
 :not(pre):not([class^="L"]) > code {
-    background: #0fd289;
+    background: var(--bg2);
 }
 
 .listingblock .content pre, .listingblock .content pre:not(.highlight) {
-    background: #7a2518;
-    box-shadow: 5px 5px 5px #084f34;
+    background: var(--title-color);
+    box-shadow: 5px 5px 5px var(--shadow_color);
 }
 
 .literalblock pre, .listingblock > .content > pre:not(.highlight),
 .exampleblock > .content {
-    background: #0fd289;
-    box-shadow: 5px 5px 5px #084f34;
+    background: var(--bg2);
+    box-shadow: 5px 5px 5px var(--shadow_color);
 }
 
 
@@ -60,13 +86,13 @@ h1, h2 {
 .sectlevel2>li {
     padding-left: 0.5em;
 }
-.sectlevel2>li.open {
+.sectlevel2>li.menu_open {
     font-weight: bold;
-    background-color: #f0f0f0;
+    background-color: var(--bg1);
     padding: 0.5em;
 }
 
-.sectlevel2>li.open .sectlevel3 {
+.sectlevel2>li.menu_open .sectlevel3 {
     display: block;
     height: auto;
     opacity:1;
