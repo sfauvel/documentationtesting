@@ -1,0 +1,3 @@
+<div id="project_home">
+    <a title="home" href="{ROOT_PATH}/index.html">Doc as test</a>
+</div>
