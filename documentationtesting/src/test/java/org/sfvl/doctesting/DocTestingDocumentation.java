@@ -2,12 +2,12 @@ package org.sfvl.doctesting;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.*;
-import org.sfvl.doctesting.writer.*;
+import org.sfvl.doctesting.writer.Classes;
 
 import java.lang.reflect.Method;
 import java.nio.file.Path;
@@ -17,7 +17,6 @@ public class DocTestingDocumentation {
 
     @RegisterExtension
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
-
 
     protected final Formatter formatter = new AsciidocFormatter();
     private static final ClassFinder classFinder = new ClassFinder();
@@ -30,18 +29,9 @@ public class DocTestingDocumentation {
 
     public String build() {
         return formatter.paragraphSuite(
-                getOptions(),
-                formatter.title(1, "Document testing tool"),
                 generalInformation(formatter),
                 includeClasses(formatter)
                 );
-    }
-
-    public String getOptions() {
-        return formatter.paragraph(
-                new Options(formatter).withCode().trim(),
-                new Option("toclevels", "4").format()
-        );
     }
 
     protected String generalInformation(Formatter formatter) {
