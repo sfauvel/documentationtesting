@@ -1,21 +1,36 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [#org_sfvl_doctesting_utils_DocWriterTest_doc_writer_usage]
-= DocWriter usage
+= Usage
 
 DocWriter is just a buffer.
 Everything wrote in DocWriter will be returned when asking for output.
-By default, a title is added to the output.
+The output is composed with a title, the comment of the method (without params).
+An id is also added above the title to be able to apply a specific style in the chapter if needed.
+
+.Method used
+
+[source,java,indent=0]
+----
+    public void simple_method() {
+
+    }
+----
+
 
 .DocWriter usage
 
 [source,java,indent=0]
 ----
         final DocWriter doc = new DocWriter();
-        doc.write("Some text added to show DocWriter output.");
+        doc.write(
+                "Some text added to show DocWriter output.",
+                "Multiple lines can be added."
+        );
+
         final String output = doc.formatOutput(
                 "My title",
-                getClass().getMethod("method_demo", TestInfo.class)
+                getClass().getMethod("simple_method")
         );
 
 ----
@@ -25,10 +40,9 @@ By default, a title is added to the output.
 ....
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_DocWriterTest_method_demo]
+[#org_sfvl_doctesting_utils_DocWriterTest_simple_method]
 = My title
 
-This method shows what kind of output is provided.
-
 Some text added to show DocWriter output.
+Multiple lines can be added.
 ....

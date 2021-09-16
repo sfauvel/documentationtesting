@@ -42,6 +42,9 @@ from getHeader method
 .Test class used to in this examples
 [source, java, indent=0]
 ----
+/**
+ * Class comment is added to description.
+ */
 @DisplayName("Title for the document")
 class InMainDocTest {
     @RegisterExtension

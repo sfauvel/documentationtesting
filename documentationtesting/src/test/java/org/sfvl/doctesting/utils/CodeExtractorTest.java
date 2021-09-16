@@ -61,13 +61,11 @@ class CodeExtractorTest {
 
     }
 
-    // tag::innerClassToExtract[]
     class SimpleInnerClass {
         public int simpleMethod() {
             return 0;
         }
     }
-    // end::innerClassToExtract[]
 
     @Nested
     @DisplayName(value = "Extract code")

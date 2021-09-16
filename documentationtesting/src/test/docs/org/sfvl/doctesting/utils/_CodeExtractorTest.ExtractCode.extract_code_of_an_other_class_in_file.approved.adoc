@@ -28,6 +28,9 @@ include::../../../../../java/org/sfvl/doctesting/utils/CodeExtractorTest.java[ta
 .Source code extracted
 [source, java, indent=0]
 ----
+    /**
+     * Comment of the subclass.
+     */
     class SubClassNestedWithCommentToExtract {
         /**
          * Method comment in an inner class.

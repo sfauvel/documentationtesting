@@ -12,6 +12,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -64,10 +66,25 @@ public class CodeExtractor {
             this.rangeExtractor = new RangeExtractor(classToDetermineFile);
         }
 
+        /**
+         * We not use `n.toString()` because it formats code.
+         * @param n
+         */
         @Override
         protected void actionOnClass(ClassOrInterfaceDeclaration n) {
-//                buffer.append(n.toString()); // n.toString(), formats code and includes comment before class.
-            buffer.append(rangeExtractor.extract(n));
+            final String extract = rangeExtractor.extract(n);
+            n.getComment().ifPresent(c -> {
+                Matcher matchSpaces = Pattern.compile("(\\s*)").matcher(extract);
+                if (matchSpaces.find()) {
+                    final String spaces = matchSpaces.group(0);
+                    buffer.append(Arrays.stream(c.toString().split("\n"))
+                            .map(line -> spaces + line)
+                            .collect(Collectors.joining("\n", "", "\n")));
+                } else {
+                    buffer.append(c);
+                }
+            });
+            buffer.append(extract);
         }
     }
 

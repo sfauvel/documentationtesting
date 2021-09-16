@@ -3,36 +3,49 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 [#org_sfvl_doctesting_utils_DocWriterTest_format_title]
 = Format title
 
-When display name is different from test method name, displayName is used as title.
+When a title is specified, it is used as title.
 
-Calling formatOutput with DisplayName="My title" and Method=format_title provides
-====
+[source,java,indent=0]
+----
+            Method testMethod = DocWriterTest.class.getMethod("format_title");
+            final String output = docWriter.formatOutput("My title", testMethod);
+
+----
+
+----
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-//[#org_sfvl_doctesting_utils_DocWriterTest_format_title]
+[#org_sfvl_doctesting_utils_DocWriterTest_format_title]
 = My title
 
 
-====
-When display name is the same as test method name, name is reformatted.
+----
+When a title is not specified, title comes from the method name or the class name after some formatting
+ (remove '_', uppercase first letter).
 
-Calling formatOutput with DisplayName="format_title()" and Method=format_title provides
-====
+[source,java,indent=0]
+----
+            Method testMethod = DocWriterTest.class.getMethod("format_title");
+            final String method_output = docWriter.formatOutput(testMethod);
+
+            final String class_output = docWriter.formatOutput(MyTest.class);
+
+----
+
+.Format title from method name
+----
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-//[#org_sfvl_doctesting_utils_DocWriterTest_format_title]
+[#org_sfvl_doctesting_utils_DocWriterTest_format_title]
 = Format title
 
 
-====
-Test method could have TestInfo parameter.
+----
+.Format title from class name
+----
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-Calling formatOutput with DisplayName="test_method_with_test_info(TestInfo)" and Method=test_method_with_test_info provides
-====
-ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+= My test
 
-//[#org_sfvl_doctesting_utils_DocWriterTest_test_method_with_test_info]
-= Test method with test info
-
-
-====
+\include::_MyTest.test_A.approved.adoc[leveloffset=+1]
+----

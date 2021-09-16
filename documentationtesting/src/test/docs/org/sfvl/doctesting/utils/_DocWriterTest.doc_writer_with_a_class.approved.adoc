@@ -1,18 +1,43 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [#org_sfvl_doctesting_utils_DocWriterTest_doc_writer_with_a_class]
-= DocWriter of a class
+= Output with a class
 
 DocWriter is also used to format output of a test class.
-What is wrote on DocWriter is not used in this case.
+In that case, we add a title and include all test files of the class.
+What is written on DocWriter is not used in this case.
+
+.Class used
+
+[source,java,indent=0]
+----
+
+public class MyTestWithTests {
+    @RegisterExtension
+    static final ApprovalsExtension doc = new SimpleApprovalsExtension();
+
+    @Test
+    public void test_A() {
+    }
+    @Test
+    public void test_B() {
+    }
+    @Test
+    public void test_C() {
+    }
+
+}
+----
+
 
 .DocWriter usage
 
 [source,java,indent=0]
 ----
         final DocWriter doc = new DocWriter();
-        doc.write("Some text added to show DocWriter output.");
-        final String output = doc.formatOutput(MyTest.class);
+
+        final Class<?> clazz = MyTestWithTests.class;
+        final String output = doc.formatOutput(clazz);
 
 ----
 
@@ -21,7 +46,11 @@ What is wrote on DocWriter is not used in this case.
 ....
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-= My test
+= My test with tests
 
-\include::_MyTest.test_A.approved.adoc[leveloffset=+1]
+\include::_MyTestWithTests.test_A.approved.adoc[leveloffset=+1]
+
+\include::_MyTestWithTests.test_B.approved.adoc[leveloffset=+1]
+
+\include::_MyTestWithTests.test_C.approved.adoc[leveloffset=+1]
 ....

@@ -28,6 +28,11 @@ public class DocWriter {
         return sb.toString();
     }
 
+    public String formatOutput(Method testMethod) {
+        final String title = methodAsTitle(testMethod.getName());
+        return formatOutput(title, testMethod);
+    }
+
     public String formatOutput(String displayName, Method testMethod) {
         return formatOutput(displayName, testMethod.getDeclaringClass(), testMethod);
     }
@@ -53,11 +58,14 @@ public class DocWriter {
     public String formatOutput(Class<?> clazz) {
         final ClassDocumentation classDocumentation = new ClassDocumentation() {
             protected Optional<String> relatedClassDescription(Class<?> fromClass) {
+//                final String comment = CodeExtractor.getComment(clazz);
+//                if (!comment.isEmpty()) return Optional.of(comment);
                 return Optional.ofNullable(fromClass.getAnnotation(ClassToDocument.class))
                         .map(ClassToDocument::clazz)
                         .map(CodeExtractor::getComment);
             }
         };
+
         return String.join("\n",
                 defineDocPath(clazz),
                 "",
@@ -104,11 +112,15 @@ public class DocWriter {
                 .collect(Collectors.joining(","));
         String methodName = method.getName();
         if (displayName.equals(methodName + "(" + parameters + ")")) {
-            String title = methodName.replace("_", " ");
-            return title.substring(0, 1).toUpperCase() + title.substring(1);
+            return methodAsTitle(methodName);
         } else {
             return displayName;
         }
+    }
+
+    private String methodAsTitle(String methodName) {
+        String title = methodName.replace("_", " ");
+        return title.substring(0, 1).toUpperCase() + title.substring(1);
     }
 
     public void reset() {

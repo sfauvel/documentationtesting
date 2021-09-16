@@ -1,24 +1,117 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [#org_sfvl_doctesting_utils_DocWriterTest_add_description_using_comment]
-= Add description
+= Add a description
 
-When test method had a comment, it's written after title.
+A description can be added after the title using the Javadoc.
+It can be done with the method javadoc or the class javadoc.
 
-.Test example with comment on method
-[source, java, indent=0]
+.Class used
+
+[source,java,indent=0]
 ----
-include::../../../../../java/org/sfvl/doctesting/utils/DocWriterTest.java[tag=MyTestWithComment]
+/**
+ * My comment for MyTestComment
+ */
+public class MyTestWithComment {
+    @RegisterExtension
+    static final ApprovalsExtension doc = new SimpleApprovalsExtension();
+
+    /**
+     * To decribe a method, you can add a comment.
+     * It will be added under title.
+     */
+    @Test
+    public void test_A() {
+    }
+
+}
 ----
 
-****
-ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_DocWriterTest_MyTestWithComment_testA]
-= TestA
+.DocWriter usage
+
+[source,java,indent=0]
+----
+        final DocWriter writer = new DocWriter();
+
+        final String method_output = writer.formatOutput(
+                "My title",
+                MyTestWithComment.class.getMethod("test_A")
+        );
+
+        final String class_output = writer.formatOutput(MyTestWithComment.class);
+
+----
+
+
+.Output provided with method
+....
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_samples_MyTestWithComment_test_A]
+= My title
 
 To decribe a method, you can add a comment.
 It will be added under title.
 
 
-****
+....
+.Output provided with class
+....
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+= My test with comment
+
+My comment for MyTestComment
+
+\include::_MyTestWithComment.test_A.approved.adoc[leveloffset=+1]
+....
+If we want to add description of an other class (class under test for example),
+we can use `ClassToDocument` to define the class containing the description we want.
+It can be combine with the description on the test class.
+
+.Test class used
+
+[source,java,indent=0]
+----
+/**
+ * Description of the test class.
+ */
+@ClassToDocument(clazz = ClassUnderTest.class)
+public class MyTestWithClassToDocument {
+    @RegisterExtension
+    static final ApprovalsExtension doc = new SimpleApprovalsExtension();
+
+    @Test
+    public void test_A() {
+    }
+
+}
+----
+
+
+.Class under test with description
+
+[source,java,indent=0]
+----
+/**
+ * Description of the class ClassUnderTest.
+ */
+public class ClassUnderTest {
+}
+----
+
+
+.Output provided
+....
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+= My test with class to document
+
+Description of the class ClassUnderTest.
+
+Description of the test class.
+
+\include::_MyTestWithClassToDocument.test_A.approved.adoc[leveloffset=+1]
+....

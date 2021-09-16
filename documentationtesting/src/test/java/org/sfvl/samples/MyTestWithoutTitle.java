@@ -3,7 +3,6 @@ package org.sfvl.samples;
 import org.junit.jupiter.api.Test;
 import org.sfvl.doctesting.utils.NoTitle;
 
-// >>>MyTestWithoutTitle
 public class MyTestWithoutTitle {
     @Test
     @NoTitle
@@ -11,5 +10,4 @@ public class MyTestWithoutTitle {
         // my doc generation
     }
 }
-// <<<MyTestWithoutTitle
 

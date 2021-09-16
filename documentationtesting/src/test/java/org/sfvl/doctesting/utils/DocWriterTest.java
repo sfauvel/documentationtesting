@@ -4,14 +4,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-import org.sfvl.samples.MyTest;
-import org.sfvl.samples.MyTestWithoutTitle;
+import org.sfvl.samples.*;
+import org.sfvl.test_tools.OnlyRunProgrammatically;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -31,6 +32,8 @@ class DocWriterTest {
         doc.write(texts);
     }
 
+    // >>>method_demo
+
     /**
      * This method shows what kind of output is provided.
      *
@@ -40,27 +43,44 @@ class DocWriterTest {
     public void method_demo(TestInfo testInfo) {
 
     }
+    // <<<method_demo
+
+    // >>>simple_method
+    public void simple_method() {
+
+    }
+    // <<<simple_method
+
 
     /**
      * DocWriter is just a buffer.
      * Everything wrote in DocWriter will be returned when asking for output.
-     * By default, a title is added to the output.
+     * The output is composed with a title, the comment of the method (without params).
+     * An id is also added above the title to be able to apply a specific style in the chapter if needed.
      *
      * @param testInfo
      * @throws NoSuchMethodException
      */
     @Test
-    @DisplayName("DocWriter usage")
+    @DisplayName("Usage")
     public void doc_writer_usage(TestInfo testInfo) throws NoSuchMethodException {
 
         // >>>
         final DocWriter doc = new DocWriter();
-        doc.write("Some text added to show DocWriter output.");
+        doc.write(
+                "Some text added to show DocWriter output.",
+                "Multiple lines can be added."
+        );
+
         final String output = doc.formatOutput(
                 "My title",
-                getClass().getMethod("method_demo", TestInfo.class)
+                getClass().getMethod("simple_method")
         );
         // <<<
+
+        DocWriterTest.doc.write(".Method used",
+                formatter.sourceCode(CodeExtractor.methodSource(FindLambdaMethod.getMethod(DocWriterTest::simple_method))),
+                "", "");
 
         DocWriterTest.doc.write(".DocWriter usage",
                 formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
@@ -75,20 +95,26 @@ class DocWriterTest {
 
     /**
      * DocWriter is also used to format output of a test class.
-     * What is wrote on DocWriter is not used in this case.
+     * In that case, we add a title and include all test files of the class.
+     * What is written on DocWriter is not used in this case.
      *
      * @param testInfo
      * @throws NoSuchMethodException
      */
     @Test
-    @DisplayName("DocWriter of a class")
+    @DisplayName("Output with a class")
     public void doc_writer_with_a_class(TestInfo testInfo) throws NoSuchMethodException {
 
         // >>>
         final DocWriter doc = new DocWriter();
-        doc.write("Some text added to show DocWriter output.");
-        final String output = doc.formatOutput(MyTest.class);
+
+        final Class<?> clazz = MyTestWithTests.class;
+        final String output = doc.formatOutput(clazz);
         // <<<
+
+        DocWriterTest.doc.write(".Class used",
+                formatter.sourceCode(extractAndCleanSource(clazz, clazz)),
+                "", "");
 
         DocWriterTest.doc.write(".DocWriter usage",
                 formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
@@ -103,17 +129,18 @@ class DocWriterTest {
 
     /**
      * If you don't want the default title in the generated file, add @NoTitle annotation.
-     * It can be useful when you want to include this file in another test for example.
+     * It can be useful when you want to include this file in another test
+     * that have its own title for example.
      */
     @Test
-    @DisplayName("DocWriter without title")
+    @DisplayName("Hide title")
     public void doc_writer_without_title(TestInfo testInfo) throws NoSuchMethodException {
 
         // >>>
         final DocWriter doc = new DocWriter();
         doc.write("Some text added to show DocWriter output.");
         final String output = doc.formatOutput(
-                "Do not display this title",
+                "This title will not be displayed",
                 MyTestWithoutTitle.class.getMethod("my_method")
         );
         // <<<
@@ -136,30 +163,54 @@ class DocWriterTest {
     @Test
     @DisplayName("Format title")
     public void format_title() {
-        final Method testMethod = FindLambdaMethod.getMethod(DocWriterTest::format_title);
-        final String name = testMethod.getName();
+        final DocWriter docWriter = new DocWriter();
+        try {
+            // >>>with_title
+            Method testMethod = DocWriterTest.class.getMethod("format_title");
+            final String output = docWriter.formatOutput("My title", testMethod);
+            // <<<with_title
 
-        {
-            doc.write("When display name is different from test method name, displayName is used as title.", "", "");
-
-            writeFormatOutput("My title", testMethod);
+            doc.write(
+                    "When a title is specified, it is used as title.",
+                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod("with_title")),
+                    formatter.blockBuilder("----")
+                            .content(output)
+                            .build(),
+                    ""
+            );
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
         }
+        try {
+            // >>>without_title
+            Method testMethod = DocWriterTest.class.getMethod("format_title");
+            final String method_output = docWriter.formatOutput(testMethod);
 
-        {
-            doc.write("When display name is the same as test method name, name is reformatted.", "", "");
+            final String class_output = docWriter.formatOutput(MyTest.class);
+            // <<<without_title
 
-            writeFormatOutput(testMethod.getName() + "()", testMethod);
-        }
-
-        {
-            doc.write("Test method could have TestInfo parameter.", "", "");
-
-            final Method testMethodWithTestInfo = FindLambdaMethod.getMethod(DocWriterTest::test_method_with_test_info);
-            writeFormatOutput(testMethodWithTestInfo.getName() + "(TestInfo)", testMethodWithTestInfo);
+            doc.write(
+                    "When a title is not specified, title comes from the method name or the class name after some formatting",
+                    " (remove '_', uppercase first letter).",
+                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod("without_title")),
+                    formatter.blockBuilder("----")
+                            .title("Format title from method name")
+                            .escapeSpecialKeywords()
+                            .content(method_output)
+                            .build(),
+                    formatter.blockBuilder("----")
+                            .title("Format title from class name")
+                            .escapeSpecialKeywords()
+                            .content(class_output)
+                            .build(),
+                    ""
+            );
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public void test_method_with_test_info(TestInfo testInfo)  {
+    public void test_method_with_test_info(TestInfo testInfo) {
     }
 
     /**
@@ -169,24 +220,83 @@ class DocWriterTest {
 
     }
 
+    /**
+     * A description can be added after the title using the Javadoc.
+     * It can be done with the method javadoc or the class javadoc.
+     *
+     * @param testInfo
+     * @throws NoSuchMethodException
+     */
     @Test
-    @DisplayName("Add description")
+    @DisplayName("Add a description")
     public void add_description_using_comment(TestInfo testInfo) throws NoSuchMethodException {
-        final String name = FindLambdaMethod.getName(MyTestWithComment::testA);
-        final Method testMethod = MyTestWithComment.class.getMethod(name);
 
-        doc.write("When test method had a comment, it's written after title.", "", "");
+        // >>>
+        final DocWriter writer = new DocWriter();
 
-        final DocWriter docWriterForTest = new DocWriter();
-        final String output = docWriterForTest.formatOutput(name + "()", testMethod);
+        final String method_output = writer.formatOutput(
+                "My title",
+                MyTestWithComment.class.getMethod("test_A")
+        );
 
-        doc.write(".Test example with comment on method",
-  //              CodeExtractor.classSource(MyTestWithComment.class),
-                includeSourceWithTag(MyTestWithComment.class.getSimpleName()),
+        final String class_output = writer.formatOutput(MyTestWithComment.class);
+        // <<<
+
+        doc.write(".Class used",
+                formatter.sourceCode(extractAndCleanSource(MyTestWithComment.class, MyTestWithComment.class)),
                 "", "");
 
-        doc.write("****", output, "****", "");
+        doc.write(".DocWriter usage",
+                formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                "", "");
+
+        doc.write(formatter
+                        .blockBuilder(Formatter.Block.LITERAL)
+                        .title("Output provided with method")
+                        .escapeSpecialKeywords()
+                        .content(method_output)
+                        .build(),
+                formatter
+                        .blockBuilder(Formatter.Block.LITERAL)
+                        .title("Output provided with class")
+                        .escapeSpecialKeywords()
+                        .content(class_output)
+                        .build(),
+                "");
+
+        doc.write("If we want to add description of an other class (class under test for example),",
+        String.format("we can use `%s` to define the class containing the description we want.", ClassToDocument.class.getSimpleName()),
+                "It can be combine with the description on the test class.",
+                "");
+
+        doc.write("", ".Test class used",
+                formatter.sourceCode(extractAndCleanSource(MyTestWithClassToDocument.class, MyTestWithClassToDocument.class)),
+                "", "");
+
+        doc.write(".Class under test with description",
+                formatter.sourceCode(extractAndCleanSource(ClassUnderTest.class, ClassUnderTest.class)),
+                "", "");
+
+        doc.write(formatter
+                .blockBuilder(Formatter.Block.LITERAL)
+                .title("Output provided")
+                .escapeSpecialKeywords()
+                .content(writer.formatOutput(MyTestWithClassToDocument.class))
+                .build());
+
     }
+
+    private String extractAndCleanSource(Class<?> classToIdentifySourceClass, Class<?> testClass) {
+//        final Class<?> mainFileClass = new ClassFinder().getMainFileClass(classToIdentifySourceClass);
+//        final Path path = new DocPath(mainFileClass).test().path();
+//        final String javaSource = CodeExtractor.extractPartOfFile(path, tag)
+        final String javaSource = CodeExtractor.classSource(classToIdentifySourceClass)
+                .replaceAll("(^|\n)@" + NotIncludeToDoc.class.getSimpleName(), "")
+                .replaceAll("(^|\n)@" + OnlyRunProgrammatically.class.getSimpleName(), "");
+//        return formatter.sourceCode(javaSource.trim()).trim();
+        return javaSource;
+    }
+
 
     public void writeFormatOutput(String displayName, Method testMethod) {
         final DocWriter docWriterForTest = new DocWriter();
@@ -244,6 +354,7 @@ class DocWriterTest {
                 testInfo.getTestMethod().get()
         );
     }
+
     public List<String> getFormatTitleLine(String displayName, Method method) {
         return Arrays.asList(
                 displayName,
@@ -251,23 +362,26 @@ class DocWriterTest {
                 new DocWriter().formatTitle(displayName, method)
         );
     }
-
-    @NotIncludeToDoc
-// tag::MyTestWithComment[]
-    private static class MyTestWithComment {
-        private static final DocWriter docWriter = new DocWriter();
-        @RegisterExtension
-        static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
-
-        /**
-         * To decribe a method, you can add a comment.
-         * It will be added under title.
-         */
-        @Test
-        public void testA() {
-            docWriter.write("In my *test*");
-        }
-
-    }
-// end::MyTestWithComment[]
+//
+//    @NotIncludeToDoc
+//// tag::MyTestWithComment[]
+//    /**
+//     * My comment MyTestWithComment.
+//     */
+//    private static class MyTestWithComment {
+//        private static final DocWriter docWriter = new DocWriter();
+//        @RegisterExtension
+//        static ApprovalsExtension extension = new ApprovalsExtension(docWriter);
+//
+//        /**
+//         * To decribe a method, you can add a comment.
+//         * It will be added under title.
+//         */
+//        @Test
+//        public void testA() {
+//            docWriter.write("In my *test*");
+//        }
+//
+//    }
+//// end::MyTestWithComment[]
 }
