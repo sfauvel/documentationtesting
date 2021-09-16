@@ -69,7 +69,7 @@ body {
     background: var(--bg1) !important;
 }
 
-h1, h2 {
+h1 {
     font-family: "Noto Serif","DejaVu Serif",serif;
     font-style: italic;
 
@@ -77,7 +77,7 @@ h1, h2 {
     font-weight: 400;
 }
 
-h3 {
+h2 {
     font-weight: bold;
     font-size: 2em;
     border-top: solid;
@@ -109,22 +109,22 @@ h3 {
 
 /* Menu */
 
-.sectlevel3 {
+.sectlevel2 {
     display: none;
     height: 0;
     opacity:0;
 }
 
-.sectlevel2>li {
+.sectlevel1>li {
     padding-left: 0.5em;
 }
-.sectlevel2>li.menu_open {
+.sectlevel1>li.menu_open {
     font-weight: bold;
     background-color: var(--bg1);
     padding: 0.5em;
 }
 
-.sectlevel2>li.menu_open .sectlevel3 {
+.sectlevel1>li.menu_open .sectlevel2 {
     display: block;
     height: auto;
     opacity:1;

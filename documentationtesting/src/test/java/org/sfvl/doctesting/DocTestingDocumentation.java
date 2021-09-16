@@ -44,7 +44,7 @@ public class DocTestingDocumentation {
 
     public String includeClasses(Formatter formatter) {
         final Path location = DocPath.toPath(DocTestingDocumentation.class.getPackage());
-        return new Classes(formatter).includeClasses(location, getClassesToDocument());
+        return new Classes(formatter).includeClasses(location, getClassesToDocument(), 0);
     }
 
     public boolean toBeInclude(Class<?> clazz) {
