@@ -44,7 +44,18 @@ public class AsciidocFormatterTest {
 
         /// False to have generic output. True to have output of a normal test.
         boolean normalOutput() default false;
+
+        /** When true (default value) all code of the method is extracted.
+         * Otherwise, only the code between >>> and <<< is extracted.
+         */
+        boolean extractAll() default true;
     }
+
+    @TestOption
+    private static class DefaultOption {
+    }
+    final static TestOption DEFAULT_OPTION = DefaultOption.class.getAnnotation(TestOption.class);
+
 
     @Test
     @DisplayName("Standard options")
@@ -153,17 +164,27 @@ public class AsciidocFormatterTest {
     }
 
     @Nested
+    @DisplayName(value = "Block")
     class block {
         /**
-         * You can select block type from on of the Block enum.
+         * You can select block type from one of the Block enum.
          */
         @Test
         @DisplayName("Predefine blocks")
+        @TestOption(extractAll = false)
         public void should_format_block_with_enum() {
+            doc.write(".Block value available", //TODO Add this title for a list in AsciidocFormatter
+                    Arrays.stream(Formatter.Block.values())
+                    .map(v -> "* " + v.name())
+                    .collect(Collectors.joining("\n", "", "\n")));
+
+
+            // >>>
             output = formatter.blockBuilder(Formatter.Block.LITERAL)
                     .title("Simple block")
                     .content("Into the block")
                     .build();
+            // <<<
         }
 
         @Test
@@ -326,27 +347,38 @@ public class AsciidocFormatterTest {
 
     @AfterEach
     public void displaySource(TestInfo testinfo) {
-
-        final Optional<TestOption> annotation = Optional.ofNullable(testinfo.getTestMethod()
+        final Optional<TestOption> options = Optional.ofNullable(testinfo.getTestMethod()
                 .get()
                 .getAnnotation(TestOption.class));
-        if (annotation.map(TestOption::normalOutput).orElse(false)) {
+
+        final TestOption annot = options.orElse(DEFAULT_OPTION);
+        if (annot.normalOutput()) {
             return;
         }
-        annotation.map(TestOption::includeMethodDoc)
-                .filter(methodName -> !methodName.isEmpty())
-                .map(methodName -> {
-                    try {
-                        return CodeExtractor.getComment(AsciidocFormatter.class.getDeclaredMethod(methodName));
-                    } catch (NoSuchMethodException e) { // TODO check if this catch is necessary
-                        throw new RuntimeException(e);
-                    }
-                })
-                .ifPresent(comment -> doc.write(comment.get(), ""));
+        final String methodName = annot.includeMethodDoc();
+        if (!methodName.isEmpty()) {
+            try {
+                final Optional<String> comment = CodeExtractor.getComment(AsciidocFormatter.class.getDeclaredMethod(methodName));
+                if (comment.isPresent()) {
+                    doc.write(comment.get(), "");
+                };
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+        }
 
-        doc.write("", "[red]##_Usage_##", "[source,java,indent=0]", "----", extractMethod(testinfo), "----", "");
+        String methodCode = annot.extractAll()
+                ? extractMethod(testinfo)
+                : CodeExtractor.extractPartOfMethod(testinfo.getTestMethod().get());
 
-        if (annotation.map(TestOption::showRender).orElse(true)) {
+        doc.write("",
+                "[red]##_Usage_##",
+                "[source,java,indent=0]",
+                "----",
+                methodCode,
+                "----", "");
+
+        if (options.map(TestOption::showRender).orElse(true)) {
             doc.write("", "[red]##_Render_##", "", output, "");
         }
         doc.write("\n[red]##_Asciidoc generated_##",
