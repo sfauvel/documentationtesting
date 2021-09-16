@@ -24,6 +24,8 @@ public interface Formatter {
 
     String listItems(String... texts);
 
+    String listItemsWithTitle(String title, String... texts);
+
     String sourceCode(String source);
 
     String include(String filename);

@@ -143,6 +143,12 @@ public class AsciidocFormatterTest {
         output = formatter.listItems("First", "Second", "Third");
     }
 
+    @Test
+    @DisplayName("List with a title")
+    public void should_format_list_with_title() {
+        output = formatter.listItemsWithTitle("List title", "First", "Second", "Third");
+    }
+
     /**
      * When no items, listItems method return an empty string.
      */
@@ -173,11 +179,9 @@ public class AsciidocFormatterTest {
         @DisplayName("Predefine blocks")
         @TestOption(extractAll = false)
         public void should_format_block_with_enum() {
-            doc.write(".Block value available", //TODO Add this title for a list in AsciidocFormatter
-                    Arrays.stream(Formatter.Block.values())
-                    .map(v -> "* " + v.name())
-                    .collect(Collectors.joining("\n", "", "\n")));
-
+            doc.write(formatter.listItemsWithTitle("Block value available",
+                    Arrays.stream(Formatter.Block.values()).map(Enum::name).toArray(String[]::new)),
+                    "");
 
             // >>>
             output = formatter.blockBuilder(Formatter.Block.LITERAL)

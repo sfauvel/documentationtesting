@@ -35,6 +35,8 @@ include::_AsciidocFormatterTest.should_format_one_list_item.approved.adoc[levelo
 
 include::_AsciidocFormatterTest.should_format_list.approved.adoc[leveloffset=+1]
 
+include::_AsciidocFormatterTest.should_format_list_with_title.approved.adoc[leveloffset=+1]
+
 include::_AsciidocFormatterTest.should_format_empty_list.approved.adoc[leveloffset=+1]
 
 include::_AsciidocFormatterTest.should_format_source_code.approved.adoc[leveloffset=+1]
