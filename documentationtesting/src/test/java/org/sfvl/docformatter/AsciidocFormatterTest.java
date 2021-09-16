@@ -45,7 +45,8 @@ public class AsciidocFormatterTest {
         /// False to have generic output. True to have output of a normal test.
         boolean normalOutput() default false;
 
-        /** When true (default value) all code of the method is extracted.
+        /**
+         * When true (default value) all code of the method is extracted.
          * Otherwise, only the code between >>> and <<< is extracted.
          */
         boolean extractAll() default true;
@@ -54,6 +55,7 @@ public class AsciidocFormatterTest {
     @TestOption
     private static class DefaultOption {
     }
+
     final static TestOption DEFAULT_OPTION = DefaultOption.class.getAnnotation(TestOption.class);
 
 
@@ -130,43 +132,37 @@ public class AsciidocFormatterTest {
         output = formatter.link("AnchorExample") + "You can make an anchor to here";
     }
 
-    @Test
-    @DisplayName("One list item")
-    public void should_format_one_list_item() {
-        output = formatter.listItem("First")
-                + formatter.listItem("Second");
-    }
+    @Nested
+    @DisplayName(value = "List")
+    class AsciiDocList {
+        @Test
+        @DisplayName("One list item")
+        public void should_format_one_list_item() {
+            output = formatter.listItem("First")
+                    + formatter.listItem("Second");
+        }
 
-    @Test
-    @DisplayName("Full list")
-    public void should_format_list() {
-        output = formatter.listItems("First", "Second", "Third");
-    }
+        @Test
+        @DisplayName("Full list")
+        public void should_format_list() {
+            output = formatter.listItems("First", "Second", "Third");
+        }
 
-    @Test
-    @DisplayName("List with a title")
-    public void should_format_list_with_title() {
-        output = formatter.listItemsWithTitle("List title", "First", "Second", "Third");
-    }
+        @Test
+        @DisplayName("List with a title")
+        public void should_format_list_with_title() {
+            output = formatter.listItemsWithTitle("List title", "First", "Second", "Third");
+        }
 
-    /**
-     * When no items, listItems method return an empty string.
-     */
-    @Test
-    @DisplayName("Empty list")
-    @TestOption(showRender = false)
-    public void should_format_empty_list() {
-        output = formatter.listItems();
-    }
-
-    @Test
-    @DisplayName("Source code")
-    public void should_format_source_code() {
-        output = formatter.sourceCode(
-                "public int add(int a, int b) {\n" +
-                        "   int result = a + b;\n" +
-                        "   return result;\n" +
-                        "}");
+        /**
+         * When no items, listItems method return an empty string.
+         */
+        @Test
+        @DisplayName("Empty list")
+        @TestOption(showRender = false)
+        public void should_format_empty_list() {
+            output = formatter.listItems();
+        }
     }
 
     @Nested
@@ -180,7 +176,7 @@ public class AsciidocFormatterTest {
         @TestOption(extractAll = false)
         public void should_format_block_with_enum() {
             doc.write(formatter.listItemsWithTitle("Block value available",
-                    Arrays.stream(Formatter.Block.values()).map(Enum::name).toArray(String[]::new)),
+                            Arrays.stream(Formatter.Block.values()).map(Enum::name).toArray(String[]::new)),
                     "");
 
             // >>>
@@ -235,32 +231,46 @@ public class AsciidocFormatterTest {
         }
     }
 
-    @Test
-    @DisplayName("Source code using a builder")
-    public void should_format_source_code_with_a_builder() {
-        output = formatter.sourceCodeBuilder("groovy")
-                .title("Source code")
-                .indent(4)
-                .source(
-                        "public int add(int a, int b) {\n" +
-                                "   int result = a + b;\n" +
-                                "   return result;\n" +
-                                "}")
-                .build()
-        ;
-    }
+    @Nested
+    class Source {
 
-    @Test
-    @DisplayName("Source code using a minimal builder")
-    public void should_format_source_code_with_a_minimal_builder() {
-        output = formatter.sourceCodeBuilder()
-                .source(
-                        "public int add(int a, int b) {\n" +
-                                "   int result = a + b;\n" +
-                                "   return result;\n" +
-                                "}")
-                .build()
-        ;
+        @Test
+        @DisplayName("Source code")
+        public void should_format_source_code() {
+            output = formatter.sourceCode(
+                    "public int add(int a, int b) {\n" +
+                            "   int result = a + b;\n" +
+                            "   return result;\n" +
+                            "}");
+        }
+
+        @Test
+        @DisplayName("Source code using a builder")
+        public void should_format_source_code_with_a_builder() {
+            output = formatter.sourceCodeBuilder("groovy")
+                    .title("Source code")
+                    .indent(4)
+                    .source(
+                            "public int add(int a, int b) {\n" +
+                                    "   int result = a + b;\n" +
+                                    "   return result;\n" +
+                                    "}")
+                    .build()
+            ;
+        }
+
+        @Test
+        @DisplayName("Source code using a minimal builder")
+        public void should_format_source_code_with_a_minimal_builder() {
+            output = formatter.sourceCodeBuilder()
+                    .source(
+                            "public int add(int a, int b) {\n" +
+                                    "   int result = a + b;\n" +
+                                    "   return result;\n" +
+                                    "}")
+                    .build()
+            ;
+        }
     }
 
     @Nested
@@ -365,7 +375,8 @@ public class AsciidocFormatterTest {
                 final Optional<String> comment = CodeExtractor.getComment(AsciidocFormatter.class.getDeclaredMethod(methodName));
                 if (comment.isPresent()) {
                     doc.write(comment.get(), "");
-                };
+                }
+                ;
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             }
