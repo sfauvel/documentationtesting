@@ -45,9 +45,6 @@ class CodeExtractorTest {
 
     @AfterEach
     public void addSyle(TestInfo testInfo) {
-        final String title = "_" + doc.formatTitle(testInfo.getDisplayName(), testInfo.getTestMethod().get())
-                .replaceAll(" ", "_")
-                .toLowerCase();
         // Id automatically added when toc is activate but not on H1 title so we add one.
         doc.write("++++",
                 "<style>",

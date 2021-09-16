@@ -11,5 +11,3 @@ include::_DocWriterTest.doc_writer_without_title.approved.adoc[leveloffset=+1]
 include::_DocWriterTest.format_title.approved.adoc[leveloffset=+1]
 
 include::_DocWriterTest.add_description_using_comment.approved.adoc[leveloffset=+1]
-
-include::_DocWriterTest.title.approved.adoc[leveloffset=+1]

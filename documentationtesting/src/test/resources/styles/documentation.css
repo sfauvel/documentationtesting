@@ -77,6 +77,13 @@ h1, h2 {
     font-weight: 400;
 }
 
+h3 {
+    font-weight: bold;
+    font-size: 2em;
+    border-top: solid;
+    padding-top: 0.2em;
+}
+
 :not(pre):not([class^="L"]) > code {
     background: var(--bg2);
 }
