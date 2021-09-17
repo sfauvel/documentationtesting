@@ -19,6 +19,6 @@ jobs:
       - name: Publish package
         run: |
           cd approvalsDocPlugin
-          ./gradlew build publish
+          ./gradlew build publish --stacktrace
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
