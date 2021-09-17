@@ -1,4 +1,4 @@
-name: Publish package to GitHub Packages
+name: Publish intellij plugin to GitHub Packages
 on:
   push:
     branches: [ publish_plugin ]
