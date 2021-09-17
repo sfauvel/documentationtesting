@@ -22,3 +22,4 @@ jobs:
           ./gradlew build publish --stacktrace
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GPR_API_KEY: ${{ secrets.GITHUB_TOKEN }}
