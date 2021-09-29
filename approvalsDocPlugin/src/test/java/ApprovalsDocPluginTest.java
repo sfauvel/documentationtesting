@@ -1,24 +1,88 @@
-import com.intellij.openapi.actionSystem.IdeActions;
+import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.command.UndoConfirmationPolicy;
 import com.intellij.openapi.command.undo.UndoManager;
-import com.intellij.openapi.editor.actionSystem.EditorAction;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.Messages;
-import com.intellij.openapi.ui.TestInputDialog;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiManager;
 import com.intellij.testFramework.fixtures.BasePlatformTestCase;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.io.*;
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
 public class ApprovalsDocPluginTest extends BasePlatformTestCase {
 
+    private DataContext dataContext;
+    private Presentation presentation;
+    private ActionManager actionManager;
+
+    @Override
+    public void setUp() throws Exception {
+        super.setUp();
+
+        dataContext = new DataContext() {
+            @Override
+            public @Nullable Object getData(@NotNull String dataId) {
+                return null;
+            }
+        };
+        String place = "Here";
+        presentation = new Presentation();
+
+        actionManager = new MockActionManager();
+
+    }
+
+    private class MockActionEvent extends AnActionEvent {
+        public MockActionEvent() {
+            super(null, ApprovalsDocPluginTest.this.dataContext, "Here", ApprovalsDocPluginTest.this.presentation, ApprovalsDocPluginTest.this.actionManager, 0);
+        }
+
+    }
+
+    public void testMenuForOneFile() throws IOException {
+        myFixture.addFileToProject("tmp/file.received.adoc", "some text");
+        final VirtualFile virtualFile = myFixture.findFileInTempDir("tmp/file.received.adoc");
+
+        AnActionEvent actionEvent = new MockActionEvent() {
+            @Override
+            public <T> @Nullable T getData(@NotNull DataKey<T> key) {
+                return key == PlatformDataKeys.VIRTUAL_FILE
+                        ? (T) virtualFile
+                        : null;
+            }
+        };
+
+        new ApproveFileAction().update(actionEvent);
+
+        assertEquals("Approved file", presentation.getText());
+    }
+
+
+    public void testMenuForOneFolder() throws IOException {
+        myFixture.addFileToProject("tmp/file.received.adoc", "some text");
+        final VirtualFile virtualFile = myFixture.findFileInTempDir("tmp");
+
+        AnActionEvent actionEvent = new MockActionEvent() {
+            @Override
+            public <T> @Nullable T getData(@NotNull DataKey<T> key) {
+                return key == PlatformDataKeys.VIRTUAL_FILE
+                        ? (T) virtualFile
+                        : null;
+            }
+        };
+        new ApproveFileAction().update(actionEvent);
+
+        assertEquals("Approved All", presentation.getText());
+    }
+
     public void testName() throws IOException {
+
         myFixture.addFileToProject("tmp/file.received.adoc", "some text");
         VirtualFile virtualFile = myFixture.findFileInTempDir("tmp/file.received.adoc");
         System.out.println(virtualFile.getUrl());
@@ -131,4 +195,5 @@ public class ApprovalsDocPluginTest extends BasePlatformTestCase {
                         null,
                         UndoConfirmationPolicy.DO_NOT_REQUEST_CONFIRMATION));
     }
+
 }

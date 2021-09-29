@@ -1,8 +1,74 @@
+import org.demo.DemoTest;
 import org.junit.Test;
+
+import java.lang.reflect.Method;
 
 import static org.junit.Assert.*;
 
 public class ApprovalFileTest {
+
+    @Test
+    public void open_test_file_from_java_method() throws NoSuchMethodException {
+        final Method testMethod = DemoTest.class.getMethod("a_simple_test");
+        ApprovalFile filename = ApprovalFile.valueOf(testMethod);
+        assertEquals("org/demo/_DemoTest.a_simple_test.received.adoc", filename.to(ApprovalFile.Status.RECEIVED).getName());
+    }
+
+    @Test
+    public void open_test_file_from_java_class() throws NoSuchMethodException {
+        ApprovalFile filename = ApprovalFile.fromClass("org.demo", "DemoTest");
+        assertEquals("org/demo/_DemoTest.received.adoc", filename.to(ApprovalFile.Status.RECEIVED).getName());
+        assertEquals("_DemoTest.received.adoc", filename.to(ApprovalFile.Status.RECEIVED).getFileName());
+    }
+
+    @Test
+    public void open_test_file_from_java_class_without_package() throws NoSuchMethodException {
+        ApprovalFile filename = ApprovalFile.fromClass("", "DemoTest");
+        assertEquals("_DemoTest.received.adoc", filename.to(ApprovalFile.Status.RECEIVED).getName());
+    }
+
+    @Test
+    public void get_received_file_from_java_method_with_string() throws NoSuchMethodException {
+        ApprovalFile filename = ApprovalFile.fromMethod("org.demo", "DemoTest", "a_simple_test");
+        assertEquals("org/demo/_DemoTest.a_simple_test.received.adoc", filename.to(ApprovalFile.Status.RECEIVED).getName());
+        assertEquals("_DemoTest.a_simple_test.received.adoc", filename.to(ApprovalFile.Status.RECEIVED).getFileName());
+    }
+
+    @Test
+    public void get_approved_file_from_java_method_with_string() throws NoSuchMethodException {
+        ApprovalFile filename = ApprovalFile.fromMethod("org.demo", "DemoTest", "a_simple_test");
+        assertEquals("org/demo/_DemoTest.a_simple_test.approved.adoc", filename.to(ApprovalFile.Status.APPROVED).getName());
+    }
+
+    @Test
+    public void get_approved_file_from_java_method_without_package() throws NoSuchMethodException {
+        ApprovalFile filename = ApprovalFile.fromMethod("", "DemoTest", "a_simple_test");
+        assertEquals("_DemoTest.a_simple_test.approved.adoc", filename.to(ApprovalFile.Status.APPROVED).getName());
+    }
+
+    @Test
+    public void open_test_file() {
+        ApprovalFile filename = ApprovalFile.valueOf("test.received.adoc").get();
+        assertEquals("Test.java", filename.getTestFile());
+    }
+
+    @Test
+    public void open_test_file_with_path() {
+        ApprovalFile filename = ApprovalFile.valueOf("src/test/docs/org/demo/test.received.adoc").get();
+        assertEquals("src/test/java/org/demo/Test.java", filename.getTestFile());
+    }
+
+    @Test
+    public void open_test_file_with_path_and_underscore() {
+        ApprovalFile filename = ApprovalFile.valueOf("src/test/docs/org/demo/_test_underscore.received.adoc").get();
+        assertEquals("src/test/java/org/demo/Test_underscore.java", filename.getTestFile());
+    }
+
+    @Test
+    public void open_test_file_with_path_and_method() {
+        ApprovalFile filename = ApprovalFile.valueOf("src/test/docs/org/demo/test.mytestcase.received.adoc").get();
+        assertEquals("src/test/java/org/demo/Test.java", filename.getTestFile());
+    }
 
     @Test
     public void value_of_a_received_file() {

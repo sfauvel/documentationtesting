@@ -10,6 +10,7 @@
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
@@ -18,6 +19,20 @@
 
     <actions>
 
+        <action id="SwitchToApprovedFileAction"
+                class="SwitchToApprovedFileAction"
+                text="Switch to approved file"
+                description="Switch to approved file">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+        <action id="SwitchToReceivedFileAction"
+                class="SwitchToReceivedFileAction"
+                text="Switch to received file"
+                description="Switch to received file">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
         <action id="ApproveFileAction"
                 class="ApproveFileAction"
                 text="Approve file"

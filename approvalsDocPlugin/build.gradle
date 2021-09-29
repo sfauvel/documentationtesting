@@ -1,27 +1,26 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '0.4.16'
+    id 'org.jetbrains.intellij' version '1.1.6'
 }
 
 group 'org.sfvl.doctesting'
 version '1.0-SNAPSHOT'
-
-sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation 'junit:junit:4.13.2'
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version '2019.3.3'
+    version = '2021.2'
+    plugins = ['com.intellij.java']
 }
 patchPluginXml {
-    changeNotes """
+    changeNotes = """
       Add change notes here.<br>
       <em>most HTML tags may be used</em>"""
 }

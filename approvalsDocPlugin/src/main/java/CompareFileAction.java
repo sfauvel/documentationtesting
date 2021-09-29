@@ -10,53 +10,45 @@ import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+import java.util.function.Predicate;
+
 public class CompareFileAction extends AnAction {
 
     @Override
     public void update(AnActionEvent e) {
-        VirtualFile data = e.getData(PlatformDataKeys.VIRTUAL_FILE);
 
-        String nameWithoutExtension = data.getNameWithoutExtension();
-        if (data.isDirectory()) {
-            e.getPresentation().setVisible(false);
-        } else {
+        VirtualFile fileSelected = e.getData(PlatformDataKeys.VIRTUAL_FILE);
+        final Optional<VirtualFile> approvalFileOptional = getFileToCompare(fileSelected);
+
+        e.getPresentation().setVisible(approvalFileOptional.isPresent());
+        e.getPresentation().setEnabled(approvalFileOptional.isPresent());
+
+        if (approvalFileOptional.isPresent()) {
             e.getPresentation().setText("Compare files");
-            ApprovalFile approvalFile = getApprovalFile(data.getName());
-            if (approvalFile == null) {
-                e.getPresentation().setVisible(false);
-            } else {
-                ApprovalFile filenameToCompare = approvalFile.to(approvalFile.isReceived()
-                        ? ApprovalFile.Status.APPROVED
-                        : ApprovalFile.Status.RECEIVED);
-                VirtualFile fileToCompare = e.getData(PlatformDataKeys.VIRTUAL_FILE).findFileByRelativePath("../" + filenameToCompare.getName());
-                e.getPresentation().setVisible(true);
-                e.getPresentation().setEnabled(fileToCompare != null);
-            }
-
         }
-
     }
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-        VirtualFile data = e.getData(PlatformDataKeys.VIRTUAL_FILE);
-
-        ApprovalFile approvalFile = getApprovalFile(data.getName());
-        if (approvalFile == null) {
-            return;
-        }
-
-        ApprovalFile filenameToCompare = approvalFile.to(approvalFile.isReceived()
-                ? ApprovalFile.Status.APPROVED
-                : ApprovalFile.Status.RECEIVED);
-
-
         VirtualFile fileSelected = e.getData(PlatformDataKeys.VIRTUAL_FILE);
-        VirtualFile fileToCompare = e.getData(PlatformDataKeys.VIRTUAL_FILE).findFileByRelativePath("../" + filenameToCompare.getName());
-        if (fileToCompare != null) {
-            DiffRequest diffRequest = getDiffRequest(e, fileSelected, fileToCompare);
+        final Optional<VirtualFile> fileToCompare = getFileToCompare(fileSelected);
+
+        if (fileToCompare.isPresent()) {
+            DiffRequest diffRequest = getDiffRequest(e, fileSelected, fileToCompare.get());
             DiffManager.getInstance().showDiff(e.getProject(), diffRequest);
         }
+    }
+
+    private Optional<VirtualFile> getFileToCompare(VirtualFile fileSelected) {
+        return Optional.of(fileSelected)
+                .filter(Predicate.not(VirtualFile::isDirectory))
+                .map(VirtualFile::getName)
+                .map(this::getApprovalFile)
+                .map(file -> file.to(file.isReceived()
+                        ? ApprovalFile.Status.APPROVED
+                        : ApprovalFile.Status.RECEIVED))
+                .map(file -> fileSelected.findFileByRelativePath("../" + file.getName()));
     }
 
     @Nullable
