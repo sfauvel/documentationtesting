@@ -9,6 +9,7 @@ import com.intellij.psi.PsiFile;
 import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.mockito.Mockito;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,68 +18,52 @@ import java.util.stream.Collectors;
 
 public class ApprovalsDocPluginTest extends BasePlatformTestCase {
 
-    private DataContext dataContext;
-    private Presentation presentation;
-    private ActionManager actionManager;
+    private class MockActionEvent extends AnActionEvent {
 
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
-
-        dataContext = new DataContext() {
-            @Override
-            public @Nullable Object getData(@NotNull String dataId) {
-                return null;
-            }
-        };
-        String place = "Here";
-        presentation = new Presentation();
-
-        actionManager = new MockActionManager();
+        public MockActionEvent() {
+            super(null,
+                    Mockito.mock(DataContext.class),
+                    "Here",
+                    new Presentation(),
+                    Mockito.mock(ActionManager.class), 0);
+        }
 
     }
 
-    private class MockActionEvent extends AnActionEvent {
-        public MockActionEvent() {
-            super(null, ApprovalsDocPluginTest.this.dataContext, "Here", ApprovalsDocPluginTest.this.presentation, ApprovalsDocPluginTest.this.actionManager, 0);
-        }
+    private class MockActionOnFileEvent extends MockActionEvent {
+        private final VirtualFile virtualFile;
 
+        public MockActionOnFileEvent(VirtualFile virtualFile) {
+            this.virtualFile = virtualFile;
+        }
+        @Override
+        public <T> @Nullable T getData(@NotNull DataKey<T> key) {
+            return key == PlatformDataKeys.VIRTUAL_FILE
+                    ? (T) virtualFile
+                    : null;
+        }
     }
 
     public void testMenuForOneFile() throws IOException {
         myFixture.addFileToProject("tmp/file.received.adoc", "some text");
         final VirtualFile virtualFile = myFixture.findFileInTempDir("tmp/file.received.adoc");
 
-        AnActionEvent actionEvent = new MockActionEvent() {
-            @Override
-            public <T> @Nullable T getData(@NotNull DataKey<T> key) {
-                return key == PlatformDataKeys.VIRTUAL_FILE
-                        ? (T) virtualFile
-                        : null;
-            }
-        };
+        AnActionEvent actionEvent = new MockActionOnFileEvent(virtualFile);
 
         new ApproveFileAction().update(actionEvent);
 
-        assertEquals("Approved file", presentation.getText());
+        assertEquals("Approved file", actionEvent.getPresentation().getText());
     }
-
 
     public void testMenuForOneFolder() throws IOException {
         myFixture.addFileToProject("tmp/file.received.adoc", "some text");
         final VirtualFile virtualFile = myFixture.findFileInTempDir("tmp");
 
-        AnActionEvent actionEvent = new MockActionEvent() {
-            @Override
-            public <T> @Nullable T getData(@NotNull DataKey<T> key) {
-                return key == PlatformDataKeys.VIRTUAL_FILE
-                        ? (T) virtualFile
-                        : null;
-            }
-        };
+        AnActionEvent actionEvent = new MockActionOnFileEvent(virtualFile);
+
         new ApproveFileAction().update(actionEvent);
 
-        assertEquals("Approved All", presentation.getText());
+        assertEquals("Approved All", actionEvent.getPresentation().getText());
     }
 
     public void testName() throws IOException {

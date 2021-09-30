@@ -11,7 +11,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'junit:junit:4.13.2'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:2.1.0'
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/

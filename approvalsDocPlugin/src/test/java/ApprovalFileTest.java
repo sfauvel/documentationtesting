@@ -142,7 +142,7 @@ public class ApprovalFileTest {
     private void assertThrow(Class<? extends Exception> expectedException, Runnable function) {
         try {
             function.run();
-        } catch(Exception e) {
+        } catch (Exception e) {
             if (expectedException.isAssignableFrom(e.getClass())) {
                 return;
             }
