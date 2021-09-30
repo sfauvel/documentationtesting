@@ -6,10 +6,8 @@ import com.intellij.openapi.command.undo.UndoManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiManager;
 import com.intellij.testFramework.fixtures.BasePlatformTestCase;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.mockito.Mockito;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,37 +16,10 @@ import java.util.stream.Collectors;
 
 public class ApprovalsDocPluginTest extends BasePlatformTestCase {
 
-    private class MockActionEvent extends AnActionEvent {
-
-        public MockActionEvent() {
-            super(null,
-                    Mockito.mock(DataContext.class),
-                    "Here",
-                    new Presentation(),
-                    Mockito.mock(ActionManager.class), 0);
-        }
-
-    }
-
-    private class MockActionOnFileEvent extends MockActionEvent {
-        private final VirtualFile virtualFile;
-
-        public MockActionOnFileEvent(VirtualFile virtualFile) {
-            this.virtualFile = virtualFile;
-        }
-        @Override
-        public <T> @Nullable T getData(@NotNull DataKey<T> key) {
-            return key == PlatformDataKeys.VIRTUAL_FILE
-                    ? (T) virtualFile
-                    : null;
-        }
-    }
-
     public void testMenuForOneFile() throws IOException {
-        myFixture.addFileToProject("tmp/file.received.adoc", "some text");
-        final VirtualFile virtualFile = myFixture.findFileInTempDir("tmp/file.received.adoc");
+        final PsiFile file = myFixture.addFileToProject("tmp/file.received.adoc", "some text");
 
-        AnActionEvent actionEvent = new MockActionOnFileEvent(virtualFile);
+        AnActionEvent actionEvent = new MockActionOnFileEvent(file);
 
         new ApproveFileAction().update(actionEvent);
 
@@ -57,9 +28,9 @@ public class ApprovalsDocPluginTest extends BasePlatformTestCase {
 
     public void testMenuForOneFolder() throws IOException {
         myFixture.addFileToProject("tmp/file.received.adoc", "some text");
-        final VirtualFile virtualFile = myFixture.findFileInTempDir("tmp");
+        final VirtualFile folder = myFixture.findFileInTempDir("tmp");
 
-        AnActionEvent actionEvent = new MockActionOnFileEvent(virtualFile);
+        AnActionEvent actionEvent = new MockActionOnFileEvent(folder);
 
         new ApproveFileAction().update(actionEvent);
 

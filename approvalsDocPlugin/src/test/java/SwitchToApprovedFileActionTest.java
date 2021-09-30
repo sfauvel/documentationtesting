@@ -1,8 +1,10 @@
+import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.Presentation;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiManager;
 import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 import org.jetbrains.annotations.NotNull;
 
@@ -201,12 +203,32 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
         assertEquals("_MyClass.InnerClass.inner_method." + approvalType + ".adoc", getFileNameInEditor());
     }
 
+    public void test_menu_when_not_on_editor() throws IOException {
+        final String approvalType = "approved";
+        myFixture.addFileToProject("test/docs/_MyClass." + approvalType + ".adoc", approvalType + " content");
+        final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java", generateCode(CaretOn.NONE));
+
+        AnActionEvent actionEvent = new MockActionOnFileEvent(psiFile);
+
+        new SwitchToApprovedFileAction() {
+            @Override
+            protected String getProjectBasePath(Project project) {
+                return "/";
+            }
+        }.update(actionEvent);
+
+        final Presentation presentation = actionEvent.getPresentation();
+        assertTrue(presentation.isVisible());
+        assertEquals("Switch to " + approvalType + " file", presentation.getText());
+    }
+
     static enum CaretOn {
+        NONE,
         IMPORT,
         CLASS,
         METHOD,
         INNER_CLASS,
-        INNER_METHOD
+        INNER_METHOD;
     }
 
     @NotNull

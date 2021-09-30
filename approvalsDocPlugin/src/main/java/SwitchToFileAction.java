@@ -38,6 +38,9 @@ public abstract class SwitchToFileAction extends AnAction {
             actionEvent.getPresentation().setVisible(false);
             return;
         }
+        actionEvent.getPresentation().setEnabled(true);
+        actionEvent.getPresentation().setVisible(true);
+
         actionEvent.getPresentation().setText(getMenuText());
     }
 
@@ -96,18 +99,27 @@ public abstract class SwitchToFileAction extends AnAction {
 
     @NotNull
     protected Optional<@NotNull PsiFile> getApprovedPsiFile(Project project, Editor editor, PsiFile psiFile) {
-        if (editor == null || psiFile == null) {
+        if (psiFile == null) {
             return Optional.empty();
         }
-        int offset = editor.getCaretModel().getOffset();
+//        int offset = editor.getCaretModel().getOffset();
+//        PsiElement element = psiFile.findElementAt(offset);
 
-        PsiElement element = psiFile.findElementAt(offset);
+        PsiElement element = Optional.ofNullable(editor)
+                .map(e -> editor.getCaretModel().getOffset())
+                .map(offset -> psiFile.findElementAt(offset))
+                .orElse(psiFile);
+
         return getApprovedPsiFile(project, element);
     }
 
     @NotNull
     protected Optional<@NotNull PsiFile> getApprovedPsiFile(Project project, PsiElement element) {
-        PsiJavaFile containingJavaFile = PsiTreeUtil.getParentOfType(element, PsiJavaFile.class);
+
+        PsiJavaFile containingJavaFile = (element instanceof PsiJavaFile)
+                ? (PsiJavaFile) element
+                : PsiTreeUtil.getParentOfType(element, PsiJavaFile.class);
+
         if (containingJavaFile == null) {
             return Optional.empty();
         }
