@@ -1,12 +1,16 @@
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.actionSystem.Presentation;
+import com.intellij.openapi.fileEditor.FileEditor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiManager;
+import com.intellij.psi.PsiJavaFile;
 import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 import org.jetbrains.annotations.NotNull;
+import org.mockito.Mockito;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -14,14 +18,14 @@ import java.nio.file.Paths;
 
 public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
 
-    private final SwitchToApprovedFileAction actionApprovedUnderTest = new SwitchToApprovedFileAction()  {
+    private final SwitchToApprovedFileAction actionApprovedUnderTest = new SwitchToApprovedFileAction() {
         @Override
         protected String getProjectBasePath(Project project) {
             return "/";
         }
     };
 
-    private final SwitchToReceivedFileAction actionReceivedUnderTest = new SwitchToReceivedFileAction()  {
+    private final SwitchToReceivedFileAction actionReceivedUnderTest = new SwitchToReceivedFileAction() {
         @Override
         protected String getProjectBasePath(Project project) {
             return "/";
@@ -222,6 +226,66 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
         assertEquals("Switch to " + approvalType + " file", presentation.getText());
     }
 
+    /**
+     * When select file from menu, the PsiElement is a PsiClass.
+     */
+    public void test_menu_when_on_PsiElement() throws IOException {
+        class MockActionOnPsiClass extends MockActionEvent {
+            public MockActionOnPsiClass(PsiClass psiElement) {
+                super(psiElement.getProject());
+                Mockito.when(getDataContext().getData(PlatformDataKeys.PSI_ELEMENT)).thenReturn(psiElement);
+            }
+        }
+
+        final String approvalType = "approved";
+        myFixture.addFileToProject("test/docs/_MyClass." + approvalType + ".adoc", approvalType + " content");
+        final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java", generateCode(CaretOn.NONE));
+
+        AnActionEvent actionEvent = new MockActionOnPsiClass(((PsiJavaFile) psiFile).getClasses()[0]);
+
+        new SwitchToApprovedFileAction() {
+            @Override
+            protected String getProjectBasePath(Project project) {
+                return "/";
+            }
+        }.update(actionEvent);
+
+        final Presentation presentation = actionEvent.getPresentation();
+        assertTrue(presentation.isVisible());
+        assertEquals("Switch to " + approvalType + " file", presentation.getText());
+
+        new SwitchToApprovedFileAction() {
+            @Override
+            protected String getProjectBasePath(Project project) {
+                return "/";
+            }
+        }.actionPerformed(actionEvent);
+
+        assertEquals("_MyClass." + approvalType + ".adoc", getFileNameInEditor());
+    }
+
+    public void test_menu_when_not_on_editor_without_PsiFileXXX() throws IOException {
+
+
+        final String approvalType = "approved";
+        myFixture.addFileToProject("test/docs/_MyClass." + approvalType + ".adoc", approvalType + " content");
+        final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java", generateCode(CaretOn.NONE));
+
+        AnActionEvent actionEvent = new MockActionOnFileEvent(psiFile);
+
+        new SwitchToApprovedFileAction() {
+            @Override
+            protected String getProjectBasePath(Project project) {
+                return "/";
+            }
+        }.actionPerformed(actionEvent);
+
+        final FileEditor[] allEditors = FileEditorManager.getInstance(actionEvent.getProject()).getAllEditors();
+        assertEquals("_MyClass." + approvalType + ".adoc", getFileNameInEditor());
+
+
+    }
+
     static enum CaretOn {
         NONE,
         IMPORT,
@@ -254,11 +318,11 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
 
     private String generateCode(CaretOn caretOn) {
         return String.format("import %sorg.demo; class %sMyClass { public void %smy_method() {} class %sInnerClass{ public void %sinner_method() {} } }",
-                CaretOn.IMPORT.equals(caretOn)?"<caret>":"",
-                CaretOn.CLASS.equals(caretOn)?"<caret>":"",
-                CaretOn.METHOD.equals(caretOn)?"<caret>":"",
-                CaretOn.INNER_CLASS.equals(caretOn)?"<caret>":"",
-                CaretOn.INNER_METHOD.equals(caretOn)?"<caret>":"");
+                CaretOn.IMPORT.equals(caretOn) ? "<caret>" : "",
+                CaretOn.CLASS.equals(caretOn) ? "<caret>" : "",
+                CaretOn.METHOD.equals(caretOn) ? "<caret>" : "",
+                CaretOn.INNER_CLASS.equals(caretOn) ? "<caret>" : "",
+                CaretOn.INNER_METHOD.equals(caretOn) ? "<caret>" : "");
     }
 
 }

@@ -1,6 +1,6 @@
 import com.intellij.openapi.vfs.VirtualFile;
 
-import java.lang.reflect.Method;
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.InvalidParameterException;
@@ -10,96 +10,122 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class ApprovalFile {
+class ApprovedFile extends ApprovalFile {
+
+    public ApprovedFile(String filename, Status status) {
+        super(filename, status, "adoc");
+    }
+
+    public ApprovedFile(Path path, String fileName, String methodName, Status status) {
+        super(path,
+                fileName,
+                methodName,
+                status,
+                "adoc");
+    }
+
+    @Override
+    public String getFileName() {
+        return String.format("%s%s.%s.%s",
+                Paths.get("_" + className).getFileName().toString(),
+                getMethodName() == null ? "" : "." + getMethodName(),
+                getStatusName(status),
+                getExtension()
+        );
+    }
+
+    @Override
+    public String getName() {
+        return String.format("%s%s.%s.%s",
+                getPath().resolve("_" + className),
+                getMethodName() == null ? "" : "." + getMethodName(),
+                getStatusName(status),
+                getExtension()
+        );
+    }
+
+}
+
+class JavaFile extends ApprovalFile {
+
+    public JavaFile(String packageName, String className) {
+        this(packageName, className, null);
+    }
+
+    public JavaFile(String packageName, String className, String methodName) {
+        this(Paths.get(packageName.replace('.', File.separatorChar)), className, methodName);
+    }
+
+    public JavaFile(Path packagePath, String className, String methodName) {
+        super(packagePath, className, methodName, null, "java");
+    }
+
+    @Override
+    public String getName() {
+        return String.format("%s.%s", getPath().resolve(getClassName()), getExtension());
+    }
+
+    @Override
+    public String getFileName() {
+        return String.format("%s.%s", getClassName(), getExtension());
+    }
+
+    @Override
+    public ApprovalFile to(Status approved) {
+        return new ApprovedFile(getPath(), getClassName(), getMethodName(), approved);
+    }
+}
+
+public abstract class ApprovalFile {
+
+    private final Path path;
+    protected final String className;
+    protected final String methodName;
     private final String extension;
-    private final String filename;
-    private final Status status;
+    protected final Status status;
 
     public ApprovalFile(VirtualFile virtualFile) {
         this(virtualFile.getNameWithoutExtension(), null, virtualFile.getExtension());
     }
 
-    public ApprovalFile(String filename, Status status, String extension) {
-        this.filename = filename;
+    public ApprovalFile(String className, Status status, String extension) {
+        this.path = Paths.get("");
+        this.className = className;
+        this.methodName = null;
         this.status = status;
         this.extension = extension;
     }
 
-
-    public static ApprovalFile fromClass(String packageName, String className) {
-        final String fullName = getApprovedFileName(packageName, className);
-
-        return new ApprovalFile(fullName, Status.RECEIVED, "adoc");
+    public ApprovalFile(Path path, Status status, String extension) {
+        this(path, "", status, extension);
     }
 
-    public static ApprovalFile fromMethod(String packageName, String className, String methodName) {
-        final String fullName = String.format("%s.%s",
-                getApprovedFileName(packageName, className),
-                methodName);
-        return new ApprovalFile(fullName, Status.RECEIVED, "adoc");
+    public ApprovalFile(Path path, String className, Status status, String extension) {
+        this(path, className, null, status, extension);
     }
 
-    private static String getApprovedFileName(String packageName, String className) {
-        packageName = packageName
-                .replaceAll("\\.", "/");
-        final String fullName = String.format("%s_%s",
-                packageName.isEmpty() ? "" : packageName + "/",
-                className);
-        return fullName;
+    public ApprovalFile(Path path, String className, String methodName, Status status, String extension) {
+        this.path = path == null ? Paths.get("") : path;
+        this.className = className;
+        this.methodName = methodName;
+        this.status = status;
+        this.extension = extension;
     }
 
-    static class JavaApprovalFile extends ApprovalFile {
-
-
-        private final Method method;
-
-        public JavaApprovalFile(Method method) {
-            super(method.getName(), null, "java");
-            this.method = method;
-        }
-
-        @Override
-        public ApprovalFile to(Status status) {
-            final String methodName = method.getName();
-            final Class<?> declaringClass = method.getDeclaringClass();
-            final String packageName = declaringClass.getPackageName()
-                    .replaceAll("\\.", "/");
-            final String fullName = String.format("%s/_%s.%s",
-                    packageName,
-                    declaringClass.getSimpleName(),
-                    methodName);
-
-            return new ApprovalFile(fullName, status, "adoc");
-        }
+    public Path getPath() {
+        return path;
     }
 
-    public static ApprovalFile valueOf(Method testMethod) {
-        return new JavaApprovalFile(testMethod);
+    public String getClassName() {
+        return className;
     }
 
-    public static Optional<ApprovalFile> valueOf(String fullFileName) {
-        String approvalWords = Arrays.stream(Status.values())
-                .map(ApprovalFile::getStatusName)
-                .collect(Collectors.joining("|"));
-        Pattern approvalFilePattern = Pattern.compile("(.*)\\.(" + approvalWords + ")\\.([^\\.]+)");
-        Matcher matcher = approvalFilePattern.matcher(fullFileName);
-        if (!matcher.matches()) {
-            return Optional.empty();
-        } else {
-            return Optional.of(new ApprovalFile(
-                    matcher.group(1),
-                    matcher.group(2).equals(getStatusName(Status.RECEIVED))
-                            ? Status.RECEIVED
-                            : Status.APPROVED,
-                    matcher.group(3))
-            );
-        }
+    public String getMethodName() {
+        return methodName;
     }
 
-    static boolean isReceivedFilename(String filename) {
-        return valueOf(filename)
-                .filter(ApprovalFile::isReceived)
-                .isPresent();
+    public String getExtension() {
+        return extension;
     }
 
     public boolean isReceived() {
@@ -110,45 +136,66 @@ public class ApprovalFile {
         return status == Status.APPROVED;
     }
 
-    public String getName() {
-        return String.format("%s.%s.%s",
-                filename,
-                getStatusName(status),
-                extension
-        );
-    }
+    public abstract String getName();
 
-    public String getFileName() {
-        return String.format("%s.%s.%s",
-                Paths.get(filename).getFileName().toString(),
-                getStatusName(status),
-                extension
-        );
+    public abstract String getFileName();
+
+    public ApprovalFile to(Status approved) {
+        return new ApprovedFile(getPath(), this.className, null, approved);
     }
 
     public String getTestFile() {
-        final Path path = Paths.get(filename);
-        final String localFileName = path.getFileName().toString()
-                .replaceFirst("(^)_", "")
-                .split("\\.")[0];
-
-
-        final String javaFileName = String.format("%s.%s",
-                localFileName.substring(0, 1).toUpperCase() + localFileName.substring(1, localFileName.length()),
-                "java"
-        );
-
-        final Path parent = path.getParent();
-        if (parent != null) {
-            return Paths.get(parent.toString().replace("src/test/docs", "src/test/java"))
-                    .resolve(javaFileName).toString();
-        } else {
-            return javaFileName;
-        }
-
+        return new JavaFile(path, className.split("\\.")[0], null).getName();
     }
 
-    private static String getStatusName(Status status) {
+    public static ApprovalFile fromClass(String packageName, String className) {
+        return new JavaFile(packageName, className);
+    }
+
+    public static ApprovalFile fromMethod(String packageName, String className, String methodName) {
+        return new JavaFile(packageName, className, methodName);
+    }
+
+    public static Optional<ApprovalFile> valueOf(String fullFileName) {
+        String approvalWords = Arrays.stream(Status.values())
+                .map(ApprovalFile::getStatusName)
+                .collect(Collectors.joining("|"));
+
+
+        Pattern approvalFilePattern = Pattern.compile("(.*)\\.(" + approvalWords + ")\\.([^\\.]+)");
+        Matcher matcher = approvalFilePattern.matcher(fullFileName);
+        if (!matcher.matches()) {
+            return Optional.empty();
+        } else {
+            final Path pathFound = Paths.get(matcher.group(1));
+            final Path path = pathFound.getParent();
+
+//            final Path pathDocs = Paths.get("src", "test", "docs");
+//            final Path path = pathFound.startsWith(pathDocs)
+//                ? pathDocs.relativize(pathFound.getParent())
+//                : pathFound.getParent();
+            final Path fileName = pathFound.getFileName();
+            if (!fileName.toString().startsWith("_")) {
+                return Optional.empty();
+            }
+            return Optional.of(new ApprovedFile(
+                    path,
+                    fileName.toString().replaceFirst("^_", ""),
+                    null,
+                    matcher.group(2).equals(getStatusName(Status.RECEIVED))
+                            ? Status.RECEIVED
+                            : Status.APPROVED)
+            );
+        }
+    }
+
+    static boolean isReceivedFilename(String filename) {
+        return valueOf(filename)
+                .filter(ApprovalFile::isReceived)
+                .isPresent();
+    }
+
+    protected static String getStatusName(Status status) {
         switch (status) {
             case APPROVED:
                 return "approved";
@@ -159,12 +206,9 @@ public class ApprovalFile {
         }
     }
 
-    public ApprovalFile to(Status approved) {
-        return new ApprovalFile(this.filename, approved, this.extension);
-    }
-
     public static enum Status {
         RECEIVED,
         APPROVED
     }
+
 }

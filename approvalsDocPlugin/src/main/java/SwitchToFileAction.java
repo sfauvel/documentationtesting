@@ -46,16 +46,6 @@ public abstract class SwitchToFileAction extends AnAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
-        Editor editor = anActionEvent.getData(CommonDataKeys.EDITOR);
-        PsiFile psiFile = anActionEvent.getData(CommonDataKeys.PSI_FILE);
-
-        VirtualFile data = anActionEvent.getData(PlatformDataKeys.VIRTUAL_FILE);
-        if (editor == null || psiFile == null) {
-            return;
-        }
-        System.out.println("psiFile:" + psiFile.getName());
-        System.out.println("data:" + data.getName());
-
         final Optional<@NotNull PsiFile> approvedPsiFile = getApprovedPsiFile(anActionEvent);
         if (approvedPsiFile.isEmpty()) return;
 
@@ -94,17 +84,20 @@ public abstract class SwitchToFileAction extends AnAction {
         final Project project = actionEvent.getProject();
         Editor editor = actionEvent.getData(CommonDataKeys.EDITOR);
         PsiFile psiFile = actionEvent.getData(CommonDataKeys.PSI_FILE);
-        return getApprovedPsiFile(project, editor, psiFile);
+        if (psiFile != null) {
+            return getApprovedPsiFile(project, editor, psiFile);
+        }
+
+        PsiElement psiElement = actionEvent.getData(CommonDataKeys.PSI_ELEMENT);
+        if (psiElement != null) {
+            return getApprovedPsiFile(project, psiElement);
+        }
+
+        return Optional.empty();
     }
 
     @NotNull
     protected Optional<@NotNull PsiFile> getApprovedPsiFile(Project project, Editor editor, PsiFile psiFile) {
-        if (psiFile == null) {
-            return Optional.empty();
-        }
-//        int offset = editor.getCaretModel().getOffset();
-//        PsiElement element = psiFile.findElementAt(offset);
-
         PsiElement element = Optional.ofNullable(editor)
                 .map(e -> editor.getCaretModel().getOffset())
                 .map(offset -> psiFile.findElementAt(offset))
