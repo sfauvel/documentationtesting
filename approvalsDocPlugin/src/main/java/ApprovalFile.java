@@ -141,11 +141,15 @@ public abstract class ApprovalFile {
     public abstract String getFileName();
 
     public ApprovalFile to(Status approved) {
-        return new ApprovedFile(getPath(), this.className, null, approved);
+        return new ApprovedFile(getPath(), this.className, this.methodName, approved);
     }
 
     public String getTestFile() {
-        return new JavaFile(path, className.split("\\.")[0], null).getName();
+        return toJava().getName();
+    }
+
+    public JavaFile toJava() {
+        return new JavaFile(path, className.split("\\.")[0], null);
     }
 
     public static ApprovalFile fromClass(String packageName, String className) {
@@ -170,18 +174,18 @@ public abstract class ApprovalFile {
             final Path pathFound = Paths.get(matcher.group(1));
             final Path path = pathFound.getParent();
 
-//            final Path pathDocs = Paths.get("src", "test", "docs");
-//            final Path path = pathFound.startsWith(pathDocs)
-//                ? pathDocs.relativize(pathFound.getParent())
-//                : pathFound.getParent();
             final Path fileName = pathFound.getFileName();
             if (!fileName.toString().startsWith("_")) {
                 return Optional.empty();
             }
+            final String[] split = fileName.toString().split("\\.");
+            final String className = split.length == 1 ? split[0] : Arrays.stream(split).limit(split.length-1).collect(Collectors.joining("."));
+            final String methodName = split.length == 1 ? null: split[split.length-1];
+
             return Optional.of(new ApprovedFile(
                     path,
-                    fileName.toString().replaceFirst("^_", ""),
-                    null,
+                    className.replaceFirst("^_", ""),
+                    methodName,
                     matcher.group(2).equals(getStatusName(Status.RECEIVED))
                             ? Status.RECEIVED
                             : Status.APPROVED)

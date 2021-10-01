@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.nio.file.Paths;
+
 import static org.junit.Assert.*;
 
 public class ApprovalFileTest {
@@ -145,6 +147,26 @@ public class ApprovalFileTest {
         assertFalse(filename.isReceived());
         assertTrue(filename.isApproved());
         assertEquals("_test.file.multi_part.approved.adoc", filename.getName());
+    }
+
+    @Test
+    public void extract_class_from_received_file() {
+        ApprovalFile approvalFile = ApprovalFile.valueOf("_MyClass.received.adoc").get();
+        assertEquals("MyClass", approvalFile.getClassName());
+    }
+
+    @Test
+    public void extract_package_from_received_file() {
+        ApprovalFile approvalFile = ApprovalFile.valueOf("org/demo/_MyClass.received.adoc").get();
+        assertEquals("MyClass", approvalFile.getClassName());
+        assertEquals(Paths.get("org", "demo"), approvalFile.getPath());
+    }
+
+    @Test
+    public void extract_method_from_received_file() {
+        ApprovalFile approvalFile = ApprovalFile.valueOf("_MyClass.test_method.received.adoc").get();
+        assertEquals("MyClass", approvalFile.getClassName());
+        assertEquals("test_method", approvalFile.getMethodName());
     }
 
     private void assertThrow(Class<? extends Exception> expectedException, Runnable function) {
