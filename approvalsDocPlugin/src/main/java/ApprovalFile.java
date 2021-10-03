@@ -62,17 +62,21 @@ class JavaFile extends ApprovalFile {
 
     @Override
     public String getName() {
-        return String.format("%s.%s", getPath().resolve(getClassName()), getExtension());
+        return String.format("%s.%s", getPath().resolve(getMainClass()), getExtension());
     }
 
     @Override
     public String getFileName() {
-        return String.format("%s.%s", getClassName(), getExtension());
+        return String.format("%s.%s", getMainClass(), getExtension());
     }
 
     @Override
     public ApprovalFile to(Status approved) {
-        return new ApprovedFile(getPath(), getClassName(), getMethodName(), approved);
+        return new ApprovedFile(getPath(), className, getMethodName(), approved);
+    }
+
+    private String getMainClass() {
+        return getClassName().split("\\.")[0];
     }
 }
 
@@ -149,7 +153,7 @@ public abstract class ApprovalFile {
     }
 
     public JavaFile toJava() {
-        return new JavaFile(path, className.split("\\.")[0], null);
+        return new JavaFile(path, getClassName(), getMethodName());
     }
 
     public static ApprovalFile fromClass(String packageName, String className) {

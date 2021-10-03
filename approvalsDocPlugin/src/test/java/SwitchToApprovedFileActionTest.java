@@ -1,16 +1,16 @@
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.actionSystem.Presentation;
-import com.intellij.openapi.fileEditor.FileEditor;
+import com.intellij.openapi.editor.Document;
+import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiJavaFile;
+import com.intellij.psi.PsiPlainTextFile;
 import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 import org.jetbrains.annotations.NotNull;
-import org.mockito.Mockito;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -31,7 +31,6 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
             return "/";
         }
     };
-
 
     @Override
     protected void setUp() throws Exception {
@@ -214,12 +213,7 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
 
         AnActionEvent actionEvent = new MockActionOnFileEvent(psiFile);
 
-        new SwitchToApprovedFileAction() {
-            @Override
-            protected String getProjectBasePath(Project project) {
-                return "/";
-            }
-        }.update(actionEvent);
+        actionApprovedUnderTest.update(actionEvent);
 
         final Presentation presentation = actionEvent.getPresentation();
         assertTrue(presentation.isVisible());
@@ -229,62 +223,70 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
     /**
      * When select file from menu, the PsiElement is a PsiClass.
      */
-    public void test_menu_when_on_PsiElement() throws IOException {
-        class MockActionOnPsiClass extends MockActionEvent {
-            public MockActionOnPsiClass(PsiClass psiElement) {
-                super(psiElement.getProject());
-                Mockito.when(getDataContext().getData(PlatformDataKeys.PSI_ELEMENT)).thenReturn(psiElement);
-            }
-        }
-
+    public void test_menu_when_on_java_PsiElement() throws IOException {
         final String approvalType = "approved";
         myFixture.addFileToProject("test/docs/_MyClass." + approvalType + ".adoc", approvalType + " content");
         final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java", generateCode(CaretOn.NONE));
 
-        AnActionEvent actionEvent = new MockActionOnPsiClass(((PsiJavaFile) psiFile).getClasses()[0]);
+        AnActionEvent actionEvent = new MockActionOnPsiElementEvent(((PsiJavaFile) psiFile).getClasses()[0]);
 
-        new SwitchToApprovedFileAction() {
-            @Override
-            protected String getProjectBasePath(Project project) {
-                return "/";
-            }
-        }.update(actionEvent);
+        actionApprovedUnderTest.update(actionEvent);
+    }
 
-        final Presentation presentation = actionEvent.getPresentation();
-        assertTrue(presentation.isVisible());
-        assertEquals("Switch to " + approvalType + " file", presentation.getText());
+    public void test_open_approved_file_on_editor_when_on_java_PsiElement() throws IOException {
+        final String approvalType = "approved";
+        myFixture.addFileToProject("test/docs/_MyClass." + approvalType + ".adoc", approvalType + " content");
+        final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java", generateCode(CaretOn.NONE));
 
-        new SwitchToApprovedFileAction() {
-            @Override
-            protected String getProjectBasePath(Project project) {
-                return "/";
-            }
-        }.actionPerformed(actionEvent);
+        AnActionEvent actionEvent = new MockActionOnPsiElementEvent(((PsiJavaFile) psiFile).getClasses()[0]);
+
+        actionApprovedUnderTest.actionPerformed(actionEvent);
 
         assertEquals("_MyClass." + approvalType + ".adoc", getFileNameInEditor());
     }
 
-    public void test_menu_when_not_on_editor_without_PsiFileXXX() throws IOException {
-
-
+    public void test_open_approved_file_on_editor_when_on_java_PsiFile() throws IOException {
         final String approvalType = "approved";
         myFixture.addFileToProject("test/docs/_MyClass." + approvalType + ".adoc", approvalType + " content");
         final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java", generateCode(CaretOn.NONE));
 
         AnActionEvent actionEvent = new MockActionOnFileEvent(psiFile);
 
-        new SwitchToApprovedFileAction() {
+        actionApprovedUnderTest.actionPerformed(actionEvent);
+
+        assertEquals("_MyClass." + approvalType + ".adoc", getFileNameInEditor());
+    }
+
+    public void test_menu_java_entry_when_approval_file() {
+
+        SwitchToJavaFileAction actionJavaUnderTest = new SwitchToJavaFileAction() {
             @Override
             protected String getProjectBasePath(Project project) {
                 return "/";
             }
-        }.actionPerformed(actionEvent);
 
-        final FileEditor[] allEditors = FileEditorManager.getInstance(actionEvent.getProject()).getAllEditors();
+            @Override
+            public String getSrcDocs() {
+                return "src";
+            }
+
+            @Override
+            public String getSrcPath() {
+                return "src";
+            }
+        };
+
+        String approvalType = "approved";
+        addTestClassFile("MyClass", CaretOn.INNER_CLASS);
+        myFixture.configureByText("_MyClass." + approvalType + ".adoc", approvalType + " content");
         assertEquals("_MyClass." + approvalType + ".adoc", getFileNameInEditor());
 
-
+        final Presentation presentation = myFixture.testAction(actionJavaUnderTest);
+        assertTrue(presentation.isVisible());
+        assertEquals("Switch to java file", presentation.getText());
+        assertEquals("MyClass.java", getFileNameInEditor());
     }
+
 
     static enum CaretOn {
         NONE,

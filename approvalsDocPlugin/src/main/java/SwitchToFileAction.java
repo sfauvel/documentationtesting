@@ -56,7 +56,6 @@ public abstract class SwitchToFileAction extends AnAction {
                 "Approvals");
     }
 
-    @NotNull
     protected abstract String getMenuText();
 
     static class ApprovedRunnable implements Runnable {

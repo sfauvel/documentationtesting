@@ -27,6 +27,13 @@ public class ApprovalFileTest {
     }
 
     @Test
+    public void create_approval_java_file_from_java_inner_class_without_package() throws NoSuchMethodException {
+        ApprovalFile filename = ApprovalFile.fromClass("", "DemoTest.InnerClass");
+        assertEquals("DemoTest.java", filename.getFileName());
+        assertEquals("DemoTest.java", filename.getName());
+    }
+
+    @Test
     public void convert_from_java_to_approved() throws NoSuchMethodException {
         ApprovalFile filename = ApprovalFile.fromMethod("org.demo", "DemoTest", "a_simple_test");
         final ApprovalFile approvedFile = filename.to(ApprovalFile.Status.APPROVED);
@@ -167,6 +174,25 @@ public class ApprovalFileTest {
         ApprovalFile approvalFile = ApprovalFile.valueOf("_MyClass.test_method.received.adoc").get();
         assertEquals("MyClass", approvalFile.getClassName());
         assertEquals("test_method", approvalFile.getMethodName());
+    }
+
+    @Test
+    public void extract_method_from_received_file_and_transform_to_java() {
+        ApprovalFile approvalFile = ApprovalFile.valueOf("_MyClass.test_method.received.adoc").get().toJava();
+        assertEquals("MyClass", approvalFile.getClassName());
+        assertEquals("test_method", approvalFile.getMethodName());
+    }
+
+    @Test
+    public void extract_class_from_received_file_with_multi_parts_name() {
+        ApprovalFile filename = ApprovalFile.valueOf("_test.file.multi_part.my_method.received.adoc").get();
+        assertEquals("test.file.multi_part", filename.getClassName());
+    }
+
+    @Test
+    public void extract_class_from_java_file_with_multi_parts_name_from_received() {
+        ApprovalFile filename = ApprovalFile.valueOf("_test.file.multi_part.my_method.received.adoc").get().toJava();
+        assertEquals("test.file.multi_part", filename.getClassName());
     }
 
     private void assertThrow(Class<? extends Exception> expectedException, Runnable function) {
