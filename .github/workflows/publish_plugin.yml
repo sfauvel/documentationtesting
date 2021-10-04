@@ -17,7 +17,6 @@ env:
 
 jobs:
   check_if_sources_modified:
-    needs: get_last_release_tag
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -36,6 +35,7 @@ jobs:
       NB_SRC_MODIFIED: ${{steps.check_files.outputs.NB_SRC_MODIFIED}}
 
   publish:
+    needs: check_if_sources_modified
     runs-on: ubuntu-latest
     permissions:
       contents: read
