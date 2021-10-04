@@ -13,7 +13,7 @@ env:
   docs_published: 'docs'
   #      release_pattern: 'release-*'
   release_pattern: 'documentationtesting-*'
-  folder_to_check: ''approvalsDocPlugin'
+  folder_to_check: '^approvalsDocPlugin/'
 
 jobs:
   check_if_sources_modified:
