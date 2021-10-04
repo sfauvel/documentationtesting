@@ -1,4 +1,4 @@
-name: Publish doc
+name: Publish plugin
 # V1.0
 on:
   push:
@@ -8,11 +8,6 @@ on:
 
 env:
   root_branch: 'develop'
-  doc_branch: 'pages'
-  docs_generated: 'tmp/docs'
-  docs_published: 'docs'
-  #      release_pattern: 'release-*'
-  release_pattern: 'documentationtesting-*'
   folder_to_check: '^approvalsDocPlugin/'
 
 jobs:
