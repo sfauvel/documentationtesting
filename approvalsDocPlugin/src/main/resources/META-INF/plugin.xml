@@ -28,24 +28,24 @@
                 description="Switch to java file">
             <add-to-group group-id="DocAsTestActions" anchor="first"/>
         </action>
-<!--        <action id="SwitchToApprovedFileAction"-->
-<!--                class="SwitchToApprovedFileAction"-->
-<!--                text="Switch to approved file"-->
-<!--                description="Switch to approved file">-->
-<!--            <add-to-group group-id="DocAsTestActions" anchor="first"/>-->
-<!--        </action>-->
-<!--        <action id="SwitchToReceivedFileAction"-->
-<!--                class="SwitchToReceivedFileAction"-->
-<!--                text="Switch to received file"-->
-<!--                description="Switch to received file">-->
-<!--            <add-to-group group-id="DocAsTestActions" anchor="first"/>-->
-<!--        </action>-->
-<!--        <action id="ApproveFileAction"-->
-<!--                class="ApproveFileAction"-->
-<!--                text="Approve file"-->
-<!--                description="Approve file">-->
-<!--            <add-to-group group-id="DocAsTestActions" anchor="first"/>-->
-<!--        </action>-->
+        <action id="SwitchToApprovedFileAction"
+                class="SwitchToApprovedFileAction"
+                text="Switch to approved file"
+                description="Switch to approved file">
+            <add-to-group group-id="DocAsTestActions" anchor="first"/>
+        </action>
+        <action id="SwitchToReceivedFileAction"
+                class="SwitchToReceivedFileAction"
+                text="Switch to received file"
+                description="Switch to received file">
+            <add-to-group group-id="DocAsTestActions" anchor="first"/>
+        </action>
+        <action id="ApproveFileAction"
+                class="ApproveFileAction"
+                text="Approve file"
+                description="Approve file">
+            <add-to-group group-id="DocAsTestActions" anchor="first"/>
+        </action>
         <action id="CompareFileAction"
                 class="CompareFileAction"
                 text="CompareFileAction"
