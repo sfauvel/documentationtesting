@@ -1,0 +1,58 @@
+name: Publish doc
+# V1.0
+on:
+  push:
+    branches: [ develop ]
+
+  workflow_dispatch:
+
+env:
+  root_branch: 'develop'
+  doc_branch: 'pages'
+  docs_generated: 'tmp/docs'
+  docs_published: 'docs'
+  #      release_pattern: 'release-*'
+  release_pattern: 'documentationtesting-*'
+  folder_to_check: ''approvalsDocPlugin'
+
+jobs:
+  check_if_sources_modified:
+    needs: get_last_release_tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: check modified files
+        id: check_files
+        run: |
+          nb_src_files_modified=`git diff --name-only HEAD~1 HEAD | grep ${{env.folder_to_check}} | wc -l`
+          echo ":Nb source files modified with last commit: $nb_src_files_modified"
+          echo "::set-output name=NB_SRC_MODIFIED::$nb_src_files_modified"
+
+    outputs:
+      NB_SRC_MODIFIED: ${{steps.check_files.outputs.NB_SRC_MODIFIED}}
+
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+      - name: Publish package
+        run: |
+          cd approvalsDocPlugin
+          ./gradlew build publish --stacktrace
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GPR_USER: ${{ secrets.GPR_USER }}
+          GPR_API_KEY: ${{ secrets.GPR_API_KEY }}
