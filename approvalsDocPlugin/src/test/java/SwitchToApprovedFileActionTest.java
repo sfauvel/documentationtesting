@@ -1,20 +1,17 @@
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.Presentation;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiJavaFile;
-import com.intellij.psi.PsiPlainTextFile;
 import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
 
@@ -36,12 +33,21 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
     protected void setUp() throws Exception {
         super.setUp();
 
-        final VirtualFile javaDir = myFixture.getTempDirFixture().findOrCreateDir("test/java");
-        final VirtualFile packageDir = myFixture.getTempDirFixture().findOrCreateDir("org/demo");
-        final VirtualFile docsDir = myFixture.getTempDirFixture().findOrCreateDir("test/docs");
+        myFixture.getTempDirFixture().findOrCreateDir("test/java/org/demo");
+        myFixture.getTempDirFixture().findOrCreateDir("test/docs/org/demo");
 
         myFixture.addFileToProject("test/docs/_AnotherFile.approved.adoc", "approved content");
         myFixture.addFileToProject("test/docs/_AnotherFile.received.adoc", "approved content");
+    }
+
+
+    public void test_approval_file_path_from_java_file() throws IOException {
+        final VirtualFile javaFile = createFile("/src/myproject/src/test/java/MyClass.java");
+        Optional<Path> approvedFilePath = actionApprovedUnderTest.getApprovedFilePath(
+                Paths.get("/src/myproject"),
+                javaFile, ApprovalFile.Status.APPROVED);
+
+        assertEquals("/src/myproject/src/test/docs/_MyClass.approved.adoc", approvedFilePath.map(Path::toString).get());
     }
 
     public void test_no_approved_menu_entry_when_not_on_java_file() throws IOException {
@@ -105,7 +111,6 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
     }
 
     private void menu_entry_when_file_with_package(SwitchToFileAction actionUnderTest, String approvalType) {
-        myFixture.getTempDirPath();
         myFixture.addFileToProject("test/docs/org/demo/_MyClass." + approvalType + ".adoc", approvalType + " content");
         addTestClassFile(Paths.get("org", "demo"), "MyClass", CaretOn.CLASS);
 
@@ -267,18 +272,19 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
 
             @Override
             public String getSrcDocs() {
-                return "src";
+                return "src/test/docs";
             }
 
             @Override
             public String getSrcPath() {
-                return "src";
+                return "src/test/java";
             }
         };
 
         String approvalType = "approved";
         addTestClassFile("MyClass", CaretOn.INNER_CLASS);
-        myFixture.configureByText("_MyClass." + approvalType + ".adoc", approvalType + " content");
+        final PsiFile psiFile = myFixture.configureByText("_MyClass." + approvalType + ".adoc", approvalType + " content");
+        myFixture.moveFile(psiFile.getVirtualFile().getName(), "test/docs");
         assertEquals("_MyClass." + approvalType + ".adoc", getFileNameInEditor());
 
         final Presentation presentation = myFixture.testAction(actionJavaUnderTest);
@@ -304,11 +310,12 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
 
     private void addTestClassFile(final String className, CaretOn caretOn) {
         final PsiFile psiFile = myFixture.configureByText("MyClass.java", generateCode(caretOn));
+        myFixture.moveFile(psiFile.getName(), "./test/java/");
     }
 
     private void addTestClassFile(final Path packagePath, final String className, CaretOn caretOn) {
         final PsiFile psiFile = myFixture.configureByText("MyClass.java", generateCode(packagePath, caretOn));
-        myFixture.moveFile(psiFile.getName(), packagePath.toString());
+        myFixture.moveFile(psiFile.getName(), "./test/java/" + packagePath.toString());
     }
 
     private String generateCode(Path packagePath, CaretOn caretOn) {
@@ -327,4 +334,7 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
                 CaretOn.INNER_METHOD.equals(caretOn) ? "<caret>" : "");
     }
 
+    private VirtualFile createFile(String path) {
+        return myFixture.getTempDirFixture().createFile(path);
+    }
 }

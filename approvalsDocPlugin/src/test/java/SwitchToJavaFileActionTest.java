@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 public class SwitchToJavaFileActionTest extends BasePlatformTestCase {
 
@@ -66,6 +67,46 @@ public class SwitchToJavaFileActionTest extends BasePlatformTestCase {
         actionJavaUnderTest.actionPerformed(actionEvent);
 
         assertEquals("MyClass.java", getFileNameInEditor());
+    }
+
+    public void test_java_file_path_from_approved_file() throws IOException {
+        final VirtualFile approvedFile = createFile("/src/myproject/src/test/docs/_MyClass.approved.adoc");
+        Optional<Path> javaFilePath = actionJavaUnderTest.getJavaFilePath(
+                Paths.get("/src/myproject"),
+                approvedFile);
+
+        assertEquals("/src/myproject/src/test/java/MyClass.java", javaFilePath.map(Path::toString).get());
+    }
+
+    public void test_java_file_path_from_approved_file_with_subproject() throws IOException {
+        final VirtualFile approvedFile = createFile("/src/myproject/subproject/src/test/docs/_MyClass.approved.adoc");
+        Optional<Path> javaFilePath = actionJavaUnderTest.getJavaFilePath(
+                Paths.get("/src/myproject"),
+                approvedFile);
+
+        assertEquals("/src/myproject/subproject/src/test/java/MyClass.java", javaFilePath.map(Path::toString).get());
+    }
+
+    public void test_java_file_path_from_approved_file_with_package() throws IOException {
+        final VirtualFile approvedFile = createFile("/src/myproject/src/test/docs/org/demo/_MyClass.approved.adoc");
+        Optional<Path> javaFilePath = actionJavaUnderTest.getJavaFilePath(
+                Paths.get("/src/myproject"),
+                approvedFile);
+
+        assertEquals("/src/myproject/src/test/java/org/demo/MyClass.java", javaFilePath.map(Path::toString).get());
+    }
+
+    public void test_no_java_file_path_from_a_non_approved_file() throws IOException {
+        final VirtualFile approvedFile = createFile("/src/myproject/src/test/docs/_MyClass.something.adoc");
+        Optional<Path> javaFilePath = actionJavaUnderTest.getJavaFilePath(
+                Paths.get("/src/myproject"),
+                approvedFile);
+
+        assertEquals(false, javaFilePath.isPresent());
+    }
+
+    private VirtualFile createFile(String path) {
+        return myFixture.getTempDirFixture().createFile(path);
     }
 
     public void test_open_java_file_on_editor_on_method_when_on_approved_PsiElement() throws IOException {
@@ -151,7 +192,7 @@ public class SwitchToJavaFileActionTest extends BasePlatformTestCase {
         JavaFile javaFile = new JavaFile("", "MyClass", null);
 
         final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java",
-                beginOfCode+classCode+methodCode+endOfCode);
+                beginOfCode + classCode + methodCode + endOfCode);
 
         final SwitchToJavaFileAction.ApprovedRunnable approvedRunnable = new SwitchToJavaFileAction.ApprovedRunnable(
                 myFixture.getProject(),
@@ -170,14 +211,14 @@ public class SwitchToJavaFileActionTest extends BasePlatformTestCase {
         JavaFile javaFile = new JavaFile("", "MyClass", "my_method");
 
         final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java",
-                beginOfCode+classCode+methodCode+endOfCode);
+                beginOfCode + classCode + methodCode + endOfCode);
 
         final SwitchToJavaFileAction.ApprovedRunnable approvedRunnable = new SwitchToJavaFileAction.ApprovedRunnable(
                 myFixture.getProject(),
                 new SwitchToJavaFileAction.ReturnJavaFile((PsiJavaFile) psiFile, javaFile));
 
         final int offset = approvedRunnable.getOffset();
-        assertEquals((beginOfCode+classCode).length(), offset);
+        assertEquals((beginOfCode + classCode).length(), offset);
     }
 
     public void test_find_inner_class_offset_from_approved_file_name() {
@@ -187,7 +228,7 @@ public class SwitchToJavaFileActionTest extends BasePlatformTestCase {
 
         JavaFile javaFile = new JavaFile("", "MyClass.SecondInnerClass", null);
 
-        final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java", beginOfCode+innerClassCode+endOfCode);
+        final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java", beginOfCode + innerClassCode + endOfCode);
 
         final SwitchToJavaFileAction.ApprovedRunnable approvedRunnable = new SwitchToJavaFileAction.ApprovedRunnable(
                 myFixture.getProject(),
@@ -204,7 +245,7 @@ public class SwitchToJavaFileActionTest extends BasePlatformTestCase {
 
         JavaFile javaFile = new JavaFile("", "MyClass.FirstInnerClass.SecondInnerClass", null);
 
-        final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java", beginOfCode+innerClassCode+endOfCode);
+        final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java", beginOfCode + innerClassCode + endOfCode);
 
         final SwitchToJavaFileAction.ApprovedRunnable approvedRunnable = new SwitchToJavaFileAction.ApprovedRunnable(
                 myFixture.getProject(),
@@ -221,7 +262,7 @@ public class SwitchToJavaFileActionTest extends BasePlatformTestCase {
 
         JavaFile javaFile = new JavaFile("", "MyClass.FirstInnerClass.SecondInnerClass", "my_method");
 
-        final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java", beginOfCode+methodCode+endOfCode);
+        final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java", beginOfCode + methodCode + endOfCode);
 
         final SwitchToJavaFileAction.ApprovedRunnable approvedRunnable = new SwitchToJavaFileAction.ApprovedRunnable(
                 myFixture.getProject(),

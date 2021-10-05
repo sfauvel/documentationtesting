@@ -1,7 +1,6 @@
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
-import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.editor.Editor;
@@ -13,18 +12,29 @@ import com.intellij.psi.*;
 import com.intellij.psi.search.FilenameIndex;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTreeUtil;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public abstract class SwitchToFileAction extends AnAction {
-    private final String DOCS_PATH = "src/test/docs";
+    private static final String SRC_PATH = "src/test/java";
+    private static final String SRC_DOCS = "src/test/docs";
+
+    public String getSrcDocs() {
+        return SRC_DOCS;
+    }
+
+    public String getSrcPath() {
+        return SRC_PATH;
+    }
     private final ApprovalFile.Status approvalType;
 
     protected SwitchToFileAction(ApprovalFile.Status approvalType) {
@@ -33,7 +43,7 @@ public abstract class SwitchToFileAction extends AnAction {
 
     @Override
     public void update(AnActionEvent actionEvent) {
-        final Optional<@NotNull PsiFile> approvedPsiFile = getApprovedPsiFile(actionEvent);
+        final Optional<PsiFile> approvedPsiFile = getApprovedPsiFile(actionEvent);
         if (approvedPsiFile.isEmpty()) {
             actionEvent.getPresentation().setVisible(false);
             return;
@@ -45,8 +55,8 @@ public abstract class SwitchToFileAction extends AnAction {
     }
 
     @Override
-    public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
-        final Optional<@NotNull PsiFile> approvedPsiFile = getApprovedPsiFile(anActionEvent);
+    public void actionPerformed(AnActionEvent anActionEvent) {
+        final Optional<PsiFile> approvedPsiFile = getApprovedPsiFile(anActionEvent);
         if (approvedPsiFile.isEmpty()) return;
 
         CommandProcessor.getInstance().executeCommand(
@@ -57,6 +67,27 @@ public abstract class SwitchToFileAction extends AnAction {
     }
 
     protected abstract String getMenuText();
+
+    public Optional<Path> getApprovedFilePath(Path projectPath, VirtualFile file, ApprovalFile.Status status) {
+        final String prefixFolder = getSrcPath();
+        Pattern pattern = Pattern.compile("(" + Paths.get(projectPath + File.separator).toString() + "(.*" + File.separator + ")?)"
+                + prefixFolder + File.separator
+                + "(.*" + File.separator + ")?"
+                + "(" + file.getName() + ")");
+        Matcher matcher = pattern.matcher(file.getPath());
+        if (!matcher.find()) {
+            return Optional.empty();
+        }
+
+        final String projectRootPath = matcher.group(1);
+        final Optional<String> packagePath = Optional.ofNullable(matcher.group(3));
+        final String filePath = matcher.group(4);
+
+        return Optional.of(JavaFile.fromClass(packagePath.orElse(""), filePath.replaceFirst(".java$", "")))
+                .map(javaFile -> javaFile.to(status))
+                .map(approvedFile -> new FullApprovalFilePath(Paths.get(projectRootPath), Paths.get(getSrcDocs()), approvedFile))
+                .map(FullApprovalFilePath::fullPath);
+    }
 
     static class ApprovedRunnable implements Runnable {
         private final PsiFile approvedPsiFile;
@@ -78,8 +109,7 @@ public abstract class SwitchToFileAction extends AnAction {
         }
     }
 
-    @NotNull
-    protected Optional<@NotNull PsiFile> getApprovedPsiFile(AnActionEvent actionEvent) {
+    protected Optional<PsiFile> getApprovedPsiFile(AnActionEvent actionEvent) {
         final Project project = actionEvent.getProject();
         Editor editor = actionEvent.getData(CommonDataKeys.EDITOR);
         PsiFile psiFile = actionEvent.getData(CommonDataKeys.PSI_FILE);
@@ -95,8 +125,7 @@ public abstract class SwitchToFileAction extends AnAction {
         return Optional.empty();
     }
 
-    @NotNull
-    protected Optional<@NotNull PsiFile> getApprovedPsiFile(Project project, Editor editor, PsiFile psiFile) {
+    protected Optional<PsiFile> getApprovedPsiFile(Project project, Editor editor, PsiFile psiFile) {
         PsiElement element = Optional.ofNullable(editor)
                 .map(e -> editor.getCaretModel().getOffset())
                 .map(offset -> psiFile.findElementAt(offset))
@@ -105,8 +134,7 @@ public abstract class SwitchToFileAction extends AnAction {
         return getApprovedPsiFile(project, element);
     }
 
-    @NotNull
-    protected Optional<@NotNull PsiFile> getApprovedPsiFile(Project project, PsiElement element) {
+    protected Optional<PsiFile> getApprovedPsiFile(Project project, PsiElement element) {
 
         PsiJavaFile containingJavaFile = (element instanceof PsiJavaFile)
                 ? (PsiJavaFile) element
@@ -127,16 +155,14 @@ public abstract class SwitchToFileAction extends AnAction {
                 ? ApprovalFile.fromClass(packageName, fullClassName)
                 : ApprovalFile.fromMethod(packageName, fullClassName, containingMethod.getName()));
 
-        final String fullPathToFile = DOCS_PATH +
-                (packageName.isEmpty() ? "" : File.separator + packageName.replace(".", File.separator));
+        final Optional<Path> approvedFilePath = getApprovedFilePath(Paths.get(getProjectBasePath(project)), containingJavaFile.getVirtualFile(), ApprovalFile.Status.APPROVED);
 
-        final @NotNull PsiFile[] filesByName = FilenameIndex.getFilesByName(project, approvalFile.to(approvalType).getFileName(), GlobalSearchScope.projectScope(project));
+        final PsiFile[] filesByName = FilenameIndex.getFilesByName(project, approvalFile.to(approvalType).getFileName(), GlobalSearchScope.projectScope(project));
         return Arrays.stream(filesByName)
-                .filter(file -> fullPathToFile.equals(Paths.get(getProjectBasePath(project)).relativize(Paths.get(file.getParent().getVirtualFile().getPath())).toString()))
+                .filter(file -> Paths.get(file.getVirtualFile().getPath()).getParent().equals(approvedFilePath.map(Path::getParent).orElse(null)))
                 .findFirst();
     }
 
-    @NotNull
     private String getFullClassName(PsiClass containingClazz) {
         String className = "";
         List<String> classesHierarchy = new ArrayList<>();
