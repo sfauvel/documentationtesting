@@ -31,7 +31,7 @@ jobs:
 
   publish:
     needs: check_if_sources_modified
-    if: needs.check_if_sources_modified.outputs.NB_SRC_MODIFIED == 0
+    if: needs.check_if_sources_modified.outputs.NB_SRC_MODIFIED > 0
     runs-on: ubuntu-latest
     permissions:
       contents: read
