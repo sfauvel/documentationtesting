@@ -209,6 +209,7 @@ public class ConceptDocTest extends MyFormatter {
                 listItems(
                         "Documentation of the concept: link:{github-pages}[]",
                         "Library for Java: link:{github-pages}/documentationtesting[DocumentationTesting]",
+                        "Library for Python and pytest: link:https://github.com/sfauvel/doc_as_test_pytest[doc_as_test_pytest]",
                         "To get source and examples: link:{github-repo}[]",
                         "A plugin for IntelliJ is provided in {github-repo}/approvalsDocPlugin[approvalsDocPlugin] folder")
         ));
