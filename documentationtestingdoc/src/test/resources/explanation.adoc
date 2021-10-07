@@ -32,7 +32,7 @@ The automation is the capacity to reproduce all of that without human needs.
 
 == Compare with other approches
 
-* TDD: We can use it to do TDD. At the end, our test are not only technical code.
-* BDD: It's very close to BDD expect that documentation is not instruction to execute a test. There is more possibilities tp write a readable docmentation.
-* Golden Master: It's a golden master but reference file is not just data. We can understand each case and validate them more easily when functional change.
+* TDD: We can use it to do TDD. At the end, our test are not only technical code but they provides a documentation.
+* BDD: It's very close to BDD expect that the documentation is not the instructions to execute a test. This gives more possibilities to write a readable documentation.
+* Golden Master: It's a golden master but reference files are not just data. We can understand each case and validate them more easily when functional change.
 * Living documentation: It's a living documentation that have to be validate once so we'll be warned when behavior change.
