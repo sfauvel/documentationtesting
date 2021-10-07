@@ -18,22 +18,6 @@ public abstract class DocAsTestBase {
 
     DocWriter writer = new DocWriter();
 
-//    /**
-//     * Return the name to use as title from a test method .
-//     * It returns the value specified with _DisplayName_ annotation.
-//     * If annotation is not present, this is the method name that will be returned
-//     * after some test formatting (remove '_', uppercase first letter).
-//     *
-//     * It's based on value return by _displayName_ method.
-//     * It returns either DisplayName annotation value or method name.
-//     *
-//     * @param testInfo
-//     * @return
-//     */
-//    protected String formatTitle(TestInfo testInfo) {
-//        return writer.formatTitle(testInfo.getDisplayName(), testInfo.getTestMethod().get());
-//    }
-
     /**
      * Give path where docs are generated.
      *
