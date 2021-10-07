@@ -7,4 +7,5 @@ Several examples are provided to show how we can use it and what it can produce.
 
 include::_ConceptDocTest.demo_list.approved.adoc[leveloffset=+1]
 include::_ConceptDocTest.tech_list.approved.adoc[leveloffset=+1]
+include::_ConceptDocTest.real_projects_list.approved.adoc[leveloffset=+1]
 

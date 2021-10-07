@@ -191,7 +191,8 @@ public class ConceptDocTest extends MyFormatter {
     public void howTo() {
         doc.write(paragraph(
                 include(new DocPath(FindLambdaMethod.getMethod(ConceptDocTest::demo_list)).approved().from(this.getClass()).toString(), 1),
-                include(new DocPath(FindLambdaMethod.getMethod(ConceptDocTest::tech_list)).approved().from(this.getClass()).toString(), 1)
+                include(new DocPath(FindLambdaMethod.getMethod(ConceptDocTest::tech_list)).approved().from(this.getClass()).toString(), 1),
+                include(new DocPath(FindLambdaMethod.getMethod(ConceptDocTest::real_projects_list)).approved().from(this.getClass()).toString(), 1)
         ));
     }
 
@@ -271,6 +272,17 @@ public class ConceptDocTest extends MyFormatter {
             doc.write("Error listing tech samples files.",
                     e.getMessage());
         }
+    }
+
+    /**
+     * Real projects that use this approch.
+     */
+    @Test
+    @DisplayName(value = "Real projects")
+    public void real_projects_list() {
+        doc.write("\n * link:" + "https://sfauvel.github.io/documentationtesting/documentationtesting/index.html"
+                + "[DocumentationTesting Java library]: "
+                + "Library to implements this approach in Java." + " \n");
     }
 
     private String styleSection() {

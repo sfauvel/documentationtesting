@@ -22,3 +22,5 @@ include::_ConceptDocTest.ways_to_implement.approved.adoc[leveloffset=+1]
 include::_ConceptDocTest.demo_list.approved.adoc[leveloffset=+1]
 
 include::_ConceptDocTest.tech_list.approved.adoc[leveloffset=+1]
+
+include::_ConceptDocTest.real_projects_list.approved.adoc[leveloffset=+1]

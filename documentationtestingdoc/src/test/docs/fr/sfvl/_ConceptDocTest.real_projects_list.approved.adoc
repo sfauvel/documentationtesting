@@ -1,0 +1,9 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../..]
+
+[#fr_sfvl_ConceptDocTest_real_projects_list]
+= Real projects
+
+Real projects that use this approch.
+
+
+ * link:https://sfauvel.github.io/documentationtesting/documentationtesting/index.html[DocumentationTesting Java library]: Library to implements this approach in Java. 
