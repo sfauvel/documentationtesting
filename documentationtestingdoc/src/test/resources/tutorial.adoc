@@ -9,18 +9,19 @@ You can experiment it simply with almost nothing.
 
 . Use your usual test framework.
 . Create a test that write to a text file.
-. Add to this file result of the execution.
+. Put the result of the test execution in that text.
 . Add the file to git.
 
 You now have a non regression test in place.
 Each time you run this test, a change in the file is a regression.
+You can use git to detect file changes and to see the differences with the previous version.
 
 By the time, you can add useful information to the output file and format it to be more readable.
 
 
 == Java project
 
-If you want to experiment it in a java project, you can use library provided.
+link:{github-pages}/documentationtesting[DocumentationTesting] is a java library which provides tools to easily implement this approach.
 
 === Ready to test project
 
