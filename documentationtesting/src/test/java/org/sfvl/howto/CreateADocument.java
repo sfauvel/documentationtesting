@@ -40,22 +40,22 @@ public class CreateADocument {
      * :underscore: _
      *
      * To convert `.adoc` to `.html`, we use `asciidoctor-maven-plugin` plugin.
-     * By default, files started with `{underscore}` are not converted to HTML.
+     * It's configure in `pom.xml` and it's can be run in one phase of the maven lifecycle (generally the `package` phase).
      *
-     * All the `approved` files we generate start with `{underscore}`.
-     * They are only chapters that need to be include in a file to be converted into HTML.
-     * So, it's easier to reuse these files and organize the documentation.
-     *
-     * To have a file that not start with `{underscore}`, we need to generate it.
-     * We can do that in a method annoted with `AfterAll`.
-     * In this file, we can add `include` to all files we want to aggregate.
-     *
-     * If you just want to publish the documentation created in a test class,
-     * you can create a file with the name of the class (without {underscore})
-     * and add an `include` to the `approved` file of the same class.
+     * By default, files started with `{underscore}` are not converted to HTML by this plugin.
+     * We have chosen to start all `approved` file names with an `{underscore}`.
+     * They are only chapters of documents.
+     * They need to be included in a file that will be converted into HTML.
+     * So, this makes it easier to reuse these chapters and organize the documentation.
      */
     @Test
     public void generate_html() {
+        doc.write("To have a file that not start with `{underscore}`, we need to generate one.",
+                String.format("The `%s` extension is made for that.", HtmlPageExtension.class.getSimpleName()),
+                "When a test class used this extension, it will generate a simple `.adoc` file that include the `approved` file of the same class.",
+                "The final HTML file will contain all the chapters generated from methods of this class.",
+                ""
+        );
         final Class<?> testClass = HtmlTest.class;
         final DocPath docPath = new DocPath(testClass);
 
@@ -69,13 +69,13 @@ public class CreateADocument {
         final Path docFolder = docPath.approved().folder();
 
         final String filesInDocFolder;
-            filesInDocFolder = getFiles(docFolder)
-                    .map(f -> "* " + f.getFileName().toString())
-                    .sorted()
-                    .collect(Collectors.joining("\n"));
+        filesInDocFolder = getFiles(docFolder)
+                .map(f -> "* " + f.getFileName().toString())
+                .sorted()
+                .collect(Collectors.joining("\n"));
 
 
-        doc.write(".Example of class creating a file to convert into HTML", formatter.sourceCode(source));
+        doc.write(".Example of class creating the file that will be converted into HTML", formatter.sourceCode(source));
 
         doc.write("", "",
                 String.format("Files in folder `%s`", DocPath.toAsciiDoc(docFolder)),
