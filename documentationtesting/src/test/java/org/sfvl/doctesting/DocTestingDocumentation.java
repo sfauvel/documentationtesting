@@ -29,12 +29,12 @@ public class DocTestingDocumentation {
 
     public String build() {
         return formatter.paragraphSuite(
-                generalInformation(formatter),
-                includeClasses(formatter)
+                generalInformation(),
+                includeClasses()
                 );
     }
 
-    protected String generalInformation(Formatter formatter) {
+    protected String generalInformation() {
         return formatter.paragraphSuite(
                 "This document describes usage of classes to create test from generated documentation.",
                 "* <<" + ApprovalsExtension.class.getSimpleName() + ">>: JUnit extension to check document.",
@@ -42,7 +42,7 @@ public class DocTestingDocumentation {
                 "* <<" + CodeExtractor.class.getSimpleName() + ">>: Help to extract information from code.");
     }
 
-    public String includeClasses(Formatter formatter) {
+    public String includeClasses() {
         final Path location = DocPath.toPath(DocTestingDocumentation.class.getPackage());
         return new Classes(formatter).includeClasses(location, getClassesToDocument(), 0);
     }
