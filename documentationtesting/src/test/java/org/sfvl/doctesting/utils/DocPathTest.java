@@ -10,6 +10,7 @@ import org.mockito.stubbing.Answer;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.sample.MyClass;
@@ -20,6 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.function.Function;
 
+@ClassToDocument(clazz = DocPath.class)
 @DisplayName(value = "Document path")
 public class DocPathTest {
     @RegisterExtension
@@ -299,7 +301,7 @@ public class DocPathTest {
                 ".5+a| `" + methodCalledOnDocPath + "` | "
                         + callResult(recorder, spy.path())
                 , "a| " + callResult(recorder, spy.folder())
-                , "a| " + callResult(recorder, spy.fullname())
+                , "a| " + callResult(recorder, spy.filename())
                 , "a| " + callResult(recorder, spy.from(relativeToApproved))
                 , "a| " + callResult(recorder, spy.to(relativeToApproved))
         );

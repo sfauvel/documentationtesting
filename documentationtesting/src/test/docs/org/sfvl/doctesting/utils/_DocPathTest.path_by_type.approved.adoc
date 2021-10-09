@@ -24,32 +24,32 @@ We also used `org.sfvl.doctesting.utils.DocPathTest` class to display `from` and
 | Code | Method | Result
 .5+a| `page()` | path() | src/test/docs/org/sfvl/samples/MyTest.adoc
 a| folder() | src/test/docs/org/sfvl/samples
-a| fullname() | MyTest.adoc
+a| filename() | MyTest.adoc
 a| from() | ../../samples/MyTest.adoc
 a| to() | ../doctesting/utils/_DocPathTest.approved.adoc
 .5+a| `approved()` | path() | src/test/docs/org/sfvl/samples/_MyTest.approved.adoc
 a| folder() | src/test/docs/org/sfvl/samples
-a| fullname() | _MyTest.approved.adoc
+a| filename() | _MyTest.approved.adoc
 a| from() | ../../samples/_MyTest.approved.adoc
 a| to() | ../doctesting/utils/_DocPathTest.approved.adoc
 .5+a| `received()` | path() | src/test/docs/org/sfvl/samples/_MyTest.received.adoc
 a| folder() | src/test/docs/org/sfvl/samples
-a| fullname() | _MyTest.received.adoc
+a| filename() | _MyTest.received.adoc
 a| from() | ../../samples/_MyTest.received.adoc
 a| to() | ../doctesting/utils/_DocPathTest.approved.adoc
 .5+a| `test()` | path() | src/test/java/org/sfvl/samples/MyTest.java
 a| folder() | src/test/java/org/sfvl/samples
-a| fullname() | MyTest.java
+a| filename() | MyTest.java
 a| from() | ../../../../../java/org/sfvl/samples/MyTest.java
 a| to() | ../../../../docs/org/sfvl/doctesting/utils/_DocPathTest.approved.adoc
 .5+a| `resource()` | path() | src/test/resources/org/sfvl/samples/MyTest.adoc
 a| folder() | src/test/resources/org/sfvl/samples
-a| fullname() | MyTest.adoc
+a| filename() | MyTest.adoc
 a| from() | ../../../../../resources/org/sfvl/samples/MyTest.adoc
 a| to() | ../../../../docs/org/sfvl/doctesting/utils/_DocPathTest.approved.adoc
 .5+a| `doc()` | path() | org/sfvl/samples/MyTest.html
 a| folder() | org/sfvl/samples
-a| fullname() | MyTest.html
+a| filename() | MyTest.html
 a| from() | ../../../../../../../org/sfvl/samples/MyTest.html
 a| to() | ../../../src/test/docs/org/sfvl/doctesting/utils/_DocPathTest.approved.adoc
 |====

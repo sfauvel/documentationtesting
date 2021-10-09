@@ -24,27 +24,27 @@ We also used `org.sfvl.doctesting.utils.DocPathTest` class to display `from` and
 | Code | Method | Result
 .5+a| `page()` | path() | src/test/docs/org/sfvl/samples/MyTest.test_A.adoc
 a| folder() | src/test/docs/org/sfvl/samples
-a| fullname() | MyTest.test_A.adoc
+a| filename() | MyTest.test_A.adoc
 a| from() | ../../samples/MyTest.test_A.adoc
 a| to() | ../doctesting/utils/_DocPathTest.approved.adoc
 .5+a| `approved()` | path() | src/test/docs/org/sfvl/samples/_MyTest.test_A.approved.adoc
 a| folder() | src/test/docs/org/sfvl/samples
-a| fullname() | _MyTest.test_A.approved.adoc
+a| filename() | _MyTest.test_A.approved.adoc
 a| from() | ../../samples/_MyTest.test_A.approved.adoc
 a| to() | ../doctesting/utils/_DocPathTest.approved.adoc
 .5+a| `received()` | path() | src/test/docs/org/sfvl/samples/_MyTest.test_A.received.adoc
 a| folder() | src/test/docs/org/sfvl/samples
-a| fullname() | _MyTest.test_A.received.adoc
+a| filename() | _MyTest.test_A.received.adoc
 a| from() | ../../samples/_MyTest.test_A.received.adoc
 a| to() | ../doctesting/utils/_DocPathTest.approved.adoc
 .5+a| `test()` | path() | src/test/java/org/sfvl/samples/MyTest.test_A.java
 a| folder() | src/test/java/org/sfvl/samples
-a| fullname() | MyTest.test_A.java
+a| filename() | MyTest.test_A.java
 a| from() | ../../../../../java/org/sfvl/samples/MyTest.test_A.java
 a| to() | ../../../../docs/org/sfvl/doctesting/utils/_DocPathTest.approved.adoc
 .5+a| `doc()` | path() | org/sfvl/samples/MyTest.test_A.html
 a| folder() | org/sfvl/samples
-a| fullname() | MyTest.test_A.html
+a| filename() | MyTest.test_A.html
 a| from() | ../../../../../../../org/sfvl/samples/MyTest.test_A.html
 a| to() | ../../../src/test/docs/org/sfvl/doctesting/utils/_DocPathTest.approved.adoc
 |====

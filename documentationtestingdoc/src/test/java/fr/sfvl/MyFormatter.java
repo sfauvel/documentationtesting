@@ -87,7 +87,7 @@ class MyFormatter extends AsciidocFormatter {
                 ":source-highlighter: rouge",
                 ":toclevels: 4",
                 "",
-                String.format("include::%s[]", docPath.approved().fullname()));
+                String.format("include::%s[]", docPath.approved().filename()));
 
         try (FileWriter fileWriter = new FileWriter(docPath.page().path().toFile())) {
             fileWriter.write(includeContent);
