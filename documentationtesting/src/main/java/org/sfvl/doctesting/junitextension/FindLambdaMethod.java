@@ -24,6 +24,10 @@ public class FindLambdaMethod {
     public @FunctionalInterface
     static interface SerializableBiConsumer<T, V> extends BiConsumer<T, V>, Serializable {
     }
+
+    public @FunctionalInterface
+    static interface SerializableFunction<T, V> extends Function<T, V>, Serializable {
+    }
 //
 //    public @FunctionalInterface
 //    static interface SerializableSupplier<T, V> extends Supplier<T>, Serializable {
@@ -40,7 +44,12 @@ public class FindLambdaMethod {
     public static <T1, V1> String getName(SerializableBiConsumer<T1, V1> consumer) {
         return createMethodNameFromSuperConsumer(consumer);
     }
-//
+
+    public static <T1, V1> String getName(SerializableFunction<T1, V1> function) {
+        return createMethodNameFromSuperConsumer(function);
+    }
+
+    //
 //    public static <T1, V1> String getName( SerializableFunction<T1, V1> consumer) {
 //        return createMethodNameFromSuperConsumer(consumer);
 //    }

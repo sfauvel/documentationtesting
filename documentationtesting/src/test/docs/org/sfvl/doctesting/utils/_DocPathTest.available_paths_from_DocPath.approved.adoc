@@ -1,0 +1,24 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_DocPathTest_available_paths_from_DocPath]
+= Available paths from DocPath
+
+From a DocPath, we can generate different kind of paths.
+
+DocPath is created with this code where `MyTest` is declared in package `org.sfvl.samples`.
+[source,java,indent=0]
+----
+        Class<?> clazz = MyTest.class;
+        final DocPath docPath = new DocPath(clazz);
+
+----
+[%autowidth]
+[%header]
+|====
+| Method | Method called OnePath::path
+a| page() | src/test/docs/org/sfvl/samples/MyTest.adoc
+a| approved() | src/test/docs/org/sfvl/samples/_MyTest.approved.adoc
+a| received() | src/test/docs/org/sfvl/samples/_MyTest.received.adoc
+a| test() | src/test/java/org/sfvl/samples/MyTest.java
+a| doc() | org/sfvl/samples/MyTest.html
+|====

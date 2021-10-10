@@ -7,8 +7,8 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
-import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
@@ -29,7 +29,57 @@ public class DocPathTest {
 
     final Formatter formatter = new AsciidocFormatter();
 
+    /**
+     * From a DocPath, we can generate different kind of paths.
+     */
     @Test
+    public void available_paths_from_DocPath() {
+
+        // >>>1
+        Class<?> clazz = MyTest.class;
+        final DocPath docPath = new DocPath(clazz);
+        // <<<1
+
+        doc.write(
+                String.format("DocPath is created with this code where `%s` is declared in package `%s`.",
+                        clazz.getSimpleName(), clazz.getPackage().getName()),
+                formatter.sourceCodeBuilder("java")
+                        .source(CodeExtractor.extractPartOfCurrentMethod("1"))
+                        .build(),
+                ""
+        );
+
+        final FindLambdaMethod.SerializableFunction<OnePath, Path> functionToPath =
+                // >>>2
+                OnePath::path
+                // <<<2
+        ;
+
+        doc.write("[%autowidth]",
+                "[%header]",
+                "|====",
+                String.format("| Method | Method called %s", CodeExtractor.extractPartOfCurrentMethod("2").trim()),
+                linePath(docPath, DocPath::page, functionToPath),
+                linePath(docPath, DocPath::approved, functionToPath),
+                linePath(docPath, DocPath::received, functionToPath),
+                linePath(docPath, DocPath::test, functionToPath),
+                linePath(docPath, DocPath::doc, functionToPath),
+                "|====");
+    }
+
+
+    String linePath(DocPath docPath, Function<DocPath, OnePath> methodOnDocPath, Function<OnePath, Path> functionToPath) {
+        final CallsRecorder recorder = new CallsRecorder();
+
+        final DocPath spyDocPath = addSpyRecorderOn(docPath, recorder);
+
+        final OnePath onePath = methodOnDocPath.apply(spyDocPath);
+        final String methodCalledOnDocPath = recorder.lastCall();
+
+        return String.format("a| %s | %s", methodCalledOnDocPath, functionToPath.apply(onePath));
+    }
+
+        @Test
     public void path_by_type() {
 
         // >>>1

@@ -10,6 +10,8 @@ We also need to reference one file from another one either to include it or to m
 
 This class helps to navigate between all that files.
 
+include::_DocPathTest.available_paths_from_DocPath.approved.adoc[leveloffset=+1]
+
 include::_DocPathTest.path_by_type.approved.adoc[leveloffset=+1]
 
 include::_DocPathTest.path_by_type_with_method.approved.adoc[leveloffset=+1]
