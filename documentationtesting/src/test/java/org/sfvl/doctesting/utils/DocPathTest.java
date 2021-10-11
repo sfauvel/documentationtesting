@@ -82,7 +82,7 @@ public class DocPathTest {
         Method lastMethod = recorder.getLastMethod();
         final Optional<String> comment = CodeExtractor.getComment(lastMethod);
 
-        return String.format("a| %s | %s | %s", methodCalledOnDocPath, functionToPath.apply(onePath), comment.orElse(""));
+        return String.format("a| %s | %s | %s", methodCalledOnDocPath, DocPath.toAsciiDoc(functionToPath.apply(onePath)), comment.orElse(""));
 
     }
 
