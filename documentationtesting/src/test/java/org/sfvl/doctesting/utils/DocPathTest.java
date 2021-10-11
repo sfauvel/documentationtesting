@@ -29,9 +29,6 @@ public class DocPathTest {
 
     final Formatter formatter = new AsciidocFormatter();
 
-    /**
-     * From a DocPath, we can generate different kind of paths.
-     */
     @Test
     public void available_paths_from_DocPath() {
 
@@ -40,25 +37,28 @@ public class DocPathTest {
         final DocPath docPath = new DocPath(clazz);
         // <<<1
 
-        doc.write(
-                String.format("DocPath is created with this code where `%s` is declared in package `%s`.",
-                        clazz.getSimpleName(), clazz.getPackage().getName()),
+        doc.write(String.format("`%s` contains the information defining the location of the item to be documented.", DocPath.class.getSimpleName()),
+                "It's not a real path but just the location in the tree of documents.",
+                "From this class, we can generate the real paths to the different kinds of associated documents.",
+                "",
+                String.format("We can create a `%s` the code below (where `%s` is declared in package `%s`).",
+                        DocPath.class.getSimpleName(), clazz.getSimpleName(), clazz.getPackage().getName()),
                 formatter.sourceCodeBuilder("java")
                         .source(CodeExtractor.extractPartOfCurrentMethod("1"))
                         .build(),
                 ""
         );
 
-        final FindLambdaMethod.SerializableFunction<OnePath, Path> functionToPath =
+        Function<OnePath, Path> functionToPath = onePath ->
                 // >>>2
-                OnePath::path
+                onePath.path()
                 // <<<2
-        ;
+                ;
 
         doc.write("[%autowidth]",
                 "[%header]",
                 "|====",
-                String.format("| Method | Method called %s", CodeExtractor.extractPartOfCurrentMethod("2").trim()),
+                String.format("| Kind of document | Method called %s", CodeExtractor.extractPartOfCurrentMethod("2").trim()),
                 linePath(docPath, DocPath::page, functionToPath),
                 linePath(docPath, DocPath::approved, functionToPath),
                 linePath(docPath, DocPath::received, functionToPath),
