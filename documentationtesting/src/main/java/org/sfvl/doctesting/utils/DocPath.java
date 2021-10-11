@@ -47,21 +47,39 @@ public class DocPath {
         return name;
     }
 
+    /**
+     * The approved file.
+     */
     public OnePath approved() {
         return new ApprovedPath(this);
     }
+    /**
+     * The received file.
+     */
     public OnePath received() {
         return new ReceivedPath(this);
     }
+
+    /**
+     * The java source file.
+     */
     public OnePath test() {
         return new TestPath(this);
     }
     public OnePath resource() {
         return new ResourcePath(this);
     }
+
+    /**
+     * The final rendered file.
+     */
     public OnePath doc() {
         return new DocumentPath(this);
     }
+
+    /**
+     * File which forms an HTML page.
+     */
     public OnePath page() {
         return new PagePath(this);
     }

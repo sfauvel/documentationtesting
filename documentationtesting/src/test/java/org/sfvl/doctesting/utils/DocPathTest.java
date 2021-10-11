@@ -16,9 +16,11 @@ import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.sample.MyClass;
 import org.sfvl.samples.MyTest;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.function.Function;
 
 @ClassToDocument(clazz = DocPath.class)
@@ -55,20 +57,21 @@ public class DocPathTest {
                 // <<<2
                 ;
 
+
         doc.write("[%autowidth]",
                 "[%header]",
                 "|====",
-                String.format("| Kind of document | Method called %s", CodeExtractor.extractPartOfCurrentMethod("2").trim()),
+                String.format("| Kind of document | Method called %s | Description", CodeExtractor.extractPartOfCurrentMethod("2").trim()),
                 linePath(docPath, DocPath::page, functionToPath),
                 linePath(docPath, DocPath::approved, functionToPath),
                 linePath(docPath, DocPath::received, functionToPath),
                 linePath(docPath, DocPath::test, functionToPath),
                 linePath(docPath, DocPath::doc, functionToPath),
+
                 "|====");
     }
 
-
-    String linePath(DocPath docPath, Function<DocPath, OnePath> methodOnDocPath, Function<OnePath, Path> functionToPath) {
+    private String linePath(DocPath docPath, Function<DocPath, OnePath> methodOnDocPath, Function<OnePath, Path> functionToPath) {
         final CallsRecorder recorder = new CallsRecorder();
 
         final DocPath spyDocPath = addSpyRecorderOn(docPath, recorder);
@@ -76,10 +79,14 @@ public class DocPathTest {
         final OnePath onePath = methodOnDocPath.apply(spyDocPath);
         final String methodCalledOnDocPath = recorder.lastCall();
 
-        return String.format("a| %s | %s", methodCalledOnDocPath, functionToPath.apply(onePath));
+        Method lastMethod = recorder.getLastMethod();
+        final Optional<String> comment = CodeExtractor.getComment(lastMethod);
+
+        return String.format("a| %s | %s | %s", methodCalledOnDocPath, functionToPath.apply(onePath), comment.orElse(""));
+
     }
 
-        @Test
+    @Test
     public void path_by_type() {
 
         // >>>1
@@ -224,7 +231,7 @@ public class DocPathTest {
 
     class CallsRecorder<T extends Object> implements Answer<T> {
         String lastCall = "";
-
+        Method lastMethod = null;
         @Override
         public T answer(InvocationOnMock a) throws Throwable {
             final Object result = a.callRealMethod();
@@ -232,7 +239,8 @@ public class DocPathTest {
 //                final Object[] arguments = a.getArguments();
 //                String parameters = Arrays.stream(arguments).map(v -> "" + v).collect(Collectors.joining(", "));
 //                lastCall = a.getMethod().getName() + "(" + parameters + ")";
-            lastCall = a.getMethod().getName() + "()";
+            lastMethod = a.getMethod();
+            lastCall = lastMethod.getName() + "()";
             return (T) result;
         }
 
@@ -240,6 +248,9 @@ public class DocPathTest {
             return lastCall;
         }
 
+        Method getLastMethod() {
+            return lastMethod;
+        }
     }
 
     @Nested
