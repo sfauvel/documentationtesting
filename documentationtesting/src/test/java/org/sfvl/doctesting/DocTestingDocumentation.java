@@ -1,6 +1,7 @@
 package org.sfvl.doctesting;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
@@ -8,11 +9,13 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.*;
 import org.sfvl.doctesting.writer.Classes;
+import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.util.List;
 
+@ExtendWith(IntermediateHtmlPage.class)
 public class DocTestingDocumentation {
 
     @RegisterExtension

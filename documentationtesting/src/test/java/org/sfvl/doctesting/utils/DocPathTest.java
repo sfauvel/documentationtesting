@@ -16,7 +16,6 @@ import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.sample.MyClass;
 import org.sfvl.samples.MyTest;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -66,7 +65,7 @@ public class DocPathTest {
                 linePath(docPath, DocPath::approved, functionToPath),
                 linePath(docPath, DocPath::received, functionToPath),
                 linePath(docPath, DocPath::test, functionToPath),
-                linePath(docPath, DocPath::doc, functionToPath),
+                linePath(docPath, DocPath::html, functionToPath),
 
                 "|====");
     }
@@ -136,7 +135,7 @@ public class DocPathTest {
                 line(docPath, DocPath::received, relativeToApproved),
                 line(docPath, DocPath::test, relativeToApproved),
                 line(docPath, DocPath::resource, relativeToApproved),
-                line(docPath, DocPath::doc, relativeToApproved),
+                line(docPath, DocPath::html, relativeToApproved),
                 "|====");
     }
 
@@ -189,7 +188,7 @@ public class DocPathTest {
                 line(docPath, DocPath::approved, relativeToApproved),
                 line(docPath, DocPath::received, relativeToApproved),
                 line(docPath, DocPath::test, relativeToApproved),
-                line(docPath, DocPath::doc, relativeToApproved),
+                line(docPath, DocPath::html, relativeToApproved),
                 "|====");
     }
 

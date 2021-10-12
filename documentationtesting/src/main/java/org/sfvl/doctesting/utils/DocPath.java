@@ -73,12 +73,12 @@ public class DocPath {
     /**
      * The final rendered file.
      */
-    public OnePath doc() {
-        return new DocumentPath(this);
+    public OnePath html() {
+        return new HtmlPath(this);
     }
 
     /**
-     * File which forms an HTML page.
+     * File to create a page in documentation.
      */
     public OnePath page() {
         return new PagePath(this);

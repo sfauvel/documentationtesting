@@ -1,12 +1,14 @@
 package org.sfvl.docformatter;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.CodeExtractor;
+import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,6 +29,7 @@ import java.util.stream.Collectors;
  */
 @DisplayName("Asciidoctor formatter")
 @ClassToDocument(clazz = AsciidocFormatter.class)
+@ExtendWith(IntermediateHtmlPage.class)
 public class AsciidocFormatterTest {
     private static AsciidocFormatter formatter = new AsciidocFormatter();
     private String output;

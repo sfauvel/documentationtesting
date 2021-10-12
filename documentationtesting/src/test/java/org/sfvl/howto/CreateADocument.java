@@ -9,11 +9,15 @@ import org.sfvl.doctesting.junitextension.HtmlPageExtension;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.OnePath;
 import org.sfvl.samples.generateHtml.HtmlTest;
+import org.sfvl.samples.generateNestedHtml.HtmlNestedTest;
 import org.sfvl.samples.htmlPageHeader.HtmlHeaderTest;
 import org.sfvl.samples.htmlPageName.HtmlNameTest;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
 import org.sfvl.test_tools.ProjectTestExtension;
 
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -59,6 +63,7 @@ public class CreateADocument {
         final Class<?> testClass = HtmlTest.class;
         final DocPath docPath = new DocPath(testClass);
 
+        doc.removeNonApprovalFiles(docPath);
         doc.runTestAndWriteResultAsComment(testClass);
 
         final String source = getLines(docPath.test().path())
@@ -94,11 +99,45 @@ public class CreateADocument {
     }
 
     @Test
+    public void generate_html_with_nested_class() {
+        doc.write("With nested class, only class with direct extension generate a page");
+        final Class<?> testClass = HtmlNestedTest.class;
+        final DocPath docPath = new DocPath(testClass);
+
+        doc.removeNonApprovalFiles(docPath);
+        doc.runTestAndWriteResultAsComment(testClass);
+
+        final String source = getLines(docPath.test().path())
+                .filter(line -> !line.contains(NotIncludeToDoc.class.getSimpleName()))
+                .filter(line -> !line.contains(OnlyRunProgrammatically.class.getSimpleName()))
+                .collect(Collectors.joining("\n"));
+
+        final Path docFolder = docPath.approved().folder();
+
+        final String filesInDocFolder;
+        filesInDocFolder = getFiles(docFolder)
+                .map(f -> "* " + f.getFileName().toString())
+                .sorted()
+                .collect(Collectors.joining("\n"));
+
+
+        doc.write(".Example of class creating the file that will be converted into HTML", formatter.sourceCode(source));
+
+        doc.write("", "",
+                String.format("Files in folder `%s`", DocPath.toAsciiDoc(docFolder)),
+                "",
+                filesInDocFolder);
+
+
+    }
+
+    @Test
     @DisplayName("Customize document options")
     public void generate_header_html() {
         final Class<?> testClass = HtmlHeaderTest.class;
         final DocPath docPath = new DocPath(testClass);
 
+        doc.removeNonApprovalFiles(docPath);
         doc.runTestAndWriteResultAsComment(testClass);
 
         final String source = getLines(docPath.test().path())
@@ -130,6 +169,7 @@ public class CreateADocument {
         final Class<?> testClass = HtmlNameTest.class;
         final DocPath docPath = new DocPath(testClass);
 
+        doc.removeNonApprovalFiles(docPath);
         doc.runTestAndWriteResultAsComment(testClass);
 
         final String source = getLines(docPath.test().path())
@@ -149,10 +189,9 @@ public class CreateADocument {
                 .sorted()
                 .collect(Collectors.joining("\n"));
 
-        doc.write(".Example of class creating a file to convert into HTML", formatter.sourceCode(source));
+        doc.write(".Example of class creating a file to convert into HTML", formatter.sourceCodeBuilder("java").source(source).build(), "");
 
-        doc.write("", "",
-                String.format("Files in folder `%s`", DocPath.toAsciiDoc(docFolder)),
+        doc.write(String.format("Files in folder `%s`", DocPath.toAsciiDoc(docFolder)),
                 "",
                 filesInDocFolder);
 

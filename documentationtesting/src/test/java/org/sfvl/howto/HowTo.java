@@ -1,6 +1,7 @@
 package org.sfvl.howto;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.AsciidocFormatterTest;
@@ -17,6 +18,7 @@ import java.lang.reflect.Method;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+@ExtendWith(IntermediateHtmlPage.class)
 public class HowTo {
 
     @RegisterExtension
@@ -117,7 +119,7 @@ public class HowTo {
         generatePage(clazz);
 
         return String.format("link:%s[%s]\n",
-                DocPath.toAsciiDoc(Paths.get("{"+Config.DOC_PATH_TAG+"}").resolve(docPath.doc().path())),
+                DocPath.toAsciiDoc(Paths.get("{"+Config.DOC_PATH_TAG+"}").resolve(docPath.html().path())),
                 title);
     }
 

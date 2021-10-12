@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
@@ -15,6 +16,7 @@ import org.sfvl.samples.FailingTest;
 import org.sfvl.samples.MyCustomWriterTest;
 import org.sfvl.samples.MyTest;
 import org.sfvl.samples.justone.OneTest;
+import org.sfvl.test_tools.IntermediateHtmlPage;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
 import org.sfvl.test_tools.ProjectTestExtension;
 
@@ -31,6 +33,7 @@ import java.util.stream.Collectors;
 
 @DisplayName("Approvals extension")
 @ClassToDocument(clazz = ApprovalsExtension.class)
+@ExtendWith(IntermediateHtmlPage.class)
 public class ApprovalsExtensionTest {
 
     private AsciidocFormatter formatter = new AsciidocFormatter();

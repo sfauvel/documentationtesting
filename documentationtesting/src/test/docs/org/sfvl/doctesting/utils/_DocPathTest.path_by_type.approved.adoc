@@ -47,7 +47,7 @@ a| folder() | src/test/resources/org/sfvl/samples
 a| filename() | MyTest.adoc
 a| from() | ../../../../../resources/org/sfvl/samples/MyTest.adoc
 a| to() | ../../../../docs/org/sfvl/doctesting/utils/_DocPathTest.approved.adoc
-.5+a| `doc()` | path() | org/sfvl/samples/MyTest.html
+.5+a| `html()` | path() | org/sfvl/samples/MyTest.html
 a| folder() | org/sfvl/samples
 a| filename() | MyTest.html
 a| from() | ../../../../../../../org/sfvl/samples/MyTest.html

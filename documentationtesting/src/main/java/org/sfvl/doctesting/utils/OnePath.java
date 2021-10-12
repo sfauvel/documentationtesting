@@ -76,8 +76,8 @@ class ResourcePath extends OnePath {
     }
 }
 
-class DocumentPath extends OnePath {
-    public DocumentPath(DocPath docPath) {
+class HtmlPath extends OnePath {
+    public HtmlPath(DocPath docPath) {
         super(Paths.get(""), docPath.packagePath(), docPath.name(), ".html");
     }
 }

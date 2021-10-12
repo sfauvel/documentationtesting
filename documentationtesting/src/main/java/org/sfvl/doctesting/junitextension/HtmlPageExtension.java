@@ -1,6 +1,7 @@
 package org.sfvl.doctesting.junitextension;
 
 import org.junit.jupiter.api.extension.AfterAllCallback;
+import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.sfvl.doctesting.utils.DocPath;
 
@@ -8,7 +9,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 
-public class HtmlPageExtension implements AfterAllCallback {
+public class HtmlPageExtension implements AfterAllCallback, BeforeAllCallback {
+
+    private Class<?> classToGenerate = null;
+
+    @Override
+    public void beforeAll(ExtensionContext extensionContext) throws Exception {
+        if (classToGenerate == null) {
+            classToGenerate = extensionContext.getTestClass().get();
+        }
+    }
 
     @Override
     public void afterAll(ExtensionContext extensionContext) {
@@ -16,6 +26,8 @@ public class HtmlPageExtension implements AfterAllCallback {
     }
 
     public void generate(Class<?> clazz) {
+        if (!clazz.equals(classToGenerate)) return;
+
         final Path path = getFilePath(clazz);
         try (FileWriter fileWriter = new FileWriter(path.toFile())) {
             fileWriter.write(content(clazz));

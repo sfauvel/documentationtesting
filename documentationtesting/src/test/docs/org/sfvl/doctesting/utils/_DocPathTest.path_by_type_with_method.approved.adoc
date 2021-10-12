@@ -42,7 +42,7 @@ a| folder() | src/test/java/org/sfvl/samples
 a| filename() | MyTest.test_A.java
 a| from() | ../../../../../java/org/sfvl/samples/MyTest.test_A.java
 a| to() | ../../../../docs/org/sfvl/doctesting/utils/_DocPathTest.approved.adoc
-.5+a| `doc()` | path() | org/sfvl/samples/MyTest.test_A.html
+.5+a| `html()` | path() | org/sfvl/samples/MyTest.test_A.html
 a| folder() | org/sfvl/samples
 a| filename() | MyTest.test_A.html
 a| from() | ../../../../../../../org/sfvl/samples/MyTest.test_A.html
