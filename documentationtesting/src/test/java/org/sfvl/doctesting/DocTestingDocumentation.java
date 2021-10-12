@@ -7,7 +7,9 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 import org.sfvl.doctesting.utils.*;
+import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.writer.Classes;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 
@@ -34,7 +36,7 @@ public class DocTestingDocumentation {
         return formatter.paragraphSuite(
                 generalInformation(),
                 includeClasses()
-                );
+        );
     }
 
     protected String generalInformation() {
@@ -54,6 +56,11 @@ public class DocTestingDocumentation {
         if (clazz == null) {
             return true;
         }
+        if (clazz.getPackage().equals(ApprovalsBase.class.getPackage())
+                || clazz.getPackage().equals(ClassDocumentation.class.getPackage())) {
+            return false;
+        }
+
         return !clazz.isAnnotationPresent(NotIncludeToDoc.class)
                 && toBeInclude(clazz.getDeclaringClass());
     }

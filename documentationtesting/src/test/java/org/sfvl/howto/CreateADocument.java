@@ -132,7 +132,10 @@ public class CreateADocument {
 
     @Test
     public void generate_html_only_on_nested_class() {
-        doc.write(String.format("To generate a page on nested class, add `%s` extension on the nested class.", HtmlPageExtension.class.getSimpleName()), "");
+        doc.write("It's not possible to generate a page on a nested class.",
+                "A nested class do not have is own file for the class.",
+                "Every methods and classes are included in the approved file for the java file.",
+                "");
         final Class<?> testClass = HtmlOnlyNestedTest.class;
         final DocPath docPath = new DocPath(testClass);
 
@@ -153,7 +156,7 @@ public class CreateADocument {
                 .collect(Collectors.joining("\n"));
 
 
-        doc.write(".Example of class creating the file that will be converted into HTML", formatter.sourceCode(source));
+        doc.write(".Example of class with extension on nested class", formatter.sourceCode(source));
 
         doc.write("", "",
                 String.format("Files in folder `%s`", DocPath.toAsciiDoc(docFolder)),

@@ -9,16 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 
-public class HtmlPageExtension implements AfterAllCallback, BeforeAllCallback {
-
-    private Class<?> classToGenerate = null;
-
-    @Override
-    public void beforeAll(ExtensionContext extensionContext) throws Exception {
-        if (classToGenerate == null) {
-            classToGenerate = extensionContext.getTestClass().get();
-        }
-    }
+public class HtmlPageExtension implements AfterAllCallback {
 
     @Override
     public void afterAll(ExtensionContext extensionContext) {
@@ -26,7 +17,9 @@ public class HtmlPageExtension implements AfterAllCallback, BeforeAllCallback {
     }
 
     public void generate(Class<?> clazz) {
-        if (!clazz.equals(classToGenerate)) return;
+        if (clazz.isLocalClass() || clazz.isAnonymousClass() || clazz.getDeclaringClass() != null) {
+            return;
+        }
 
         final Path path = getFilePath(clazz);
         try (FileWriter fileWriter = new FileWriter(path.toFile())) {

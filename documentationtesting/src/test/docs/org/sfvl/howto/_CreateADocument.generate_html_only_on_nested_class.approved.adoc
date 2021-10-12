@@ -3,10 +3,12 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 [#org_sfvl_howto_CreateADocument_generate_html_only_on_nested_class]
 = Generate html only on nested class
 
-To generate a page on nested class, add `HtmlPageExtension` extension on the nested class.
+It's not possible to generate a page on a nested class.
+A nested class do not have is own file for the class.
+Every methods and classes are included in the approved file for the java file.
 
-// Test result for HtmlOnlyNestedTest: Fails
-.Example of class creating the file that will be converted into HTML
+// Test result for HtmlOnlyNestedTest: Success
+.Example of class with extension on nested class
 
 [source,java,indent=0]
 ----
@@ -44,7 +46,6 @@ public class HtmlOnlyNestedTest {
 
 Files in folder `src/test/docs/org/sfvl/samples/generateOnlyNestedHtml`
 
-* HtmlOnlyNestedTest.HtmlNestedClassTest.adoc
-* _HtmlOnlyNestedTest.HtmlNestedClassTest.test_in_nested_class.received.adoc
-* _HtmlOnlyNestedTest.received.adoc
-* _HtmlOnlyNestedTest.test_A.received.adoc
+* _HtmlOnlyNestedTest.HtmlNestedClassTest.test_in_nested_class.approved.adoc
+* _HtmlOnlyNestedTest.approved.adoc
+* _HtmlOnlyNestedTest.test_A.approved.adoc
