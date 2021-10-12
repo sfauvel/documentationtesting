@@ -17,8 +17,11 @@ public class ProjectTestExtension extends SimpleApprovalsExtension {
     }
 
     public void removeNonApprovalFiles(DocPath docPath) {
-        for(File file: docPath.page().path().getParent().toFile().listFiles(pathname ->
-                pathname.isFile() && !pathname.getName().startsWith("_"))) {
+        final File[] filesToDelete = docPath.page().path().getParent().toFile().listFiles(
+                pathname -> pathname.isFile() && !pathname.getName().startsWith("_"));
+        if (filesToDelete == null) return;
+
+        for(File file: filesToDelete) {
             file.delete();
         }
     }

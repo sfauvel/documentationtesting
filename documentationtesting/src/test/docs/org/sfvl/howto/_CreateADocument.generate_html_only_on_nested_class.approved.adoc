@@ -1,16 +1,16 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_howto_CreateADocument_generate_html_with_nested_class]
-= Generate html with nested class
+[#org_sfvl_howto_CreateADocument_generate_html_only_on_nested_class]
+= Generate html only on nested class
 
-With nested class, only class with direct extension generate a page
+To generate a page on nested class, add `HtmlPageExtension` extension on the nested class.
 
-// Test result for HtmlNestedTest: Success
+// Test result for HtmlOnlyNestedTest: Fails
 .Example of class creating the file that will be converted into HTML
 
 [source,java,indent=0]
 ----
-package org.sfvl.samples.generateNestedHtml;
+package org.sfvl.samples.generateOnlyNestedHtml;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -20,8 +20,7 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.HtmlPageExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 
-@ExtendWith(HtmlPageExtension.class)
-public class HtmlNestedTest {
+public class HtmlOnlyNestedTest {
     @RegisterExtension
     static final ApprovalsExtension doc = new SimpleApprovalsExtension();
 
@@ -31,6 +30,7 @@ public class HtmlNestedTest {
     }
 
     @Nested
+    @ExtendWith(HtmlPageExtension.class)
     public class HtmlNestedClassTest {
         @Test
         public void test_in_nested_class() {
@@ -42,9 +42,9 @@ public class HtmlNestedTest {
 ----
 
 
-Files in folder `src/test/docs/org/sfvl/samples/generateNestedHtml`
+Files in folder `src/test/docs/org/sfvl/samples/generateOnlyNestedHtml`
 
-* HtmlNestedTest.adoc
-* _HtmlNestedTest.HtmlNestedClassTest.test_in_nested_class.approved.adoc
-* _HtmlNestedTest.approved.adoc
-* _HtmlNestedTest.test_A.approved.adoc
+* HtmlOnlyNestedTest.HtmlNestedClassTest.adoc
+* _HtmlOnlyNestedTest.HtmlNestedClassTest.test_in_nested_class.received.adoc
+* _HtmlOnlyNestedTest.received.adoc
+* _HtmlOnlyNestedTest.test_A.received.adoc

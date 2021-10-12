@@ -10,6 +10,7 @@ import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.OnePath;
 import org.sfvl.samples.generateHtml.HtmlTest;
 import org.sfvl.samples.generateNestedHtml.HtmlNestedTest;
+import org.sfvl.samples.generateOnlyNestedHtml.HtmlOnlyNestedTest;
 import org.sfvl.samples.htmlPageHeader.HtmlHeaderTest;
 import org.sfvl.samples.htmlPageName.HtmlNameTest;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
@@ -100,7 +101,7 @@ public class CreateADocument {
 
     @Test
     public void generate_html_with_nested_class() {
-        doc.write("With nested class, only class with direct extension generate a page");
+        doc.write("With nested class, only class with direct extension generate a page", "");
         final Class<?> testClass = HtmlNestedTest.class;
         final DocPath docPath = new DocPath(testClass);
 
@@ -127,8 +128,37 @@ public class CreateADocument {
                 String.format("Files in folder `%s`", DocPath.toAsciiDoc(docFolder)),
                 "",
                 filesInDocFolder);
+    }
+
+    @Test
+    public void generate_html_only_on_nested_class() {
+        doc.write(String.format("To generate a page on nested class, add `%s` extension on the nested class.", HtmlPageExtension.class.getSimpleName()), "");
+        final Class<?> testClass = HtmlOnlyNestedTest.class;
+        final DocPath docPath = new DocPath(testClass);
+
+        doc.removeNonApprovalFiles(docPath);
+        doc.runTestAndWriteResultAsComment(testClass);
+
+        final String source = getLines(docPath.test().path())
+                .filter(line -> !line.contains(NotIncludeToDoc.class.getSimpleName()))
+                .filter(line -> !line.contains(OnlyRunProgrammatically.class.getSimpleName()))
+                .collect(Collectors.joining("\n"));
+
+        final Path docFolder = docPath.approved().folder();
+
+        final String filesInDocFolder;
+        filesInDocFolder = getFiles(docFolder)
+                .map(f -> "* " + f.getFileName().toString())
+                .sorted()
+                .collect(Collectors.joining("\n"));
 
 
+        doc.write(".Example of class creating the file that will be converted into HTML", formatter.sourceCode(source));
+
+        doc.write("", "",
+                String.format("Files in folder `%s`", DocPath.toAsciiDoc(docFolder)),
+                "",
+                filesInDocFolder);
     }
 
     @Test
