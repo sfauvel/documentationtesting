@@ -1,5 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
+[#org_sfvl_doctesting_writer_InMainDocTest]
 = Title for the document
 
 Class comment is added to description.

@@ -46,6 +46,7 @@ public class MyTestWithTests {
 ....
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
+[#org_sfvl_samples_MyTestWithTests]
 = My test with tests
 
 \include::_MyTestWithTests.test_A.approved.adoc[leveloffset=+1]

@@ -1,5 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
+[#org_sfvl_doctesting_utils_ConfigTest]
 = Configuration
 
 include::_ConfigTest.default_values.approved.adoc[leveloffset=+1]

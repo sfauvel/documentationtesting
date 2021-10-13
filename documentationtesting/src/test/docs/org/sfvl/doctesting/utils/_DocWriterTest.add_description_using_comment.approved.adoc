@@ -61,6 +61,7 @@ It will be added under title.
 ....
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
+[#org_sfvl_samples_MyTestWithComment]
 = My test with comment
 
 My comment for MyTestComment
@@ -107,6 +108,7 @@ public class ClassUnderTest {
 ....
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
+[#org_sfvl_samples_MyTestWithClassToDocument]
 = My test with class to document
 
 Description of the class ClassUnderTest.

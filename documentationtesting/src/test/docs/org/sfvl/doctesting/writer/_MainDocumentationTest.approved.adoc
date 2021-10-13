@@ -1,5 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
+[#org_sfvl_doctesting_writer_MainDocumentationTest]
 = Create a general documentation
 
 You can use this class to generate a main documentation that aggregate other documentations

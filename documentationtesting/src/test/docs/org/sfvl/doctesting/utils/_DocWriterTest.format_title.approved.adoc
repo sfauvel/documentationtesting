@@ -45,6 +45,7 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 ----
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
+[#org_sfvl_samples_MyTest]
 = My test
 
 \include::_MyTest.test_A.approved.adoc[leveloffset=+1]

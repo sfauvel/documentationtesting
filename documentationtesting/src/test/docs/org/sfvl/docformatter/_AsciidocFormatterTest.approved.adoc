@@ -1,5 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
+[#org_sfvl_docformatter_AsciidocFormatterTest]
 = Asciidoctor formatter
 
 `AsciidocFormatter` provides high level methods to generate asciidoc text.
@@ -31,6 +32,7 @@ include::_AsciidocFormatterTest.should_format_anchorLink.approved.adoc[leveloffs
 
 include::_AsciidocFormatterTest.should_format_link.approved.adoc[leveloffset=+1]
 
+[#org_sfvl_docformatter_AsciidocFormatterTest_AsciiDocList]
 == List
 
 include::_AsciidocFormatterTest.AsciiDocList.should_format_one_list_item.approved.adoc[leveloffset=+2]
@@ -41,6 +43,7 @@ include::_AsciidocFormatterTest.AsciiDocList.should_format_list_with_title.appro
 
 include::_AsciidocFormatterTest.AsciiDocList.should_format_empty_list.approved.adoc[leveloffset=+2]
 
+[#org_sfvl_docformatter_AsciidocFormatterTest_block]
 == Block
 
 include::_AsciidocFormatterTest.block.should_format_block_with_enum.approved.adoc[leveloffset=+2]
@@ -49,6 +52,7 @@ include::_AsciidocFormatterTest.block.should_format_block.approved.adoc[leveloff
 
 include::_AsciidocFormatterTest.block.escape_asciidoc.approved.adoc[leveloffset=+2]
 
+[#org_sfvl_docformatter_AsciidocFormatterTest_Source]
 == Source
 
 include::_AsciidocFormatterTest.Source.should_format_source_code.approved.adoc[leveloffset=+2]
@@ -57,6 +61,7 @@ include::_AsciidocFormatterTest.Source.should_format_source_code_with_a_builder.
 
 include::_AsciidocFormatterTest.Source.should_format_source_code_with_a_minimal_builder.approved.adoc[leveloffset=+2]
 
+[#org_sfvl_docformatter_AsciidocFormatterTest_Include]
 == Include
 
 include::_AsciidocFormatterTest.Include.should_format_include.approved.adoc[leveloffset=+2]

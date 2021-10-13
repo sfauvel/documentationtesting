@@ -1,5 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
+[#org_sfvl_doctesting_junitextension_FailureReporterTest]
 = Failure report
 
 include::_FailureReporterTest.report_when_files_are_differents.approved.adoc[leveloffset=+1]

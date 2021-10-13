@@ -63,6 +63,17 @@ public class DocWriter {
                         .map(ClassToDocument::clazz)
                         .map(CodeExtractor::getComment);
             }
+            @Override
+            public String getTitle(Class<?> clazz, int depth) {
+                return String.join("\n",
+                        String.format("[#%s]", titleId(clazz)),
+                        super.getTitle(clazz, depth));
+            }
+            public String titleId(Class clazz) {
+                return clazz.getName()
+                                .replace(".", "_")
+                                .replace("$", "_");
+            }
         };
 
         return String.join("\n",
