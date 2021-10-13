@@ -2,11 +2,11 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 This document describes usage of classes to create test from generated documentation.
 
-* <<ApprovalsExtension>>: JUnit extension to check document.
+* <<org_sfvl_doctesting_junitextension_ApprovalsExtensionTest,ApprovalsExtension>>: JUnit extension to check document.
 
-* <<DocWriter>>: Store document before writting it.
+* <<org_sfvl_doctesting_utils_DocWriterTest,DocWriter>>: Store document before writting it.
 
-* <<CodeExtractor>>: Help to extract information from code.
+* <<org_sfvl_doctesting_utils_CodeExtractorTest,CodeExtractor>>: Help to extract information from code.
 
 
 include::junitextension/_ApprovalsExtensionTest.approved.adoc[leveloffset=+0]

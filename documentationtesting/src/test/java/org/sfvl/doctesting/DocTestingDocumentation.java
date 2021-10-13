@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 import org.sfvl.doctesting.utils.*;
@@ -42,9 +43,13 @@ public class DocTestingDocumentation {
     protected String generalInformation() {
         return formatter.paragraphSuite(
                 "This document describes usage of classes to create test from generated documentation.",
-                "* <<" + ApprovalsExtension.class.getSimpleName() + ">>: JUnit extension to check document.",
-                "* <<" + DocWriter.class.getSimpleName() + ">>: Store document before writting it.",
-                "* <<" + CodeExtractor.class.getSimpleName() + ">>: Help to extract information from code.");
+                "* " + makeAnchor(ApprovalsExtensionTest.class, ApprovalsExtension.class) + ": JUnit extension to check document.",
+                "* " + makeAnchor(DocWriterTest.class, DocWriter.class) + ": Store document before writting it.",
+                "* " + makeAnchor(CodeExtractorTest.class, CodeExtractor.class) + ": Help to extract information from code.");
+    }
+
+    private String makeAnchor(Class<?> clazzAnchor, Class<?> clazzNameToDisplay) {
+        return String.format("<<%s,%s>>", doc.getDocWriter().titleId(clazzAnchor), clazzNameToDisplay.getSimpleName());
     }
 
     public String includeClasses() {

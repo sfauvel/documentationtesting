@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * This class provides utilities to extract pieces of code or comments.
  */
 @DisplayName(value = "CodeExtractor")
-class CodeExtractorTest {
+public class CodeExtractorTest {
 
     private AsciidocFormatter formatter = new AsciidocFormatter();
 

@@ -69,11 +69,7 @@ public class DocWriter {
                         String.format("[#%s]", titleId(clazz)),
                         super.getTitle(clazz, depth));
             }
-            public String titleId(Class clazz) {
-                return clazz.getName()
-                                .replace(".", "_")
-                                .replace("$", "_");
-            }
+
         };
 
         return String.join("\n",
@@ -101,6 +97,12 @@ public class DocWriter {
                         .replace(".", "_")
                         .replace("$", "_"),
                 testMethod.getName());
+    }
+
+    public String titleId(Class clazz) {
+        return clazz.getName()
+                .replace(".", "_")
+                .replace("$", "_");
     }
 
     /**

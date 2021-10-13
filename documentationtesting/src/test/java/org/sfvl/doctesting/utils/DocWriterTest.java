@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @DisplayName("DocWriter")
-class DocWriterTest {
+public class DocWriterTest {
     @RegisterExtension
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
