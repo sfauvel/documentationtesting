@@ -436,44 +436,44 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body id="org_sfvl_doctesting_junitextension_approvalsextensiontest" class="article toc2 toc-left">
 <div id="header">
 <h1>Approvals extension</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_extension">Creating a test using ApprovalsExtension</a></li>
-<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_displayName">Using displayName</a></li>
-<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_a_custom_writer">Using a custom writer</a></li>
-<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_nested_class">Nested class</a>
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_extension">Creating a test using ApprovalsExtension</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_displayname">Using displayName</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_a_custom_writer">Using a custom writer</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_nested_class">Nested class</a>
 <ul class="sectlevel2">
-<li><a href="#_demo_nested_test">Demo nested test</a>
+<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest">Demo nested test</a>
 <ul class="sectlevel3">
-<li><a href="#_adding">Adding</a>
+<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest_adding">Adding</a>
 <ul class="sectlevel4">
-<li><a href="#org_sfvl_doctesting_junitextension_DemoNestedTest_Adding_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</a></li>
-<li><a href="#org_sfvl_doctesting_junitextension_DemoNestedTest_Adding_should_be_9_when_adding_2_3_and_4">Adding 3 simple numbers</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest_adding_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest_adding_should_be_9_when_adding_2_3_and_4">Adding 3 simple numbers</a></li>
 </ul>
 </li>
-<li><a href="#_multiply">Multiply</a>
+<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest_multiply">Multiply</a>
 <ul class="sectlevel4">
-<li><a href="#org_sfvl_doctesting_junitextension_DemoNestedTest_Multiply_should_be_12_when_multiply_4_and_3">Multiply 2 simple numbers</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest_multiply_should_be_12_when_multiply_4_and_3">Multiply 2 simple numbers</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_document_with_all_tests_in_a_testclass">Document with all tests in a testclass</a>
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_document_with_all_tests_in_a_testclass">Document with all tests in a testclass</a>
 <ul class="sectlevel2">
-<li><a href="#_my_test">My test</a>
+<li><a href="#org_sfvl_samples_mytest">My test</a>
 <ul class="sectlevel3">
-<li><a href="#org_sfvl_samples_MyTest_test_A">Test A</a></li>
+<li><a href="#org_sfvl_samples_mytest_test_a">Test A</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_failing_test_output">Failing test output</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_failing_test_output">Failing test output</a></li>
 </ul>
 </div>
 </div>
@@ -489,7 +489,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_extension">Creating a test using ApprovalsExtension</h2>
+<h2 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_using_extension">Creating a test using ApprovalsExtension</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This is an example to create a simple test using <code>ApprovalsExtension</code>.</p>
@@ -524,7 +524,7 @@ This extension will check that everything wrote using <code>doc.write</code> met
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>[#org_sfvl_samples_justone_OneTest_test_A]
+<pre>[#org_sfvl_samples_justone_onetest_test_a]
 = Test A
 
 In my *test*</pre>
@@ -554,7 +554,7 @@ The chapter content contains what was written using <code>doc.write</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_displayName">Using displayName</h2>
+<h2 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_using_displayname">Using displayName</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can use DisplayName annotation to customize test title.Test example using DisplayName</p>
@@ -579,7 +579,7 @@ The chapter content contains what was written using <code>doc.write</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>[#org_sfvl_doctesting_junitextension_UsingDisplayNameTest_test_A]
+<pre>[#org_sfvl_doctesting_junitextension_usingdisplaynametest_test_a]
 = Title for this test
 
 In my *test*</pre>
@@ -588,7 +588,7 @@ In my *test*</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_a_custom_writer">Using a custom writer</h2>
+<h2 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_using_a_custom_writer">Using a custom writer</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>It&#8217;s possible to give a specific DocWriter to <code>ApprovalsExtension</code>
@@ -609,14 +609,14 @@ and modify what it will be written in the final document.</p>
                 <span class="o">}</span>
 
                 <span class="nd">@Override</span>
-                <span class="kd">public</span> <span class="nc">String</span> <span class="nf">formatOutput</span><span class="o">(</span><span class="nc">String</span> <span class="n">displayName</span><span class="o">,</span> <span class="nc">Method</span> <span class="n">testMethod</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kd">public</span> <span class="nc">String</span> <span class="nf">formatOutput</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">,</span> <span class="nc">Method</span> <span class="n">testMethod</span><span class="o">)</span> <span class="o">{</span>
                     <span class="k">return</span> <span class="s">"// Add an header to the document\n"</span>
-                            <span class="o">+</span> <span class="kd">super</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span><span class="n">displayName</span><span class="o">,</span> <span class="n">testMethod</span><span class="o">);</span>
+                            <span class="o">+</span> <span class="kd">super</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span><span class="n">title</span><span class="o">,</span> <span class="n">testMethod</span><span class="o">);</span>
                 <span class="o">}</span>
 
                 <span class="nd">@Override</span>
-                <span class="kd">public</span> <span class="nc">String</span> <span class="nf">formatTitle</span><span class="o">(</span><span class="nc">String</span> <span class="n">displayName</span><span class="o">,</span> <span class="nc">Method</span> <span class="n">method</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">formatTitle</span><span class="o">(</span><span class="n">displayName</span><span class="o">,</span> <span class="n">method</span><span class="o">)</span> <span class="o">+</span> <span class="s">": Custom title"</span><span class="o">;</span>
+                <span class="kd">public</span> <span class="nc">String</span> <span class="nf">formatTitle</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">,</span> <span class="nc">Method</span> <span class="n">method</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">formatTitle</span><span class="o">(</span><span class="n">title</span><span class="o">,</span> <span class="n">method</span><span class="o">)</span> <span class="o">+</span> <span class="s">": Custom title"</span><span class="o">;</span>
                 <span class="o">}</span>
             <span class="o">}</span>
     <span class="o">);</span>
@@ -636,7 +636,7 @@ and modify what it will be written in the final document.</p>
 <div class="content">
 <pre>// Add an header to the document
 
-[#org_sfvl_samples_MyCustomWriterTest_test_A]
+[#org_sfvl_samples_mycustomwritertest_test_a]
 = Test A: Custom title
 
 In my *test* // Add a comment after each call to write</pre>
@@ -645,7 +645,7 @@ In my *test* // Add a comment after each call to write</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_nested_class">Nested class</h2>
+<h2 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_nested_class">Nested class</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Nested class can be used to organize tests.
@@ -716,10 +716,12 @@ Each nested class create a nested title.</p>
 <div class="listingblock">
 <div class="title">Document generated</div>
 <div class="content">
-<pre>= Demo nested test
+<pre>[#org_sfvl_doctesting_junitextension_demonestedtest]
+= Demo nested test
 
 Demo of a simple usage to generate documentation.
 
+[#org_sfvl_doctesting_junitextension_demonestedtest_adding]
 == Adding
 
 Document of Addition operations.
@@ -728,6 +730,7 @@ include::_DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc[le
 
 include::_DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+2]
 
+[#org_sfvl_doctesting_junitextension_demonestedtest_multiply]
 == Multiply
 
 include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]</pre>
@@ -737,23 +740,23 @@ include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ad
 <p><em>final rendering</em></p>
 </div>
 <div class="sect2 includeblock">
-<h3 id="_demo_nested_test">Demo nested test</h3>
+<h3 id="org_sfvl_doctesting_junitextension_demonestedtest">Demo nested test</h3>
 <div class="paragraph">
 <p>Demo of a simple usage to generate documentation.</p>
 </div>
 <div class="sect3">
-<h4 id="_adding">Adding</h4>
+<h4 id="org_sfvl_doctesting_junitextension_demonestedtest_adding">Adding</h4>
 <div class="paragraph">
 <p>Document of Addition operations.</p>
 </div>
 <div class="sect4">
-<h5 id="org_sfvl_doctesting_junitextension_DemoNestedTest_Adding_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h5>
+<h5 id="org_sfvl_doctesting_junitextension_demonestedtest_adding_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h5>
 <div class="paragraph">
 <p>2 + 3 = 5</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="org_sfvl_doctesting_junitextension_DemoNestedTest_Adding_should_be_9_when_adding_2_3_and_4">Adding 3 simple numbers</h5>
+<h5 id="org_sfvl_doctesting_junitextension_demonestedtest_adding_should_be_9_when_adding_2_3_and_4">Adding 3 simple numbers</h5>
 <div class="paragraph">
 <p>A nested test.</p>
 </div>
@@ -763,9 +766,9 @@ include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ad
 </div>
 </div>
 <div class="sect3">
-<h4 id="_multiply">Multiply</h4>
+<h4 id="org_sfvl_doctesting_junitextension_demonestedtest_multiply">Multiply</h4>
 <div class="sect4">
-<h5 id="org_sfvl_doctesting_junitextension_DemoNestedTest_Multiply_should_be_12_when_multiply_4_and_3">Multiply 2 simple numbers</h5>
+<h5 id="org_sfvl_doctesting_junitextension_demonestedtest_multiply_should_be_12_when_multiply_4_and_3">Multiply 2 simple numbers</h5>
 <div class="paragraph">
 <p>4 * 3 = 12</p>
 </div>
@@ -775,7 +778,7 @@ include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ad
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_document_with_all_tests_in_a_testclass">Document with all tests in a testclass</h2>
+<h2 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_document_with_all_tests_in_a_testclass">Document with all tests in a testclass</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>At the end of a test, a file is created including files generated on each test.</p>
@@ -806,6 +809,7 @@ include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ad
 <div class="content">
 <pre>ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
+[#org_sfvl_samples_mytest]
 = My test
 
 include::_MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
@@ -815,9 +819,9 @@ include::_MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
 <p><em>final rendering</em></p>
 </div>
 <div class="sect2 includeblock">
-<h3 id="_my_test">My test</h3>
+<h3 id="org_sfvl_samples_mytest">My test</h3>
 <div class="sect3">
-<h4 id="org_sfvl_samples_MyTest_test_A">Test A</h4>
+<h4 id="org_sfvl_samples_mytest_test_a">Test A</h4>
 <div class="paragraph">
 <p>In my <strong>test</strong></p>
 </div>
@@ -826,7 +830,7 @@ include::_MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_failing_test_output">Failing test output</h2>
+<h2 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_failing_test_output">Failing test output</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>When a test fails, the error is written in the final document.
@@ -856,7 +860,7 @@ It&#8217;s help to understand and investigate on the problem.</p>
 <div class="content">
 <pre>ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_samples_FailingTest_failing_test]
+[#org_sfvl_samples_failingtest_failing_test]
 = Failing test
 
 Some information before failure.
@@ -889,7 +893,7 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 </div>
 <div class="openblock includeblock">
 <div class="content">
-<div id="org_sfvl_samples_FailingTest_failing_test" class="paragraph">
+<div id="org_sfvl_samples_failingtest_failing_test" class="paragraph">
 <p><span class="title1">Failing test</span></p>
 </div>
 <div class="paragraph">
@@ -924,7 +928,10 @@ includeblock: format an include as a block.
   --logo_height: 100px
   --shadow_color: #084f34;
   --title-color: #7a2518;
+
+  --media-small-header-height:50px;
 }
+
 
 #content {
    max-width: unset;
@@ -984,12 +991,19 @@ body {
     background: var(--bg1) !important;
 }
 
-h1, h2 {
+h1 {
     font-family: "Noto Serif","DejaVu Serif",serif;
     font-style: italic;
 
     color: var(--title-color);
     font-weight: 400;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 2em;
+    border-top: solid;
+    padding-top: 0.2em;
 }
 
 :not(pre):not([class^="L"]) > code {
@@ -1017,26 +1031,43 @@ h1, h2 {
 
 /* Menu */
 
-.sectlevel3 {
+.sectlevel2 {
     display: none;
     height: 0;
     opacity:0;
 }
 
-.sectlevel2>li {
+.sectlevel1>li {
     padding-left: 0.5em;
 }
-.sectlevel2>li.menu_open {
+.sectlevel1>li.menu_open {
     font-weight: bold;
     background-color: var(--bg1);
     padding: 0.5em;
 }
 
-.sectlevel2>li.menu_open .sectlevel3 {
+.sectlevel1>li.menu_open .sectlevel2 {
     display: block;
     height: auto;
     opacity:1;
     font-weight: normal;
+}
+
+@media (max-width: 800px) {
+  #toc {
+    display: none;
+  }
+  body.toc2 {
+    padding-left:0em;
+    padding-top:var(--media-small-header-height);
+  }
+
+  #project_home {
+    height: var(--media-small-header-height);
+    width: 100%;
+    padding: 2px;
+    text-align: center;
+  }
 }
 </style>
 <script type="text/javascript">
@@ -1044,7 +1075,7 @@ function toggleMenuOnClick(menuItem) {
     menuItem.getElementsByTagName("a")[0].addEventListener(
         'click',
         event => {
-            document.querySelectorAll(".sectlevel2 > li").forEach(function(element) {
+            document.querySelectorAll(".sectlevel1 > li").forEach(function(element) {
                 if (element != menuItem) {
                     element.classList.remove("menu_open");
                 }
@@ -1056,8 +1087,8 @@ function toggleMenuOnClick(menuItem) {
 
 window.addEventListener( "load",
     function() {
-        menusLevel2 = document.querySelectorAll(".sectlevel2 > li");
-        menusLevel2.forEach(toggleMenuOnClick);
+        menus = document.querySelectorAll(".sectlevel1 > li");
+        menus.forEach(toggleMenuOnClick);
      }
 );
 </script>

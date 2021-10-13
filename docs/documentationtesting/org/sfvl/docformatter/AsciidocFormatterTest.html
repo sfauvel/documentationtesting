@@ -436,47 +436,56 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body id="org_sfvl_docformatter_asciidocformattertest" class="article toc2 toc-left">
 <div id="header">
 <h1>Asciidoctor formatter</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_standard_option">Standard options</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_table_of_content">Table of content</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_title">Title</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_warning">Warning</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_paragraph">Paragraph</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_suite_of_paragraphs">Suite of paragraphs</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_description">Description</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_definition">Definition</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_anchorLink">Anchor</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_link">Link</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_one_list_item">One list item</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_list">Full list</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_empty_list">Empty list</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_source_code">Source code</a></li>
-<li><a href="#_block">block</a>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_standard_option">Standard options</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_table_of_content">Table of content</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_title">Title</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_warning">Warning</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_paragraph">Paragraph</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_suite_of_paragraphs">Suite of paragraphs</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_description">Description</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_definition">Definition</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_anchorlink">Anchor</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_link">Link</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_asciidoclist">List</a>
 <ul class="sectlevel2">
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_block_should_format_block_with_enum">Predefine blocks</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_block_should_format_block">Free block</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_block_escape_asciidoc">Escape asciidoc</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_asciidoclist_should_format_one_list_item">One list item</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_asciidoclist_should_format_list">Full list</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_asciidoclist_should_format_list_with_title">List with a title</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_asciidoclist_should_format_empty_list">Empty list</a></li>
 </ul>
 </li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_source_code_with_a_builder">Source code using a builder</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_source_code_with_a_minimal_builder">Source code using a minimal builder</a></li>
-<li><a href="#_include">Include</a>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_block">Block</a>
 <ul class="sectlevel2">
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_Include_should_format_include">Include another file</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_Include_add_a_leveloffset">Add a leveloffset</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_Include_include_is_agnostic_of_directory_separator">Include is agnostic of directory separator</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_Include_include_with_a_tag">Include with a tag</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_Include_include_with_a_range_of_lines">Include with a range of lines</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_block_should_format_block_with_enum">Predefine blocks</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_block_should_format_block">Free block</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_block_escape_asciidoc">Escape asciidoc</a></li>
 </ul>
 </li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_table">Table</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_format_table_with_header">Table with header</a></li>
-<li><a href="#org_sfvl_docformatter_AsciidocFormatterTest_should_add_an_attribute">Attribute</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_source">Source</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_source_should_format_source_code">Source code</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_source_should_format_source_code_with_a_builder">Source code using a builder</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_source_should_format_source_code_with_a_minimal_builder">Source code using a minimal builder</a></li>
+</ul>
+</li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_include">Include</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_include_should_format_include">Include another file</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_include_add_a_leveloffset">Add a leveloffset</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_include_include_is_agnostic_of_directory_separator">Include is agnostic of directory separator</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_include_include_with_a_tag">Include with a tag</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_include_include_with_a_range_of_lines">Include with a range of lines</a></li>
+</ul>
+</li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_table">Table</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_table_with_header">Table with header</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_add_an_attribute">Attribute</a></li>
 </ul>
 </div>
 </div>
@@ -506,7 +515,7 @@ For each method, we describe:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_standard_option">Standard options</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_should_format_standard_option">Standard options</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Standard option to add at the begining of the document.
@@ -547,7 +556,7 @@ For each method, we describe:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_table_of_content">Table of content</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_should_format_table_of_content">Table of content</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
@@ -570,7 +579,7 @@ For each method, we describe:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_title">Title</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_should_format_title">Title</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
@@ -592,7 +601,7 @@ For each method, we describe:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_warning">Warning</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_should_format_warning">Warning</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
@@ -634,7 +643,7 @@ Take care of that
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_paragraph">Paragraph</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_should_format_paragraph">Paragraph</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Each text is written in a separate line on asciidoc file.
@@ -672,7 +681,7 @@ They are in a same paragraph at the end.</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_suite_of_paragraphs">Suite of paragraphs</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_should_format_suite_of_paragraphs">Suite of paragraphs</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Join paragraph with enough line break to separate them.</p>
@@ -709,7 +718,7 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_description">Description</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_should_format_description">Description</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
@@ -737,7 +746,7 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_definition">Definition</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_should_format_definition">Definition</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
@@ -770,7 +779,7 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_anchorLink">Anchor</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_should_format_anchorlink">Anchor</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
@@ -798,7 +807,7 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_link">Link</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_should_format_link">Link</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
@@ -826,8 +835,10 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_one_list_item">One list item</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_asciidoclist">List</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_asciidoclist_should_format_one_list_item">One list item</h3>
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
 </div>
@@ -861,10 +872,8 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 <hr>
 </div>
-</div>
-<div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_list">Full list</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_asciidoclist_should_format_list">Full list</h3>
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
 </div>
@@ -901,10 +910,48 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 <hr>
 </div>
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_asciidoclist_should_format_list_with_title">List with a title</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
 </div>
-<div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_empty_list">Empty list</h2>
-<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">listItemsWithTitle</span><span class="o">(</span><span class="s">"List title"</span><span class="o">,</span> <span class="s">"First"</span><span class="o">,</span> <span class="s">"Second"</span><span class="o">,</span> <span class="s">"Third"</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="ulist">
+<div class="title">List title</div>
+<ul>
+<li>
+<p>First</p>
+</li>
+<li>
+<p>Second</p>
+</li>
+<li>
+<p>Third</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>.List title
+* First
+* Second
+* Third</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_asciidoclist_should_format_empty_list">Empty list</h3>
 <div class="paragraph">
 <p>When no items, listItems method return an empty string.</p>
 </div>
@@ -927,56 +974,22 @@ The second paragraph with a blank line before to separate from the first one.</p
 <hr>
 </div>
 </div>
-<div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_source_code">Source code</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><span class="red"><em>Usage</em></span></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">sourceCode</span><span class="o">(</span>
-        <span class="s">"public int add(int a, int b) {\n"</span> <span class="o">+</span>
-                <span class="s">"   int result = a + b;\n"</span> <span class="o">+</span>
-                <span class="s">"   return result;\n"</span> <span class="o">+</span>
-                <span class="s">"}"</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><span class="red"><em>Render</em></span></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-   <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
-   <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><span class="red"><em>Asciidoc generated</em></span></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>[source,java,indent=0]
-----
-public int add(int a, int b) {
-   int result = a + b;
-   return result;
-}
-----</pre>
-</div>
-</div>
-<hr>
-</div>
 </div>
 <div class="sect1">
-<h2 id="_block">block</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_block">Block</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_block_should_format_block_with_enum">Predefine blocks</h3>
+<h3 id="org_sfvl_docformatter_asciidocformattertest_block_should_format_block_with_enum">Predefine blocks</h3>
 <div class="paragraph">
-<p>You can select block type from on of the Block enum.</p>
+<p>You can select block type from one of the Block enum.</p>
+</div>
+<div class="ulist">
+<div class="title">Block value available</div>
+<ul>
+<li>
+<p>LITERAL</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
@@ -1012,7 +1025,7 @@ Into the block
 <hr>
 </div>
 <div class="sect2">
-<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_block_should_format_block">Free block</h3>
+<h3 id="org_sfvl_docformatter_asciidocformattertest_block_should_format_block">Free block</h3>
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
 </div>
@@ -1049,7 +1062,7 @@ Into the block
 <hr>
 </div>
 <div class="sect2">
-<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_block_escape_asciidoc">Escape asciidoc</h3>
+<h3 id="org_sfvl_docformatter_asciidocformattertest_block_escape_asciidoc">Escape asciidoc</h3>
 <div class="paragraph">
 <p>To display asciidoc in a block, it&#8217;s necessary to escape some keyword
 that are interpreted even in an uninterpreted block.</p>
@@ -1091,8 +1104,51 @@ that are interpreted even in an uninterpreted block.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_source_code_with_a_builder">Source code using a builder</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_source">Source</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_source_should_format_source_code">Source code</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">sourceCode</span><span class="o">(</span>
+        <span class="s">"public int add(int a, int b) {\n"</span> <span class="o">+</span>
+                <span class="s">"   int result = a + b;\n"</span> <span class="o">+</span>
+                <span class="s">"   return result;\n"</span> <span class="o">+</span>
+                <span class="s">"}"</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+   <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
+   <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[source,java,indent=0]
+----
+public int add(int a, int b) {
+   int result = a + b;
+   return result;
+}
+----</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_source_should_format_source_code_with_a_builder">Source code using a builder</h3>
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
 </div>
@@ -1139,10 +1195,8 @@ public int add(int a, int b) {
 </div>
 <hr>
 </div>
-</div>
-<div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_source_code_with_a_minimal_builder">Source code using a minimal builder</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_source_should_format_source_code_with_a_minimal_builder">Source code using a minimal builder</h3>
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
 </div>
@@ -1186,11 +1240,12 @@ public int add(int a, int b) {
 <hr>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="_include">Include</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_include">Include</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_Include_should_format_include">Include another file</h3>
+<h3 id="org_sfvl_docformatter_asciidocformattertest_include_should_format_include">Include another file</h3>
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
 </div>
@@ -1218,7 +1273,7 @@ public int add(int a, int b) {
 <hr>
 </div>
 <div class="sect2">
-<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_Include_add_a_leveloffset">Add a leveloffset</h3>
+<h3 id="org_sfvl_docformatter_asciidocformattertest_include_add_a_leveloffset">Add a leveloffset</h3>
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
 </div>
@@ -1240,7 +1295,7 @@ public int add(int a, int b) {
 <hr>
 </div>
 <div class="sect2">
-<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_Include_include_is_agnostic_of_directory_separator">Include is agnostic of directory separator</h3>
+<h3 id="org_sfvl_docformatter_asciidocformattertest_include_include_is_agnostic_of_directory_separator">Include is agnostic of directory separator</h3>
 <div class="paragraph">
 <p>Include directive always used '/' as directory separator regardless of operating system.
 It allows to have same outputs when running tests in several environments.</p>
@@ -1269,7 +1324,7 @@ include::tmp/anotherFile.adoc[]</pre>
 <hr>
 </div>
 <div class="sect2">
-<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_Include_include_with_a_tag">Include with a tag</h3>
+<h3 id="org_sfvl_docformatter_asciidocformattertest_include_include_with_a_tag">Include with a tag</h3>
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
 </div>
@@ -1303,7 +1358,7 @@ include::tmp/anotherFile.adoc[]</pre>
 <hr>
 </div>
 <div class="sect2">
-<h3 id="org_sfvl_docformatter_AsciidocFormatterTest_Include_include_with_a_range_of_lines">Include with a range of lines</h3>
+<h3 id="org_sfvl_docformatter_asciidocformattertest_include_include_with_a_range_of_lines">Include with a range of lines</h3>
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
 </div>
@@ -1349,7 +1404,7 @@ include::tmp/anotherFile.adoc[]</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_table">Table</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_should_format_table">Table</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
@@ -1406,7 +1461,7 @@ include::tmp/anotherFile.adoc[]</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_format_table_with_header">Table with header</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_should_format_table_with_header">Table with header</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
@@ -1466,7 +1521,7 @@ include::tmp/anotherFile.adoc[]</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_AsciidocFormatterTest_should_add_an_attribute">Attribute</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_should_add_an_attribute">Attribute</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
@@ -1503,7 +1558,10 @@ includeblock: format an include as a block.
   --logo_height: 100px
   --shadow_color: #084f34;
   --title-color: #7a2518;
+
+  --media-small-header-height:50px;
 }
+
 
 #content {
    max-width: unset;
@@ -1563,12 +1621,19 @@ body {
     background: var(--bg1) !important;
 }
 
-h1, h2 {
+h1 {
     font-family: "Noto Serif","DejaVu Serif",serif;
     font-style: italic;
 
     color: var(--title-color);
     font-weight: 400;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 2em;
+    border-top: solid;
+    padding-top: 0.2em;
 }
 
 :not(pre):not([class^="L"]) > code {
@@ -1596,26 +1661,43 @@ h1, h2 {
 
 /* Menu */
 
-.sectlevel3 {
+.sectlevel2 {
     display: none;
     height: 0;
     opacity:0;
 }
 
-.sectlevel2>li {
+.sectlevel1>li {
     padding-left: 0.5em;
 }
-.sectlevel2>li.menu_open {
+.sectlevel1>li.menu_open {
     font-weight: bold;
     background-color: var(--bg1);
     padding: 0.5em;
 }
 
-.sectlevel2>li.menu_open .sectlevel3 {
+.sectlevel1>li.menu_open .sectlevel2 {
     display: block;
     height: auto;
     opacity:1;
     font-weight: normal;
+}
+
+@media (max-width: 800px) {
+  #toc {
+    display: none;
+  }
+  body.toc2 {
+    padding-left:0em;
+    padding-top:var(--media-small-header-height);
+  }
+
+  #project_home {
+    height: var(--media-small-header-height);
+    width: 100%;
+    padding: 2px;
+    text-align: center;
+  }
 }
 </style>
 <script type="text/javascript">
@@ -1623,7 +1705,7 @@ function toggleMenuOnClick(menuItem) {
     menuItem.getElementsByTagName("a")[0].addEventListener(
         'click',
         event => {
-            document.querySelectorAll(".sectlevel2 > li").forEach(function(element) {
+            document.querySelectorAll(".sectlevel1 > li").forEach(function(element) {
                 if (element != menuItem) {
                     element.classList.remove("menu_open");
                 }
@@ -1635,8 +1717,8 @@ function toggleMenuOnClick(menuItem) {
 
 window.addEventListener( "load",
     function() {
-        menusLevel2 = document.querySelectorAll(".sectlevel2 > li");
-        menusLevel2.forEach(toggleMenuOnClick);
+        menus = document.querySelectorAll(".sectlevel1 > li");
+        menus.forEach(toggleMenuOnClick);
      }
 );
 </script>

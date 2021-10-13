@@ -436,13 +436,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body id="org_sfvl_howto_tutorial" class="article toc2 toc-left">
 <div id="header">
 <h1>Tutorial</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel2">
-<li><a href="#_installing_library">Installing library</a></li>
+<ul class="sectlevel1">
+<li><a href="#org_sfvl_howto_installinglibrary">Installing library</a></li>
 <li><a href="#_configuration">Configuration</a></li>
 <li><a href="#_create_a_test">Create a test</a></li>
 <li><a href="#_execution">Execution</a></li>
@@ -451,8 +451,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
-<div class="sect2">
-<h3 id="_installing_library">Installing library</h3>
+<div class="sect1">
+<h2 id="org_sfvl_howto_installinglibrary">Installing library</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>We use the library <a href="https://github.com/sfauvel/documentationtesting">documentationtesting</a>
 which provides what we need to get started.
@@ -488,8 +489,10 @@ To use it, you need to download and install it.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_configuration">Configuration</h3>
+</div>
+<div class="sect1">
+<h2 id="_configuration">Configuration</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>In your pom.xml add the dependency to the library</p>
 </div>
@@ -507,8 +510,10 @@ To use it, you need to download and install it.</p>
 <p>Replace [DOCUMENTATIONTESTING VERSION] with the installed version number.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_create_a_test">Create a test</h3>
+</div>
+<div class="sect1">
+<h2 id="_create_a_test">Create a test</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Create a simple test class in your test directory <code>src/test/java</code>.
 Register the extension adding those lines</p>
@@ -534,8 +539,10 @@ Register the extension adding those lines</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_execution">Execution</h3>
+</div>
+<div class="sect1">
+<h2 id="_execution">Execution</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Run the test as usual with your IDE or using the command <code>mvn test</code>.
 <strong>The first execution will fail</strong> and files with extension <code>.received.adoc</code> will be generate in <code>src/test/doc</code>,
@@ -556,8 +563,10 @@ Relaunch your test and it will pass.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_convert_to_html">Convert to HTML</h3>
+</div>
+<div class="sect1">
+<h2 id="_convert_to_html">Convert to HTML</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>You can see the <code>.adoc</code> file directly in a browser or with your IDE after installing a asciidoc viewer.
 But you may want to have an HTML file.</p>
@@ -630,7 +639,10 @@ includeblock: format an include as a block.
   --logo_height: 100px
   --shadow_color: #084f34;
   --title-color: #7a2518;
+
+  --media-small-header-height:50px;
 }
+
 
 #content {
    max-width: unset;
@@ -690,12 +702,19 @@ body {
     background: var(--bg1) !important;
 }
 
-h1, h2 {
+h1 {
     font-family: "Noto Serif","DejaVu Serif",serif;
     font-style: italic;
 
     color: var(--title-color);
     font-weight: 400;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 2em;
+    border-top: solid;
+    padding-top: 0.2em;
 }
 
 :not(pre):not([class^="L"]) > code {
@@ -723,26 +742,43 @@ h1, h2 {
 
 /* Menu */
 
-.sectlevel3 {
+.sectlevel2 {
     display: none;
     height: 0;
     opacity:0;
 }
 
-.sectlevel2>li {
+.sectlevel1>li {
     padding-left: 0.5em;
 }
-.sectlevel2>li.menu_open {
+.sectlevel1>li.menu_open {
     font-weight: bold;
     background-color: var(--bg1);
     padding: 0.5em;
 }
 
-.sectlevel2>li.menu_open .sectlevel3 {
+.sectlevel1>li.menu_open .sectlevel2 {
     display: block;
     height: auto;
     opacity:1;
     font-weight: normal;
+}
+
+@media (max-width: 800px) {
+  #toc {
+    display: none;
+  }
+  body.toc2 {
+    padding-left:0em;
+    padding-top:var(--media-small-header-height);
+  }
+
+  #project_home {
+    height: var(--media-small-header-height);
+    width: 100%;
+    padding: 2px;
+    text-align: center;
+  }
 }
 </style>
 <script type="text/javascript">
@@ -750,7 +786,7 @@ function toggleMenuOnClick(menuItem) {
     menuItem.getElementsByTagName("a")[0].addEventListener(
         'click',
         event => {
-            document.querySelectorAll(".sectlevel2 > li").forEach(function(element) {
+            document.querySelectorAll(".sectlevel1 > li").forEach(function(element) {
                 if (element != menuItem) {
                     element.classList.remove("menu_open");
                 }
@@ -762,11 +798,12 @@ function toggleMenuOnClick(menuItem) {
 
 window.addEventListener( "load",
     function() {
-        menusLevel2 = document.querySelectorAll(".sectlevel2 > li");
-        menusLevel2.forEach(toggleMenuOnClick);
+        menus = document.querySelectorAll(".sectlevel1 > li");
+        menus.forEach(toggleMenuOnClick);
      }
 );
 </script>
+</div>
 </div>
 </div>
 <style>

@@ -473,7 +473,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Create a test that write to a text file.</p>
 </li>
 <li>
-<p>Add to this file result of the execution.</p>
+<p>Put the result of the test execution in that text.</p>
 </li>
 <li>
 <p>Add the file to git.</p>
@@ -482,7 +482,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="paragraph">
 <p>You now have a non regression test in place.
-Each time you run this test, a change in the file is a regression.</p>
+Each time you run this test, a change in the file is a regression.
+You can use git to detect file changes and to see the differences with the previous version.</p>
 </div>
 <div class="paragraph">
 <p>By the time, you can add useful information to the output file and format it to be more readable.</p>
@@ -491,7 +492,7 @@ Each time you run this test, a change in the file is a regression.</p>
 <div class="sect2">
 <h3 id="_java_project">Java project</h3>
 <div class="paragraph">
-<p>If you want to experiment it in a java project, you can use library provided.</p>
+<p><a href="https://sfauvel.github.io/documentationtesting/documentationtesting">DocumentationTesting</a> is a java library which provides tools to easily implement this approach.</p>
 </div>
 <div class="sect3">
 <h4 id="_ready_to_test_project">Ready to test project</h4>
@@ -563,7 +564,7 @@ If it is the case, rename it with <code>approved.adoc</code> instead of <code>re
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="sect1">
-<h2 id="org_sfvl_demo_DemoTest_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h2>
+<h2 id="org_sfvl_demo_demotest_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>When adding two simple numbers, the java operator '+' should return the sum of them.</p>

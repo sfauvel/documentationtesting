@@ -436,190 +436,156 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body id="org_sfvl_doctesting_doctestingdocumentation" class="article toc2 toc-left">
 <div id="header">
 <h1>Doc testing documentation</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest">Approvals extension</a>
 <ul class="sectlevel2">
-<li><a href="#_approvals_extension">Approvals extension</a>
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_extension">Creating a test using ApprovalsExtension</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_displayname">Using displayName</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_a_custom_writer">Using a custom writer</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_nested_class">Nested class</a>
 <ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_extension">Creating a test using ApprovalsExtension</a></li>
-<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_displayName">Using displayName</a></li>
-<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_a_custom_writer">Using a custom writer</a></li>
-<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_nested_class">Nested class</a>
+<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest">Demo nested test</a>
 <ul class="sectlevel4">
-<li><a href="#_demo_nested_test">Demo nested test</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest_adding">Adding</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest_multiply">Multiply</a></li>
 </ul>
 </li>
-<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_document_with_all_tests_in_a_testclass">Document with all tests in a testclass</a>
+</ul>
+</li>
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_document_with_all_tests_in_a_testclass">Document with all tests in a testclass</a>
+<ul class="sectlevel3">
+<li><a href="#org_sfvl_samples_mytest">My test</a>
 <ul class="sectlevel4">
-<li><a href="#_my_test">My test</a></li>
+<li><a href="#org_sfvl_samples_mytest_test_a">Test A</a></li>
 </ul>
 </li>
-<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_failing_test_output">Failing test output</a></li>
 </ul>
 </li>
-<li><a href="#_failure_report">Failure report</a>
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_failing_test_output">Failing test output</a></li>
+</ul>
+</li>
+<li><a href="#org_sfvl_doctesting_junitextension_failurereportertest">Failure report</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_doctesting_junitextension_failurereportertest_report_when_files_are_differents">Report when files are differents</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_failurereportertest_report_when_files_are_identicals">Report when files are identicals</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_failurereportertest_received_file_shorter_than_approved_file">Received file shorter than approved file</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_failurereportertest_received_file_longer_than_approved_file">Received file longer than approved file</a></li>
+</ul>
+</li>
+<li><a href="#org_sfvl_doctesting_junitextension_findlambdamethodtest">Extract information from method reference</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_doctesting_junitextension_findlambdamethodtest_find_method_name">Find method name</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_findlambdamethodtest_find_method">Find method</a></li>
+</ul>
+</li>
+<li><a href="#org_sfvl_doctesting_utils_classfindertest">Class finder test</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_doctesting_utils_classfindertest_find_test_classes_in_a_package">Find test classes in a package</a></li>
+<li><a href="#org_sfvl_doctesting_utils_classfindertest_find_test_classes_in_a_package_with_filter">Find test classes in a package with filter</a></li>
+<li><a href="#org_sfvl_doctesting_utils_classfindertest_find_root_class_from_enclosing_class">Find root class from enclosing class</a></li>
+</ul>
+</li>
+<li><a href="#org_sfvl_doctesting_utils_classesordertest">Classes order test</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_doctesting_utils_classesordertest_in_order">In order</a></li>
+<li><a href="#org_sfvl_doctesting_utils_classesordertest_filter_methods_and_classes">Filter methods and classes</a></li>
+<li><a href="#org_sfvl_doctesting_utils_classesordertest_nested_class_using_outer_method">Nested class using outer method</a></li>
+</ul>
+</li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest">CodeExtractor</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode">Extract code</a>
 <ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_junitextension_FailureReporterTest_report_when_files_are_differents">Report when files are differents</a></li>
-<li><a href="#org_sfvl_doctesting_junitextension_FailureReporterTest_report_when_files_are_identicals">Report when files are identicals</a></li>
-<li><a href="#org_sfvl_doctesting_junitextension_FailureReporterTest_received_file_shorter_than_approved_file">Received file shorter than approved file</a></li>
-<li><a href="#org_sfvl_doctesting_junitextension_FailureReporterTest_received_file_longer_than_approved_file">Received file longer than approved file</a></li>
-</ul>
-</li>
-<li><a href="#_extract_information_from_method_reference">Extract information from method reference</a>
-<ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_junitextension_FindLambdaMethodTest_find_method_name">Find method name</a></li>
-<li><a href="#org_sfvl_doctesting_junitextension_FindLambdaMethodTest_find_method">Find method</a></li>
-</ul>
-</li>
-<li><a href="#_class_finder_test">Class finder test</a>
-<ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_utils_ClassFinderTest_find_test_classes_in_a_package">Find test classes in a package</a></li>
-<li><a href="#org_sfvl_doctesting_utils_ClassFinderTest_find_test_classes_in_a_package_with_filter">Find test classes in a package with filter</a></li>
-<li><a href="#org_sfvl_doctesting_utils_ClassFinderTest_find_root_class_from_enclosing_class">Find root class from enclosing class</a></li>
-</ul>
-</li>
-<li><a href="#_classes_order_test">Classes order test</a>
-<ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_utils_ClassesOrderTest_in_order">In order</a></li>
-<li><a href="#org_sfvl_doctesting_utils_ClassesOrderTest_filter_methods_and_classes">Filter methods and classes</a></li>
-<li><a href="#org_sfvl_doctesting_utils_ClassesOrderTest_nested_class_using_outer_method">Nested class using outer method</a></li>
-</ul>
-</li>
-<li><a href="#_codeextractor">CodeExtractor</a>
-<ul class="sectlevel3">
-<li><a href="#_extract_code">Extract code</a>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_a_class">Extract code of a class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_an_inner_class">Extract code of an inner class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_an_other_class_in_file">Extract code of a non public class in file</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_from_method">Extract code from method</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_part_of_code_from_method">Extract a part of code from method</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_part_of_code_from_file">Extract a part of code from a file</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_a_part_of_code_from_the_current_method">Extract a part of code from the current method</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode">Extract part of code</a>
 <ul class="sectlevel4">
-<li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_of_a_class">Extract code of a class</a></li>
-<li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_of_an_inner_class">Extract code of an inner class</a></li>
-<li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_of_an_other_class_in_file">Extract code of a non public class in file</a></li>
-<li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_from_method">Extract code from method</a></li>
-<li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_part_of_code_from_method">Extract a part of code from method</a></li>
-<li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_part_of_code_from_file">Extract a part of code from a file</a></li>
-<li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_a_part_of_code_from_the_current_method">Extract a part of code from the current method</a></li>
-<li><a href="#_extract_part_of_code">Extract part of code</a></li>
-</ul>
-</li>
-<li><a href="#_extract_comment">Extract comment</a>
-<ul class="sectlevel4">
-<li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_extract_class_comment">Extract class comment</a></li>
-<li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_extract_method_comment">Extract method comment</a></li>
-<li><a href="#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_bug_when_annotation_before_comment">Issue: comment not retrieve when an annotation is before the comment</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_with_same_beginning_of_another_tag">Tag with same beginning of another tag</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_beginning_with_same_outer_tag_name">Tag beginning with same outer tag name</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_beginning_with_same_inner_tag_name">Tag beginning with same inner tag name</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_configuration">Configuration</a>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcomment">Extract comment</a>
 <ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_utils_ConfigTest_default_values">Default values</a></li>
-<li><a href="#org_sfvl_doctesting_utils_ConfigTest_load_path_from_config_file">Configuration file</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_class_comment">Extract class comment</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_method_comment">Extract method comment</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcomment_bug_when_annotation_before_comment">Issue: comment not retrieve when an annotation is before the comment</a></li>
 </ul>
 </li>
-<li><a href="#_document_path">Document path</a>
+</ul>
+</li>
+<li><a href="#org_sfvl_doctesting_utils_configtest">Configuration</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_doctesting_utils_configtest_default_values">Default values</a></li>
+<li><a href="#org_sfvl_doctesting_utils_configtest_load_path_from_config_file">Configuration file</a></li>
+</ul>
+</li>
+<li><a href="#org_sfvl_doctesting_utils_docpathtest">Document path</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_doctesting_utils_docpathtest_available_paths_from_docpath">Available paths from DocPath</a></li>
+<li><a href="#org_sfvl_doctesting_utils_docpathtest_path_by_type">Path by type</a></li>
+<li><a href="#org_sfvl_doctesting_utils_docpathtest_path_by_type_with_method">Path by type with method</a></li>
+<li><a href="#org_sfvl_doctesting_utils_docpathtest_nested_class">Nested class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_docpathtest_make_path_independent_of_operating_system">Make path independent of operating system</a></li>
+<li><a href="#org_sfvl_doctesting_utils_docpathtest_methodtopath">Method 'toPath'</a>
 <ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_utils_DocPathTest_path_by_type">Path by type</a></li>
-<li><a href="#org_sfvl_doctesting_utils_DocPathTest_path_by_type_with_method">Path by type with method</a></li>
-<li><a href="#org_sfvl_doctesting_utils_DocPathTest_nested_class">Nested class</a></li>
-<li><a href="#org_sfvl_doctesting_utils_DocPathTest_make_path_independent_of_operating_system">Make path independent of operating system</a></li>
-<li><a href="#_method_topath">Method 'toPath'</a>
-<ul class="sectlevel4">
-<li><a href="#org_sfvl_doctesting_utils_DocPathTest_MethodToPath_path_from_a_package">Path from a package</a></li>
-<li><a href="#org_sfvl_doctesting_utils_DocPathTest_MethodToPath_path_from_a_class">Path from a class</a></li>
-<li><a href="#org_sfvl_doctesting_utils_DocPathTest_MethodToPath_path_from_a_nested_class">Path from a nested class</a></li>
-<li><a href="#org_sfvl_doctesting_utils_DocPathTest_MethodToPath_file_of_a_class">File of a class</a></li>
-<li><a href="#org_sfvl_doctesting_utils_DocPathTest_MethodToPath_file_of_a_nested_class">File of a nested class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_docpathtest_methodtopath_path_from_a_package">Path from a package</a></li>
+<li><a href="#org_sfvl_doctesting_utils_docpathtest_methodtopath_path_from_a_class">Path from a class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_docpathtest_methodtopath_path_from_a_nested_class">Path from a nested class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_docpathtest_methodtopath_file_of_a_class">File of a class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_docpathtest_methodtopath_file_of_a_nested_class">File of a nested class</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_docwriter">DocWriter</a>
+<li><a href="#org_sfvl_doctesting_utils_docwritertest">DocWriter</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_doctesting_utils_docwritertest_doc_writer_usage">Usage</a></li>
+<li><a href="#org_sfvl_doctesting_utils_docwritertest_doc_writer_with_a_class">Output with a class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_docwritertest_doc_writer_without_title">Hide title</a></li>
+<li><a href="#org_sfvl_doctesting_utils_docwritertest_format_title">Format title</a></li>
+<li><a href="#org_sfvl_doctesting_utils_docwritertest_add_description_using_comment">Add a description</a></li>
+</ul>
+</li>
+<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest">ParsedClassRepository</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_context">Context</a></li>
+<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment">Retrieve comment</a>
 <ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_utils_DocWriterTest_doc_writer_usage">DocWriter usage</a></li>
-<li><a href="#org_sfvl_doctesting_utils_DocWriterTest_doc_writer_with_a_class">DocWriter of a class</a></li>
-<li><a href="#org_sfvl_doctesting_utils_DocWriterTest_doc_writer_without_title">DocWriter without title</a></li>
-<li><a href="#org_sfvl_doctesting_utils_DocWriterTest_format_title">Format title</a></li>
-<li><a href="#org_sfvl_doctesting_utils_DocWriterTest_add_description_using_comment">Add description</a></li>
-<li><a href="#org_sfvl_doctesting_utils_DocWriterTest_title">Formatted title</a></li>
+<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_class">Retrieve comment of a class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method">Retrieve comment of a method</a></li>
+<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_local_class_defined_in_a_method">Retrieve comment of local class defined in a method</a></li>
+<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_parameter">Retrieve comment of a method with parameter</a></li>
+<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_parameter_with_scope">Retrieve comment of a method with parameter with scope</a></li>
+<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_list_parameter">Retrieve comment of a method with list parameter</a></li>
+<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_array_parameter">Retrieve comment of a method with array parameter</a></li>
 </ul>
 </li>
-<li><a href="#_parsedclassrepository">ParsedClassRepository</a>
+<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber">Retrieve line number</a>
 <ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_context">Context</a></li>
-<li><a href="#_retrieve_comment">Retrieve comment</a>
-<ul class="sectlevel4">
-<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_class">Retrieve comment of a class</a></li>
-<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method">Retrieve comment of a method</a></li>
-<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_local_class_defined_in_a_method">Retrieve comment of local class defined in a method</a></li>
-<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_parameter">Retrieve comment of a method with parameter</a></li>
-<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_parameter_with_scope">Retrieve comment of a method with parameter with scope</a></li>
-<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_list_parameter">Retrieve comment of a method with list parameter</a></li>
-<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_array_parameter">Retrieve comment of a method with array parameter</a></li>
+<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_class">Retrieve line of a class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_method">Retrieve line of a method</a></li>
 </ul>
 </li>
-<li><a href="#_retrieve_line_number">Retrieve line number</a>
-<ul class="sectlevel4">
-<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_class">Retrieve line of a class</a></li>
-<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_method">Retrieve line of a method</a></li>
-</ul>
-</li>
-<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_create_ParsedClassRepository">Create ParsedClassRepository</a>
-<ul class="sectlevel4">
+<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_create_parsedclassrepository">Create ParsedClassRepository</a>
+<ul class="sectlevel3">
 <li><a href="#_object_creation">Object creation</a></li>
 <li><a href="#_exception">Exception</a></li>
 </ul>
 </li>
-<li><a href="#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_parsed_classes_only_once">Parsed classes only once</a></li>
-</ul>
-</li>
-<li><a href="#_class_documentation_test">Class documentation test</a>
-<ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_writer_ClassDocumentationTest_default_class_documentation">Default test class documentation</a></li>
-<li><a href="#org_sfvl_doctesting_writer_ClassDocumentationTest_title_level">Title level</a></li>
-<li><a href="#org_sfvl_doctesting_writer_ClassDocumentationTest_customize_output">Customize output</a></li>
-<li><a href="#org_sfvl_doctesting_writer_ClassDocumentationTest_nested_class_documentation">Test class documentation with nested classes</a></li>
-</ul>
-</li>
-<li><a href="#_create_a_document">Create a document</a>
-<ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_writer_CreateADocument_simplest_way_to_create_a_document">Simplest way to create a document</a>
-<ul class="sectlevel4">
-<li><a href="#_my_title">My title</a></li>
-</ul>
-</li>
-<li><a href="#org_sfvl_doctesting_writer_CreateADocument_reuse_sub_parts_of_document">Reuse sub parts of document</a>
-<ul class="sectlevel4">
-<li><a href="#_my_title_2">My title</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_create_a_general_documentation">Create a general documentation</a>
-<ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_writer_DocumentationBuilderTest_simple_doc">Simple doc</a></li>
-<li><a href="#org_sfvl_doctesting_writer_DocumentationBuilderTest_simple_doc_with_a_subclass_of_DocumentationBuilder">Simple doc with a subclass of DocumentationBuilder</a></li>
-<li><a href="#_relativized_to_path">Relativized to path</a>
-<ul class="sectlevel4">
-<li><a href="#org_sfvl_doctesting_writer_DocumentationBuilderTest_RelativizedToPath_from_a_package">From a package</a></li>
-<li><a href="#org_sfvl_doctesting_writer_DocumentationBuilderTest_RelativizedToPath_from_a_path">From a path</a></li>
-</ul>
-</li>
-<li><a href="#org_sfvl_doctesting_writer_DocumentationBuilderTest_select_options">Select options</a></li>
-<li><a href="#org_sfvl_doctesting_writer_DocumentationBuilderTest_define_document_structure">Define document structure</a></li>
-<li><a href="#_check_class_for_structure">check_class_for_structure</a>
-<ul class="sectlevel4">
-<li><a href="#org_sfvl_doctesting_writer_DocumentationBuilderTest_check_class_for_structure_with_class_inherits_from_DocumentationBuilder">With class inherits from DocumentationBuilder</a></li>
-<li><a href="#org_sfvl_doctesting_writer_DocumentationBuilderTest_check_class_for_structure_with_class_not_inherits_from_DocumentationBuilder">With class not inherits from DocumentationBuilder</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_create_a_general_documentation_2">Create a general documentation</a>
-<ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_writer_MainDocumentationTest_by_default">By default</a></li>
-<li><a href="#org_sfvl_doctesting_writer_MainDocumentationTest_document_structure">Document structure</a></li>
-<li><a href="#org_sfvl_doctesting_writer_MainDocumentationTest_select_methods_to_add">Select methods to add</a></li>
+<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_parsed_classes_only_once">Parsed classes only once</a></li>
 </ul>
 </li>
 </ul>
@@ -634,28 +600,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#ApprovalsExtension">[ApprovalsExtension]</a>: JUnit extension to check document.</p>
+<p><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest">ApprovalsExtension</a>: JUnit extension to check document.</p>
 </li>
 <li>
-<p><a href="#_docwriter">DocWriter</a>: Store document before writting it.</p>
+<p><a href="#org_sfvl_doctesting_utils_docwritertest">DocWriter</a>: Store document before writting it.</p>
 </li>
 <li>
-<p><a href="#_codeextractor">CodeExtractor</a>: Help to extract information from code.</p>
+<p><a href="#org_sfvl_doctesting_utils_codeextractortest">CodeExtractor</a>: Help to extract information from code.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_approvals_extension">Approvals extension</h3>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_junitextension_approvalsextensiontest">Approvals extension</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>JUnit5 extension that verify written document matches with approved one.</p>
 </div>
 <div class="paragraph">
 <p>It checks that everything written during test is identical to the approved content.</p>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_extension">Creating a test using ApprovalsExtension</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_using_extension">Creating a test using ApprovalsExtension</h3>
 <div class="paragraph">
 <p>This is an example to create a simple test using <code>ApprovalsExtension</code>.</p>
 </div>
@@ -689,7 +656,7 @@ This extension will check that everything wrote using <code>doc.write</code> met
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>[#org_sfvl_samples_justone_OneTest_test_A]
+<pre>[#org_sfvl_samples_justone_onetest_test_a]
 = Test A
 
 In my *test*</pre>
@@ -717,8 +684,8 @@ The chapter content contains what was written using <code>doc.write</code>.</p>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_displayName">Using displayName</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_using_displayname">Using displayName</h3>
 <div class="paragraph">
 <p>You can use DisplayName annotation to customize test title.Test example using DisplayName</p>
 </div>
@@ -742,15 +709,15 @@ The chapter content contains what was written using <code>doc.write</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>[#org_sfvl_doctesting_junitextension_UsingDisplayNameTest_test_A]
+<pre>[#org_sfvl_doctesting_junitextension_usingdisplaynametest_test_a]
 = Title for this test
 
 In my *test*</pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_a_custom_writer">Using a custom writer</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_using_a_custom_writer">Using a custom writer</h3>
 <div class="paragraph">
 <p>It&#8217;s possible to give a specific DocWriter to <code>ApprovalsExtension</code>
 and modify what it will be written in the final document.</p>
@@ -770,14 +737,14 @@ and modify what it will be written in the final document.</p>
                 <span class="o">}</span>
 
                 <span class="nd">@Override</span>
-                <span class="kd">public</span> <span class="nc">String</span> <span class="nf">formatOutput</span><span class="o">(</span><span class="nc">String</span> <span class="n">displayName</span><span class="o">,</span> <span class="nc">Method</span> <span class="n">testMethod</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kd">public</span> <span class="nc">String</span> <span class="nf">formatOutput</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">,</span> <span class="nc">Method</span> <span class="n">testMethod</span><span class="o">)</span> <span class="o">{</span>
                     <span class="k">return</span> <span class="s">"// Add an header to the document\n"</span>
-                            <span class="o">+</span> <span class="kd">super</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span><span class="n">displayName</span><span class="o">,</span> <span class="n">testMethod</span><span class="o">);</span>
+                            <span class="o">+</span> <span class="kd">super</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span><span class="n">title</span><span class="o">,</span> <span class="n">testMethod</span><span class="o">);</span>
                 <span class="o">}</span>
 
                 <span class="nd">@Override</span>
-                <span class="kd">public</span> <span class="nc">String</span> <span class="nf">formatTitle</span><span class="o">(</span><span class="nc">String</span> <span class="n">displayName</span><span class="o">,</span> <span class="nc">Method</span> <span class="n">method</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">formatTitle</span><span class="o">(</span><span class="n">displayName</span><span class="o">,</span> <span class="n">method</span><span class="o">)</span> <span class="o">+</span> <span class="s">": Custom title"</span><span class="o">;</span>
+                <span class="kd">public</span> <span class="nc">String</span> <span class="nf">formatTitle</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">,</span> <span class="nc">Method</span> <span class="n">method</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">formatTitle</span><span class="o">(</span><span class="n">title</span><span class="o">,</span> <span class="n">method</span><span class="o">)</span> <span class="o">+</span> <span class="s">": Custom title"</span><span class="o">;</span>
                 <span class="o">}</span>
             <span class="o">}</span>
     <span class="o">);</span>
@@ -797,15 +764,15 @@ and modify what it will be written in the final document.</p>
 <div class="content">
 <pre>// Add an header to the document
 
-[#org_sfvl_samples_MyCustomWriterTest_test_A]
+[#org_sfvl_samples_mycustomwritertest_test_a]
 = Test A: Custom title
 
 In my *test* // Add a comment after each call to write</pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_nested_class">Nested class</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_nested_class">Nested class</h3>
 <div class="paragraph">
 <p>Nested class can be used to organize tests.
 Each nested class create a nested title.</p>
@@ -875,10 +842,12 @@ Each nested class create a nested title.</p>
 <div class="listingblock">
 <div class="title">Document generated</div>
 <div class="content">
-<pre>= Demo nested test
+<pre>[#org_sfvl_doctesting_junitextension_demonestedtest]
+= Demo nested test
 
 Demo of a simple usage to generate documentation.
 
+[#org_sfvl_doctesting_junitextension_demonestedtest_adding]
 == Adding
 
 Document of Addition operations.
@@ -887,6 +856,7 @@ include::_DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc[le
 
 include::_DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+2]
 
+[#org_sfvl_doctesting_junitextension_demonestedtest_multiply]
 == Multiply
 
 include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]</pre>
@@ -895,24 +865,24 @@ include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ad
 <div class="paragraph">
 <p><em>final rendering</em></p>
 </div>
-<div class="sect4 includeblock">
-<h5 id="_demo_nested_test">Demo nested test</h5>
+<div class="sect3 includeblock">
+<h4 id="org_sfvl_doctesting_junitextension_demonestedtest">Demo nested test</h4>
 <div class="paragraph">
 <p>Demo of a simple usage to generate documentation.</p>
 </div>
-<div class="sect5">
-<h6 id="_adding">Adding</h6>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_junitextension_demonestedtest_adding">Adding</h5>
 <div class="paragraph">
 <p>Document of Addition operations.</p>
 </div>
-<div class="sect6">
-<h7 id="org_sfvl_doctesting_junitextension_DemoNestedTest_Adding_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h7>
+<div class="sect5">
+<h6 id="org_sfvl_doctesting_junitextension_demonestedtest_adding_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h6>
 <div class="paragraph">
 <p>2 + 3 = 5</p>
 </div>
 </div>
-<div class="sect6">
-<h7 id="org_sfvl_doctesting_junitextension_DemoNestedTest_Adding_should_be_9_when_adding_2_3_and_4">Adding 3 simple numbers</h7>
+<div class="sect5">
+<h6 id="org_sfvl_doctesting_junitextension_demonestedtest_adding_should_be_9_when_adding_2_3_and_4">Adding 3 simple numbers</h6>
 <div class="paragraph">
 <p>A nested test.</p>
 </div>
@@ -921,10 +891,10 @@ include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ad
 </div>
 </div>
 </div>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_junitextension_demonestedtest_multiply">Multiply</h5>
 <div class="sect5">
-<h6 id="_multiply">Multiply</h6>
-<div class="sect6">
-<h7 id="org_sfvl_doctesting_junitextension_DemoNestedTest_Multiply_should_be_12_when_multiply_4_and_3">Multiply 2 simple numbers</h7>
+<h6 id="org_sfvl_doctesting_junitextension_demonestedtest_multiply_should_be_12_when_multiply_4_and_3">Multiply 2 simple numbers</h6>
 <div class="paragraph">
 <p>4 * 3 = 12</p>
 </div>
@@ -932,8 +902,8 @@ include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ad
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_document_with_all_tests_in_a_testclass">Document with all tests in a testclass</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_document_with_all_tests_in_a_testclass">Document with all tests in a testclass</h3>
 <div class="paragraph">
 <p>At the end of a test, a file is created including files generated on each test.</p>
 </div>
@@ -963,6 +933,7 @@ include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ad
 <div class="content">
 <pre>ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
+[#org_sfvl_samples_mytest]
 = My test
 
 include::_MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
@@ -971,18 +942,18 @@ include::_MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
 <div class="paragraph">
 <p><em>final rendering</em></p>
 </div>
-<div class="sect4 includeblock">
-<h5 id="_my_test">My test</h5>
-<div class="sect5">
-<h6 id="org_sfvl_samples_MyTest_test_A">Test A</h6>
+<div class="sect3 includeblock">
+<h4 id="org_sfvl_samples_mytest">My test</h4>
+<div class="sect4">
+<h5 id="org_sfvl_samples_mytest_test_a">Test A</h5>
 <div class="paragraph">
 <p>In my <strong>test</strong></p>
 </div>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_failing_test_output">Failing test output</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_failing_test_output">Failing test output</h3>
 <div class="paragraph">
 <p>When a test fails, the error is written in the final document.
 It&#8217;s help to understand and investigate on the problem.</p>
@@ -1011,7 +982,7 @@ It&#8217;s help to understand and investigate on the problem.</p>
 <div class="content">
 <pre>ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_samples_FailingTest_failing_test]
+[#org_sfvl_samples_failingtest_failing_test]
 = Failing test
 
 Some information before failure.
@@ -1044,7 +1015,7 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 </div>
 <div class="openblock includeblock">
 <div class="content">
-<div id="org_sfvl_samples_FailingTest_failing_test" class="paragraph">
+<div id="org_sfvl_samples_failingtest_failing_test" class="paragraph">
 <p><span class="title1">Failing test</span></p>
 </div>
 <div class="paragraph">
@@ -1066,10 +1037,12 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 </div>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_junitextension_failurereportertest">Failure report</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_failure_report">Failure report</h3>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_junitextension_FailureReporterTest_report_when_files_are_differents">Report when files are differents</h4>
+<h3 id="org_sfvl_doctesting_junitextension_failurereportertest_report_when_files_are_differents">Report when files are differents</h3>
 <div class="paragraph">
 <p>When the received file is not the same as the approved file,
 first different line is displayed on report.</p>
@@ -1106,8 +1079,8 @@ Footer approved</pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_junitextension_FailureReporterTest_report_when_files_are_identicals">Report when files are identicals</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_junitextension_failurereportertest_report_when_files_are_identicals">Report when files are identicals</h3>
 <div class="paragraph">
 <p>When the received file is identical to the approved file,
 it&#8217;s indicated it.
@@ -1136,8 +1109,8 @@ Description</pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_junitextension_FailureReporterTest_received_file_shorter_than_approved_file">Received file shorter than approved file</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_junitextension_failurereportertest_received_file_shorter_than_approved_file">Received file shorter than approved file</h3>
 <div class="paragraph">
 <p>When the received file is shorter than the approved file,
 We indicate that there is no more lines.</p>
@@ -1171,8 +1144,8 @@ Footer</pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_junitextension_FailureReporterTest_received_file_longer_than_approved_file">Received file longer than approved file</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_junitextension_failurereportertest_received_file_longer_than_approved_file">Received file longer than approved file</h3>
 <div class="paragraph">
 <p>When the received file is longer than the approved file,
 We indicate that there is no more lines.</p>
@@ -1207,13 +1180,15 @@ Description</pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_extract_information_from_method_reference">Extract information from method reference</h3>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_junitextension_findlambdamethodtest">Extract information from method reference</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>FindLambdaMethod class provides tools to find reference method name.</p>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_junitextension_FindLambdaMethodTest_find_method_name">Find method name</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_junitextension_findlambdamethodtest_find_method_name">Find method name</h3>
 <div class="paragraph">
 <p>It&#8217;s possible to extract method name from a method reference.</p>
 </div>
@@ -1233,9 +1208,26 @@ Description</pre>
 <div class="paragraph">
 <p>Method name: <strong>methodWithOneParameter</strong></p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">methodName</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">FindLambdaMethodTest:</span><span class="o">:</span><span class="n">methodThatIsAFunction</span><span class="o">);</span></code></pre>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_junitextension_FindLambdaMethodTest_find_method">Find method</h4>
+</div>
+<div class="paragraph">
+<p>Method name: <strong>methodThatIsAFunction</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">SerializableFunction</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">method</span> <span class="o">=</span> <span class="k">this</span><span class="o">::</span><span class="n">methodThatIsAFunction</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">methodName</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Method name: <strong>methodThatIsAFunction</strong></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_junitextension_findlambdamethodtest_find_method">Find method</h3>
 <div class="paragraph">
 <p>It&#8217;s possible to extract method from a method reference.</p>
 </div>
@@ -1259,10 +1251,12 @@ Description</pre>
 </div>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_utils_classfindertest">Class finder test</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_class_finder_test">Class finder test</h3>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_ClassFinderTest_find_test_classes_in_a_package">Find test classes in a package</h4>
+<h3 id="org_sfvl_doctesting_utils_classfindertest_find_test_classes_in_a_package">Find test classes in a package</h3>
 <div class="listingblock">
 <div class="title">Source code to find classes containing tests</div>
 <div class="content">
@@ -1284,8 +1278,8 @@ Description</pre>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_ClassFinderTest_find_test_classes_in_a_package_with_filter">Find test classes in a package with filter</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_classfindertest_find_test_classes_in_a_package_with_filter">Find test classes in a package with filter</h3>
 <div class="paragraph">
 <p>By default, all classes containing a test method are found.
 It&#8217;s possible to exclude some test methods because they are not relevant in the context.
@@ -1313,8 +1307,8 @@ If all test methods of a class are excluded, then the class will not be return a
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_ClassFinderTest_find_root_class_from_enclosing_class">Find root class from enclosing class</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_classfindertest_find_root_class_from_enclosing_class">Find root class from enclosing class</h3>
 <div class="listingblock">
 <div class="title">Class used</div>
 <div class="content">
@@ -1342,10 +1336,12 @@ Class&lt;?&gt; clazz = finder.getMainFileClass(FirstClass.SecondClass.ThirdClass
 </div>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_utils_classesordertest">Classes order test</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_classes_order_test">Classes order test</h3>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_ClassesOrderTest_in_order">In order</h4>
+<h3 id="org_sfvl_doctesting_utils_classesordertest_in_order">In order</h3>
 <div class="paragraph">
 <p>We retrieve names of methods and nested classes in the same order they appear in source file.</p>
 </div>
@@ -1406,8 +1402,8 @@ Class&lt;?&gt; clazz = finder.getMainFileClass(FirstClass.SecondClass.ThirdClass
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_ClassesOrderTest_filter_methods_and_classes">Filter methods and classes</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_classesordertest_filter_methods_and_classes">Filter methods and classes</h3>
 <div class="paragraph">
 <p>We can give filters to select methods and classes to return.</p>
 </div>
@@ -1448,8 +1444,8 @@ Class&lt;?&gt; clazz = finder.getMainFileClass(FirstClass.SecondClass.ThirdClass
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_ClassesOrderTest_nested_class_using_outer_method">Nested class using outer method</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_classesordertest_nested_class_using_outer_method">Nested class using outer method</h3>
 <div class="paragraph">
 <p>A nested class calling an outer method generate some special method that are not in source.
 Those methods should not be in sorted method list</p>
@@ -1482,16 +1478,18 @@ Those methods should not be in sorted method list</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_codeextractor">CodeExtractor</h3>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_utils_codeextractortest">CodeExtractor</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>It is often useful to retrieve information from the source code itself.
 This class provides utilities to extract pieces of code or comments.</p>
 </div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_codeextractortest_extractcode">Extract code</h3>
 <div class="sect3">
-<h4 id="_extract_code">Extract code</h4>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_of_a_class">Extract code of a class</h5>
+<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_a_class">Extract code of a class</h4>
 <div class="listingblock">
 <div class="title">How to extract code of a class</div>
 <div class="content">
@@ -1504,11 +1502,7 @@ This class provides utilities to extract pieces of code or comments.</p>
 <div class="listingblock">
 <div class="title">Source code to extract</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleClass</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"></code></pre>
 </div>
 </div>
 </div>
@@ -1528,15 +1522,15 @@ This class provides utilities to extract pieces of code or comments.</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_of_a_class ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_a_class ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_of_an_inner_class">Extract code of an inner class</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_an_inner_class">Extract code of an inner class</h4>
 <div class="listingblock">
 <div class="title">How to extract code of an inner class</div>
 <div class="content">
@@ -1548,11 +1542,7 @@ This class provides utilities to extract pieces of code or comments.</p>
 <div class="listingblock">
 <div class="title">Source code to extract</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">SimpleInnerClass</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"></code></pre>
 </div>
 </div>
 </div>
@@ -1572,15 +1562,15 @@ This class provides utilities to extract pieces of code or comments.</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_of_an_inner_class ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_an_inner_class ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_of_an_other_class_in_file">Extract code of a non public class in file</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_an_other_class_in_file">Extract code of a non public class in file</h4>
 <div class="paragraph">
 <p>It&#8217;s not possible to extract code of a non public class because it&#8217;s not possible to determine source file.
 To be able to extract it, we have to explicitly give source file.</p>
@@ -1625,7 +1615,10 @@ To be able to extract it, we have to explicitly give source file.</p>
 <div class="listingblock">
 <div class="title">Source code extracted</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">SubClassNestedWithCommentToExtract</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
+ * Comment of the subclass.
+ */</span>
+<span class="kd">class</span> <span class="nc">SubClassNestedWithCommentToExtract</span> <span class="o">{</span>
     <span class="cm">/**
      * Method comment in an inner class.
      */</span>
@@ -1655,15 +1648,15 @@ java.nio.file.NoSuchFileException: src/test/java/org/sfvl/doctesting/utils/Class
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_of_an_other_class_in_file ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_an_other_class_in_file ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_from_method">Extract code from method</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_from_method">Extract code from method</h4>
 <div class="paragraph">
 <p>Method source code can be retrived from his method object or from his class and his method name.
 It&#8217;s also possible to retrieve only the method body.</p>
@@ -1688,11 +1681,7 @@ It&#8217;s also possible to retrieve only the method body.</p>
 <div class="listingblock">
 <div class="title">Source code from file</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleClass</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"></code></pre>
 </div>
 </div>
 </div>
@@ -1755,11 +1744,7 @@ It&#8217;s also possible to retrieve only the method body.</p>
 <div class="listingblock">
 <div class="title">Source code from file</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleClass</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"></code></pre>
 </div>
 </div>
 </div>
@@ -1775,15 +1760,15 @@ It&#8217;s also possible to retrieve only the method body.</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_from_method ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_from_method ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_part_of_code_from_method">Extract a part of code from method</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_part_of_code_from_method">Extract a part of code from method</h4>
 <div class="paragraph">
 <p>To extract a part of a method, you can write a comment with a specific value
 that indicate beginining of the code to extract.
@@ -1891,15 +1876,15 @@ In that case, all parts matching the text will be returned.</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_part_of_code_from_method ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_part_of_code_from_method ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_part_of_code_from_file">Extract a part of code from a file</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_part_of_code_from_file">Extract a part of code from a file</h4>
 <div class="listingblock">
 <div class="title">How to extract part of a method code</div>
 <div class="content">
@@ -1930,15 +1915,15 @@ In that case, all parts matching the text will be returned.</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_part_of_code_from_file ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_part_of_code_from_file ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_a_part_of_code_from_the_current_method">Extract a part of code from the current method</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_a_part_of_code_from_the_current_method">Extract a part of code from the current method</h4>
 <div class="listingblock">
 <div class="title">How to extract code from the current method</div>
 <div class="content">
@@ -2008,20 +1993,20 @@ In that case, all parts matching the text will be returned.</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_a_part_of_code_from_the_current_method ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_a_part_of_code_from_the_current_method ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect4">
-<h5 id="_extract_part_of_code">Extract part of code</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode">Extract part of code</h4>
 <div class="paragraph">
 <p>We shows here some technical cases.</p>
 </div>
-<div class="sect5">
-<h6 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_with_same_beginning_of_another_tag">Tag with same beginning of another tag</h6>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_with_same_beginning_of_another_tag">Tag with same beginning of another tag</h5>
 <div class="paragraph">
 <p>Tag (MyCode) could be a subpart of another one (<strong>MyCode</strong>Before or <strong>MyCode</strong>After).</p>
 </div>
@@ -2064,15 +2049,15 @@ In that case, all parts matching the text will be returned.</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_with_same_beginning_of_another_tag ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_with_same_beginning_of_another_tag ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect5">
-<h6 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_beginning_with_same_outer_tag_name">Tag beginning with same outer tag name</h6>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_beginning_with_same_outer_tag_name">Tag beginning with same outer tag name</h5>
 <div class="paragraph">
 <p>Tag inside another one can be a subpart (MyCode)  of the global one (<strong>MyCode</strong>Global) .</p>
 </div>
@@ -2113,15 +2098,15 @@ In that case, all parts matching the text will be returned.</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_beginning_with_same_outer_tag_name ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_beginning_with_same_outer_tag_name ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect5">
-<h6 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_beginning_with_same_inner_tag_name">Tag beginning with same inner tag name</h6>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_beginning_with_same_inner_tag_name">Tag beginning with same inner tag name</h5>
 <div class="paragraph">
 <p>Tag inside (<strong>MyCodeGlobal</strong>Inside) another one can be an extension of an outside tag (MyCodeGlobal).</p>
 </div>
@@ -2162,7 +2147,7 @@ In that case, all parts matching the text will be returned.</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_beginning_with_same_inner_tag_name ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_beginning_with_same_inner_tag_name ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
@@ -2171,10 +2156,10 @@ In that case, all parts matching the text will be returned.</p>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_codeextractortest_extractcomment">Extract comment</h3>
 <div class="sect3">
-<h4 id="_extract_comment">Extract comment</h4>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_extract_class_comment">Extract class comment</h5>
+<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_class_comment">Extract class comment</h4>
 <div class="listingblock">
 <div class="title">How to extract comment of a class</div>
 <div class="content">
@@ -2300,15 +2285,15 @@ In that case, all parts matching the text will be returned.</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_extract_class_comment ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_class_comment ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_extract_method_comment">Extract method comment</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_method_comment">Extract method comment</h4>
 <div class="exampleblock inline">
 <div class="content">
 <div class="listingblock">
@@ -2439,15 +2424,15 @@ In that case, all parts matching the text will be returned.</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_extract_method_comment ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_method_comment ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_bug_when_annotation_before_comment">Issue: comment not retrieve when an annotation is before the comment</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcomment_bug_when_annotation_before_comment">Issue: comment not retrieve when an annotation is before the comment</h4>
 <div class="paragraph">
 <p>When there is an annotation before the class comment, the comment is not retrieve.
 This is an issue in the JavaParser we used (com.github.javaparser:javaparser-core:3.22.1).</p>
@@ -2478,7 +2463,7 @@ This is an issue in the JavaParser we used (com.github.javaparser:javaparser-cor
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_bug_when_annotation_before_comment ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcomment_bug_when_annotation_before_comment ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
@@ -2487,10 +2472,12 @@ This is an issue in the JavaParser we used (com.github.javaparser:javaparser-cor
 </div>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_utils_configtest">Configuration</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_configuration">Configuration</h3>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_ConfigTest_default_values">Default values</h4>
+<h3 id="org_sfvl_doctesting_utils_configtest_default_values">Default values</h3>
 <div class="paragraph">
 <p>By default, values are:</p>
 </div>
@@ -2511,8 +2498,8 @@ This is an issue in the JavaParser we used (com.github.javaparser:javaparser-cor
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_ConfigTest_load_path_from_config_file">Configuration file</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_configtest_load_path_from_config_file">Configuration file</h3>
 <div class="paragraph">
 <p>You can change those folders by creating a properties file named <code>docAsTest.properties</code> and put it in a resource folder.</p>
 </div>
@@ -2550,10 +2537,90 @@ DOC_PATH:source/docs</pre>
 </div>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_utils_docpathtest">Document path</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>One of the essential points to create a documentation, is links between files.
+It&#8217;s even more important with documentation as test.
+For a java method, there is the java file, the approved and received files, and the html file.
+We need to easily create paths to those files.
+We also need to reference one file from another one either to include it or to make a link to another page.</p>
+</div>
+<div class="paragraph">
+<p>This class helps to navigate between all that files.</p>
+</div>
 <div class="sect2">
-<h3 id="_document_path">Document path</h3>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_DocPathTest_path_by_type">Path by type</h4>
+<h3 id="org_sfvl_doctesting_utils_docpathtest_available_paths_from_docpath">Available paths from DocPath</h3>
+<div class="paragraph">
+<p><code>DocPath</code> contains the information defining the location of the item to be documented.
+It&#8217;s not a real path but just the location in the tree of documents.
+From this class, we can generate the real paths to the different kinds of associated documents.</p>
+</div>
+<div class="paragraph">
+<p>We can create a <code>DocPath</code> the code below (where <code>MyTest</code> is declared in package <code>org.sfvl.samples</code>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">clazz</span> <span class="o">=</span> <span class="nc">MyTest</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+<span class="kd">final</span> <span class="nc">DocPath</span> <span class="n">docPath</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocPath</span><span class="o">(</span><span class="n">clazz</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Kind of document</th>
+<th class="tableblock halign-left valign-top">Method called onePath.path()</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>page()</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/docs/org/sfvl/samples/MyTest.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">File to create a page in documentation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>approved()</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/docs/org/sfvl/samples/_MyTest.approved.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The approved file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>received()</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/docs/org/sfvl/samples/_MyTest.received.adoc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The received file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>test()</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/java/org/sfvl/samples/MyTest.java</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The java source file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>html()</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org/sfvl/samples/MyTest.html</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The final rendered file.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_docpathtest_path_by_type">Path by type</h3>
 <div class="paragraph">
 <p>DocPath is created with this code:</p>
 </div>
@@ -2615,7 +2682,7 @@ DOC_PATH:source/docs</pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>fullname()</p>
+<p>filename()</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MyTest.adoc</p></td>
 </tr>
@@ -2646,7 +2713,7 @@ DOC_PATH:source/docs</pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>fullname()</p>
+<p>filename()</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">_MyTest.approved.adoc</p></td>
 </tr>
@@ -2677,7 +2744,7 @@ DOC_PATH:source/docs</pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>fullname()</p>
+<p>filename()</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">_MyTest.received.adoc</p></td>
 </tr>
@@ -2708,7 +2775,7 @@ DOC_PATH:source/docs</pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>fullname()</p>
+<p>filename()</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MyTest.java</p></td>
 </tr>
@@ -2739,7 +2806,7 @@ DOC_PATH:source/docs</pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>fullname()</p>
+<p>filename()</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MyTest.adoc</p></td>
 </tr>
@@ -2757,7 +2824,7 @@ DOC_PATH:source/docs</pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="5"><div class="content"><div class="paragraph">
-<p><code>doc()</code></p>
+<p><code>html()</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">path()</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org/sfvl/samples/MyTest.html</p></td>
@@ -2770,7 +2837,7 @@ DOC_PATH:source/docs</pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>fullname()</p>
+<p>filename()</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MyTest.html</p></td>
 </tr>
@@ -2789,8 +2856,8 @@ DOC_PATH:source/docs</pre>
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_DocPathTest_path_by_type_with_method">Path by type with method</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_docpathtest_path_by_type_with_method">Path by type with method</h3>
 <div class="paragraph">
 <p>DocPath is created with this code:</p>
 </div>
@@ -2852,7 +2919,7 @@ DOC_PATH:source/docs</pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>fullname()</p>
+<p>filename()</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MyTest.test_A.adoc</p></td>
 </tr>
@@ -2883,7 +2950,7 @@ DOC_PATH:source/docs</pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>fullname()</p>
+<p>filename()</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">_MyTest.test_A.approved.adoc</p></td>
 </tr>
@@ -2914,7 +2981,7 @@ DOC_PATH:source/docs</pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>fullname()</p>
+<p>filename()</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">_MyTest.test_A.received.adoc</p></td>
 </tr>
@@ -2945,7 +3012,7 @@ DOC_PATH:source/docs</pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>fullname()</p>
+<p>filename()</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MyTest.test_A.java</p></td>
 </tr>
@@ -2963,7 +3030,7 @@ DOC_PATH:source/docs</pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" rowspan="5"><div class="content"><div class="paragraph">
-<p><code>doc()</code></p>
+<p><code>html()</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">path()</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org/sfvl/samples/MyTest.test_A.html</p></td>
@@ -2976,7 +3043,7 @@ DOC_PATH:source/docs</pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>fullname()</p>
+<p>filename()</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MyTest.test_A.html</p></td>
 </tr>
@@ -2995,8 +3062,8 @@ DOC_PATH:source/docs</pre>
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_DocPathTest_nested_class">Nested class</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_docpathtest_nested_class">Nested class</h3>
 <div class="paragraph">
 <p>Name for nested class <code>org.sfvl.doctesting.sample.MyClass$MySubClass</code> is <code>MyClass.MySubClass</code>.</p>
 </div>
@@ -3004,8 +3071,8 @@ DOC_PATH:source/docs</pre>
 <p>Name for method <code>doSomething</code> in nested class <code>org.sfvl.doctesting.sample.MyClass$MySubClass</code> is <code>MyClass.MySubClass.doSomething</code>.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_DocPathTest_make_path_independent_of_operating_system">Make path independent of operating system</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_docpathtest_make_path_independent_of_operating_system">Make path independent of operating system</h3>
 <div class="paragraph">
 <p>Path in asciidoc files must used '/' independently of operating system and file separator.</p>
 </div>
@@ -3023,10 +3090,10 @@ Otherwise, the test could fail when executed on another operating system.</p>
 <p><strong>asciiDocPath = src/main/java</strong></p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_docpathtest_methodtopath">Method 'toPath'</h3>
 <div class="sect3">
-<h4 id="_method_topath">Method 'toPath'</h4>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_DocPathTest_MethodToPath_path_from_a_package">Path from a package</h5>
+<h4 id="org_sfvl_doctesting_utils_docpathtest_methodtopath_path_from_a_package">Path from a package</h4>
 <div class="listingblock">
 <div class="title">Code</div>
 <div class="content">
@@ -3046,8 +3113,8 @@ Otherwise, the test could fail when executed on another operating system.</p>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_DocPathTest_MethodToPath_path_from_a_class">Path from a class</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_docpathtest_methodtopath_path_from_a_class">Path from a class</h4>
 <div class="listingblock">
 <div class="title">Code</div>
 <div class="content">
@@ -3067,8 +3134,8 @@ Otherwise, the test could fail when executed on another operating system.</p>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_DocPathTest_MethodToPath_path_from_a_nested_class">Path from a nested class</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_docpathtest_methodtopath_path_from_a_nested_class">Path from a nested class</h4>
 <div class="listingblock">
 <div class="title">Code</div>
 <div class="content">
@@ -3088,8 +3155,8 @@ Otherwise, the test could fail when executed on another operating system.</p>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_DocPathTest_MethodToPath_file_of_a_class">File of a class</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_docpathtest_methodtopath_file_of_a_class">File of a class</h4>
 <div class="listingblock">
 <div class="title">Code</div>
 <div class="content">
@@ -3109,8 +3176,8 @@ Otherwise, the test could fail when executed on another operating system.</p>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_DocPathTest_MethodToPath_file_of_a_nested_class">File of a nested class</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_docpathtest_methodtopath_file_of_a_nested_class">File of a nested class</h4>
 <div class="paragraph">
 <p>With a nested class, the file is that of the main class of the file.</p>
 </div>
@@ -3135,66 +3202,108 @@ Otherwise, the test could fail when executed on another operating system.</p>
 </div>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_utils_docwritertest">DocWriter</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_docwriter">DocWriter</h3>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_DocWriterTest_doc_writer_usage">DocWriter usage</h4>
+<h3 id="org_sfvl_doctesting_utils_docwritertest_doc_writer_usage">Usage</h3>
 <div class="paragraph">
 <p>DocWriter is just a buffer.
 Everything wrote in DocWriter will be returned when asking for output.
-By default, a title is added to the output.</p>
+The output is composed with a title, the comment of the method (without params).
+An id is also added above the title to be able to apply a specific style in the chapter if needed.</p>
+</div>
+<div class="listingblock">
+<div class="title">Method used</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">simple_method</span><span class="o">()</span> <span class="o">{</span>
+
+<span class="o">}</span></code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">DocWriter usage</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">();</span>
-<span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"Some text added to show DocWriter output."</span><span class="o">);</span>
+<span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span>
+        <span class="s">"Some text added to show DocWriter output."</span><span class="o">,</span>
+        <span class="s">"Multiple lines can be added."</span>
+<span class="o">);</span>
+
 <span class="kd">final</span> <span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span>
         <span class="s">"My title"</span><span class="o">,</span>
-        <span class="n">getClass</span><span class="o">().</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"method_demo"</span><span class="o">,</span> <span class="nc">TestInfo</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+        <span class="n">getClass</span><span class="o">().</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"simple_method"</span><span class="o">)</span>
 <span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="literalblock">
 <div class="title">Output provided</div>
 <div class="content">
-<pre>[#org_sfvl_doctesting_utils_DocWriterTest_method_demo]
+<pre>[#org_sfvl_doctesting_utils_docwritertest_simple_method]
 = My title
 
-This method shows what kind of output is provided.
-
-Some text added to show DocWriter output.</pre>
+Some text added to show DocWriter output.
+Multiple lines can be added.</pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_DocWriterTest_doc_writer_with_a_class">DocWriter of a class</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_docwritertest_doc_writer_with_a_class">Output with a class</h3>
 <div class="paragraph">
 <p>DocWriter is also used to format output of a test class.
-What is wrote on DocWriter is not used in this case.</p>
+In that case, we add a title and include all test files of the class.
+What is written on DocWriter is not used in this case.</p>
+</div>
+<div class="listingblock">
+<div class="title">Class used</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyTestWithTests</span> <span class="o">{</span>
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_B</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_C</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+<span class="o">}</span></code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">DocWriter usage</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">();</span>
-<span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"Some text added to show DocWriter output."</span><span class="o">);</span>
-<span class="kd">final</span> <span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span><span class="nc">MyTest</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
+
+<span class="kd">final</span> <span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">clazz</span> <span class="o">=</span> <span class="nc">MyTestWithTests</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span><span class="n">clazz</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="literalblock">
 <div class="title">Output provided</div>
 <div class="content">
-<pre>= My test
+<pre>[#org_sfvl_samples_mytestwithtests]
+= My test with tests
 
-include::_MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
+include::_MyTestWithTests.test_A.approved.adoc[leveloffset=+1]
+
+include::_MyTestWithTests.test_B.approved.adoc[leveloffset=+1]
+
+include::_MyTestWithTests.test_C.approved.adoc[leveloffset=+1]</pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_DocWriterTest_doc_writer_without_title">DocWriter without title</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_docwritertest_doc_writer_without_title">Hide title</h3>
 <div class="paragraph">
 <p>If you don&#8217;t want the default title in the generated file, add @NoTitle annotation.
-It can be useful when you want to include this file in another test for example.</p>
+It can be useful when you want to include this file in another test
+that have its own title for example.</p>
 </div>
 <div class="listingblock">
 <div class="title">Test with NoTitle annotation</div>
@@ -3214,7 +3323,7 @@ It can be useful when you want to include this file in another test for example.
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">();</span>
 <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"Some text added to show DocWriter output."</span><span class="o">);</span>
 <span class="kd">final</span> <span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span>
-        <span class="s">"Do not display this title"</span><span class="o">,</span>
+        <span class="s">"This title will not be displayed"</span><span class="o">,</span>
         <span class="nc">MyTestWithoutTitle</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"my_method"</span><span class="o">)</span>
 <span class="o">);</span></code></pre>
 </div>
@@ -3226,137 +3335,165 @@ It can be useful when you want to include this file in another test for example.
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_DocWriterTest_format_title">Format title</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_docwritertest_format_title">Format title</h3>
 <div class="paragraph">
-<p>When display name is different from test method name, displayName is used as title.</p>
-</div>
-<div class="paragraph">
-<p>Calling formatOutput with DisplayName="My title" and Method=format_title provides</p>
-</div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>= My title</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>When display name is the same as test method name, name is reformatted.</p>
-</div>
-<div class="paragraph">
-<p>Calling formatOutput with DisplayName="format_title()" and Method=format_title provides</p>
-</div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>= Format title</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Test method could have TestInfo parameter.</p>
-</div>
-<div class="paragraph">
-<p>Calling formatOutput with DisplayName="test_method_with_test_info(TestInfo)" and Method=test_method_with_test_info provides</p>
-</div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>= Test method with test info</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_DocWriterTest_add_description_using_comment">Add description</h4>
-<div class="paragraph">
-<p>When test method had a comment, it&#8217;s written after title.</p>
+<p>When a title is specified, it is used as title.</p>
 </div>
 <div class="listingblock">
-<div class="title">Test example with comment on method</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">MyTestWithComment</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">docWriter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">();</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">testMethod</span> <span class="o">=</span> <span class="nc">DocWriterTest</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"format_title"</span><span class="o">);</span>
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="n">docWriter</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span><span class="s">"My title"</span><span class="o">,</span> <span class="n">testMethod</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[#org_sfvl_doctesting_utils_docwritertest_format_title]
+= My title</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When a title is not specified, title comes from the method name or the class name after some formatting
+ (remove '_', uppercase first letter).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">testMethod</span> <span class="o">=</span> <span class="nc">DocWriterTest</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"format_title"</span><span class="o">);</span>
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">method_output</span> <span class="o">=</span> <span class="n">docWriter</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span><span class="n">testMethod</span><span class="o">);</span>
+
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">class_output</span> <span class="o">=</span> <span class="n">docWriter</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span><span class="nc">MyTest</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Format title from method name</div>
+<div class="content">
+<pre>[#org_sfvl_doctesting_utils_docwritertest_format_title]
+= Format title</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Format title from class name</div>
+<div class="content">
+<pre>[#org_sfvl_samples_mytest]
+= My test
+
+include::_MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_docwritertest_add_description_using_comment">Add a description</h3>
+<div class="paragraph">
+<p>A description can be added after the title using the Javadoc.
+It can be done with the method javadoc or the class javadoc.</p>
+</div>
+<div class="listingblock">
+<div class="title">Class used</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
+ * My comment for MyTestComment
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyTestWithComment</span> <span class="o">{</span>
     <span class="nd">@RegisterExtension</span>
-    <span class="kd">static</span> <span class="nc">ApprovalsExtension</span> <span class="n">extension</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ApprovalsExtension</span><span class="o">(</span><span class="n">docWriter</span><span class="o">);</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
 
     <span class="cm">/**
      * To decribe a method, you can add a comment.
      * It will be added under title.
      */</span>
     <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testA</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">docWriter</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
     <span class="o">}</span>
 
 <span class="o">}</span></code></pre>
 </div>
 </div>
-<div class="sidebarblock">
+<div class="listingblock">
+<div class="title">DocWriter usage</div>
 <div class="content">
-<div id="org_sfvl_doctesting_utils_DocWriterTest_MyTestWithComment_testA" class="paragraph">
-<p>= TestA</p>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">();</span>
+
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">method_output</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span>
+        <span class="s">"My title"</span><span class="o">,</span>
+        <span class="nc">MyTestWithComment</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"test_A"</span><span class="o">)</span>
+<span class="o">);</span>
+
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">class_output</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span><span class="nc">MyTestWithComment</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="title">Output provided with method</div>
+<div class="content">
+<pre>[#org_sfvl_samples_mytestwithcomment_test_a]
+= My title
+
+To decribe a method, you can add a comment.
+It will be added under title.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="title">Output provided with class</div>
+<div class="content">
+<pre>[#org_sfvl_samples_mytestwithcomment]
+= My test with comment
+
+My comment for MyTestComment
+
+include::_MyTestWithComment.test_A.approved.adoc[leveloffset=+1]</pre>
+</div>
 </div>
 <div class="paragraph">
-<p>To decribe a method, you can add a comment.
-It will be added under title.</p>
+<p>If we want to add description of an other class (class under test for example),
+we can use <code>ClassToDocument</code> to define the class containing the description we want.
+It can be combine with the description on the test class.</p>
+</div>
+<div class="listingblock">
+<div class="title">Test class used</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
+ * Description of the test class.
+ */</span>
+<span class="nd">@ClassToDocument</span><span class="o">(</span><span class="n">clazz</span> <span class="o">=</span> <span class="nc">ClassUnderTest</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyTestWithClassToDocument</span> <span class="o">{</span>
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Class under test with description</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
+ * Description of the class ClassUnderTest.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClassUnderTest</span> <span class="o">{</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="title">Output provided</div>
+<div class="content">
+<pre>[#org_sfvl_samples_mytestwithclasstodocument]
+= My test with class to document
+
+Description of the class ClassUnderTest.
+
+Description of the test class.
+
+include::_MyTestWithClassToDocument.test_A.approved.adoc[leveloffset=+1]</pre>
 </div>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_DocWriterTest_title">Formatted title</h4>
-<div class="paragraph">
-<p>Return the name to use as title from a test method.
-It returns the value specified with <em>DisplayName</em> annotation.
-If annotation is not present, this is the method name that will be returned
-after some test formatting (remove '_', uppercase first letter).</p>
 </div>
-<div class="paragraph">
-<p>It&#8217;s based on value return by <em>displayName</em> method.
-It returns either DisplayName annotation value or method name.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Display name</th>
-<th class="tableblock halign-left valign-top">Method name</th>
-<th class="tableblock halign-left valign-top">Title</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Get display name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Get display name</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title()</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Simple method to format title</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">display_name_is_not_method_name()</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">simple_method_to_format_title</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">display_name_is_not_method_name()</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">test_method_with_test_info(TestInfo)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">test_method_with_test_info</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Test method with test info</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_parsedclassrepository">ParsedClassRepository</h3>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_utils_parsedclassrepositorytest">ParsedClassRepository</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Extract information from source code.</p>
 </div>
@@ -3364,8 +3501,8 @@ It returns either DisplayName annotation value or method name.</p>
 <p>Extraction from method is a naive implementation.
 We compare only class name without checking the scope (package).</p>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_context">Context</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_context">Context</h3>
 <div class="paragraph">
 <p>Exemples of this chapter use the following class
 .Class from which information is extracted</p>
@@ -3466,17 +3603,17 @@ We compare only class name without checking the scope (package).</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_context ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_context ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment">Retrieve comment</h3>
 <div class="sect3">
-<h4 id="_retrieve_comment">Retrieve comment</h4>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_class">Retrieve comment of a class</h5>
+<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_class">Retrieve comment of a class</h4>
 <div class="listingblock inline">
 <div class="title">How to extract comment</div>
 <div class="content">
@@ -3490,15 +3627,15 @@ We compare only class name without checking the scope (package).</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_class ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_class ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method">Retrieve comment of a method</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method">Retrieve comment of a method</h4>
 <div class="listingblock inline">
 <div class="title">How to extract comment</div>
 <div class="content">
@@ -3514,15 +3651,15 @@ We compare only class name without checking the scope (package).</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_local_class_defined_in_a_method">Retrieve comment of local class defined in a method</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_local_class_defined_in_a_method">Retrieve comment of local class defined in a method</h4>
 <div class="paragraph">
 <p>We are not able to deal with local classes(those defined in method).</p>
 </div>
@@ -3547,15 +3684,15 @@ We compare only class name without checking the scope (package).</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_local_class_defined_in_a_method ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_local_class_defined_in_a_method ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_parameter">Retrieve comment of a method with parameter</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_parameter">Retrieve comment of a method with parameter</h4>
 <div class="listingblock inline">
 <div class="title">How to extract comment</div>
 <div class="content">
@@ -3571,15 +3708,15 @@ We compare only class name without checking the scope (package).</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_parameter ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_parameter ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_parameter_with_scope">Retrieve comment of a method with parameter with scope</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_parameter_with_scope">Retrieve comment of a method with parameter with scope</h4>
 <div class="listingblock inline">
 <div class="title">How to extract comment</div>
 <div class="content">
@@ -3595,15 +3732,15 @@ We compare only class name without checking the scope (package).</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_parameter_with_scope ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_parameter_with_scope ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_list_parameter">Retrieve comment of a method with list parameter</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_list_parameter">Retrieve comment of a method with list parameter</h4>
 <div class="listingblock inline">
 <div class="title">How to extract comment</div>
 <div class="content">
@@ -3619,15 +3756,15 @@ We compare only class name without checking the scope (package).</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_list_parameter ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_list_parameter ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_array_parameter">Retrieve comment of a method with array parameter</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_array_parameter">Retrieve comment of a method with array parameter</h4>
 <div class="listingblock inline">
 <div class="title">How to extract comment</div>
 <div class="content">
@@ -3643,7 +3780,7 @@ We compare only class name without checking the scope (package).</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_array_parameter ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_array_parameter ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
@@ -3651,10 +3788,10 @@ We compare only class name without checking the scope (package).</p>
 </style>
 </div>
 </div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber">Retrieve line number</h3>
 <div class="sect3">
-<h4 id="_retrieve_line_number">Retrieve line number</h4>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_class">Retrieve line of a class</h5>
+<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_class">Retrieve line of a class</h4>
 <div class="listingblock">
 <div class="title">How to get the first line of a class</div>
 <div class="content">
@@ -3665,15 +3802,15 @@ We compare only class name without checking the scope (package).</p>
 <p>Line found: <strong>8</strong></p>
 </div>
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_class ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_class ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_method">Retrieve line of a method</h5>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_method">Retrieve line of a method</h4>
 <div class="listingblock">
 <div class="title">How to get the first line of a method</div>
 <div class="content">
@@ -3685,7 +3822,7 @@ We compare only class name without checking the scope (package).</p>
 <p>Line found: <strong>13</strong></p>
 </div>
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_method ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_method ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
@@ -3693,8 +3830,8 @@ We compare only class name without checking the scope (package).</p>
 </style>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_create_ParsedClassRepository">Create ParsedClassRepository</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_create_parsedclassrepository">Create ParsedClassRepository</h3>
 <div class="paragraph">
 <p>We can build a ParsedClassRepository with several paths.
 When path does not exist, an Exception was thrown.
@@ -3702,8 +3839,8 @@ Empty path will not be added.
 When you do not have one of the default directories,
 you can set it with an empty value to not throw an exception.</p>
 </div>
-<div class="sect4">
-<h5 id="_object_creation">Object creation</h5>
+<div class="sect3">
+<h4 id="_object_creation">Object creation</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nc">ParsedClassRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParsedClassRepository</span><span class="o">(</span>
@@ -3728,8 +3865,8 @@ you can set it with an empty value to not throw an exception.</p>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_exception">Exception</h5>
+<div class="sect3">
+<h4 id="_exception">Exception</h4>
 <div class="listingblock">
 <div class="title">java.lang.IllegalArgumentException: Only directories are allowed as root path: src/UNKNOWN/java</div>
 <div class="content">
@@ -3739,7 +3876,7 @@ you can set it with an empty value to not throw an exception.</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_create_ParsedClassRepository ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_create_parsedclassrepository ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
@@ -3747,8 +3884,8 @@ you can set it with an empty value to not throw an exception.</p>
 </style>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_ParsedClassRepositoryTest_parsed_classes_only_once">Parsed classes only once</h4>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_parsed_classes_only_once">Parsed classes only once</h3>
 <div class="paragraph">
 <p>The <code>ParsedClassRepository</code> have a cache to avoid parsing twice the same class.</p>
 </div>
@@ -3817,771 +3954,12 @@ you can set it with an empty value to not throw an exception.</p>
 </div>
 </div>
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_parsed_classes_only_once ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_parsed_classes_only_once ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;
 }
 </style>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_class_documentation_test">Class documentation test</h3>
-<div class="paragraph">
-<p>Generate a documentation of a test class aggregating approved method files.</p>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_writer_ClassDocumentationTest_default_class_documentation">Default test class documentation</h4>
-<div class="listingblock">
-<div class="title">Code used</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">ClassDocumentation</span> <span class="n">defaultDocumentation</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ClassDocumentation</span><span class="o">();</span>
-<span class="kd">final</span> <span class="nc">String</span> <span class="n">defaultContent</span> <span class="o">=</span> <span class="n">defaultDocumentation</span><span class="o">.</span><span class="na">getClassDocumentation</span><span class="o">(</span>
-        <span class="nc">InMainDocTest</span><span class="o">.</span><span class="na">class</span>                                              // <b class="conum">(1)</b>
-<span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>Class to document</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="title">Document generated</div>
-<div class="content">
-<pre class="rouge highlight"><code>= Title for the document
-
-Class comment is added to description.
-
-include::_InMainDocTest.testA.approved.adoc[leveloffset=+1]
-
-include::_InMainDocTest.testB.approved.adoc[leveloffset=+1]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Document generated from a class has class name(or DisplayName) as title.
-The class comment is used as description text under the title.
-An include instruction is added for each method specified.</p>
-</div>
-<div class="listingblock">
-<div class="title">Test class used to in this examples</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
- * Class comment is added to description.
- */</span>
-<span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Title for the document"</span><span class="o">)</span>
-<span class="kd">class</span> <span class="nc">InMainDocTest</span> <span class="o">{</span>
-    <span class="nd">@RegisterExtension</span>
-    <span class="kd">static</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
-
-    <span class="nd">@Test</span>
-    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Title for this test"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testA</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Test</span>
-    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Title for this test"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testB</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_writer_ClassDocumentationTest_title_level">Title level</h4>
-<div class="paragraph">
-<p>We can define the title level.</p>
-</div>
-<div class="listingblock">
-<div class="title">Code used</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">ClassDocumentation</span> <span class="n">defaultDocumentation</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ClassDocumentation</span><span class="o">();</span>
-
-<span class="kd">final</span> <span class="nc">String</span> <span class="n">defaultContent</span> <span class="o">=</span> <span class="n">defaultDocumentation</span><span class="o">.</span><span class="na">getClassDocumentation</span><span class="o">(</span>
-        <span class="nc">InMainDocTest</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="mi">3</span><span class="o">);</span>   // <b class="conum">(1)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>Level used for title</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="title">Title generated with a specific level</div>
-<div class="content">
-<pre class="rouge highlight"><code>=== Title for the document
-
-Class comment is added to description.
-
-include::_InMainDocTest.testA.approved.adoc[leveloffset=+3]
-
-include::_InMainDocTest.testB.approved.adoc[leveloffset=+3]</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_writer_ClassDocumentationTest_customize_output">Customize output</h4>
-<div class="paragraph">
-<p>Title and description could be changed by overriding the appropriate methods.</p>
-</div>
-<div class="listingblock">
-<div class="title">Default document generated</div>
-<div class="content">
-<pre class="rouge highlight"><code>= Title for the document
-
-Class comment is added to description.
-
-include::_InMainDocTest.testA.approved.adoc[leveloffset=+1]
-
-include::_InMainDocTest.testB.approved.adoc[leveloffset=+1]</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">ClassDocumentation methods overwritten</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@Override</span>
-<span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getTestClassTitle</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">classToDocument</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="s">"Title from getTestClassTitle method "</span> <span class="o">+</span> <span class="n">classToDocument</span><span class="o">.</span><span class="na">getSimpleName</span><span class="o">();</span>
-<span class="o">}</span>
-
-<span class="nd">@Override</span>
-<span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getDescription</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">classToDocument</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="s">"Description from getDescription method "</span> <span class="o">+</span> <span class="n">classToDocument</span><span class="o">.</span><span class="na">getSimpleName</span><span class="o">();</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Custom document generated</div>
-<div class="content">
-<pre class="rouge highlight"><code>= Title from getTestClassTitle method InMainDocTest
-
-Description from getDescription method InMainDocTest
-
-include::_InMainDocTest.testA.approved.adoc[leveloffset=+1]
-
-include::_InMainDocTest.testB.approved.adoc[leveloffset=+1]</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_writer_ClassDocumentationTest_nested_class_documentation">Test class documentation with nested classes</h4>
-<div class="listingblock">
-<div class="title">Code used</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">ClassDocumentation</span> <span class="n">defaultDocumentation</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ClassDocumentation</span><span class="o">();</span>
-
-<span class="kd">final</span> <span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">testClass</span> <span class="o">=</span> <span class="n">ClassDocumentationTest_DemoNestedTest</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
-<span class="kd">final</span> <span class="nc">String</span> <span class="n">defaultContent</span> <span class="o">=</span> <span class="n">defaultDocumentation</span><span class="o">.</span><span class="na">getClassDocumentation</span><span class="o">(</span><span class="n">testClass</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Document generated</div>
-<div class="content">
-<pre class="rouge highlight"><code>= Class documentation test_ demo nested test
-
-Demo of a simple usage to generate documentation.
-
-== Adding
-
-Document of Addition operations.
-
-include::_ClassDocumentationTest_DemoNestedTest.Adding.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+2]
-
-include::_ClassDocumentationTest_DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+2]
-
-=== Adding negative number
-
-Addition negative numbers.
-
-include::_ClassDocumentationTest_DemoNestedTest.Adding.AddingNegativeNumber.should_be_minus_8_when_adding_minus_3_and_minus_5.approved.adoc[leveloffset=+3]
-
-include::_ClassDocumentationTest_DemoNestedTest.method_between_two_nested_classes.approved.adoc[leveloffset=+1]
-
-== Multiply
-
-include::_ClassDocumentationTest_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Test example using <code>ApprovalsExtension</code></div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_create_a_document">Create a document</h3>
-<div class="paragraph">
-<p>DocumentationBuilder provides an easy way to create a document.
-It&#8217;s useful to creates pages with a free structure in which we can select files to include.</p>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_writer_CreateADocument_simplest_way_to_create_a_document">Simplest way to create a document</h4>
-<div class="paragraph">
-<p>Creating a document is just writing a file.
-We can use a <a href="https://en.wikipedia.org/wiki/Markup_language">markup language</a> to easily writing a formatted document.</p>
-</div>
-<div class="listingblock">
-<div class="title">Usage</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">MyDocument</span> <span class="o">{</span>
-    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">content</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nc">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">"\n"</span><span class="o">,</span>
-                <span class="s">"= My title"</span><span class="o">,</span>
-                <span class="s">"Text of the document"</span>
-        <span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="k">new</span> <span class="nf">Document</span><span class="o">(</span><span class="k">new</span> <span class="nc">MyDocument</span><span class="o">().</span><span class="na">content</span><span class="o">()).</span><span class="na">saveAs</span><span class="o">(</span><span class="n">outputFile</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Document generated</div>
-<div class="content">
-<pre>= My title
-Text of the document</pre>
-</div>
-</div>
-<div class="paragraph">
-<p><em>final rendering</em></p>
-</div>
-<div class="sect4 includeblock">
-<h5 id="_my_title">My title</h5>
-<div class="paragraph">
-<p>Text of the document</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_writer_CreateADocument_reuse_sub_parts_of_document">Reuse sub parts of document</h4>
-<div class="paragraph">
-<p>To build a document, we can reuse some code that generate a part of document.
-To do that, we can use:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>a method in the same class</p>
-</li>
-<li>
-<p>use another class</p>
-</li>
-<li>
-<p>a lambda</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Usage</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">Header</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Formatter</span> <span class="n">formatter</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">Header</span><span class="o">(</span><span class="nc">Formatter</span> <span class="n">formatter</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">formatter</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">content</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">formatter</span><span class="o">.</span><span class="na">paragraph</span><span class="o">(</span>
-                <span class="s">":toc: left"</span><span class="o">,</span>
-                <span class="s">":nofooter:"</span><span class="o">,</span>
-                <span class="s">":stem:"</span>
-        <span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="kd">class</span> <span class="nc">MyDocument</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="nc">Formatter</span> <span class="n">formatter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AsciidocFormatter</span><span class="o">();</span>
-
-    <span class="kd">private</span> <span class="nc">Function</span><span class="o">&lt;</span><span class="nc">Formatter</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">title</span> <span class="o">=</span> <span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span><span class="o">.</span><span class="na">title</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">"My title"</span><span class="o">);</span>
-
-    <span class="kd">private</span> <span class="nc">String</span> <span class="nf">description</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="s">"Text of the document"</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">content</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nc">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">"\n"</span><span class="o">,</span>
-                <span class="c1">// Using another class.</span>
-                <span class="k">new</span> <span class="nf">Header</span><span class="o">(</span><span class="n">formatter</span><span class="o">).</span><span class="na">content</span><span class="o">(),</span>
-                <span class="c1">// Using a lambda</span>
-                <span class="n">title</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">formatter</span><span class="o">),</span>
-                <span class="c1">// Using a method in the same class.</span>
-                <span class="n">description</span><span class="o">()</span>
-        <span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="k">new</span> <span class="nf">Document</span><span class="o">(</span><span class="k">new</span> <span class="nc">MyDocument</span><span class="o">().</span><span class="na">content</span><span class="o">()).</span><span class="na">saveAs</span><span class="o">(</span><span class="n">outputFile</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Document generated</div>
-<div class="content">
-<pre>:toc: left
-:nofooter:
-:stem:
-
-
-
-= My title
-
-Text of the document</pre>
-</div>
-</div>
-<div class="paragraph">
-<p><em>final rendering</em></p>
-</div>
-<div class="sect4 includeblock">
-<h5 id="_my_title_2">My title</h5>
-<div class="paragraph">
-<p>Text of the document</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_create_a_general_documentation">Create a general documentation</h3>
-<div class="paragraph">
-<p>You can use the DocumentationBuilder class to generate a documentation.
-You can aggregate other documentations and in particular, those generated from test classes.</p>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_writer_DocumentationBuilderTest_simple_doc">Simple doc</h4>
-<div class="listingblock">
-<div class="title">Usage</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Class</span><span class="o">[]</span> <span class="n">classesToAdd</span> <span class="o">=</span> <span class="o">{</span>
-        <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">doctesting</span><span class="o">.</span><span class="na">sample</span><span class="o">.</span><span class="na">basic</span><span class="o">.</span><span class="na">FirstTest</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">doctesting</span><span class="o">.</span><span class="na">sample</span><span class="o">.</span><span class="na">basic</span><span class="o">.</span><span class="na">SecondTest</span><span class="o">.</span><span class="na">class</span>
-<span class="o">};</span>
-
-<span class="nc">DocumentationBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocumentationBuilder</span><span class="o">(</span><span class="s">"My title"</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">withClassesToInclude</span><span class="o">(</span><span class="n">classesToAdd</span><span class="o">);</span>
-
-<span class="nc">String</span> <span class="n">document</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Document generated</div>
-<div class="content">
-<pre>:toc: left
-:nofooter:
-:stem:
-= My title
-
-include::org/sfvl/doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
-
-include::org/sfvl/doctesting/sample/basic/SecondTest.adoc[leveloffset=+1]</pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_writer_DocumentationBuilderTest_simple_doc_with_a_subclass_of_DocumentationBuilder">Simple doc with a subclass of DocumentationBuilder</h4>
-<div class="paragraph">
-<p>We can subclass a DocumentationBuilder to redefine some methods or create new ones.</p>
-</div>
-<div class="listingblock">
-<div class="title">Usage</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">ExtendedBuilder</span> <span class="kd">extends</span> <span class="nc">DocumentationBuilder</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="nf">ExtendedBuilder</span><span class="o">()</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">(</span><span class="s">"My extending builder"</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getDocumentOptions</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="s">":no_options:"</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-<span class="nc">Class</span><span class="o">[]</span> <span class="n">classesToAdd</span> <span class="o">=</span> <span class="o">{</span>
-        <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">doctesting</span><span class="o">.</span><span class="na">sample</span><span class="o">.</span><span class="na">basic</span><span class="o">.</span><span class="na">FirstTest</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">doctesting</span><span class="o">.</span><span class="na">sample</span><span class="o">.</span><span class="na">basic</span><span class="o">.</span><span class="na">SecondTest</span><span class="o">.</span><span class="na">class</span>
-<span class="o">};</span>
-
-<span class="nc">DocumentationBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ExtendedBuilder</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">withClassesToInclude</span><span class="o">(</span><span class="n">classesToAdd</span><span class="o">);</span>
-
-<span class="nc">String</span> <span class="n">document</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Document generated</div>
-<div class="content">
-<pre>:no_options:
-= My extending builder
-
-include::org/sfvl/doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
-
-include::org/sfvl/doctesting/sample/basic/SecondTest.adoc[leveloffset=+1]</pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_relativized_to_path">Relativized to path</h4>
-<div class="paragraph">
-<p>All links are relative to a path corresponding to the location where the document will be written.</p>
-</div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_writer_DocumentationBuilderTest_RelativizedToPath_from_a_package">From a package</h5>
-<div class="paragraph">
-<p>Path to file is relativized to the given package.</p>
-</div>
-<div class="listingblock">
-<div class="title">Usage</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Class</span><span class="o">[]</span> <span class="n">classesToAdd</span> <span class="o">=</span> <span class="o">{</span>
-        <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">doctesting</span><span class="o">.</span><span class="na">sample</span><span class="o">.</span><span class="na">basic</span><span class="o">.</span><span class="na">FirstTest</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">docformatter</span><span class="o">.</span><span class="na">AsciidocFormatterTest</span><span class="o">.</span><span class="na">class</span>
-<span class="o">};</span>
-
-<span class="nc">DocumentationBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocumentationBuilder</span><span class="o">(</span><span class="s">"My title"</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">withClassesToInclude</span><span class="o">(</span><span class="n">classesToAdd</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">withLocation</span><span class="o">(</span><span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">docformatter</span><span class="o">.</span><span class="na">Formatter</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getPackage</span><span class="o">());</span>
-<span class="nc">String</span> <span class="n">document</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Document generated</div>
-<div class="content">
-<pre>:toc: left
-:nofooter:
-:stem:
-= My title
-
-include::../doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
-
-include::AsciidocFormatterTest.adoc[leveloffset=+1]</pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_writer_DocumentationBuilderTest_RelativizedToPath_from_a_path">From a path</h5>
-<div class="paragraph">
-<p>Path to file is relativized to the given path.</p>
-</div>
-<div class="listingblock">
-<div class="title">Usage</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Class</span><span class="o">[]</span> <span class="n">classesToAdd</span> <span class="o">=</span> <span class="o">{</span>
-        <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">doctesting</span><span class="o">.</span><span class="na">sample</span><span class="o">.</span><span class="na">basic</span><span class="o">.</span><span class="na">FirstTest</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">docformatter</span><span class="o">.</span><span class="na">AsciidocFormatterTest</span><span class="o">.</span><span class="na">class</span>
-<span class="o">};</span>
-
-<span class="nc">DocumentationBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocumentationBuilder</span><span class="o">(</span><span class="s">"My title"</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">withClassesToInclude</span><span class="o">(</span><span class="n">classesToAdd</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">withLocation</span><span class="o">(</span><span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"org"</span><span class="o">,</span> <span class="s">"sfvl"</span><span class="o">,</span> <span class="s">"docformatter"</span><span class="o">));</span>
-<span class="nc">String</span> <span class="n">document</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Document generated</div>
-<div class="content">
-<pre>:toc: left
-:nofooter:
-:stem:
-= My title
-
-include::../doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
-
-include::AsciidocFormatterTest.adoc[leveloffset=+1]</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_writer_DocumentationBuilderTest_select_options">Select options</h4>
-<div class="paragraph">
-<p>Options can be added or removed.</p>
-</div>
-<div class="listingblock">
-<div class="title">Usage</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Class</span><span class="o">[]</span> <span class="n">classesToAdd</span> <span class="o">=</span> <span class="o">{</span>
-        <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">doctesting</span><span class="o">.</span><span class="na">sample</span><span class="o">.</span><span class="na">basic</span><span class="o">.</span><span class="na">FirstTest</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">docformatter</span><span class="o">.</span><span class="na">AsciidocFormatterTest</span><span class="o">.</span><span class="na">class</span>
-<span class="o">};</span>
-
-<span class="nc">DocumentationBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocumentationBuilder</span><span class="o">(</span><span class="s">"My title"</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">withClassesToInclude</span><span class="o">(</span><span class="n">classesToAdd</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">withOptionRemoved</span><span class="o">(</span><span class="s">"toc"</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">withOptionAdded</span><span class="o">(</span><span class="s">"noheader"</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">withOptionAdded</span><span class="o">(</span><span class="s">"source-highlighter"</span><span class="o">,</span> <span class="s">"rouge"</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">document</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Document generated</div>
-<div class="content">
-<pre>:nofooter:
-:stem:
-:noheader:
-:source-highlighter: rouge
-= My title
-
-include::org/sfvl/doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
-
-include::org/sfvl/docformatter/AsciidocFormatterTest.adoc[leveloffset=+1]</pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_writer_DocumentationBuilderTest_define_document_structure">Define document structure</h4>
-<div class="paragraph">
-<p>We can change document structure to organize it as we want.</p>
-</div>
-<div class="paragraph">
-<p>In this example, we display only classes includes and we add text before and after them.
-.Usage</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Class</span><span class="o">[]</span> <span class="n">classesToAdd</span> <span class="o">=</span> <span class="o">{</span>
-        <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">doctesting</span><span class="o">.</span><span class="na">sample</span><span class="o">.</span><span class="na">basic</span><span class="o">.</span><span class="na">FirstTest</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">docformatter</span><span class="o">.</span><span class="na">AsciidocFormatterTest</span><span class="o">.</span><span class="na">class</span>
-<span class="o">};</span>
-
-<span class="nc">DocumentationBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocumentationBuilder</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">withClassesToInclude</span><span class="o">(</span><span class="n">classesToAdd</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">withLocation</span><span class="o">(</span><span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"org"</span><span class="o">,</span> <span class="s">"sfvl"</span><span class="o">,</span> <span class="s">"docformatter"</span><span class="o">))</span>
-        <span class="o">.</span><span class="na">withStructureBuilder</span><span class="o">(</span><span class="nc">DocumentationBuilder</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-                <span class="n">b</span> <span class="o">-&gt;</span> <span class="s">"Documentation of classes"</span><span class="o">,</span>
-                <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">b</span><span class="o">.</span><span class="na">includeClasses</span><span class="o">(),</span>
-                <span class="n">b</span> <span class="o">-&gt;</span> <span class="s">"This is my footer"</span>
-        <span class="o">);</span>
-
-<span class="nc">String</span> <span class="n">document</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Document generated</div>
-<div class="content">
-<pre>Documentation of classes
-
-include::../doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
-
-include::AsciidocFormatterTest.adoc[leveloffset=+1]
-
-This is my footer</pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_check_class_for_structure">check_class_for_structure</h4>
-<div class="paragraph">
-<p>We need to specify a class when defining document structure.
-It allows to call methods on that object in lambda.
-Lambda will be called with the builder instance so this class must be a super class of the builder.
-There is no verification at compile time, but an exception is thrown when build is called if a wrong type was given.</p>
-</div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_writer_DocumentationBuilderTest_check_class_for_structure_with_class_inherits_from_DocumentationBuilder">With class inherits from DocumentationBuilder</h5>
-<div class="paragraph">
-<p>When the given class inherits from a DocumentationBuilder.</p>
-</div>
-<div class="paragraph">
-<p><strong>SubClassOfDocumentationBuilder</strong> inherits from <strong>DocumentationBuilder</strong>.</p>
-</div>
-<div class="listingblock">
-<div class="title">Usage</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Class</span><span class="o">&lt;</span><span class="nc">SubClassOfDocumentationBuilder</span><span class="o">&gt;</span> <span class="n">clazz</span> <span class="o">=</span> <span class="nc">SubClassOfDocumentationBuilder</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
-<span class="nc">DocumentationBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SubClassOfDocumentationBuilder</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">withStructureBuilder</span><span class="o">(</span><span class="n">clazz</span><span class="o">,</span>
-                <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">b</span><span class="o">.</span><span class="na">getDocumentOptions</span><span class="o">(),</span>
-                <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">b</span><span class="o">.</span><span class="na">formatSomething</span><span class="o">()</span>
-        <span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>No error and builder is ready to use.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_writer_DocumentationBuilderTest_check_class_for_structure_with_class_not_inherits_from_DocumentationBuilder">With class not inherits from DocumentationBuilder</h5>
-<div class="paragraph">
-<p>When the given class not inherits from a DocumentationBuilder.</p>
-</div>
-<div class="paragraph">
-<p><strong>SubClassOfObject</strong> inherits from <strong>Object</strong>.</p>
-</div>
-<div class="listingblock">
-<div class="title">Usage</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Class</span><span class="o">&lt;</span><span class="nc">SubClassOfObject</span><span class="o">&gt;</span> <span class="n">clazz</span> <span class="o">=</span> <span class="nc">SubClassOfObject</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
-<span class="nc">DocumentationBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocumentationBuilder</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">withStructureBuilder</span><span class="o">(</span><span class="n">clazz</span><span class="o">,</span> <span class="n">b</span> <span class="o">-&gt;</span> <span class="n">b</span><span class="o">.</span><span class="na">formatSomething</span><span class="o">());</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Exception was thrown: RuntimeException:</p>
-</div>
-<div class="listingblock">
-<div class="title">Exception message:</div>
-<div class="content">
-<pre>Wrong type: DocumentationBuilder is not a super class of SubClassOfObject</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_create_a_general_documentation_2">Create a general documentation</h3>
-<div class="paragraph">
-<p>You can use this class to generate a main documentation that aggregate other documentations
-and in particular, those generated from test classes.</p>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_writer_MainDocumentationTest_by_default">By default</h4>
-<div class="listingblock">
-<div class="title">Usage</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">MainDocumentation</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MainDocumentation</span><span class="o">(</span><span class="s">"Documentation"</span><span class="o">);</span>
-
-<span class="nc">Path</span> <span class="n">docFilePath</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">getDocRootPath</span><span class="o">();</span>
-<span class="kd">final</span> <span class="nc">String</span> <span class="n">packageToScan</span> <span class="o">=</span> <span class="s">"org.sfvl.doctesting.sample.basic"</span><span class="o">;</span>
-<span class="kd">final</span> <span class="nc">String</span> <span class="n">content</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">getDocumentationContent</span><span class="o">(</span><span class="n">packageToScan</span><span class="o">,</span> <span class="n">docFilePath</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="ulist">
-<div class="title">Files contained in the folder <code>src/test/java/org/sfvl/doctesting/sample/basic</code></div>
-<ul>
-<li>
-<p>FirstTest.java</p>
-</li>
-<li>
-<p>SecondTest.java</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Default document generated</div>
-<div class="content">
-<pre>:toc: left
-:nofooter:
-:stem:
-
-include::../../../readme.adoc[leveloffset=+1]
-
-include::org/sfvl/doctesting/sample/basic/FirstTest.adoc[leveloffset=+1]
-
-include::org/sfvl/doctesting/sample/basic/SecondTest.adoc[leveloffset=+1]</pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_writer_MainDocumentationTest_document_structure">Document structure</h4>
-<div class="paragraph">
-<p>Documentation is composed with the header following by each test classes documentation.</p>
-</div>
-<div class="paragraph">
-<p>A class documentation is composed with a title and a description.
-Each test method has created a file which is included  to document the class.</p>
-</div>
-<div class="paragraph">
-<p>You can overwrite methods to modify document generated.</p>
-</div>
-<div class="listingblock">
-<div class="title">Default document generated</div>
-<div class="content">
-<pre>:toc: left
-:nofooter:
-:stem:
-
-include::../../../readme.adoc[leveloffset=+1]
-
-include::org/sfvl/doctesting/writer/InMainDocBisTest.adoc[leveloffset=+1]
-
-include::org/sfvl/doctesting/writer/InMainDocTest.adoc[leveloffset=+1]</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">MainDocumentation methods overwritten</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@Override</span>
-<span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getHeader</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="s">"from getHeader method"</span><span class="o">;</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Custom document generated</div>
-<div class="content">
-<pre>from getHeader method
-
-include::org/sfvl/doctesting/writer/InMainDocBisTest.adoc[leveloffset=+1]
-
-include::org/sfvl/doctesting/writer/InMainDocTest.adoc[leveloffset=+1]</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Test class used to in this examples</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Title for the document"</span><span class="o">)</span>
-<span class="kd">class</span> <span class="nc">InMainDocTest</span> <span class="o">{</span>
-    <span class="nd">@RegisterExtension</span>
-    <span class="kd">static</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
-
-    <span class="nd">@Test</span>
-    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Title for this test"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testA</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Test</span>
-    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Title for this test"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testB</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="kd">class</span> <span class="nc">InMainDocBisTest</span> <span class="o">{</span>
-    <span class="nd">@RegisterExtension</span>
-    <span class="kd">static</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
-
-    <span class="nd">@Test</span>
-    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Title for this test"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testX</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_writer_MainDocumentationTest_select_methods_to_add">Select methods to add</h4>
-<div class="listingblock">
-<div class="title">MainDocumentation methods overwritten</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@Override</span>
-<span class="kd">protected</span> <span class="nc">String</span> <span class="nf">getMethodDocumentation</span><span class="o">(</span><span class="nc">String</span> <span class="n">packageToScan</span><span class="o">,</span> <span class="nc">Path</span> <span class="n">docFilePath</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="s">"== A specific documentation\n\n"</span>
-            <span class="o">+</span> <span class="s">"My description without included any test documentation."</span><span class="o">;</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Custom document generated</div>
-<div class="content">
-<pre>:toc: left
-:nofooter:
-:stem:
-
-include::../../../readme.adoc[leveloffset=+1]
-
-== A specific documentation
-
-My description without included any test documentation.</pre>
-</div>
-</div>
 <div id="project_home">
     <a title="home" href="../../../index.html">Doc as test</a>
 </div>
@@ -4597,7 +3975,10 @@ includeblock: format an include as a block.
   --logo_height: 100px
   --shadow_color: #084f34;
   --title-color: #7a2518;
+
+  --media-small-header-height:50px;
 }
+
 
 #content {
    max-width: unset;
@@ -4657,12 +4038,19 @@ body {
     background: var(--bg1) !important;
 }
 
-h1, h2 {
+h1 {
     font-family: "Noto Serif","DejaVu Serif",serif;
     font-style: italic;
 
     color: var(--title-color);
     font-weight: 400;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 2em;
+    border-top: solid;
+    padding-top: 0.2em;
 }
 
 :not(pre):not([class^="L"]) > code {
@@ -4690,26 +4078,43 @@ h1, h2 {
 
 /* Menu */
 
-.sectlevel3 {
+.sectlevel2 {
     display: none;
     height: 0;
     opacity:0;
 }
 
-.sectlevel2>li {
+.sectlevel1>li {
     padding-left: 0.5em;
 }
-.sectlevel2>li.menu_open {
+.sectlevel1>li.menu_open {
     font-weight: bold;
     background-color: var(--bg1);
     padding: 0.5em;
 }
 
-.sectlevel2>li.menu_open .sectlevel3 {
+.sectlevel1>li.menu_open .sectlevel2 {
     display: block;
     height: auto;
     opacity:1;
     font-weight: normal;
+}
+
+@media (max-width: 800px) {
+  #toc {
+    display: none;
+  }
+  body.toc2 {
+    padding-left:0em;
+    padding-top:var(--media-small-header-height);
+  }
+
+  #project_home {
+    height: var(--media-small-header-height);
+    width: 100%;
+    padding: 2px;
+    text-align: center;
+  }
 }
 </style>
 <script type="text/javascript">
@@ -4717,7 +4122,7 @@ function toggleMenuOnClick(menuItem) {
     menuItem.getElementsByTagName("a")[0].addEventListener(
         'click',
         event => {
-            document.querySelectorAll(".sectlevel2 > li").forEach(function(element) {
+            document.querySelectorAll(".sectlevel1 > li").forEach(function(element) {
                 if (element != menuItem) {
                     element.classList.remove("menu_open");
                 }
@@ -4729,11 +4134,12 @@ function toggleMenuOnClick(menuItem) {
 
 window.addEventListener( "load",
     function() {
-        menusLevel2 = document.querySelectorAll(".sectlevel2 > li");
-        menusLevel2.forEach(toggleMenuOnClick);
+        menus = document.querySelectorAll(".sectlevel1 > li");
+        menus.forEach(toggleMenuOnClick);
      }
 );
 </script>
+</div>
 </div>
 </div>
 </div>

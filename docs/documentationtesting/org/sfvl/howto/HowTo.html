@@ -436,19 +436,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body id="org_sfvl_howto_howto" class="article toc2 toc-left">
 <div id="header">
 <h1>How to</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#org_sfvl_howto_HowTo_getting_started">Getting started</a></li>
-<li><a href="#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_extension">Creating a test using ApprovalsExtension</a></li>
+<li><a href="#org_sfvl_howto_howto_getting_started">Getting started</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_extension">Creating a test using ApprovalsExtension</a></li>
 <li><a href="#_format_text">Format text</a></li>
-<li><a href="#org_sfvl_howto_CreateADocument_generate_html">Generate html</a></li>
-<li><a href="#_use_your_own_style">Use your own style</a>
+<li><a href="#org_sfvl_howto_createadocument_generate_html">Generate html</a></li>
+<li><a href="#org_sfvl_howto_useyourownstyle">Use your own style</a>
 <ul class="sectlevel2">
-<li><a href="#org_sfvl_howto_UseYourOwnStyle_define_a_custom_style">Define a custom style</a></li>
+<li><a href="#org_sfvl_howto_useyourownstyle_define_a_custom_style">Define a custom style</a></li>
 </ul>
 </li>
 </ul>
@@ -456,7 +456,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="org_sfvl_howto_HowTo_getting_started">Getting started</h2>
+<h2 id="org_sfvl_howto_howto_getting_started">Getting started</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To get started quickly, you can download <a href="https://github.com/sfauvel/TryDocAsTest">Try doc as test</a> project.
@@ -492,7 +492,7 @@ You don&#8217;t have to write assertions, tests will be passed when generated do
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_extension">Creating a test using ApprovalsExtension</h2>
+<h2 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_using_extension">Creating a test using ApprovalsExtension</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This is an example to create a simple test using <code>ApprovalsExtension</code>.</p>
@@ -527,7 +527,7 @@ This extension will check that everything wrote using <code>doc.write</code> met
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>[#org_sfvl_samples_justone_OneTest_test_A]
+<pre>[#org_sfvl_samples_justone_onetest_test_a]
 = Test A
 
 In my *test*</pre>
@@ -602,29 +602,27 @@ final String text = formatter.listItems("Item A", "Item B", "Item C");</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_howto_CreateADocument_generate_html">Generate html</h2>
+<h2 id="org_sfvl_howto_createadocument_generate_html">Generate html</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To convert <code>.adoc</code> to <code>.html</code>, we use <code>asciidoctor-maven-plugin</code> plugin.
-By default, files started with <code>_</code> are not converted to HTML.</p>
+It&#8217;s configure in <code>pom.xml</code> and it&#8217;s can be run in one phase of the maven lifecycle (generally the <code>package</code> phase).</p>
 </div>
 <div class="paragraph">
-<p>All the <code>approved</code> files we generate start with <code>_</code>.
-They are only chapters that need to be include in a file to be converted into HTML.
-So, it&#8217;s easier to reuse these files and organize the documentation.</p>
+<p>By default, files started with <code>_</code> are not converted to HTML by this plugin.
+We have chosen to start all <code>approved</code> file names with an <code>_</code>.
+They are only chapters of documents.
+They need to be included in a file that will be converted into HTML.
+So, this makes it easier to reuse these chapters and organize the documentation.</p>
 </div>
 <div class="paragraph">
-<p>To have a file that not start with <code>_</code>, we need to generate it.
-We can do that in a method annoted with <code>AfterAll</code>.
-In this file, we can add <code>include</code> to all files we want to aggregate.</p>
-</div>
-<div class="paragraph">
-<p>If you just want to publish the documentation created in a test class,
-you can create a file with the name of the class (without _)
-and add an <code>include</code> to the <code>approved</code> file of the same class.</p>
+<p>To have a file that not start with <code>_</code>, we need to generate one.
+The <code>HtmlPageExtension</code> extension is made for that.
+When a test class used this extension, it will generate a simple <code>.adoc</code> file that include the <code>approved</code> file of the same class.
+The final HTML file will contain all the chapters generated from methods of this class.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example of class creating a file to convert into HTML</div>
+<div class="title">Example of class creating the file that will be converted into HTML</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kn">package</span> <span class="nn">org.sfvl.samples.generateHtml</span><span class="o">;</span>
 
@@ -676,7 +674,7 @@ and add an <code>include</code> to the <code>approved</code> file of the same cl
 </div>
 </div>
 <div class="sect1">
-<h2 id="_use_your_own_style">Use your own style</h2>
+<h2 id="org_sfvl_howto_useyourownstyle">Use your own style</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To have specific style in some chapter, you can use HTML style directly in your Asciidoc files.</p>
@@ -685,7 +683,7 @@ and add an <code>include</code> to the <code>approved</code> file of the same cl
 <p>You need to encapsulate it between ++++ and &lt;style&gt; balise.</p>
 </div>
 <div class="sect2">
-<h3 id="org_sfvl_howto_UseYourOwnStyle_define_a_custom_style">Define a custom style</h3>
+<h3 id="org_sfvl_howto_useyourownstyle_define_a_custom_style">Define a custom style</h3>
 <div class="paragraph">
 <p>You can customize style adding a css style directly in your file.
 You need to put an html style tag (<code>&lt;style&gt;&lt;/style&gt;</code>) enclosed in <code>++++</code>
@@ -760,7 +758,10 @@ includeblock: format an include as a block.
   --logo_height: 100px
   --shadow_color: #084f34;
   --title-color: #7a2518;
+
+  --media-small-header-height:50px;
 }
+
 
 #content {
    max-width: unset;
@@ -820,12 +821,19 @@ body {
     background: var(--bg1) !important;
 }
 
-h1, h2 {
+h1 {
     font-family: "Noto Serif","DejaVu Serif",serif;
     font-style: italic;
 
     color: var(--title-color);
     font-weight: 400;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 2em;
+    border-top: solid;
+    padding-top: 0.2em;
 }
 
 :not(pre):not([class^="L"]) > code {
@@ -853,26 +861,43 @@ h1, h2 {
 
 /* Menu */
 
-.sectlevel3 {
+.sectlevel2 {
     display: none;
     height: 0;
     opacity:0;
 }
 
-.sectlevel2>li {
+.sectlevel1>li {
     padding-left: 0.5em;
 }
-.sectlevel2>li.menu_open {
+.sectlevel1>li.menu_open {
     font-weight: bold;
     background-color: var(--bg1);
     padding: 0.5em;
 }
 
-.sectlevel2>li.menu_open .sectlevel3 {
+.sectlevel1>li.menu_open .sectlevel2 {
     display: block;
     height: auto;
     opacity:1;
     font-weight: normal;
+}
+
+@media (max-width: 800px) {
+  #toc {
+    display: none;
+  }
+  body.toc2 {
+    padding-left:0em;
+    padding-top:var(--media-small-header-height);
+  }
+
+  #project_home {
+    height: var(--media-small-header-height);
+    width: 100%;
+    padding: 2px;
+    text-align: center;
+  }
 }
 </style>
 <script type="text/javascript">
@@ -880,7 +905,7 @@ function toggleMenuOnClick(menuItem) {
     menuItem.getElementsByTagName("a")[0].addEventListener(
         'click',
         event => {
-            document.querySelectorAll(".sectlevel2 > li").forEach(function(element) {
+            document.querySelectorAll(".sectlevel1 > li").forEach(function(element) {
                 if (element != menuItem) {
                     element.classList.remove("menu_open");
                 }
@@ -892,8 +917,8 @@ function toggleMenuOnClick(menuItem) {
 
 window.addEventListener( "load",
     function() {
-        menusLevel2 = document.querySelectorAll(".sectlevel2 > li");
-        menusLevel2.forEach(toggleMenuOnClick);
+        menus = document.querySelectorAll(".sectlevel1 > li");
+        menus.forEach(toggleMenuOnClick);
      }
 );
 </script>

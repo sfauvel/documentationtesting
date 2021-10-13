@@ -436,15 +436,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body id="org_sfvl_howto_createadocument" class="article toc2 toc-left">
 <div id="header">
 <h1>Create a document</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#org_sfvl_howto_CreateADocument_generate_html">Generate html</a></li>
-<li><a href="#org_sfvl_howto_CreateADocument_generate_header_html">Customize document options</a></li>
-<li><a href="#org_sfvl_howto_CreateADocument_change_name_for_html">Define name and path for the output file</a></li>
+<li><a href="#org_sfvl_howto_createadocument_generate_html">Generate html</a></li>
+<li><a href="#org_sfvl_howto_createadocument_generate_html_with_nested_class">Generate html with nested class</a></li>
+<li><a href="#org_sfvl_howto_createadocument_generate_html_only_on_nested_class">Generate html only on nested class</a></li>
+<li><a href="#org_sfvl_howto_createadocument_generate_header_html">Customize document options</a></li>
+<li><a href="#org_sfvl_howto_createadocument_change_name_for_html">Define name and path for the output file</a></li>
 </ul>
 </div>
 </div>
@@ -458,29 +460,27 @@ These <code>documents</code> are converted from the <code>.adoc</code> files.</p
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_howto_CreateADocument_generate_html">Generate html</h2>
+<h2 id="org_sfvl_howto_createadocument_generate_html">Generate html</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To convert <code>.adoc</code> to <code>.html</code>, we use <code>asciidoctor-maven-plugin</code> plugin.
-By default, files started with <code>_</code> are not converted to HTML.</p>
+It&#8217;s configure in <code>pom.xml</code> and it&#8217;s can be run in one phase of the maven lifecycle (generally the <code>package</code> phase).</p>
 </div>
 <div class="paragraph">
-<p>All the <code>approved</code> files we generate start with <code>_</code>.
-They are only chapters that need to be include in a file to be converted into HTML.
-So, it&#8217;s easier to reuse these files and organize the documentation.</p>
+<p>By default, files started with <code>_</code> are not converted to HTML by this plugin.
+We have chosen to start all <code>approved</code> file names with an <code>_</code>.
+They are only chapters of documents.
+They need to be included in a file that will be converted into HTML.
+So, this makes it easier to reuse these chapters and organize the documentation.</p>
 </div>
 <div class="paragraph">
-<p>To have a file that not start with <code>_</code>, we need to generate it.
-We can do that in a method annoted with <code>AfterAll</code>.
-In this file, we can add <code>include</code> to all files we want to aggregate.</p>
-</div>
-<div class="paragraph">
-<p>If you just want to publish the documentation created in a test class,
-you can create a file with the name of the class (without _)
-and add an <code>include</code> to the <code>approved</code> file of the same class.</p>
+<p>To have a file that not start with <code>_</code>, we need to generate one.
+The <code>HtmlPageExtension</code> extension is made for that.
+When a test class used this extension, it will generate a simple <code>.adoc</code> file that include the <code>approved</code> file of the same class.
+The final HTML file will contain all the chapters generated from methods of this class.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example of class creating a file to convert into HTML</div>
+<div class="title">Example of class creating the file that will be converted into HTML</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kn">package</span> <span class="nn">org.sfvl.samples.generateHtml</span><span class="o">;</span>
 
@@ -529,7 +529,128 @@ and add an <code>include</code> to the <code>approved</code> file of the same cl
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_howto_CreateADocument_generate_header_html">Customize document options</h2>
+<h2 id="org_sfvl_howto_createadocument_generate_html_with_nested_class">Generate html with nested class</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With nested class, only class with direct extension generate a page</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of class creating the file that will be converted into HTML</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kn">package</span> <span class="nn">org.sfvl.samples.generateNestedHtml</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Nested</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.extension.ExtendWith</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.extension.RegisterExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.ApprovalsExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.HtmlPageExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.SimpleApprovalsExtension</span><span class="o">;</span>
+
+<span class="nd">@ExtendWith</span><span class="o">(</span><span class="nc">HtmlPageExtension</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HtmlNestedTest</span> <span class="o">{</span>
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Nested</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HtmlNestedClassTest</span> <span class="o">{</span>
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_in_nested_class</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test* in nested class"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Files in folder <code>src/test/docs/org/sfvl/samples/generateNestedHtml</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>HtmlNestedTest.adoc</p>
+</li>
+<li>
+<p>_HtmlNestedTest.HtmlNestedClassTest.test_in_nested_class.approved.adoc</p>
+</li>
+<li>
+<p>_HtmlNestedTest.approved.adoc</p>
+</li>
+<li>
+<p>_HtmlNestedTest.test_A.approved.adoc</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_howto_createadocument_generate_html_only_on_nested_class">Generate html only on nested class</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It&#8217;s not possible to generate a page on a nested class.
+A nested class do not have is own file for the class.
+Every methods and classes are included in the approved file for the java file.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of class with extension on nested class</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kn">package</span> <span class="nn">org.sfvl.samples.generateOnlyNestedHtml</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Nested</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.extension.ExtendWith</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.extension.RegisterExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.ApprovalsExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.HtmlPageExtension</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.SimpleApprovalsExtension</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HtmlOnlyNestedTest</span> <span class="o">{</span>
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Nested</span>
+    <span class="nd">@ExtendWith</span><span class="o">(</span><span class="nc">HtmlPageExtension</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HtmlNestedClassTest</span> <span class="o">{</span>
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_in_nested_class</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test* in nested class"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Files in folder <code>src/test/docs/org/sfvl/samples/generateOnlyNestedHtml</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>_HtmlOnlyNestedTest.HtmlNestedClassTest.test_in_nested_class.approved.adoc</p>
+</li>
+<li>
+<p>_HtmlOnlyNestedTest.approved.adoc</p>
+</li>
+<li>
+<p>_HtmlOnlyNestedTest.test_A.approved.adoc</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_howto_createadocument_generate_header_html">Customize document options</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>By default, <code>HtmlPageExtension</code> create a file with only one include of the <code>approved</code> class file.
@@ -583,7 +704,7 @@ include::_HtmlHeaderTest.approved.adoc[]</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_howto_CreateADocument_change_name_for_html">Define name and path for the output file</h2>
+<h2 id="org_sfvl_howto_createadocument_change_name_for_html">Define name and path for the output file</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>By default, <code>HtmlPageExtension</code> create a file with a name coming from the class
@@ -603,7 +724,6 @@ To change it, we can extending <code>HtmlPageExtension</code> and redefined name
 <span class="kn">import</span> <span class="nn">org.sfvl.doctesting.utils.DocPath</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.nio.file.Path</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.nio.file.Paths</span><span class="o">;</span>
 
 <span class="nd">@ExtendWith</span><span class="o">(</span><span class="nc">HtmlNameTest</span><span class="o">.</span><span class="na">HtmlPageHeaderExtension</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HtmlNameTest</span> <span class="o">{</span>
@@ -656,7 +776,10 @@ includeblock: format an include as a block.
   --logo_height: 100px
   --shadow_color: #084f34;
   --title-color: #7a2518;
+
+  --media-small-header-height:50px;
 }
+
 
 #content {
    max-width: unset;
@@ -716,12 +839,19 @@ body {
     background: var(--bg1) !important;
 }
 
-h1, h2 {
+h1 {
     font-family: "Noto Serif","DejaVu Serif",serif;
     font-style: italic;
 
     color: var(--title-color);
     font-weight: 400;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 2em;
+    border-top: solid;
+    padding-top: 0.2em;
 }
 
 :not(pre):not([class^="L"]) > code {
@@ -749,26 +879,43 @@ h1, h2 {
 
 /* Menu */
 
-.sectlevel3 {
+.sectlevel2 {
     display: none;
     height: 0;
     opacity:0;
 }
 
-.sectlevel2>li {
+.sectlevel1>li {
     padding-left: 0.5em;
 }
-.sectlevel2>li.menu_open {
+.sectlevel1>li.menu_open {
     font-weight: bold;
     background-color: var(--bg1);
     padding: 0.5em;
 }
 
-.sectlevel2>li.menu_open .sectlevel3 {
+.sectlevel1>li.menu_open .sectlevel2 {
     display: block;
     height: auto;
     opacity:1;
     font-weight: normal;
+}
+
+@media (max-width: 800px) {
+  #toc {
+    display: none;
+  }
+  body.toc2 {
+    padding-left:0em;
+    padding-top:var(--media-small-header-height);
+  }
+
+  #project_home {
+    height: var(--media-small-header-height);
+    width: 100%;
+    padding: 2px;
+    text-align: center;
+  }
 }
 </style>
 <script type="text/javascript">
@@ -776,7 +923,7 @@ function toggleMenuOnClick(menuItem) {
     menuItem.getElementsByTagName("a")[0].addEventListener(
         'click',
         event => {
-            document.querySelectorAll(".sectlevel2 > li").forEach(function(element) {
+            document.querySelectorAll(".sectlevel1 > li").forEach(function(element) {
                 if (element != menuItem) {
                     element.classList.remove("menu_open");
                 }
@@ -788,8 +935,8 @@ function toggleMenuOnClick(menuItem) {
 
 window.addEventListener( "load",
     function() {
-        menusLevel2 = document.querySelectorAll(".sectlevel2 > li");
-        menusLevel2.forEach(toggleMenuOnClick);
+        menus = document.querySelectorAll(".sectlevel1 > li");
+        menus.forEach(toggleMenuOnClick);
      }
 );
 </script>
