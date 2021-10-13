@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_howto_CreateADocument_generate_html]
+[#org_sfvl_howto_createadocument_generate_html]
 = Generate html
 
 :underscore: _

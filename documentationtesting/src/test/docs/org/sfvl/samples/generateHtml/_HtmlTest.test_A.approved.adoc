@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_samples_generateHtml_HtmlTest_test_A]
+[#org_sfvl_samples_generatehtml_htmltest_test_a]
 = Test A
 
 In my *test*

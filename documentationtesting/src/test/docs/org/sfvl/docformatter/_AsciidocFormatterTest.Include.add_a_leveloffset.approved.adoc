@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_docformatter_AsciidocFormatterTest_Include_add_a_leveloffset]
+[#org_sfvl_docformatter_asciidocformattertest_include_add_a_leveloffset]
 = Add a leveloffset
 
 

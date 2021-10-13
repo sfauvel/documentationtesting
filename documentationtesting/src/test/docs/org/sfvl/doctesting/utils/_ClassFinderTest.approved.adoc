@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_ClassFinderTest]
+[#org_sfvl_doctesting_utils_classfindertest]
 = Class finder test
 
 include::_ClassFinderTest.find_test_classes_in_a_package.approved.adoc[leveloffset=+1]

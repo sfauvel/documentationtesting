@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_howto_CreateADocument_change_name_for_html]
+[#org_sfvl_howto_createadocument_change_name_for_html]
 = Define name and path for the output file
 
 

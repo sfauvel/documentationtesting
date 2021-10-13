@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method]
+[#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method]
 = Retrieve comment of a method
 
 [.inline]
@@ -21,7 +21,7 @@ Description of the method 'doSomething'.
 ----
 ++++
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;

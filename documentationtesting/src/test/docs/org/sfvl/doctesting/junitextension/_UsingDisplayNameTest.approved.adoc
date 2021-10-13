@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_junitextension_UsingDisplayNameTest]
+[#org_sfvl_doctesting_junitextension_usingdisplaynametest]
 = Title for the document
 
 include::_UsingDisplayNameTest.test_A.approved.adoc[leveloffset=+1]

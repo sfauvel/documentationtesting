@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_docformatter_AsciidocFormatterTest_should_format_table]
+[#org_sfvl_docformatter_asciidocformattertest_should_format_table]
 = Table
 
 

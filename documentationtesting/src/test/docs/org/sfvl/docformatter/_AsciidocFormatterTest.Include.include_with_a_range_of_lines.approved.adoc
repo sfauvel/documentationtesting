@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_docformatter_AsciidocFormatterTest_Include_include_with_a_range_of_lines]
+[#org_sfvl_docformatter_asciidocformattertest_include_include_with_a_range_of_lines]
 = Include with a range of lines
 
 

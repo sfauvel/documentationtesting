@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_DocWriterTest]
+[#org_sfvl_doctesting_utils_docwritertest]
 = DocWriter
 
 include::_DocWriterTest.doc_writer_usage.approved.adoc[leveloffset=+1]

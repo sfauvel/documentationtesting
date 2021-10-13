@@ -1,6 +1,7 @@
 :notitle:
 ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 
+[#fr_sfvl_conceptdoctest]
 = Concept doc test
 
 include::_ConceptDocTest.index.approved.adoc[leveloffset=+1]

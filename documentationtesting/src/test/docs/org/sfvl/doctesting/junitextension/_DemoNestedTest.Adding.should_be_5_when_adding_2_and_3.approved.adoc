@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_junitextension_DemoNestedTest_Adding_should_be_5_when_adding_2_and_3]
+[#org_sfvl_doctesting_junitextension_demonestedtest_adding_should_be_5_when_adding_2_and_3]
 = Adding 2 simple numbers
 
 2 + 3 = 5

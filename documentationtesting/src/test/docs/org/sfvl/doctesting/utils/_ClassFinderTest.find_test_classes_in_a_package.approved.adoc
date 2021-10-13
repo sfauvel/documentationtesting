@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_ClassFinderTest_find_test_classes_in_a_package]
+[#org_sfvl_doctesting_utils_classfindertest_find_test_classes_in_a_package]
 = Find test classes in a package
 
 .Source code to find classes containing tests

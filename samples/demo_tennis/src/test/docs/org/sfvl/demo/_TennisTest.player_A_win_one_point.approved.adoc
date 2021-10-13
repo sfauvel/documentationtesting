@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_demo_TennisTest_player_A_win_one_point]
+[#org_sfvl_demo_tennistest_player_a_win_one_point]
 = Player A win one point
 
 When player A win one point, score is 15 / 0.

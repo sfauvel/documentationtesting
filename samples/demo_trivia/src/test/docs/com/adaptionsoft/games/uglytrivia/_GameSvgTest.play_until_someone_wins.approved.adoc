@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#com_adaptionsoft_games_uglytrivia_GameSvgTest_play_until_someone_wins]
+[#com_adaptionsoft_games_uglytrivia_gamesvgtest_play_until_someone_wins]
 = Simulation of a complete game
 
 This is a full game from the beginning to the end when a player wins the game.

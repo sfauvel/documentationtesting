@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_from_method]
+[#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_from_method]
 = Extract code from method
 
 Method source code can be retrived from his method object or from his class and his method name.
@@ -92,7 +92,7 @@ include::../../../../../java/org/sfvl/doctesting/sample/SimpleClass.java[tag=cla
 ====
 ++++
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_code_from_method ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_from_method ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;

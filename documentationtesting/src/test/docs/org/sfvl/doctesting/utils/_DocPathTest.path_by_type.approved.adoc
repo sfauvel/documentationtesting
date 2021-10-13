@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_DocPathTest_path_by_type]
+[#org_sfvl_doctesting_utils_docpathtest_path_by_type]
 = Path by type
 
 DocPath is created with this code:

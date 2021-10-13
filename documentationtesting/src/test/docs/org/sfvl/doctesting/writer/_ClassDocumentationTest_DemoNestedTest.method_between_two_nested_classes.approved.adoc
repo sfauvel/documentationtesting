@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_writer_ClassDocumentationTest_DemoNestedTest_method_between_two_nested_classes]
+[#org_sfvl_doctesting_writer_classdocumentationtest_demonestedtest_method_between_two_nested_classes]
 = Method between two nested classes
 
 A method between two nested classes is between those classes in final documentatiton.

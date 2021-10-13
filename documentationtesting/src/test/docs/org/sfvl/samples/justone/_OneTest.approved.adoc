@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_samples_justone_OneTest]
+[#org_sfvl_samples_justone_onetest]
 = One test
 
 include::_OneTest.test_A.approved.adoc[leveloffset=+1]

@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_extract_class_comment]
+[#org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_class_comment]
 = Extract class comment
 
 .How to extract comment of a class
@@ -80,7 +80,7 @@ Comment of the class.
 ====
 ++++
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_extract_class_comment ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_class_comment ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;

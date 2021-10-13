@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_writer_DocumentationBuilderTest]
+[#org_sfvl_doctesting_writer_documentationbuildertest]
 = Create a general documentation
 
 You can use the DocumentationBuilder class to generate a documentation.
@@ -10,7 +10,7 @@ include::_DocumentationBuilderTest.simple_doc.approved.adoc[leveloffset=+1]
 
 include::_DocumentationBuilderTest.simple_doc_with_a_subclass_of_DocumentationBuilder.approved.adoc[leveloffset=+1]
 
-[#org_sfvl_doctesting_writer_DocumentationBuilderTest_RelativizedToPath]
+[#org_sfvl_doctesting_writer_documentationbuildertest_relativizedtopath]
 == Relativized to path
 
 All links are relative to a path corresponding to the location where the document will be written.
@@ -23,7 +23,7 @@ include::_DocumentationBuilderTest.select_options.approved.adoc[leveloffset=+1]
 
 include::_DocumentationBuilderTest.define_document_structure.approved.adoc[leveloffset=+1]
 
-[#org_sfvl_doctesting_writer_DocumentationBuilderTest_check_class_for_structure]
+[#org_sfvl_doctesting_writer_documentationbuildertest_check_class_for_structure]
 == check_class_for_structure
 
 We need to specify a class when defining document structure.

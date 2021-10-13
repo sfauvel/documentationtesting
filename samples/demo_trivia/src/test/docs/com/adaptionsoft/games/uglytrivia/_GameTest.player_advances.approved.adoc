@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#com_adaptionsoft_games_uglytrivia_GameTest_player_advances]
+[#com_adaptionsoft_games_uglytrivia_gametest_player_advances]
 = Movements of a player
 
 In a game turn, the player rolls a dice and advances the number of spaces indicated.

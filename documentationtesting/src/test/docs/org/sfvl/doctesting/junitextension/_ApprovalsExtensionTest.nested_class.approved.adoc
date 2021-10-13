@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_nested_class]
+[#org_sfvl_doctesting_junitextension_approvalsextensiontest_nested_class]
 = Nested class
 
 Nested class can be used to organize tests.
@@ -66,12 +66,12 @@ Generated files in `org/sfvl/doctesting/junitextension`:
 ----
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_junitextension_DemoNestedTest]
+[#org_sfvl_doctesting_junitextension_demonestedtest]
 = Demo nested test
 
 Demo of a simple usage to generate documentation.
 
-[#org_sfvl_doctesting_junitextension_DemoNestedTest_Adding]
+[#org_sfvl_doctesting_junitextension_demonestedtest_adding]
 == Adding
 
 Document of Addition operations.
@@ -80,7 +80,7 @@ Document of Addition operations.
 
 \include::_DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+2]
 
-[#org_sfvl_doctesting_junitextension_DemoNestedTest_Multiply]
+[#org_sfvl_doctesting_junitextension_demonestedtest_multiply]
 == Multiply
 
 \include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]

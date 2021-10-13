@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_failing_test_output]
+[#org_sfvl_doctesting_junitextension_approvalsextensiontest_failing_test_output]
 = Failing test output
 
 When a test fails, the error is written in the final document.
@@ -33,7 +33,7 @@ class FailingTest {
 ------
 \ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_samples_FailingTest_failing_test]
+[#org_sfvl_samples_failingtest_failing_test]
 = Failing test
 
 Some information before failure.
@@ -67,7 +67,7 @@ _final rendering_
 --
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_samples_FailingTest_failing_test]
+[#org_sfvl_samples_failingtest_failing_test]
 [.title1]#Failing test#
 
 Some information before failure.

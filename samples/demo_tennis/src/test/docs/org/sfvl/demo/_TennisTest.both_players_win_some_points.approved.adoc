@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_demo_TennisTest_both_players_win_some_points]
+[#org_sfvl_demo_tennistest_both_players_win_some_points]
 = Both players win some points
 
 When player A win 2 points and player B win 3 points, score is 30 / 40.

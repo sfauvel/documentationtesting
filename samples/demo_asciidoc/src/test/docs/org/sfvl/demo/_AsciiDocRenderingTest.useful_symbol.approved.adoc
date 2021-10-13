@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_demo_AsciiDocRenderingTest_useful_symbol]
+[#org_sfvl_demo_asciidocrenderingtest_useful_symbol]
 = Useful symbol
 
 You can display utf-8 characters with syntax: `\&#x2714;` to display `&#x2714;`.

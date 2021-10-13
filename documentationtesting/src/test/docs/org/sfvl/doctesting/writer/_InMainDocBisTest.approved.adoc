@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_writer_InMainDocBisTest]
+[#org_sfvl_doctesting_writer_inmaindocbistest]
 = In main doc bis test
 
 include::_InMainDocBisTest.testX.approved.adoc[leveloffset=+1]

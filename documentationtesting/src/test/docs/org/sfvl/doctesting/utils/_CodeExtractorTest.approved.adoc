@@ -1,12 +1,12 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_CodeExtractorTest]
+[#org_sfvl_doctesting_utils_codeextractortest]
 = CodeExtractor
 
 It is often useful to retrieve information from the source code itself.
 This class provides utilities to extract pieces of code or comments.
 
-[#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode]
+[#org_sfvl_doctesting_utils_codeextractortest_extractcode]
 == Extract code
 
 include::_CodeExtractorTest.ExtractCode.extract_code_of_a_class.approved.adoc[leveloffset=+2]
@@ -23,7 +23,7 @@ include::_CodeExtractorTest.ExtractCode.extract_part_of_code_from_file.approved.
 
 include::_CodeExtractorTest.ExtractCode.extract_a_part_of_code_from_the_current_method.approved.adoc[leveloffset=+2]
 
-[#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_ExtractPartOfCode]
+[#org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode]
 === Extract part of code
 
 We shows here some technical cases.
@@ -34,7 +34,7 @@ include::_CodeExtractorTest.ExtractCode.ExtractPartOfCode.tag_beginning_with_sam
 
 include::_CodeExtractorTest.ExtractCode.ExtractPartOfCode.tag_beginning_with_same_inner_tag_name.approved.adoc[leveloffset=+3]
 
-[#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment]
+[#org_sfvl_doctesting_utils_codeextractortest_extractcomment]
 == Extract comment
 
 include::_CodeExtractorTest.ExtractComment.extract_class_comment.approved.adoc[leveloffset=+2]

@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_demo_TennisTest_player_A_win_two_points]
+[#org_sfvl_demo_tennistest_player_a_win_two_points]
 = Player A win two points
 
 When player A win two points, score is 30 / 0.

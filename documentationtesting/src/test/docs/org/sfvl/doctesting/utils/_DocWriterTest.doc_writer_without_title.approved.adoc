@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_DocWriterTest_doc_writer_without_title]
+[#org_sfvl_doctesting_utils_docwritertest_doc_writer_without_title]
 = Hide title
 
 If you don't want the default title in the generated file, add @NoTitle annotation.

@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_docformatter_AsciidocFormatterTest_AsciiDocList_should_format_empty_list]
+[#org_sfvl_docformatter_asciidocformattertest_asciidoclist_should_format_empty_list]
 = Empty list
 
 When no items, listItems method return an empty string.

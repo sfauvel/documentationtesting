@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_DocWriterTest_add_description_using_comment]
+[#org_sfvl_doctesting_utils_docwritertest_add_description_using_comment]
 = Add a description
 
 A description can be added after the title using the Javadoc.
@@ -49,7 +49,7 @@ public class MyTestWithComment {
 ....
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_samples_MyTestWithComment_test_A]
+[#org_sfvl_samples_mytestwithcomment_test_a]
 = My title
 
 To decribe a method, you can add a comment.
@@ -61,7 +61,7 @@ It will be added under title.
 ....
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_samples_MyTestWithComment]
+[#org_sfvl_samples_mytestwithcomment]
 = My test with comment
 
 My comment for MyTestComment
@@ -108,7 +108,7 @@ public class ClassUnderTest {
 ....
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_samples_MyTestWithClassToDocument]
+[#org_sfvl_samples_mytestwithclasstodocument]
 = My test with class to document
 
 Description of the class ClassUnderTest.

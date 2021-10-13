@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_writer_DocumentationBuilderTest_simple_doc_with_a_subclass_of_DocumentationBuilder]
+[#org_sfvl_doctesting_writer_documentationbuildertest_simple_doc_with_a_subclass_of_documentationbuilder]
 = Simple doc with a subclass of DocumentationBuilder
 
 We can subclass a DocumentationBuilder to redefine some methods or create new ones.

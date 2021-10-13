@@ -96,13 +96,14 @@ public class DocWriter {
                 testMethod.getDeclaringClass().getName()
                         .replace(".", "_")
                         .replace("$", "_"),
-                testMethod.getName());
+                testMethod.getName()).toLowerCase();
     }
 
     public String titleId(Class clazz) {
         return clazz.getName()
                 .replace(".", "_")
-                .replace("$", "_");
+                .replace("$", "_")
+                .toLowerCase();
     }
 
     /**

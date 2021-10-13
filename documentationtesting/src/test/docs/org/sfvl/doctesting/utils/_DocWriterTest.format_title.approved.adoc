@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_DocWriterTest_format_title]
+[#org_sfvl_doctesting_utils_docwritertest_format_title]
 = Format title
 
 When a title is specified, it is used as title.
@@ -15,7 +15,7 @@ When a title is specified, it is used as title.
 ----
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_DocWriterTest_format_title]
+[#org_sfvl_doctesting_utils_docwritertest_format_title]
 = My title
 
 
@@ -36,7 +36,7 @@ When a title is not specified, title comes from the method name or the class nam
 ----
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_DocWriterTest_format_title]
+[#org_sfvl_doctesting_utils_docwritertest_format_title]
 = Format title
 
 
@@ -45,7 +45,7 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 ----
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_samples_MyTest]
+[#org_sfvl_samples_mytest]
 = My test
 
 \include::_MyTest.test_A.approved.adoc[leveloffset=+1]

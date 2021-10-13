@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_DocPathTest_available_paths_from_DocPath]
+[#org_sfvl_doctesting_utils_docpathtest_available_paths_from_docpath]
 = Available paths from DocPath
 
 `DocPath` contains the information defining the location of the item to be documented.

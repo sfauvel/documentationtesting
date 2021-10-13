@@ -1,5 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
+[#org_sfvl_demo_asciidocrenderingtest]
 = Ascii doc rendering test
 
 Present how to render some common needs with asciidoc.

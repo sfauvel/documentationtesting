@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_context]
+[#org_sfvl_doctesting_utils_parsedclassrepositorytest_context]
 = Context
 
 Exemples of this chapter use the following class
@@ -58,7 +58,7 @@ class ClassWithInformationToExtract {
 
 ++++
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_context ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_context ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;

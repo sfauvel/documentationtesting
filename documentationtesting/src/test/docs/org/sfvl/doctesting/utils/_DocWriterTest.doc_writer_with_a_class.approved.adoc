@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_DocWriterTest_doc_writer_with_a_class]
+[#org_sfvl_doctesting_utils_docwritertest_doc_writer_with_a_class]
 = Output with a class
 
 DocWriter is also used to format output of a test class.
@@ -46,7 +46,7 @@ public class MyTestWithTests {
 ....
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_samples_MyTestWithTests]
+[#org_sfvl_samples_mytestwithtests]
 = My test with tests
 
 \include::_MyTestWithTests.test_A.approved.adoc[leveloffset=+1]

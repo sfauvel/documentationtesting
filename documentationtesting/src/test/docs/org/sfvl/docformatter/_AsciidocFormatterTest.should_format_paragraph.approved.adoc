@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_docformatter_AsciidocFormatterTest_should_format_paragraph]
+[#org_sfvl_docformatter_asciidocformattertest_should_format_paragraph]
 = Paragraph
 
 Each text is written in a separate line on asciidoc file.

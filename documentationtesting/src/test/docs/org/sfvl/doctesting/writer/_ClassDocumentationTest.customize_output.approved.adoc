@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_writer_ClassDocumentationTest_customize_output]
+[#org_sfvl_doctesting_writer_classdocumentationtest_customize_output]
 = Customize output
 
 Title and description could be changed by overriding the appropriate methods.

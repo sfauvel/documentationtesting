@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_junitextension_FindLambdaMethodTest_find_method_name]
+[#org_sfvl_doctesting_junitextension_findlambdamethodtest_find_method_name]
 = Find method name
 
 It's possible to extract method name from a method reference.

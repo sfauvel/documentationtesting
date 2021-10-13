@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_parsed_classes_only_once]
+[#org_sfvl_doctesting_utils_parsedclassrepositorytest_parsed_classes_only_once]
 = Parsed classes only once
 
 The `ParsedClassRepository` have a cache to avoid parsing twice the same class.
@@ -25,7 +25,7 @@ Below, we show calls to `parse` method when we call a method of `ParsedClassRepo
 
 ++++
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_parsed_classes_only_once ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_parsed_classes_only_once ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;

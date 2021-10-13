@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_howto_CreateADocument_generate_html_only_on_nested_class]
+[#org_sfvl_howto_createadocument_generate_html_only_on_nested_class]
 = Generate html only on nested class
 
 It's not possible to generate a page on a nested class.

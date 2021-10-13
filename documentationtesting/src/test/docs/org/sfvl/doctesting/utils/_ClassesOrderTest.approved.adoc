@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_ClassesOrderTest]
+[#org_sfvl_doctesting_utils_classesordertest]
 = Classes order test
 
 include::_ClassesOrderTest.in_order.approved.adoc[leveloffset=+1]

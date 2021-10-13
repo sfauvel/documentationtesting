@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_howto_HowTo]
+[#org_sfvl_howto_howto]
 = How to
 
 include::_HowTo.getting_started.approved.adoc[leveloffset=+1]

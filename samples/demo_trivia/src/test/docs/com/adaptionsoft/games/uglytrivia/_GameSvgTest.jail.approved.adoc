@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#com_adaptionsoft_games_uglytrivia_GameSvgTest_jail]
+[#com_adaptionsoft_games_uglytrivia_gamesvgtest_jail]
 = Jail
 
 When a player gives a wrong answer, he goes to jail.

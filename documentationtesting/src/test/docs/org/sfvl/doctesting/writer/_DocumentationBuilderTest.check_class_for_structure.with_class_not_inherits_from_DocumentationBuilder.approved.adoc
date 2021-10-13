@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_writer_DocumentationBuilderTest_check_class_for_structure_with_class_not_inherits_from_DocumentationBuilder]
+[#org_sfvl_doctesting_writer_documentationbuildertest_check_class_for_structure_with_class_not_inherits_from_documentationbuilder]
 = With class not inherits from DocumentationBuilder
 
 When the given class not inherits from a DocumentationBuilder.

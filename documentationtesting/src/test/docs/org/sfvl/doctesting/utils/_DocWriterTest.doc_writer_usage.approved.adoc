@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_DocWriterTest_doc_writer_usage]
+[#org_sfvl_doctesting_utils_docwritertest_doc_writer_usage]
 = Usage
 
 DocWriter is just a buffer.
@@ -40,7 +40,7 @@ An id is also added above the title to be able to apply a specific style in the 
 ....
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_DocWriterTest_simple_method]
+[#org_sfvl_doctesting_utils_docwritertest_simple_method]
 = My title
 
 Some text added to show DocWriter output.

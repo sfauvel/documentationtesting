@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_samples_htmlPageName_HtmlNameTest]
+[#org_sfvl_samples_htmlpagename_htmlnametest]
 = Html name test
 
 include::_HtmlNameTest.test_A.approved.adoc[leveloffset=+1]

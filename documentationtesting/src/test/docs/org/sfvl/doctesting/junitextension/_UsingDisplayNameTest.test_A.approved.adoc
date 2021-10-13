@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_junitextension_UsingDisplayNameTest_test_A]
+[#org_sfvl_doctesting_junitextension_usingdisplaynametest_test_a]
 = Title for this test
 
 In my *test*

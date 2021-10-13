@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_writer_CreateADocument_reuse_sub_parts_of_document]
+[#org_sfvl_doctesting_writer_createadocument_reuse_sub_parts_of_document]
 = Reuse sub parts of document
 
 To build a document, we can reuse some code that generate a part of document.

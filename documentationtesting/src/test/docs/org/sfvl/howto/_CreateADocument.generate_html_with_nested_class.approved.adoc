@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_howto_CreateADocument_generate_html_with_nested_class]
+[#org_sfvl_howto_createadocument_generate_html_with_nested_class]
 = Generate html with nested class
 
 With nested class, only class with direct extension generate a page

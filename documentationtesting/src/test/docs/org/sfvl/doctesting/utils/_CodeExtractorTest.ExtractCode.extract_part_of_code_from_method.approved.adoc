@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_part_of_code_from_method]
+[#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_part_of_code_from_method]
 = Extract a part of code from method
 
 To extract a part of a method, you can write a comment with a specific value
@@ -105,7 +105,7 @@ In that case, all parts matching the text will be returned.
 ====
 ++++
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_extract_part_of_code_from_method ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_part_of_code_from_method ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;

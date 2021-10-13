@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_demo_UsingApprovalsTest_should_give_person_information]
+[#org_sfvl_demo_usingapprovalstest_should_give_person_information]
 = Should give person information
 
 With an instance of Person:

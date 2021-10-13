@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_with_same_beginning_of_another_tag]
+[#org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_with_same_beginning_of_another_tag]
 = Tag with same beginning of another tag
 
 Tag (MyCode) could be a subpart of another one (**MyCode**Before or **MyCode**After).
@@ -44,7 +44,7 @@ Tag (MyCode) could be a subpart of another one (**MyCode**Before or **MyCode**Af
 ====
 ++++
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_with_same_beginning_of_another_tag ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_with_same_beginning_of_another_tag ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;

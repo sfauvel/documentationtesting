@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_howto_CreateADocument]
+[#org_sfvl_howto_createadocument]
 = Create a document
 
 We call `document` one page of the documentation which corresponds to an HTML page.
