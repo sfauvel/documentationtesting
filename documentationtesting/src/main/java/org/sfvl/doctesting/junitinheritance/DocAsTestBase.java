@@ -2,6 +2,7 @@ package org.sfvl.doctesting.junitinheritance;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.platform.commons.support.ModifierSupport;
 import org.sfvl.doctesting.utils.Config;
@@ -11,6 +12,7 @@ import org.sfvl.doctesting.utils.PathProvider;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 
 import java.io.FileWriter;
+import java.lang.reflect.Method;
 import java.nio.file.Path;
 
 public abstract class DocAsTestBase {
@@ -67,6 +69,11 @@ public abstract class DocAsTestBase {
     }
 
     protected String buildContent(TestInfo testInfo) {
-        return writer.formatOutput(testInfo.getDisplayName(), testInfo.getTestMethod().get());
+        final Method testMethod = testInfo.getTestMethod().get();
+        final DisplayName displayName = testMethod.getAnnotation(DisplayName.class);
+
+        return displayName != null
+                ? writer.formatOutput(displayName.value(), testMethod)
+                : writer.formatOutput(testMethod);
     }
 }
