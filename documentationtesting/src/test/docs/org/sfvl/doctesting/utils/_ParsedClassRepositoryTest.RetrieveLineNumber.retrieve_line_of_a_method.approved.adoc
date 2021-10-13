@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_method]
+[#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_method]
 = Retrieve line of a method
 
 .How to get the first line of a method
@@ -15,7 +15,7 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 Line found: *13*
 ++++
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveLineNumber_retrieve_line_of_a_method ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_method ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;

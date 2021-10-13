@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_samples_htmlPageName_HtmlNameTest_test_A]
+[#org_sfvl_samples_htmlpagename_htmlnametest_test_a]
 = Test A
 
 In my *test*

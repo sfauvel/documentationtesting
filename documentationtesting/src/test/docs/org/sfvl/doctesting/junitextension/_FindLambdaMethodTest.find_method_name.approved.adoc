@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_junitextension_FindLambdaMethodTest_find_method_name]
+[#org_sfvl_doctesting_junitextension_findlambdamethodtest_find_method_name]
 = Find method name
 
 It's possible to extract method name from a method reference.
@@ -17,3 +17,16 @@ Method name: *myMethod*
 
 ----
 Method name: *methodWithOneParameter*
+[source, java, indent=0]
+----
+            String methodName = FindLambdaMethod.getName(FindLambdaMethodTest::methodThatIsAFunction);
+
+----
+Method name: *methodThatIsAFunction*
+[source, java, indent=0]
+----
+            final FindLambdaMethod.SerializableFunction<Integer, String> method = this::methodThatIsAFunction;
+            String methodName = FindLambdaMethod.getName(method);
+
+----
+Method name: *methodThatIsAFunction*

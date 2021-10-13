@@ -18,7 +18,7 @@ public class IntermediateHtmlPage extends HtmlPageExtension {
                 ":rouge-style: thankful_eyes",
                 ":toclevels: 4",
                 "",
-                String.format("include::%s[]", new DocPath(clazz).approved().fullname()),
+                String.format("include::%s[]", new DocPath(clazz).approved().filename()),
                 "",
                 "[subs=attributes+]",
                 "++++",

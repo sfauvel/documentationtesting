@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_writer_ClassDocumentationTest_title_level]
+[#org_sfvl_doctesting_writer_classdocumentationtest_title_level]
 = Title level
 
 We can define the title level.

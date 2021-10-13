@@ -1,26 +1,46 @@
-import com.intellij.openapi.actionSystem.IdeActions;
+import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.command.UndoConfirmationPolicy;
 import com.intellij.openapi.command.undo.UndoManager;
-import com.intellij.openapi.editor.actionSystem.EditorAction;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.Messages;
-import com.intellij.openapi.ui.TestInputDialog;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
 import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 
-import java.io.*;
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
 public class ApprovalsDocPluginTest extends BasePlatformTestCase {
 
+    public void testMenuForOneFile() throws IOException {
+        final PsiFile file = myFixture.addFileToProject("tmp/_file.received.adoc", "some text");
+
+        AnActionEvent actionEvent = new MockActionOnFileEvent(file);
+
+        new ApproveFileAction().update(actionEvent);
+
+        assertEquals("Approved file", actionEvent.getPresentation().getText());
+    }
+
+    public void testMenuForOneFolder() throws IOException {
+        myFixture.addFileToProject("tmp/_file.received.adoc", "some text");
+        final VirtualFile folder = myFixture.findFileInTempDir("tmp");
+
+        AnActionEvent actionEvent = new MockActionOnFileEvent(myFixture.getProject(), folder);
+
+        new ApproveFileAction().update(actionEvent);
+
+        assertEquals("Approved All", actionEvent.getPresentation().getText());
+    }
+
     public void testName() throws IOException {
-        myFixture.addFileToProject("tmp/file.received.adoc", "some text");
-        VirtualFile virtualFile = myFixture.findFileInTempDir("tmp/file.received.adoc");
+
+        myFixture.addFileToProject("tmp/_file.received.adoc", "some text");
+        VirtualFile virtualFile = myFixture.findFileInTempDir("tmp/_file.received.adoc");
         System.out.println(virtualFile.getUrl());
         System.out.println(virtualFile.getPath());
         PsiFile file1 = myFixture.getPsiManager().findFile(virtualFile);
@@ -36,8 +56,8 @@ public class ApprovalsDocPluginTest extends BasePlatformTestCase {
     }
 
     public void test_approved_one_received_file() throws IOException {
-        String receivedFile = "tmp/file.multi.name.received.adoc";
-        String approvedFile = "tmp/file.multi.name.approved.adoc";
+        String receivedFile = "tmp/_file.multi.name.received.adoc";
+        String approvedFile = "tmp/_file.multi.name.approved.adoc";
 
         myFixture.addFileToProject(receivedFile, "some text");
 
@@ -50,8 +70,8 @@ public class ApprovalsDocPluginTest extends BasePlatformTestCase {
     }
 
     public void test_approved_file_to_replace_a_previous_approbation() throws IOException {
-        String receivedFile = "tmp/file.received.adoc";
-        String approvedFile = "tmp/file.approved.adoc";
+        String receivedFile = "tmp/_file.received.adoc";
+        String approvedFile = "tmp/_file.approved.adoc";
 
         myFixture.addFileToProject(receivedFile, "new text");
         myFixture.addFileToProject(approvedFile, "old text");
@@ -65,10 +85,10 @@ public class ApprovalsDocPluginTest extends BasePlatformTestCase {
     }
 
     public void test_approved_one_directory() throws IOException {
-        String receivedFileA = "tmp/fileA.received.adoc";
-        String receivedFileB = "tmp/fileB.received.adoc";
-        String approvedFileA = "tmp/fileA.approved.adoc";
-        String approvedFileB = "tmp/fileB.approved.adoc";
+        String receivedFileA = "tmp/_fileA.received.adoc";
+        String receivedFileB = "tmp/_fileB.received.adoc";
+        String approvedFileA = "tmp/_fileA.approved.adoc";
+        String approvedFileB = "tmp/_fileB.approved.adoc";
 
         myFixture.addFileToProject(receivedFileA, "some text for A");
         myFixture.addFileToProject(receivedFileB, "some text for B");
@@ -83,8 +103,8 @@ public class ApprovalsDocPluginTest extends BasePlatformTestCase {
     }
 
     public void test_cancelled_approved_files() throws IOException {
-        String receivedFileA = "tmp/fileA.received.adoc";
-        String receivedFileB = "tmp/fileB.received.adoc";
+        String receivedFileA = "tmp/_fileA.received.adoc";
+        String receivedFileB = "tmp/_fileB.received.adoc";
 
         myFixture.addFileToProject(receivedFileA, "some text for A");
         myFixture.addFileToProject(receivedFileB, "some text for B");
@@ -131,4 +151,5 @@ public class ApprovalsDocPluginTest extends BasePlatformTestCase {
                         null,
                         UndoConfirmationPolicy.DO_NOT_REQUEST_CONFIRMATION));
     }
+
 }

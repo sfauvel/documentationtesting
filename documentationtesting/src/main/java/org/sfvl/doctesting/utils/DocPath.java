@@ -4,31 +4,84 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
+/**
+ * One of the essential points to create a documentation, is links between files.
+ * It's even more important with documentation as test.
+ * For a java method, there is the java file, the approved and received files, and the html file.
+ * We need to easily create paths to those files.
+ * We also need to reference one file from another one either to include it or to make a link to another page.
+ *
+ * This class helps to navigate between all that files.
+ */
 public class DocPath {
 
-    private final Path folder;
+    private final Path packagePath;
     private final String name;
 
     public DocPath(Class<?> clazz) {
-        this(clazz.getPackage(),
-                extractClassName(clazz));
+        this(clazz.getPackage(), extractClassName(clazz));
     }
 
     public DocPath(Method method) {
-        this(method.getDeclaringClass().getPackage(),
-                extractMethodName(method));
+        this(method.getDeclaringClass().getPackage(), extractMethodName(method));
     }
 
     public DocPath(Package classPackage, String name) {
-        this(toPath(classPackage),
-                name);
+        this(toPath(classPackage), name);
     }
 
-    public DocPath(Path folder, String name) {
-        this.folder = folder;
+    public DocPath(Path packagePath, String name) {
+        this.packagePath = packagePath;
         this.name = name;
+    }
+
+    public Path packagePath() {
+        return packagePath;
+    }
+
+    /**
+     * @return Name of the element associated with the doc.
+     */
+    public String name() {
+        return name;
+    }
+
+    /**
+     * The approved file.
+     */
+    public OnePath approved() {
+        return new ApprovedPath(this);
+    }
+    /**
+     * The received file.
+     */
+    public OnePath received() {
+        return new ReceivedPath(this);
+    }
+
+    /**
+     * The java source file.
+     */
+    public OnePath test() {
+        return new TestPath(this);
+    }
+    public OnePath resource() {
+        return new ResourcePath(this);
+    }
+
+    /**
+     * The final rendered file.
+     */
+    public OnePath html() {
+        return new HtmlPath(this);
+    }
+
+    /**
+     * File to create a page in documentation.
+     */
+    public OnePath page() {
+        return new PagePath(this);
     }
 
     private static final String extractClassName(Class<?> clazz) {
@@ -37,32 +90,6 @@ public class DocPath {
 
     private static final String extractMethodName(Method method) {
         return String.format("%s.%s", extractClassName(method.getDeclaringClass()), method.getName());
-    }
-
-    public OnePath approved() {
-        return new OnePath(Config.DOC_PATH, folder, "_" + name, ".approved.adoc");
-    }
-
-    public OnePath received() {
-        return new OnePath(Config.DOC_PATH, folder, "_" + name, ".received.adoc");
-    }
-
-    public OnePath test() {
-        return new OnePath(Config.TEST_PATH, folder, name, ".java");
-    }
-    public OnePath resource() {
-        return new OnePath(Config.RESOURCE_PATH, folder, name, ".adoc");
-    }
-    public OnePath doc() {
-        return new OnePath(Paths.get(""), folder, name, ".html");
-    }
-
-    public OnePath page() {
-        return new OnePath(Config.DOC_PATH, folder, name, ".adoc");
-    }
-
-    public String name() {
-        return name;
     }
 
     public static Path toPath(Package aPackage) {

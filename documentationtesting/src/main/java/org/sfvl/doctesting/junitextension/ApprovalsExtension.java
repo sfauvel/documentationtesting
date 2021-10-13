@@ -4,13 +4,18 @@ import org.approvaltests.Approvals;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.platform.commons.support.ModifierSupport;
-import org.sfvl.doctesting.utils.*;
+import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.utils.PathProvider;
 
 import java.io.*;
+import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -63,11 +68,18 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
 
     @Override
     public void afterEach(ExtensionContext extensionContext) throws Exception {
-        String content = getDocWriter().formatOutput(extensionContext.getDisplayName(), extensionContext.getTestMethod().get());
-        getDocWriter().reset();
+
+        final Method testMethod = extensionContext.getTestMethod().get();
+        final DisplayName displayName = testMethod.getAnnotation(DisplayName.class);
+
+        String content = displayName != null
+                ? getDocWriter().formatOutput(displayName.value(), testMethod)
+                : getDocWriter().formatOutput(testMethod);
         content += extensionContext.getExecutionException()
                 .map(this::displayFailingReason)
                 .orElse("");
+
+        getDocWriter().reset();
 
         verifyDoc(content, new DocPath(extensionContext.getTestMethod().get()));
     }

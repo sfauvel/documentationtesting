@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_application_fizzbuzz_FizzBuzzTest_sample_output]
+[#org_sfvl_application_fizzbuzz_fizzbuzztest_sample_output]
 = Sample output
 
 1 +

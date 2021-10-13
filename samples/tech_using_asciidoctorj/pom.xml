@@ -17,7 +17,7 @@
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <junit.version>5.4.1</junit.version>
         <asciidoctorj.version>2.4.0</asciidoctorj.version>
-        <documentationtesting.version>1.1.6-SNAPSHOT</documentationtesting.version>
+        <documentationtesting.version>1.1.7-SNAPSHOT</documentationtesting.version>
     </properties>
 
     <build>

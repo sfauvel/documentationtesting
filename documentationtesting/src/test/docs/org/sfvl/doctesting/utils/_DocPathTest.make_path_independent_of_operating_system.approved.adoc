@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_DocPathTest_make_path_independent_of_operating_system]
+[#org_sfvl_doctesting_utils_docpathtest_make_path_independent_of_operating_system]
 = Make path independent of operating system
 
 Path in asciidoc files must used '/' independently of operating system and file separator.

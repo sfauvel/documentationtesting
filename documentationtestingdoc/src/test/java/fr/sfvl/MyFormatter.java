@@ -72,14 +72,14 @@ class MyFormatter extends AsciidocFormatter {
 
         return String.format("link:{%s}/%s[%s]\n",
                 Config.DOC_PATH_TAG,
-                new DocPath(method).doc().path(),
+                new DocPath(method).html().path(),
                 title);
     }
 
     private void generatePage(DocPath docPath) throws IOException {
         String includeContent = String.join("\n",
                 "ifndef::ROOT_PATH[]",
-                String.format(":ROOT_PATH: %s", docPath.doc().folder().relativize(Paths.get(""))),
+                String.format(":ROOT_PATH: %s", docPath.html().folder().relativize(Paths.get(""))),
                 "endif::[]",
                 ":toc: left",
                 ":nofooter:",
@@ -87,7 +87,7 @@ class MyFormatter extends AsciidocFormatter {
                 ":source-highlighter: rouge",
                 ":toclevels: 4",
                 "",
-                String.format("include::%s[]", docPath.approved().fullname()));
+                String.format("include::%s[]", docPath.approved().filename()));
 
         try (FileWriter fileWriter = new FileWriter(docPath.page().path().toFile())) {
             fileWriter.write(includeContent);

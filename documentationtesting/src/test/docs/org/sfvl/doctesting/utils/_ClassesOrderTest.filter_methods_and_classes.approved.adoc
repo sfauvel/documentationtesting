@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_ClassesOrderTest_filter_methods_and_classes]
+[#org_sfvl_doctesting_utils_classesordertest_filter_methods_and_classes]
 = Filter methods and classes
 
 We can give filters to select methods and classes to return.

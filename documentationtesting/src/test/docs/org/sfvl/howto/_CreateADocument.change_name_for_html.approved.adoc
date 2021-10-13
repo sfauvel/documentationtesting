@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_howto_CreateADocument_change_name_for_html]
+[#org_sfvl_howto_createadocument_change_name_for_html]
 = Define name and path for the output file
 
 
@@ -9,7 +9,6 @@ By default, `HtmlPageExtension` create a file with a name coming from the class
 To change it, we can extending `HtmlPageExtension` and redefined name method.
 
 .Example of class creating a file to convert into HTML
-
 [source,java,indent=0]
 ----
 package org.sfvl.samples.htmlPageName;
@@ -23,7 +22,6 @@ import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.DocPath;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 @ExtendWith(HtmlNameTest.HtmlPageHeaderExtension.class)
 public class HtmlNameTest {
@@ -44,8 +42,6 @@ public class HtmlNameTest {
 
 }
 ----
-
-
 Files in folder `src/test/docs/org/sfvl/samples/htmlPageName`
 
 * _HtmlNameTest.approved.adoc

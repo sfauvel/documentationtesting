@@ -1,10 +1,12 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_docformatter_AsciidocFormatterTest_block_should_format_block_with_enum]
+[#org_sfvl_docformatter_asciidocformattertest_block_should_format_block_with_enum]
 = Predefine blocks
 
-You can select block type from on of the Block enum.
+You can select block type from one of the Block enum.
 
+.Block value available
+* LITERAL
 
 [red]##_Usage_##
 [source,java,indent=0]
@@ -13,6 +15,7 @@ You can select block type from on of the Block enum.
                     .title("Simple block")
                     .content("Into the block")
                     .build();
+
 ----
 
 [red]##_Render_##

@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_DocPathTest_nested_class]
+[#org_sfvl_doctesting_utils_docpathtest_nested_class]
 = Nested class
 
 Name for nested class `org.sfvl.doctesting.sample.MyClass$MySubClass` is `MyClass.MySubClass`.

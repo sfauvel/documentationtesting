@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_ClassesOrderTest_in_order]
+[#org_sfvl_doctesting_utils_classesordertest_in_order]
 = In order
 
 We retrieve names of methods and nested classes in the same order they appear in source file.

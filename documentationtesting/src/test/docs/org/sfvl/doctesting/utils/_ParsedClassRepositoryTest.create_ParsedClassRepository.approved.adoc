@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_create_ParsedClassRepository]
+[#org_sfvl_doctesting_utils_parsedclassrepositorytest_create_parsedclassrepository]
 = Create ParsedClassRepository
 
 We can build a ParsedClassRepository with several paths.
@@ -54,7 +54,7 @@ you can set it with an empty value to not throw an exception.
 
 ++++
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_create_ParsedClassRepository ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_create_parsedclassrepository ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;

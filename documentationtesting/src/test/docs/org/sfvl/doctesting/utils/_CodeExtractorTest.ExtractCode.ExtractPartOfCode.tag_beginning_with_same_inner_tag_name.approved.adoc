@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_beginning_with_same_inner_tag_name]
+[#org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_beginning_with_same_inner_tag_name]
 = Tag beginning with same inner tag name
 
 Tag inside (**MyCodeGlobal**Inside) another one can be an extension of an outside tag (MyCodeGlobal).
@@ -42,7 +42,7 @@ Tag inside (**MyCodeGlobal**Inside) another one can be an extension of an outsid
 ====
 ++++
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractCode_ExtractPartOfCode_tag_beginning_with_same_inner_tag_name ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_beginning_with_same_inner_tag_name ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;

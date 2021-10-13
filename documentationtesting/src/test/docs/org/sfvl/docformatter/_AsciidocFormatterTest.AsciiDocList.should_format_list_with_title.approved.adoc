@@ -1,0 +1,28 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_docformatter_asciidocformattertest_asciidoclist_should_format_list_with_title]
+= List with a title
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+            output = formatter.listItemsWithTitle("List title", "First", "Second", "Third");
+----
+
+[red]##_Render_##
+
+.List title
+* First
+* Second
+* Third
+
+[red]##_Asciidoc generated_##
+------
+.List title
+* First
+* Second
+* Third
+------
+
+___

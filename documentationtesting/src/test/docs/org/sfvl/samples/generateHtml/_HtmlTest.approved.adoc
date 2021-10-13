@@ -1,5 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
+[#org_sfvl_samples_generatehtml_htmltest]
 = Html test
 
 include::_HtmlTest.test_A.approved.adoc[leveloffset=+1]

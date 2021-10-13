@@ -1,0 +1,6 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_samples_generateonlynestedhtml_htmlonlynestedtest_htmlnestedclasstest_test_in_nested_class]
+= Test in nested class
+
+In my *test* in nested class

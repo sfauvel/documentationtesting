@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_ClassesOrderTest_nested_class_using_outer_method]
+[#org_sfvl_doctesting_utils_classesordertest_nested_class_using_outer_method]
 = Nested class using outer method
 
 A nested class calling an outer method generate some special method that are not in source.

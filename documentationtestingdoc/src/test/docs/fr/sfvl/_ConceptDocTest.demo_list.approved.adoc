@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 
-[#fr_sfvl_ConceptDocTest_demo_list]
+[#fr_sfvl_conceptdoctest_demo_list]
 = Functional demos
 
 Those samples show different documentation that can be generated.

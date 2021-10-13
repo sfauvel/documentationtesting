@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_howto_HowTo_getting_started]
+[#org_sfvl_howto_howto_getting_started]
 = Getting started
 
 To get started quickly, you can download link:https://github.com/sfauvel/TryDocAsTest[Try doc as test] project.

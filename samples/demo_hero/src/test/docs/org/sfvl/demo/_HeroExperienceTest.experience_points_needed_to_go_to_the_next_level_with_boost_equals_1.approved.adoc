@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_demo_HeroExperienceTest_experience_points_needed_to_go_to_the_next_level_with_boost_equals_1]
+[#org_sfvl_demo_heroexperiencetest_experience_points_needed_to_go_to_the_next_level_with_boost_equals_1]
 = Experience points needed to go to the next level with boost equals 1
 
 When a level boost is set, it's easier to gain a level.

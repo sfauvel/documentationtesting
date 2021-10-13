@@ -2,6 +2,7 @@ package org.sfvl.doctesting.junitinheritance;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.platform.commons.support.ModifierSupport;
 import org.sfvl.doctesting.utils.Config;
@@ -11,28 +12,13 @@ import org.sfvl.doctesting.utils.PathProvider;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 
 import java.io.FileWriter;
+import java.lang.reflect.Method;
 import java.nio.file.Path;
 
 public abstract class DocAsTestBase {
     protected static final PathProvider pathBuidler = new PathProvider();
 
     DocWriter writer = new DocWriter();
-
-    /**
-     * Return the name to use as title from a test method .
-     * It returns the value specified with _DisplayName_ annotation.
-     * If annotation is not present, this is the method name that will be returned
-     * after some test formatting (remove '_', uppercase first letter).
-     *
-     * It's based on value return by _displayName_ method.
-     * It returns either DisplayName annotation value or method name.
-     *
-     * @param testInfo
-     * @return
-     */
-    protected String formatTitle(TestInfo testInfo) {
-        return writer.formatTitle(testInfo.getDisplayName(), testInfo.getTestMethod().get());
-    }
 
     /**
      * Give path where docs are generated.
@@ -83,6 +69,11 @@ public abstract class DocAsTestBase {
     }
 
     protected String buildContent(TestInfo testInfo) {
-        return writer.formatOutput(testInfo.getDisplayName(), testInfo.getTestMethod().get());
+        final Method testMethod = testInfo.getTestMethod().get();
+        final DisplayName displayName = testMethod.getAnnotation(DisplayName.class);
+
+        return displayName != null
+                ? writer.formatOutput(displayName.value(), testMethod)
+                : writer.formatOutput(testMethod);
     }
 }

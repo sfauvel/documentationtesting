@@ -4,6 +4,13 @@ body {
     color: blue;
 }*/
 
+:root {
+  --bg1: #05fdCC;
+  --bg2: #0fd289;
+  --logo_height: 100px
+  --shadow_color: #084f34;
+  --title-color: #7a2518;
+}
 
 .section {
     margin: 1em;
@@ -31,6 +38,10 @@ body {
 
 body {
     background: #0fd289;
+}
+
+#header > h1:only-child, body.toc2 #header > h1:nth-last-child(2) {
+    border-bottom: 1px solid var(--title-color);
 }
 
 ifdef::is-html-doc[]

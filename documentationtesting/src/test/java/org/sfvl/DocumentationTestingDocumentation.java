@@ -12,20 +12,12 @@ import org.sfvl.doctesting.junitextension.*;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.NoTitle;
-import org.sfvl.doctesting.writer.DocumentProducer;
-import org.sfvl.doctesting.writer.Options;
 import org.sfvl.howto.HowTo;
 import org.sfvl.howto.KnownIssues;
 import org.sfvl.howto.Tutorial;
-import org.sfvl.test_tools.IntermediateHtmlPage;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.Set;
 
 @DisplayName(value = "Documentation Testing Library")
 @ExtendWith(DocumentationTestingDocumentation.HtmlPage.class)
@@ -50,12 +42,6 @@ public class DocumentationTestingDocumentation {
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     private final Formatter formatter = new AsciidocFormatter();
-    /// Record all builder references as a link in documentation.
-    private static Set<Class<? extends DocumentProducer>> buildersToGenerate = new HashSet<>();
-
-    protected String getHeader() {
-        return "include::../../../readme.adoc[leveloffset=+1]";
-    }
 
     @Test
     @NoTitle
@@ -68,75 +54,18 @@ public class DocumentationTestingDocumentation {
         final Path from = docPath.resource().from(new DocPath(this.getClass()).approved());
 
         return String.join("\n",
-                formatter.attribute("TUTORIAL_HTML", generatePageAndGetPath(Tutorial.class)),
-                formatter.attribute("HOW_TO_HTML", generatePageAndGetPath(HowTo.class)),
-                formatter.attribute("APPROVAL_EXTENSION_HTML", generatePageAndGetPath(ApprovalsExtensionTest.class)),
-                formatter.attribute("ASCIIDOC_FORMATTER_HTML", generatePageAndGetPath(AsciidocFormatterTest.class)),
-                formatter.attribute("DOC_TESTING_DOCUMENTATION_HTML", generatePageAndGetPath(DocTestingDocumentation.class)),
-                formatter.attribute("KNOWN_ISSUES_HTML", generatePageAndGetPath(KnownIssues.class)),
+                formatter.attribute("TUTORIAL_HTML", htmlPath(Tutorial.class)),
+                formatter.attribute("HOW_TO_HTML", htmlPath(HowTo.class)),
+                formatter.attribute("APPROVAL_EXTENSION_HTML", htmlPath(ApprovalsExtensionTest.class)),
+                formatter.attribute("ASCIIDOC_FORMATTER_HTML", htmlPath(AsciidocFormatterTest.class)),
+                formatter.attribute("DOC_TESTING_DOCUMENTATION_HTML", htmlPath(DocTestingDocumentation.class)),
+                formatter.attribute("KNOWN_ISSUES_HTML", htmlPath(KnownIssues.class)),
                 String.format("include::%s[leveloffset=+1]", DocPath.toAsciiDoc(from))
         );
     }
 
-    private String linkToClass(Class<?> clazz) {
-
-        final String className = clazz.getSimpleName();
-        final String title = className.substring(0, 1) +
-                className.substring(1)
-                        .replaceAll("([A-Z])", " $1")
-                        .toLowerCase();
-
-        return linkToClass(clazz, title);
-    }
-
-    private String linkToClass(Class<?> clazz, String title) {
-        return String.format("link:%s[%s]\n",
-                generatePageAndGetPath(clazz),
-                title);
-    }
-
-    private String generatePageAndGetPath(Class<?> clazz) {
-        new IntermediateHtmlPage().generate(clazz);
-        return DocPath.toAsciiDoc(new DocPath(clazz).doc().path());
-    }
-
-    public <T> String linkToMethod(FindLambdaMethod.SerializableConsumer<T> methodToInclude) {
-        final Method method = FindLambdaMethod.getMethod(methodToInclude);
-
-        String methodName = method.getName();
-        String title = methodName.replace("_", " ");
-        title = title.substring(0, 1).toUpperCase() + title.substring(1);
-
-        return String.format("link:{%s}/%[%s]\n",
-                Config.DOC_PATH_TAG,
-                new DocPath(method).doc().path(),
-                title);
-
-    }
-
-    private void buildLinkedFile() {
-        for (Class<? extends DocumentProducer> aClass : this.buildersToGenerate) {
-            try {
-                aClass.getDeclaredConstructor().newInstance().produce();
-            } catch (IOException
-                    | InstantiationException
-                    | IllegalAccessException
-                    | InvocationTargetException
-                    | NoSuchMethodException e) {
-                throw new RuntimeException("Not able to generate " + aClass.getSimpleName(), e);
-            }
-        }
-    }
-
-    public String build() {
-        return formatter.paragraphSuite(
-                new Options(formatter)
-                        .with("nofooter")
-                        .build(),
-                getHeader(),
-                getContent()
-        );
-
+    private String htmlPath(Class<?> clazz) {
+        return DocPath.toAsciiDoc(new DocPath(clazz).html().path());
     }
 
 }

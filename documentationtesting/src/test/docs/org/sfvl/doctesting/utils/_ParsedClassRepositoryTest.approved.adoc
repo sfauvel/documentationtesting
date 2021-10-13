@@ -1,5 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
+[#org_sfvl_doctesting_utils_parsedclassrepositorytest]
 = ParsedClassRepository
 
 Extract information from source code.
@@ -9,6 +10,7 @@ We compare only class name without checking the scope (package).
 
 include::_ParsedClassRepositoryTest.context.approved.adoc[leveloffset=+1]
 
+[#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment]
 == Retrieve comment
 
 include::_ParsedClassRepositoryTest.RetrieveComment.retrieve_comment_of_a_class.approved.adoc[leveloffset=+2]
@@ -25,6 +27,7 @@ include::_ParsedClassRepositoryTest.RetrieveComment.retrieve_comment_of_a_method
 
 include::_ParsedClassRepositoryTest.RetrieveComment.retrieve_comment_of_a_method_with_array_parameter.approved.adoc[leveloffset=+2]
 
+[#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber]
 == Retrieve line number
 
 include::_ParsedClassRepositoryTest.RetrieveLineNumber.retrieve_line_of_a_class.approved.adoc[leveloffset=+2]

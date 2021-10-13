@@ -1,12 +1,6 @@
-ifndef::ROOT_PATH[]
-:ROOT_PATH: .
-endif::[]
-ifdef::is-html-doc[]
-:imagedir: .
-endif::[]
-ifndef::is-html-doc[]
-:imagedir: {ROOT_PATH}/../resources
-endif::[]
+ifndef::ROOT_PATH[:ROOT_PATH: .]
+ifdef::is-html-doc[:imagedir: .]
+ifndef::is-html-doc[:imagedir: {ROOT_PATH}/../resources]
 :stylesdir: {imagedir}/styles
 
 ++++

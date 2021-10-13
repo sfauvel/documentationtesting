@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_junitextension_ApprovalsExtensionTest_using_displayName]
+[#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_displayname]
 = Using displayName
 
 

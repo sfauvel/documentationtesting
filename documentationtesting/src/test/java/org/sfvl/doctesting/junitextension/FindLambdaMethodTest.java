@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.utils.CodeExtractor;
-import org.sfvl.doctesting.utils.DocWriter;
 
 import java.lang.reflect.Method;
 
@@ -23,6 +22,10 @@ public class FindLambdaMethodTest {
 
     public void methodWithOneParameter(String parameter) {
 
+    }
+
+    public String methodThatIsAFunction(Integer parameter) {
+        return null;
     }
 
     /**
@@ -49,7 +52,26 @@ public class FindLambdaMethodTest {
 
             doc.write(extractMarkedCode(testInfo, "2"), "");
 
-            doc.write(String.format("Method name: *%s*", methodName));
+            doc.write(String.format("Method name: *%s*", methodName), "");
+        }
+        {
+            // >>>3
+            String methodName = FindLambdaMethod.getName(FindLambdaMethodTest::methodThatIsAFunction);
+            // <<<3
+
+            doc.write(extractMarkedCode(testInfo, "3"), "");
+
+            doc.write(String.format("Method name: *%s*", methodName), "");
+        }
+        {
+            // >>>4
+            final FindLambdaMethod.SerializableFunction<Integer, String> method = this::methodThatIsAFunction;
+            String methodName = FindLambdaMethod.getName(method);
+            // <<<4
+
+            doc.write(extractMarkedCode(testInfo, "4"), "");
+
+            doc.write(String.format("Method name: *%s*", methodName), "");
         }
     }
 

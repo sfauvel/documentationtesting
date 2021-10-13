@@ -1,0 +1,26 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_docpathtest_available_paths_from_docpath]
+= Available paths from DocPath
+
+`DocPath` contains the information defining the location of the item to be documented.
+It's not a real path but just the location in the tree of documents.
+From this class, we can generate the real paths to the different kinds of associated documents.
+
+We can create a `DocPath` the code below (where `MyTest` is declared in package `org.sfvl.samples`).
+[source,java,indent=0]
+----
+        Class<?> clazz = MyTest.class;
+        final DocPath docPath = new DocPath(clazz);
+
+----
+[%autowidth]
+[%header]
+|====
+| Kind of document | Method called onePath.path() | Description
+a| page() | src/test/docs/org/sfvl/samples/MyTest.adoc | File to create a page in documentation.
+a| approved() | src/test/docs/org/sfvl/samples/_MyTest.approved.adoc | The approved file.
+a| received() | src/test/docs/org/sfvl/samples/_MyTest.received.adoc | The received file.
+a| test() | src/test/java/org/sfvl/samples/MyTest.java | The java source file.
+a| html() | org/sfvl/samples/MyTest.html | The final rendered file.
+|====

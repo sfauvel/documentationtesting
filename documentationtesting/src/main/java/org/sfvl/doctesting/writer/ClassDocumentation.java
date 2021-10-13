@@ -32,7 +32,7 @@ public class ClassDocumentation {
     public ClassDocumentation() {
         this(
                 new AsciidocFormatter(),
-                m -> Paths.get(new DocPath(m).approved().fullname()),
+                m -> Paths.get(new DocPath(m).approved().filename()),
                 m -> m.isAnnotationPresent(Test.class),
                 c -> c.isAnnotationPresent(Nested.class)
         );

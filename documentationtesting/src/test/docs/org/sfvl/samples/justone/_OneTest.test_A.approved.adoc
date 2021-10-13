@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_samples_justone_OneTest_test_A]
+[#org_sfvl_samples_justone_onetest_test_a]
 = Test A
 
 In my *test*

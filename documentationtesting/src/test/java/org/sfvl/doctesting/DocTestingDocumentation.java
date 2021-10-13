@@ -1,18 +1,24 @@
 package org.sfvl.doctesting;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 import org.sfvl.doctesting.utils.*;
+import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.writer.Classes;
+import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.util.List;
 
+@ExtendWith(IntermediateHtmlPage.class)
 public class DocTestingDocumentation {
 
     @RegisterExtension
@@ -29,28 +35,37 @@ public class DocTestingDocumentation {
 
     public String build() {
         return formatter.paragraphSuite(
-                generalInformation(formatter),
-                includeClasses(formatter)
-                );
+                generalInformation(),
+                includeClasses()
+        );
     }
 
-    protected String generalInformation(Formatter formatter) {
+    protected String generalInformation() {
         return formatter.paragraphSuite(
                 "This document describes usage of classes to create test from generated documentation.",
-                "* <<" + ApprovalsExtension.class.getSimpleName() + ">>: JUnit extension to check document.",
-                "* <<" + DocWriter.class.getSimpleName() + ">>: Store document before writting it.",
-                "* <<" + CodeExtractor.class.getSimpleName() + ">>: Help to extract information from code.");
+                "* " + makeAnchor(ApprovalsExtensionTest.class, ApprovalsExtension.class) + ": JUnit extension to check document.",
+                "* " + makeAnchor(DocWriterTest.class, DocWriter.class) + ": Store document before writting it.",
+                "* " + makeAnchor(CodeExtractorTest.class, CodeExtractor.class) + ": Help to extract information from code.");
     }
 
-    public String includeClasses(Formatter formatter) {
+    private String makeAnchor(Class<?> clazzAnchor, Class<?> clazzNameToDisplay) {
+        return String.format("<<%s,%s>>", doc.getDocWriter().titleId(clazzAnchor), clazzNameToDisplay.getSimpleName());
+    }
+
+    public String includeClasses() {
         final Path location = DocPath.toPath(DocTestingDocumentation.class.getPackage());
-        return new Classes(formatter).includeClasses(location, getClassesToDocument());
+        return new Classes(formatter).includeClasses(location, getClassesToDocument(), 0);
     }
 
     public boolean toBeInclude(Class<?> clazz) {
         if (clazz == null) {
             return true;
         }
+        if (clazz.getPackage().equals(ApprovalsBase.class.getPackage())
+                || clazz.getPackage().equals(ClassDocumentation.class.getPackage())) {
+            return false;
+        }
+
         return !clazz.isAnnotationPresent(NotIncludeToDoc.class)
                 && toBeInclude(clazz.getDeclaringClass());
     }

@@ -1,5 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
+[#org_sfvl_doctesting_writer_createadocument]
 = Create a document
 
 DocumentationBuilder provides an easy way to create a document.

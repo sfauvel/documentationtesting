@@ -11,7 +11,6 @@ import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 @NotIncludeToDoc
 @OnlyRunProgrammatically

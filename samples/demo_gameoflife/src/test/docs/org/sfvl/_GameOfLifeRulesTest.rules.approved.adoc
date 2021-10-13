@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 
-[#org_sfvl_GameOfLifeRulesTest_rules]
+[#org_sfvl_gameofliferulestest_rules]
 = Rules
 
 At each step in time, the following transitions occur: 

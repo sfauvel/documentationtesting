@@ -1,5 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
+[#org_sfvl_samples_htmlpageheader_htmlheadertest]
 = Html header test
 
 include::_HtmlHeaderTest.test_A.approved.adoc[leveloffset=+1]

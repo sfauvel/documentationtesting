@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_application_fizzbuzz_FizzBuzzTest_values_for_a_result]
+[#org_sfvl_application_fizzbuzz_fizzbuzztest_values_for_a_result]
 = Values by result
 
 List of values (between & to 30) that give a specific result

@@ -24,14 +24,14 @@ class MyCustomWriterTest {
                 }
 
                 @Override
-                public String formatOutput(String displayName, Method testMethod) {
+                public String formatOutput(String title, Method testMethod) {
                     return "// Add an header to the document\n"
-                            + super.formatOutput(displayName, testMethod);
+                            + super.formatOutput(title, testMethod);
                 }
 
                 @Override
-                public String formatTitle(String displayName, Method method) {
-                    return super.formatTitle(displayName, method) + ": Custom title";
+                public String formatTitle(String title, Method method) {
+                    return super.formatTitle(title, method) + ": Custom title";
                 }
             }
     );

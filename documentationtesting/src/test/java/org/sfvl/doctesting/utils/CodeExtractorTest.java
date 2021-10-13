@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * This class provides utilities to extract pieces of code or comments.
  */
 @DisplayName(value = "CodeExtractor")
-class CodeExtractorTest {
+public class CodeExtractorTest {
 
     private AsciidocFormatter formatter = new AsciidocFormatter();
 
@@ -45,9 +45,6 @@ class CodeExtractorTest {
 
     @AfterEach
     public void addSyle(TestInfo testInfo) {
-        final String title = "_" + doc.formatTitle(testInfo.getDisplayName(), testInfo.getTestMethod().get())
-                .replaceAll(" ", "_")
-                .toLowerCase();
         // Id automatically added when toc is activate but not on H1 title so we add one.
         doc.write("++++",
                 "<style>",
@@ -61,13 +58,11 @@ class CodeExtractorTest {
 
     }
 
-    // tag::innerClassToExtract[]
     class SimpleInnerClass {
         public int simpleMethod() {
             return 0;
         }
     }
-    // end::innerClassToExtract[]
 
     @Nested
     @DisplayName(value = "Extract code")

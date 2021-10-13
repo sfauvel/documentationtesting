@@ -7,9 +7,10 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
-import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.sample.MyClass;
@@ -18,14 +19,71 @@ import org.sfvl.samples.MyTest;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.function.Function;
 
+@ClassToDocument(clazz = DocPath.class)
 @DisplayName(value = "Document path")
 public class DocPathTest {
     @RegisterExtension
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     final Formatter formatter = new AsciidocFormatter();
+
+    @Test
+    public void available_paths_from_DocPath() {
+
+        // >>>1
+        Class<?> clazz = MyTest.class;
+        final DocPath docPath = new DocPath(clazz);
+        // <<<1
+
+        doc.write(String.format("`%s` contains the information defining the location of the item to be documented.", DocPath.class.getSimpleName()),
+                "It's not a real path but just the location in the tree of documents.",
+                "From this class, we can generate the real paths to the different kinds of associated documents.",
+                "",
+                String.format("We can create a `%s` the code below (where `%s` is declared in package `%s`).",
+                        DocPath.class.getSimpleName(), clazz.getSimpleName(), clazz.getPackage().getName()),
+                formatter.sourceCodeBuilder("java")
+                        .source(CodeExtractor.extractPartOfCurrentMethod("1"))
+                        .build(),
+                ""
+        );
+
+        Function<OnePath, Path> functionToPath = onePath ->
+                // >>>2
+                onePath.path()
+                // <<<2
+                ;
+
+
+        doc.write("[%autowidth]",
+                "[%header]",
+                "|====",
+                String.format("| Kind of document | Method called %s | Description", CodeExtractor.extractPartOfCurrentMethod("2").trim()),
+                linePath(docPath, DocPath::page, functionToPath),
+                linePath(docPath, DocPath::approved, functionToPath),
+                linePath(docPath, DocPath::received, functionToPath),
+                linePath(docPath, DocPath::test, functionToPath),
+                linePath(docPath, DocPath::html, functionToPath),
+
+                "|====");
+    }
+
+    private String linePath(DocPath docPath, Function<DocPath, OnePath> methodOnDocPath, Function<OnePath, Path> functionToPath) {
+        final CallsRecorder recorder = new CallsRecorder();
+
+        final DocPath spyDocPath = addSpyRecorderOn(docPath, recorder);
+
+        final OnePath onePath = methodOnDocPath.apply(spyDocPath);
+        final String methodCalledOnDocPath = recorder.lastCall();
+
+        Method lastMethod = recorder.getLastMethod();
+        final Optional<String> comment = CodeExtractor.getComment(lastMethod);
+
+        return String.format("a| %s | %s | %s", methodCalledOnDocPath, DocPath.toAsciiDoc(functionToPath.apply(onePath)), comment.orElse(""));
+
+    }
 
     @Test
     public void path_by_type() {
@@ -77,7 +135,7 @@ public class DocPathTest {
                 line(docPath, DocPath::received, relativeToApproved),
                 line(docPath, DocPath::test, relativeToApproved),
                 line(docPath, DocPath::resource, relativeToApproved),
-                line(docPath, DocPath::doc, relativeToApproved),
+                line(docPath, DocPath::html, relativeToApproved),
                 "|====");
     }
 
@@ -130,7 +188,7 @@ public class DocPathTest {
                 line(docPath, DocPath::approved, relativeToApproved),
                 line(docPath, DocPath::received, relativeToApproved),
                 line(docPath, DocPath::test, relativeToApproved),
-                line(docPath, DocPath::doc, relativeToApproved),
+                line(docPath, DocPath::html, relativeToApproved),
                 "|====");
     }
 
@@ -172,7 +230,7 @@ public class DocPathTest {
 
     class CallsRecorder<T extends Object> implements Answer<T> {
         String lastCall = "";
-
+        Method lastMethod = null;
         @Override
         public T answer(InvocationOnMock a) throws Throwable {
             final Object result = a.callRealMethod();
@@ -180,7 +238,8 @@ public class DocPathTest {
 //                final Object[] arguments = a.getArguments();
 //                String parameters = Arrays.stream(arguments).map(v -> "" + v).collect(Collectors.joining(", "));
 //                lastCall = a.getMethod().getName() + "(" + parameters + ")";
-            lastCall = a.getMethod().getName() + "()";
+            lastMethod = a.getMethod();
+            lastCall = lastMethod.getName() + "()";
             return (T) result;
         }
 
@@ -188,6 +247,9 @@ public class DocPathTest {
             return lastCall;
         }
 
+        Method getLastMethod() {
+            return lastMethod;
+        }
     }
 
     @Nested
@@ -299,7 +361,7 @@ public class DocPathTest {
                 ".5+a| `" + methodCalledOnDocPath + "` | "
                         + callResult(recorder, spy.path())
                 , "a| " + callResult(recorder, spy.folder())
-                , "a| " + callResult(recorder, spy.fullname())
+                , "a| " + callResult(recorder, spy.filename())
                 , "a| " + callResult(recorder, spy.from(relativeToApproved))
                 , "a| " + callResult(recorder, spy.to(relativeToApproved))
         );

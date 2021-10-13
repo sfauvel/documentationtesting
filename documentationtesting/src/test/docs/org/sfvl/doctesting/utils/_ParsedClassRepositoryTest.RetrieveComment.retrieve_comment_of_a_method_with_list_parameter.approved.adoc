@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_list_parameter]
+[#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_list_parameter]
 = Retrieve comment of a method with list parameter
 
 [.inline]
@@ -21,7 +21,7 @@ Do something with a List<String>.
 ----
 ++++
 <style>
-#org_sfvl_doctesting_utils_ParsedClassRepositoryTest_RetrieveComment_retrieve_comment_of_a_method_with_list_parameter ~ .inline {
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_list_parameter ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;

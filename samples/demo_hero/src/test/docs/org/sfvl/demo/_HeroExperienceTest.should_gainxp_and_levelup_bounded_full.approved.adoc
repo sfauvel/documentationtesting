@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_demo_HeroExperienceTest_should_gainxp_and_levelup_bounded_full]
+[#org_sfvl_demo_heroexperiencetest_should_gainxp_and_levelup_bounded_full]
 = Should gainxp and levelup bounded full
 
 Iterate x time and increment points to add each time.

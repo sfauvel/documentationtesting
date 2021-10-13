@@ -2,37 +2,29 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 This document describes usage of classes to create test from generated documentation.
 
-* <<ApprovalsExtension>>: JUnit extension to check document.
+* <<org_sfvl_doctesting_junitextension_approvalsextensiontest,ApprovalsExtension>>: JUnit extension to check document.
 
-* <<DocWriter>>: Store document before writting it.
+* <<org_sfvl_doctesting_utils_docwritertest,DocWriter>>: Store document before writting it.
 
-* <<CodeExtractor>>: Help to extract information from code.
+* <<org_sfvl_doctesting_utils_codeextractortest,CodeExtractor>>: Help to extract information from code.
 
 
-include::junitextension/_ApprovalsExtensionTest.approved.adoc[leveloffset=+1]
+include::junitextension/_ApprovalsExtensionTest.approved.adoc[leveloffset=+0]
 
-include::junitextension/_FailureReporterTest.approved.adoc[leveloffset=+1]
+include::junitextension/_FailureReporterTest.approved.adoc[leveloffset=+0]
 
-include::junitextension/_FindLambdaMethodTest.approved.adoc[leveloffset=+1]
+include::junitextension/_FindLambdaMethodTest.approved.adoc[leveloffset=+0]
 
-include::utils/_ClassFinderTest.approved.adoc[leveloffset=+1]
+include::utils/_ClassFinderTest.approved.adoc[leveloffset=+0]
 
-include::utils/_ClassesOrderTest.approved.adoc[leveloffset=+1]
+include::utils/_ClassesOrderTest.approved.adoc[leveloffset=+0]
 
-include::utils/_CodeExtractorTest.approved.adoc[leveloffset=+1]
+include::utils/_CodeExtractorTest.approved.adoc[leveloffset=+0]
 
-include::utils/_ConfigTest.approved.adoc[leveloffset=+1]
+include::utils/_ConfigTest.approved.adoc[leveloffset=+0]
 
-include::utils/_DocPathTest.approved.adoc[leveloffset=+1]
+include::utils/_DocPathTest.approved.adoc[leveloffset=+0]
 
-include::utils/_DocWriterTest.approved.adoc[leveloffset=+1]
+include::utils/_DocWriterTest.approved.adoc[leveloffset=+0]
 
-include::utils/_ParsedClassRepositoryTest.approved.adoc[leveloffset=+1]
-
-include::writer/_ClassDocumentationTest.approved.adoc[leveloffset=+1]
-
-include::writer/_CreateADocument.approved.adoc[leveloffset=+1]
-
-include::writer/_DocumentationBuilderTest.approved.adoc[leveloffset=+1]
-
-include::writer/_MainDocumentationTest.approved.adoc[leveloffset=+1]
+include::utils/_ParsedClassRepositoryTest.approved.adoc[leveloffset=+0]

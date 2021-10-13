@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_junitextension_DemoNestedTest_Multiply_should_be_12_when_multiply_4_and_3]
+[#org_sfvl_doctesting_junitextension_demonestedtest_multiply_should_be_12_when_multiply_4_and_3]
 = Multiply 2 simple numbers
 
 4 * 3 = 12

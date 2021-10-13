@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_howto_UseYourOwnStyle_define_a_custom_style]
+[#org_sfvl_howto_useyourownstyle_define_a_custom_style]
 = Define a custom style
 
 You can customize style adding a css style directly in your file.

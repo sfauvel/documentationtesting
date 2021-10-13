@@ -28,26 +28,32 @@ public class DocWriter {
         return sb.toString();
     }
 
-    public String formatOutput(String displayName, Method testMethod) {
-        return formatOutput(displayName, testMethod.getDeclaringClass(), testMethod);
+    public String formatOutput(Method testMethod) {
+        final String title = methodAsTitle(testMethod.getName());
+        return formatOutput(title, testMethod);
     }
 
-    public String formatOutput(String displayName, Class<?> classFile, Method testMethod) {
+    public String formatOutput(String title, Method testMethod) {
+        return formatOutput(title, testMethod.getDeclaringClass(), testMethod);
+    }
 
-        boolean isTitle = testMethod.getAnnotation(NoTitle.class) == null;
-        String title = isTitle
-                ? String.join("",
-                String.format("[#%s]", titleId(testMethod)),
-                "\n",
-                "= " + formatTitle(displayName, testMethod) + "\n",
-                "\n")
-                : "";
+    public String formatOutput(String title, Class<?> classFile, Method testMethod) {
         return String.join("",
                 defineDocPath(testMethod.getDeclaringClass()),
                 "\n\n",
-                title,
+                formatAdocTitle(title, testMethod),
                 CodeExtractor.getComment(classFile, testMethod).map(comment -> comment + "\n\n").orElse(""),
                 read());
+    }
+
+    private String formatAdocTitle(String title, Method testMethod) {
+        boolean isTitle = testMethod.getAnnotation(NoTitle.class) == null;
+        return isTitle
+                ? String.join("\n",
+                String.format("[#%s]", titleId(testMethod)),
+                "= " + formatTitle(title, testMethod),
+                "", "")
+                : "";
     }
 
     public String formatOutput(Class<?> clazz) {
@@ -57,7 +63,15 @@ public class DocWriter {
                         .map(ClassToDocument::clazz)
                         .map(CodeExtractor::getComment);
             }
+            @Override
+            public String getTitle(Class<?> clazz, int depth) {
+                return String.join("\n",
+                        String.format("[#%s]", titleId(clazz)),
+                        super.getTitle(clazz, depth));
+            }
+
         };
+
         return String.join("\n",
                 defineDocPath(clazz),
                 "",
@@ -82,33 +96,30 @@ public class DocWriter {
                 testMethod.getDeclaringClass().getName()
                         .replace(".", "_")
                         .replace("$", "_"),
-                testMethod.getName());
+                testMethod.getName()).toLowerCase();
+    }
+
+    public String titleId(Class clazz) {
+        return clazz.getName()
+                .replace(".", "_")
+                .replace("$", "_")
+                .toLowerCase();
     }
 
     /**
      * Return the name to use as title from a test method.
-     * It returns the value specified with _DisplayName_ annotation.
-     * If annotation is not present, this is the method name that will be returned
-     * after some test formatting (remove '_', uppercase first letter).
      *
-     * It's based on value return by _displayName_ method.
-     * It returns either DisplayName annotation value or method name.
-     *
-     * @param displayName
+     * @param title
      * @param method
      * @return
      */
-    public String formatTitle(String displayName, Method method) {
-        final String parameters = Arrays.stream(method.getParameterTypes())
-                .map(Class::getSimpleName)
-                .collect(Collectors.joining(","));
-        String methodName = method.getName();
-        if (displayName.equals(methodName + "(" + parameters + ")")) {
-            String title = methodName.replace("_", " ");
-            return title.substring(0, 1).toUpperCase() + title.substring(1);
-        } else {
-            return displayName;
-        }
+    public String formatTitle(String title, Method method) {
+        return title;
+    }
+
+    private String methodAsTitle(String methodName) {
+        String title = methodName.replace("_", " ");
+        return title.substring(0, 1).toUpperCase() + title.substring(1);
     }
 
     public void reset() {

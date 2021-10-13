@@ -1,9 +1,11 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
+[#org_sfvl_doctesting_writer_classdocumentationtest_demonestedtest]
 = Class documentation test_ demo nested test
 
 Demo of a simple usage to generate documentation.
 
+[#org_sfvl_doctesting_writer_classdocumentationtest_demonestedtest_adding]
 == Adding
 
 Document of Addition operations.
@@ -12,6 +14,7 @@ include::_ClassDocumentationTest_DemoNestedTest.Adding.should_be_5_when_adding_2
 
 include::_ClassDocumentationTest_DemoNestedTest.Adding.should_be_9_when_adding_2_3_and_4.approved.adoc[leveloffset=+2]
 
+[#org_sfvl_doctesting_writer_classdocumentationtest_demonestedtest_adding_addingnegativenumber]
 === Adding negative number
 
 Addition negative numbers.
@@ -20,6 +23,7 @@ include::_ClassDocumentationTest_DemoNestedTest.Adding.AddingNegativeNumber.shou
 
 include::_ClassDocumentationTest_DemoNestedTest.method_between_two_nested_classes.approved.adoc[leveloffset=+1]
 
+[#org_sfvl_doctesting_writer_classdocumentationtest_demonestedtest_multiply]
 == Multiply
 
 include::_ClassDocumentationTest_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]

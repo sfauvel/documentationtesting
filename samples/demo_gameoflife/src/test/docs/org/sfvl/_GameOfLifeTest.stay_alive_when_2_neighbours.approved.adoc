@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 
-[#org_sfvl_GameOfLifeTest_stay_alive_when_2_neighbours]
+[#org_sfvl_gameoflifetest_stay_alive_when_2_neighbours]
 = Stay alive when 2 neighbours
 
 [cols="1a,1a,1a", width=4em, frame=none, grid=none]

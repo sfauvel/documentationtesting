@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#com_adaptionsoft_games_uglytrivia_GameTest_player_stay_in_penality_box]
+[#com_adaptionsoft_games_uglytrivia_gametest_player_stay_in_penality_box]
 = Player stay in penality box
 
 When rolled is even, player stay in penality box.

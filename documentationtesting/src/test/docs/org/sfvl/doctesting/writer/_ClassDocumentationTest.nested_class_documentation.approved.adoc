@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_writer_ClassDocumentationTest_nested_class_documentation]
+[#org_sfvl_doctesting_writer_classdocumentationtest_nested_class_documentation]
 = Test class documentation with nested classes
 
 

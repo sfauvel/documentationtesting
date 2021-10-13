@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_extract_method_comment]
+[#org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_method_comment]
 = Extract method comment
 
 
@@ -101,7 +101,7 @@ Method comment in an inner class.
 ====
 ++++
 <style>
-#org_sfvl_doctesting_utils_CodeExtractorTest_ExtractComment_extract_method_comment ~ .inline {
+#org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_method_comment ~ .inline {
    display: inline-block;
    vertical-align: top;
    margin-right: 2em;

@@ -86,6 +86,14 @@ public class AsciidocFormatter implements Formatter {
     }
 
     @Override
+    public String listItemsWithTitle(String title, String... texts) {
+        return String.format(".%s\n%s",
+                title,
+                listItems(texts).trim());
+    }
+
+
+    @Override
     public String sourceCode(String source) {
         return block("----", "source,java,indent=0", source);
     }

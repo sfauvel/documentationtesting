@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_application_fizzbuzz_FizzBuzzTest_return_fizz_when_divisible_by_three]
+[#org_sfvl_application_fizzbuzz_fizzbuzztest_return_fizz_when_divisible_by_three]
 = Return fizz when divisible by three
 
 When number is divisible by three, returns Fizz.

@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_docformatter_AsciidocFormatterTest_block_escape_asciidoc]
+[#org_sfvl_docformatter_asciidocformattertest_block_escape_asciidoc]
 = Escape asciidoc
 
 To display asciidoc in a block, it's necessary to escape some keyword

@@ -1,7 +1,7 @@
 // Add an header to the document
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_samples_MyCustomWriterTest_test_A]
+[#org_sfvl_samples_mycustomwritertest_test_a]
 = Test A: Custom title
 
 In my *test* // Add a comment after each call to write
