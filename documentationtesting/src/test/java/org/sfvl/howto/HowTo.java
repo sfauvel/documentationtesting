@@ -30,9 +30,12 @@ public class HowTo {
     public void getting_started() {
 
         doc.write("To get started quickly, you can download link:https://github.com/sfauvel/TryDocAsTest[Try doc as test] project.",
-                "It's a minimal project that is ready to use and which implementing a small demo.",
+                "It's a minimal project that is ready to use and that implements a small demo.",
                 "",
-                "If you want to use it on your own project, you need to:",
+                "You can use it on your own project alongside your existing tests.",
+                "Both can work together without modifying your tests.",
+                "",
+                "To do that, you need to:",
                 "",
                 "* " + linkToClass(InstallingLibrary.class, "Installing DocumentationTesting").trim() + " maven library and add dependency to your `pom.xml`",
                 "",

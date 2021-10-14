@@ -7,6 +7,12 @@ Those samples show different documentation that can be generated.
 It allows to give ideas on different ways of presenting information
 
 
+ * link:{ROOT_PATH}/../demo_minimal/index.html[demo_minimal]: Minimal project generating doc 
+
+
+ * link:{ROOT_PATH}/../demo_trivia/index.html[demo_trivia]: Demo with trivia kata. An example which shows a very visual representation of the tests. 
+
+
  * link:{ROOT_PATH}/../demo_asciidoc/index.html[demo_asciidoc]: Show how to write asciidoc to display some common needs. 
 
 
@@ -25,10 +31,4 @@ It allows to give ideas on different ways of presenting information
  * link:{ROOT_PATH}/../demo_hero/index.html[demo_hero]: Shows different documentation that could be produced to verify the same thing. 
 
 
- * link:{ROOT_PATH}/../demo_minimal/index.html[demo_minimal]: Minimal project generating doc 
-
-
  * link:{ROOT_PATH}/../demo_tennis/index.html[demo_tennis]: Tennis score display in a readable board. 
-
-
- * link:{ROOT_PATH}/../demo_trivia/index.html[demo_trivia]: Demo with trivia kata. 
