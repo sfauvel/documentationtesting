@@ -1,4 +1,3 @@
-:notitle:
 ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 
 [#fr_sfvl_conceptdoctest]

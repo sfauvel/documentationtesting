@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
-import org.sfvl.doctesting.utils.DocWriter;
 import org.sfvl.doctesting.utils.NoTitle;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -33,14 +33,7 @@ import java.util.stream.Collectors;
 public class ConceptDocTest extends MyFormatter {
 
     @RegisterExtension
-    static ApprovalsExtension doc = new ApprovalsExtension(new DocWriter() {
-        @Override
-        public String formatOutput(Class<?> clazz) {
-            return String.join("\n",
-                    ":notitle:",
-                    super.formatOutput(clazz));
-        }
-    });
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     @AfterAll
     static public void writeIndexPage() throws IOException, NoSuchMethodException {
