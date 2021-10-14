@@ -24,6 +24,9 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -241,16 +244,38 @@ public class ConceptDocTest extends MyFormatter {
     @DisplayName(value = "Functional demos")
     public void demo_list() {
         try {
-            final String demos = Files.list(getProjectPath().getParent().resolve("samples"))
-                    .filter(p -> Files.isDirectory(p))
+            final Path samplesPath = getProjectPath().getParent().resolve("samples");
+            final List<Path> samples = Files.list(samplesPath)
+                    .filter(Files::isDirectory)
                     .filter(path -> path.getFileName().toString().startsWith("demo_"))
                     .sorted()
-                    .map(demo -> addDemo(demo))
+                    .collect(Collectors.toList());
+
+            reorderPuttingFirst(samples, samplesPath,
+                    "demo_minimal",
+                    "demo_trivia");
+
+            final String demos = samples.stream()
+                    .map(this::addDemo)
                     .collect(Collectors.joining("\n"));
+
             doc.write(demos);
         } catch (IOException e) {
             doc.write("Error listing demo samples files.",
                     e.getMessage());
+        }
+    }
+
+    private void reorderPuttingFirst(List<Path> collect, Path samplesPath, String... samples) {
+        final List<String> demo_in_order = Arrays.asList(samples);
+        Collections.reverse(demo_in_order);
+        for (String demo : demo_in_order) {
+            final Path resolve = samplesPath.resolve(demo);
+            if (collect.remove(resolve)) {
+                collect.add(0, resolve);
+            } else {
+                System.out.println("WARNING: Try to reorder an unknown demo: " + demo);
+            }
         }
     }
 
