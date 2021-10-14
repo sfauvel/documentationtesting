@@ -1,3 +1,3 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 
-include::../../../resources/tutorial.adoc[leveloffset=+1]
+include::../../../resources/tutorial.adoc[]

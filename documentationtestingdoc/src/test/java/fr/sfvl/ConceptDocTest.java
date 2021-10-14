@@ -176,7 +176,7 @@ public class ConceptDocTest extends MyFormatter {
     public void tutorial() {
         final DocPath docPath = new DocPath(Paths.get(""), "tutorial");
         final Path from = docPath.resource().from(this.getClass());
-        doc.write(String.format("include::%s[leveloffset=+1]", from.toString()));
+        doc.write(String.format("include::%s[]", from.toString()));
     }
 
     @Test
