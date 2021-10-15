@@ -95,24 +95,18 @@ public class ConceptDocTest extends MyFormatter {
     }
 
     private String explanationCell() {
+        //"Understanding-oriented"
         return paragraph(
-                "== " + linkToMethod(ConceptDocTest::explanation, "More explanation"),
-                //"[.subtitle]",
-                //"Understanding-oriented",
-                "",
-                "You want to have more information of the concept, the idea, the history, ...",
-                "");
+                linkToPage(Explanation.class, "More explanation"),
+                "You want to have more information of the concept, the idea, the history, ..."
+        );
     }
 
     private String tutorialCell() {
-
+        //"Learning-oriented"
         return paragraph(
-                "== " + linkToMethod(ConceptDocTest::tutorial, "Just try it"),
-                //"[.subtitle]",
-                //"Learning-oriented",
-                "",
-                "We explain how to experiment whatever your language.",
-                ""
+                linkToPage(Tutorial.class, "Just try it"),
+                "We explain how to experiment whatever your language."
         );
     }
 
@@ -153,23 +147,6 @@ public class ConceptDocTest extends MyFormatter {
                 "</a>",
                 "++++");
         return titleWithLink;
-    }
-
-    @Test
-    @NoTitle
-    public void explanation() {
-        final DocPath docPath = new DocPath(Paths.get(""), "explanation");
-        final Path from = docPath.resource().from(this.getClass());
-        doc.write(String.format("include::%s[]", from.toString()));
-
-    }
-
-    @Test
-    @NoTitle
-    public void tutorial() {
-        final DocPath docPath = new DocPath(Paths.get(""), "tutorial");
-        final Path from = docPath.resource().from(this.getClass());
-        doc.write(String.format("include::%s[]", from.toString()));
     }
 
     @Test

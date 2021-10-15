@@ -93,4 +93,11 @@ class MyFormatter extends AsciidocFormatter {
             fileWriter.write(includeContent);
         }
     }
+
+    public String linkToPage(Class<?> clazzToLink, String text) {
+        return String.format("== link:{%s}/%s[%s]\n",
+                Config.DOC_PATH_TAG,
+                new DocPath(clazzToLink).html().path(),
+                text);
+    }
 }

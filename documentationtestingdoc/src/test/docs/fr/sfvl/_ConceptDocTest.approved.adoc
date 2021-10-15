@@ -5,10 +5,6 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 
 include::_ConceptDocTest.index.approved.adoc[leveloffset=+1]
 
-include::_ConceptDocTest.explanation.approved.adoc[leveloffset=+1]
-
-include::_ConceptDocTest.tutorial.approved.adoc[leveloffset=+1]
-
 include::_ConceptDocTest.development.approved.adoc[leveloffset=+1]
 
 include::_ConceptDocTest.howTo.approved.adoc[leveloffset=+1]
