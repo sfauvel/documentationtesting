@@ -1,19 +1,13 @@
-ifndef::ROOT_PATH[:ROOT_PATH: ../..]
+ifndef::ROOT_PATH[:ROOT_PATH: ..]
 
-[#fr_sfvl_conceptdoctest]
+[#doc_conceptdoctest]
 = Concept doc test
 
 include::_ConceptDocTest.index.approved.adoc[leveloffset=+1]
 
-include::_ConceptDocTest.development.approved.adoc[leveloffset=+1]
-
 include::_ConceptDocTest.howTo.approved.adoc[leveloffset=+1]
 
 include::_ConceptDocTest.reference.approved.adoc[leveloffset=+1]
-
-include::_ConceptDocTest.best_practice.approved.adoc[leveloffset=+1]
-
-include::_ConceptDocTest.ways_to_implement.approved.adoc[leveloffset=+1]
 
 include::_ConceptDocTest.demo_list.approved.adoc[leveloffset=+1]
 

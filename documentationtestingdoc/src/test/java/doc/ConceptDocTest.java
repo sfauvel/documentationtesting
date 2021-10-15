@@ -1,5 +1,6 @@
-package fr.sfvl;
+package doc;
 
+import tools.MyFormatter;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -149,14 +150,6 @@ public class ConceptDocTest extends MyFormatter {
         return titleWithLink;
     }
 
-    @Test
-    @NoTitle
-    public void development() {
-        final DocPath docPath = new DocPath(Paths.get(""), "development");
-        final Path from = docPath.resource().from(this.getClass());
-        doc.write(String.format("include::%s[leveloffset=+1]", from.toString()));
-    }
-
     /**
      * Several examples are provided to show how we can use it and what it can produce.
      */
@@ -186,24 +179,6 @@ public class ConceptDocTest extends MyFormatter {
                         "To get source and examples: link:{github-repo}[]",
                         "A plugin for IntelliJ is provided in {github-repo}/approvalsDocPlugin[approvalsDocPlugin] folder")
         ));
-    }
-
-    @Test
-    @NoTitle
-    public void best_practice() {
-        // With @NoTitle, there is no need to change leveloffset, otherwise add [leveloffset=+1]
-        final DocPath docPath = new DocPath(Paths.get(""), "best_practice");
-        final Path from = docPath.resource().from(this.getClass());
-        doc.write(String.format("include::%s[leveloffset=+1]", from.toString()));
-    }
-
-    @Test
-    @NoTitle
-    public void ways_to_implement() {
-        // With @NoTitle, there is no need to change leveloffset, otherwise add [leveloffset=+1]
-        final DocPath docPath = new DocPath(Paths.get(""), "ways_to_implement");
-        final Path from = docPath.resource().from(this.getClass());
-        doc.write(String.format("include::%s[leveloffset=+1]", from.toString()));
     }
 
     /**

@@ -1,4 +1,4 @@
-package fr.sfvl;
+package tools;
 
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-class MyFormatter extends AsciidocFormatter {
+public class MyFormatter extends AsciidocFormatter {
     public <T> List<T> $(T... xx) {
         return Arrays.asList(xx);
     }

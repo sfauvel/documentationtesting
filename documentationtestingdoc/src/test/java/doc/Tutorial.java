@@ -1,12 +1,11 @@
-package fr.sfvl;
+package doc;
 
+import tools.RessourcePageExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.sfvl.doctesting.junitextension.HtmlPageExtension;
-import org.sfvl.doctesting.utils.DocPath;
 
 @ExtendWith(RessourcePageExtension.class)
-public class Explanation {
+public class Tutorial {
 
     @Test
     public void runner() {

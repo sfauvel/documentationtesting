@@ -1,1 +1,0 @@
-include::../../../resources/fr/sfvl/Explanation.adoc[]

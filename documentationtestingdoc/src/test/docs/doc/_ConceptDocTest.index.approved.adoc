@@ -1,4 +1,4 @@
-ifndef::ROOT_PATH[:ROOT_PATH: ../..]
+ifndef::ROOT_PATH[:ROOT_PATH: ..]
 
 :sourcedir: ..
 :source-highlighter: rouge
@@ -183,17 +183,17 @@ Here, what resources you can find on this site
 [cols=2]
 [.DocumentationTestingDoc.intro.bis]
 |====
-^.a| == link:{ROOT_PATH}/fr/sfvl/Explanation.html[More explanation]
+^.a| == link:{ROOT_PATH}/doc/Explanation.html[More explanation]
 
 You want to have more information of the concept, the idea, the history, ...
 
 
-^.a| == link:{ROOT_PATH}/fr/sfvl/Tutorial.html[Just try it]
+^.a| == link:{ROOT_PATH}/doc/Tutorial.html[Just try it]
 
 We explain how to experiment whatever your language.
 
 
-^.a| == link:{ROOT_PATH}/fr/sfvl/ConceptDocTest.howTo.html[Some examples]
+^.a| == link:{ROOT_PATH}/doc/ConceptDocTest.howTo.html[Some examples]
 
 
 We will present some documentation.
@@ -201,7 +201,7 @@ That shows how we can present some information in a documentation that is also a
 
 
 
-^.a| == link:{ROOT_PATH}/fr/sfvl/ConceptDocTest.reference.html[Tools]
+^.a| == link:{ROOT_PATH}/doc/ConceptDocTest.reference.html[Tools]
 
 
 Tools, full discussions and choices

@@ -1,3 +1,0 @@
-ifndef::ROOT_PATH[:ROOT_PATH: ../..]
-
-include::../../../resources/best_practice.adoc[leveloffset=+1]

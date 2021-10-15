@@ -1,6 +1,6 @@
-ifndef::ROOT_PATH[:ROOT_PATH: ../..]
+ifndef::ROOT_PATH[:ROOT_PATH: ..]
 
-[#fr_sfvl_conceptdoctest_reference]
+[#doc_conceptdoctest_reference]
 = Reference
 
 In this page, you will find links to resources that help you to implement a documentation that can be used as a non regression test.

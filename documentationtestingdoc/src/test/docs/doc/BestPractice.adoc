@@ -1,0 +1,2 @@
+:toc: left
+include::../../resources/doc/BestPractice.adoc[]
