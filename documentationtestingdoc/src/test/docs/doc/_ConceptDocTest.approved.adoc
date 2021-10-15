@@ -1,0 +1,6 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ..]
+
+[#doc_conceptdoctest]
+= Concept doc test
+
+include::_ConceptDocTest.index.approved.adoc[leveloffset=+1]

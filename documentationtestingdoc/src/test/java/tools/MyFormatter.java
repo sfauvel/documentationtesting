@@ -1,4 +1,4 @@
-package fr.sfvl;
+package tools;
 
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.FindLambdaMethod;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-class MyFormatter extends AsciidocFormatter {
+public class MyFormatter extends AsciidocFormatter {
     public <T> List<T> $(T... xx) {
         return Arrays.asList(xx);
     }
@@ -92,5 +92,12 @@ class MyFormatter extends AsciidocFormatter {
         try (FileWriter fileWriter = new FileWriter(docPath.page().path().toFile())) {
             fileWriter.write(includeContent);
         }
+    }
+
+    public String linkToPage(Class<?> clazzToLink, String text) {
+        return String.format("== link:{%s}/%s[%s]\n",
+                Config.DOC_PATH_TAG,
+                new DocPath(clazzToLink).html().path(),
+                text);
     }
 }

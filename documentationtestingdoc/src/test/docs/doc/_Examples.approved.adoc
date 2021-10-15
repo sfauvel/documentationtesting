@@ -1,0 +1,12 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ..]
+
+[#doc_examples]
+= Examples
+
+include::_Examples.intro.approved.adoc[leveloffset=+1]
+
+include::_Examples.demo_list.approved.adoc[leveloffset=+1]
+
+include::_Examples.tech_list.approved.adoc[leveloffset=+1]
+
+include::_Examples.real_projects_list.approved.adoc[leveloffset=+1]

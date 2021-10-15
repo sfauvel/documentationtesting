@@ -1,6 +1,6 @@
-ifndef::ROOT_PATH[:ROOT_PATH: ../..]
+ifndef::ROOT_PATH[:ROOT_PATH: ..]
 
-[#fr_sfvl_conceptdoctest_real_projects_list]
+[#doc_examples_real_projects_list]
 = Real projects
 
 Real projects that use this approch.
