@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ..]
 
-[#doc_conceptdoctest_tech_list]
+[#doc_examples_tech_list]
 = Technical demos
 
 These examples show different approaches related to the technical environment.

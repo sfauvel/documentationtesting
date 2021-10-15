@@ -193,7 +193,7 @@ You want to have more information of the concept, the idea, the history, ...
 We explain how to experiment whatever your language.
 
 
-^.a| == link:{ROOT_PATH}/doc/ConceptDocTest.howTo.html[Some examples]
+^.a| == link:{ROOT_PATH}/doc/Examples.html[Some examples]
 
 
 We will present some documentation.
@@ -201,7 +201,7 @@ That shows how we can present some information in a documentation that is also a
 
 
 
-^.a| == link:{ROOT_PATH}/doc/ConceptDocTest.reference.html[Tools]
+^.a| == link:{ROOT_PATH}/doc/Reference.html[Tools]
 
 
 Tools, full discussions and choices
