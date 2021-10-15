@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Reference</title>
+<title>Examples</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,57 +436,123 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 </head>
-<body id="fr_sfvl_conceptdoctest_reference" class="article">
+<body id="doc_examples" class="article toc2 toc-left">
 <div id="header">
-<h1>Reference</h1>
+<h1>Examples</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#doc_examples_demo_list">Functional demos</a></li>
+<li><a href="#doc_examples_tech_list">Technical demos</a></li>
+<li><a href="#doc_examples_real_projects_list">Real projects</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>In this page, you will find links to resources that help you to implement a documentation that can be used as a non regression test.</p>
+<p>Several examples are provided to show how we can use it and what it can produce.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="doc_examples_demo_list">Functional demos</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Those samples show different documentation that can be generated.
+It allows to give ideas on different ways of presenting information</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Documentation of the concept: <a href="https://sfauvel.github.io/documentationtesting" class="bare">https://sfauvel.github.io/documentationtesting</a></p>
+<p><a href="../../demo_minimal/index.html">demo_minimal</a>: Minimal project generating doc</p>
 </li>
 <li>
-<p>Library for Java: <a href="https://sfauvel.github.io/documentationtesting/documentationtesting">DocumentationTesting</a></p>
+<p><a href="../../demo_trivia/index.html">demo_trivia</a>: Demo with trivia kata. An example which shows a very visual representation of the tests.</p>
 </li>
 <li>
-<p>Library for Python and pytest: <a href="https://github.com/sfauvel/doc_as_test_pytest">doc_as_test_pytest</a></p>
+<p><a href="../../demo_asciidoc/index.html">demo_asciidoc</a>: Show how to write asciidoc to display some common needs.</p>
 </li>
 <li>
-<p>To get source and examples: <a href="https://github.com/sfauvel/documentationtesting/tree/master" class="bare">https://github.com/sfauvel/documentationtesting/tree/master</a></p>
+<p><a href="../../demo_basic_approvals/index.html">demo_basic_approvals</a>: Simple demo with validation using approvals.</p>
 </li>
 <li>
-<p>A plugin for IntelliJ is provided in <a href="https://github.com/sfauvel/documentationtesting/tree/master/approvalsDocPlugin">approvalsDocPlugin</a> folder</p>
+<p><a href="../../demo_fizzbuzz/index.html">demo_fizzbuzz</a>: Fizz buzz with samples foreach rules.</p>
+</li>
+<li>
+<p><a href="../../demo_gameoflife/index.html">demo_gameoflife</a>: The famous game of life kata with a visual representation of each rule.</p>
+</li>
+<li>
+<p><a href="../../demo_gildedrose/index.html">demo_gildedrose</a>: Gilded Rose displaying evolution of values in a table and with a graphic.</p>
+</li>
+<li>
+<p><a href="../../demo_hero/index.html">demo_hero</a>: Shows different documentation that could be produced to verify the same thing.</p>
+</li>
+<li>
+<p><a href="../../demo_tennis/index.html">demo_tennis</a>: Tennis score display in a readable board.</p>
 </li>
 </ul>
 </div>
 </div>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-})
-MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
-  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
-      data.math.root.display = "block"
-    }
-    return data
-  })
-})
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</div>
+<div class="sect1">
+<h2 id="doc_examples_tech_list">Technical demos</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These examples show different approaches related to the technical environment.
+It could be about languages, tools or some specifics cases.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../../tech_haskell/index.html">tech_haskell</a>: Generate documentation with Haskell</p>
+</li>
+<li>
+<p><a href="../../tech_junit4/index.html">tech_junit4</a>: Demo using junit4.</p>
+</li>
+<li>
+<p><a href="../../tech_junit5_extension/index.html">tech_junit5_extension</a>: Demo using junit5 extension.</p>
+</li>
+<li>
+<p><a href="../../tech_perf/index.html">tech_perf</a>: Evalute performance between classical test between using documentation approvals.</p>
+</li>
+<li>
+<p><a href="../../tech_python/index.html">tech_python</a>: Generate documentation with Python</p>
+</li>
+<li>
+<p><a href="../../tech_using_asciidoctorj/index.html">tech_using_asciidoctorj</a>: Use asciidoctorj to convert asciidoctor files to html.</p>
+</li>
+<li>
+<p><a href="../../tech_using_git/index.html">tech_using_git</a>: Simple demo with validation using git.</p>
+</li>
+<li>
+<p><a href="../../tech_using_git_or_approvals/index.html">tech_using_git_or_approvals</a>: Simple demo with validation using git or approvals.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="doc_examples_real_projects_list">Real projects</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Real projects that use this approch.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://sfauvel.github.io/documentationtesting/documentationtesting/index.html">DocumentationTesting Java library</a>: Library to implements this approach in Java.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-10-15 22:43:05 UTC
+</div>
+</div>
 </body>
 </html>

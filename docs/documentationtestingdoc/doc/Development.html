@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Explanation</title>
+<title>Development</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,104 +438,74 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Explanation</h1>
+<h1>Development</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_principal">Principal</a></li>
-<li><a href="#_another_way_to_test">Another way to test</a></li>
-<li><a href="#_what_is_a_test">What is a test</a></li>
-<li><a href="#_compare_with_other_approches">Compare with other approches</a></li>
+<li><a href="#_generate_a_full_documentation">Generate a full documentation</a></li>
+<li><a href="#_on_windows">On Windows</a></li>
+<li><a href="#_modify_doc_format">Modify doc format</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="_principal">Principal</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The idea is to have documentation generated from the code so that it reflects the current behavior of the application.</p>
+<p>This section give you informations to contribute to the project.</p>
 </div>
 <div class="paragraph">
-<p>We can then validate, after proofreading, that what is written corresponds to the expectations of the product.</p>
-</div>
-<div class="paragraph">
-<p>These documents become the reference on which we will rely to detect regressions.
-Any change will be considered a failed test.</p>
+<p>To get source and examples: <a href="https://github.com/sfauvel/documentationtesting" class="bare">https://github.com/sfauvel/documentationtesting</a></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_another_way_to_test">Another way to test</h2>
+<h2 id="_generate_a_full_documentation">Generate a full documentation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>With this approach, we have to change the way we test software.
-We need to think more about documentation than about tests.
-We just have to make visible how the software behave whatever this behavior.
-Secondly, we will decide if this behavior is the one we expect.</p>
+<p>To generate a single file with all tests, launch <code>MainDocumentation</code> class.</p>
+</div>
+<div class="paragraph">
+<p><code>convertAdoc.sh</code> takes the single generated file to convert it to HTML.</p>
+</div>
+<div class="paragraph">
+<p>You can use <code>RunAll</code> class to make all process in a single command.
+launch tests, generate an asciidoc with all files generated and convert it to HTML.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_what_is_a_test">What is a test</h2>
+<h2 id="_on_windows">On Windows</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A test is the verification that a behaviour is the one we expect.
-To do that, we need two things.
-First, we need to have all information to describe the behavior in a specific scenario.
-Generally, it means to know the context, steps achieved and results obtained.
-Second, we have to check that it is what we expect.</p>
+<p>Scripts are written to run with bash.
+On windows, you can execute them in a Git bash console for example.</p>
 </div>
 <div class="paragraph">
-<p>The automation is the capacity to reproduce all of that without human needs.</p>
+<p>It&#8217;s not possible to run docker with volume in a bash script on Windows.
+To execute projets on specific language, compiler need to be installed in machin.</p>
+</div>
+<div class="paragraph">
+<p>We also used docker to convert asciidoc to html.
+On windows, this generation could not be done when executing all project.
+A script <em>convertADocToHtml.bat</em> is provided to generate Html for one project.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_compare_with_other_approches">Compare with other approches</h2>
+<h2 id="_modify_doc_format">Modify doc format</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>TDD: We can use it to do TDD. At the end, our test are not only technical code but they provides a documentation.</p>
-</li>
-<li>
-<p>BDD: It&#8217;s very close to BDD expect that the documentation is not the instructions to execute a test. This gives more possibilities to write a readable documentation.</p>
-</li>
-<li>
-<p>Golden Master: It&#8217;s a golden master but reference files are not just data. We can understand each case and validate them more easily when functional change.</p>
-</li>
-<li>
-<p>Living documentation: It&#8217;s a living documentation that have to be validate once so we&#8217;ll be warned when behavior change.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>If you decide to change style of the documentation generated, all your tests will be failed.
+You can approve them renaming all files <code><strong>.received.adoc</code> to <code></strong>.approved.adoc</code>.</p>
 </div>
 </div>
 </div>
 </div>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-})
-MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
-  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
-      data.math.root.display = "block"
-    }
-    return data
-  })
-})
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<div id="footer">
+<div id="footer-text">
+Last updated 2021-10-15 22:43:05 UTC
+</div>
+</div>
 </body>
 </html>
