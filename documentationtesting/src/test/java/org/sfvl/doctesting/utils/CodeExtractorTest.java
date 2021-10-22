@@ -23,9 +23,8 @@ import java.util.stream.Collectors;
 @DisplayName(value = "CodeExtractor")
 public class CodeExtractorTest {
 
-    private AsciidocFormatter formatter = new AsciidocFormatter();
-
     static class CodeExtractorWriter extends DocWriter {
+
         void writeInline(String... texts) {
             write(
                     "", "[.inline]",
@@ -38,9 +37,10 @@ public class CodeExtractorTest {
     }
 
     private static final CodeExtractorWriter doc = new CodeExtractorWriter();
+    private static final AsciidocFormatter formatter = new AsciidocFormatter();
 
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(doc);
+    static ApprovalsExtension extension = new ApprovalsExtension(doc, formatter);
 
     @AfterEach
     public void addSyle(TestInfo testInfo) {

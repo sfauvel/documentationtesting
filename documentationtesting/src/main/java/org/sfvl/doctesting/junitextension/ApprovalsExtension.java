@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.platform.commons.support.ModifierSupport;
+import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.DocWriter;
@@ -29,21 +30,27 @@ import java.util.stream.Stream;
  *
  * It checks that everything written during test is identical to the approved content.
  */
-public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallback, AfterAllCallback {
+public class ApprovalsExtension<T extends DocWriter, F extends Formatter> implements AfterEachCallback, AfterAllCallback {
 
-    public static <T extends DocWriter> ApprovalsExtension<T> build(T docWriter) {
-        return new ApprovalsExtension<T>(docWriter);
+    public static <T extends DocWriter, F extends Formatter> ApprovalsExtension<T, F> build(T docWriter, F formatter) {
+        return new ApprovalsExtension<T, F>(docWriter, formatter);
     }
 
     private static final PathProvider pathBuidler = new PathProvider();
     private T docWriter;
+    private final F formatter;
 
-    public ApprovalsExtension(T docWriter) {
+    public ApprovalsExtension(T docWriter, F formatter) {
         this.docWriter = docWriter;
+        this.formatter = formatter;
     }
 
     public T getDocWriter() {
         return docWriter;
+    }
+
+    public F getFormatter() {
+        return formatter;
     }
 
     public void write(String... texts) {

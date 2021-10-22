@@ -24,6 +24,7 @@ public class Config {
     public static final Path TEST_PATH = instance.getTestPath();
     public static final Path DOC_PATH = instance.getDocPath();
     public static final Path RESOURCE_PATH = instance.getResourcePath();
+    public static final Formatter FORMATTER = instance.getFormatter();
 
     private Properties prop = new Properties();
 

@@ -2,8 +2,10 @@ package org.sfvl.samples;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocWriter;
 
 import java.lang.reflect.Method;
@@ -33,7 +35,8 @@ class MyCustomWriterTest {
                 public String formatTitle(String title, Method method) {
                     return super.formatTitle(title, method) + ": Custom title";
                 }
-            }
+            },
+            Config.FORMATTER
     );
 
     @Test
