@@ -1,8 +1,11 @@
 package org.sfvl.doctesting.utils;
 
+import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,9 +16,21 @@ import java.util.stream.Collectors;
 /**
  * This object is used to store the text that need to be write to the final document.
  */
-public class DocWriter {
+public class DocWriter<F extends Formatter> {
 
     private StringBuffer sb = new StringBuffer();
+    private F formatter;
+
+    public DocWriter() {
+        this(Config.FORMATTER);
+    }
+    public DocWriter(Formatter formatter) {
+        this.formatter = (F)formatter;
+    }
+
+    public F getFormatter() {
+        return formatter;
+    }
 
     /**
      * Write a text to the output.
@@ -77,6 +92,17 @@ public class DocWriter {
                 "",
                 classDocumentation.getClassDocumentation(clazz)
         );
+    }
+
+    public String formatException(Throwable e, String title) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        e.printStackTrace(pw);
+
+        return formatter.paragraph(formatter.bold(title),
+                formatter.blockBuilder(Formatter.Block.CODE)
+                        .content(sw.toString())
+                        .build());
     }
 
     public String defineDocPath(Class<?> clazz) {

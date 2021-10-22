@@ -9,13 +9,12 @@ import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.platform.commons.support.ModifierSupport;
 import org.sfvl.docformatter.Formatter;
-import org.sfvl.docformatter.Formatter.Block;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.DocWriter;
 import org.sfvl.doctesting.utils.PathProvider;
 
-import java.io.*;
+import java.io.File;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 
@@ -24,27 +23,25 @@ import java.nio.file.Path;
  *
  * It checks that everything written during test is identical to the approved content.
  */
-public class ApprovalsExtension<T extends DocWriter, F extends Formatter> implements AfterEachCallback, AfterAllCallback {
+public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallback, AfterAllCallback {
 
-    public static <T extends DocWriter, F extends Formatter> ApprovalsExtension<T, F> build(T docWriter, F formatter) {
-        return new ApprovalsExtension<T, F>(docWriter, formatter);
+    public static <T extends DocWriter> ApprovalsExtension<T> build(T docWriter) {
+        return new ApprovalsExtension<T>(docWriter);
     }
 
     private static final PathProvider pathBuidler = new PathProvider();
     private T docWriter;
-    private final F formatter;
 
-    public ApprovalsExtension(T docWriter, F formatter) {
+    public ApprovalsExtension(T docWriter) {
         this.docWriter = docWriter;
-        this.formatter = formatter;
     }
 
     public T getDocWriter() {
         return docWriter;
     }
 
-    public F getFormatter() {
-        return formatter;
+    public Formatter getFormatter() {
+        return docWriter.getFormatter();
     }
 
     public void write(String... texts) {
@@ -77,7 +74,7 @@ public class ApprovalsExtension<T extends DocWriter, F extends Formatter> implem
                 ? getDocWriter().formatOutput(displayName.value(), testMethod)
                 : getDocWriter().formatOutput(testMethod);
         content += extensionContext.getExecutionException()
-                .map(this::displayFailingReason)
+                .map(e -> getDocWriter().formatException(e, "Error generating documentation"))
                 .orElse("");
 
         getDocWriter().reset();
@@ -106,17 +103,6 @@ public class ApprovalsExtension<T extends DocWriter, F extends Formatter> implem
                 new ApprovalTextWriter(content, "adoc"),
                 approvalNamer,
                 new FailureReporter());
-    }
-
-    public String displayFailingReason(Throwable e) {
-        StringWriter sw = new StringWriter();
-        PrintWriter pw = new PrintWriter(sw);
-        e.printStackTrace(pw);
-
-        return formatter.paragraph(formatter.bold("Error generating documentation"),
-                formatter.blockBuilder(Block.CODE)
-                        .content(sw.toString())
-                        .build());
     }
 
     /**

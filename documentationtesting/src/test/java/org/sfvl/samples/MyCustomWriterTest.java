@@ -35,8 +35,7 @@ class MyCustomWriterTest {
                 public String formatTitle(String title, Method method) {
                     return super.formatTitle(title, method) + ": Custom title";
                 }
-            },
-            Config.FORMATTER
+            }
     );
 
     @Test

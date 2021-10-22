@@ -40,7 +40,7 @@ public class CodeExtractorTest {
     private static final AsciidocFormatter formatter = new AsciidocFormatter();
 
     @RegisterExtension
-    static ApprovalsExtension extension = new ApprovalsExtension(doc, formatter);
+    static ApprovalsExtension extension = new ApprovalsExtension(doc);
 
     @AfterEach
     public void addSyle(TestInfo testInfo) {

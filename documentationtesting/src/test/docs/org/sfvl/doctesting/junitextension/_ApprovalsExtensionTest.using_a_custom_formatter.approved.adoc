@@ -15,14 +15,14 @@ class MyCustomFormatterTest {
 
     @RegisterExtension
     static final ApprovalsExtension doc = new ApprovalsExtension(
-            new DocWriter(),
-            new AsciidocFormatter() {
-                @Override
-                /// Add the word `Warning` before the message.
-                public String warning(String message) {
-                    return super.warning("Warning: " + message);
-                }
-            }
+            new DocWriter(
+                    new AsciidocFormatter() {
+                        @Override
+                        /// Add the word `Warning` before the message.
+                        public String warning(String message) {
+                            return super.warning("Warning: " + message);
+                        }
+                    })
     );
 
     @Test
