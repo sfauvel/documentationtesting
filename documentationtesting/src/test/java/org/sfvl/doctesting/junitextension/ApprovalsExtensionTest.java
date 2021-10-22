@@ -10,6 +10,7 @@ import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.utils.*;
 import org.sfvl.samples.FailingTest;
+import org.sfvl.samples.MyCustomFormatterTest;
 import org.sfvl.samples.MyCustomWriterTest;
 import org.sfvl.samples.MyTest;
 import org.sfvl.samples.justone.OneTest;
@@ -122,6 +123,26 @@ public class ApprovalsExtensionTest {
         doc.write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
         final Method method = MethodReference.getMethod(MyCustomWriterTest::test_A);
+        final Path approvedPath = new DocPath(method).approved().from(this.getClass());
+        doc.write("When executing test method `" + method.getName() + "`, a file `" + approvedPath.getFileName() + "` is generated and contains the following text",
+                "----",
+                formatter.include(approvedPath.toString()),
+                "----");
+    }
+
+    @Test
+    public void using_a_custom_formatter() {
+        final Class<?> testClass = MyCustomFormatterTest.class;
+
+        doc.runTestAndWriteResultAsComment(testClass);
+
+        doc.write("It's possible to give a specific Formatter to `" + ApprovalsExtension.class.getSimpleName() + "`",
+                "and change the rendering for some instructions or create another formatter.",
+                "", "");
+
+        doc.write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
+
+        final Method method = MethodReference.getMethod(MyCustomFormatterTest::test_A);
         final Path approvedPath = new DocPath(method).approved().from(this.getClass());
         doc.write("When executing test method `" + method.getName() + "`, a file `" + approvedPath.getFileName() + "` is generated and contains the following text",
                 "----",

@@ -60,7 +60,7 @@
 	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:90)
 	at org.sfvl.test_tools.TestRunnerFromTest.runTestClass(TestRunnerFromTest.java:53)
 	at org.sfvl.test_tools.ProjectTestExtension.runTestAndWriteResultAsComment(ProjectTestExtension.java:14)
-	at org.sfvl.doctesting.junitextension.ApprovalsExtensionTest.failing_test_output(ApprovalsExtensionTest.java:190)
+	at org.sfvl.doctesting.junitextension.ApprovalsExtensionTest.failing_test_output(ApprovalsExtensionTest.java:211)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
