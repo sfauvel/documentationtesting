@@ -24,8 +24,9 @@ public class DocWriter<F extends Formatter> {
     public DocWriter() {
         this(Config.FORMATTER);
     }
+
     public DocWriter(Formatter formatter) {
-        this.formatter = (F)formatter;
+        this.formatter = (F) formatter;
     }
 
     public F getFormatter() {
@@ -63,12 +64,12 @@ public class DocWriter<F extends Formatter> {
 
     private String formatAdocTitle(String title, Method testMethod) {
         boolean isTitle = testMethod.getAnnotation(NoTitle.class) == null;
+
         return isTitle
-                ? String.join("\n",
+                ? formatter.paragraph(
                 String.format("[#%s]", titleId(testMethod)),
-                "= " + formatTitle(title, testMethod),
-                "", "")
-                : "";
+                formatter.title(1, formatTitle(title, testMethod)).trim()
+        ) : "";
     }
 
     public String formatOutput(Class<?> clazz) {
@@ -78,6 +79,7 @@ public class DocWriter<F extends Formatter> {
                         .map(ClassToDocument::clazz)
                         .map(CodeExtractor::getComment);
             }
+
             @Override
             public String getTitle(Class<?> clazz, int depth) {
                 return String.join("\n",
