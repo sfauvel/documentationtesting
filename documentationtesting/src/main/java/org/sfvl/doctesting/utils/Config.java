@@ -1,7 +1,10 @@
 package org.sfvl.doctesting.utils;
 
+import org.sfvl.docformatter.Formatter;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
@@ -12,8 +15,9 @@ public class Config {
     public static final String DOC_PATH_TAG = "ROOT_PATH";
 
     enum Key {
-        SOURCE_PATH, TEST_PATH, DOC_PATH, RESOURCE_PATH;
+        SOURCE_PATH, TEST_PATH, DOC_PATH, RESOURCE_PATH, FORMATTER;
     }
+
     private static Config instance = new Config();
 
     public static final Path SOURCE_PATH = instance.getSourcePath();
@@ -48,7 +52,17 @@ public class Config {
         return getPath(Key.RESOURCE_PATH);
     }
 
-    public Path getPath(Key key) {
+    public Formatter getFormatter() {
+        final String property = prop.getProperty(Key.FORMATTER.name());
+        try {
+            final Class<?> classFormatter = Class.forName(property);
+            return (Formatter) classFormatter.getConstructor().newInstance();
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            throw new RuntimeException(String.format("Unable to instantiate formatter from `̀%s`", property), e);
+        }
+    }
+
+    Path getPath(Key key) {
         return Paths.get(prop.getProperty(key.name()));
     }
 
@@ -57,6 +71,7 @@ public class Config {
         prop.setProperty(Key.TEST_PATH.name(), Paths.get("src", "test", "java").toString());
         prop.setProperty(Key.DOC_PATH.name(), Paths.get("src", "test", "docs").toString());
         prop.setProperty(Key.RESOURCE_PATH.name(), Paths.get("src", "test", "resources").toString());
+        prop.setProperty(Key.FORMATTER.name(), "org.sfvl.docformatter.asciidoc.AsciidocFormatter");
     }
 
     private void loadProperties(String name) {
