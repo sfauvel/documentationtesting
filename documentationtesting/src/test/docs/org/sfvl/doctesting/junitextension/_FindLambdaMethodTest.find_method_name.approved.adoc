@@ -4,29 +4,45 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 = Find method name
 
 It's possible to extract method name from a method reference.
+We can use either a reference using class or using an object instance (only on non-static method).
 
-[source, java, indent=0]
-----
-            String methodName = FindLambdaMethod.getName(FindLambdaMethodTest::myMethod);
+[cols="6,1,2";headers]
+|====
+| Code | Type | Returned value 
 
+a| [source, java, indent=0]
 ----
-Method name: *myMethod*
-[source, java, indent=0]
-----
-            String methodName = FindLambdaMethod.getName(FindLambdaMethodTest::methodWithOneParameter);
+                        FindLambdaMethod.getName(MyClass::myMethod)
 
+---- .^| String .^a| myMethod
+a| [source, java, indent=0]
 ----
-Method name: *methodWithOneParameter*
-[source, java, indent=0]
-----
-            String methodName = FindLambdaMethod.getName(FindLambdaMethodTest::methodThatIsAFunction);
+                        FindLambdaMethod.getName(myObject::myMethod)
 
+---- .^| String .^a| myMethod
+a| [source, java, indent=0]
 ----
-Method name: *methodThatIsAFunction*
-[source, java, indent=0]
-----
-            final FindLambdaMethod.SerializableFunction<Integer, String> method = this::methodThatIsAFunction;
-            String methodName = FindLambdaMethod.getName(method);
+                        FindLambdaMethod.getName(MyClass::myConsumer)
 
+---- .^| String .^a| myConsumer
+a| [source, java, indent=0]
 ----
-Method name: *methodThatIsAFunction*
+                        FindLambdaMethod.getName(MyClass::myFunction)
+
+---- .^| String .^a| myFunction
+a| [source, java, indent=0]
+----
+                        FindLambdaMethod.getName(myObject::myFunction)
+
+---- .^| String .^a| myFunction
+a| [source, java, indent=0]
+----
+                        FindLambdaMethod.getName(MyClass::myFunctionWithGeneric)
+
+---- .^| String .^a| myFunctionWithGeneric
+a| [source, java, indent=0]
+----
+                        FindLambdaMethod.getName(MyClass::myStaticConsumer)
+
+---- .^| String .^a| myStaticConsumer
+|====

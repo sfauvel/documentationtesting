@@ -4,75 +4,108 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.docformatter.Formatter;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.utils.CodeExtractor;
+import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.doctesting.utils.NoTitle;
 
+import java.io.Serializable;
 import java.lang.reflect.Method;
+import java.util.List;
 
-/**
- * FindLambdaMethod class provides tools to find reference method name.
- */
 @DisplayName(value = "Extract information from method reference")
 public class FindLambdaMethodTest {
     @RegisterExtension
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
-    public void myMethod() {
+    final Formatter formatter = new AsciidocFormatter();
 
+    @Test
+    @NoTitle
+    public void description() {
+        doc.write(String.format("`%s` class provides tools to extract information from a method reference.", this.getClass().getSimpleName()),
+                "It retrieves the method associated with the method reference, so it's possible to get name.",
+                "This allows to use the method reference instead of writing the method name as a string.",
+                "Using refactoring tools, names are automatically updated and there is no risk to misspelled a name.",
+                "");
     }
 
-    public void methodWithOneParameter(String parameter) {
+    static class MyClass {
+        public void myMethod() {
+        }
 
-    }
+        public void myConsumer(String parameter) {
+        }
 
-    public String methodThatIsAFunction(Integer parameter) {
-        return null;
+        public String myFunction(Integer parameter) {
+            return null;
+        }
+
+        public List<String> myFunctionWithGeneric(List<Integer> parameter) {
+            return null;
+        }
+
+        public static void myStaticConsumer(String parameter) {
+        }
+
+        public String mySpecificMethod(Integer param1, String param2, List<String> param3) {
+            return null;
+        }
     }
 
     /**
      * It's possible to extract method name from a method reference.
-     *
-     * @param testInfo
+     * We can use either a reference using class or using an object instance (only on non-static method).
      */
     @Test
     @DisplayName("Find method name")
     public void find_method_name(TestInfo testInfo) {
-        {
-            // >>>1
-            String methodName = FindLambdaMethod.getName(FindLambdaMethodTest::myMethod);
-            // <<<1
+        final MyClass myObject = new MyClass();
 
-            doc.write(extractMarkedCode(testInfo, "1"), "");
+        doc.write("[cols=\"6,1,2\";headers]",
+                "|====",
+                "| Code | Type | Returned value ",
+                "",
+                findMethodNameLine(testInfo, "method",
+                        // >>>method
+                        FindLambdaMethod.getName(MyClass::myMethod)
+                        // <<<method
+                ),
+                findMethodNameLine(testInfo, "methodOnInstance",
+                        // >>>methodOnInstance
+                        FindLambdaMethod.getName(myObject::myMethod)
+                        // <<<methodOnInstance
+                ),
+                findMethodNameLine(testInfo, "consumer",
+                        // >>>consumer
+                        FindLambdaMethod.getName(MyClass::myConsumer)
+                        // <<<consumer
+                ),
+                findMethodNameLine(testInfo, "functionOnClass",
+                        // >>>functionOnClass
+                        FindLambdaMethod.getName(MyClass::myFunction)
+                        // <<<functionOnClass
+                ),
+                findMethodNameLine(testInfo, "functionOnInstance",
+                        // >>>functionOnInstance
+                        FindLambdaMethod.getName(myObject::myFunction)
+                        // <<<functionOnInstance
+                ),
+                findMethodNameLine(testInfo, "functionWithGeneric",
+                        // >>>functionWithGeneric
+                        FindLambdaMethod.getName(MyClass::myFunctionWithGeneric)
+                        // <<<functionWithGeneric
+                ),
+                findMethodNameLine(testInfo, "myStaticConsumer",
+                        // >>>myStaticConsumer
+                        FindLambdaMethod.getName(MyClass::myStaticConsumer)
+                        // <<<myStaticConsumer
+                ),
 
-            doc.write(String.format("Method name: *%s*", methodName), "");
-        }
-        {
-            // >>>2
-            String methodName = FindLambdaMethod.getName(FindLambdaMethodTest::methodWithOneParameter);
-            // <<<2
+                "|====",
+                "");
 
-            doc.write(extractMarkedCode(testInfo, "2"), "");
-
-            doc.write(String.format("Method name: *%s*", methodName), "");
-        }
-        {
-            // >>>3
-            String methodName = FindLambdaMethod.getName(FindLambdaMethodTest::methodThatIsAFunction);
-            // <<<3
-
-            doc.write(extractMarkedCode(testInfo, "3"), "");
-
-            doc.write(String.format("Method name: *%s*", methodName), "");
-        }
-        {
-            // >>>4
-            final FindLambdaMethod.SerializableFunction<Integer, String> method = this::methodThatIsAFunction;
-            String methodName = FindLambdaMethod.getName(method);
-            // <<<4
-
-            doc.write(extractMarkedCode(testInfo, "4"), "");
-
-            doc.write(String.format("Method name: *%s*", methodName), "");
-        }
     }
 
     /**
@@ -83,26 +116,129 @@ public class FindLambdaMethodTest {
     @Test
     @DisplayName("Find method")
     public void find_method(TestInfo testInfo) {
-        {
-            // >>>1
-            Method method = FindLambdaMethod.getMethod(FindLambdaMethodTest::myMethod);
-            String methodName = method.getName();
-            // <<<1
 
-            doc.write(extractMarkedCode(testInfo, "1"), "");
+        FindLambdaMethod.getMethod(MyClass::myFunctionWithGeneric);
+        final MyClass myObject = new MyClass();
 
-            doc.write(String.format("Method name: *%s*", methodName), "");
+        doc.write("[cols=\"4,1,4\";headers]",
+                "|====",
+                "| Code | Type | Returned value ",
+                "",
+                findMethodNameLine(testInfo, "method",
+                        // >>>method
+                        FindLambdaMethod.getMethod(MyClass::myMethod)
+                        // <<<method
+                ),
+                findMethodNameLine(testInfo, "methodOnInstance",
+                        // >>>methodOnInstance
+                        FindLambdaMethod.getMethod(myObject::myMethod)
+                        // <<<methodOnInstance
+                ),
+                findMethodNameLine(testInfo, "consumer",
+                        // >>>consumer
+                        FindLambdaMethod.getMethod(MyClass::myConsumer)
+                        // <<<consumer
+                ),
+                findMethodNameLine(testInfo, "functionOnClass",
+                        // >>>functionOnClass
+                        FindLambdaMethod.getMethod(MyClass::myFunction)
+                        // <<<functionOnClass
+                ),
+                findMethodNameLine(testInfo, "functionOnInstance",
+                        // >>>functionOnInstance
+                        FindLambdaMethod.getMethod(myObject::myFunction)
+                        // <<<functionOnInstance
+                ),
+                findMethodNameLine(testInfo, "functionWithGeneric",
+                        // >>>functionWithGeneric
+                        FindLambdaMethod.getMethod(MyClass::myFunctionWithGeneric)
+                        // <<<functionWithGeneric
+                ),
+                findMethodNameLine(testInfo, "myStaticConsumer",
+                        // >>>myStaticConsumer
+                        FindLambdaMethod.getMethod(MyClass::myStaticConsumer)
+                        // <<<myStaticConsumer
+                ),
+
+                "|====",
+                "");
+
+    }
+
+
+    public String mySpecificMethod(Integer param1, String param2, List<String> param3) {
+        return null;
+    }
+
+    // >>>MySpecificInterface
+    interface MySpecificInterface extends Serializable {
+        String apply(Integer param1, String param2, List<String> param3);
+    }
+    // <<<MySpecificInterface
+
+    @Test
+    @DisplayName("Find method name from a specific method")
+    public void find_method_name_from_complex_method(TestInfo testInfo) {
+
+        // >>>1
+        String methodName = FindLambdaMethod.getName((MySpecificInterface) this::mySpecificMethod);
+        // <<<1
+
+        doc.write(String.format("`%s` class provides some common interface declarations so you can use it with simple methods.", FindLambdaMethod.class.getSimpleName()),
+                        "When you have a method with several parameters, you need to create your own interface.",
+                        "Those methods could not work with ambiguous method reference (same method name with different parameters).",
+                "", "");
+        final AsciidocFormatter formatter = new AsciidocFormatter();
+        final String code = CodeExtractor.extractPartOfFile(
+                new DocPath(this.getClass()).test().path(), MySpecificInterface.class.getSimpleName());
+
+        doc.write(formatter.sourceCodeBuilder("java")
+                .title("Specific interface to create")
+                .content(code)
+                .build(), "");
+
+        doc.write("[cols=\"4,1,4\";headers]",
+                "|====",
+                "| Code | Type | Returned value ",
+                "",
+                findMethodNameLine(testInfo, "getName",
+                        // >>>getName
+                        FindLambdaMethod.getName((MySpecificInterface) this::mySpecificMethod)
+                        // <<<getName
+                ),
+                findMethodNameLine(testInfo, "getMethod",
+                        // >>>getMethod
+                        FindLambdaMethod.getMethod((MySpecificInterface) this::mySpecificMethod)
+                        // <<<getMethod
+                ),
+                "|====");
+    }
+
+    @Test
+    @DisplayName("Class used in examples")
+    public void classUsed() {
+        final String classCode = CodeExtractor.classSource(this.getClass(), MyClass.class);
+        doc.write("",
+                formatter.sourceCodeBuilder()
+                        .title("Class used for the examples")
+                        .content(classCode)
+                        .build(),
+                "");
+    }
+
+    public String findMethodNameLine(TestInfo testInfo, String tagToExtract, Object returnedValue) {
+        String valueToDisplay = returnedValue.toString();
+        if (returnedValue instanceof Method) {
+            Class declaringClass = ((Method) returnedValue).getDeclaringClass();
+            valueToDisplay = returnedValue.toString()
+                    .replace(declaringClass.getName(), declaringClass.getSimpleName())
+                    .replaceAll("([\\(,])", "$1 "); // To allow line break when displayed on table
+            valueToDisplay = formatter.sourceCode(valueToDisplay);
         }
-        {
-            // >>>2
-            Method method = FindLambdaMethod.getMethod(FindLambdaMethodTest::methodWithOneParameter);
-            String methodName = method.getName();
-            // <<<2
-
-            doc.write(extractMarkedCode(testInfo, "2"), "");
-
-            doc.write(String.format("Method name: *%s*", methodName));
-        }
+        return String.format("a| %s .^| %s .^a| %s",
+                extractMarkedCode(testInfo, tagToExtract),
+                returnedValue.getClass().getSimpleName(),
+                valueToDisplay);
     }
 
     private String extractMarkedCode(TestInfo testInfo) {

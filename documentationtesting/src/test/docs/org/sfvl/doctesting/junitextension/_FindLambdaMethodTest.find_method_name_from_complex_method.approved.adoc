@@ -1,0 +1,37 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_junitextension_findlambdamethodtest_find_method_name_from_complex_method]
+= Find method name from a specific method
+
+`FindLambdaMethod` class provides some common interface declarations so you can use it with simple methods.
+When you have a method with several parameters, you need to create your own interface.
+Those methods could not work with ambiguous method reference (same method name with different parameters).
+
+.Specific interface to create
+[source,java,indent=0]
+----
+    interface MySpecificInterface extends Serializable {
+        String apply(Integer param1, String param2, List<String> param3);
+    }
+
+----
+[cols="4,1,4";headers]
+|====
+| Code | Type | Returned value 
+
+a| [source, java, indent=0]
+----
+                        FindLambdaMethod.getName((MySpecificInterface) this::mySpecificMethod)
+
+---- .^| String .^a| mySpecificMethod
+a| [source, java, indent=0]
+----
+                        FindLambdaMethod.getMethod((MySpecificInterface) this::mySpecificMethod)
+
+---- .^| Method .^a| 
+[source,java,indent=0]
+----
+public java.lang.String FindLambdaMethodTest.mySpecificMethod( java.lang.Integer, java.lang.String, java.util.List)
+----
+
+|====

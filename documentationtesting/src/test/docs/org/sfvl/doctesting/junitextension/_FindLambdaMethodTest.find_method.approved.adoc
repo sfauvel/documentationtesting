@@ -5,17 +5,78 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 It's possible to extract method from a method reference.
 
-[source, java, indent=0]
-----
-            Method method = FindLambdaMethod.getMethod(FindLambdaMethodTest::myMethod);
-            String methodName = method.getName();
+[cols="4,1,4";headers]
+|====
+| Code | Type | Returned value 
 
+a| [source, java, indent=0]
 ----
-Method name: *myMethod*
-[source, java, indent=0]
-----
-            Method method = FindLambdaMethod.getMethod(FindLambdaMethodTest::methodWithOneParameter);
-            String methodName = method.getName();
+                        FindLambdaMethod.getMethod(MyClass::myMethod)
 
+---- .^| Method .^a| 
+[source,java,indent=0]
 ----
-Method name: *methodWithOneParameter*
+public void MyClass.myMethod( )
+----
+
+a| [source, java, indent=0]
+----
+                        FindLambdaMethod.getMethod(myObject::myMethod)
+
+---- .^| Method .^a| 
+[source,java,indent=0]
+----
+public void MyClass.myMethod( )
+----
+
+a| [source, java, indent=0]
+----
+                        FindLambdaMethod.getMethod(MyClass::myConsumer)
+
+---- .^| Method .^a| 
+[source,java,indent=0]
+----
+public void MyClass.myConsumer( java.lang.String)
+----
+
+a| [source, java, indent=0]
+----
+                        FindLambdaMethod.getMethod(MyClass::myFunction)
+
+---- .^| Method .^a| 
+[source,java,indent=0]
+----
+public java.lang.String MyClass.myFunction( java.lang.Integer)
+----
+
+a| [source, java, indent=0]
+----
+                        FindLambdaMethod.getMethod(myObject::myFunction)
+
+---- .^| Method .^a| 
+[source,java,indent=0]
+----
+public java.lang.String MyClass.myFunction( java.lang.Integer)
+----
+
+a| [source, java, indent=0]
+----
+                        FindLambdaMethod.getMethod(MyClass::myFunctionWithGeneric)
+
+---- .^| Method .^a| 
+[source,java,indent=0]
+----
+public java.util.List MyClass.myFunctionWithGeneric( java.util.List)
+----
+
+a| [source, java, indent=0]
+----
+                        FindLambdaMethod.getMethod(MyClass::myStaticConsumer)
+
+---- .^| Method .^a| 
+[source,java,indent=0]
+----
+public static void MyClass.myStaticConsumer( java.lang.String)
+----
+
+|====
