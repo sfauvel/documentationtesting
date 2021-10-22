@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_junitextension_findlambdamethodtest_find_method]
+[#org_sfvl_doctesting_utils_findlambdamethodtest_find_method]
 = Find method
 
 It's possible to extract method from a method reference.

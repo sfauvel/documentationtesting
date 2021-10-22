@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_junitextension_findlambdamethodtest_find_method_name_from_complex_method]
+[#org_sfvl_doctesting_utils_findlambdamethodtest_find_method_name_from_complex_method]
 = Find method name from a specific method
 
 `FindLambdaMethod` class provides some common interface declarations so you can use it with simple methods.

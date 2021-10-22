@@ -1,7 +1,7 @@
 package tools;
 
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
-import org.sfvl.doctesting.junitextension.FindLambdaMethod;
+import org.sfvl.doctesting.utils.FindLambdaMethod;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 

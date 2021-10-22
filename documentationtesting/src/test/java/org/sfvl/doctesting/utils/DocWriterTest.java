@@ -9,15 +9,11 @@ import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
-import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.samples.*;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 

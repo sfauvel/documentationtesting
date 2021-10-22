@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_junitextension_findlambdamethodtest]
+[#org_sfvl_doctesting_utils_findlambdamethodtest]
 = Extract information from method reference
 
 include::_FindLambdaMethodTest.description.approved.adoc[leveloffset=+1]

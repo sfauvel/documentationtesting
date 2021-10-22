@@ -8,7 +8,7 @@ import org.sfvl.docformatter.AsciidocFormatterTest;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
-import org.sfvl.doctesting.junitextension.FindLambdaMethod;
+import org.sfvl.doctesting.utils.FindLambdaMethod;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.*;
 import org.sfvl.doctesting.writer.Classes;

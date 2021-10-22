@@ -1,4 +1,4 @@
-package org.sfvl.doctesting.junitextension;
+package org.sfvl.doctesting.utils;
 
 import java.io.Serializable;
 import java.lang.invoke.SerializedLambda;

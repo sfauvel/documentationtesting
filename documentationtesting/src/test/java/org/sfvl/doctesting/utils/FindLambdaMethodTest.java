@@ -1,4 +1,4 @@
-package org.sfvl.doctesting.junitextension;
+package org.sfvl.doctesting.utils;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -6,8 +6,11 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
+import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.doctesting.utils.FindLambdaMethod;
 import org.sfvl.doctesting.utils.NoTitle;
 
 import java.io.Serializable;
