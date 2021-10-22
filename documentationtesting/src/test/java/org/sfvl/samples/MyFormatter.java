@@ -2,11 +2,12 @@ package org.sfvl.samples;
 
 
 import org.sfvl.docformatter.BlockBuilder;
+import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.SourceCodeBuilder;
 
 import java.util.List;
 
-public class MyFormatter implements org.sfvl.docformatter.Formatter  {
+public class MyFormatter implements Formatter  {
     @Override
     public String standardOptions() {
         return null;
@@ -139,6 +140,16 @@ public class MyFormatter implements org.sfvl.docformatter.Formatter  {
 
     @Override
     public String attribute(String attribute, String value) {
+        return null;
+    }
+
+    @Override
+    public String bold(String text) {
+        return null;
+    }
+
+    @Override
+    public String italic(String text) {
         return null;
     }
 }

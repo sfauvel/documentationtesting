@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.platform.commons.support.ModifierSupport;
 import org.sfvl.docformatter.Formatter;
+import org.sfvl.docformatter.Formatter.Block;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.DocWriter;
@@ -95,7 +96,7 @@ public class ApprovalsExtension<T extends DocWriter, F extends Formatter> implem
         ApprovalNamer approvalNamer = new ApprovalNamer() {
             @Override
             public String getApprovalName() {
-                return "_"+docPath.name();
+                return "_" + docPath.name();
             }
 
             @Override
@@ -119,11 +120,10 @@ public class ApprovalsExtension<T extends DocWriter, F extends Formatter> implem
         PrintWriter pw = new PrintWriter(sw);
         e.printStackTrace(pw);
 
-        return String.join("\n",
-                "*Error generating documentation*",
-                "----",
-                sw.toString(),
-                "----");
+        return formatter.paragraph(formatter.bold("Error generating documentation"),
+                formatter.blockBuilder(Block.CODE)
+                        .content(sw.toString())
+                        .build());
     }
 
     /**

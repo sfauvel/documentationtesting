@@ -111,6 +111,20 @@ public class AsciidocFormatterTest {
                 "The second paragraph with a blank line before to separate from the first one.");
     }
 
+    @Nested
+    public class Style {
+        @Test
+        public void bold() {
+            output = formatter.bold("bold text");
+        }
+
+        @Test
+        public void italic() {
+            output = formatter.italic("italic text");
+        }
+    }
+
+
     @Test
     @DisplayName("Description")
     public void should_format_description() {

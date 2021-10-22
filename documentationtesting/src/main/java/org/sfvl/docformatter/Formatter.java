@@ -57,7 +57,10 @@ public interface Formatter {
 
     String attribute(String attribute, String value);
 
+    String bold(String text);
+    String italic(String text);
+
     public static enum Block {
-        LITERAL;
+        LITERAL, CODE;
     }
 }

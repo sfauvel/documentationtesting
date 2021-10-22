@@ -194,6 +194,7 @@ public class AsciidocFormatter implements Formatter {
 
     private static Map<Block, String> delimiters = new HashMap() {{
         put(Block.LITERAL, "....");
+        put(Block.CODE, "----");
     }};
 
     @Override
@@ -214,6 +215,16 @@ public class AsciidocFormatter implements Formatter {
     @Override
     public String attribute(String attribute, String value) {
         return String.format(":%s: %s", attribute, value);
+    }
+
+    @Override
+    public String bold(String text) {
+        return "*" + text + "*";
+    }
+
+    @Override
+    public String italic(String text) {
+        return "_" + text + "_";
     }
 
     public static class AsciidocBlockBuilder extends AsciidocGenericBlockBuilder<BlockBuilder>
