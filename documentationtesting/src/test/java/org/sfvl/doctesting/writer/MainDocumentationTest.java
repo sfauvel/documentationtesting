@@ -7,7 +7,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
-import org.sfvl.doctesting.utils.FindLambdaMethod;
+import org.sfvl.doctesting.utils.MethodReference;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.CodeExtractor;
 import org.sfvl.doctesting.utils.Config;
@@ -32,9 +32,9 @@ class MainDocumentationTest {
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     final List<Method> methodsToDocument = Arrays.asList(
-            FindLambdaMethod.getMethod(InMainDocTest::testA),
-            FindLambdaMethod.getMethod(InMainDocTest::testB),
-            FindLambdaMethod.getMethod(InMainDocBisTest::testX)
+            MethodReference.getMethod(InMainDocTest::testA),
+            MethodReference.getMethod(InMainDocTest::testB),
+            MethodReference.getMethod(InMainDocBisTest::testX)
     );
 
     static class DocumentationOnSpecificMethods extends MainDocumentation {

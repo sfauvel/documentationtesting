@@ -3,7 +3,7 @@ package doc;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.doctesting.utils.FindLambdaMethod;
+import org.sfvl.doctesting.utils.MethodReference;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.NoTitle;
@@ -25,7 +25,7 @@ public class ConceptDocTest extends MyFormatter {
 
     @AfterAll
     static public void writeIndexPage() throws IOException, NoSuchMethodException {
-        final Method method = FindLambdaMethod.getMethod(ConceptDocTest::index);
+        final Method method = MethodReference.getMethod(ConceptDocTest::index);
 
         final DocPath docPath = new DocPath(method);
         String content = String.join("\n",

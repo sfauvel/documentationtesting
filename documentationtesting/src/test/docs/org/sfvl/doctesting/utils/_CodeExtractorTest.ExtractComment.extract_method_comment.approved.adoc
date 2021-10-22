@@ -86,7 +86,7 @@ Comment of the method with two parameters.
 How to extract comment of a method of an inner class
 [source, java, indent=0]
 ----
-                final Method methodWithComment = FindLambdaMethod.getMethod(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract::methodInSubClass);
+                final Method methodWithComment = MethodReference.getMethod(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract::methodInSubClass);
                 final Optional<String> comment = CodeExtractor.getComment(this.getClass(), methodWithComment);
 
 ----

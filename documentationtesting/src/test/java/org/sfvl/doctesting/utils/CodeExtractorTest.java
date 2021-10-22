@@ -185,7 +185,7 @@ public class CodeExtractorTest {
             String codeWithMethod;
             {
                 // >>>2
-                Method method = FindLambdaMethod.getMethod(SimpleClass::simpleMethod);
+                Method method = MethodReference.getMethod(SimpleClass::simpleMethod);
                 String code = CodeExtractor.methodSource(method);
                 // <<<2
                 codeWithMethod = code;
@@ -194,7 +194,7 @@ public class CodeExtractorTest {
             String codeWithMethodInNestedClass;
             {
                 // >>>MethodInNestedClass
-                Method method = FindLambdaMethod.getMethod(ClassWithNestedClass.NestedClass::nestedMethod);
+                Method method = MethodReference.getMethod(ClassWithNestedClass.NestedClass::nestedMethod);
                 String code = CodeExtractor.methodSource(method);
                 // <<<MethodInNestedClass
                 codeWithMethodInNestedClass = code;
@@ -288,7 +288,7 @@ public class CodeExtractorTest {
                 String codeFromMethod;
                 {
                     // >>>1
-                    Method method = FindLambdaMethod.getMethod(ClassWithMethodToExtract::methodWithOnePartToExtract);
+                    Method method = MethodReference.getMethod(ClassWithMethodToExtract::methodWithOnePartToExtract);
                     String code = CodeExtractor.extractPartOfMethod(method);
                     // <<<1
                     codeFromMethod = code;
@@ -310,7 +310,7 @@ public class CodeExtractorTest {
                             "");
                 }
 
-                Method method = FindLambdaMethod.getMethod(ClassWithMethodToExtract::methodWithOnePartToExtract);
+                Method method = MethodReference.getMethod(ClassWithMethodToExtract::methodWithOnePartToExtract);
                 doc.writeInline(
                         ".Source code from file",
                         formatSourceCode(CodeExtractor.methodSource(method))
@@ -339,7 +339,7 @@ public class CodeExtractorTest {
             }
             {
                 // >>>3
-                Method method = FindLambdaMethod.getMethod(ClassWithMethodToExtract::methodWithSeveralPartsToExtract);
+                Method method = MethodReference.getMethod(ClassWithMethodToExtract::methodWithSeveralPartsToExtract);
                 String codePart1 = CodeExtractor.extractPartOfMethod(method, "Part1");
                 String codePart2 = CodeExtractor.extractPartOfMethod(method, "Part2");
                 // <<<3
@@ -717,7 +717,7 @@ public class CodeExtractorTest {
 
 
                 // >>>5
-                final Method methodWithComment = FindLambdaMethod.getMethod(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract::methodInSubClass);
+                final Method methodWithComment = MethodReference.getMethod(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract::methodInSubClass);
                 final Optional<String> comment = CodeExtractor.getComment(this.getClass(), methodWithComment);
                 // <<<5
 

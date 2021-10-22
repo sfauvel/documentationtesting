@@ -75,7 +75,7 @@ public class DocWriterTest {
         // <<<
 
         DocWriterTest.doc.write(".Method used",
-                formatter.sourceCode(CodeExtractor.methodSource(FindLambdaMethod.getMethod(DocWriterTest::simple_method))),
+                formatter.sourceCode(CodeExtractor.methodSource(MethodReference.getMethod(DocWriterTest::simple_method))),
                 "", "");
 
         DocWriterTest.doc.write(".DocWriter usage",

@@ -61,7 +61,7 @@ public class ApprovalsExtensionTest {
 
         doc.write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
-        final Method method = FindLambdaMethod.getMethod(OneTest::test_A);
+        final Method method = MethodReference.getMethod(OneTest::test_A);
         final Path approvedPath = new DocPath(method).approved().from(this.getClass());
         final Path receivedPath = new DocPath(method).received().from(this.getClass());
         doc.write("When executing test method `" + method.getName() + "`, a file `" + receivedPath.getFileName() + "` is generated and contains the following text",
@@ -102,7 +102,7 @@ public class ApprovalsExtensionTest {
 
         doc.write(".Test example using DisplayName", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
-        final String testMethod = FindLambdaMethod.getName(UsingDisplayNameTest::test_A);
+        final String testMethod = MethodReference.getName(UsingDisplayNameTest::test_A);
         final String filename = "_" + testClass.getSimpleName() + "." + testMethod + ".approved.adoc";
         doc.write("Generated file with DisplayName content as title", "----", formatter.include(filename), "----");
     }
@@ -121,7 +121,7 @@ public class ApprovalsExtensionTest {
 
         doc.write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
-        final Method method = FindLambdaMethod.getMethod(MyCustomWriterTest::test_A);
+        final Method method = MethodReference.getMethod(MyCustomWriterTest::test_A);
         final Path approvedPath = new DocPath(method).approved().from(this.getClass());
         doc.write("When executing test method `" + method.getName() + "`, a file `" + approvedPath.getFileName() + "` is generated and contains the following text",
                 "----",
@@ -191,7 +191,7 @@ public class ApprovalsExtensionTest {
 
         doc.write("", "", ".Test example used to generate class document", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
-        final Method method = FindLambdaMethod.getMethod(FailingTest::failing_test);
+        final Method method = MethodReference.getMethod(FailingTest::failing_test);
         final DocPath docPath = new DocPath(method);
         final Path documentationPath = docPath.received().path();
 

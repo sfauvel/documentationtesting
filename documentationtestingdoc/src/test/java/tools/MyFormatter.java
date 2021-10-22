@@ -1,7 +1,7 @@
 package tools;
 
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
-import org.sfvl.doctesting.utils.FindLambdaMethod;
+import org.sfvl.doctesting.utils.MethodReference;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 
@@ -46,8 +46,8 @@ public class MyFormatter extends AsciidocFormatter {
                 "++++");
     }
 
-    public <T> String linkToMethod(FindLambdaMethod.SerializableConsumer<T> methodToInclude) {
-        final Method method = FindLambdaMethod.getMethod(methodToInclude);
+    public <T> String linkToMethod(MethodReference.SerializableConsumer<T> methodToInclude) {
+        final Method method = MethodReference.getMethod(methodToInclude);
 
         String methodName = method.getName();
         String title = methodName.replace("_", " ");
@@ -56,8 +56,8 @@ public class MyFormatter extends AsciidocFormatter {
         return linkToMethod(method, title);
     }
 
-    public <T> String linkToMethod(FindLambdaMethod.SerializableConsumer<T> methodToInclude, String title) {
-        final Method method = FindLambdaMethod.getMethod(methodToInclude);
+    public <T> String linkToMethod(MethodReference.SerializableConsumer<T> methodToInclude, String title) {
+        final Method method = MethodReference.getMethod(methodToInclude);
 
         return linkToMethod(method, title);
     }

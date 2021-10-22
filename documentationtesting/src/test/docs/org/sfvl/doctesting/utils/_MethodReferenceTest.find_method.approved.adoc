@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_findlambdamethodtest_find_method]
+[#org_sfvl_doctesting_utils_methodreferencetest_find_method]
 = Find method
 
 It's possible to extract method from a method reference.
@@ -11,7 +11,7 @@ It's possible to extract method from a method reference.
 
 a| [source, java, indent=0]
 ----
-                        FindLambdaMethod.getMethod(MyClass::myMethod)
+                        MethodReference.getMethod(MyClass::myMethod)
 
 ---- .^| Method .^a| 
 [source,java,indent=0]
@@ -21,7 +21,7 @@ public void MyClass.myMethod( )
 
 a| [source, java, indent=0]
 ----
-                        FindLambdaMethod.getMethod(myObject::myMethod)
+                        MethodReference.getMethod(myObject::myMethod)
 
 ---- .^| Method .^a| 
 [source,java,indent=0]
@@ -31,7 +31,7 @@ public void MyClass.myMethod( )
 
 a| [source, java, indent=0]
 ----
-                        FindLambdaMethod.getMethod(MyClass::myConsumer)
+                        MethodReference.getMethod(MyClass::myConsumer)
 
 ---- .^| Method .^a| 
 [source,java,indent=0]
@@ -41,7 +41,7 @@ public void MyClass.myConsumer( java.lang.String)
 
 a| [source, java, indent=0]
 ----
-                        FindLambdaMethod.getMethod(MyClass::myFunction)
+                        MethodReference.getMethod(MyClass::myFunction)
 
 ---- .^| Method .^a| 
 [source,java,indent=0]
@@ -51,7 +51,7 @@ public java.lang.String MyClass.myFunction( java.lang.Integer)
 
 a| [source, java, indent=0]
 ----
-                        FindLambdaMethod.getMethod(myObject::myFunction)
+                        MethodReference.getMethod(myObject::myFunction)
 
 ---- .^| Method .^a| 
 [source,java,indent=0]
@@ -61,7 +61,7 @@ public java.lang.String MyClass.myFunction( java.lang.Integer)
 
 a| [source, java, indent=0]
 ----
-                        FindLambdaMethod.getMethod(MyClass::myFunctionWithGeneric)
+                        MethodReference.getMethod(MyClass::myFunctionWithGeneric)
 
 ---- .^| Method .^a| 
 [source,java,indent=0]
@@ -71,7 +71,7 @@ public java.util.List MyClass.myFunctionWithGeneric( java.util.List)
 
 a| [source, java, indent=0]
 ----
-                        FindLambdaMethod.getMethod(MyClass::myStaticConsumer)
+                        MethodReference.getMethod(MyClass::myStaticConsumer)
 
 ---- .^| Method .^a| 
 [source,java,indent=0]

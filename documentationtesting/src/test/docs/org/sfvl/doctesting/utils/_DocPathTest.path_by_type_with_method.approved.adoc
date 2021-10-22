@@ -6,7 +6,7 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 DocPath is created with this code:
 [source,indent=0]
 ----
-final DocPath docPath = new DocPath(FindLambdaMethod.getMethod(MyTest::test_A));
+final DocPath docPath = new DocPath(MethodReference.getMethod(MyTest::test_A));
 ----
 
 Note that `MyTest` class is declared in package `org.sfvl.samples`.

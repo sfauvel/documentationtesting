@@ -15,7 +15,7 @@ It's also possible to retrieve only the method body.
 or
 [source, java, indent=0]
 ----
-                Method method = FindLambdaMethod.getMethod(SimpleClass::simpleMethod);
+                Method method = MethodReference.getMethod(SimpleClass::simpleMethod);
                 String code = CodeExtractor.methodSource(method);
 
 ----
@@ -42,7 +42,7 @@ include::../../../../../java/org/sfvl/doctesting/sample/SimpleClass.java[tag=cla
 .How to extract code of a method in a nested class
 [source, java, indent=0]
 ----
-                Method method = FindLambdaMethod.getMethod(ClassWithNestedClass.NestedClass::nestedMethod);
+                Method method = MethodReference.getMethod(ClassWithNestedClass.NestedClass::nestedMethod);
                 String code = CodeExtractor.methodSource(method);
 
 ----

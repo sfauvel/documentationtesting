@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_findlambdamethodtest_find_method_name]
+[#org_sfvl_doctesting_utils_methodreferencetest_find_method_name]
 = Find method name
 
 It's possible to extract method name from a method reference.
@@ -12,37 +12,37 @@ We can use either a reference using class or using an object instance (only on n
 
 a| [source, java, indent=0]
 ----
-                        FindLambdaMethod.getName(MyClass::myMethod)
+                        MethodReference.getName(MyClass::myMethod)
 
 ---- .^| String .^a| myMethod
 a| [source, java, indent=0]
 ----
-                        FindLambdaMethod.getName(myObject::myMethod)
+                        MethodReference.getName(myObject::myMethod)
 
 ---- .^| String .^a| myMethod
 a| [source, java, indent=0]
 ----
-                        FindLambdaMethod.getName(MyClass::myConsumer)
+                        MethodReference.getName(MyClass::myConsumer)
 
 ---- .^| String .^a| myConsumer
 a| [source, java, indent=0]
 ----
-                        FindLambdaMethod.getName(MyClass::myFunction)
+                        MethodReference.getName(MyClass::myFunction)
 
 ---- .^| String .^a| myFunction
 a| [source, java, indent=0]
 ----
-                        FindLambdaMethod.getName(myObject::myFunction)
+                        MethodReference.getName(myObject::myFunction)
 
 ---- .^| String .^a| myFunction
 a| [source, java, indent=0]
 ----
-                        FindLambdaMethod.getName(MyClass::myFunctionWithGeneric)
+                        MethodReference.getName(MyClass::myFunctionWithGeneric)
 
 ---- .^| String .^a| myFunctionWithGeneric
 a| [source, java, indent=0]
 ----
-                        FindLambdaMethod.getName(MyClass::myStaticConsumer)
+                        MethodReference.getName(MyClass::myStaticConsumer)
 
 ---- .^| String .^a| myStaticConsumer
 |====
