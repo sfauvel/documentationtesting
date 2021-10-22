@@ -111,7 +111,7 @@ public class FailureReporterTest {
         }
 
         final ByteArrayOutputStream os = new ByteArrayOutputStream();
-        final ApprovalsExtension.FailureReporter reporter = new ApprovalsExtension.FailureReporter(new PrintStream(os));
+        final FailureReporter reporter = new FailureReporter(new PrintStream(os));
         final PrintStream out = System.out;
         // We redirect System.out to nothing to avoid a output to console.
         System.setOut(new PrintStream(new ByteArrayOutputStream()));
