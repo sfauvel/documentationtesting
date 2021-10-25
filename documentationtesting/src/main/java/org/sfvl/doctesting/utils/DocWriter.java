@@ -22,11 +22,11 @@ public class DocWriter<F extends Formatter> {
     private F formatter;
 
     public DocWriter() {
-        this(Config.FORMATTER);
+        this((F)Config.FORMATTER);
     }
 
-    public DocWriter(Formatter formatter) {
-        this.formatter = (F) formatter;
+    public DocWriter(F formatter) {
+        this.formatter = formatter;
     }
 
     public F getFormatter() {
