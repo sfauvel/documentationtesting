@@ -92,29 +92,57 @@ public class MethodReference {
 
         final Class<?> aClass = extractClass(serializedLambda);
 
-            for (Method method : methods) {
-                boolean notMatch = false;
-                final String s = method.toGenericString();
-                final String s1 = method.toString();
-                final Class<?>[] parameterTypes = method.getParameterTypes();
-                if (args.size() == parameterTypes.length) {
-                    for (int i = 0; i < parameterTypes.length; i++) {
-                        if (!args.get(i).equals(parameterTypes[i])) {
-                            notMatch=true;
-                        }
-                    }
-                } else {
-                    notMatch = true;
-                }
-                if (!notMatch) {
-                    return method;
-                }
-            }
-//            return aClass.getMethod(methodName, args.toArray(new Class[0]));
-//        } catch (NoSuchMethodException e) {
-//            throw new RuntimeException(e);
-//        }
-        throw new RuntimeException("No method found");
+        return Arrays.stream(aClass.getDeclaredMethods())
+                .filter(m -> m.getName().equals(methodName))
+                .filter(m -> serializedLambda.getImplMethodSignature().replace("/", ".").equals(getSignature(m)))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("No method found"));
+    }
+
+    private static Class<?> extractClass(SerializedLambda serializedLambda) {
+        final String className = serializedLambda.getImplClass().replace("/", ".");
+
+        try {
+            return Class.forName(className);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * https://stackoverflow.com/questions/45072268/how-can-i-get-the-signature-field-of-java-reflection-method-object
+     */
+    private static String getSignature(Method method) {
+        final String parameters = Arrays.stream(method.getParameterTypes())
+                .map(MethodReference::serializedType)
+                .collect(Collectors.joining("", "(", ")"));
+        return parameters + serializedType(method.getReturnType());
+    }
+
+    private static String getSignatureWithGenerics(Method method) {
+        Optional<String> signature = getFieldSignature(method);
+        if (signature.isPresent()) {
+            return signature.get();
+        }
+
+        return getSignature(method);
+    }
+
+    /**
+     * Retrieve `signature` field that it can be null.
+     * This field contains method signature with generics.
+     *
+     * @param method
+     * @return
+     */
+    private static Optional<String> getFieldSignature(Method method) {
+        try {
+            Field field = Method.class.getDeclaredField("signature");
+            field.setAccessible(true);
+            return Optional.ofNullable((String) field.get(method));
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            return Optional.empty();
+        }
     }
 
     // https://docs.oracle.com/javase/7/docs/platform/serialization/spec/protocol.html
