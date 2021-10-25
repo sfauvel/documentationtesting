@@ -90,7 +90,7 @@ public class MethodReference {
     private static Method getMethod(SerializedLambda serializedLambda) {
         final String methodName = serializedLambda.getImplMethodName();
 
-        final Class<?> aClass = getClass(serializedLambda);
+        final Class<?> aClass = extractClass(serializedLambda);
 
             for (Method method : methods) {
                 boolean notMatch = false;
