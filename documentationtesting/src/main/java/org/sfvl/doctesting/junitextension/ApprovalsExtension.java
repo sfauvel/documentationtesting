@@ -23,10 +23,10 @@ import java.nio.file.Path;
  *
  * It checks that everything written during test is identical to the approved content.
  */
-public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallback, AfterAllCallback {
+public class ApprovalsExtension<T extends DocWriter<F>, F extends Formatter> implements AfterEachCallback, AfterAllCallback {
 
-    public static <T extends DocWriter> ApprovalsExtension<T> build(T docWriter) {
-        return new ApprovalsExtension<T>(docWriter);
+    public static <T extends DocWriter<F>, F extends Formatter> ApprovalsExtension<T, F> build(T docWriter) {
+        return new ApprovalsExtension<T, F>(docWriter);
     }
 
     private static final PathProvider pathBuidler = new PathProvider();
@@ -40,7 +40,7 @@ public class ApprovalsExtension<T extends DocWriter> implements AfterEachCallbac
         return docWriter;
     }
 
-    public Formatter getFormatter() {
+    public F getFormatter() {
         return docWriter.getFormatter();
     }
 
