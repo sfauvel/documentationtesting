@@ -53,6 +53,8 @@ include::_AsciidocFormatterTest.AsciiDocList.should_format_empty_list.approved.a
 [#org_sfvl_docformatter_asciidocformattertest_block]
 == Block
 
+include::_AsciidocFormatterTest.block.block_id.approved.adoc[leveloffset=+2]
+
 include::_AsciidocFormatterTest.block.should_format_block_with_enum.approved.adoc[leveloffset=+2]
 
 include::_AsciidocFormatterTest.block.should_format_block.approved.adoc[leveloffset=+2]

@@ -185,6 +185,18 @@ public class AsciidocFormatterTest {
     @Nested
     @DisplayName(value = "Block")
     class block {
+
+
+        /**
+         * A block id create an id in HTML file.
+         * It can be used to define a style.
+         */
+        @Test
+        @TestOption(extractAll = false)
+        public void block_id() {
+            output = formatter.blockId("myId");
+        }
+
         /**
          * You can select block type from one of the Block enum.
          */

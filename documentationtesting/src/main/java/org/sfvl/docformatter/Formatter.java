@@ -48,6 +48,8 @@ public interface Formatter {
 
     String sourceFragment(String s, String interestingCode);
 
+    String blockId(String id);
+
     BlockBuilder blockBuilder(Block block);
     BlockBuilder blockBuilder(String delimiter);
 

@@ -188,6 +188,11 @@ public class AsciidocFormatter implements Formatter {
     }
 
     @Override
+    public String blockId(String id) {
+        return String.format("[#%s]", id);
+    }
+
+    @Override
     public BlockBuilder blockBuilder(String delimiter) {
         return new AsciidocBlockBuilder(delimiter);
     }

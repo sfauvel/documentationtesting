@@ -22,7 +22,7 @@ public class DocWriter<F extends Formatter> {
     private F formatter;
 
     public DocWriter() {
-        this((F)Config.FORMATTER);
+        this((F) Config.FORMATTER);
     }
 
     public DocWriter(F formatter) {
@@ -67,7 +67,7 @@ public class DocWriter<F extends Formatter> {
 
         return isTitle
                 ? formatter.paragraph(
-                String.format("[#%s]", titleId(testMethod)),
+                formatter.blockId(titleId(testMethod)),
                 formatter.title(1, formatTitle(title, testMethod)).trim()
         ) : "";
     }
@@ -83,7 +83,7 @@ public class DocWriter<F extends Formatter> {
             @Override
             public String getTitle(Class<?> clazz, int depth) {
                 return String.join("\n",
-                        String.format("[#%s]", titleId(clazz)),
+                        formatter.blockId(titleId(clazz)),
                         super.getTitle(clazz, depth));
             }
 

@@ -119,6 +119,11 @@ public class MyFormatter implements Formatter  {
     }
 
     @Override
+    public String blockId(String id) {
+        return null;
+    }
+
+    @Override
     public BlockBuilder blockBuilder(Block block) {
         return null;
     }
