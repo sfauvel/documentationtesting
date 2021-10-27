@@ -445,6 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_extension">Creating a test using ApprovalsExtension</a></li>
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_displayname">Using displayName</a></li>
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_a_custom_writer">Using a custom writer</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_a_custom_formatter">Using a custom formatter</a></li>
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_nested_class">Nested class</a>
 <ul class="sectlevel2">
 <li><a href="#org_sfvl_doctesting_junitextension_demonestedtest">Demo nested test</a>
@@ -640,6 +641,55 @@ and modify what it will be written in the final document.</p>
 = Test A: Custom title
 
 In my *test* // Add a comment after each call to write</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_using_a_custom_formatter">Using a custom formatter</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It&#8217;s possible to give a specific Formatter to <code>ApprovalsExtension</code>
+and change the rendering for some instructions or create another formatter.</p>
+</div>
+<div class="listingblock">
+<div class="title">Test example using <code>ApprovalsExtension</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">MyCustomFormatterTest</span> <span class="o">{</span>
+
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ApprovalsExtension</span><span class="o">(</span>
+            <span class="k">new</span> <span class="nf">DocWriter</span><span class="o">(</span>
+                    <span class="k">new</span> <span class="nf">AsciidocFormatter</span><span class="o">()</span> <span class="o">{</span>
+                        <span class="nd">@Override</span>
+                        <span class="c1">/// Add the word `Warning` before the message.</span>
+                        <span class="kd">public</span> <span class="nc">String</span> <span class="nf">warning</span><span class="o">(</span><span class="nc">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">warning</span><span class="o">(</span><span class="s">"Warning: "</span> <span class="o">+</span> <span class="n">message</span><span class="o">);</span>
+                        <span class="o">}</span>
+                    <span class="o">})</span>
+    <span class="o">);</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">doc</span><span class="o">.</span><span class="na">getFormatter</span><span class="o">().</span><span class="na">warning</span><span class="o">(</span><span class="s">"My custom warning."</span><span class="o">));</span>
+    <span class="o">}</span>
+
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When executing test method <code>test_A</code>, a file <code>_MyCustomFormatterTest.test_A.approved.adoc</code> is generated and contains the following text</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[#org_sfvl_samples_mycustomformattertest_test_a]
+= Test A
+
+
+[WARNING]
+====
+Warning: My custom warning.
+====</pre>
 </div>
 </div>
 </div>
@@ -1014,6 +1064,11 @@ h2 {
 .listingblock .content pre:not(.highlight) {
     background: var(--title-color);
     box-shadow: 5px 5px 5px var(--shadow_color);
+}
+
+/* Remove margin for listingblock in table */
+td.tableblock > .content > .listingblock {
+    margin: 0em;
 }
 
 .includeblock{

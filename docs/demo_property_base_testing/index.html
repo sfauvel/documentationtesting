@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Reference</title>
+<title>Using Approvals</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,38 +436,330 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 </head>
-<body id="doc_reference" class="article">
+<body class="article toc2 toc-left">
 <div id="header">
-<h1>Reference</h1>
-</div>
-<div id="content">
-<div class="paragraph">
-<p>In this page, you will find links to resources that help you to implement a documentation that can be used as a non regression test.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Documentation of the concept: <a href="https://sfauvel.github.io/documentationtesting" class="bare">https://sfauvel.github.io/documentationtesting</a></p>
-</li>
-<li>
-<p>Library for Java: <a href="https://sfauvel.github.io/documentationtesting/documentationtesting">DocumentationTesting</a></p>
-</li>
-<li>
-<p>Library for Python and pytest: <a href="https://github.com/sfauvel/doc_as_test_pytest">doc_as_test_pytest</a></p>
-</li>
-<li>
-<p>To get source and examples: <a href="https://github.com/sfauvel/documentationtesting/tree/master" class="bare">https://github.com/sfauvel/documentationtesting/tree/master</a></p>
-</li>
-<li>
-<p>A plugin for IntelliJ is provided in <a href="https://github.com/sfauvel/documentationtesting/tree/master/approvalsDocPlugin">approvalsDocPlugin</a> folder</p>
+<h1>Using Approvals</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_demo_test">Demo test</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_demo_demotest_should_ignore_taxes_if_type_is_tax_free">Should ignore taxes if type is TAX FREE</a></li>
+<li><a href="#org_sfvl_demo_demotest_code_description">Code description</a></li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="footer">
-<div id="footer-text">
-Last updated 2021-10-27 21:42:04 UTC
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The examples shown here are generated from the source code.
+They therefore represent the behavior of the application at any times.
+Non regression is ensured by checking the absence of change in this document.
+Learn more here <a href="https://github.com/sfauvel/documentationtesting" class="bare">https://github.com/sfauvel/documentationtesting</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>View source of project on <a href="https://github.com/sfauvel/documentationtesting/tree/master/samples/demo_property_base_testing">Github</a></p>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_demo_test">Demo test</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Demo of a property base testing generating a documentation.</p>
+</div>
+<div class="paragraph">
+<p>We generate a list of objects with some random values.
+We group objects by the invariant, the value to check or by the result of a property.
+When there is only one value, we can display it and approved the document (like in chapter below).
+When there is more than one value, we write them so the test fail, and we have all information to investigate.</p>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_demo_demotest_should_ignore_taxes_if_type_is_tax_free">Should ignore taxes if type is TAX FREE</h3>
+<div class="paragraph">
+<p>With TAX_FREE, tax is always 0</p>
+</div>
+<div class="paragraph">
+<p>This property has been verified using 10 products.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_demo_demotest_code_description">Code description</h3>
+<div class="paragraph">
+<p>We show here the code used to create the above chapter.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">TaxType</span> <span class="n">taxType</span> <span class="o">=</span> <span class="nc">TaxType</span><span class="o">.</span><span class="na">TAX_FREE</span><span class="o">;</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Product</span><span class="o">&gt;</span> <span class="n">products</span> <span class="o">=</span> <span class="nc">ProductGenerator</span><span class="o">.</span><span class="na">generate</span><span class="o">(</span><span class="nl">Product:</span><span class="o">:</span><span class="n">setTaxType</span><span class="o">,</span> <span class="n">taxType</span><span class="o">);</span>
+
+<span class="kd">final</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Product</span><span class="o">&gt;&gt;</span> <span class="n">productsByTax</span> <span class="o">=</span> <span class="n">products</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">groupingBy</span><span class="o">(</span><span class="nl">Product:</span><span class="o">:</span><span class="n">getTaxes</span><span class="o">));</span>
+
+<span class="n">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"With %s, "</span><span class="o">,</span> <span class="n">taxType</span><span class="o">.</span><span class="na">name</span><span class="o">()));</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">productsByTax</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"tax is always %s"</span><span class="o">,</span>
+            <span class="n">productsByTax</span><span class="o">.</span><span class="na">keySet</span><span class="o">().</span><span class="na">toArray</span><span class="o">()[</span><span class="mi">0</span><span class="o">]),</span>
+            <span class="s">""</span><span class="o">,</span> <span class="s">""</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="n">write</span><span class="o">(</span><span class="s">"tax is not always the same values"</span><span class="o">,</span>
+            <span class="n">valuesToString</span><span class="o">(</span><span class="n">productsByTax</span><span class="o">),</span>
+            <span class="s">""</span><span class="o">,</span> <span class="s">""</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="n">write</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"This property has been verified using %s products."</span><span class="o">,</span> <span class="n">products</span><span class="o">.</span><span class="na">size</span><span class="o">()));</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge .cm {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cp {
+  color: #999999;
+  font-weight: bold;
+}
+pre.rouge .c1 {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+pre.rouge .gd {
+  color: #000000;
+  background-color: #ffdddd;
+}
+pre.rouge .ge {
+  color: #000000;
+  font-style: italic;
+}
+pre.rouge .gr {
+  color: #aa0000;
+}
+pre.rouge .gh {
+  color: #999999;
+}
+pre.rouge .gi {
+  color: #000000;
+  background-color: #ddffdd;
+}
+pre.rouge .go {
+  color: #888888;
+}
+pre.rouge .gp {
+  color: #555555;
+}
+pre.rouge .gs {
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #aaaaaa;
+}
+pre.rouge .gt {
+  color: #aa0000;
+}
+pre.rouge .kc {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kd {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kn {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kp {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kr {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kt {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .k, pre.rouge .kv {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .mf {
+  color: #009999;
+}
+pre.rouge .mh {
+  color: #009999;
+}
+pre.rouge .il {
+  color: #009999;
+}
+pre.rouge .mi {
+  color: #009999;
+}
+pre.rouge .mo {
+  color: #009999;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+  color: #009999;
+}
+pre.rouge .sb {
+  color: #d14;
+}
+pre.rouge .sc {
+  color: #d14;
+}
+pre.rouge .sd {
+  color: #d14;
+}
+pre.rouge .s2 {
+  color: #d14;
+}
+pre.rouge .se {
+  color: #d14;
+}
+pre.rouge .sh {
+  color: #d14;
+}
+pre.rouge .si {
+  color: #d14;
+}
+pre.rouge .sx {
+  color: #d14;
+}
+pre.rouge .sr {
+  color: #009926;
+}
+pre.rouge .s1 {
+  color: #d14;
+}
+pre.rouge .ss {
+  color: #990073;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
+  color: #d14;
+}
+pre.rouge .na {
+  color: #008080;
+}
+pre.rouge .bp {
+  color: #999999;
+}
+pre.rouge .nb {
+  color: #0086B3;
+}
+pre.rouge .nc {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .no {
+  color: #008080;
+}
+pre.rouge .nd {
+  color: #3c5d5d;
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #800080;
+}
+pre.rouge .ne {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nn {
+  color: #555555;
+}
+pre.rouge .nt {
+  color: #000080;
+}
+pre.rouge .vc {
+  color: #008080;
+}
+pre.rouge .vg {
+  color: #008080;
+}
+pre.rouge .vi {
+  color: #008080;
+}
+pre.rouge .nv, pre.rouge .vm {
+  color: #008080;
+}
+pre.rouge .ow {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .o {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .w {
+  color: #bbbbbb;
+}
+pre.rouge {
+  background-color: #f8f8f8;
+}
+</style>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>

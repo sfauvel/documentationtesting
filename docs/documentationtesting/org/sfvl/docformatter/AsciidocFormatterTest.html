@@ -448,6 +448,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_warning">Warning</a></li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_paragraph">Paragraph</a></li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_suite_of_paragraphs">Suite of paragraphs</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_style">Style</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_style_bold">Bold</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_style_italic">Italic</a></li>
+</ul>
+</li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_description">Description</a></li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_definition">Definition</a></li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_anchorlink">Anchor</a></li>
@@ -462,6 +468,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_block">Block</a>
 <ul class="sectlevel2">
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_block_block_id">Block id</a></li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_block_should_format_block_with_enum">Predefine blocks</a></li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_block_should_format_block">Free block</a></li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_block_escape_asciidoc">Escape asciidoc</a></li>
@@ -715,6 +722,63 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 </div>
 <hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_docformatter_asciidocformattertest_style">Style</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_style_bold">Bold</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">bold</span><span class="o">(</span><span class="s">"bold text"</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="paragraph">
+<p><strong>bold text</strong></p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>*bold text*</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_style_italic">Italic</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">italic</span><span class="o">(</span><span class="s">"italic text"</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="paragraph">
+<p><em>italic text</em></p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>_italic text_</pre>
+</div>
+</div>
+<hr>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -979,6 +1043,33 @@ The second paragraph with a blank line before to separate from the first one.</p
 <h2 id="org_sfvl_docformatter_asciidocformattertest_block">Block</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_block_block_id">Block id</h3>
+<div class="paragraph">
+<p>A block id create an id in HTML file.
+It can be used to define a style.</p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div id="myId" class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[#myId]</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
 <h3 id="org_sfvl_docformatter_asciidocformattertest_block_should_format_block_with_enum">Predefine blocks</h3>
 <div class="paragraph">
 <p>You can select block type from one of the Block enum.</p>
@@ -988,6 +1079,9 @@ The second paragraph with a blank line before to separate from the first one.</p
 <ul>
 <li>
 <p>LITERAL</p>
+</li>
+<li>
+<p>CODE</p>
 </li>
 </ul>
 </div>
@@ -1644,6 +1738,11 @@ h2 {
 .listingblock .content pre:not(.highlight) {
     background: var(--title-color);
     box-shadow: 5px 5px 5px var(--shadow_color);
+}
+
+/* Remove margin for listingblock in table */
+td.tableblock > .content > .listingblock {
+    margin: 0em;
 }
 
 .includeblock{

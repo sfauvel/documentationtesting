@@ -447,6 +447,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_extension">Creating a test using ApprovalsExtension</a></li>
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_displayname">Using displayName</a></li>
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_a_custom_writer">Using a custom writer</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_a_custom_formatter">Using a custom formatter</a></li>
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_nested_class">Nested class</a>
 <ul class="sectlevel3">
 <li><a href="#org_sfvl_doctesting_junitextension_demonestedtest">Demo nested test</a>
@@ -475,12 +476,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_junitextension_failurereportertest_report_when_files_are_identicals">Report when files are identicals</a></li>
 <li><a href="#org_sfvl_doctesting_junitextension_failurereportertest_received_file_shorter_than_approved_file">Received file shorter than approved file</a></li>
 <li><a href="#org_sfvl_doctesting_junitextension_failurereportertest_received_file_longer_than_approved_file">Received file longer than approved file</a></li>
-</ul>
-</li>
-<li><a href="#org_sfvl_doctesting_junitextension_findlambdamethodtest">Extract information from method reference</a>
-<ul class="sectlevel2">
-<li><a href="#org_sfvl_doctesting_junitextension_findlambdamethodtest_find_method_name">Find method name</a></li>
-<li><a href="#org_sfvl_doctesting_junitextension_findlambdamethodtest_find_method">Find method</a></li>
 </ul>
 </li>
 <li><a href="#org_sfvl_doctesting_utils_classfindertest">Class finder test</a>
@@ -557,6 +552,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_utils_docwritertest_doc_writer_without_title">Hide title</a></li>
 <li><a href="#org_sfvl_doctesting_utils_docwritertest_format_title">Format title</a></li>
 <li><a href="#org_sfvl_doctesting_utils_docwritertest_add_description_using_comment">Add a description</a></li>
+</ul>
+</li>
+<li><a href="#org_sfvl_doctesting_utils_methodreferencetest">Extract information from method reference</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_doctesting_utils_methodreferencetest_find_method_name">Find method name</a></li>
+<li><a href="#org_sfvl_doctesting_utils_methodreferencetest_find_method">Find method</a></li>
+<li><a href="#org_sfvl_doctesting_utils_methodreferencetest_find_method_name_from_complex_method">Find method name from a specific method</a></li>
+<li><a href="#org_sfvl_doctesting_utils_methodreferencetest_classused">Class used in examples</a></li>
 </ul>
 </li>
 <li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest">ParsedClassRepository</a>
@@ -768,6 +771,53 @@ and modify what it will be written in the final document.</p>
 = Test A: Custom title
 
 In my *test* // Add a comment after each call to write</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_using_a_custom_formatter">Using a custom formatter</h3>
+<div class="paragraph">
+<p>It&#8217;s possible to give a specific Formatter to <code>ApprovalsExtension</code>
+and change the rendering for some instructions or create another formatter.</p>
+</div>
+<div class="listingblock">
+<div class="title">Test example using <code>ApprovalsExtension</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">MyCustomFormatterTest</span> <span class="o">{</span>
+
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ApprovalsExtension</span><span class="o">(</span>
+            <span class="k">new</span> <span class="nf">DocWriter</span><span class="o">(</span>
+                    <span class="k">new</span> <span class="nf">AsciidocFormatter</span><span class="o">()</span> <span class="o">{</span>
+                        <span class="nd">@Override</span>
+                        <span class="c1">/// Add the word `Warning` before the message.</span>
+                        <span class="kd">public</span> <span class="nc">String</span> <span class="nf">warning</span><span class="o">(</span><span class="nc">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">warning</span><span class="o">(</span><span class="s">"Warning: "</span> <span class="o">+</span> <span class="n">message</span><span class="o">);</span>
+                        <span class="o">}</span>
+                    <span class="o">})</span>
+    <span class="o">);</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">doc</span><span class="o">.</span><span class="na">getFormatter</span><span class="o">().</span><span class="na">warning</span><span class="o">(</span><span class="s">"My custom warning."</span><span class="o">));</span>
+    <span class="o">}</span>
+
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When executing test method <code>test_A</code>, a file <code>_MyCustomFormatterTest.test_A.approved.adoc</code> is generated and contains the following text</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[#org_sfvl_samples_mycustomformattertest_test_a]
+= Test A
+
+
+[WARNING]
+====
+Warning: My custom warning.
+====</pre>
 </div>
 </div>
 </div>
@@ -1177,77 +1227,6 @@ Description</pre>
 3: Footer
 &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="org_sfvl_doctesting_junitextension_findlambdamethodtest">Extract information from method reference</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>FindLambdaMethod class provides tools to find reference method name.</p>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_doctesting_junitextension_findlambdamethodtest_find_method_name">Find method name</h3>
-<div class="paragraph">
-<p>It&#8217;s possible to extract method name from a method reference.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">methodName</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">FindLambdaMethodTest:</span><span class="o">:</span><span class="n">myMethod</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Method name: <strong>myMethod</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">methodName</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">FindLambdaMethodTest:</span><span class="o">:</span><span class="n">methodWithOneParameter</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Method name: <strong>methodWithOneParameter</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">methodName</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">FindLambdaMethodTest:</span><span class="o">:</span><span class="n">methodThatIsAFunction</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Method name: <strong>methodThatIsAFunction</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">SerializableFunction</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">method</span> <span class="o">=</span> <span class="k">this</span><span class="o">::</span><span class="n">methodThatIsAFunction</span><span class="o">;</span>
-<span class="nc">String</span> <span class="n">methodName</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Method name: <strong>methodThatIsAFunction</strong></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_doctesting_junitextension_findlambdamethodtest_find_method">Find method</h3>
-<div class="paragraph">
-<p>It&#8217;s possible to extract method from a method reference.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">FindLambdaMethodTest:</span><span class="o">:</span><span class="n">myMethod</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">methodName</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Method name: <strong>myMethod</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">FindLambdaMethodTest:</span><span class="o">:</span><span class="n">methodWithOneParameter</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">methodName</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Method name: <strong>methodWithOneParameter</strong></p>
 </div>
 </div>
 </div>
@@ -1672,7 +1651,7 @@ It&#8217;s also possible to retrieve only the method body.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">SimpleClass:</span><span class="o">:</span><span class="n">simpleMethod</span><span class="o">);</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">SimpleClass:</span><span class="o">:</span><span class="n">simpleMethod</span><span class="o">);</span>
 <span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">methodSource</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
 </div>
 </div>
@@ -1701,7 +1680,7 @@ It&#8217;s also possible to retrieve only the method body.</p>
 <div class="listingblock">
 <div class="title">How to extract code of a method in a nested class</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nc">ClassWithNestedClass</span><span class="o">.</span><span class="na">NestedClass</span><span class="o">::</span><span class="n">nestedMethod</span><span class="o">);</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nc">ClassWithNestedClass</span><span class="o">.</span><span class="na">NestedClass</span><span class="o">::</span><span class="n">nestedMethod</span><span class="o">);</span>
 <span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">methodSource</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
 </div>
 </div>
@@ -1777,7 +1756,7 @@ Another comment with a specific value indicate the end of the code.</p>
 <div class="listingblock">
 <div class="title">How to extract part of a method code</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">ClassWithMethodToExtract:</span><span class="o">:</span><span class="n">methodWithOnePartToExtract</span><span class="o">);</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">ClassWithMethodToExtract:</span><span class="o">:</span><span class="n">methodWithOnePartToExtract</span><span class="o">);</span>
 <span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfMethod</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
 </div>
 </div>
@@ -1823,7 +1802,7 @@ In that case, all parts matching the text will be returned.</p>
 <div class="listingblock">
 <div class="title">How to extract part of a method</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">ClassWithMethodToExtract:</span><span class="o">:</span><span class="n">methodWithSeveralPartsToExtract</span><span class="o">);</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">ClassWithMethodToExtract:</span><span class="o">:</span><span class="n">methodWithSeveralPartsToExtract</span><span class="o">);</span>
 <span class="nc">String</span> <span class="n">codePart1</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfMethod</span><span class="o">(</span><span class="n">method</span><span class="o">,</span> <span class="s">"Part1"</span><span class="o">);</span>
 <span class="nc">String</span> <span class="n">codePart2</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfMethod</span><span class="o">(</span><span class="n">method</span><span class="o">,</span> <span class="s">"Part2"</span><span class="o">);</span></code></pre>
 </div>
@@ -2409,7 +2388,7 @@ In that case, all parts matching the text will be returned.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">methodWithComment</span> <span class="o">=</span> <span class="nc">FindLambdaMethod</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nc">ClassNestedWithCommentToExtract</span><span class="o">.</span><span class="na">SubClassNestedWithCommentToExtract</span><span class="o">::</span><span class="n">methodInSubClass</span><span class="o">);</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">methodWithComment</span> <span class="o">=</span> <span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nc">ClassNestedWithCommentToExtract</span><span class="o">.</span><span class="na">SubClassNestedWithCommentToExtract</span><span class="o">::</span><span class="n">methodInSubClass</span><span class="o">);</span>
 <span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">getClass</span><span class="o">(),</span> <span class="n">methodWithComment</span><span class="o">);</span></code></pre>
 </div>
 </div>
@@ -2481,22 +2460,47 @@ This is an issue in the JavaParser we used (com.github.javaparser:javaparser-cor
 <div class="paragraph">
 <p>By default, values are:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>SOURCE_PATH=src/main/java</p>
-</li>
-<li>
-<p>TEST_PATH=src/test/java</p>
-</li>
-<li>
-<p>DOC_PATH=src/test/docs</p>
-</li>
-<li>
-<p>RESOURCE_PATH=src/test/resources</p>
-</li>
-</ul>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">getDocPath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/docs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">getFormatter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Formatter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">instance of AsciidocFormatter</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">getResourcePath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/resources</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">getSourcePath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">src/main/java</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">getTestPath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/java</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="org_sfvl_doctesting_utils_configtest_load_path_from_config_file">Configuration file</h3>
@@ -2510,28 +2514,54 @@ This is an issue in the JavaParser we used (com.github.javaparser:javaparser-cor
 <div class="content">
 <pre>SOURCE_PATH:source/java
 TEST_PATH:source/test
-DOC_PATH:source/docs</pre>
+DOC_PATH:source/docs
+FORMATTER:org.sfvl.samples.MyFormatter</pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Values are:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>SOURCE_PATH=source/java</p>
-</li>
-<li>
-<p>TEST_PATH=source/test</p>
-</li>
-<li>
-<p>DOC_PATH=source/docs</p>
-</li>
-<li>
-<p>RESOURCE_PATH=src/test/resources</p>
-</li>
-</ul>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">getDocPath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">source/docs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">getFormatter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Formatter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">instance of MyFormatter</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">getResourcePath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">src/test/resources</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">getSourcePath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">source/java</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">getTestPath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">source/test</p></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
 <p>When config file does not exist, values are the default ones.</p>
 </div>
@@ -2863,7 +2893,7 @@ From this class, we can generate the real paths to the different kinds of associ
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>final DocPath docPath = new DocPath(FindLambdaMethod.getMethod(MyTest::test_A));</code></pre>
+<pre class="rouge highlight"><code>final DocPath docPath = new DocPath(MethodReference.getMethod(MyTest::test_A));</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3492,6 +3522,316 @@ include::_MyTestWithClassToDocument.test_A.approved.adoc[leveloffset=+1]</pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="org_sfvl_doctesting_utils_methodreferencetest">Extract information from method reference</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>MethodReferenceTest</code> class provides tools to extract information from a method reference.
+It retrieves the method associated with the method reference, so it&#8217;s possible to get name.
+This allows to use the method reference instead of writing the method name as a string.
+Using refactoring tools, names are automatically updated and there is no risk to misspelled a name.</p>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_methodreferencetest_find_method_name">Find method name</h3>
+<div class="paragraph">
+<p>It&#8217;s possible to extract method name from a method reference.
+We can use either a reference using class or using an object instance (only on non-static method).</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 66.6666%;">
+<col style="width: 11.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Returned value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myMethod</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>myMethod</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">myObject:</span><span class="o">:</span><span class="n">myMethod</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>myMethod</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myConsumer</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>myConsumer</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myFunction</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>myFunction</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">myObject:</span><span class="o">:</span><span class="n">myFunction</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>myFunction</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myFunctionWithGeneric</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>myFunctionWithGeneric</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myStaticConsumer</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>myStaticConsumer</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_methodreferencetest_find_method">Find method</h3>
+<div class="paragraph">
+<p>It&#8217;s possible to extract method from a method reference.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 44.4444%;">
+<col style="width: 11.1111%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Returned value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myMethod</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Method</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nc">MyClass</span><span class="o">.</span><span class="na">myMethod</span><span class="o">(</span> <span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">myObject:</span><span class="o">:</span><span class="n">myMethod</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Method</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nc">MyClass</span><span class="o">.</span><span class="na">myMethod</span><span class="o">(</span> <span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myConsumer</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Method</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nc">MyClass</span><span class="o">.</span><span class="na">myConsumer</span><span class="o">(</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myFunction</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Method</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span> <span class="nc">MyClass</span><span class="o">.</span><span class="na">myFunction</span><span class="o">(</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Integer</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">myObject:</span><span class="o">:</span><span class="n">myFunction</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Method</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span> <span class="nc">MyClass</span><span class="o">.</span><span class="na">myFunction</span><span class="o">(</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Integer</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myFunctionWithGeneric</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Method</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">List</span> <span class="nc">MyClass</span><span class="o">.</span><span class="na">myFunctionWithGeneric</span><span class="o">(</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">List</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myStaticConsumer</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Method</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nc">MyClass</span><span class="o">.</span><span class="na">myStaticConsumer</span><span class="o">(</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_methodreferencetest_find_method_name_from_complex_method">Find method name from a specific method</h3>
+<div class="paragraph">
+<p><code>MethodReference</code> class provides some common interface declarations so you can use it with simple methods.
+When you have a method with several parameters, you need to create your own interface.
+Those methods could not work with ambiguous method reference (same method name with different parameters).</p>
+</div>
+<div class="listingblock">
+<div class="title">Specific interface to create</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">interface</span> <span class="nc">MySpecificInterface</span> <span class="kd">extends</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="nf">apply</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">param1</span><span class="o">,</span> <span class="nc">String</span> <span class="n">param2</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">param3</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 44.4444%;">
+<col style="width: 11.1111%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Returned value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getName</span><span class="o">((</span><span class="nc">MySpecificInterface</span><span class="o">)</span> <span class="k">this</span><span class="o">::</span><span class="n">mySpecificMethod</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>mySpecificMethod</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">((</span><span class="nc">MySpecificInterface</span><span class="o">)</span> <span class="k">this</span><span class="o">::</span><span class="n">mySpecificMethod</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Method</p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span> <span class="nc">MethodReferenceTest</span><span class="o">.</span><span class="na">mySpecificMethod</span><span class="o">(</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Integer</span><span class="o">,</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span><span class="o">,</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">List</span><span class="o">)</span></code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_methodreferencetest_classused">Class used in examples</h3>
+<div class="listingblock">
+<div class="title">Class used for the examples</div>
+<div class="content">
+<pre class="rouge highlight"><code>static class MyClass {
+    public void myMethod() {
+    }
+
+    public void myConsumer(String parameter) {
+    }
+
+    public String myFunction(Integer parameter) {
+        return null;
+    }
+
+    public List&lt;String&gt; myFunctionWithGeneric(List&lt;Integer&gt; parameter) {
+        return null;
+    }
+
+    public static void myStaticConsumer(String parameter) {
+    }
+
+    public String mySpecificMethod(Integer param1, String param2, List&lt;String&gt; param3) {
+        return null;
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="org_sfvl_doctesting_utils_parsedclassrepositorytest">ParsedClassRepository</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -4061,6 +4401,11 @@ h2 {
 .listingblock .content pre:not(.highlight) {
     background: var(--title-color);
     box-shadow: 5px 5px 5px var(--shadow_color);
+}
+
+/* Remove margin for listingblock in table */
+td.tableblock > .content > .listingblock {
+    margin: 0em;
 }
 
 .includeblock{
