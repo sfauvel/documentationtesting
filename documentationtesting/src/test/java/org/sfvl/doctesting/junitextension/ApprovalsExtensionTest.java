@@ -8,11 +8,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
-import org.sfvl.doctesting.utils.ClassFinder;
-import org.sfvl.doctesting.utils.CodeExtractor;
-import org.sfvl.doctesting.utils.DocPath;
-import org.sfvl.doctesting.utils.OnePath;
+import org.sfvl.doctesting.utils.*;
 import org.sfvl.samples.FailingTest;
+import org.sfvl.samples.MyCustomFormatterTest;
 import org.sfvl.samples.MyCustomWriterTest;
 import org.sfvl.samples.MyTest;
 import org.sfvl.samples.justone.OneTest;
@@ -64,7 +62,7 @@ public class ApprovalsExtensionTest {
 
         doc.write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
-        final Method method = FindLambdaMethod.getMethod(OneTest::test_A);
+        final Method method = MethodReference.getMethod(OneTest::test_A);
         final Path approvedPath = new DocPath(method).approved().from(this.getClass());
         final Path receivedPath = new DocPath(method).received().from(this.getClass());
         doc.write("When executing test method `" + method.getName() + "`, a file `" + receivedPath.getFileName() + "` is generated and contains the following text",
@@ -105,7 +103,7 @@ public class ApprovalsExtensionTest {
 
         doc.write(".Test example using DisplayName", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
-        final String testMethod = FindLambdaMethod.getName(UsingDisplayNameTest::test_A);
+        final String testMethod = MethodReference.getName(UsingDisplayNameTest::test_A);
         final String filename = "_" + testClass.getSimpleName() + "." + testMethod + ".approved.adoc";
         doc.write("Generated file with DisplayName content as title", "----", formatter.include(filename), "----");
     }
@@ -124,7 +122,27 @@ public class ApprovalsExtensionTest {
 
         doc.write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
-        final Method method = FindLambdaMethod.getMethod(MyCustomWriterTest::test_A);
+        final Method method = MethodReference.getMethod(MyCustomWriterTest::test_A);
+        final Path approvedPath = new DocPath(method).approved().from(this.getClass());
+        doc.write("When executing test method `" + method.getName() + "`, a file `" + approvedPath.getFileName() + "` is generated and contains the following text",
+                "----",
+                formatter.include(approvedPath.toString()),
+                "----");
+    }
+
+    @Test
+    public void using_a_custom_formatter() {
+        final Class<?> testClass = MyCustomFormatterTest.class;
+
+        doc.runTestAndWriteResultAsComment(testClass);
+
+        doc.write("It's possible to give a specific Formatter to `" + ApprovalsExtension.class.getSimpleName() + "`",
+                "and change the rendering for some instructions or create another formatter.",
+                "", "");
+
+        doc.write(".Test example using `" + ApprovalsExtension.class.getSimpleName() + "`", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
+
+        final Method method = MethodReference.getMethod(MyCustomFormatterTest::test_A);
         final Path approvedPath = new DocPath(method).approved().from(this.getClass());
         doc.write("When executing test method `" + method.getName() + "`, a file `" + approvedPath.getFileName() + "` is generated and contains the following text",
                 "----",
@@ -194,7 +212,7 @@ public class ApprovalsExtensionTest {
 
         doc.write("", "", ".Test example used to generate class document", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
-        final Method method = FindLambdaMethod.getMethod(FailingTest::failing_test);
+        final Method method = MethodReference.getMethod(FailingTest::failing_test);
         final DocPath docPath = new DocPath(method);
         final Path documentationPath = docPath.received().path();
 

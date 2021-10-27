@@ -1,0 +1,24 @@
+:toc: left
+:nofooter:
+:stem:
+:source-highlighter: rouge
+
+
+
+
+
+= Using Approvals
+
+
+
+NOTE: The examples shown here are generated from the source code.
+They therefore represent the behavior of the application at any times.
+Non regression is ensured by checking the absence of change in this document.
+Learn more here link:{github-pages}[]
+
+View source of project on link:{github-repo}/samples/demo_property_base_testing[Github]
+
+
+
+
+include::org/sfvl/demo/_DemoTest.approved.adoc[leveloffset=+1]

@@ -11,7 +11,6 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
-import org.sfvl.doctesting.junitextension.FindLambdaMethod;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.sample.MyClass;
 import org.sfvl.samples.MyTest;
@@ -143,7 +142,7 @@ public class DocPathTest {
     public void path_by_type_with_method() {
 
         // >>>1
-        final DocPath docPath = new DocPath(FindLambdaMethod.getMethod(MyTest::test_A));
+        final DocPath docPath = new DocPath(MethodReference.getMethod(MyTest::test_A));
         // <<<1
 
         Class<?> clazz = MyTest.class;
@@ -203,7 +202,7 @@ public class DocPathTest {
                 ""
         );
 
-        final Method method = FindLambdaMethod.getMethod(MyClass.MySubClass::doSomething);
+        final Method method = MethodReference.getMethod(MyClass.MySubClass::doSomething);
         doc.write(String.format("Name for method `%s` in nested class `%s` is `%s`.",
                         method.getName(),
                         method.getDeclaringClass().getName(),

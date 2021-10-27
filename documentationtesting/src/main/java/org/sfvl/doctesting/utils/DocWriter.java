@@ -1,8 +1,11 @@
 package org.sfvl.doctesting.utils;
 
+import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,9 +16,22 @@ import java.util.stream.Collectors;
 /**
  * This object is used to store the text that need to be write to the final document.
  */
-public class DocWriter {
+public class DocWriter<F extends Formatter> {
 
     private StringBuffer sb = new StringBuffer();
+    private F formatter;
+
+    public DocWriter() {
+        this((F) Config.FORMATTER);
+    }
+
+    public DocWriter(F formatter) {
+        this.formatter = formatter;
+    }
+
+    public F getFormatter() {
+        return formatter;
+    }
 
     /**
      * Write a text to the output.
@@ -48,12 +64,12 @@ public class DocWriter {
 
     private String formatAdocTitle(String title, Method testMethod) {
         boolean isTitle = testMethod.getAnnotation(NoTitle.class) == null;
+
         return isTitle
-                ? String.join("\n",
-                String.format("[#%s]", titleId(testMethod)),
-                "= " + formatTitle(title, testMethod),
-                "", "")
-                : "";
+                ? formatter.paragraph(
+                formatter.blockId(titleId(testMethod)),
+                formatter.title(1, formatTitle(title, testMethod)).trim()
+        ) : "";
     }
 
     public String formatOutput(Class<?> clazz) {
@@ -63,10 +79,11 @@ public class DocWriter {
                         .map(ClassToDocument::clazz)
                         .map(CodeExtractor::getComment);
             }
+
             @Override
             public String getTitle(Class<?> clazz, int depth) {
                 return String.join("\n",
-                        String.format("[#%s]", titleId(clazz)),
+                        formatter.blockId(titleId(clazz)),
                         super.getTitle(clazz, depth));
             }
 
@@ -77,6 +94,17 @@ public class DocWriter {
                 "",
                 classDocumentation.getClassDocumentation(clazz)
         );
+    }
+
+    public String formatException(Throwable e, String title) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        e.printStackTrace(pw);
+
+        return formatter.paragraph(formatter.bold(title),
+                formatter.blockBuilder(Formatter.Block.CODE)
+                        .content(sw.toString())
+                        .build());
     }
 
     public String defineDocPath(Class<?> clazz) {

@@ -1,0 +1,39 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_a_custom_formatter]
+= Using a custom formatter
+
+
+// Test result for MyCustomFormatterTest: Success
+It's possible to give a specific Formatter to `ApprovalsExtension`
+and change the rendering for some instructions or create another formatter.
+
+.Test example using `ApprovalsExtension`
+[source,java,indent=0]
+----
+class MyCustomFormatterTest {
+
+    @RegisterExtension
+    static final ApprovalsExtension doc = new ApprovalsExtension(
+            new DocWriter(
+                    new AsciidocFormatter() {
+                        @Override
+                        /// Add the word `Warning` before the message.
+                        public String warning(String message) {
+                            return super.warning("Warning: " + message);
+                        }
+                    })
+    );
+
+    @Test
+    public void test_A() {
+        doc.write(doc.getFormatter().warning("My custom warning."));
+    }
+
+}
+----
+
+When executing test method `test_A`, a file `_MyCustomFormatterTest.test_A.approved.adoc` is generated and contains the following text
+----
+include::../../samples/_MyCustomFormatterTest.test_A.approved.adoc[]
+----

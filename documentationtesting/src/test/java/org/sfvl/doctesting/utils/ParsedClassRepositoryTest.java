@@ -379,14 +379,14 @@ public class ParsedClassRepositoryTest {
         doc.write(String.format("The `%s` have a cache to avoid parsing twice the same class.", ParsedClassRepository.class.getSimpleName()),
                 "",
                 String.format("Below, we show calls to `parse` method when we call a method of `%s`.", ParsedClassRepository.class.getSimpleName()),
-                String.format("`%s` method clears the cache and classes need to parse again.", FindLambdaMethod.getMethod(ParsedClassRepository::clearCache).getName()),
+                String.format("`%s` method clears the cache and classes need to parse again.", MethodReference.getMethod(ParsedClassRepository::clearCache).getName()),
                 "", "");
 
         parsedClassRepository.clearCache();
         parsedClassRepository.getComment(ApprovalsExtensionTest.class);
         parsedClassRepository.getComment(DocPathTest.class);
         parsedClassRepository.getComment(ApprovalsExtensionTest.class);
-        parsedClassRepository.getComment(FindLambdaMethod.getMethod(ApprovalsExtensionTest::using_extension));
+        parsedClassRepository.getComment(MethodReference.getMethod(ApprovalsExtensionTest::using_extension));
         parsedClassRepository.getComment(FailureReporterTest.class);
         parsedClassRepository.clearCache();
         parsedClassRepository.getComment(ApprovalsExtensionTest.class);

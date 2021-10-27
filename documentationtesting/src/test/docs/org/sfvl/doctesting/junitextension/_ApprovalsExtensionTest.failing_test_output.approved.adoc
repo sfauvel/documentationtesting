@@ -45,6 +45,7 @@ include::_ApprovalsExtensionTest.failing_test_output.ExceptionStackTrace.adoc[li
 	...
 
 ----
+
 ------
 
 ++++
@@ -79,4 +80,5 @@ include::_ApprovalsExtensionTest.failing_test_output.ExceptionStackTrace.adoc[li
 	...
 
 ----
+
 --

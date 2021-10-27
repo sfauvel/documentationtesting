@@ -24,6 +24,13 @@ include::_AsciidocFormatterTest.should_format_paragraph.approved.adoc[leveloffse
 
 include::_AsciidocFormatterTest.should_format_suite_of_paragraphs.approved.adoc[leveloffset=+1]
 
+[#org_sfvl_docformatter_asciidocformattertest_style]
+== Style
+
+include::_AsciidocFormatterTest.Style.bold.approved.adoc[leveloffset=+2]
+
+include::_AsciidocFormatterTest.Style.italic.approved.adoc[leveloffset=+2]
+
 include::_AsciidocFormatterTest.should_format_description.approved.adoc[leveloffset=+1]
 
 include::_AsciidocFormatterTest.should_format_definition.approved.adoc[leveloffset=+1]
@@ -45,6 +52,8 @@ include::_AsciidocFormatterTest.AsciiDocList.should_format_empty_list.approved.a
 
 [#org_sfvl_docformatter_asciidocformattertest_block]
 == Block
+
+include::_AsciidocFormatterTest.block.block_id.approved.adoc[leveloffset=+2]
 
 include::_AsciidocFormatterTest.block.should_format_block_with_enum.approved.adoc[leveloffset=+2]
 

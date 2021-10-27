@@ -6,8 +6,12 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 
 By default, values are:
-
-* SOURCE_PATH=src/main/java
-* TEST_PATH=src/test/java
-* DOC_PATH=src/test/docs
-* RESOURCE_PATH=src/test/resources
+[%header]
+|====
+| Method | Type | Value
+| getDocPath | Path | src/test/docs
+| getFormatter | Formatter | instance of AsciidocFormatter
+| getResourcePath | Path | src/test/resources
+| getSourcePath | Path | src/main/java
+| getTestPath | Path | src/test/java
+|====

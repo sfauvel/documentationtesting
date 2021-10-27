@@ -7,6 +7,7 @@ You can select block type from one of the Block enum.
 
 .Block value available
 * LITERAL
+* CODE
 
 [red]##_Usage_##
 [source,java,indent=0]

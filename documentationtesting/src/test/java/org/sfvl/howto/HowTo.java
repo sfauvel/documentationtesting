@@ -8,7 +8,7 @@ import org.sfvl.docformatter.AsciidocFormatterTest;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
-import org.sfvl.doctesting.junitextension.FindLambdaMethod;
+import org.sfvl.doctesting.utils.MethodReference;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.*;
 import org.sfvl.doctesting.writer.Classes;
@@ -130,8 +130,8 @@ public class HowTo {
         return new Classes(formatter).includeClasses(DocPath.toPath(aClass.getPackage()), Arrays.asList(aClass), offset).trim();
     }
 
-    public <T> String getInclude(FindLambdaMethod.SerializableConsumer<T> methodToInclude, int offset) {
-        final Method method = FindLambdaMethod.getMethod(methodToInclude);
+    public <T> String getInclude(MethodReference.SerializableConsumer<T> methodToInclude, int offset) {
+        final Method method = MethodReference.getMethod(methodToInclude);
 
         final OnePath approvedPath = new DocPath(method).approved();
         return formatter.include(approvedPath.from(new DocPath(this.getClass()).approved()).toString(), offset);

@@ -13,10 +13,15 @@ include::../../../../../resources/testConfig.properties[]
 ----
 
 Values are:
+[%header]
+|====
+| Method | Type | Value
+| getDocPath | Path | source/docs
+| getFormatter | Formatter | instance of MyFormatter
+| getResourcePath | Path | src/test/resources
+| getSourcePath | Path | source/java
+| getTestPath | Path | source/test
+|====
 
-* SOURCE_PATH=source/java
-* TEST_PATH=source/test
-* DOC_PATH=source/docs
-* RESOURCE_PATH=src/test/resources
 
 When config file does not exist, values are the default ones.

@@ -48,6 +48,8 @@ public interface Formatter {
 
     String sourceFragment(String s, String interestingCode);
 
+    String blockId(String id);
+
     BlockBuilder blockBuilder(Block block);
     BlockBuilder blockBuilder(String delimiter);
 
@@ -57,7 +59,10 @@ public interface Formatter {
 
     String attribute(String attribute, String value);
 
+    String bold(String text);
+    String italic(String text);
+
     public static enum Block {
-        LITERAL;
+        LITERAL, CODE;
     }
 }

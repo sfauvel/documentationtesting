@@ -111,6 +111,20 @@ public class AsciidocFormatterTest {
                 "The second paragraph with a blank line before to separate from the first one.");
     }
 
+    @Nested
+    public class Style {
+        @Test
+        public void bold() {
+            output = formatter.bold("bold text");
+        }
+
+        @Test
+        public void italic() {
+            output = formatter.italic("italic text");
+        }
+    }
+
+
     @Test
     @DisplayName("Description")
     public void should_format_description() {
@@ -171,6 +185,18 @@ public class AsciidocFormatterTest {
     @Nested
     @DisplayName(value = "Block")
     class block {
+
+
+        /**
+         * A block id create an id in HTML file.
+         * It can be used to define a style.
+         */
+        @Test
+        @TestOption(extractAll = false)
+        public void block_id() {
+            output = formatter.blockId("myId");
+        }
+
         /**
          * You can select block type from one of the Block enum.
          */

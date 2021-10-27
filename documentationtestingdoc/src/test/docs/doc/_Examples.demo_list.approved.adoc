@@ -31,4 +31,7 @@ It allows to give ideas on different ways of presenting information
  * link:{ROOT_PATH}/../demo_hero/index.html[demo_hero]: Shows different documentation that could be produced to verify the same thing. 
 
 
+ * link:{ROOT_PATH}/../demo_property_base_testing/index.html[demo_property_base_testing]: Show how we can make property base testing with documentation. 
+
+
  * link:{ROOT_PATH}/../demo_tennis/index.html[demo_tennis]: Tennis score display in a readable board. 

@@ -1,0 +1,32 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_methodreferencetest_classused]
+= Class used in examples
+
+
+.Class used for the examples
+[source,indent=0]
+----
+    static class MyClass {
+        public void myMethod() {
+        }
+
+        public void myConsumer(String parameter) {
+        }
+
+        public String myFunction(Integer parameter) {
+            return null;
+        }
+
+        public List<String> myFunctionWithGeneric(List<Integer> parameter) {
+            return null;
+        }
+
+        public static void myStaticConsumer(String parameter) {
+        }
+
+        public String mySpecificMethod(Integer param1, String param2, List<String> param3) {
+            return null;
+        }
+    }
+----

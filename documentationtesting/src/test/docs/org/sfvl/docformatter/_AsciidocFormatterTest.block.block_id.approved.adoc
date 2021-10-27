@@ -1,0 +1,25 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_docformatter_asciidocformattertest_block_block_id]
+= Block id
+
+A block id create an id in HTML file.
+It can be used to define a style.
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+
+----
+
+[red]##_Render_##
+
+[#myId]
+
+[red]##_Asciidoc generated_##
+------
+[#myId]
+------
+
+___
