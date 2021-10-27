@@ -1,0 +1,12 @@
+= Demo test
+
+Demo of a property base testing generating a documentation.
+
+We generate a list of objects with some random values.
+We group objects by the invariant, the value to check or by the result of a property.
+When there is only one value, we can display it and approved the document (like in chapter below).
+When there is more than one value, we write them so the test fail, and we have all information to investigate.
+
+include::_DemoTest.should_ignore_taxes_if_type_is_TAX_FREE.approved.adoc[leveloffset=+1]
+
+include::_DemoTest.code_description.approved.adoc[leveloffset=+1]

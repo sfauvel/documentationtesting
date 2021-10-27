@@ -1,0 +1,29 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_demo_demotest_code_description]
+= Code description
+
+We show here the code used to create the above chapter.
+[source,java,indent=0]
+----
+
+        final TaxType taxType = TaxType.TAX_FREE;
+        List<Product> products = ProductGenerator.generate(Product::setTaxType, taxType);
+
+        final Map<Integer, List<Product>> productsByTax = products.stream()
+                .collect(Collectors.groupingBy(Product::getTaxes));
+
+        write(String.format("With %s, ", taxType.name()));
+        if (productsByTax.size() == 1) {
+            write(String.format("tax is always %s",
+                    productsByTax.keySet().toArray()[0]),
+                    "", "");
+        } else {
+            write("tax is not always the same values",
+                    valuesToString(productsByTax),
+                    "", "");
+        }
+
+        write(String.format("This property has been verified using %s products.", products.size()));
+    
+----

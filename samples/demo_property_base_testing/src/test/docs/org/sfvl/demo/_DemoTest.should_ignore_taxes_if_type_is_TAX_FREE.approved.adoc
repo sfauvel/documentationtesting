@@ -1,0 +1,8 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_demo_demotest_should_ignore_taxes_if_type_is_tax_free]
+= Should ignore taxes if type is TAX FREE
+
+With TAX_FREE, tax is always 0
+
+This property has been verified using 10 products.
