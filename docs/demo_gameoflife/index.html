@@ -524,19 +524,11 @@ Learn more here <a href="https://github.com/sfauvel/documentationtesting" class=
 <div class="paragraph">
 <p>With less than 2 neighbours, cell die on the next generation.</p>
 </div>
-<table class="tableblock frame-none grid-none" style="width: 4%;">
+<table class="tableblock frame-all grid-all fit-content gameOfLife inline">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-all grid-all stretch gameOfLife">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col>
+<col>
+<col>
 </colgroup>
 <tbody>
 <tr>
@@ -573,15 +565,34 @@ Learn more here <a href="https://github.com/sfauvel/documentationtesting" class=
 </div></div></td>
 </tr>
 </tbody>
-</table></div></td>
-<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+</table>
+<table class="tableblock frame-none grid-none fit-content gameOfLife inline">
+<colgroup>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph show-text">
 <p>&#8658;</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-all grid-all stretch gameOfLifeResult">
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all fit-content gameOfLife inline">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col>
+<col>
+<col>
 </colgroup>
 <tbody>
 <tr>
@@ -618,63 +629,47 @@ Learn more here <a href="https://github.com/sfauvel/documentationtesting" class=
 </div></div></td>
 </tr>
 </tbody>
-</table></div></td>
-</tr>
-</tbody>
 </table>
 <style>
 
-table.tableblock.grid-all {
-    border-spacing: 0;
+.inline {
+    display: inline-block;
 }
 
-table.tableblock.gameOfLife, .gameOfLife th.tableblock, .gameOfLife td.tableblock {
-    border: 1px solid #dedede;
-
+.wrap-line {
+    height:1em;
 }
 
-table.tableblock {
+
+table.gameOfLife {
     margin-bottom: 0;
 }
 
-.gameOfLife p, .gameOfLifeResult p {
-/* Need to set margin to 0 only with html file, not with adoc files.*/
+.gameOfLife p {
     line-height: 1em;
-    width: 1em
+    width: 1em;
 }
 
 .gameOfLife td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-}
-
-.gameOfLifeResult td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-    border: 0 solid white;
-}
-
-.gameOfLifeResult tr:nth-child(2) td:nth-child(2) {
-    color: white;
-    border: 1px solid black;
-}
-
-table .gameOfLife tr.even, table .gameOfLife tr.alt {
-    background: white;
-    color: white;
-}
-
-tr.even, tr.alt, table tr:nth-of-type(2n) {
-    background: white;
-}
-
-td .dead {
     background-color:white;
+    line-height: 1em;
+    padding: 0;
     color: white;
 }
-td .alive {
+
+.gameOfLife td .hide-text {
+    color: white;
+}
+
+.gameOfLife td .show-text {
+    color: black;
+}
+
+.gameOfLife td .dead {
+    color: white;
+}
+
+.gameOfLife td .alive {
     background-color:black;
     color: black;
 }
@@ -683,19 +678,11 @@ td .alive {
 </div>
 <div class="sect2">
 <h3 id="org_sfvl_gameoflifetest_stay_alive_when_2_neighbours">Stay alive when 2 neighbours</h3>
-<table class="tableblock frame-none grid-none" style="width: 4%;">
+<table class="tableblock frame-all grid-all fit-content gameOfLife inline">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-all grid-all stretch gameOfLife">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col>
+<col>
+<col>
 </colgroup>
 <tbody>
 <tr>
@@ -730,131 +717,81 @@ td .alive {
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
 <p>*</p>
 </div></div></td>
-</tr>
-</tbody>
-</table></div></td>
-<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
-<p>&#8658;</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-all grid-all stretch gameOfLifeResult">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-</tr>
-</tbody>
-</table></div></td>
 </tr>
 </tbody>
 </table>
-<style>
-
-table.tableblock.grid-all {
-    border-spacing: 0;
-}
-
-table.tableblock.gameOfLife, .gameOfLife th.tableblock, .gameOfLife td.tableblock {
-    border: 1px solid #dedede;
-
-}
-
-table.tableblock {
-    margin-bottom: 0;
-}
-
-.gameOfLife p, .gameOfLifeResult p {
-/* Need to set margin to 0 only with html file, not with adoc files.*/
-    line-height: 1em;
-    width: 1em
-}
-
-.gameOfLife td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-}
-
-.gameOfLifeResult td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-    border: 0 solid white;
-}
-
-.gameOfLifeResult tr:nth-child(2) td:nth-child(2) {
-    color: white;
-    border: 1px solid black;
-}
-
-table .gameOfLife tr.even, table .gameOfLife tr.alt {
-    background: white;
-    color: white;
-}
-
-tr.even, tr.alt, table tr:nth-of-type(2n) {
-    background: white;
-}
-
-td .dead {
-    background-color:white;
-    color: white;
-}
-td .alive {
-    background-color:black;
-    color: black;
-}
-
-</style>
+<table class="tableblock frame-none grid-none fit-content gameOfLife inline">
+<colgroup>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph show-text">
+<p>&#8658;</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all fit-content gameOfLife inline">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="org_sfvl_gameoflifetest_becomes_alive_when_3_neighbours">Becomes alive when 3 neighbours</h3>
-<table class="tableblock frame-none grid-none" style="width: 4%;">
+<table class="tableblock frame-all grid-all fit-content gameOfLife inline">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-all grid-all stretch gameOfLife">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col>
+<col>
+<col>
 </colgroup>
 <tbody>
 <tr>
@@ -889,329 +826,36 @@ td .alive {
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
 <p>*</p>
 </div></div></td>
-</tr>
-</tbody>
-</table></div></td>
-<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
-<p>&#8658;</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-all grid-all stretch gameOfLifeResult">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-</tr>
-</tbody>
-</table></div></td>
 </tr>
 </tbody>
 </table>
-<style>
-
-table.tableblock.grid-all {
-    border-spacing: 0;
-}
-
-table.tableblock.gameOfLife, .gameOfLife th.tableblock, .gameOfLife td.tableblock {
-    border: 1px solid #dedede;
-
-}
-
-table.tableblock {
-    margin-bottom: 0;
-}
-
-.gameOfLife p, .gameOfLifeResult p {
-/* Need to set margin to 0 only with html file, not with adoc files.*/
-    line-height: 1em;
-    width: 1em
-}
-
-.gameOfLife td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-}
-
-.gameOfLifeResult td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-    border: 0 solid white;
-}
-
-.gameOfLifeResult tr:nth-child(2) td:nth-child(2) {
-    color: white;
-    border: 1px solid black;
-}
-
-table .gameOfLife tr.even, table .gameOfLife tr.alt {
-    background: white;
-    color: white;
-}
-
-tr.even, tr.alt, table tr:nth-of-type(2n) {
-    background: white;
-}
-
-td .dead {
-    background-color:white;
-    color: white;
-}
-td .alive {
-    background-color:black;
-    color: black;
-}
-
-</style>
-<table class="tableblock frame-none grid-none" style="width: 4%;">
+<table class="tableblock frame-none grid-none fit-content gameOfLife inline">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-all grid-all stretch gameOfLife">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>*</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
-<p>*</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
-<p>*</p>
-</div></div></td>
-</tr>
-</tbody>
-</table></div></td>
-<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph show-text">
 <p>&#8658;</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-all grid-all stretch gameOfLifeResult">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>*</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>*</p>
-</div></div></td>
-</tr>
-</tbody>
-</table></div></td>
 </tr>
 </tbody>
 </table>
-<style>
-
-table.tableblock.grid-all {
-    border-spacing: 0;
-}
-
-table.tableblock.gameOfLife, .gameOfLife th.tableblock, .gameOfLife td.tableblock {
-    border: 1px solid #dedede;
-
-}
-
-table.tableblock {
-    margin-bottom: 0;
-}
-
-.gameOfLife p, .gameOfLifeResult p {
-/* Need to set margin to 0 only with html file, not with adoc files.*/
-    line-height: 1em;
-    width: 1em
-}
-
-.gameOfLife td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-}
-
-.gameOfLifeResult td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-    border: 0 solid white;
-}
-
-.gameOfLifeResult tr:nth-child(2) td:nth-child(2) {
-    color: white;
-    border: 1px solid black;
-}
-
-table .gameOfLife tr.even, table .gameOfLife tr.alt {
-    background: white;
-    color: white;
-}
-
-tr.even, tr.alt, table tr:nth-of-type(2n) {
-    background: white;
-}
-
-td .dead {
-    background-color:white;
-    color: white;
-}
-td .alive {
-    background-color:black;
-    color: black;
-}
-
-</style>
-<table class="tableblock frame-none grid-none" style="width: 4%;">
+<table class="tableblock frame-all grid-all fit-content gameOfLife inline">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-all grid-all stretch gameOfLife">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
-<p>*</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
-<p>*</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
-<p>*</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
-<p>*</p>
-</div></div></td>
-</tr>
-</tbody>
-</table></div></td>
-<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
-<p>&#8658;</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-all grid-all stretch gameOfLifeResult">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col>
+<col>
+<col>
 </colgroup>
 <tbody>
 <tr>
@@ -1246,70 +890,235 @@ td .alive {
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>*</p>
 </div></div></td>
-</tr>
-</tbody>
-</table></div></td>
 </tr>
 </tbody>
 </table>
-<style>
-
-table.tableblock.grid-all {
-    border-spacing: 0;
-}
-
-table.tableblock.gameOfLife, .gameOfLife th.tableblock, .gameOfLife td.tableblock {
-    border: 1px solid #dedede;
-
-}
-
-table.tableblock {
-    margin-bottom: 0;
-}
-
-.gameOfLife p, .gameOfLifeResult p {
-/* Need to set margin to 0 only with html file, not with adoc files.*/
-    line-height: 1em;
-    width: 1em
-}
-
-.gameOfLife td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-}
-
-.gameOfLifeResult td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-    border: 0 solid white;
-}
-
-.gameOfLifeResult tr:nth-child(2) td:nth-child(2) {
-    color: white;
-    border: 1px solid black;
-}
-
-table .gameOfLife tr.even, table .gameOfLife tr.alt {
-    background: white;
-    color: white;
-}
-
-tr.even, tr.alt, table tr:nth-of-type(2n) {
-    background: white;
-}
-
-td .dead {
-    background-color:white;
-    color: white;
-}
-td .alive {
-    background-color:black;
-    color: black;
-}
-
-</style>
+<div class="openblock wrap-line">
+<div class="content">
+<div class="paragraph">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+<table class="tableblock frame-all grid-all fit-content gameOfLife inline">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
+<p>*</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-none grid-none fit-content gameOfLife inline">
+<colgroup>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph show-text">
+<p>&#8658;</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all fit-content gameOfLife inline">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="openblock wrap-line">
+<div class="content">
+<div class="paragraph">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+<table class="tableblock frame-all grid-all fit-content gameOfLife inline">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph dead">
+<p>*</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-none grid-none fit-content gameOfLife inline">
+<colgroup>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph show-text">
+<p>&#8658;</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all fit-content gameOfLife inline">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph alive">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>*</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
