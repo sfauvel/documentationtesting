@@ -444,7 +444,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_principal">Principal</a></li>
 <li><a href="#_another_way_to_test">Another way to test</a></li>
-<li><a href="#_what_is_a_test">What is a test</a></li>
+<li><a href="#_what_is_a_test_for">What is a test for</a></li>
+<li><a href="#_what_are_the_advantages">What are the advantages</a></li>
 <li><a href="#_compare_with_other_approches">Compare with other approches</a></li>
 </ul>
 </div>
@@ -477,17 +478,51 @@ Secondly, we will decide if this behavior is the one we expect.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_what_is_a_test">What is a test</h2>
+<h2 id="_what_is_a_test_for">What is a test for</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A test is the verification that a behaviour is the one we expect.
-To do that, we need two things.
-First, we need to have all information to describe the behavior in a specific scenario.
-Generally, it means to know the context, steps achieved and results obtained.
-Second, we have to check that it is what we expect.</p>
+<p>A test is done to ensure the behavior of the application.
+To do that, we just have to check that a sequence of actions gives the expected result.</p>
 </div>
 <div class="paragraph">
-<p>The automation is the capacity to reproduce all of that without human needs.</p>
+<p>In a generated document from the code, if all the information describing this behavior and the result appears,
+we are able to validate or not the application.</p>
+</div>
+<div class="paragraph">
+<p>As long as the application produce the same validated document, that means that the behavior is preserved.
+If we need a human to certify the correctness of the first document version,
+the next checks can be done automatically by comparing with the original version.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_are_the_advantages">What are the advantages</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First of all, we have <strong>created automated tests</strong>.
+They are different from those we are used to, but they do the same job.
+If we just want this automation, <strong>there is almost no overhead</strong> to write them comparing to classical ones.</p>
+</div>
+<div class="paragraph">
+<p>Once this done, we have a full <strong>documentation of cases we have tested</strong>.
+It could be just a list of title with some output at the beginning
+but too often no one knows what automated tests are being performed.</p>
+</div>
+<div class="paragraph">
+<p>With a little work, we can make the document produced more explicit.
+It can then be <strong>read by anyone</strong> and be <strong>always synchronized with the code</strong>.
+What is written is the truth of the application.</p>
+</div>
+<div class="paragraph">
+<p>There are no constraints on the produced document.
+We can therefore organize it as we wish so that it is <strong>as understandable as possible</strong>.
+If it can help, we can generate or <strong>include diagram, pictures</strong>, other documents or anything that can improve understanding.</p>
+</div>
+<div class="paragraph">
+<p>As the documents are generated, it is possible to <strong>produce several versions</strong> for different uses.
+It&#8217;s very easy to reuse some parts without needing to maintain each of them.
+For example, we can have a document with the standard use cases of the main functionalities
+and another one with all details and special cases.</p>
 </div>
 </div>
 </div>
@@ -497,16 +532,19 @@ Second, we have to check that it is what we expect.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>TDD: We can use it to do TDD. At the end, our test are not only technical code but they provides a documentation.</p>
+<p><strong>Living documentation</strong>: It&#8217;s a living documentation with in addition the assurance that there is no change without control.</p>
 </li>
 <li>
-<p>BDD: It&#8217;s very close to BDD expect that the documentation is not the instructions to execute a test. This gives more possibilities to write a readable documentation.</p>
+<p><strong>BDD</strong>: It&#8217;s a way to do BDD. Often we automated features created using <a href="https://cucumber.io/docs/gherkin/reference/">Gherkin</a> syntax.
+This is very restrictive because it&#8217;s instructions to the machine. Here, we are free to produce the document we need. This gives more possibilities to write a readable documentation.</p>
 </li>
 <li>
-<p>Golden Master: It&#8217;s a golden master but reference files are not just data. We can understand each case and validate them more easily when functional change.</p>
+<p><strong>Golden Master</strong> (or Approval): We use the golden master approach but reference files are not just data.
+We can understand each case and validate them more easily when functional change.</p>
 </li>
 <li>
-<p>Living documentation: It&#8217;s a living documentation that have to be validate once so we&#8217;ll be warned when behavior change.</p>
+<p><strong>TDD</strong>: It&#8217;s not really made for TDD because it can slow down the rytme if we want to produce very readable documentation.
+But, at the end, our test are not only a technical code lost in the sources but they provides a real documentation.</p>
 </li>
 </ul>
 </div>
@@ -515,7 +553,7 @@ Second, we have to check that it is what we expect.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-10-29 21:30:51 UTC
+Last updated 2021-10-29 23:00:09 UTC
 </div>
 </div>
 </body>
