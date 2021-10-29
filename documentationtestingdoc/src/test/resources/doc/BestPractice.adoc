@@ -19,3 +19,4 @@ Do it as if you don't know what output is.
 That means you have to display what the output return when it's what you expect as well as when it's not what you expect.
 This is a real difference with classical tests where there is only one path.
 
+You have to show the result, never mind what it is. It's not your problem.
