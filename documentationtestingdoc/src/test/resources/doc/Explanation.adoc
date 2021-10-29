@@ -20,19 +20,47 @@ We need to think more about documentation than about tests.
 We just have to make visible how the software behave whatever this behavior.
 Secondly, we will decide if this behavior is the one we expect.
 
-== What is a test
+== What is a test for
 
-A test is the verification that a behaviour is the one we expect.
-To do that, we need two things.
-First, we need to have all information to describe the behavior in a specific scenario.
-Generally, it means to know the context, steps achieved and results obtained.
-Second, we have to check that it is what we expect.
+A test is done to ensure the behavior of the application.
+To do that, we just have to check that a sequence of actions gives the expected result.
 
-The automation is the capacity to reproduce all of that without human needs.
+In a generated document from the code, if all the information describing this behavior and the result appears,
+we are able to validate or not the application.
+
+As long as the application produce the same validated document, that means that the behavior is preserved.
+If we need a human to certify the correctness of the first document version,
+the next checks can be done automatically by comparing with the original version.
+
+== What are the advantages
+
+First of all, we have *created automated tests*.
+They are different from those we are used to, but they do the same job.
+If we just want this automation, *there is almost no overhead* to write them comparing to classical ones.
+
+Once this done, we have a full *documentation of cases we have tested*.
+It could be just a list of title with some output at the beginning
+but too often no one knows what automated tests are being performed.
+
+With a little work, we can make the document produced more explicit.
+It can then be *read by anyone* and be *always synchronized with the code*.
+What is written is the truth of the application.
+
+There are no constraints on the produced document.
+We can therefore organize it as we wish so that it is *as understandable as possible*.
+If it can help, we can generate or *include diagram, pictures*, other documents or anything that can improve understanding.
+
+As the documents are generated, it is possible to *produce several versions* for different uses.
+It's very easy to reuse some parts without needing to maintain each of them.
+For example, we can have a document with the standard use cases of the main functionalities
+and another one with all details and special cases.
 
 == Compare with other approches
 
-* TDD: We can use it to do TDD. At the end, our test are not only technical code but they provides a documentation.
-* BDD: It's very close to BDD expect that the documentation is not the instructions to execute a test. This gives more possibilities to write a readable documentation.
-* Golden Master: It's a golden master but reference files are not just data. We can understand each case and validate them more easily when functional change.
-* Living documentation: It's a living documentation that have to be validate once so we'll be warned when behavior change.
+* *Living documentation*: It's a living documentation with in addition the assurance that there is no change without control.
+* *BDD*: It's a way to do BDD. Often we automated features created using https://cucumber.io/docs/gherkin/reference/[Gherkin] syntax.
+This is very restrictive because it's instructions to the machine. Here, we are free to produce the document we need. This gives more possibilities to write a readable documentation.
+* *Golden Master* (or Approval): We use the golden master approach but reference files are not just data.
+We can understand each case and validate them more easily when functional change.
+* *TDD*: It's not really made for TDD because it can slow down the rytme if we want to produce very readable documentation.
+But, at the end, our test are not only a technical code lost in the sources but they provides a real documentation.
