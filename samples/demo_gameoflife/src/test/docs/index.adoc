@@ -24,3 +24,8 @@ View source of project on link:{github-repo}/samples/demo_gameoflife[Github]
 include::org/sfvl/_GameOfLifeRulesTest.approved.adoc[leveloffset=+1]
 
 include::org/sfvl/_GameOfLifeTest.approved.adoc[leveloffset=+1]
+
+ifndef::STYLE_INCLUDED[]
+include::{ROOT_PATH}/../resources/style.css[]
+:STYLE_INCLUDED:
+endif::STYLE_INCLUDED[]

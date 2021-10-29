@@ -3,362 +3,197 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 [#org_sfvl_gameoflifetest_becomes_alive_when_3_neighbours]
 = Becomes alive when 3 neighbours
 
-[cols="1a,1a,1a", width=4em, frame=none, grid=none]
+[.gameOfLife.inline]
+[%autowidth,cols="3*a"]
 |====
-| [.gameOfLife]
-[cols="3*a"]
-!====
-! [.alive]
+| [.alive]
 *
-! [.alive]
+| [.alive]
 *
-! [.alive]
+| [.alive]
 *
 
-! [.dead]
+| [.dead]
 *
-! [.dead]
+| [.dead]
 *
-! [.dead]
-*
-
-! [.dead]
-*
-! [.dead]
-*
-! [.dead]
+| [.dead]
 *
 
-!====
-^.^| =>
-
-| [.gameOfLifeResult]
-[cols="3*a"]
-!====
-! []
+| [.dead]
 *
-! []
+| [.dead]
 *
-! []
+| [.dead]
 *
 
-! []
-*
-! [.alive]
-*
-! []
-*
-
-! []
-*
-! []
-*
-! []
-*
-
-!====
 |====
-
-++++
-<style>
-
-table.tableblock.grid-all {
-    border-spacing: 0;
-}
-
-table.tableblock.gameOfLife, .gameOfLife th.tableblock, .gameOfLife td.tableblock {
-    border: 1px solid #dedede;
-
-}
-
-table.tableblock {
-    margin-bottom: 0;
-}
-
-.gameOfLife p, .gameOfLifeResult p {
-/* Need to set margin to 0 only with html file, not with adoc files.*/
-ifdef::htmlOutput[]
-   /* margin: 0;*/
-endif::[]
-    line-height: 1em;
-    width: 1em
-}
-
-.gameOfLife td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-}
-
-.gameOfLifeResult td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-    border: 0 solid white;
-}
-
-.gameOfLifeResult tr:nth-child(2) td:nth-child(2) {
-    color: white;
-    border: 1px solid black;
-}
-
-table .gameOfLife tr.even, table .gameOfLife tr.alt {
-    background: white;
-    color: white;
-}
-
-tr.even, tr.alt, table tr:nth-of-type(2n) {
-    background: white;
-}
-
-td .dead {
-    background-color:white;
-    color: white;
-}
-td .alive {
-    background-color:black;
-    color: black;
-}
-
-</style>
-++++
-
-[cols="1a,1a,1a", width=4em, frame=none, grid=none]
+[.gameOfLife.inline]
+[%autowidth, cols="1*a", frame=none, grid=none]
 |====
-| [.gameOfLife]
-[cols="3*a"]
-!====
-! [.dead]
+| [] 
 *
-! [.dead]
+| [.show-text]
+=>
+| [] 
 *
-! [.alive]
-*
-
-! [.dead]
-*
-! [.dead]
-*
-! [.alive]
-*
-
-! [.dead]
-*
-! [.dead]
-*
-! [.alive]
-*
-
-!====
-^.^| =>
-
-| [.gameOfLifeResult]
-[cols="3*a"]
-!====
-! []
-*
-! []
-*
-! []
-*
-
-! []
-*
-! [.alive]
-*
-! []
-*
-
-! []
-*
-! []
-*
-! []
-*
-
-!====
 |====
-
-++++
-<style>
-
-table.tableblock.grid-all {
-    border-spacing: 0;
-}
-
-table.tableblock.gameOfLife, .gameOfLife th.tableblock, .gameOfLife td.tableblock {
-    border: 1px solid #dedede;
-
-}
-
-table.tableblock {
-    margin-bottom: 0;
-}
-
-.gameOfLife p, .gameOfLifeResult p {
-/* Need to set margin to 0 only with html file, not with adoc files.*/
-ifdef::htmlOutput[]
-   /* margin: 0;*/
-endif::[]
-    line-height: 1em;
-    width: 1em
-}
-
-.gameOfLife td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-}
-
-.gameOfLifeResult td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-    border: 0 solid white;
-}
-
-.gameOfLifeResult tr:nth-child(2) td:nth-child(2) {
-    color: white;
-    border: 1px solid black;
-}
-
-table .gameOfLife tr.even, table .gameOfLife tr.alt {
-    background: white;
-    color: white;
-}
-
-tr.even, tr.alt, table tr:nth-of-type(2n) {
-    background: white;
-}
-
-td .dead {
-    background-color:white;
-    color: white;
-}
-td .alive {
-    background-color:black;
-    color: black;
-}
-
-</style>
-++++
-
-[cols="1a,1a,1a", width=4em, frame=none, grid=none]
+[.gameOfLife.inline]
+[%autowidth,cols="3*a"]
 |====
-| [.gameOfLife]
-[cols="3*a"]
-!====
-! [.alive]
+| []
 *
-! [.dead]
+| []
 *
-! [.alive]
+| []
 *
 
-! [.dead]
+| []
 *
-! [.dead]
+| [.alive]
 *
-! [.dead]
-*
-
-! [.alive]
-*
-! [.dead]
-*
-! [.dead]
+| []
 *
 
-!====
-^.^| =>
-
-| [.gameOfLifeResult]
-[cols="3*a"]
-!====
-! []
+| []
 *
-! []
+| []
 *
-! []
+| []
 *
 
-! []
-*
-! [.alive]
-*
-! []
-*
-
-! []
-*
-! []
-*
-! []
-*
-
-!====
 |====
+[.wrap-line]
+--
+&nbsp;
+--
 
-++++
-<style>
+[.gameOfLife.inline]
+[%autowidth,cols="3*a"]
+|====
+| [.dead]
+*
+| [.dead]
+*
+| [.alive]
+*
 
-table.tableblock.grid-all {
-    border-spacing: 0;
-}
+| [.dead]
+*
+| [.dead]
+*
+| [.alive]
+*
 
-table.tableblock.gameOfLife, .gameOfLife th.tableblock, .gameOfLife td.tableblock {
-    border: 1px solid #dedede;
+| [.dead]
+*
+| [.dead]
+*
+| [.alive]
+*
 
-}
+|====
+[.gameOfLife.inline]
+[%autowidth, cols="1*a", frame=none, grid=none]
+|====
+| [] 
+*
+| [.show-text]
+=>
+| [] 
+*
+|====
+[.gameOfLife.inline]
+[%autowidth,cols="3*a"]
+|====
+| []
+*
+| []
+*
+| []
+*
 
-table.tableblock {
-    margin-bottom: 0;
-}
+| []
+*
+| [.alive]
+*
+| []
+*
 
-.gameOfLife p, .gameOfLifeResult p {
-/* Need to set margin to 0 only with html file, not with adoc files.*/
-ifdef::htmlOutput[]
-   /* margin: 0;*/
-endif::[]
-    line-height: 1em;
-    width: 1em
-}
+| []
+*
+| []
+*
+| []
+*
 
-.gameOfLife td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-}
+|====
+[.wrap-line]
+--
+&nbsp;
+--
 
-.gameOfLifeResult td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-    border: 0 solid white;
-}
+[.gameOfLife.inline]
+[%autowidth,cols="3*a"]
+|====
+| [.alive]
+*
+| [.dead]
+*
+| [.alive]
+*
 
-.gameOfLifeResult tr:nth-child(2) td:nth-child(2) {
-    color: white;
-    border: 1px solid black;
-}
+| [.dead]
+*
+| [.dead]
+*
+| [.dead]
+*
 
-table .gameOfLife tr.even, table .gameOfLife tr.alt {
-    background: white;
-    color: white;
-}
+| [.alive]
+*
+| [.dead]
+*
+| [.dead]
+*
 
-tr.even, tr.alt, table tr:nth-of-type(2n) {
-    background: white;
-}
+|====
+[.gameOfLife.inline]
+[%autowidth, cols="1*a", frame=none, grid=none]
+|====
+| [] 
+*
+| [.show-text]
+=>
+| [] 
+*
+|====
+[.gameOfLife.inline]
+[%autowidth,cols="3*a"]
+|====
+| []
+*
+| []
+*
+| []
+*
 
-td .dead {
-    background-color:white;
-    color: white;
-}
-td .alive {
-    background-color:black;
-    color: black;
-}
+| []
+*
+| [.alive]
+*
+| []
+*
 
-</style>
-++++
+| []
+*
+| []
+*
+| []
+*
+
+|====
+ifndef::STYLE_INCLUDED[]
+include::{ROOT_PATH}/../resources/style.css[]
+:STYLE_INCLUDED:
+endif::STYLE_INCLUDED[]

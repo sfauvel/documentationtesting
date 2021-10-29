@@ -1,60 +1,44 @@
 ++++
 <style>
 
-table.tableblock.grid-all {
-    border-spacing: 0;
+.inline {
+    display: inline-block;
 }
 
-table.tableblock.gameOfLife, .gameOfLife th.tableblock, .gameOfLife td.tableblock {
-    border: 1px solid #dedede;
-
+.wrap-line {
+    height:1em;
 }
 
-table.tableblock {
+
+table.gameOfLife {
     margin-bottom: 0;
 }
 
-.gameOfLife p, .gameOfLifeResult p {
-/* Need to set margin to 0 only with html file, not with adoc files.*/
-ifdef::htmlOutput[]
-   /* margin: 0;*/
-endif::[]
+.gameOfLife p {
     line-height: 1em;
-    width: 1em
+    width: 1em;
 }
 
 .gameOfLife td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-}
-
-.gameOfLifeResult td {
-    line-height: 1em;
-    padding: 0;
-    color: white;
-    border: 0 solid white;
-}
-
-.gameOfLifeResult tr:nth-child(2) td:nth-child(2) {
-    color: white;
-    border: 1px solid black;
-}
-
-table .gameOfLife tr.even, table .gameOfLife tr.alt {
-    background: white;
-    color: white;
-}
-
-tr.even, tr.alt, table tr:nth-of-type(2n) {
-    background: white;
-}
-
-td .dead {
     background-color:white;
+    line-height: 1em;
+    padding: 0;
     color: white;
 }
-td .alive {
+
+.gameOfLife td .hide-text {
+    color: white;
+}
+
+.gameOfLife td .show-text {
+    color: black;
+}
+
+.gameOfLife td .dead {
+    color: white;
+}
+
+.gameOfLife td .alive {
     background-color:black;
     color: black;
 }

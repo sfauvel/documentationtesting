@@ -2,24 +2,26 @@ package org.sfvl;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
  */
 @DisplayName("Game of life illustrated by examples")
 public class GameOfLifeTest extends ApprovalsBase {
+
+    @Override
+    protected String buildContent(TestInfo testInfo) {
+        return super.buildContent(testInfo) +
+                GameOfLifeDocumentation.include_style();
+    }
 
     /**
      * With less than 2 neighbours, cell die on the next generation.
@@ -52,13 +54,13 @@ public class GameOfLifeTest extends ApprovalsBase {
                 "000",
                 "000"
         );
-        write("\n\n");
+        write_wrap();
         nextGenerationOf(
                 "001",
                 "001",
                 "001"
         );
-        write("\n\n");
+        write_wrap();
         nextGenerationOf(
                 "101",
                 "000",
@@ -73,33 +75,43 @@ public class GameOfLifeTest extends ApprovalsBase {
 
         gameOfLife.nexGeneration();
 
-        //List<String> linesNextGeneration = gameOfLifeToText(gameOfLife, lines);
-
         List<String> linesNextGeneration = Arrays.asList("   ", "   ", "   ");
-        linesNextGeneration.set(1, " " + (gameOfLife.getAlive(1,1)?"1":"0") + " ");
+        linesNextGeneration.set(1, " " + (gameOfLife.getAlive(1, 1) ? "1" : "0") + " ");
         writeNextGeneration(lines, linesNextGeneration);
     }
 
     private void writeNextGeneration(String[] lines, List<String> linesNextGeneration) throws IOException {
-        write(String.join("\n",
-                //"[.gameOfLife]",
-                "[cols=\"1a,1a,1a\", width=4em, frame=none, grid=none]",
-                "|====",
-                "| " + drawGameOfLife(lines, ".gameOfLife").replaceAll("\\|", "!"),
-                "^.^| =>",
-                "",
-                "| " + drawGameOfLife(linesNextGeneration, ".gameOfLifeResult").replaceAll("\\|", "!"),
-                "|====",
-                "",
-                ""));
 
-        write(Files.lines(Paths.get("src", "test", "resources", "style.css"))
-                .collect(Collectors.joining("\n")));
+        write(drawGameOfLife(lines, ".gameOfLife.inline"),
+                drawTextBetweenGames("=>"),
+                drawGameOfLife(linesNextGeneration, ".gameOfLife.inline"),
+                "");
+    }
+
+    private String drawTextBetweenGames(String text) {
+        return String.join("\n",
+                "[.gameOfLife.inline]",
+                "[%autowidth, cols=\"1*a\", frame=none, grid=none]",
+                "|====",
+                "| [] ",
+                "*",
+                "| [.show-text]",
+                text,
+                "| [] ",
+                "*",
+                "|====");
+    }
+
+    private void write_wrap() {
+        write( "[.wrap-line]",
+                "--",
+                "&nbsp;",
+                "--",
+                "",
+                "");
     }
 
     private GameOfLife textToGameOfLife(String[] lines) {
-
-
         GameOfLife gameOfLife = new GameOfLife();
 
         for (int line = 0; line < lines.length; line++) {
@@ -133,7 +145,7 @@ public class GameOfLifeTest extends ApprovalsBase {
     private String drawGameOfLife(String[] lines, String style) {
         return String.join("\n",
                 "[" + style + "]",
-                "[cols=\"3*a\"]",
+                "[%autowidth,cols=\"3*a\"]",
                 "|====",
                 Arrays.stream(lines).map(this::line).collect(Collectors.joining("\n")),
                 "|====");
