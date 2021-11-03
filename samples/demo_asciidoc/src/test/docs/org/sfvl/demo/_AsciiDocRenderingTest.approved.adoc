@@ -8,3 +8,5 @@ Present how to render some common needs with asciidoc.
 include::_AsciiDocRenderingTest.useful_symbol.approved.adoc[leveloffset=+1]
 
 include::_AsciiDocRenderingTest.show_hide_part_of_document.approved.adoc[leveloffset=+1]
+
+include::_AsciiDocRenderingTest.include_once.approved.adoc[leveloffset=+1]
