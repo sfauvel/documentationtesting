@@ -1,0 +1,55 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_demo_asciidocrenderingtest_include_once]
+= Include once
+
+To include something once, like css, javascript or a special page, we can use attribute and endif directive.
+
+If the attribute is not defined (ifndef), we defined it and do what it have to do once (include a css, ...).
+The second time, we not passe in the ifndef part.
+
+.Code we add in asciidoc file
+------
+\ifndef::MY_ATTRIBUTE[]
+:MY_ATTRIBUTE: First value
+First declaration
+\endif::[]
+
+\ifndef::MY_ATTRIBUTE[]
+:MY_ATTRIBUTE: Second value
+Second declaration
+\endif::[]
+
+MY_ATTRIBUTE value: *{MY_ATTRIBUTE}*
+------
+
+We can see below the result of the inclusion of those directives.
+We only see `First declaration` text from the inside of first ifndef
+and MY_ATTRIBUTE value is the default value of the first ifndef.
+
+ifndef::MY_ATTRIBUTE[]
+:MY_ATTRIBUTE: First value
+First declaration
+endif::[]
+
+ifndef::MY_ATTRIBUTE[]
+:MY_ATTRIBUTE: Second value
+Second declaration
+endif::[]
+
+MY_ATTRIBUTE value: *{MY_ATTRIBUTE}*
+
+If we just want to define a default, you can use a more compact syntax.
+
+.Code we add in asciidoc file
+------
+\ifndef::COMPACT_SYNTAX[:COMPACT_SYNTAX: My value]
+
+COMPACT_SYNTAX value: *{COMPACT_SYNTAX}*
+
+------
+Below, what we can see on the document.
+
+ifndef::COMPACT_SYNTAX[:COMPACT_SYNTAX: My value]
+
+COMPACT_SYNTAX value: *{COMPACT_SYNTAX}*
