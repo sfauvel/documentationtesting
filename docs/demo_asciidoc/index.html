@@ -651,6 +651,62 @@ public void anotherExample() {
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="org_sfvl_demo_asciidocrenderingtest_include_once">Include once</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To include something once, like css, javascript or a special page, we can use attribute and endif directive.</p>
+</div>
+<div class="paragraph">
+<p>If the attribute is not defined (ifndef), we defined it and do what it have to do once (include a css, &#8230;&#8203;).
+The second time, we not passe in the ifndef part.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code we add in asciidoc file</div>
+<div class="content">
+<pre>ifndef::MY_ATTRIBUTE[]
+:MY_ATTRIBUTE: First value
+First declaration
+endif::[]
+
+ifndef::MY_ATTRIBUTE[]
+:MY_ATTRIBUTE: Second value
+Second declaration
+endif::[]
+
+MY_ATTRIBUTE value: *{MY_ATTRIBUTE}*</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can see below the result of the inclusion of those directives.
+We only see <code>First declaration</code> text from the inside of first ifndef
+and MY_ATTRIBUTE value is the default value of the first ifndef.</p>
+</div>
+<div class="paragraph">
+<p>First declaration</p>
+</div>
+<div class="paragraph">
+<p>MY_ATTRIBUTE value: <strong>First value</strong></p>
+</div>
+<div class="paragraph">
+<p>If we just want to define a default, you can use a more compact syntax.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code we add in asciidoc file</div>
+<div class="content">
+<pre>ifndef::COMPACT_SYNTAX[:COMPACT_SYNTAX: My value]
+
+COMPACT_SYNTAX value: *{COMPACT_SYNTAX}*</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Below, what we can see on the document.</p>
+</div>
+<div class="paragraph">
+<p>COMPACT_SYNTAX value: <strong>My value</strong></p>
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>
