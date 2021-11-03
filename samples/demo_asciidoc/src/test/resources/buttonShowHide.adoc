@@ -10,9 +10,11 @@ function myFunction(button, id) {
   var x = document.getElementById(id);
   if (x.style.display === "none") {
     button.textContent = "\u22C0 | Hide";
+    button.style.marginBottom = "0em";
     x.style.display = "block";
   } else {
     button.textContent = "\u22C1 | Show";
+    button.style.marginBottom = "1em";
     x.style.display = "none";
   }
 }
