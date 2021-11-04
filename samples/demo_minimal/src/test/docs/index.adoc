@@ -31,7 +31,7 @@ include::../java/org/sfvl/demo/DemoTest.java[tag=test, indent=0]
 == Check regression with Approvals
 
 If you want to automate that the file has not changed from the last approved file,
-*you can use Approvals* with the following code.
+*you can use https://github.com/approvals[Approvals]* with the following code.
 First time, test failed because there is no approved file.
 Once you approved the file, the test passes until the output changes.
 

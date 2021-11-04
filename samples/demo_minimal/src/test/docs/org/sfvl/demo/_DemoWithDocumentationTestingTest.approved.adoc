@@ -3,6 +3,6 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 [#org_sfvl_demo_demowithdocumentationtestingtest]
 = Demo with documentation testing test
 
-Demo of a simple usage to generate documentation and validate it with Approvals.
+Demo of a simple usage to generate documentation and validate it with https://github.com/approvals[Approvals].
 
 include::_DemoWithDocumentationTestingTest.should_add_2_numbers.approved.adoc[leveloffset=+1]
