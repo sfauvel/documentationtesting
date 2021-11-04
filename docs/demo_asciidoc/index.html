@@ -541,30 +541,55 @@ Here we create a button to show/hide some text.</p>
 <script>
 function myFunction(button, id) {
   var x = document.getElementById(id);
-  if (x.style.display === "none") {
-    button.textContent = "\u22C0 | Hide";
-    button.style.marginBottom = "0em";
-    x.style.display = "block";
+  var is_currently_hidden=x.classList.contains("hide_section")
+
+  if (is_currently_hidden) {
+    button.textContent = "Hide";
+
+    x.classList.remove("hide_section");
+    x.classList.add("show_section");
+
   } else {
-    button.textContent = "\u22C1 | Show";
-    button.style.marginBottom = "1em";
-    x.style.display = "none";
+    button.textContent = "Show more";
+
+    x.classList.add("hide_section");
+    x.classList.remove("show_section");
   }
+
 }
 </script>
 <style>
 .myButton {
-    background-color: #4CAF50;
-    width:6em;
+    background-color: #B5C1FF;
+    width:10em;
     padding: 0.6em;
+    margin-bottom:2px;
     text-align:center;
+
+    border-radius: 2em;
+
 }
 .myButton:hover {
     font-weight:bold;
+    background-color: #B5C1FFB0;
+
+    box-shadow: 2px 2px 2px #084f34;
+}
+
+.show_section {
+    pointer-events: auto;
+    transition: opacity 0.3s linear;
+}
+
+.hide_section {
+    pointer-events: none;
+    height:0px;
+    opacity: 0;
+    transition: opacity 0.1s;
 }
 </style>
 <div class="myButton" onclick="myFunction(this, 'myTextToShowHide_1')" style="cursor:default">
-    &#x22C0; | Hide
+    Hide
 </div>
 <div id="myTextToShowHide_1" class="listingblock">
 <div class="content">
@@ -574,7 +599,7 @@ function myFunction(button, id) {
 </div>
 </div>
 <div class="myButton" onclick="myFunction(this, 'myTextToShowHide_2')" style="cursor:default">
-    &#x22C0; | Hide
+    Hide
 </div>
 <div id="myTextToShowHide_2" class="listingblock">
 <div class="content">
@@ -596,26 +621,51 @@ Here we create a button to show/hide some text.
 &lt;script&gt;
 function myFunction(button, id) {
   var x = document.getElementById(id);
-  if (x.style.display === "none") {
-    button.textContent = "\u22C0 | Hide";
-    button.style.marginBottom = "0em";
-    x.style.display = "block";
+  var is_currently_hidden=x.classList.contains("hide_section")
+
+  if (is_currently_hidden) {
+    button.textContent = "Hide";
+
+    x.classList.remove("hide_section");
+    x.classList.add("show_section");
+
   } else {
-    button.textContent = "\u22C1 | Show";
-    button.style.marginBottom = "1em";
-    x.style.display = "none";
+    button.textContent = "Show more";
+
+    x.classList.add("hide_section");
+    x.classList.remove("show_section");
   }
+
 }
 &lt;/script&gt;
 &lt;style&gt;
 .myButton {
-    background-color: #4CAF50;
-    width:6em;
+    background-color: #B5C1FF;
+    width:10em;
     padding: 0.6em;
+    margin-bottom:2px;
     text-align:center;
+
+    border-radius: 2em;
+
 }
 .myButton:hover {
     font-weight:bold;
+    background-color: #B5C1FFB0;
+
+    box-shadow: 2px 2px 2px #084f34;
+}
+
+.show_section {
+    pointer-events: auto;
+    transition: opacity 0.3s linear;
+}
+
+.hide_section {
+    pointer-events: none;
+    height:0px;
+    opacity: 0;
+    transition: opacity 0.1s;
 }
 &lt;/style&gt;
 
@@ -623,7 +673,7 @@ function myFunction(button, id) {
 
 ++++
 &lt;div class="myButton" onclick="myFunction(this, 'myTextToShowHide_1')" style="cursor:default"&gt;
-    &amp;#x22C0; | Hide
+    Hide
 &lt;/div&gt;
 ++++
 
@@ -636,7 +686,7 @@ public void mySourceCode() {
 
 ++++
 &lt;div class="myButton" onclick="myFunction(this, 'myTextToShowHide_2')" style="cursor:default"&gt;
-    &amp;#x22C0; | Hide
+    Hide
 &lt;/div&gt;
 ++++
 
