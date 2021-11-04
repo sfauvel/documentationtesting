@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 // tag::test[]
 /**
- * Demo of a simple usage to generate documentation and validate it with Approvals.
+ * Demo of a simple usage to generate documentation and validate it with https://github.com/approvals[Approvals].
  */
 public class DemoWithApprovalsTest {
 
