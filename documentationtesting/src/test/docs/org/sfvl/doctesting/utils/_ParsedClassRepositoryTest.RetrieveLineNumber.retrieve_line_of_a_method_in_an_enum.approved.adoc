@@ -1,0 +1,24 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_method_in_an_enum]
+= Retrieve line of a method in an enum
+
+.How to get the first line of a method in an enum
+
+[source,java,indent=0]
+----
+            Method method = EnumWithCommentToExtract.MyEnum.class.getMethod("methodInEnum");
+            final int lineNumber = parser.getLineNumber(method);
+
+----
+
+Line found: *23*
+++++
+<style>
+#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_method_in_an_enum ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++

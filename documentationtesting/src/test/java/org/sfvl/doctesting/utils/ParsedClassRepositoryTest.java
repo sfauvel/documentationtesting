@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.*;
+import org.sfvl.doctesting.sample.EnumWithCommentToExtract;
 import org.sfvl.test_tools.SupplierWithException;
 
 import java.io.IOException;
@@ -215,6 +216,32 @@ public class ParsedClassRepositoryTest {
             // <<<
             doc.write(
                     ".How to get the first line of a method",
+                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    String.format("Line found: *%d*", lineNumber)
+            );
+        }
+
+        @Test
+        public void retrieve_line_of_an_enum() {
+            final ParsedClassRepository parser = new ParsedClassRepository(Config.TEST_PATH);
+            // >>>
+            final int lineNumber = parser.getLineNumber(EnumWithCommentToExtract.MyEnum.class);
+            // <<<
+            doc.write(
+                    ".How to get the first line of an enum in a class",
+                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    String.format("Line found: *%d*", lineNumber)
+            );
+        }
+        @Test
+        public void retrieve_line_of_a_method_in_an_enum() throws NoSuchMethodException {
+            final ParsedClassRepository parser = new ParsedClassRepository(Config.TEST_PATH);
+            // >>>
+            Method method = EnumWithCommentToExtract.MyEnum.class.getMethod("methodInEnum");
+            final int lineNumber = parser.getLineNumber(method);
+            // <<<
+            doc.write(
+                    ".How to get the first line of a method in an enum",
                     formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
                     String.format("Line found: *%d*", lineNumber)
             );

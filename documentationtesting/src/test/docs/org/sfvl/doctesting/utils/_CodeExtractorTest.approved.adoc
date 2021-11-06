@@ -15,6 +15,8 @@ include::_CodeExtractorTest.ExtractCode.extract_code_of_an_inner_class.approved.
 
 include::_CodeExtractorTest.ExtractCode.extract_code_of_an_other_class_in_file.approved.adoc[leveloffset=+2]
 
+include::_CodeExtractorTest.ExtractCode.extract_code_of_an_enum_in_file.approved.adoc[leveloffset=+2]
+
 include::_CodeExtractorTest.ExtractCode.extract_code_from_method.approved.adoc[leveloffset=+2]
 
 include::_CodeExtractorTest.ExtractCode.extract_part_of_code_from_method.approved.adoc[leveloffset=+2]
@@ -40,5 +42,7 @@ include::_CodeExtractorTest.ExtractCode.ExtractPartOfCode.tag_beginning_with_sam
 include::_CodeExtractorTest.ExtractComment.extract_class_comment.approved.adoc[leveloffset=+2]
 
 include::_CodeExtractorTest.ExtractComment.extract_method_comment.approved.adoc[leveloffset=+2]
+
+include::_CodeExtractorTest.ExtractComment.extract_enum_comment.approved.adoc[leveloffset=+2]
 
 include::_CodeExtractorTest.ExtractComment.bug_when_annotation_before_comment.approved.adoc[leveloffset=+2]

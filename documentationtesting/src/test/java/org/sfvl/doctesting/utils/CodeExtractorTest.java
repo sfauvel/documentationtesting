@@ -169,6 +169,72 @@ public class CodeExtractorTest {
         }
 
         @Test
+        @DisplayName(value = "Extract code of a an enum in file")
+        public void extract_code_of_an_enum_in_file(TestInfo testInfo) {
+            {
+                // >>>1
+                String code = CodeExtractor.enumSource(EnumWithCommentToExtract.MyEnum.class);
+                // <<<1
+
+                doc.write(".How to extract code of an enum",
+                        extractMarkedCode(testInfo, "1"),
+                        "");
+
+                doc.writeInline(
+                        ".Source code to extract",
+                        formatSourceCode(CodeExtractor.classSource(EnumWithCommentToExtract.class))
+                );
+
+                doc.writeInline(
+                        ".Source code extracted",
+                        formatSourceCode(code)
+                );
+            }
+            {
+                // >>>2
+                String code = CodeExtractor.enumSource(CodeExtractorTest.class,
+                        EnumNotInAClass.class);
+                // <<<2
+
+                doc.write(".How to extract code of an enum declared outside the class",
+                        extractMarkedCode(testInfo, "2"),
+                        "");
+
+                doc.writeInline(
+                        ".Source code to extract",
+                        includeSourceWithTag(EnumNotInAClass.class.getSimpleName(), CodeExtractorTest.class)
+                );
+
+                doc.writeInline(
+                        ".Source code extracted",
+                        formatSourceCode(code)
+                );
+            }
+
+            {
+                // >>>3
+                String code = CodeExtractor.enumSource(CodeExtractorTest.class,
+                        ClassWithEnum.EnumInAClass.class);
+                // <<<3
+
+                doc.write(".How to extract code of an enum declared in a class not in his file",
+                        extractMarkedCode(testInfo, "3"),
+                        "");
+
+                doc.writeInline(
+                        ".Source code to extract",
+                        includeSourceWithTag(ClassWithEnum.class.getSimpleName(), CodeExtractorTest.class)
+                );
+
+                doc.writeInline(
+                        ".Source code extracted",
+                        formatSourceCode(code)
+                );
+            }
+
+        }
+
+        @Test
         @DisplayName(value = "Extract code from method")
         public void extract_code_from_method(TestInfo testInfo) {
             doc.write("Method source code can be retrived from his method object or from his class and his method name.",
@@ -726,6 +792,70 @@ public class CodeExtractorTest {
             }
         }
 
+        @Test
+        @DisplayName(value = "Extract enum comment")
+        public void extract_enum_comment(TestInfo testInfo) throws NoSuchMethodException {
+            doc.writeInline(doc.getFormatter().sourceCode(CodeExtractor.classSource(EnumWithCommentToExtract.class)));
+
+            {
+                doc.write("How to extract comment of an enum",
+                        extractMarkedCode(testInfo, "1"),
+                        "");
+
+                // >>>1
+                final String comment = CodeExtractor.getComment(
+                        EnumWithCommentToExtract.class,
+                        EnumWithCommentToExtract.MyEnum.class
+                );
+                // <<<1
+
+                doc.write("Comment extracted: *" + comment + "*", "", "");
+            }
+
+            {
+                doc.write("How to extract comment of one value of an enum",
+                        extractMarkedCode(testInfo, "2"),
+                        "");
+
+                // >>>2
+                final Optional<String> comment = CodeExtractor.getComment(
+                        EnumWithCommentToExtract.class,
+                        EnumWithCommentToExtract.MyEnum.FirstEnum
+                );
+                // <<<2
+
+                doc.write("Comment extracted: " + comment.map(c -> "*" + c + "*").orElse("No comment"), "", "");
+            }
+
+            {
+                doc.write("How to extract comment of one value of an enum",
+                        extractMarkedCode(testInfo, "3"),
+                        "");
+
+                // >>>3
+                final Optional<String> comment = CodeExtractor.getComment(
+                        EnumWithCommentToExtract.MyEnum.SecondEnum
+                );
+                // <<<3
+
+                doc.write("Comment extracted: " + comment.map(c -> "*" + c + "*").orElse("No comment"), "", "");
+            }
+            {
+                doc.write("How to extract comment of one value of an enum",
+                        extractMarkedCode(testInfo, "4"),
+                        "");
+
+                // >>>4
+                final Optional<String> comment = CodeExtractor.getComment(
+                        EnumWithCommentToExtract.class,
+                        EnumWithCommentToExtract.MyEnum.ThirdEnum
+                );
+                // <<<4
+
+                doc.write("Comment extracted: " + comment.map(c -> "*" + c + "*").orElse("No comment"), "", "");
+            }
+        }
+
         /**
          * When there is an annotation before the class comment, the comment is not retrieve.
          * This is an issue in the JavaParser we used (com.github.javaparser:javaparser-core:3.22.1).
@@ -810,3 +940,21 @@ class ClassNestedWithCommentToExtract {
 }
 // end::classNestedWithCommentToExtract[]
 
+// tag::EnumNotInAClass[]
+
+enum EnumNotInAClass {
+    First,
+    Second
+}
+// end::EnumNotInAClass[]
+
+
+// tag::ClassWithEnum[]
+
+class ClassWithEnum {
+    enum EnumInAClass {
+        First,
+        Second
+    }
+}
+// end::ClassWithEnum[]
