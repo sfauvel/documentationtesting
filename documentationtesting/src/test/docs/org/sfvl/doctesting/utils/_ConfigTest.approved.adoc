@@ -3,6 +3,8 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 [#org_sfvl_doctesting_utils_configtest]
 = Configuration
 
+include::_ConfigTest.available_properties.approved.adoc[leveloffset=+1]
+
 include::_ConfigTest.default_values.approved.adoc[leveloffset=+1]
 
 include::_ConfigTest.load_path_from_config_file.approved.adoc[leveloffset=+1]

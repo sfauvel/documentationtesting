@@ -15,12 +15,12 @@ include::../../../../../resources/testConfig.properties[]
 Values are:
 [%header]
 |====
-| Method | Type | Value
-| getDocPath | Path | source/docs
-| getFormatter | Formatter | instance of MyFormatter
-| getResourcePath | Path | src/test/resources
-| getSourcePath | Path | source/java
-| getTestPath | Path | source/test
+| Key | Type | Value
+| SOURCE_PATH | Path | source/java
+| TEST_PATH | Path | source/test
+| DOC_PATH | Path | source/docs
+| RESOURCE_PATH | Path | src/test/resources
+| FORMATTER | Formatter | org.sfvl.samples.MyFormatter
 |====
 
 
