@@ -26,7 +26,7 @@ endif::[]
 ====
 [source, java, indent=0]
 ----
-include::../../../../../java/org/sfvl/doctesting/utils/CodeExtractorTest.java[tag=ClassWithAnnotationBeforeComment]
+include::../../../../../java/org/sfvl/doctesting/utils/ClassWithAnnotationBeforeComment.java[tag=ClassWithAnnotationBeforeComment]
 ----
 
 

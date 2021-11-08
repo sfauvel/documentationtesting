@@ -25,7 +25,7 @@ endif::[]
 .Source code to extract
 [source, java, indent=0]
 ----
-include::../../../../../java/org/sfvl/doctesting/sample/SimpleClass.java[tag=classToExtract]
+include::../../../../../java/org/sfvl/doctesting/sample/SimpleClass.java[]
 ----
 ====
 

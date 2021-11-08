@@ -57,11 +57,15 @@ public class CodeExtractorTest {
                 ""));
     }
 
+// tag::SimpleInnerClass[]
+
     class SimpleInnerClass {
         public int simpleMethod() {
             return 0;
         }
     }
+// end::SimpleInnerClass[]
+
 
     @Nested
     @DisplayName(value = "Extract code")
@@ -81,7 +85,9 @@ public class CodeExtractorTest {
 
             doc.writeInline(
                     ".Source code to extract",
-                    includeSourceWithTag("classToExtract", classToExtract)
+                    formatSourceCode(
+                            formatter.include(new DocPath(classToExtract).test().from(CodeExtractorTest.class).toString())
+                    )
             );
 
             doc.writeInline(
@@ -103,7 +109,7 @@ public class CodeExtractorTest {
 
             doc.writeInline(
                     ".Source code to extract",
-                    includeSourceWithTag("innerClassToExtract", CodeExtractorTest.class)
+                    includeSourceWithTag(CodeExtractorTest.SimpleInnerClass.class.getSimpleName(), CodeExtractorTest.class)
             );
 
             doc.writeInline(
@@ -278,7 +284,7 @@ public class CodeExtractorTest {
 
             doc.writeInline(
                     ".Source code from file",
-                    includeSourceWithTag("classToExtract", SimpleClass.class)
+                    formatSourceCode(CodeExtractor.classSource(SimpleClass.class))
             );
 
             doc.writeInline(
@@ -330,7 +336,7 @@ public class CodeExtractorTest {
 
                 doc.writeInline(
                         ".Source code from file",
-                        includeSourceWithTag("classToExtract", SimpleClass.class)
+                        formatSourceCode(CodeExtractor.classSource(SimpleClass.class))
                 );
 
                 doc.writeInline(
@@ -872,7 +878,7 @@ public class CodeExtractorTest {
             final String comment = CodeExtractor.getComment(ClassWithAnnotationBeforeComment.class);
             // <<<1
 
-            doc.writeInline(includeSourceWithTag(ClassWithAnnotationBeforeComment.class.getSimpleName(), CodeExtractorTest.class), "", "");
+            doc.writeInline(includeSourceWithTag(ClassWithAnnotationBeforeComment.class.getSimpleName(), ClassWithAnnotationBeforeComment.class), "", "");
 
             formatCommentExtracted("Comment extracted from class",
                     comment);

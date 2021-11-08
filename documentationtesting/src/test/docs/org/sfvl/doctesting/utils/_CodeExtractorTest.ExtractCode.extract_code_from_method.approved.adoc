@@ -34,7 +34,11 @@ or
 .Source code from file
 [source, java, indent=0]
 ----
-include::../../../../../java/org/sfvl/doctesting/sample/SimpleClass.java[tag=classToExtract]
+public class SimpleClass {
+    public int simpleMethod() {
+        return 0;
+    }
+}
 ----
 ====
 
@@ -85,7 +89,11 @@ include::../../../../../java/org/sfvl/doctesting/sample/ClassWithNestedClass.jav
 .Source code from file
 [source, java, indent=0]
 ----
-include::../../../../../java/org/sfvl/doctesting/sample/SimpleClass.java[tag=classToExtract]
+public class SimpleClass {
+    public int simpleMethod() {
+        return 0;
+    }
+}
 ----
 ====
 
