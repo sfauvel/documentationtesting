@@ -3,6 +3,15 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 [#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_a_part_of_code_from_the_current_method]
 = Extract a part of code from the current method
 
+ifndef::CODE_EXTRACTOR_CSS[]
+:CODE_EXTRACTOR_CSS:
+++++
+<style>
+include::../../../../../resources/styles/code_extractor.css[]
+</style>
+++++
+endif::[]
+
 .How to extract code from the current method
 [source, java, indent=0]
 ----
@@ -69,12 +78,3 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 ----
 ====
-++++
-<style>
-#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_a_part_of_code_from_the_current_method ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-++++

@@ -3,6 +3,15 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 [#org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_enum_comment]
 = Extract enum comment
 
+ifndef::CODE_EXTRACTOR_CSS[]
+:CODE_EXTRACTOR_CSS:
+++++
+<style>
+include::../../../../../resources/styles/code_extractor.css[]
+</style>
+++++
+endif::[]
+
 
 [.inline]
 ====
@@ -81,12 +90,3 @@ How to extract comment of one value of an enum
 ----
 Comment extracted: No comment
 
-++++
-<style>
-#org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_enum_comment ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-++++

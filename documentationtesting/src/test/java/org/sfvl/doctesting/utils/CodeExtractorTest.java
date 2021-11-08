@@ -42,19 +42,19 @@ public class CodeExtractorTest {
     @RegisterExtension
     static ApprovalsExtension extension = new ApprovalsExtension(doc);
 
-    @AfterEach
-    public void addSyle(TestInfo testInfo) {
-        // Id automatically added when toc is activate but not on H1 title so we add one.
-        doc.write("++++",
+    @BeforeEach
+    public void addStyle(TestInfo testInfo) {
+        doc.write(String.join("\n",
+                "ifndef::CODE_EXTRACTOR_CSS[]",
+                ":CODE_EXTRACTOR_CSS:",
+                "++++",
                 "<style>",
-                "#" + doc.titleId(testInfo.getTestMethod().get()) + " ~ .inline {",
-                "   display: inline-block;",
-                "   vertical-align: top;",
-                "   margin-right: 2em;",
-                "}",
+                "include::" + doc.relativePathToRoot(testInfo.getTestClass().get()).resolve("../resources/styles/code_extractor.css") + "[]",
                 "</style>",
-                "++++");
-
+                "++++",
+                "endif::[]",
+                "",
+                ""));
     }
 
     class SimpleInnerClass {

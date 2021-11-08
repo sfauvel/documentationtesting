@@ -3,6 +3,15 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 [#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_an_inner_class]
 = Extract code of an inner class
 
+ifndef::CODE_EXTRACTOR_CSS[]
+:CODE_EXTRACTOR_CSS:
+++++
+<style>
+include::../../../../../resources/styles/code_extractor.css[]
+</style>
+++++
+endif::[]
+
 .How to extract code of an inner class
 [source, java, indent=0]
 ----
@@ -31,12 +40,3 @@ include::../../../../../java/org/sfvl/doctesting/utils/CodeExtractorTest.java[ta
     }
 ----
 ====
-++++
-<style>
-#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_an_inner_class ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-++++

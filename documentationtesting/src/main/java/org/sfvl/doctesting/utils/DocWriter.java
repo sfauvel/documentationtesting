@@ -108,11 +108,14 @@ public class DocWriter<F extends Formatter> {
     }
 
     public String defineDocPath(Class<?> clazz) {
+        return defineDocPath(relativePathToRoot(clazz));
+    }
+
+    public Path relativePathToRoot(Class<?> clazz) {
         final String aPackage = clazz.getPackage().getName();
-        final Path relativePathToRoot = Arrays.stream(aPackage.split("\\."))
+        return Arrays.stream(aPackage.split("\\."))
                 .map(__ -> Paths.get(".."))
                 .reduce(Paths.get(""), Path::resolve);
-        return defineDocPath(relativePathToRoot);
     }
 
     public String defineDocPath(Path relativePathToRoot) {
