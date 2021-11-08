@@ -49,7 +49,7 @@ public class CodeExtractorTest {
                 ":CODE_EXTRACTOR_CSS:",
                 "++++",
                 "<style>",
-                "include::" + doc.relativePathToRoot(testInfo.getTestClass().get()).resolve("../resources/styles/code_extractor.css") + "[]",
+                "include::" + DocPath.toAsciiDoc(doc.relativePathToRoot(testInfo.getTestClass().get()).resolve("../resources/styles/code_extractor.css")) + "[]",
                 "</style>",
                 "++++",
                 "endif::[]",
