@@ -93,10 +93,13 @@ class ConfigTest {
                     "| Key | Type | Value",
                     "");
             for (Config.Key value : values) {
-                String textToDisplay = config.getProperty(value);
 
-                final Field declaredField = Config.class.getDeclaredField(value.name());
-                final String simpleName = declaredField.getType().getSimpleName();
+                final Class<?> type = Config.class.getDeclaredField(value.name()).getType();
+                final String simpleName = type.getSimpleName();
+                String textToDisplay = config.getProperty(value);
+                if (type.isAssignableFrom(Path.class)) {
+                    textToDisplay = DocPath.toAsciiDoc(Paths.get(textToDisplay));
+                }
                 doc.write(String.format("| %s | %s | %s", value.name(), simpleName, textToDisplay), "");
             }
             doc.write("|====", "");
