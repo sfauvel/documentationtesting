@@ -3,6 +3,15 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 [#org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_class_comment]
 = Extract class comment
 
+ifndef::CODE_EXTRACTOR_CSS[]
+:CODE_EXTRACTOR_CSS:
+++++
+<style>
+include::../../../../../resources/styles/code_extractor.css[]
+</style>
+++++
+endif::[]
+
 .How to extract comment of a class
 [source, java, indent=0]
 ----
@@ -78,12 +87,3 @@ Comment of the class.
 ----
 
 ====
-++++
-<style>
-#org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_class_comment ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-++++

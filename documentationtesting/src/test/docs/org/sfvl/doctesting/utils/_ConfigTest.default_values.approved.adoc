@@ -8,10 +8,10 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 By default, values are:
 [%header]
 |====
-| Method | Type | Value
-| getDocPath | Path | src/test/docs
-| getFormatter | Formatter | instance of AsciidocFormatter
-| getResourcePath | Path | src/test/resources
-| getSourcePath | Path | src/main/java
-| getTestPath | Path | src/test/java
+| Key | Type | Value
+| SOURCE_PATH | Path | src/main/java
+| TEST_PATH | Path | src/test/java
+| DOC_PATH | Path | src/test/docs
+| RESOURCE_PATH | Path | src/test/resources
+| FORMATTER | Formatter | org.sfvl.docformatter.asciidoc.AsciidocFormatter
 |====

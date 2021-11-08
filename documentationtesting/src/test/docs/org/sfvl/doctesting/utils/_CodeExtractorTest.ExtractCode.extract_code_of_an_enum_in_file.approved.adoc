@@ -1,0 +1,137 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_an_enum_in_file]
+= Extract code of a an enum in file
+
+ifndef::CODE_EXTRACTOR_CSS[]
+:CODE_EXTRACTOR_CSS:
+++++
+<style>
+include::../../../../../resources/styles/code_extractor.css[]
+</style>
+++++
+endif::[]
+
+.How to extract code of an enum
+[source, java, indent=0]
+----
+                String code = CodeExtractor.enumSource(EnumWithCommentToExtract.MyEnum.class);
+
+----
+
+[.inline]
+====
+.Source code to extract
+[source, java, indent=0]
+----
+/**
+ * Comment of the class.
+ */
+public class EnumWithCommentToExtract {
+
+    /**
+     * Comment of the enum.
+     */
+    public static enum MyEnum {
+        /**
+         * First enum with comment.
+         */
+        FirstEnum,
+        /** Second enum with comment. */
+        SecondEnum,
+        ThirdEnum;
+
+        /**
+         * A method in enum.
+         */
+        public void methodInEnum() {
+
+        }
+    }
+
+}
+----
+====
+
+[.inline]
+====
+.Source code extracted
+[source, java, indent=0]
+----
+    /**
+     * Comment of the enum.
+     */
+    public static enum MyEnum {
+        /**
+         * First enum with comment.
+         */
+        FirstEnum,
+        /** Second enum with comment. */
+        SecondEnum,
+        ThirdEnum;
+
+        /**
+         * A method in enum.
+         */
+        public void methodInEnum() {
+
+        }
+    }
+----
+====
+.How to extract code of an enum declared outside the class
+[source, java, indent=0]
+----
+                String code = CodeExtractor.enumSource(CodeExtractorTest.class,
+                        EnumNotInAClass.class);
+
+----
+
+[.inline]
+====
+.Source code to extract
+[source, java, indent=0]
+----
+include::../../../../../java/org/sfvl/doctesting/utils/CodeExtractorTest.java[tag=EnumNotInAClass]
+----
+====
+
+[.inline]
+====
+.Source code extracted
+[source, java, indent=0]
+----
+enum EnumNotInAClass {
+    First,
+    Second
+}
+----
+====
+.How to extract code of an enum declared in a class not in his file
+[source, java, indent=0]
+----
+                String code = CodeExtractor.enumSource(CodeExtractorTest.class,
+                        ClassWithEnum.EnumInAClass.class);
+
+----
+
+[.inline]
+====
+.Source code to extract
+[source, java, indent=0]
+----
+include::../../../../../java/org/sfvl/doctesting/utils/CodeExtractorTest.java[tag=ClassWithEnum]
+----
+====
+
+[.inline]
+====
+.Source code extracted
+[source, java, indent=0]
+----
+    enum EnumInAClass {
+        First,
+        Second
+    }
+----
+====

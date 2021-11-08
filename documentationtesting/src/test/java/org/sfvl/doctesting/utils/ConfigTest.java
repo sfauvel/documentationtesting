@@ -9,6 +9,7 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.nio.file.Path;
@@ -16,6 +17,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -23,6 +25,14 @@ import java.util.stream.Collectors;
 class ConfigTest {
     @RegisterExtension
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
+
+    @Test
+    public void available_properties() {
+        final Optional<String> comment = CodeExtractor.getComment(Config.Key.TEST_PATH);
+        final String[] values = Arrays.stream(Config.Key.values())
+                .map(v -> v.name() + ": " + CodeExtractor.getComment(v).orElse("")).toArray(String[]::new);
+        doc.write(doc.getFormatter().listItems(values));
+    }
 
     @Test
     public void default_values() throws IOException {
@@ -70,26 +80,24 @@ class ConfigTest {
     }
 
     private void displayConfig(String legend, Config config) {
+
+        final Config.Key[] values = Config.Key.values();
+
         try {
-
-            final List<Method> getterMethods = Arrays.stream(Config.class.getDeclaredMethods())
-                    .filter(this::isGetter)
-                    .sorted(Comparator.comparing(Method::getName))
-                    .collect(Collectors.toList());
-
             doc.write("", "",
                     legend,
                     "");
 
             doc.write("[%header]",
                     "|====",
-                    "| Method | Type | Value",
+                    "| Key | Type | Value",
                     "");
+            for (Config.Key value : values) {
+                String textToDisplay = config.getProperty(value);
 
-            for (Method declaredMethod : getterMethods) {
-                final Object value = declaredMethod.invoke(config);
-                String textToDisplay = textToDisplay(value);
-                doc.write(String.format("| %s | %s | %s", declaredMethod.getName(), declaredMethod.getReturnType().getSimpleName(), textToDisplay), "");
+                final Field declaredField = Config.class.getDeclaredField(value.name());
+                final String simpleName = declaredField.getType().getSimpleName();
+                doc.write(String.format("| %s | %s | %s", value.name(), simpleName, textToDisplay), "");
             }
             doc.write("|====", "");
 
@@ -97,28 +105,7 @@ class ConfigTest {
             e.printStackTrace();
             doc.write("", "", "Exception: " + e.getMessage());
         }
-    }
 
-    private String textToDisplay(Object value) {
-        if (value == null) {
-            return "null";
-        }
-
-        if (value instanceof Path) {
-            return DocPath.toAsciiDoc((Path)value);
-        }
-
-        if (value.toString().startsWith(value.getClass().getName() + "@")) {
-            return "instance of " + value.getClass().getSimpleName();
-        }
-
-        return value.toString();
-    }
-
-    private boolean isGetter(Method declaredMethod) {
-        return declaredMethod.getName().startsWith("get")
-                && Modifier.isPublic(declaredMethod.getModifiers())
-                && !Modifier.isStatic(declaredMethod.getModifiers());
     }
 }
 

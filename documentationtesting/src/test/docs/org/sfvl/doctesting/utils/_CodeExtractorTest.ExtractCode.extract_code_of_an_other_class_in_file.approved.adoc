@@ -3,6 +3,15 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 [#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_an_other_class_in_file]
 = Extract code of a non public class in file
 
+ifndef::CODE_EXTRACTOR_CSS[]
+:CODE_EXTRACTOR_CSS:
+++++
+<style>
+include::../../../../../resources/styles/code_extractor.css[]
+</style>
+++++
+endif::[]
+
 It's not possible to extract code of a non public class because it's not possible to determine source file.
 To be able to extract it, we have to explicitly give source file.
 
@@ -60,12 +69,3 @@ java.nio.file.NoSuchFileException: src/test/java/org/sfvl/doctesting/utils/Class
 
 
 ====
-++++
-<style>
-#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_an_other_class_in_file ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-++++

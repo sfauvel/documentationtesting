@@ -6,6 +6,15 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 When there is an annotation before the class comment, the comment is not retrieve.
 This is an issue in the JavaParser we used (com.github.javaparser:javaparser-core:3.22.1).
 
+ifndef::CODE_EXTRACTOR_CSS[]
+:CODE_EXTRACTOR_CSS:
+++++
+<style>
+include::../../../../../resources/styles/code_extractor.css[]
+</style>
+++++
+endif::[]
+
 .How to extract comment of a class
 [source, java, indent=0]
 ----
@@ -17,7 +26,7 @@ This is an issue in the JavaParser we used (com.github.javaparser:javaparser-cor
 ====
 [source, java, indent=0]
 ----
-include::../../../../../java/org/sfvl/doctesting/utils/CodeExtractorTest.java[tag=ClassWithAnnotationBeforeComment]
+include::../../../../../java/org/sfvl/doctesting/utils/ClassWithAnnotationBeforeComment.java[tag=ClassWithAnnotationBeforeComment]
 ----
 
 
@@ -31,12 +40,3 @@ include::../../../../../java/org/sfvl/doctesting/utils/CodeExtractorTest.java[ta
 ----
 
 ====
-++++
-<style>
-#org_sfvl_doctesting_utils_codeextractortest_extractcomment_bug_when_annotation_before_comment ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-++++

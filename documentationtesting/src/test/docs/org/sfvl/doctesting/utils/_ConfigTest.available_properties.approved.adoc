@@ -1,0 +1,11 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_configtest_available_properties]
+= Available properties
+
+
+* SOURCE_PATH: Path of source code.
+* TEST_PATH: Path of test code.
+* DOC_PATH: Path where documentation is generated.
+* RESOURCE_PATH: Path of resources.
+* FORMATTER: Full qualified name of the formatter class.

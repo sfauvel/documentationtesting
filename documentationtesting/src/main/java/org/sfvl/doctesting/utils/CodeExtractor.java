@@ -1,7 +1,9 @@
 package org.sfvl.doctesting.utils;
 
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
+import com.github.javaparser.ast.body.EnumDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.nodeTypes.NodeWithRange;
 import com.github.javaparser.utils.SourceRoot;
@@ -22,24 +24,32 @@ public class CodeExtractor {
     private static final String TAG_END = "<<<";
     private static final ClassFinder classFinder = new ClassFinder();
 
+    private static ParsedClassRepository getDefaultParsedClassRepository() {
+        return new ParsedClassRepository(Config.TEST_PATH, Config.SOURCE_PATH);
+    }
+
     public static String getComment(Class<?> clazz) {
         return getComment(clazz, clazz);
     }
 
     public static String getComment(Class<?> classFile, Class<?> clazz) {
-        final ParsedClassRepository parsedClassRepository = new ParsedClassRepository(Config.TEST_PATH, Config.SOURCE_PATH);
-        String comment = parsedClassRepository.getComment(classFile, clazz);
-        return Optional.ofNullable(comment).orElse("");
+        return Optional.ofNullable(getDefaultParsedClassRepository().getComment(classFile, clazz)).orElse("");
     }
 
     public static Optional<String> getComment(Class<?> classFile, Method testMethod) {
-        return Optional.ofNullable(new ParsedClassRepository(Config.TEST_PATH, Config.SOURCE_PATH)
-                .getComment(classFile, testMethod));
+        return Optional.ofNullable(getDefaultParsedClassRepository().getComment(classFile, testMethod));
     }
 
     public static Optional<String> getComment(Method testMethod) {
-        return Optional.ofNullable(new ParsedClassRepository(Config.TEST_PATH, Config.SOURCE_PATH)
-                .getComment(testMethod));
+        return Optional.ofNullable(getDefaultParsedClassRepository().getComment(testMethod));
+    }
+
+    public static Optional<String> getComment(Enum enumToExtract) {
+        return getComment(enumToExtract.getClass(), enumToExtract);
+    }
+
+    public static Optional<String> getComment(Class<?> classFile, Enum testEnum) {
+        return Optional.ofNullable(getDefaultParsedClassRepository().getComment(classFile, testEnum));
     }
 
     static class VisitorMethodCode extends ParsedClassRepository.MyMethodVisitor {
@@ -67,13 +77,22 @@ public class CodeExtractor {
         }
 
         /**
-         * We not use `n.toString()` because it formats code.
-         * @param n
+         * We not use `node.toString()` because it formats code.
+         * @param node
          */
         @Override
-        protected void actionOnClass(ClassOrInterfaceDeclaration n) {
-            final String extract = rangeExtractor.extract(n);
-            n.getComment().ifPresent(c -> {
+        protected void actionOnClass(ClassOrInterfaceDeclaration node) {
+            extractCode(node);
+        }
+
+        @Override
+        protected void actionOnEnum(EnumDeclaration node) {
+            extractCode(node);
+        }
+
+        private void extractCode(Node node) {
+            final String extract = rangeExtractor.extract(node);
+            node.getComment().ifPresent(c -> {
                 Matcher matchSpaces = Pattern.compile("(\\s*)").matcher(extract);
                 if (matchSpaces.find()) {
                     final String spaces = matchSpaces.group(0);
@@ -111,6 +130,15 @@ public class CodeExtractor {
 
     public static String classSource(Class<?> classToExtract) {
         return classSource(classToExtract, classToExtract);
+    }
+
+    public static String enumSource(Class<?> classToIdentifySourceFile, Class<?> enumToExtract) {
+        final ParserCode parserCode = new ParserCode(Config.TEST_PATH);
+        return parserCode.source(classToIdentifySourceFile, enumToExtract);
+    }
+
+    public static String enumSource(Class<?> enumToExtract) {
+        return enumSource(enumToExtract, enumToExtract);
     }
 
     static class ParserCode {

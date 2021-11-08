@@ -14,8 +14,17 @@ public class Config {
     public static final String DEFAULT_CONFIGURATION_FILE = "docAsTest.properties";
     public static final String DOC_PATH_TAG = "ROOT_PATH";
 
-    enum Key {
-        SOURCE_PATH, TEST_PATH, DOC_PATH, RESOURCE_PATH, FORMATTER;
+    static enum Key {
+        /** Path of source code. */
+        SOURCE_PATH,
+        /** Path of test code. */
+        TEST_PATH,
+        /** Path where documentation is generated. */
+        DOC_PATH,
+        /** Path of resources. */
+        RESOURCE_PATH,
+        /** Full qualified name of the formatter class. */
+        FORMATTER;
     }
 
     private static Config instance = new Config();
@@ -37,24 +46,24 @@ public class Config {
         loadProperties(configFile);
     }
 
-    public Path getSourcePath() {
+    private Path getSourcePath() {
         return getPath(Key.SOURCE_PATH);
     }
 
-    public Path getTestPath() {
+    private Path getTestPath() {
         return getPath(Key.TEST_PATH);
     }
 
-    public Path getDocPath() {
+    private Path getDocPath() {
         return getPath(Key.DOC_PATH);
     }
 
-    public Path getResourcePath() {
+    private Path getResourcePath() {
         return getPath(Key.RESOURCE_PATH);
     }
 
-    public Formatter getFormatter() {
-        final String property = prop.getProperty(Key.FORMATTER.name());
+    private Formatter getFormatter() {
+        final String property = getProperty(Key.FORMATTER);
         try {
             final Class<?> classFormatter = Class.forName(property);
             return (Formatter) classFormatter.getConstructor().newInstance();
@@ -64,7 +73,11 @@ public class Config {
     }
 
     Path getPath(Key key) {
-        return Paths.get(prop.getProperty(key.name()));
+        return Paths.get(getProperty(key));
+    }
+
+    String getProperty(Key key) {
+        return prop.getProperty(key.name());
     }
 
     private void setDefaultProperties() {

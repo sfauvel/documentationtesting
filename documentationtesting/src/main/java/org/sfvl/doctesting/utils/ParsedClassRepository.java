@@ -2,7 +2,10 @@ package org.sfvl.doctesting.utils;
 
 import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
+import com.github.javaparser.ast.body.EnumConstantDeclaration;
+import com.github.javaparser.ast.body.EnumDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
@@ -11,6 +14,7 @@ import com.github.javaparser.utils.SourceRoot;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.function.BiConsumer;
 
 /**
  * Extract information from source code.
@@ -81,6 +85,14 @@ public class ParsedClassRepository {
         return v.comment;
     }
 
+    public String getComment(Class<?> classFile, Enum searchEnum) {
+        CompilationUnit cu = getCompilationUnit(classFile);
+
+        final MyVisitorComment v = new MyVisitorComment(searchEnum);
+        cu.accept(v, null);
+        return v.comment;
+    }
+
     /**
      * Not able to read classes that are not in the public class because we are looking in java file that has the same name of this public class.
      *
@@ -137,11 +149,20 @@ public class ParsedClassRepository {
 
         @Override
         protected void actionOnClass(ClassOrInterfaceDeclaration n) {
+            extractLine(n, (visitor, node) -> visitor.visit(node, null));
+        }
+
+        @Override
+        protected void actionOnEnum(EnumDeclaration n) {
+            extractLine(n, (visitor, node) -> visitor.visit(node, null));
+        }
+
+        private <N extends Node> void extractLine(N n, BiConsumer<MyVisitorMethodLineNumber, N> visit) {
             if (method == null) {
                 line = n.getBegin().get().line;
             } else {
                 final MyVisitorMethodLineNumber myVisitorMethodLineNumber = new MyVisitorMethodLineNumber(method);
-                myVisitorMethodLineNumber.visit(n, null);
+                visit.accept(myVisitorMethodLineNumber, n);
                 line = myVisitorMethodLineNumber.line;
             }
         }
@@ -149,28 +170,47 @@ public class ParsedClassRepository {
 
     static class MyVisitorComment extends MyClassVisitor {
         private final Method method;
+        private final Enum searchEnum;
         String comment;
 
         public MyVisitorComment(Class<?> clazz) {
             super(clazz);
             this.method = null;
+            this.searchEnum = null;
         }
 
         public MyVisitorComment(Method method) {
             super(method.getDeclaringClass());
             this.method = method;
+            this.searchEnum = null;
+        }
+
+        public MyVisitorComment(Enum searchEnum) {
+            super(searchEnum.getDeclaringClass());
+            this.method = null;
+            this.searchEnum = searchEnum;
         }
 
         @Override
         protected void actionOnClass(ClassOrInterfaceDeclaration n) {
-            if (method == null) {
-                n.getJavadoc().ifPresent(doc -> comment = doc.getDescription().toText());
-            } else {
+            if (method != null) {
                 final MyVisitorCommentMethod myVisitorCommentMethod = new MyVisitorCommentMethod(method);
                 myVisitorCommentMethod.visit(n, null);
                 comment = myVisitorCommentMethod.comment;
+            } else {
+                n.getJavadoc().ifPresent(doc -> comment = doc.getDescription().toText());
             }
+        }
 
+        @Override
+        protected void actionOnEnum(EnumDeclaration n) {
+            if (searchEnum != null) {
+                final MyVisitorCommentEnum myVisitorCommentEnum = new MyVisitorCommentEnum(searchEnum);
+                myVisitorCommentEnum.visit(n, null);
+                comment = myVisitorCommentEnum.comment;
+            } else {
+                n.getJavadoc().ifPresent(doc -> comment = doc.getDescription().toText());
+            }
         }
     }
 
@@ -183,6 +223,37 @@ public class ParsedClassRepository {
 
         @Override
         protected void actionOnMethod(MethodDeclaration n) {
+            n.getJavadoc().ifPresent(doc -> comment = doc.getDescription().toText());
+        }
+    }
+
+    static abstract class MyEnumVisitor extends VoidVisitorAdapter<Void> {
+        private Enum enumValue;
+
+        public MyEnumVisitor(Enum enumValue) {
+            this.enumValue = enumValue;
+        }
+
+        @Override
+        public void visit(EnumConstantDeclaration n, Void arg) {
+            if (n.getNameAsString().equals(enumValue.name())) {
+                actionOnEnumConstant(n);
+            }
+        }
+
+        protected abstract void actionOnEnumConstant(EnumConstantDeclaration n);
+    }
+
+
+    static class MyVisitorCommentEnum extends MyEnumVisitor {
+        private String comment;
+
+        public MyVisitorCommentEnum(Enum enumValue) {
+            super(enumValue);
+        }
+
+        @Override
+        protected void actionOnEnumConstant(EnumConstantDeclaration n) {
             n.getJavadoc().ifPresent(doc -> comment = doc.getDescription().toText());
         }
     }
@@ -263,6 +334,29 @@ public class ParsedClassRepository {
         }
 
         @Override
+        public void visit(EnumDeclaration n, Void v) {
+            if (!n.getFullyQualifiedName().isPresent()) {
+                return;
+            }
+
+            final String canonicalName = classToSearch.getCanonicalName();
+            if (canonicalName.equals(n.getFullyQualifiedName().get())) {
+                actionOnEnum(n);
+                return;
+            }
+            if (canonicalName.startsWith(n.getFullyQualifiedName().get())) {
+                super.visit(n, v);
+            }
+
+        }
+
+        @Override
+        public void visit(EnumConstantDeclaration n, Void v) {
+            System.out.println("MyClassVisitor.visit EnumConstantDeclaration" + n.getName());
+            super.visit(n, v);
+        }
+
+        @Override
         public void visit(ClassOrInterfaceDeclaration n, Void v) {
             // Local classes haven't FullyQualifiedName and we do not deal with it.
             if (!n.getFullyQualifiedName().isPresent()) {
@@ -281,5 +375,6 @@ public class ParsedClassRepository {
         }
 
         protected abstract void actionOnClass(ClassOrInterfaceDeclaration n);
+        protected abstract void actionOnEnum(EnumDeclaration n);
     }
 }
