@@ -1,5 +1,6 @@
 package org.sfvl.doctesting.utils;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -11,6 +12,7 @@ import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@DisplayName("Class finder")
 public class ClassFinderTest {
 
     Formatter formatter = new AsciidocFormatter();
@@ -44,6 +46,7 @@ public class ClassFinderTest {
      * If all test methods of a class are excluded, then the class will not be return as a found class.
      */
     @Test
+    @DisplayName("Find test classes in a package with a filter")
     public void find_test_classes_in_a_package_with_filter(TestInfo testInfo) {
         // >>>
         List<Class<?>> classes = new ClassFinder()

@@ -1,5 +1,6 @@
 package org.sfvl.doctesting.utils;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@DisplayName("Classes order")
 class ClassesOrderTest {
 
     @RegisterExtension
