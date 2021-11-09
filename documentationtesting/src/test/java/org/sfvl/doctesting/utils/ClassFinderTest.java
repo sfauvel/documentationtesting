@@ -7,12 +7,14 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @DisplayName("Class finder")
+@ClassToDocument(clazz = ClassFinder.class)
 public class ClassFinderTest {
 
     Formatter formatter = new AsciidocFormatter();

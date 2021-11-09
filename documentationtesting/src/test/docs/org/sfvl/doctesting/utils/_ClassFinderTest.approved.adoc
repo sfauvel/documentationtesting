@@ -3,6 +3,8 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 [#org_sfvl_doctesting_utils_classfindertest]
 = Class finder
 
+It's help to find in project classes that match some criteria.
+
 include::_ClassFinderTest.find_test_classes_in_a_package.approved.adoc[leveloffset=+1]
 
 include::_ClassFinderTest.find_test_classes_in_a_package_with_filter.approved.adoc[leveloffset=+1]
