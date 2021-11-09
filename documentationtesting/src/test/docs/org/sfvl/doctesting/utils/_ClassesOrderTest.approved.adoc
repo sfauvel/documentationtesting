@@ -1,7 +1,7 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [#org_sfvl_doctesting_utils_classesordertest]
-= Classes order test
+= Classes order
 
 include::_ClassesOrderTest.in_order.approved.adoc[leveloffset=+1]
 

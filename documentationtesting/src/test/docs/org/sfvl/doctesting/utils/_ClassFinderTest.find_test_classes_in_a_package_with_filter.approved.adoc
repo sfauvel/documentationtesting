@@ -1,7 +1,7 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [#org_sfvl_doctesting_utils_classfindertest_find_test_classes_in_a_package_with_filter]
-= Find test classes in a package with filter
+= Find test classes in a package with a filter
 
 By default, all classes containing a test method are found.
 It's possible to exclude some test methods because they are not relevant in the context.
