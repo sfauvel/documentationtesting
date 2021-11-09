@@ -89,9 +89,9 @@ Add this configuration to your pom.xml.
 Create a file `index.adoc` at the root of the docs folder.
 
 ----
-\= Documentation
+= Documentation
 
-\include::[FOLDER]/_[MY CLASS].approved.adoc[leveloffset=+1]
+include::[FOLDER]/_[MY CLASS].approved.adoc[leveloffset=+1]
 ----
 
 [FOLDER] is the path from `src/test/docs` folder to the `.adoc` file.
