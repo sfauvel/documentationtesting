@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.utils.*;
@@ -83,7 +84,7 @@ public class ApprovalsExtensionTest {
                     .collect(Collectors.joining("\n"));
 
             doc.write("", "",
-                    String.format("Files in folder `%s`",DocPath.toAsciiDoc(docFolder)),
+                    String.format("Files in folder `%s`", DocPath.toAsciiDoc(docFolder)),
                     "",
                     filesInDocFolder);
         } catch (IOException e) {
@@ -96,16 +97,19 @@ public class ApprovalsExtensionTest {
     @Test
     public void using_displayName() throws IOException {
         final Class<?> testClass = UsingDisplayNameTest.class;
-
         doc.runTestAndWriteResultAsComment(testClass);
 
-        doc.write("You can use DisplayName annotation to customize test title");
+        final OnePath approvedTestA = new DocPath(MethodReference.getMethod(UsingDisplayNameTest::test_A)).approved();
 
-        doc.write(".Test example using DisplayName", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
-
-        final String testMethod = MethodReference.getName(UsingDisplayNameTest::test_A);
-        final String filename = "_" + testClass.getSimpleName() + "." + testMethod + ".approved.adoc";
-        doc.write("Generated file with DisplayName content as title", "----", formatter.include(filename), "----");
+        doc.write("You can use DisplayName annotation to customize test title",
+                "",
+                ".Test example using DisplayName",
+                extractSourceWithTag(testClass.getSimpleName(), testClass),
+                "",
+                ".Generated file with DisplayName content as title",
+                formatter.blockBuilder(Formatter.Block.CODE)
+                        .content(formatter.include(approvedTestA.filename()))
+                        .build());
     }
 
     @Test
@@ -176,7 +180,7 @@ public class ApprovalsExtensionTest {
         doc.write("", "", "_final rendering_",
                 "[.includeblock]",
                 formatter.include("_" + testClass.getSimpleName() + ".approved.adoc", 1)
-                );
+        );
 
     }
 
