@@ -63,6 +63,10 @@ endif::[]
     letter-spacing: 0.3em;
 }
 
+.button_link a:hover {
+    background-color: #13ae75;
+}
+
 .button_link a {
     padding: 0.75em 2em;
     border-radius: 2em;

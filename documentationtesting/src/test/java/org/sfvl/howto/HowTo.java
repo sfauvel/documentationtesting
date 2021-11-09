@@ -32,6 +32,8 @@ public class HowTo {
         doc.write("To get started quickly, you can download link:https://github.com/sfauvel/TryDocAsTest[Try doc as test] project.",
                 "It's a minimal project that is ready to use and that implements a small demo.",
                 "",
+                "You can alo follow steps of the " + linkToClass(Tutorial.class, "Get started") + " page.",
+                "",
                 "You can use it on your own project alongside your existing tests.",
                 "Both can work together without modifying your tests.",
                 "",
