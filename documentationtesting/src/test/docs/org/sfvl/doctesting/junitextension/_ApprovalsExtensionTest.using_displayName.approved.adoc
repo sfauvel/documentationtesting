@@ -5,7 +5,9 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 
 // Test result for UsingDisplayNameTest: Success
-You can use DisplayName annotation to customize test title.Test example using DisplayName
+You can use DisplayName annotation to customize test title
+
+.Test example using DisplayName
 [source,java,indent=0]
 ----
 @DisplayName("Title for the document")
@@ -21,7 +23,7 @@ class UsingDisplayNameTest {
 }
 ----
 
-Generated file with DisplayName content as title
+.Generated file with DisplayName content as title
 ----
 include::_UsingDisplayNameTest.test_A.approved.adoc[]
 ----
