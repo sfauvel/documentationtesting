@@ -7,7 +7,7 @@ import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-import org.sfvl.doctesting.utils.CodeExtractor;
+import org.sfvl.docextraction.CodeExtractor;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.OnePath;
 

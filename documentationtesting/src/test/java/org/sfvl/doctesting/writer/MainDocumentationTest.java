@@ -6,10 +6,10 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.ClassToDocument;
-import org.sfvl.doctesting.utils.MethodReference;
+import org.sfvl.doctesting.utils.ClassToDocument;
+import org.sfvl.docextraction.MethodReference;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-import org.sfvl.doctesting.utils.CodeExtractor;
+import org.sfvl.docextraction.CodeExtractor;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 

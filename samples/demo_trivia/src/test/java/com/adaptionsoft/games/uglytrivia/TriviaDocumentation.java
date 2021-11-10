@@ -1,6 +1,6 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import org.sfvl.doctesting.utils.ClassFinder;
+import org.sfvl.docextraction.ClassFinder;
 import org.sfvl.doctesting.demo.DemoDocumentation;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.writer.Classes;
@@ -8,7 +8,6 @@ import org.sfvl.doctesting.writer.Document;
 import org.sfvl.doctesting.writer.Options;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package org.sfvl.doctesting.utils;
+package org.sfvl.docextraction;
 
 import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ast.CompilationUnit;
@@ -10,6 +10,7 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.utils.SourceRoot;
+import org.sfvl.docextraction.ClassFinder;
 
 import java.lang.reflect.Method;
 import java.nio.file.Path;

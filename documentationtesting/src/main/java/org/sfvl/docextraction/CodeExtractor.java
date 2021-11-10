@@ -1,4 +1,4 @@
-package org.sfvl.doctesting.utils;
+package org.sfvl.docextraction;
 
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
@@ -7,6 +7,8 @@ import com.github.javaparser.ast.body.EnumDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.nodeTypes.NodeWithRange;
 import com.github.javaparser.utils.SourceRoot;
+import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.utils.DocPath;
 
 import java.io.IOException;
 import java.lang.reflect.Method;

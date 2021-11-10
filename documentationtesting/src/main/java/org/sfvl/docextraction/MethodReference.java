@@ -1,4 +1,4 @@
-package org.sfvl.doctesting.utils;
+package org.sfvl.docextraction;
 
 import java.io.Serializable;
 import java.lang.invoke.SerializedLambda;

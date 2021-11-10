@@ -2,7 +2,7 @@ package org.sfvl.doctesting.demo;
 
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
-import org.sfvl.doctesting.utils.ClassFinder;
+import org.sfvl.docextraction.ClassFinder;
 import org.sfvl.doctesting.utils.PathProvider;
 import org.sfvl.doctesting.writer.Classes;
 import org.sfvl.doctesting.writer.DocumentProducer;

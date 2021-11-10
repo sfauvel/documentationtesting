@@ -3,6 +3,8 @@ package org.sfvl.doctesting.utils;
 import com.github.javaparser.ParseProblemException;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.docextraction.CodeExtractor;
+import org.sfvl.docextraction.MethodReference;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;

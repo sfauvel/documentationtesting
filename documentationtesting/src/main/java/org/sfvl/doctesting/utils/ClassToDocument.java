@@ -1,4 +1,4 @@
-package org.sfvl.doctesting.junitextension;
+package org.sfvl.doctesting.utils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

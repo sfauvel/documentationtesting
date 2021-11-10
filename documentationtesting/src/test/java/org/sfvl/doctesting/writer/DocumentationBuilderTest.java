@@ -6,10 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-import org.sfvl.doctesting.utils.CodeExtractor;
-import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.docextraction.CodeExtractor;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.ClassToDocument;
+import org.sfvl.doctesting.utils.ClassToDocument;
 
 import java.nio.file.Paths;
 

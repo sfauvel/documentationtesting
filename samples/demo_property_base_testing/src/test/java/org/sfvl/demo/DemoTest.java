@@ -3,8 +3,8 @@ package org.sfvl.demo;
 import org.junit.jupiter.api.Test;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
-import org.sfvl.doctesting.utils.CodeExtractor;
-import org.sfvl.doctesting.utils.MethodReference;
+import org.sfvl.docextraction.CodeExtractor;
+import org.sfvl.docextraction.MethodReference;
 
 import java.util.List;
 import java.util.Map;

@@ -4,10 +4,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.docextraction.ClassFinder;
+import org.sfvl.docextraction.CodeExtractor;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 
 import java.util.List;

@@ -1,5 +1,7 @@
 package org.sfvl.doctesting.utils;
 
+import org.sfvl.docextraction.ClassFinder;
+
 import java.io.File;
 import java.lang.reflect.Method;
 import java.nio.file.Path;

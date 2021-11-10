@@ -1,4 +1,4 @@
-package org.sfvl.doctesting.utils;
+package org.sfvl.docextraction;
 
 import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
@@ -25,7 +25,8 @@ public class ClassFinder {
     }
 
     private List<Class<?>> annotatedClasses(Package packageToScan, Predicate<Method> methodFilter, Class<? extends Annotation> annotation) {
-        final String prefix = DocPath.toAsciiDoc(DocPath.toPath(packageToScan));
+        final String prefix = packageToScan.getName();
+
         Reflections reflections = new Reflections(prefix, new MethodAnnotationsScanner());
 
         final Stream<Method> methodsAnnotatedWith = reflections.getMethodsAnnotatedWith(annotation).stream()
