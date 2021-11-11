@@ -9,7 +9,7 @@ import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 
 // tag::test[]
 /**
- * Demo of a simple usage to generate documentation and validate it with https://github.com/approvals[Approvals].
+ * Demo of a simple usage to generate documentation and validate it with https://sfauvel.github.io/documentationtesting/documentationtesting/[Documentation testing].
  */
 public class DemoWithDocumentationTestingTest {
 

@@ -5,6 +5,8 @@ import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
+import org.sfvl.codeextraction.CodeExtractor;
+import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.writer.DocWriter;
 import org.sfvl.doctesting.utils.PathProvider;
@@ -22,6 +24,9 @@ import java.util.Arrays;
  */
 public class ApprovalsExtension implements AfterEachCallback {
 
+    {
+        CodeExtractor.init(Config.TEST_PATH, Config.SOURCE_PATH);
+    }
     private static final PathProvider pathBuidler = new PathProvider();
 
     @Override

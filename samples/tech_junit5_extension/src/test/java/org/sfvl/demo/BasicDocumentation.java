@@ -1,5 +1,6 @@
 package org.sfvl.demo;
 
+import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.doctesting.demo.DemoDocumentation;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
@@ -33,6 +34,7 @@ public class BasicDocumentation extends DemoDocumentation {
     }
 
     public static void main(String... args) throws IOException {
+        CodeExtractor.init(Config.TEST_PATH, Config.SOURCE_PATH);
         generateClassDoc(DemoTest.class);
         new BasicDocumentation().produce();
     }

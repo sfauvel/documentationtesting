@@ -5,6 +5,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.platform.commons.support.ModifierSupport;
+import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.writer.DocWriter;
@@ -17,6 +18,9 @@ import java.nio.file.Path;
 
 public abstract class DocAsTestBase {
     protected static final PathProvider pathBuidler = new PathProvider();
+    {
+        CodeExtractor.init(Config.TEST_PATH, Config.SOURCE_PATH);
+    }
 
     DocWriter writer = new DocWriter();
 
