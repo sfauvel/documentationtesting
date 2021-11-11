@@ -3,13 +3,14 @@ package org.sfvl.howto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.docextraction.CodeExtractor;
+import org.sfvl.codeextraction.CodeExtractor;
+import org.sfvl.codeextraction.CodePath;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.AsciidocFormatterTest;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
-import org.sfvl.docextraction.MethodReference;
+import org.sfvl.codeextraction.MethodReference;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.*;
 import org.sfvl.doctesting.writer.Classes;
@@ -130,7 +131,7 @@ public class HowTo {
     }
 
     public String getInclude(Class aClass, int offset) {
-        return new Classes(formatter).includeClasses(DocPath.toPath(aClass.getPackage()), Arrays.asList(aClass), offset).trim();
+        return new Classes(formatter).includeClasses(CodePath.toPath(aClass.getPackage()), Arrays.asList(aClass), offset).trim();
     }
 
     public <T> String getInclude(MethodReference.SerializableConsumer<T> methodToInclude, int offset) {

@@ -1,6 +1,6 @@
 package org.sfvl.doctesting.utils;
 
-import org.sfvl.docextraction.CodeExtractor;
+import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 

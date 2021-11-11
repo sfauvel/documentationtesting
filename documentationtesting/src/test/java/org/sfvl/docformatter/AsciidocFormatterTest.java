@@ -7,7 +7,7 @@ import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.utils.ClassToDocument;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-import org.sfvl.docextraction.CodeExtractor;
+import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.io.FileWriter;

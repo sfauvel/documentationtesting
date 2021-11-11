@@ -1,5 +1,6 @@
 package org.sfvl.doctesting.writer;
 
+import org.sfvl.codeextraction.CodePath;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.utils.Config;
@@ -92,7 +93,7 @@ public class DocumentationBuilder implements DocumentProducer {
     }
 
     public DocumentationBuilder withLocation(Package packageLocation) {
-        return withLocation(DocPath.toPath(packageLocation));
+        return withLocation(CodePath.toPath(packageLocation));
     }
 
     public DocumentationBuilder withLocation(Path location) {

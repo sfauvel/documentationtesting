@@ -1,4 +1,4 @@
-package org.sfvl.docextraction;
+package org.sfvl.codeextraction;
 
 import java.io.Serializable;
 import java.lang.invoke.SerializedLambda;

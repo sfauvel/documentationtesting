@@ -4,12 +4,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.codeextraction.CodePath;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.utils.ClassToDocument;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-import org.sfvl.docextraction.CodeExtractor;
+import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.PathProvider;
@@ -191,7 +192,7 @@ class ClassDocumentationTest {
     public String includeSourceWithTag(String tag) {
 
         final Path projectPath = new PathProvider().getProjectPath();
-        final Path packagePath = DocPath.toPath(this.getClass().getPackage());
+        final Path packagePath = CodePath.toPath(this.getClass().getPackage());
         final Path packageDocPath = doc.getDocPath().resolve(packagePath);
         final Path relativizeToProjectPath = packageDocPath.relativize(projectPath);
         final Path javaFilePath = relativizeToProjectPath

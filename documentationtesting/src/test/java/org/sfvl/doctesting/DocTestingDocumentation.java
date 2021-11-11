@@ -3,8 +3,9 @@ package org.sfvl.doctesting;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.docextraction.ClassFinder;
-import org.sfvl.docextraction.CodeExtractor;
+import org.sfvl.codeextraction.ClassFinder;
+import org.sfvl.codeextraction.CodeExtractor;
+import org.sfvl.codeextraction.CodePath;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
@@ -55,7 +56,7 @@ public class DocTestingDocumentation {
     }
 
     public String includeClasses() {
-        final Path location = DocPath.toPath(DocTestingDocumentation.class.getPackage());
+        final Path location = CodePath.toPath(DocTestingDocumentation.class.getPackage());
         return new Classes(formatter).includeClasses(location, getClassesToDocument(), 0);
     }
 

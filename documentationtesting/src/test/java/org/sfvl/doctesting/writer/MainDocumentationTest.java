@@ -7,9 +7,9 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.utils.ClassToDocument;
-import org.sfvl.docextraction.MethodReference;
+import org.sfvl.codeextraction.MethodReference;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-import org.sfvl.docextraction.CodeExtractor;
+import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 

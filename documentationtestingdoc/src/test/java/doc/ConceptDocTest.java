@@ -3,7 +3,7 @@ package doc;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.docextraction.MethodReference;
+import org.sfvl.codeextraction.MethodReference;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.NoTitle;

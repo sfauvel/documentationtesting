@@ -1,0 +1,19 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_codepathtest_path_from_a_class]
+= Path from a class
+
+.Code
+
+[source,java,indent=0]
+----
+        final Class<?> clazz = org.sfvl.samples.MyTest.class;
+        final Path path = CodePath.toPath(clazz);
+        final String pathText = DocPath.toAsciiDoc(path);
+
+----
+
+Result
+====
+org/sfvl/samples/MyTest.java
+====

@@ -1,6 +1,6 @@
 package org.sfvl.doctesting.utils;
 
-import org.sfvl.docextraction.ParsedClassRepository;
+import org.sfvl.codeextraction.ParsedClassRepository;
 
 import java.lang.reflect.Method;
 import java.nio.file.Path;

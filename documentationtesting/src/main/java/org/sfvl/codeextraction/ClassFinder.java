@@ -1,4 +1,4 @@
-package org.sfvl.docextraction;
+package org.sfvl.codeextraction;
 
 import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;

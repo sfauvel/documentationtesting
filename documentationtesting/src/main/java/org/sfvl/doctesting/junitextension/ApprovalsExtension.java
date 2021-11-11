@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.platform.commons.support.ModifierSupport;
+import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
@@ -24,7 +25,9 @@ import java.nio.file.Path;
  * It checks that everything written during test is identical to the approved content.
  */
 public class ApprovalsExtension<T extends DocWriter<F>, F extends Formatter> implements AfterEachCallback, AfterAllCallback {
-
+    {
+        CodeExtractor.init(Config.TEST_PATH, Config.SOURCE_PATH);
+    }
     public static <T extends DocWriter<F>, F extends Formatter> ApprovalsExtension<T, F> build(T docWriter) {
         return new ApprovalsExtension<T, F>(docWriter);
     }

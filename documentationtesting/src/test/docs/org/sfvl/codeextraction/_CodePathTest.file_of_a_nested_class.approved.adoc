@@ -1,0 +1,21 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_codepathtest_file_of_a_nested_class]
+= File of a nested class
+
+With a nested class, the file is that of the main class of the file.
+
+.Code
+
+[source,java,indent=0]
+----
+        final Class<?> clazz = org.sfvl.samples.MyTestWithNestedClass.MyNestedClass.class;
+        final Path path = CodePath.toFile(clazz);
+        final String pathText = DocPath.toAsciiDoc(path);
+
+----
+
+Result
+====
+MyTestWithNestedClass.java
+====

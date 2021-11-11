@@ -1,6 +1,6 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import org.sfvl.docextraction.ClassFinder;
+import org.sfvl.codeextraction.ClassFinder;
 import org.sfvl.doctesting.demo.DemoDocumentation;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.writer.Classes;

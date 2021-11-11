@@ -1,4 +1,4 @@
-package org.sfvl.docextraction;
+package org.sfvl.codeextraction;
 
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
@@ -7,8 +7,6 @@ import com.github.javaparser.ast.body.EnumDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.nodeTypes.NodeWithRange;
 import com.github.javaparser.utils.SourceRoot;
-import org.sfvl.doctesting.utils.Config;
-import org.sfvl.doctesting.utils.DocPath;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -25,9 +23,16 @@ public class CodeExtractor {
     private static final String TAG_BEGIN = ">>>";
     private static final String TAG_END = "<<<";
     private static final ClassFinder classFinder = new ClassFinder();
+    private static Path TEST_PATH;
+    private static Path SOURCE_PATH;
+
+    public static void init(Path testPath, Path sourcePath) {
+        TEST_PATH = testPath;
+        SOURCE_PATH = sourcePath;
+    }
 
     private static ParsedClassRepository getDefaultParsedClassRepository() {
-        return new ParsedClassRepository(Config.TEST_PATH, Config.SOURCE_PATH);
+        return new ParsedClassRepository(TEST_PATH, SOURCE_PATH);
     }
 
     public static String getComment(Class<?> clazz) {
@@ -110,7 +115,7 @@ public class CodeExtractor {
     }
 
     static class RangeExtractor {
-        private final Path sourcePath = Config.TEST_PATH;
+        private final Path sourcePath = TEST_PATH;
         private final Class<?> classToDetermineFile;
 
         public RangeExtractor(Class<?> classToDetermineFile) {
@@ -119,7 +124,7 @@ public class CodeExtractor {
         protected String extract(NodeWithRange<?> n) {
             final int firstLine = n.getBegin().get().line;
             final int lastLine = n.getEnd().get().line;
-            final Path filePath = sourcePath.resolve(DocPath.toPath(classToDetermineFile));
+            final Path filePath = sourcePath.resolve(CodePath.toPath(classToDetermineFile));
             return CodeExtractor.extractFromFile(filePath, firstLine, lastLine);
 
             // With parser, some comments disappeared and code is reformatted.
@@ -135,7 +140,7 @@ public class CodeExtractor {
     }
 
     public static String enumSource(Class<?> classToIdentifySourceFile, Class<?> enumToExtract) {
-        final ParserCode parserCode = new ParserCode(Config.TEST_PATH);
+        final ParserCode parserCode = new ParserCode(TEST_PATH);
         return parserCode.source(classToIdentifySourceFile, enumToExtract);
     }
 
@@ -183,7 +188,7 @@ public class CodeExtractor {
         private CompilationUnit getCompilationUnit(Class<?> classToDetermineFile) {
             CompilationUnit cu = sourceRoot.parse(
                     classToDetermineFile.getPackage().getName(),
-                    DocPath.toFile(classToDetermineFile).toString());
+                    CodePath.toFile(classToDetermineFile).toString());
             return cu;
         }
 
@@ -191,17 +196,17 @@ public class CodeExtractor {
 
     public static String classSource(Class<?> classToIdentifySourceFile, Class<?> classToExtract) {
 
-        final ParserCode parserCode = new ParserCode(Config.TEST_PATH);
+        final ParserCode parserCode = new ParserCode(TEST_PATH);
         return parserCode.source(classToIdentifySourceFile, classToExtract);
     }
 
     public static String methodSource(Method methodToExtract) {
-        final ParserCode parserCode = new ParserCode(Config.TEST_PATH);
+        final ParserCode parserCode = new ParserCode(TEST_PATH);
         return parserCode.source(methodToExtract);
     }
 
     public static String methodSource(Class<?> classToExtract, String methodToExtract) {
-        final ParserCode parserCode = new ParserCode(Config.TEST_PATH);
+        final ParserCode parserCode = new ParserCode(TEST_PATH);
         return parserCode.source(classToExtract, methodToExtract);
     }
 
