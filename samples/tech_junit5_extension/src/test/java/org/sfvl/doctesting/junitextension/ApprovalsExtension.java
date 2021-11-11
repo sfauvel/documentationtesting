@@ -6,7 +6,7 @@ import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.sfvl.doctesting.utils.DocPath;
-import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.writer.DocWriter;
 import org.sfvl.doctesting.utils.PathProvider;
 
 import java.io.File;

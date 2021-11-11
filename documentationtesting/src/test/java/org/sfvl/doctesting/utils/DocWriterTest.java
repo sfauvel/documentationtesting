@@ -11,6 +11,7 @@ import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.doctesting.writer.DocWriter;
 import org.sfvl.samples.*;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
 

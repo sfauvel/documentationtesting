@@ -9,6 +9,7 @@ import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.sample.*;
+import org.sfvl.doctesting.writer.DocWriter;
 
 import java.io.IOException;
 import java.lang.reflect.Method;

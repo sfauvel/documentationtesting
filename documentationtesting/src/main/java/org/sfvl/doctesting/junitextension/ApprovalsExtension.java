@@ -12,7 +12,7 @@ import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
-import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.writer.DocWriter;
 import org.sfvl.doctesting.utils.PathProvider;
 
 import java.io.File;

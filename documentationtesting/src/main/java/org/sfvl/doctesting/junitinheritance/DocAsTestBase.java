@@ -7,7 +7,7 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.platform.commons.support.ModifierSupport;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
-import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.writer.DocWriter;
 import org.sfvl.doctesting.utils.PathProvider;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 

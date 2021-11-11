@@ -5,7 +5,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.writer.DocWriter;
 
 @NotIncludeToDoc
 @org.sfvl.test_tools.OnlyRunProgrammatically

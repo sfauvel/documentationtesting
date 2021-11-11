@@ -2,7 +2,7 @@ package org.sfvl.test_tools;
 
 import org.sfvl.doctesting.junitextension.HtmlPageExtension;
 import org.sfvl.doctesting.utils.DocPath;
-import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.writer.DocWriter;
 
 public class IntermediateHtmlPage extends HtmlPageExtension {
     @Override

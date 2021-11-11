@@ -15,6 +15,7 @@ import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 import org.sfvl.doctesting.utils.*;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.writer.Classes;
+import org.sfvl.doctesting.writer.DocWriter;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.lang.reflect.Method;

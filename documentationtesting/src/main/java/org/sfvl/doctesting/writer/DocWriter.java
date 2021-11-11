@@ -1,8 +1,11 @@
-package org.sfvl.doctesting.utils;
+package org.sfvl.doctesting.writer;
 
 import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.docformatter.Formatter;
-import org.sfvl.doctesting.writer.ClassDocumentation;
+import org.sfvl.doctesting.utils.ClassToDocument;
+import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.doctesting.utils.NoTitle;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
