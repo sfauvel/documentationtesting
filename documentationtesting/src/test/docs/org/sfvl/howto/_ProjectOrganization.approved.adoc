@@ -1,0 +1,6 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_howto_projectorganization]
+= Project organization
+
+include::_ProjectOrganization.package_dependencies.approved.adoc[leveloffset=+1]

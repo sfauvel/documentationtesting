@@ -1,0 +1,21 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+:stylesdir: {ROOT_PATH}/../resources/styles
+:toc: left
+:nofooter:
+:stem:
+:source-highlighter: rouge
+:rouge-style: thankful_eyes
+:toclevels: 4
+
+include::_ProjectOrganization.approved.adoc[]
+
+[subs=attributes+]
+++++
+include::{stylesdir}/logo.adoc[]
+<style>
+include::{stylesdir}/documentation.css[]
+</style>
+<script type="text/javascript">
+include::{stylesdir}/documentation.js[]
+</script>
+++++
