@@ -1,6 +1,5 @@
 package org.sfvl.codeextraction;
 
-import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
 
@@ -16,15 +15,12 @@ import java.util.stream.Stream;
  * It's help to find in project classes that match some criteria.
  */
 public class ClassFinder {
-    public List<Class<?>> testClasses(Package packageToScan) {
-        return testClasses(packageToScan, m -> true);
+
+    public List<Class<?>> classesWithAnnotatedMethod(Package packageToScan, Class<? extends Annotation> annotation) {
+        return classesWithAnnotatedMethod(packageToScan, annotation, m -> true);
     }
 
-    public List<Class<?>> testClasses(Package packageToScan, Predicate<Method> methodFilter) {
-        return annotatedClasses(packageToScan, methodFilter, Test.class);
-    }
-
-    private List<Class<?>> annotatedClasses(Package packageToScan, Predicate<Method> methodFilter, Class<? extends Annotation> annotation) {
+    public List<Class<?>> classesWithAnnotatedMethod(Package packageToScan, Class<? extends Annotation> annotation, Predicate<Method> methodFilter) {
         final String prefix = packageToScan.getName();
 
         Reflections reflections = new Reflections(prefix, new MethodAnnotationsScanner());

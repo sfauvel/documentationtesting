@@ -26,8 +26,9 @@ public class ClassFinderTest {
     @Test
     public void find_test_classes_in_a_package(TestInfo testInfo) {
         // >>>
-        List<Class<?>> classes = new ClassFinder()
-                .testClasses(org.sfvl.doctesting.sample.SimpleClass.class.getPackage());
+        List<Class<?>> classes = new ClassFinder().classesWithAnnotatedMethod(
+                org.sfvl.doctesting.sample.SimpleClass.class.getPackage(),
+                Test.class);
         // <<<
 
         final String classesFound = classes.stream()
@@ -52,9 +53,10 @@ public class ClassFinderTest {
     @DisplayName("Find test classes in a package with a filter")
     public void find_test_classes_in_a_package_with_filter(TestInfo testInfo) {
         // >>>
-        List<Class<?>> classes = new ClassFinder()
-                .testClasses(org.sfvl.doctesting.sample.SimpleClass.class.getPackage(),
-                        m -> !m.getDeclaringClass().getSimpleName().startsWith("Second"));
+        List<Class<?>> classes = new ClassFinder().classesWithAnnotatedMethod(
+                org.sfvl.doctesting.sample.SimpleClass.class.getPackage(),
+                Test.class,
+                m -> !m.getDeclaringClass().getSimpleName().startsWith("Second"));
         // <<<
 
         final String classesFound = classes.stream()

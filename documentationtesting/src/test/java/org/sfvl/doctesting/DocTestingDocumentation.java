@@ -80,8 +80,7 @@ public class DocTestingDocumentation {
     }
 
     private List<Class<?>> getClassesToDocument() {
-        final List<Class<?>> classes = classFinder.testClasses(DocTestingDocumentation.class.getPackage(),
-                this::toBeInclude);
+        final List<Class<?>> classes = classFinder.classesWithAnnotatedMethod(DocTestingDocumentation.class.getPackage(), Test.class, this::toBeInclude);
         classes.remove(this.getClass());
         return classes;
     }

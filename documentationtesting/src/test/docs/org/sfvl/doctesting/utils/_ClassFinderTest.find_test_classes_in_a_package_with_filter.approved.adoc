@@ -12,9 +12,10 @@ Here, we exclude all method in a class with name starting by 'Second'.
 
 [source,java,indent=0]
 ----
-        List<Class<?>> classes = new ClassFinder()
-                .testClasses(org.sfvl.doctesting.sample.SimpleClass.class.getPackage(),
-                        m -> !m.getDeclaringClass().getSimpleName().startsWith("Second"));
+        List<Class<?>> classes = new ClassFinder().classesWithAnnotatedMethod(
+                org.sfvl.doctesting.sample.SimpleClass.class.getPackage(),
+                Test.class,
+                m -> !m.getDeclaringClass().getSimpleName().startsWith("Second"));
 
 ----
 

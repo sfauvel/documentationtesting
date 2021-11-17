@@ -1,5 +1,6 @@
 package org.sfvl.doctesting.demo;
 
+import org.junit.jupiter.api.Test;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.codeextraction.ClassFinder;
@@ -59,7 +60,7 @@ public abstract class DemoDocumentation implements DocumentProducer {
                 getContent(),
                 new Classes(formatter).includeClasses(
                         docRootPath,
-                        new ClassFinder().testClasses(this.getClass().getPackage())
+                        new ClassFinder().classesWithAnnotatedMethod(this.getClass().getPackage(), Test.class)
                 )
         );
     }

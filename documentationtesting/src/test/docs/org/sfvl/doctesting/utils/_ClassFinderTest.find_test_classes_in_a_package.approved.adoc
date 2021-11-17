@@ -7,8 +7,9 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [source,java,indent=0]
 ----
-        List<Class<?>> classes = new ClassFinder()
-                .testClasses(org.sfvl.doctesting.sample.SimpleClass.class.getPackage());
+        List<Class<?>> classes = new ClassFinder().classesWithAnnotatedMethod(
+                org.sfvl.doctesting.sample.SimpleClass.class.getPackage(),
+                Test.class);
 
 ----
 
