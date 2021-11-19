@@ -11,8 +11,10 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 import org.sfvl.codeextraction.CodePath;
+import org.sfvl.doctesting.demo.DemoDocumentation;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 
@@ -67,6 +69,8 @@ public class ProjectOrganization {
         Reflections reflections = new Reflections("org/sfvl", new SubTypesScanner(false));
         final List<File> sourceFiles = reflections.getAllTypes().stream()
                 .map(this::toClass)
+                .filter(c -> c.getPackage() != DemoDocumentation.class.getPackage())
+                .filter(c -> c.getPackage() != ApprovalsBase.class.getPackage())
                 .map(this::toSourceFile)
                 .distinct()
                 .filter(File::isFile)
@@ -193,9 +197,13 @@ public class ProjectOrganization {
                         .collect(Collectors.joining("\n* ", "\n* ", "\n")),
                 "The graph below shows which libraries is used in demos.",
 
-                graphvizGenerator.generate(
-                        String.join("\n", "node [style=filled]", allNodes),
-                        packages)
+//                graphvizGenerator.generate(
+//                        String.join("\n", "node [style=filled]", allNodes),
+//                        packages)
+
+                graphvizGenerator.generate("   rankdir=TD;\n" +
+                        "    node [margin=0.1 fontcolor=black fontsize=16 width=0.5 shape=rect style=filled]",
+                        "")
         );
 
         doc.write(graph);
