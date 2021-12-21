@@ -40,33 +40,19 @@ public class GameOfLifeTest extends ApprovalsBase {
     @Test
     public void stay_alive_when_2_neighbours() throws IOException {
         nextGenerationOf(
-                "000",
-                "111",
-                "000"
+                "001",
+                "010",
+                "100"
         );
     }
 
     @Test
     public void becomes_alive_when_3_neighbours() throws IOException {
-
-        nextGenerationOf(
-                "111",
-                "000",
-                "000"
-        );
-        write_wrap();
-        nextGenerationOf(
-                "001",
-                "001",
-                "001"
-        );
-        write_wrap();
         nextGenerationOf(
                 "101",
                 "000",
                 "100"
         );
-
     }
 
     private void nextGenerationOf(String... lines) throws IOException {
@@ -76,7 +62,15 @@ public class GameOfLifeTest extends ApprovalsBase {
         gameOfLife.nexGeneration();
 
         List<String> linesNextGeneration = Arrays.asList("   ", "   ", "   ");
-        linesNextGeneration.set(1, " " + (gameOfLife.getAlive(1, 1) ? "1" : "0") + " ");
+        for (int line=0; line<3; line++) {
+
+            linesNextGeneration.set(line,
+                    (gameOfLife.getAlive(line, 0) ? "1" : "0") +
+                    (gameOfLife.getAlive(line, 1) ? "1" : "0") +
+                    (gameOfLife.getAlive(line, 2) ? "1" : "0")
+            );
+
+        }
         writeNextGeneration(lines, linesNextGeneration);
     }
 
@@ -100,15 +94,6 @@ public class GameOfLifeTest extends ApprovalsBase {
                 "| [] ",
                 "*",
                 "|====");
-    }
-
-    private void write_wrap() {
-        write( "[.wrap-line]",
-                "--",
-                "&nbsp;",
-                "--",
-                "",
-                "");
     }
 
     private GameOfLife textToGameOfLife(String[] lines) {

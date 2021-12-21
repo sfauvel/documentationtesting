@@ -10,17 +10,17 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 *
 | [.dead]
 *
-| [.dead]
-*
-
-| [.alive]
-*
-| [.alive]
-*
 | [.alive]
 *
 
 | [.dead]
+*
+| [.alive]
+*
+| [.dead]
+*
+
+| [.alive]
 *
 | [.dead]
 *
@@ -41,25 +41,25 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 [.gameOfLife.inline]
 [%autowidth,cols="3*a"]
 |====
-| []
+| [.dead]
 *
-| []
+| [.dead]
 *
-| []
+| [.dead]
 *
 
-| []
+| [.dead]
 *
 | [.alive]
 *
-| []
+| [.dead]
 *
 
-| []
+| [.dead]
 *
-| []
+| [.dead]
 *
-| []
+| [.dead]
 *
 
 |====
