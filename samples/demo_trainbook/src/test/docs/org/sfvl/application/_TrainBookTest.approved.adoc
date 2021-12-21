@@ -1,0 +1,20 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_application_trainbooktest]
+= Book train ticket
+
+Train tickets can be booked in advance, though we do reserve some
+capacity in each coach for people who have tickets but didn't
+reserve a seat.
+
+From link:https://cucumber.io/blog/open-source/announcing-cucumber-ruby-4-0-0rc2/[Gherkin Rules and Examples].
+
+[#org_sfvl_application_trainbooktest_max_70_percent]
+== Max 70% of entire train can be booked
+
+This allows people who show up just before the train leaves
+to get a seat.
+
+include::_TrainBookTest.Max_70_percent.train_is_too_full_to_place_a_group.approved.adoc[leveloffset=+2]
+
+include::_TrainBookTest.Max_70_percent.train_has_enough_space_left.approved.adoc[leveloffset=+2]
