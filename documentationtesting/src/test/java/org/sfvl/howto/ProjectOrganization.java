@@ -21,6 +21,7 @@ import org.sfvl.test_tools.IntermediateHtmlPage;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -61,9 +62,9 @@ public class ProjectOrganization {
                 .orElse(null);
     }
 
-    @Test
+    //@Test
     @Disabled
-    public void package_dependencies() throws ClassNotFoundException {
+    public void package_dependencies_XXX() throws ClassNotFoundException {
         SourceRoot sourceRoot = new SourceRoot(Paths.get("src/main/java"));
 
         Reflections reflections = new Reflections("org/sfvl", new SubTypesScanner(false));
@@ -79,7 +80,6 @@ public class ProjectOrganization {
         doc.write(sourceFiles.stream()
                 .map(File::getPath)
                 .collect(Collectors.joining("\n")));
-
 
         Map<String, List<String>> importsByClasses = new HashMap<>();
 
@@ -103,6 +103,7 @@ public class ProjectOrganization {
 
             System.out.println("ProjectOrganization.package_dependencies " + path);
             System.out.println("    => " + packagePath + " - " + fileName);
+            System.out.println("    parse => " + packagePath.replaceAll("/", ".") + " - " + fileName);
             CompilationUnit cu = sourceRoot.parse(packagePath.replaceAll("/", "."), fileName);
 
             final List<String> imports = new ArrayList<>();
@@ -137,8 +138,8 @@ public class ProjectOrganization {
 
             return importsInClass.map(e ->
                     new GraphvizGenerator.Link(
-                            "\"" + classListEntry.getKey().replaceAll("\\.[A-Z].*", "") + "\"",
-                            "\"" + e.replaceAll("\\.[A-Z].*", "") + "\""
+                            toKeyGraphNode(classListEntry.getKey()),
+                            toKeyGraphNode(e)
                     )
             );
         });
@@ -202,7 +203,7 @@ public class ProjectOrganization {
 //                        packages)
 
                 graphvizGenerator.generate("   rankdir=TD;\n" +
-                        "    node [margin=0.1 fontcolor=black fontsize=16 width=0.5 shape=rect style=filled]",
+                                "    node [margin=0.1 fontcolor=black fontsize=16 width=0.5 shape=rect style=filled]",
                         "")
         );
 
@@ -220,6 +221,74 @@ public class ProjectOrganization {
 //            }
 ////            Map<Class<?>, List<String>> demoClasses = findDemoClasses().stream().collect(Collectors.toMap(a -> a, a -> new ArrayList()));
 
+    }
+
+
+    @Test
+    public void package_dependencies() throws ClassNotFoundException {
+        SourceRoot sourceRoot = new SourceRoot(Paths.get("src/main/java"));
+
+        Reflections reflections = new Reflections("org/sfvl", new SubTypesScanner(false));
+
+        final List<Class> classesToAnalysis = reflections.getAllTypes().stream()
+                .map(this::toClass)
+                .filter(c -> c.getPackage() != DemoDocumentation.class.getPackage())
+                .filter(c -> c.getPackage() != ApprovalsBase.class.getPackage())
+                .filter(this::isTopLevelClass)
+                .filter(c -> toSourceFile(c).isFile())
+                .collect(Collectors.toList());
+
+        final Map<String, List<String>> importsByClasses = classesToAnalysis.stream()
+                .collect(Collectors.toMap(Class::getName,
+                        clazz -> extractImports(sourceRoot, clazz, imp -> imp.startsWith("org.sfvl"))));
+
+        GraphvizGenerator graphvizGenerator = new GraphvizGenerator()
+                .rankDir(GraphvizGenerator.RankDir.TopDown);
+
+        importsByClasses.entrySet().stream()
+                .flatMap(classListEntry -> {
+                    Stream<String> importsInClass = classListEntry.getValue().stream()
+                            .filter(Objects::nonNull);
+
+                    return importsInClass.map(e1 ->
+                            new GraphvizGenerator.Link(
+                                    toKeyGraphNode(classListEntry.getKey()),
+                                    toKeyGraphNode(e1)
+                            )
+                    );
+                }).forEach(graphvizGenerator::addLink);
+
+        final String graph = String.join("\n",
+                "The graph below shows dependencies between packages in the project.",
+
+                graphvizGenerator.generate("node [margin=0.1 fontcolor=black fontsize=16 width=0.5 shape=rect style=filled]",
+                        "")
+        );
+
+        doc.write(graph);
+
+    }
+
+    private boolean isTopLevelClass(Class<?> c) {
+        return !c.isAnonymousClass() && !c.isMemberClass() && !c.isLocalClass();
+    }
+
+    private List<String> extractImports(SourceRoot sourceRoot, Class clazz, Predicate<String> importFilter) {
+        return extractImports(sourceRoot, clazz).stream().filter(importFilter).collect(Collectors.toList());
+    }
+
+    private List<String> extractImports(SourceRoot sourceRoot, Class clazz) {
+        final Package aPackage = clazz.getPackage();
+        final File file = toSourceFile(clazz);
+        CompilationUnit cu = sourceRoot.parse(aPackage.getName(), file.getName());
+
+        final List<String> imports = new ArrayList<>();
+        cu.accept(importVisitor, imports);
+        return imports;
+    }
+
+    private String toKeyGraphNode(String e) {
+        return "\"" + e.replaceAll("\\.[A-Z].*", "") + "\"";
     }
 
 
