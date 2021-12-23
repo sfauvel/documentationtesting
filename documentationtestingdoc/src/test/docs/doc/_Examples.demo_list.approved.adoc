@@ -35,3 +35,6 @@ It allows to give ideas on different ways of presenting information
 
 
  * link:{ROOT_PATH}/../demo_tennis/index.html[demo_tennis]: Tennis score display in a readable board. 
+
+
+ * link:{ROOT_PATH}/../demo_trainbook/index.html[demo_trainbook]: Classical train book exercise used in example mapping presentation. 
