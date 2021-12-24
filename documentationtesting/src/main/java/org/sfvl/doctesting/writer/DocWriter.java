@@ -2,7 +2,6 @@ package org.sfvl.doctesting.writer;
 
 import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.docformatter.Formatter;
-import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.utils.ClassToDocument;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
@@ -77,7 +76,7 @@ public class DocWriter<F extends Formatter> {
     }
 
     public String formatOutput(Class<?> clazz) {
-        final ClassDocumentation classDocumentation = new ClassDocumentation(new AsciidocFormatter()) {
+        final ClassDocumentation classDocumentation = new ClassDocumentation(formatter) {
             protected Optional<String> relatedClassDescription(Class<?> fromClass) {
                 return Optional.ofNullable(fromClass.getAnnotation(ClassToDocument.class))
                         .map(ClassToDocument::clazz)
