@@ -8,7 +8,7 @@ We can define the title level.
 .Code used
 [source,java,indent=0]
 ----
-        final ClassDocumentation defaultDocumentation = new ClassDocumentation();
+        final ClassDocumentation defaultDocumentation = new ClassDocumentation(new AsciidocFormatter());
 
         final String defaultContent = defaultDocumentation.getClassDocumentation(
                 InMainDocTest.class,

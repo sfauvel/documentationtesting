@@ -34,9 +34,11 @@ class ClassDocumentationTest {
     public void default_class_documentation(TestInfo testInfo) throws IOException {
 
         // >>>
-        final ClassDocumentation defaultDocumentation = new ClassDocumentation();
+        final ClassDocumentation defaultDocumentation = new ClassDocumentation(
+                new AsciidocFormatter()                                          // <1>
+        );
         final String defaultContent = defaultDocumentation.getClassDocumentation(
-                InMainDocTest.class                                              // <1>
+                InMainDocTest.class                                              // <2>
         );
         // <<<
 
@@ -52,7 +54,8 @@ class ClassDocumentationTest {
                         .source(CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get()))
                         .build(),
                 "",
-                "<1> Class to document",
+                "<1> Formatter to use",
+                "<2> Class to document",
                 "");
 
         doc.write("",
@@ -81,7 +84,7 @@ class ClassDocumentationTest {
     public void title_level(TestInfo testInfo) throws IOException {
 
         // >>>
-        final ClassDocumentation defaultDocumentation = new ClassDocumentation();
+        final ClassDocumentation defaultDocumentation = new ClassDocumentation(new AsciidocFormatter());
 
         final String defaultContent = defaultDocumentation.getClassDocumentation(
                 InMainDocTest.class,
@@ -114,9 +117,9 @@ class ClassDocumentationTest {
     @Test
     public void customize_output(TestInfo testInfo) {
 
-        final ClassDocumentation defaultDocumentation = new ClassDocumentation();
+        final ClassDocumentation defaultDocumentation = new ClassDocumentation(new AsciidocFormatter());
 
-        final ClassDocumentation customDocumentation = new ClassDocumentation() {
+        final ClassDocumentation customDocumentation = new ClassDocumentation(new AsciidocFormatter()) {
 
             // >>>1
             @Override
@@ -162,7 +165,7 @@ class ClassDocumentationTest {
     public void nested_class_documentation(TestInfo testInfo) throws IOException {
 
         // >>>
-        final ClassDocumentation defaultDocumentation = new ClassDocumentation();
+        final ClassDocumentation defaultDocumentation = new ClassDocumentation(new AsciidocFormatter());
 
         final Class<?> testClass = ClassDocumentationTest_DemoNestedTest.class;
         final String defaultContent = defaultDocumentation.getClassDocumentation(testClass);

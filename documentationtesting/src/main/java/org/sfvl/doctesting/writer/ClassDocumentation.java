@@ -4,9 +4,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.sfvl.codeextraction.CodeExtractor;
-import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
-import org.sfvl.doctesting.utils.*;
+import org.sfvl.doctesting.utils.ClassesOrder;
+import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.doctesting.utils.PathProvider;
 
 import java.lang.reflect.Method;
 import java.nio.file.Path;
@@ -30,9 +31,9 @@ public class ClassDocumentation {
     private final Predicate<Method> methodFilter;
     private final Predicate<Class> classFilter;
 
-    public ClassDocumentation() {
+    public ClassDocumentation(Formatter formatter) {
         this(
-                new AsciidocFormatter(),
+                formatter,
                 m -> Paths.get(new DocPath(m).approved().filename()),
                 m -> m.isAnnotationPresent(Test.class),
                 c -> c.isAnnotationPresent(Nested.class)

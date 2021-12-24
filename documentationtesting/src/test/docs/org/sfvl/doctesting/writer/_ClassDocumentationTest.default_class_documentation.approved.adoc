@@ -8,14 +8,17 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 .Code used
 [source,java,indent=0]
 ----
-        final ClassDocumentation defaultDocumentation = new ClassDocumentation();
+        final ClassDocumentation defaultDocumentation = new ClassDocumentation(
+                new AsciidocFormatter()                                          // <1>
+        );
         final String defaultContent = defaultDocumentation.getClassDocumentation(
-                InMainDocTest.class                                              // <1>
+                InMainDocTest.class                                              // <2>
         );
 
 ----
 
-<1> Class to document
+<1> Formatter to use
+<2> Class to document
 
 .Document generated
 [source,indent=0]

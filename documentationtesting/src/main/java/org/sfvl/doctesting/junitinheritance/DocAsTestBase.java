@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.platform.commons.support.ModifierSupport;
 import org.sfvl.codeextraction.CodeExtractor;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.writer.DocWriter;
@@ -43,7 +44,7 @@ public abstract class DocAsTestBase {
         if (isNestedClass(clazz)) {
             return;
         }
-        final ClassDocumentation classDocumentation = new ClassDocumentation();
+        final ClassDocumentation classDocumentation = new ClassDocumentation(new AsciidocFormatter());
         final String content = classDocumentation.getClassDocumentation(clazz);
 
         final Path docFilePath = new DocPath(clazz).approved().path();
