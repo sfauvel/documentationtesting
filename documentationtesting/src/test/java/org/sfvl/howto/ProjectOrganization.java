@@ -227,8 +227,9 @@ public class ProjectOrganization {
     @Test
     public void package_dependencies() throws ClassNotFoundException {
         SourceRoot sourceRoot = new SourceRoot(Paths.get("src/main/java"));
+        final List<String> starting_package = Arrays.asList("org", "sfvl");
 
-        Reflections reflections = new Reflections("org/sfvl", new SubTypesScanner(false));
+        Reflections reflections = new Reflections(String.join("/", starting_package), new SubTypesScanner(false));
 
         final List<Class> classesToAnalysis = reflections.getAllTypes().stream()
                 .map(this::toClass)
@@ -240,7 +241,7 @@ public class ProjectOrganization {
 
         final Map<String, List<String>> importsByClasses = classesToAnalysis.stream()
                 .collect(Collectors.toMap(Class::getName,
-                        clazz -> extractImports(sourceRoot, clazz, imp -> imp.startsWith("org.sfvl"))));
+                        clazz -> extractImports(sourceRoot, clazz, imp -> imp.startsWith(String.join(".", starting_package)))));
 
         GraphvizGenerator graphvizGenerator = new GraphvizGenerator()
                 .rankDir(GraphvizGenerator.RankDir.TopDown);
@@ -258,10 +259,24 @@ public class ProjectOrganization {
                     );
                 }).forEach(graphvizGenerator::addLink);
 
+        final Set<Package> packages = classesToAnalysis.stream().map(Class::getPackage).collect(Collectors.toSet());
+        final Map<String, List<Package>> grouped_packages = packages.stream().collect(Collectors.groupingBy(p -> p.getName().split("\\.")[starting_package.size()]));
+
+        String clusters = "";
+        for (Map.Entry<String, List<Package>> packageEntry : grouped_packages.entrySet()) {
+            clusters += "subgraph cluster_" + packageEntry.getKey() + "{\n";
+            clusters += packageEntry.getValue().stream()
+                    .map(Package::getName)
+                    .map(name -> "    \"" + name + "\"")
+                    .collect(Collectors.joining("\n"));
+            clusters += "\n}\n";
+        }
+
         final String graph = String.join("\n",
                 "The graph below shows dependencies between packages in the project.",
 
-                graphvizGenerator.generate("node [margin=0.1 fontcolor=black fontsize=16 width=0.5 shape=rect style=filled]",
+                graphvizGenerator.generate("node [margin=0.1 fontcolor=black fontsize=16 width=0.5 shape=rect style=filled]\n" +
+                        clusters,
                         "")
         );
 
