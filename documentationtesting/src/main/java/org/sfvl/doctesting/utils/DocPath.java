@@ -5,6 +5,7 @@ import org.sfvl.codeextraction.CodePath;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * One of the essential points to create a documentation, is links between files.
@@ -30,6 +31,10 @@ public class DocPath {
 
     public DocPath(Package classPackage, String name) {
         this(CodePath.toPath(classPackage), name);
+    }
+
+    public DocPath(String name) {
+        this(Paths.get(""), name);
     }
 
     public DocPath(Path packagePath, String name) {

@@ -25,10 +25,9 @@ public class KnownIssues {
     @Test
     @NoTitle
     public void knownIssues() {
-        final OnePath docPath = new DocPath(Paths.get(""), "knownIssues").resource();
-        final Path from = docPath.from(new DocPath(this.getClass()).approved());
+        final Path path = new DocPath("knownIssues").resource().from(this.getClass());
 
-        doc.write(formatter.include(DocPath.toAsciiDoc(from), 1));
+        doc.write(formatter.include(DocPath.toAsciiDoc(path), 1));
     }
 
 }

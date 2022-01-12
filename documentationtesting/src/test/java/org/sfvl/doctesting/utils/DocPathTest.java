@@ -1,14 +1,12 @@
 package org.sfvl.doctesting.utils;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.sfvl.codeextraction.CodeExtractor;
-import org.sfvl.codeextraction.CodePath;
 import org.sfvl.codeextraction.MethodReference;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
@@ -20,8 +18,10 @@ import org.sfvl.samples.MyTest;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @ClassToDocument(clazz = DocPath.class)
 @DisplayName(value = "Document path")
@@ -229,9 +229,74 @@ public class DocPathTest {
                 String.format("*asciiDocPath = %s*", asciiDocPath));
     }
 
+    @Test
+    public void build_a_path() {
+
+        doc.write("You can create a " + DocPath.class.getSimpleName() + " using one of the constructor available.", "");
+
+        final Map<String, List<CodeAndResult<DocPath>>> codeByResult = groupCodeByResult(Arrays.asList(
+                        // >>>0
+                        new DocPath(DocPathTest.class)
+                        // <<<0
+                        ,
+                        // >>>1
+                        new DocPath(DocPathTest.class.getPackage(), "DocPathTest")
+                        // <<<1
+                        ,
+                        // >>>2
+                        new DocPath(Paths.get("org", "sfvl", "doctesting", "utils"), "DocPathTest")
+                        // <<<2
+                        ,
+                        // >>>3
+                        new DocPath(Paths.get(""), "DocPathTest")
+                        // <<<3
+                        ,
+                        // >>>4
+                        new DocPath("DocPathTest")
+                        // <<<4
+                ),
+                MethodReference.getMethod(DocPathTest::build_a_path),
+                doc -> doc.approved().path().toString());
+
+        String separator = "";
+        for (Map.Entry<String, List<CodeAndResult<DocPath>>> resultAndCodes : codeByResult.entrySet()) {
+            doc.write(separator, "With one of this code:", "");
+            for (CodeAndResult codes : resultAndCodes.getValue()) {
+                doc.write(formatter.sourceCode(codes.code), "");
+            }
+            doc.write("Approved file is: ", formatter.sourceCode(DocPath.toAsciiDoc(Paths.get(resultAndCodes.getKey()))));
+            separator = "\n---\n";
+        }
+    }
+
+    class CodeAndResult<R> {
+        String code;
+        R result;
+
+        public CodeAndResult(String code, R result) {
+            this.code = code;
+            this.result = result;
+        }
+    }
+
+    private <R> Map<String, List<CodeAndResult<R>>> groupCodeByResult(List<R> results, Method method) {
+        return groupCodeByResult(results, method, Object::toString);
+    }
+
+    private <R> Map<String, List<CodeAndResult<R>>> groupCodeByResult(List<R> results, Method method, Function<R, String> buildGroupKey) {
+        Function<Integer, CodeAndResult<R>> buildCodeAndResult =  index -> new CodeAndResult(
+                CodeExtractor.extractPartOfMethod(method, index.toString()),
+                results.get(index));
+
+        return IntStream.range(0, results.size())
+                .mapToObj(index -> buildCodeAndResult.apply(index))
+                .collect(Collectors.groupingBy(x -> buildGroupKey.apply(x.result)));
+    }
+
     class CallsRecorder<T extends Object> implements Answer<T> {
         String lastCall = "";
         Method lastMethod = null;
+
         @Override
         public T answer(InvocationOnMock a) throws Throwable {
             final Object result = a.callRealMethod();
