@@ -20,8 +20,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @ClassToDocument(clazz = DocPath.class)
 @DisplayName(value = "Document path")
@@ -234,7 +232,8 @@ public class DocPathTest {
 
         doc.write("You can create a " + DocPath.class.getSimpleName() + " using one of the constructor available.", "");
 
-        final Map<String, List<CodeAndResult<DocPath>>> codeByResult = groupCodeByResult(Arrays.asList(
+
+        final Map<String, List<String>> codeByResult = CodeExtractor.groupCodeByResult(MethodReference.getMethod(DocPathTest::build_a_path), v -> v.approved().path().toString(), Arrays.asList(
                         // >>>0
                         new DocPath(DocPathTest.class)
                         // <<<0
@@ -254,43 +253,20 @@ public class DocPathTest {
                         // >>>4
                         new DocPath("DocPathTest")
                         // <<<4
-                ),
-                MethodReference.getMethod(DocPathTest::build_a_path),
-                doc -> doc.approved().path().toString());
+                )
+        );
+
 
         String separator = "";
-        for (Map.Entry<String, List<CodeAndResult<DocPath>>> resultAndCodes : codeByResult.entrySet()) {
+        for (Map.Entry<String, List<String>> resultAndCodes : codeByResult.entrySet()) {
             doc.write(separator, "With one of this code:", "");
-            for (CodeAndResult codes : resultAndCodes.getValue()) {
-                doc.write(formatter.sourceCode(codes.code), "");
+            for (String code : resultAndCodes.getValue()) {
+                doc.write(formatter.sourceCode(code), "");
             }
             doc.write("Approved file is: ", formatter.sourceCode(DocPath.toAsciiDoc(Paths.get(resultAndCodes.getKey()))));
             separator = "\n---\n";
         }
-    }
 
-    class CodeAndResult<R> {
-        String code;
-        R result;
-
-        public CodeAndResult(String code, R result) {
-            this.code = code;
-            this.result = result;
-        }
-    }
-
-    private <R> Map<String, List<CodeAndResult<R>>> groupCodeByResult(List<R> results, Method method) {
-        return groupCodeByResult(results, method, Object::toString);
-    }
-
-    private <R> Map<String, List<CodeAndResult<R>>> groupCodeByResult(List<R> results, Method method, Function<R, String> buildGroupKey) {
-        Function<Integer, CodeAndResult<R>> buildCodeAndResult =  index -> new CodeAndResult(
-                CodeExtractor.extractPartOfMethod(method, index.toString()),
-                results.get(index));
-
-        return IntStream.range(0, results.size())
-                .mapToObj(index -> buildCodeAndResult.apply(index))
-                .collect(Collectors.groupingBy(x -> buildGroupKey.apply(x.result)));
     }
 
     class CallsRecorder<T extends Object> implements Answer<T> {

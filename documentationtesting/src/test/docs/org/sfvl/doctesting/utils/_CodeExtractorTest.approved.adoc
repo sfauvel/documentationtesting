@@ -46,3 +46,12 @@ include::_CodeExtractorTest.ExtractComment.extract_method_comment.approved.adoc[
 include::_CodeExtractorTest.ExtractComment.extract_enum_comment.approved.adoc[leveloffset=+2]
 
 include::_CodeExtractorTest.ExtractComment.bug_when_annotation_before_comment.approved.adoc[leveloffset=+2]
+
+[#org_sfvl_doctesting_utils_codeextractortest_groupbyresult]
+== Group by result
+
+include::_CodeExtractorTest.GroupByResult.description.approved.adoc[leveloffset=+2]
+
+include::_CodeExtractorTest.GroupByResult.applying_a_function.approved.adoc[leveloffset=+2]
+
+include::_CodeExtractorTest.GroupByResult.code_used_to_provide_a_result.approved.adoc[leveloffset=+2]

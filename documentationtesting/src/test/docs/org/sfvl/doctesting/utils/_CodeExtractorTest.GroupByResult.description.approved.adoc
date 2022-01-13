@@ -1,0 +1,20 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_codeextractortest_groupbyresult_description]
+= Description
+
+ifndef::CODE_EXTRACTOR_CSS[]
+:CODE_EXTRACTOR_CSS:
+++++
+<style>
+include::../../../../../resources/styles/code_extractor.css[]
+</style>
+++++
+endif::[]
+
+It's sometime interesting to group all values that provides the same result.
+It can be used to show several ways of doing the same thing.
+We can simply display result once with all cases that can be used to build it.
+You also can just check that we obtain the same result with different values.
+In that case, there is only one key in the result
+and you can just say that all values are the same.
