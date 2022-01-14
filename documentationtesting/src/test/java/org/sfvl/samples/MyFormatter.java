@@ -89,7 +89,7 @@ public class MyFormatter implements Formatter  {
     }
 
     @Override
-    public String link(String id) {
+    public String anchor(String id) {
         return null;
     }
 

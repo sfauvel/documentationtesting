@@ -3,11 +3,11 @@ package org.sfvl.docformatter;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.utils.ClassToDocument;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-import org.sfvl.codeextraction.CodeExtractor;
+import org.sfvl.doctesting.utils.ClassToDocument;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.io.FileWriter;
@@ -137,16 +137,21 @@ public class AsciidocFormatterTest {
         output = formatter.addDefinition("Asciidoctor", "A fast text processor & publishing toolchain for converting AsciiDoc to HTML");
     }
 
-    @Test
-    @DisplayName("Anchor")
-    public void should_format_anchorLink() {
-        output = formatter.anchorLink("AnchorExample", "This is a link to anoter place");
-    }
+    @Nested
+    class Link {
 
-    @Test
-    @DisplayName("Link")
-    public void should_format_link() {
-        output = formatter.link("AnchorExample") + "You can make an anchor to here";
+        @Test
+        @DisplayName("Link to anchor")
+        public void should_format_anchorLink() {
+            output = formatter.anchorLink("AnchorExample", "This is a link to anoter place");
+        }
+
+        @Test
+        @DisplayName("Anchor")
+        public void should_format_anchor() {
+            output = formatter.anchor("AnchorExample") + "You can make an anchor to here";
+        }
+
     }
 
     @Nested

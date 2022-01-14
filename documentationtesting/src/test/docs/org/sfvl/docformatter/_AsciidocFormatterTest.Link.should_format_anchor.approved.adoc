@@ -1,13 +1,13 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_docformatter_asciidocformattertest_should_format_link]
-= Link
+[#org_sfvl_docformatter_asciidocformattertest_link_should_format_anchor]
+= Anchor
 
 
 [red]##_Usage_##
 [source,java,indent=0]
 ----
-        output = formatter.link("AnchorExample") + "You can make an anchor to here";
+            output = formatter.anchor("AnchorExample") + "You can make an anchor to here";
 ----
 
 [red]##_Render_##

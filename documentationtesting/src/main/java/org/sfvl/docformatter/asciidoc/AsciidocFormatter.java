@@ -131,7 +131,7 @@ public class AsciidocFormatter implements Formatter {
     }
 
     @Override
-    public String link(String id) {
+    public String anchor(String id) {
         return "[[" + formatLink(id) + "]]";
     }
 

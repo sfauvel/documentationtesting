@@ -36,7 +36,7 @@ public interface Formatter {
 
     String section(String name, String message);
 
-    String link(String id);
+    String anchor(String id);
 
     String anchorLink(String id, String visibleText);
 
