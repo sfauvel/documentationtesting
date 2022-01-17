@@ -6,8 +6,7 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 To get started quickly, you can download link:https://github.com/sfauvel/TryDocAsTest[Try doc as test] project.
 It's a minimal project that is ready to use and that implements a small demo.
 
-You can alo follow steps of the link:{ROOT_PATH}/org/sfvl/howto/Tutorial.html[Get started]
- page.
+You can alo follow steps of the link:{ROOT_PATH}/org/sfvl/howto/Tutorial.html[Get started] page.
 
 You can use it on your own project alongside your existing tests.
 Both can work together without modifying your tests.

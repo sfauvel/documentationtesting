@@ -139,11 +139,22 @@ public class AsciidocFormatterTest {
 
     @Nested
     class Link {
+        @Test
+        @DisplayName("Link to page")
+        public void should_format_pageLink() {
+            output = formatter.linkToPage("AsciidocFormatterTest.html", "This is a link to a page");
+        }
 
         @Test
-        @DisplayName("Link to anchor")
+        @DisplayName("Link to page with anchor")
+        public void should_format_pageLink_with_anchor() {
+            output = formatter.linkToPage("AsciidocFormatterTest.html", "AnchorExample", "This is a link to a page");
+        }
+
+        @Test
+        @DisplayName("Link to local anchor")
         public void should_format_anchorLink() {
-            output = formatter.anchorLink("AnchorExample", "This is a link to anoter place");
+            output = formatter.linkToAnchor("AnchorExample", "This is a link to anchor in this page");
         }
 
         @Test

@@ -158,33 +158,36 @@ public class ApprovalsExtensionTest {
     }
 
     @Test
-    public void nested_class() throws IOException {
-        doc.write("Nested class can be used to organize tests.", "Each nested class create a nested title.", "");
+    public void nested_class()  {
+        try {
+            doc.write("Nested class can be used to organize tests.", "Each nested class create a nested title.", "");
 
-        final Class<?> testClass = DemoNestedTest.class;
-        doc.runTestAndWriteResultAsComment(testClass);
+            final Class<?> testClass = DemoNestedTest.class;
+            doc.runTestAndWriteResultAsComment(testClass);
 
-        doc.write("", "", ".Test example using nested class", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
+            doc.write("", "", ".Test example using nested class", extractSourceWithTag(testClass.getSimpleName(), testClass), "", "");
 
-        final Path generatedFilePath = Paths.get("", getClass().getPackage().getName().split("\\."));
-        doc.write("Generated files in `" + DocPath.toAsciiDoc(generatedFilePath) + "`:", "", Files.list(doc.getDocPath().resolve(generatedFilePath))
-                .map(file -> file.getFileName().toString())
-                .filter(filename -> filename.startsWith("_" + DemoNestedTest.class.getSimpleName() + "."))
-                .filter((filename -> filename.endsWith(".approved.adoc")))
-                .sorted()
-                .map(filename -> "* " + filename)
-                .collect(Collectors.joining("\n\n")));
+            final Path generatedFilePath = Paths.get("", getClass().getPackage().getName().split("\\."));
+            doc.write("Generated files in `" + DocPath.toAsciiDoc(generatedFilePath) + "`:", "", Files.list(doc.getDocPath().resolve(generatedFilePath))
+                    .map(file -> file.getFileName().toString())
+                    .filter(filename -> filename.startsWith("_" + DemoNestedTest.class.getSimpleName() + "."))
+                    .filter((filename -> filename.endsWith(".approved.adoc")))
+                    .sorted()
+                    .map(filename -> "* " + filename)
+                    .collect(Collectors.joining("\n\n")));
 
-        final OnePath approved = new DocPath(testClass).approved();
-        doc.write("", "", ".Document generated", "----", Files.lines(approved.path())
-                .collect(Collectors.joining("\n"))
-                .replaceAll("\\ninclude::", "\n\\\\include::"), "----");
+            final OnePath approved = new DocPath(testClass).approved();
+            doc.write("", "", ".Document generated", "----", Files.lines(approved.path())
+                    .collect(Collectors.joining("\n"))
+                    .replaceAll("\\ninclude::", "\n\\\\include::"), "----");
 
-        doc.write("", "", "_final rendering_",
-                "[.includeblock]",
-                formatter.include("_" + testClass.getSimpleName() + ".approved.adoc", 1)
-        );
-
+            doc.write("", "", "_final rendering_",
+                    "[.includeblock]",
+                    formatter.include("_" + testClass.getSimpleName() + ".approved.adoc", 1)
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test

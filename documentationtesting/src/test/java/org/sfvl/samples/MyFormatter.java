@@ -94,9 +94,15 @@ public class MyFormatter implements Formatter  {
     }
 
     @Override
-    public String anchorLink(String id, String visibleText) {
+    public String linkToAnchor(String id, String visibleText) {
         return null;
     }
+
+    @Override
+    public String linkToPage(String address, String visibleText) { return null; }
+
+    @Override
+    public String linkToPage(String address, String anchor, String visibleText) { return null; }
 
     @Override
     public String table(List<List<?>> data) {

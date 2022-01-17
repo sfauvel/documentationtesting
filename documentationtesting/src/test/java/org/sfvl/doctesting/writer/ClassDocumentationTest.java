@@ -123,7 +123,7 @@ class ClassDocumentationTest {
 
             // >>>1
             @Override
-            protected String getTestClassTitle(Class<?> classToDocument) {
+            public String getTestClassTitle(Class<?> classToDocument) {
                 return "Title from getTestClassTitle method " + classToDocument.getSimpleName();
             }
 

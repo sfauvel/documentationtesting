@@ -7,8 +7,8 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 To format text, we can use a formatter that hide technical syntax of the markup language used.
 
 .Formatter usage
-        Formatter formatter = new AsciidocFormatter();
-        final String text = formatter.listItems("Item A", "Item B", "Item C");
+            Formatter formatter = new AsciidocFormatter();
+            final String text = formatter.listItems("Item A", "Item B", "Item C");
 
 
 .Text generated
@@ -27,5 +27,4 @@ To format text, we can use a formatter that hide technical syntax of the markup 
 * Item C
 ====
 
-You can take a look at the link:{ROOT_PATH}/org/sfvl/docformatter/AsciidocFormatterTest.html[formatter's full documentation]
- to get an idea of the features available.
+You can take a look at the link:{ROOT_PATH}/org/sfvl/docformatter/AsciidocFormatterTest.html[formatter's full documentation] to get an idea of the features available.

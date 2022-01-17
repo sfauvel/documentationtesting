@@ -101,7 +101,7 @@ public class ClassDocumentation {
         return new String(new char[depth]).replace("\0", "=") + " " + getTestClassTitle(clazz);
     }
 
-    protected String getTestClassTitle(Class<?> testClass) {
+    public String getTestClassTitle(Class<?> testClass) {
         return Optional.ofNullable(testClass.getAnnotation(DisplayName.class))
                 .map(DisplayName::value)
                 .orElse(formatClassNameToTitle(testClass));

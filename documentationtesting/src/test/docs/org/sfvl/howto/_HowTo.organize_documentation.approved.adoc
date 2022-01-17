@@ -1,0 +1,21 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_howto_howto_organize_documentation]
+= Organize documentation
+
+To organize documentation, we have to consider test methods as the generator of one chapter.
+Each test will have a title by default following by text added executing it.
+Some of them show a specific behavior like any classic test.
+
+But, it's also possible to have one test that runs several cases and presents a global report of the execution.
+Even if there is a regression for one case in that test, 
+all results will be written in the document and can be compared with the reference file.
+
+We also can create a test method that just write text without code execution.
+It can be used to add general description or to minimize what it is written in a test to simplify its reuse.
+
+The final document respect the order of the method in the test file.
+We can use subclasses to create subchapter in the document (see: link:{ROOT_PATH}/org/sfvl/doctesting/junitextension/ApprovalsExtensionTest.html#org_sfvl_doctesting_junitextension_approvalsextensiontest_nested_class[Nested class])
+
+It's not necessary to follow source code organization in tests.
+Instead, organize your test packages according to the document you want to generate.
