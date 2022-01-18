@@ -917,6 +917,7 @@ public class CodeExtractorTest {
 
             doc.write("",
                     "You obtain a map with value returned by the function as key and a list of values that provides the key value.",
+                    "",
                     "");
 
             for (Map.Entry<String, List<String>> stringListEntry : stringListMap.entrySet()) {

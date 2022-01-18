@@ -23,6 +23,7 @@ endif::[]
 ----
 
 You obtain a map with value returned by the function as key and a list of values that provides the key value.
+
 *abc*: `abc`, `ABC`, `Abc`
  +
 *xyz*: `XyZ`
