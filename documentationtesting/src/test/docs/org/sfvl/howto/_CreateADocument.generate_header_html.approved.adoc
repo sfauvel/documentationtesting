@@ -14,15 +14,6 @@ Here, we create an inner class but we can use a main class to reuse it in severa
 
 [source,java,indent=0]
 ----
-package org.sfvl.samples.htmlPageHeader;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.HtmlPageExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-
 @ExtendWith(HtmlHeaderTest.HtmlPageHeaderExtension.class)
 public class HtmlHeaderTest {
     static class HtmlPageHeaderExtension extends HtmlPageExtension {

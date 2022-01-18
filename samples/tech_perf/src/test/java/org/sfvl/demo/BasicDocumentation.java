@@ -149,7 +149,7 @@ public class BasicDocumentation extends DemoDocumentation {
     }
 
     public static void generateTestDocumentation(DocAsTestBase doc) {
-        final LocalDate now = LocalDate.now();
+        final LocalDate now = LocalDate.now(Person.CLOCK);
         final int current_year = now.getYear();
         final int age = 45;
         final String firstName = "John";

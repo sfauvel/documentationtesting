@@ -1,0 +1,36 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_howto_createadocument_change_name_for_html_using_constructor]
+= Define name and path for the output file with constructor
+
+
+// Test result for HtmlNameConstructorTest: Success
+You can create an `HtmlPageExtension` giving the file name to generate.
+The name should not contain the extension.
+It will be added to the given name.
+The file is placed from the root of the project.
+It's an easy way to generate the index file of the project.
+
+.Example of class creating a named file to convert into HTML
+[source,java,indent=0]
+----
+public class HtmlNameConstructorTest {
+    @RegisterExtension
+    static final ApprovalsExtension doc = new SimpleApprovalsExtension();
+
+    static Path path = new DocPath(HtmlNameConstructorTest.class).packagePath();
+    @RegisterExtension
+    static final HtmlPageExtension page = new HtmlPageExtension(path.resolve("index").toString());
+
+    @Test
+    public void test_A() {
+        doc.write("In my *test*");
+    }
+
+}
+----
+Files in folder `src/test/docs/org/sfvl/samples/htmlPageConstructor`
+
+* _HtmlNameConstructorTest.approved.adoc
+* _HtmlNameConstructorTest.test_A.approved.adoc
+* index.adoc

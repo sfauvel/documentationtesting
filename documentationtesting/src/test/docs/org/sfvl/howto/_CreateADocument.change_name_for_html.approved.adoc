@@ -11,18 +11,6 @@ To change it, we can extending `HtmlPageExtension` and redefined name method.
 .Example of class creating a file to convert into HTML
 [source,java,indent=0]
 ----
-package org.sfvl.samples.htmlPageName;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.HtmlPageExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-import org.sfvl.doctesting.utils.DocPath;
-
-import java.nio.file.Path;
-
 @ExtendWith(HtmlNameTest.HtmlPageHeaderExtension.class)
 public class HtmlNameTest {
     static class HtmlPageHeaderExtension extends HtmlPageExtension {

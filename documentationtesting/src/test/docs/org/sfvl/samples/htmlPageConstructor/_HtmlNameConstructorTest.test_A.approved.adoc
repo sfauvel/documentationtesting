@@ -1,0 +1,6 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_samples_htmlpageconstructor_htmlnameconstructortest_test_a]
+= Test A
+
+In my *test*

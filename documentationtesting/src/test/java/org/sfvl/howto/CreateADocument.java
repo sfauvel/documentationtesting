@@ -3,6 +3,7 @@ package org.sfvl.howto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.HtmlPageExtension;
@@ -11,17 +12,16 @@ import org.sfvl.doctesting.utils.OnePath;
 import org.sfvl.samples.generateHtml.HtmlTest;
 import org.sfvl.samples.generateNestedHtml.HtmlNestedTest;
 import org.sfvl.samples.generateOnlyNestedHtml.HtmlOnlyNestedTest;
+import org.sfvl.samples.htmlPageConstructor.HtmlNameConstructorTest;
 import org.sfvl.samples.htmlPageHeader.HtmlHeaderTest;
 import org.sfvl.samples.htmlPageName.HtmlNameTest;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
 import org.sfvl.test_tools.ProjectTestExtension;
 
-import java.io.File;
-import java.io.FileFilter;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -67,10 +67,7 @@ public class CreateADocument {
         doc.removeNonApprovalFiles(docPath);
         doc.runTestAndWriteResultAsComment(testClass);
 
-        final String source = getLines(docPath.test().path())
-                .filter(line -> !line.contains(NotIncludeToDoc.class.getSimpleName()))
-                .filter(line -> !line.contains(OnlyRunProgrammatically.class.getSimpleName()))
-                .collect(Collectors.joining("\n"));
+        final String source = sourceCodeLines(testClass);
 
         final Path docFolder = docPath.approved().folder();
 
@@ -108,10 +105,7 @@ public class CreateADocument {
         doc.removeNonApprovalFiles(docPath);
         doc.runTestAndWriteResultAsComment(testClass);
 
-        final String source = getLines(docPath.test().path())
-                .filter(line -> !line.contains(NotIncludeToDoc.class.getSimpleName()))
-                .filter(line -> !line.contains(OnlyRunProgrammatically.class.getSimpleName()))
-                .collect(Collectors.joining("\n"));
+        final String source = sourceCodeLines(testClass);
 
         final Path docFolder = docPath.approved().folder();
 
@@ -142,10 +136,7 @@ public class CreateADocument {
         doc.removeNonApprovalFiles(docPath);
         doc.runTestAndWriteResultAsComment(testClass);
 
-        final String source = getLines(docPath.test().path())
-                .filter(line -> !line.contains(NotIncludeToDoc.class.getSimpleName()))
-                .filter(line -> !line.contains(OnlyRunProgrammatically.class.getSimpleName()))
-                .collect(Collectors.joining("\n"));
+        final String source = sourceCodeLines(testClass);
 
         final Path docFolder = docPath.approved().folder();
 
@@ -173,10 +164,7 @@ public class CreateADocument {
         doc.removeNonApprovalFiles(docPath);
         doc.runTestAndWriteResultAsComment(testClass);
 
-        final String source = getLines(docPath.test().path())
-                .filter(line -> !line.contains(NotIncludeToDoc.class.getSimpleName()))
-                .filter(line -> !line.contains(OnlyRunProgrammatically.class.getSimpleName()))
-                .collect(Collectors.joining("\n"));
+        final String source = sourceCodeLines(testClass);
 
         final Path path = docPath.page().path();
         final String contentOfGeneratedFile = getLines(path).collect(Collectors.joining("\n"));
@@ -205,10 +193,7 @@ public class CreateADocument {
         doc.removeNonApprovalFiles(docPath);
         doc.runTestAndWriteResultAsComment(testClass);
 
-        final String source = getLines(docPath.test().path())
-                .filter(line -> !line.contains(NotIncludeToDoc.class.getSimpleName()))
-                .filter(line -> !line.contains(OnlyRunProgrammatically.class.getSimpleName()))
-                .collect(Collectors.joining("\n"));
+        final String source = sourceCodeLines(testClass);
 
         doc.write(String.format("By default, `%s` create a file with a name coming from the class", HtmlPageExtension.class.getSimpleName()),
                 String.format("To change it, we can extending `%s` and redefined name method.", HtmlPageExtension.class.getSimpleName()),
@@ -227,8 +212,57 @@ public class CreateADocument {
         doc.write(String.format("Files in folder `%s`", DocPath.toAsciiDoc(docFolder)),
                 "",
                 filesInDocFolder);
+    }
+
+    @Test
+    @DisplayName("Define name and path for the output file with constructor")
+    public void change_name_for_html_using_constructor() {
+        final Class<?> testClass = HtmlNameConstructorTest.class;
+        final DocPath docPath = new DocPath(testClass);
+
+        doc.removeNonApprovalFiles(docPath);
+        doc.runTestAndWriteResultAsComment(testClass);
+
+        final String source = sourceCodeLines(testClass);
+//        final String source = sourceCodeLines(testClass);
+
+        doc.write(String.format("You can create an `%s` giving the file name to generate.", HtmlPageExtension.class.getSimpleName()),
+                "The name should not contain the extension.",
+                "It will be added to the given name.",
+                "The file is placed from the root of the project.",
+                "It's an easy way to generate the index file of the project.",
+                "", "");
+
+        final Path docFolder = docPath.approved().folder();
+
+        final String filesInDocFolder;
+        filesInDocFolder = getFiles(docFolder)
+                .map(f -> "* " + f.getFileName().toString())
+                .sorted()
+                .collect(Collectors.joining("\n"));
+
+        doc.write(".Example of class creating a named file to convert into HTML", formatter.sourceCodeBuilder("java").source(source).build(), "");
+
+        doc.write(String.format("Files in folder `%s`", DocPath.toAsciiDoc(docFolder)),
+                "",
+                filesInDocFolder);
 
 
+    }
+
+    private String sourceCodeLines(Class<?> testClass) {
+        return cleanSourceLines(Arrays.stream(CodeExtractor.classSource(testClass).split("\n")));
+    }
+
+    private String sourceCodeLines(DocPath docPath) {
+        return cleanSourceLines(getLines(docPath.test().path()));
+    }
+
+    private String cleanSourceLines(Stream<String> lines) {
+        return lines
+                .filter(line -> !line.contains(NotIncludeToDoc.class.getSimpleName()))
+                .filter(line -> !line.contains(OnlyRunProgrammatically.class.getSimpleName()))
+                .collect(Collectors.joining("\n"));
     }
 
     private Stream<Path> getFiles(Path docFolder) {

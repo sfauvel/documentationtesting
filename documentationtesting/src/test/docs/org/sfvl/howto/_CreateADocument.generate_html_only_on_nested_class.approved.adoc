@@ -12,16 +12,6 @@ Every methods and classes are included in the approved file for the java file.
 
 [source,java,indent=0]
 ----
-package org.sfvl.samples.generateOnlyNestedHtml;
-
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.HtmlPageExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-
 public class HtmlOnlyNestedTest {
     @RegisterExtension
     static final ApprovalsExtension doc = new SimpleApprovalsExtension();
