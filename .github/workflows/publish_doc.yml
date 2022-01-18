@@ -87,6 +87,9 @@ jobs:
         with:
           java-version: 1.8
 
+      - name: Install graphviz
+        uses: kamiazya/setup-graphviz@v1
+
       - name: Package with Maven
 #        run: mvn -B package --file documentationtesting/pom.xml
         run: |
