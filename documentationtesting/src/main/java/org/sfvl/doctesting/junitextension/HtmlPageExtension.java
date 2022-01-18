@@ -11,6 +11,16 @@ import java.nio.file.Path;
 
 public class HtmlPageExtension implements AfterAllCallback {
 
+    private String filename;
+
+    public HtmlPageExtension() {
+        this(null);
+    }
+
+    public HtmlPageExtension(String filename) {
+        this.filename = filename;
+    }
+
     @Override
     public void afterAll(ExtensionContext extensionContext) {
         generate(extensionContext.getTestClass().get());
@@ -30,6 +40,7 @@ public class HtmlPageExtension implements AfterAllCallback {
     }
 
     public Path getFilePath(Class<?> clazz) {
+        if (filename != null) return new DocPath(filename).page().path();
         return new DocPath(clazz).page().path();
     }
 

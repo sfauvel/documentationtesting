@@ -37,7 +37,7 @@ public class UsingJUnitTest {
     }
 
     public static void checkPerson() {
-        final LocalDate now = LocalDate.now();
+        final LocalDate now = LocalDate.now(Person.CLOCK);
         final int current_year = now.getYear();
         final int age = 45;
         final Person person = new Person("John", "Doe", LocalDate.of(current_year - age, 11, 23));

@@ -15,3 +15,5 @@ include::_CreateADocument.generate_html_only_on_nested_class.approved.adoc[level
 include::_CreateADocument.generate_header_html.approved.adoc[leveloffset=+1]
 
 include::_CreateADocument.change_name_for_html.approved.adoc[leveloffset=+1]
+
+include::_CreateADocument.change_name_for_html_using_constructor.approved.adoc[leveloffset=+1]

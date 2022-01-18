@@ -3,9 +3,7 @@ package org.sfvl.application;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.doctesting.utils.NoTitle;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,10 +18,13 @@ import java.util.stream.IntStream;
  * From link:https://cucumber.io/blog/open-source/announcing-cucumber-ruby-4-0-0rc2/[Gherkin Rules and Examples].
  */
 @DisplayName("Book train ticket")
-public class TrainBookTest {
+public class TrainBookTest extends DemoBaseClass {
 
-    @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    @Test
+    @NoTitle
+    public void note_demo() {
+        super.note_demo();
+    }
 
     /**
      * This allows people who show up just before the train leaves

@@ -1,8 +1,13 @@
 package org.sfvl;
 
+import java.time.Clock;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 public class Person {
+    public static Clock CLOCK = Clock.fixed(Instant.parse("2022-01-22T10:15:30.00Z"), ZoneId.of("UTC"));
+
     private String firstName;
     private String lastName;
 
@@ -15,7 +20,7 @@ public class Person {
     }
 
     public int age() {
-        return LocalDate.now().getYear()-dateOfBirth.getYear();
+        return LocalDate.now(CLOCK).getYear()-dateOfBirth.getYear();
     }
 
     @Override

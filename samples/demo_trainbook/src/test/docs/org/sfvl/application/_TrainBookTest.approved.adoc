@@ -9,6 +9,8 @@ reserve a seat.
 
 From link:https://cucumber.io/blog/open-source/announcing-cucumber-ruby-4-0-0rc2/[Gherkin Rules and Examples].
 
+include::_TrainBookTest.note_demo.approved.adoc[leveloffset=+1]
+
 [#org_sfvl_application_trainbooktest_max_70_percent]
 == Max 70% of entire train can be booked
 
