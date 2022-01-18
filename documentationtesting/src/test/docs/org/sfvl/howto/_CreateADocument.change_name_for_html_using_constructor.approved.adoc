@@ -14,17 +14,6 @@ It's an easy way to generate the index file of the project.
 .Example of class creating a named file to convert into HTML
 [source,java,indent=0]
 ----
-package org.sfvl.samples.htmlPageConstructor;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.HtmlPageExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-import org.sfvl.doctesting.utils.DocPath;
-
-import java.nio.file.Path;
-
 public class HtmlNameConstructorTest {
     @RegisterExtension
     static final ApprovalsExtension doc = new SimpleApprovalsExtension();

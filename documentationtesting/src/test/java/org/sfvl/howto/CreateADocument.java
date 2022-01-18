@@ -3,6 +3,7 @@ package org.sfvl.howto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.HtmlPageExtension;
@@ -20,6 +21,7 @@ import org.sfvl.test_tools.ProjectTestExtension;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -65,7 +67,7 @@ public class CreateADocument {
         doc.removeNonApprovalFiles(docPath);
         doc.runTestAndWriteResultAsComment(testClass);
 
-        final String source = sourceCodeLines(docPath);
+        final String source = sourceCodeLines(testClass);
 
         final Path docFolder = docPath.approved().folder();
 
@@ -94,13 +96,6 @@ public class CreateADocument {
 
     }
 
-    private String sourceCodeLines(DocPath docPath) {
-        return getLines(docPath.test().path())
-                .filter(line -> !line.contains(NotIncludeToDoc.class.getSimpleName()))
-                .filter(line -> !line.contains(OnlyRunProgrammatically.class.getSimpleName()))
-                .collect(Collectors.joining("\n"));
-    }
-
     @Test
     public void generate_html_with_nested_class() {
         doc.write("With nested class, only class with direct extension generate a page", "");
@@ -110,7 +105,7 @@ public class CreateADocument {
         doc.removeNonApprovalFiles(docPath);
         doc.runTestAndWriteResultAsComment(testClass);
 
-        final String source = sourceCodeLines(docPath);
+        final String source = sourceCodeLines(testClass);
 
         final Path docFolder = docPath.approved().folder();
 
@@ -141,7 +136,7 @@ public class CreateADocument {
         doc.removeNonApprovalFiles(docPath);
         doc.runTestAndWriteResultAsComment(testClass);
 
-        final String source = sourceCodeLines(docPath);
+        final String source = sourceCodeLines(testClass);
 
         final Path docFolder = docPath.approved().folder();
 
@@ -169,7 +164,7 @@ public class CreateADocument {
         doc.removeNonApprovalFiles(docPath);
         doc.runTestAndWriteResultAsComment(testClass);
 
-        final String source = sourceCodeLines(docPath);
+        final String source = sourceCodeLines(testClass);
 
         final Path path = docPath.page().path();
         final String contentOfGeneratedFile = getLines(path).collect(Collectors.joining("\n"));
@@ -198,7 +193,7 @@ public class CreateADocument {
         doc.removeNonApprovalFiles(docPath);
         doc.runTestAndWriteResultAsComment(testClass);
 
-        final String source = sourceCodeLines(docPath);
+        final String source = sourceCodeLines(testClass);
 
         doc.write(String.format("By default, `%s` create a file with a name coming from the class", HtmlPageExtension.class.getSimpleName()),
                 String.format("To change it, we can extending `%s` and redefined name method.", HtmlPageExtension.class.getSimpleName()),
@@ -228,7 +223,8 @@ public class CreateADocument {
         doc.removeNonApprovalFiles(docPath);
         doc.runTestAndWriteResultAsComment(testClass);
 
-        final String source = sourceCodeLines(docPath);
+        final String source = sourceCodeLines(testClass);
+//        final String source = sourceCodeLines(testClass);
 
         doc.write(String.format("You can create an `%s` giving the file name to generate.", HtmlPageExtension.class.getSimpleName()),
                 "The name should not contain the extension.",
@@ -252,6 +248,21 @@ public class CreateADocument {
                 filesInDocFolder);
 
 
+    }
+
+    private String sourceCodeLines(Class<?> testClass) {
+        return cleanSourceLines(Arrays.stream(CodeExtractor.classSource(testClass).split("\n")));
+    }
+
+    private String sourceCodeLines(DocPath docPath) {
+        return cleanSourceLines(getLines(docPath.test().path()));
+    }
+
+    private String cleanSourceLines(Stream<String> lines) {
+        return lines
+                .filter(line -> !line.contains(NotIncludeToDoc.class.getSimpleName()))
+                .filter(line -> !line.contains(OnlyRunProgrammatically.class.getSimpleName()))
+                .collect(Collectors.joining("\n"));
     }
 
     private Stream<Path> getFiles(Path docFolder) {
