@@ -1,5 +1,7 @@
 package org.sfvl.demo;
 
+import org.sfvl.codeextraction.CodeExtractor;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.demo.DemoDocumentation;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
@@ -18,7 +20,7 @@ public class BasicDocumentation extends DemoDocumentation {
     }
 
     public static void generateClassDoc(Class<DemoTest> classToDocument) throws IOException {
-        final ClassDocumentation classDocumentation = new ClassDocumentation();
+        final ClassDocumentation classDocumentation = new ClassDocumentation(new AsciidocFormatter());
 
         final Path approvedPath = new DocPath(DemoTest.class).approved().path();
         final Path absoluteApprovedPath = new PathProvider().getProjectPath().resolve(approvedPath);
@@ -33,6 +35,7 @@ public class BasicDocumentation extends DemoDocumentation {
     }
 
     public static void main(String... args) throws IOException {
+        CodeExtractor.init(Config.TEST_PATH, Config.SOURCE_PATH);
         generateClassDoc(DemoTest.class);
         new BasicDocumentation().produce();
     }

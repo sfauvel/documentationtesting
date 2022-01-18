@@ -1,27 +1,5 @@
 #!/bin/bash
 
-SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-source ${SCRIPT_PATH}/loadWritingFunction.sh
-
-ARGS=( "$@" )
-while getopts "h" OPTION; do
-   case ${OPTION} in
-     h ) show_help
-       exit 0
-       ;;
-     \? ) show_help
-       exit 0
-       ;;
-   esac
-done
-
-LAST_OPTION_INDEX=$((OPTIND-1))
-
-ROOT_DOC=${ARGS[${LAST_OPTION_INDEX}+0]}
-if [ -z "$ROOT_DOC" ]; then show_help; exit 0; fi
-
-set -euo pipefail
-
 # Usage info
 function show_help() {
   echo -e "${BOLD}NAME${NO_COLOR}"
@@ -34,7 +12,34 @@ function show_help() {
   echo -e ""
   echo -e "\t${BOLD}-h${NO_COLOR}"
   echo -e "\t\t display this help and exit."
+  echo -e "\t${BOLD}-f${NO_COLOR}"
+  echo -e "\t\t show only failures."
 }
+SHOW_ONLY_FAILURE=false
+SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+source ${SCRIPT_PATH}/loadWritingFunction.sh
+
+ARGS=( "$@" )
+while getopts "hf" OPTION; do
+   case ${OPTION} in
+     h ) show_help
+       exit 0
+       ;;
+     \? ) show_help
+       exit 0
+       ;;
+    f ) SHOW_ONLY_FAILURE=true
+      ;;
+   esac
+done
+
+LAST_OPTION_INDEX=$((OPTIND-1))
+
+ROOT_DOC=${ARGS[${LAST_OPTION_INDEX}+0]}
+if [ -z "$ROOT_DOC" ]; then show_help; exit 0; fi
+
+set -euo pipefail
+
 
 NEW_LINE=$'\n'
 
@@ -62,7 +67,10 @@ do
     write_failure "- ${SIMPLE_FILE_NAME}(${FAILURE_LINE:1:1})"
     NB_FAILURES=`expr ${NB_FAILURES} + 1`
   else
-    write_success "- $SIMPLE_FILE_NAME"
+    if [ $SHOW_ONLY_FAILURE = false ]
+    then
+      write_success "- $SIMPLE_FILE_NAME"
+    fi
   fi
 done
 

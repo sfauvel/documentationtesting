@@ -1,0 +1,32 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_application_trainbooktest_max_70_percent_train_has_enough_space_left]
+= Train has enough space left
+
+.Train before reservation
+:table-caption:
+
+[%autowidth, cols="1,1"]
+|====
+| &#x2612;&#x2612;&#x2612;&#x2610;&#x2610; +
+&#x2612;&#x2612;&#x2610;&#x2610;&#x2610;
+| &#x2612;&#x2612;&#x2610;&#x2610;&#x2610; +
+&#x2612;&#x2612;&#x2610;&#x2610;&#x2610;
+|====
+
+I book a reservation for *2* people
+
+====
+Reservation is *confirmed*
+====
+
+.Train after reservation
+:table-caption:
+
+[%autowidth, cols="1,1"]
+|====
+| &#x2612;&#x2612;&#x2612;&#x2612;&#x2610; +
+&#x2612;&#x2612;&#x2612;&#x2610;&#x2610;
+| &#x2612;&#x2612;&#x2610;&#x2610;&#x2610; +
+&#x2612;&#x2612;&#x2610;&#x2610;&#x2610;
+|====

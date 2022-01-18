@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.writer.ClassDocumentation;
@@ -19,7 +20,7 @@ public class DemoTest extends ApprovalsBase {
     public static void afterAll(TestInfo testInfo) throws Exception {
         final Class<?> clazz = testInfo.getTestClass().get();
 
-        final ClassDocumentation classDocumentation = new ClassDocumentation();
+        final ClassDocumentation classDocumentation = new ClassDocumentation(new AsciidocFormatter());
         final String content = String.join("\n",
                 ":nofooter:",
                 classDocumentation.getClassDocumentation(clazz));

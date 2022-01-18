@@ -11,6 +11,11 @@ endif::[]
 
 == Generate a full documentation
 
+[WARNING]
+====
+This chapter is deprecated. It must to be rewrite.
+====
+
 To generate a single file with all tests, launch `MainDocumentation` class.
 
 `convertAdoc.sh` takes the single generated file to convert it to HTML.

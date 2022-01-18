@@ -1,5 +1,7 @@
 package org.sfvl.doctesting.utils;
 
+import org.sfvl.codeextraction.CodePath;
+
 import java.io.File;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
@@ -28,7 +30,11 @@ public class DocPath {
     }
 
     public DocPath(Package classPackage, String name) {
-        this(toPath(classPackage), name);
+        this(CodePath.toPath(classPackage), name);
+    }
+
+    public DocPath(String name) {
+        this(Paths.get(""), name);
     }
 
     public DocPath(Path packagePath, String name) {
@@ -90,19 +96,6 @@ public class DocPath {
 
     private static final String extractMethodName(Method method) {
         return String.format("%s.%s", extractClassName(method.getDeclaringClass()), method.getName());
-    }
-
-    public static Path toPath(Package aPackage) {
-        return Paths.get(aPackage.getName().replace('.', File.separatorChar));
-    }
-
-    public static Path toPath(Class<?> clazz) {
-        return toPath(clazz.getPackage()).resolve(toFile(clazz));
-    }
-
-    public static Path toFile(Class<?> clazz) {
-        final Class<?> mainClass = new ClassFinder().getMainFileClass(clazz);
-        return Paths.get(String.format("%s.java", mainClass.getSimpleName()));
     }
 
     public static String toAsciiDoc(Path path) {

@@ -8,136 +8,6 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 |====
 | [.alive]
 *
-| [.alive]
-*
-| [.alive]
-*
-
-| [.dead]
-*
-| [.dead]
-*
-| [.dead]
-*
-
-| [.dead]
-*
-| [.dead]
-*
-| [.dead]
-*
-
-|====
-[.gameOfLife.inline]
-[%autowidth, cols="1*a", frame=none, grid=none]
-|====
-| [] 
-*
-| [.show-text]
-=>
-| [] 
-*
-|====
-[.gameOfLife.inline]
-[%autowidth,cols="3*a"]
-|====
-| []
-*
-| []
-*
-| []
-*
-
-| []
-*
-| [.alive]
-*
-| []
-*
-
-| []
-*
-| []
-*
-| []
-*
-
-|====
-[.wrap-line]
---
-&nbsp;
---
-
-[.gameOfLife.inline]
-[%autowidth,cols="3*a"]
-|====
-| [.dead]
-*
-| [.dead]
-*
-| [.alive]
-*
-
-| [.dead]
-*
-| [.dead]
-*
-| [.alive]
-*
-
-| [.dead]
-*
-| [.dead]
-*
-| [.alive]
-*
-
-|====
-[.gameOfLife.inline]
-[%autowidth, cols="1*a", frame=none, grid=none]
-|====
-| [] 
-*
-| [.show-text]
-=>
-| [] 
-*
-|====
-[.gameOfLife.inline]
-[%autowidth,cols="3*a"]
-|====
-| []
-*
-| []
-*
-| []
-*
-
-| []
-*
-| [.alive]
-*
-| []
-*
-
-| []
-*
-| []
-*
-| []
-*
-
-|====
-[.wrap-line]
---
-&nbsp;
---
-
-[.gameOfLife.inline]
-[%autowidth,cols="3*a"]
-|====
-| [.alive]
-*
 | [.dead]
 *
 | [.alive]
@@ -171,25 +41,25 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 [.gameOfLife.inline]
 [%autowidth,cols="3*a"]
 |====
-| []
+| [.dead]
 *
-| []
+| [.dead]
 *
-| []
+| [.dead]
 *
 
-| []
+| [.dead]
 *
 | [.alive]
 *
-| []
+| [.dead]
 *
 
-| []
+| [.dead]
 *
-| []
+| [.dead]
 *
-| []
+| [.dead]
 *
 
 |====

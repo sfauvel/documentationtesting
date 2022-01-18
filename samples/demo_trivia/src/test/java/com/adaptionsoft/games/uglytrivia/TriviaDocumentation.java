@@ -1,6 +1,7 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import org.sfvl.doctesting.utils.ClassFinder;
+import org.junit.jupiter.api.Test;
+import org.sfvl.codeextraction.ClassFinder;
 import org.sfvl.doctesting.demo.DemoDocumentation;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.writer.Classes;
@@ -8,7 +9,6 @@ import org.sfvl.doctesting.writer.Document;
 import org.sfvl.doctesting.writer.Options;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,9 +48,7 @@ public class TriviaDocumentation extends DemoDocumentation {
     }
 
     public static List<Class<?>> getStandardClasses() {
-        return new ClassFinder().testClasses(
-                TriviaDocumentation.class.getPackage(),
-                m -> !m.getDeclaringClass().equals(GameSvgTest.class));
+        return new ClassFinder().classesWithAnnotatedMethod(TriviaDocumentation.class.getPackage(), Test.class, m -> !m.getDeclaringClass().equals(GameSvgTest.class));
     }
 
     public static List<Class<?>> getSvgClasses() {

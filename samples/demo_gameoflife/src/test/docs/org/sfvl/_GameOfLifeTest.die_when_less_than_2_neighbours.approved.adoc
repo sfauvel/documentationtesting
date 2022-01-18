@@ -43,25 +43,25 @@ With less than 2 neighbours, cell die on the next generation.
 [.gameOfLife.inline]
 [%autowidth,cols="3*a"]
 |====
-| []
-*
-| []
-*
-| []
-*
-
-| []
+| [.dead]
 *
 | [.dead]
 *
-| []
+| [.dead]
 *
 
-| []
+| [.dead]
 *
-| []
+| [.dead]
 *
-| []
+| [.dead]
+*
+
+| [.dead]
+*
+| [.dead]
+*
+| [.dead]
 *
 
 |====

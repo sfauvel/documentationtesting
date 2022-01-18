@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
 import org.sfvl.Person;
+import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.demo.DemoDocumentation;
 import org.sfvl.doctesting.junitinheritance.DocAsTestBase;
@@ -179,6 +180,7 @@ public class BasicDocumentation extends DemoDocumentation {
     }
 
     public static void main(String... args) throws IOException {
+        CodeExtractor.init(Config.TEST_PATH, Config.SOURCE_PATH);
         new BasicDocumentation().produce();
     }
 

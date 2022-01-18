@@ -1,0 +1,30 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_codeextractortest_groupbyresult_applying_a_function]
+= Applying a function
+
+ifndef::CODE_EXTRACTOR_CSS[]
+:CODE_EXTRACTOR_CSS:
+++++
+<style>
+include::../../../../../resources/styles/code_extractor.css[]
+</style>
+++++
+endif::[]
+
+
+[source,java,indent=0]
+----
+            final Map<String, List<String>> stringListMap = CodeExtractor.groupByResult(
+                    String::toLowerCase,
+                    Arrays.asList("abc", "ABC", "XyZ", "Abc")
+            );
+
+----
+
+You obtain a map with value returned by the function as key and a list of values that provides the key value.
+
+*abc*: `abc`, `ABC`, `Abc`
+ +
+*xyz*: `XyZ`
+ +

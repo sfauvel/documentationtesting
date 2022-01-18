@@ -5,9 +5,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.platform.commons.support.ModifierSupport;
+import org.sfvl.codeextraction.CodeExtractor;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
-import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.writer.DocWriter;
 import org.sfvl.doctesting.utils.PathProvider;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 
@@ -17,6 +19,9 @@ import java.nio.file.Path;
 
 public abstract class DocAsTestBase {
     protected static final PathProvider pathBuidler = new PathProvider();
+    {
+        CodeExtractor.init(Config.TEST_PATH, Config.SOURCE_PATH);
+    }
 
     DocWriter writer = new DocWriter();
 
@@ -39,7 +44,7 @@ public abstract class DocAsTestBase {
         if (isNestedClass(clazz)) {
             return;
         }
-        final ClassDocumentation classDocumentation = new ClassDocumentation();
+        final ClassDocumentation classDocumentation = new ClassDocumentation(new AsciidocFormatter());
         final String content = classDocumentation.getClassDocumentation(clazz);
 
         final Path docFilePath = new DocPath(clazz).approved().path();

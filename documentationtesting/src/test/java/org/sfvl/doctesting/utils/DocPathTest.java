@@ -1,16 +1,16 @@
 package org.sfvl.doctesting.utils;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
+import org.sfvl.codeextraction.CodeExtractor;
+import org.sfvl.codeextraction.MethodReference;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.ClassToDocument;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.sample.MyClass;
 import org.sfvl.samples.MyTest;
@@ -18,7 +18,7 @@ import org.sfvl.samples.MyTest;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Function;
 
 @ClassToDocument(clazz = DocPath.class)
@@ -227,9 +227,52 @@ public class DocPathTest {
                 String.format("*asciiDocPath = %s*", asciiDocPath));
     }
 
+    @Test
+    public void build_a_path() {
+
+        doc.write("You can create a " + DocPath.class.getSimpleName() + " using one of the constructor available.", "");
+
+
+        final Map<String, List<String>> codeByResult = CodeExtractor.groupCodeByResult(MethodReference.getMethod(DocPathTest::build_a_path), v -> v.approved().path().toString(), Arrays.asList(
+                        // >>>0
+                        new DocPath(DocPathTest.class)
+                        // <<<0
+                        ,
+                        // >>>1
+                        new DocPath(DocPathTest.class.getPackage(), "DocPathTest")
+                        // <<<1
+                        ,
+                        // >>>2
+                        new DocPath(Paths.get("org", "sfvl", "doctesting", "utils"), "DocPathTest")
+                        // <<<2
+                        ,
+                        // >>>3
+                        new DocPath(Paths.get(""), "DocPathTest")
+                        // <<<3
+                        ,
+                        // >>>4
+                        new DocPath("DocPathTest")
+                        // <<<4
+                )
+        );
+
+
+        String separator = "";
+        for (Map.Entry<String, List<String>> resultAndCodes : codeByResult.entrySet()) {
+            doc.write(separator, "With one of this code:", "");
+            for (String code : resultAndCodes.getValue()) {
+                doc.write(formatter.sourceCode(code), "");
+            }
+            doc.write("Approved file is: ", formatter.sourceCode(DocPath.toAsciiDoc(Paths.get(resultAndCodes.getKey()))));
+            separator = "\n---\n";
+        }
+
+    }
+
     class CallsRecorder<T extends Object> implements Answer<T> {
         String lastCall = "";
         Method lastMethod = null;
+
         @Override
         public T answer(InvocationOnMock a) throws Throwable {
             final Object result = a.callRealMethod();
@@ -248,93 +291,6 @@ public class DocPathTest {
 
         Method getLastMethod() {
             return lastMethod;
-        }
-    }
-
-    @Nested
-    @DisplayName(value = "Method 'toPath'")
-    class MethodToPath {
-        @Test
-        public void path_from_a_package() {
-            // >>>
-            final Class<?> clazz = org.sfvl.samples.MyTest.class;
-            final Path path = DocPath.toPath(clazz.getPackage());
-            final String pathText = DocPath.toAsciiDoc(path);
-            // <<<
-            doc.write(
-                    ".Code",
-                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
-                    "Result",
-                    formatter.blockBuilder("====")
-                            .content(pathText)
-                            .build());
-        }
-
-        @Test
-        public void path_from_a_class() {
-            // >>>
-            final Class<?> clazz = org.sfvl.samples.MyTest.class;
-            final Path path = DocPath.toPath(clazz);
-            final String pathText = DocPath.toAsciiDoc(path);
-            // <<<
-            doc.write(
-                    ".Code",
-                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
-                    "Result",
-                    formatter.blockBuilder("====")
-                            .content(pathText)
-                            .build());
-        }
-
-        @Test
-        public void path_from_a_nested_class() {
-            // >>>
-            final Class<?> clazz = org.sfvl.samples.MyTestWithNestedClass.MyNestedClass.class;
-            final Path path = DocPath.toPath(clazz);
-            final String pathText = DocPath.toAsciiDoc(path);
-            // <<<
-            doc.write(
-                    ".Code",
-                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
-                    "Result",
-                    formatter.blockBuilder("====")
-                            .content(pathText)
-                            .build());
-        }
-
-        @Test
-        public void file_of_a_class() {
-            // >>>
-            final Class<?> clazz = org.sfvl.samples.MyTest.class;
-            final Path path = DocPath.toFile(clazz);
-            final String pathText = DocPath.toAsciiDoc(path);
-            // <<<
-            doc.write(
-                    ".Code",
-                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
-                    "Result",
-                    formatter.blockBuilder("====")
-                            .content(pathText)
-                            .build());
-        }
-
-        /**
-         * With a nested class, the file is that of the main class of the file.
-         */
-        @Test
-        public void file_of_a_nested_class() {
-            // >>>
-            final Class<?> clazz = org.sfvl.samples.MyTestWithNestedClass.MyNestedClass.class;
-            final Path path = DocPath.toFile(clazz);
-            final String pathText = DocPath.toAsciiDoc(path);
-            // <<<
-            doc.write(
-                    ".Code",
-                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
-                    "Result",
-                    formatter.blockBuilder("====")
-                            .content(pathText)
-                            .build());
         }
     }
 

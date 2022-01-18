@@ -4,12 +4,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.codeextraction.CodePath;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.ClassToDocument;
+import org.sfvl.doctesting.utils.ClassToDocument;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-import org.sfvl.doctesting.utils.CodeExtractor;
+import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.PathProvider;
@@ -33,9 +34,11 @@ class ClassDocumentationTest {
     public void default_class_documentation(TestInfo testInfo) throws IOException {
 
         // >>>
-        final ClassDocumentation defaultDocumentation = new ClassDocumentation();
+        final ClassDocumentation defaultDocumentation = new ClassDocumentation(
+                new AsciidocFormatter()                                          // <1>
+        );
         final String defaultContent = defaultDocumentation.getClassDocumentation(
-                InMainDocTest.class                                              // <1>
+                InMainDocTest.class                                              // <2>
         );
         // <<<
 
@@ -51,7 +54,8 @@ class ClassDocumentationTest {
                         .source(CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get()))
                         .build(),
                 "",
-                "<1> Class to document",
+                "<1> Formatter to use",
+                "<2> Class to document",
                 "");
 
         doc.write("",
@@ -80,7 +84,7 @@ class ClassDocumentationTest {
     public void title_level(TestInfo testInfo) throws IOException {
 
         // >>>
-        final ClassDocumentation defaultDocumentation = new ClassDocumentation();
+        final ClassDocumentation defaultDocumentation = new ClassDocumentation(new AsciidocFormatter());
 
         final String defaultContent = defaultDocumentation.getClassDocumentation(
                 InMainDocTest.class,
@@ -113,13 +117,13 @@ class ClassDocumentationTest {
     @Test
     public void customize_output(TestInfo testInfo) {
 
-        final ClassDocumentation defaultDocumentation = new ClassDocumentation();
+        final ClassDocumentation defaultDocumentation = new ClassDocumentation(new AsciidocFormatter());
 
-        final ClassDocumentation customDocumentation = new ClassDocumentation() {
+        final ClassDocumentation customDocumentation = new ClassDocumentation(new AsciidocFormatter()) {
 
             // >>>1
             @Override
-            protected String getTestClassTitle(Class<?> classToDocument) {
+            public String getTestClassTitle(Class<?> classToDocument) {
                 return "Title from getTestClassTitle method " + classToDocument.getSimpleName();
             }
 
@@ -161,7 +165,7 @@ class ClassDocumentationTest {
     public void nested_class_documentation(TestInfo testInfo) throws IOException {
 
         // >>>
-        final ClassDocumentation defaultDocumentation = new ClassDocumentation();
+        final ClassDocumentation defaultDocumentation = new ClassDocumentation(new AsciidocFormatter());
 
         final Class<?> testClass = ClassDocumentationTest_DemoNestedTest.class;
         final String defaultContent = defaultDocumentation.getClassDocumentation(testClass);
@@ -191,7 +195,7 @@ class ClassDocumentationTest {
     public String includeSourceWithTag(String tag) {
 
         final Path projectPath = new PathProvider().getProjectPath();
-        final Path packagePath = DocPath.toPath(this.getClass().getPackage());
+        final Path packagePath = CodePath.toPath(this.getClass().getPackage());
         final Path packageDocPath = doc.getDocPath().resolve(packagePath);
         final Path relativizeToProjectPath = packageDocPath.relativize(projectPath);
         final Path javaFilePath = relativizeToProjectPath

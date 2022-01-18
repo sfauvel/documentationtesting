@@ -36,9 +36,14 @@ public interface Formatter {
 
     String section(String name, String message);
 
-    String link(String id);
+    String anchor(String id);
 
-    String anchorLink(String id, String visibleText);
+    String linkToAnchor(String id, String visibleText);
+
+    String linkToPage(String address, String visibleText);
+
+    String linkToPage(String address, String anchor, String visibleText);
+
 
     String table(List<List<? extends Object>> data);
 

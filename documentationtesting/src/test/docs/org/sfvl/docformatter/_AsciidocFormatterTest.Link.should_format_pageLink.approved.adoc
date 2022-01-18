@@ -1,0 +1,22 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_docformatter_asciidocformattertest_link_should_format_pagelink]
+= Link to page
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+            output = formatter.linkToPage("AsciidocFormatterTest.html", "This is a link to a page");
+----
+
+[red]##_Render_##
+
+link:AsciidocFormatterTest.html[This is a link to a page]
+
+[red]##_Asciidoc generated_##
+------
+link:AsciidocFormatterTest.html[This is a link to a page]
+------
+
+___

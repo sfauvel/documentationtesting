@@ -21,12 +21,22 @@ include::_DemoTest.adoc[]
 ----
 
 To generate this kind of file, that is just a text file, you can do it with this simple code below.
-To check there is no regression, put your file under source control and verify that it was not modified between two executions.
 [source, java]
 ----
 include::../java/org/sfvl/demo/DemoTest.java[tag=test, indent=0]
 ----
 
+== Check non regression with source control
+
+To check there is no regression, put the generated file under source control and verify that it was not modified between two executions.
+
+With `git`, you can use the following command to see all files modified and not yet staged.
+----
+git status -s --no-renames [DOC FOLDER]
+----
+
+When you add modified files to the staged using `git add`, they no longer appear with the command above even they are not committed.
+You can consider that adding them is a kind of validation.
 
 == Check regression with Approvals
 

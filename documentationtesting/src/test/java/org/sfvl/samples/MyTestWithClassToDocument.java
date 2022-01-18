@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.ClassToDocument;
+import org.sfvl.doctesting.utils.ClassToDocument;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
 

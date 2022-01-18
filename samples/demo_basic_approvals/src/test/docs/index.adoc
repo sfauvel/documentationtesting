@@ -18,7 +18,4 @@ Learn more here link:{github-pages}[]
 
 View source of project on link:{github-repo}/samples/demo_basic_approvals[Github]
 
-
-
-
 include::org/sfvl/demo/_DemoTest.approved.adoc[leveloffset=+1]

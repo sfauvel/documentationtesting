@@ -131,16 +131,29 @@ public class AsciidocFormatter implements Formatter {
     }
 
     @Override
-    public String link(String id) {
-        return "[[" + formatLink(id) + "]]";
+    public String anchor(String id) {
+        return "[[" + formatAnchorId(id) + "]]";
     }
 
     @Override
-    public String anchorLink(String id, String visibleText) {
+    public String linkToAnchor(String id, String visibleText) {
         return "<<" +
-                formatLink(id) +
+                formatAnchorId(id) +
                 ((visibleText.isEmpty()) ? "" : "," + visibleText) +
                 ">>";
+    }
+
+    @Override
+    public String linkToPage(String address, String visibleText) {
+        return linkToPage(address, null, visibleText);
+    }
+
+    @Override
+    public String linkToPage(String address, String anchor, String visibleText) {
+        return String.format("link:%s%s[%s]",
+                address,
+                (anchor == null) ? "" : "#" + formatAnchorId(anchor),
+                visibleText);
     }
 
     @Override
@@ -183,7 +196,7 @@ public class AsciidocFormatter implements Formatter {
         return String.format("\n[%s]\n%s\n%s\n%s\n", name, delimiter, message, delimiter);
     }
 
-    private String formatLink(String id) {
+    private String formatAnchorId(String id) {
         return id.replaceAll("[\\.$\\: #]", "_").toLowerCase();
     }
 

@@ -35,9 +35,16 @@ include::_AsciidocFormatterTest.should_format_description.approved.adoc[leveloff
 
 include::_AsciidocFormatterTest.should_format_definition.approved.adoc[leveloffset=+1]
 
-include::_AsciidocFormatterTest.should_format_anchorLink.approved.adoc[leveloffset=+1]
+[#org_sfvl_docformatter_asciidocformattertest_link]
+== Link
 
-include::_AsciidocFormatterTest.should_format_link.approved.adoc[leveloffset=+1]
+include::_AsciidocFormatterTest.Link.should_format_pageLink.approved.adoc[leveloffset=+2]
+
+include::_AsciidocFormatterTest.Link.should_format_pageLink_with_anchor.approved.adoc[leveloffset=+2]
+
+include::_AsciidocFormatterTest.Link.should_format_anchorLink.approved.adoc[leveloffset=+2]
+
+include::_AsciidocFormatterTest.Link.should_format_anchor.approved.adoc[leveloffset=+2]
 
 [#org_sfvl_docformatter_asciidocformattertest_asciidoclist]
 == List

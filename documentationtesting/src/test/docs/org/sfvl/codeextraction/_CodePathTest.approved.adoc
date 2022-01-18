@@ -1,0 +1,14 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_codepathtest]
+= Code path test
+
+include::_CodePathTest.path_from_a_package.approved.adoc[leveloffset=+1]
+
+include::_CodePathTest.path_from_a_class.approved.adoc[leveloffset=+1]
+
+include::_CodePathTest.path_from_a_nested_class.approved.adoc[leveloffset=+1]
+
+include::_CodePathTest.file_of_a_class.approved.adoc[leveloffset=+1]
+
+include::_CodePathTest.file_of_a_nested_class.approved.adoc[leveloffset=+1]

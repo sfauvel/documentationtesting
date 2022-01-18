@@ -1,0 +1,34 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_application_trainbooktest_max_70_percent_train_is_too_full_to_place_a_group]
+= Train is too full to place a group
+
+.Train before reservation
+:table-caption:
+
+[%autowidth, cols="1,1"]
+|====
+| &#x2612;&#x2612;&#x2612;&#x2612;&#x2610; +
+&#x2612;&#x2612;&#x2612;&#x2610;&#x2610;
+| &#x2612;&#x2612;&#x2610;&#x2610;&#x2610; +
+&#x2612;&#x2612;&#x2610;&#x2610;&#x2610;
+|====
+
+I book a reservation for *4* people
+
+====
+Reservation is *rejected*
+
+Reason is *Maximum booking capacity has been reached*
+====
+
+.Train after reservation
+:table-caption:
+
+[%autowidth, cols="1,1"]
+|====
+| &#x2612;&#x2612;&#x2612;&#x2612;&#x2610; +
+&#x2612;&#x2612;&#x2612;&#x2610;&#x2610;
+| &#x2612;&#x2612;&#x2610;&#x2610;&#x2610; +
+&#x2612;&#x2612;&#x2610;&#x2610;&#x2610;
+|====

@@ -1,0 +1,59 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_docpathtest_build_a_path]
+= Build a path
+
+You can create a DocPath using one of the constructor available.
+
+With one of this code:
+
+[source,java,indent=0]
+----
+                        new DocPath(Paths.get(""), "DocPathTest")
+
+----
+
+
+[source,java,indent=0]
+----
+                        new DocPath("DocPathTest")
+
+----
+
+Approved file is: 
+
+[source,java,indent=0]
+----
+src/test/docs/_DocPathTest.approved.adoc
+----
+
+---
+
+With one of this code:
+
+[source,java,indent=0]
+----
+                        new DocPath(DocPathTest.class)
+
+----
+
+
+[source,java,indent=0]
+----
+                        new DocPath(DocPathTest.class.getPackage(), "DocPathTest")
+
+----
+
+
+[source,java,indent=0]
+----
+                        new DocPath(Paths.get("org", "sfvl", "doctesting", "utils"), "DocPathTest")
+
+----
+
+Approved file is: 
+
+[source,java,indent=0]
+----
+src/test/docs/org/sfvl/doctesting/utils/_DocPathTest.approved.adoc
+----

@@ -3,6 +3,9 @@ package org.sfvl.doctesting;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.codeextraction.ClassFinder;
+import org.sfvl.codeextraction.CodeExtractor;
+import org.sfvl.codeextraction.CodePath;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
@@ -12,6 +15,7 @@ import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 import org.sfvl.doctesting.utils.*;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.writer.Classes;
+import org.sfvl.doctesting.writer.DocWriter;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.lang.reflect.Method;
@@ -53,7 +57,7 @@ public class DocTestingDocumentation {
     }
 
     public String includeClasses() {
-        final Path location = DocPath.toPath(DocTestingDocumentation.class.getPackage());
+        final Path location = CodePath.toPath(DocTestingDocumentation.class.getPackage());
         return new Classes(formatter).includeClasses(location, getClassesToDocument(), 0);
     }
 
@@ -76,8 +80,7 @@ public class DocTestingDocumentation {
     }
 
     private List<Class<?>> getClassesToDocument() {
-        final List<Class<?>> classes = classFinder.testClasses(DocTestingDocumentation.class.getPackage(),
-                this::toBeInclude);
+        final List<Class<?>> classes = classFinder.classesWithAnnotatedMethod(DocTestingDocumentation.class.getPackage(), Test.class, this::toBeInclude);
         classes.remove(this.getClass());
         return classes;
     }

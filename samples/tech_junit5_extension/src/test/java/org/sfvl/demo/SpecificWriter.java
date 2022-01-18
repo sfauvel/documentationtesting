@@ -1,6 +1,6 @@
 package org.sfvl.demo;
 
-import org.sfvl.doctesting.utils.DocWriter;
+import org.sfvl.doctesting.writer.DocWriter;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
