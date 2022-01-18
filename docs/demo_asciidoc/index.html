@@ -538,6 +538,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>You can use javascript and css to add some dynamic behavior in your page.
 Here we create a button to show/hide some text.</p>
 </div>
+<div class="sect3">
+<h4 id="_native_fonctionnality_from_asciidoc">Native fonctionnality from asciidoc</h4>
+<details>
+<summary class="title">Click to see source code</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public class SimpleTest {
+
+    @RegisterExtension
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+}</code></pre>
+</div>
+</div>
+</div>
+</details>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="_custom_solution_injecting_javascript">Custom solution injecting javascript</h4>
 <script>
 function myFunction(button, id) {
   var x = document.getElementById(id);
@@ -615,6 +635,25 @@ function myFunction(button, id) {
 
 You can use javascript and css to add some dynamic behavior in your page.
 Here we create a button to show/hide some text.
+
+== Native fonctionnality from asciidoc
+
+.Click to see source code
+[%collapsible]
+====
+[,java]
+----
+public class SimpleTest {
+
+    @RegisterExtension
+    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+}
+----
+====
+
+---
+
+== Custom solution injecting javascript
 
 // https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp
 ++++
@@ -696,6 +735,7 @@ public void anotherExample() {
     // do something
 }
 ----</pre>
+</div>
 </div>
 </div>
 </div>

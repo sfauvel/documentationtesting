@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_generate_an_asciidoc_file">Generate an asciidoc file</a></li>
+<li><a href="#_check_non_regression_with_source_control">Check non regression with source control</a></li>
 <li><a href="#_check_regression_with_approvals">Check regression with Approvals</a></li>
 <li><a href="#_use_documentationtesting">Use DocumentationTesting</a></li>
 <li><a href="#_sources">Sources</a></li>
@@ -474,8 +475,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>To generate this kind of file, that is just a text file, you can do it with this simple code below.
-To check there is no regression, put your file under source control and verify that it was not modified between two executions.</p>
+<p>To generate this kind of file, that is just a text file, you can do it with this simple code below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -498,6 +498,26 @@ To check there is no regression, put your file under source control and verify t
 <span class="o">}</span></code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_check_non_regression_with_source_control">Check non regression with source control</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To check there is no regression, put the generated file under source control and verify that it was not modified between two executions.</p>
+</div>
+<div class="paragraph">
+<p>With <code>git</code>, you can use the following command to see all files modified and not yet staged.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>git status -s --no-renames [DOC FOLDER]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When you add modified files to the staged using <code>git add</code>, they no longer appear with the command above even they are not committed.
+You can consider that adding them is a kind of validation.</p>
 </div>
 </div>
 </div>
@@ -548,7 +568,7 @@ Once you approved the file, the test passes until the output changes.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
- * Demo of a simple usage to generate documentation and validate it with https://github.com/approvals[Approvals].
+ * Demo of a simple usage to generate documentation and validate it with https://sfauvel.github.io/documentationtesting/documentationtesting/[Documentation testing].
  */</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoWithDocumentationTestingTest</span> <span class="o">{</span>
 
@@ -578,7 +598,7 @@ Once you approved the file, the test passes until the output changes.</p>
 <div class="sect2">
 <h3 id="org_sfvl_demo_demowithdocumentationtestingtest">Demo with documentation testing test</h3>
 <div class="paragraph">
-<p>Demo of a simple usage to generate documentation and validate it with <a href="https://github.com/approvals">Approvals</a>.</p>
+<p>Demo of a simple usage to generate documentation and validate it with <a href="https://sfauvel.github.io/documentationtesting/documentationtesting/">Documentation testing</a>.</p>
 </div>
 <div class="sect3">
 <h4 id="org_sfvl_demo_demowithdocumentationtestingtest_should_add_2_numbers">Should add 2 numbers</h4>

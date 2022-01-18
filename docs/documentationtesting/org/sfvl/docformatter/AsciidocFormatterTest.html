@@ -456,8 +456,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_description">Description</a></li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_definition">Definition</a></li>
-<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_anchorlink">Anchor</a></li>
-<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_link">Link</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_link">Link</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_link_should_format_pagelink">Link to page</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_link_should_format_pagelink_with_anchor">Link to page with anchor</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_link_should_format_anchorlink">Link to local anchor</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_link_should_format_anchor">Anchor</a></li>
+</ul>
+</li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_asciidoclist">List</a>
 <ul class="sectlevel2">
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_asciidoclist_should_format_one_list_item">One list item</a></li>
@@ -843,42 +849,94 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_asciidocformattertest_should_format_anchorlink">Anchor</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_link">Link</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_link_should_format_pagelink">Link to page</h3>
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">anchorLink</span><span class="o">(</span><span class="s">"AnchorExample"</span><span class="o">,</span> <span class="s">"This is a link to anoter place"</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">linkToPage</span><span class="o">(</span><span class="s">"AsciidocFormatterTest.html"</span><span class="o">,</span> <span class="s">"This is a link to a page"</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p><span class="red"><em>Render</em></span></p>
 </div>
 <div class="paragraph">
-<p><a href="#anchorexample">This is a link to anoter place</a></p>
+<p><a href="AsciidocFormatterTest.html">This is a link to a page</a></p>
 </div>
 <div class="paragraph">
 <p><span class="red"><em>Asciidoc generated</em></span></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>&lt;&lt;anchorexample,This is a link to anoter place&gt;&gt;</pre>
+<pre>link:AsciidocFormatterTest.html[This is a link to a page]</pre>
 </div>
 </div>
 <hr>
 </div>
-</div>
-<div class="sect1">
-<h2 id="org_sfvl_docformatter_asciidocformattertest_should_format_link">Link</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_link_should_format_pagelink_with_anchor">Link to page with anchor</h3>
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">link</span><span class="o">(</span><span class="s">"AnchorExample"</span><span class="o">)</span> <span class="o">+</span> <span class="s">"You can make an anchor to here"</span><span class="o">;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">linkToPage</span><span class="o">(</span><span class="s">"AsciidocFormatterTest.html"</span><span class="o">,</span> <span class="s">"AnchorExample"</span><span class="o">,</span> <span class="s">"This is a link to a page"</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="paragraph">
+<p><a href="AsciidocFormatterTest.html#anchorexample">This is a link to a page</a></p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>link:AsciidocFormatterTest.html#anchorexample[This is a link to a page]</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_link_should_format_anchorlink">Link to local anchor</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">linkToAnchor</span><span class="o">(</span><span class="s">"AnchorExample"</span><span class="o">,</span> <span class="s">"This is a link to anchor in this page"</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="paragraph">
+<p><a href="#anchorexample">This is a link to anchor in this page</a></p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;&lt;anchorexample,This is a link to anchor in this page&gt;&gt;</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_link_should_format_anchor">Anchor</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">anchor</span><span class="o">(</span><span class="s">"AnchorExample"</span><span class="o">)</span> <span class="o">+</span> <span class="s">"You can make an anchor to here"</span><span class="o">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -896,6 +954,7 @@ The second paragraph with a blank line before to separate from the first one.</p
 </div>
 </div>
 <hr>
+</div>
 </div>
 </div>
 <div class="sect1">

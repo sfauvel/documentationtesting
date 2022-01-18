@@ -531,12 +531,18 @@ If it is the case, rename it with <code>approved.adoc</code> instead of <code>re
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
+import org.sfvl.doctesting.utils.NoTitle;
 
 /**
  * Demo of a simple usage to generate documentation.
  */
-public class DemoTest extends ApprovalsBase {
+public class DemoTest extends DemoBaseClass {
+
+    @Test
+    @NoTitle
+    public void note_demo() {
+        super.note_demo();
+    }
 
     /**
      * When adding two simple numbers, the java operator '+' should return the sum of them.
@@ -546,7 +552,7 @@ public class DemoTest extends ApprovalsBase {
     public void should_be_5_when_adding_2_and_3() {
         int a = 2;
         int b = 3;
-        write(String.format("%d + %d = %d", a, b, a + b));
+        doc.write(String.format("%d + %d = %d", a, b, a + b));
     }
 }</code></pre>
 </div>
@@ -578,7 +584,7 @@ public class DemoTest extends ApprovalsBase {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-11-09 23:11:29 UTC
+Last updated 2022-01-18 22:58:46 UTC
 </div>
 </div>
 </body>
