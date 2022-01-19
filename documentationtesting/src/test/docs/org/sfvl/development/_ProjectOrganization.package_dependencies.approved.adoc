@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_howto_projectorganization_package_dependencies]
+[#org_sfvl_development_projectorganization_package_dependencies]
 = Package dependencies
 
 The graph below shows dependencies between packages in the project.
@@ -9,15 +9,18 @@ The graph below shows dependencies between packages in the project.
 ----
 digraph g {
     rankdir=TD;
-    node [margin=0.1 fontcolor=black fontsize=16 width=0.5 shape=rect style=filled]
-    subgraph cluster_codeextraction{
+    node [margin=0.1 fontcolor=black fontsize=16 width=0.5 shape=rect style=filled fillcolor="#0fd289"]
+    subgraph cluster_codeextraction {
+        bgcolor="#05fdCC";
         "org.sfvl.codeextraction"
     }
-    subgraph cluster_docformatter{
+    subgraph cluster_docformatter {
+        bgcolor="#05fdCC";
         "org.sfvl.docformatter.asciidoc"
         "org.sfvl.docformatter"
     }
-    subgraph cluster_doctesting{
+    subgraph cluster_doctesting {
+        bgcolor="#05fdCC";
         "org.sfvl.doctesting.utils"
         "org.sfvl.doctesting.writer"
         "org.sfvl.doctesting.junitextension"

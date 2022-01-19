@@ -1,4 +1,4 @@
-package org.sfvl.howto;
+package org.sfvl.development;
 
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.ImportDeclaration;
@@ -265,18 +265,21 @@ public class ProjectOrganization {
 
         String clusters = "";
         for (Map.Entry<String, List<Package>> packageEntry : grouped_packages.entrySet()) {
-            clusters += "subgraph cluster_" + packageEntry.getKey() + "{\n";
-            clusters += packageEntry.getValue().stream()
+            clusters += String.join("\n",
+                    "subgraph cluster_" + packageEntry.getKey() + " {",
+                    "    bgcolor=\"#05fdCC\";",
+                    packageEntry.getValue().stream()
                     .map(Package::getName)
                     .map(name -> "    \"" + name + "\"")
-                    .collect(Collectors.joining("\n"));
-            clusters += "\n}\n";
+                    .collect(Collectors.joining("\n")),
+                    "}",
+                    "");
         }
 
         final String graph = String.join("\n",
                 "The graph below shows dependencies between packages in the project.",
 
-                graphvizGenerator.generate("node [margin=0.1 fontcolor=black fontsize=16 width=0.5 shape=rect style=filled]\n" +
+                graphvizGenerator.generate("node [margin=0.1 fontcolor=black fontsize=16 width=0.5 shape=rect style=filled fillcolor=\"#0fd289\"]\n" +
                         clusters,
                         "")
         );
