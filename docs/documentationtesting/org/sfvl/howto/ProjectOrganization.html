@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Html test</title>
+<title>Project organization</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,24 +436,238 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 </head>
-<body id="org_sfvl_samples_generatehtml_htmltest" class="article">
+<body id="org_sfvl_howto_projectorganization" class="article toc2 toc-left">
 <div id="header">
-<h1>Html test</h1>
+<h1>Project organization</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#org_sfvl_howto_projectorganization_package_dependencies">Package dependencies</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="org_sfvl_samples_generatehtml_htmltest_test_a">Test A</h2>
+<h2 id="org_sfvl_howto_projectorganization_package_dependencies">Package dependencies</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In my <strong>test</strong></p>
+<p>The graph below shows dependencies between packages in the project.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-bdbb3449ab06f341de18b91692dc0c44.png" alt="Diagram" width="933" height="389">
+</div>
+</div>
+<div id="project_home">
+    <a title="home" href="../../../index.html">Doc as test</a>
+</div>
+<style>
+/*
+Own classes:
+includeblock: format an include as a block.
+*/
+
+:root {
+  --bg1: #05fdCC;
+  --bg2: #0fd289;
+  --logo_height: 100px
+  --shadow_color: #084f34;
+  --title-color: #7a2518;
+
+  --media-small-header-height:50px;
+}
+
+
+#content {
+   max-width: unset;
+   padding-left: 5%;
+   padding-right: 5%;
+}
+
+table {
+    background: var(--bg1);
+}
+
+table.tableblock, th.tableblock, td.tableblock {
+    border-color: black;
+}
+
+th.tableblock {
+    background: var(--bg2);
+}
+
+#toc.toc2, #project_home {
+    background: var(--bg2);
+    box-shadow: 5px 5px 5px var(--shadow_color);
+    font-size: 1.1em;
+    width: 260px; /* Do not use 'em' to be independent of the font-size */
+    padding: 1.25em 1em;
+    position: fixed;
+    left: 0;
+}
+
+#toc.toc2 {
+    top: var(--logo_height); /* Height of the project_home */
+    overflow: scroll; /* To avoid menu position change when scoll bar appear */
+    scrollbar-color: var(--bg1) var(--bg2);
+}
+
+#project_home {
+    top: 0;
+    height: var(--logo_height); /* toc2 need to be position after this height */
+
+    font-family: "Noto Serif","DejaVu Serif",serif;
+    font-style: italic;
+    font-size:2em;
+}
+
+#toc.toc2 a {
+    color: #7a2518;
+}
+
+#toc.toc2 #toctitle {
+    font-family: "Noto Serif","DejaVu Serif",serif;
+    font-style: italic;
+
+    color: var(--title-color);
+}
+
+body {
+    background: var(--bg1) !important;
+}
+
+h1 {
+    font-family: "Noto Serif","DejaVu Serif",serif;
+    font-style: italic;
+
+    color: var(--title-color);
+    font-weight: 400;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 2em;
+    border-top: solid;
+    padding-top: 0.2em;
+}
+
+:not(pre):not([class^="L"]) > code {
+    background: var(--bg2);
+}
+
+.listingblock .content pre,
+.listingblock .content pre:not(.highlight) {
+    background: var(--title-color);
+    box-shadow: 5px 5px 5px var(--shadow_color);
+}
+
+/* Remove margin for listingblock in table */
+td.tableblock > .content > .listingblock {
+    margin: 0em;
+}
+
+.includeblock{
+    padding: 1em;
+    background: #fffef7;
+    box-shadow: 5px 5px 5px var(--shadow_color);
+}
+
+.literalblock pre,
+.listingblock > .content > pre:not(.highlight),
+.exampleblock > .content {
+    background: var(--bg2);
+    box-shadow: 5px 5px 5px var(--shadow_color);
+}
+
+/* Menu */
+
+.sectlevel2 {
+    display: none;
+    height: 0;
+    opacity:0;
+}
+
+.sectlevel1>li {
+    padding-left: 0.5em;
+}
+.sectlevel1>li.menu_open {
+    font-weight: bold;
+    background-color: var(--bg1);
+    padding: 0.5em;
+}
+
+.sectlevel1>li.menu_open .sectlevel2 {
+    display: block;
+    height: auto;
+    opacity:1;
+    font-weight: normal;
+}
+
+@media (max-width: 800px) {
+  #toc {
+    display: none;
+  }
+  body.toc2 {
+    padding-left:0em;
+    padding-top:var(--media-small-header-height);
+  }
+
+  #project_home {
+    height: var(--media-small-header-height);
+    width: 100%;
+    padding: 2px;
+    text-align: center;
+  }
+}
+</style>
+<script type="text/javascript">
+function toggleMenuOnClick(menuItem) {
+    menuItem.getElementsByTagName("a")[0].addEventListener(
+        'click',
+        event => {
+            document.querySelectorAll(".sectlevel1 > li").forEach(function(element) {
+                if (element != menuItem) {
+                    element.classList.remove("menu_open");
+                }
+            });
+            event.currentTarget.parentNode.classList.toggle("menu_open");
+        }
+    );
+}
+
+window.addEventListener( "load",
+    function() {
+        menus = document.querySelectorAll(".sectlevel1 > li");
+        menus.forEach(toggleMenuOnClick);
+     }
+);
+</script>
 </div>
 </div>
 </div>
-</div>
-<div id="footer">
-<div id="footer-text">
-Last updated 2022-01-19 07:26:49 UTC
-</div>
-</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>
