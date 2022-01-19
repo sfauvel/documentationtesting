@@ -23,15 +23,15 @@ digraph g {
         "org.sfvl.doctesting.junitextension"
     }
     
-    "org.sfvl.doctesting.utils" -> "org.sfvl.codeextraction"
-    "org.sfvl.doctesting.writer" -> "org.sfvl.codeextraction"
-    "org.sfvl.doctesting.writer" -> "org.sfvl.docformatter"
-    "org.sfvl.doctesting.writer" -> "org.sfvl.doctesting.utils"
+    "org.sfvl.docformatter.asciidoc" -> "org.sfvl.docformatter"
+    "org.sfvl.doctesting.junitextension" -> "org.sfvl.codeextraction"
     "org.sfvl.doctesting.junitextension" -> "org.sfvl.docformatter"
     "org.sfvl.doctesting.junitextension" -> "org.sfvl.doctesting.utils"
     "org.sfvl.doctesting.junitextension" -> "org.sfvl.doctesting.writer"
+    "org.sfvl.doctesting.utils" -> "org.sfvl.codeextraction"
     "org.sfvl.doctesting.utils" -> "org.sfvl.docformatter"
-    "org.sfvl.docformatter.asciidoc" -> "org.sfvl.docformatter"
-    "org.sfvl.doctesting.junitextension" -> "org.sfvl.codeextraction"
+    "org.sfvl.doctesting.writer" -> "org.sfvl.codeextraction"
+    "org.sfvl.doctesting.writer" -> "org.sfvl.docformatter"
+    "org.sfvl.doctesting.writer" -> "org.sfvl.doctesting.utils"
 }
 ----
