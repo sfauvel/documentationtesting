@@ -16,6 +16,7 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 import org.sfvl.doctesting.utils.Config;
+import org.sfvl.test_tools.GraphvizGenerator;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.io.File;

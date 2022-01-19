@@ -1,4 +1,4 @@
-package org.sfvl.howto;
+package org.sfvl.test_tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +54,7 @@ public class GraphvizGenerator {
                     links.stream()
                             .map(link -> String.format("%s%s -> %s\n", "", link.from, link.to))
                             .distinct()
+                            .sorted()
                             .collect(Collectors.joining()) +
                     textAsLine("", toInsertAfter)
                 ) +
