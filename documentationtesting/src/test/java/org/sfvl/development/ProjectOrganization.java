@@ -26,7 +26,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@ExtendWith(IntermediateHtmlPage.class)
 public class ProjectOrganization {
 
     @RegisterExtension

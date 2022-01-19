@@ -1,0 +1,7 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_development_development_introduction]
+= Introduction
+
+This section gives some information for developers who work on this library.
+We describe architecture, development tools, how we organize tests and documentation, ...
