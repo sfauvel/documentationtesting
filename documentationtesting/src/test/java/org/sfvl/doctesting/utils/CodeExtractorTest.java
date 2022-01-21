@@ -260,6 +260,17 @@ public class CodeExtractorTest {
                 // <<<1
                 codeWithClassAndMethodName = code;
             }
+            String codeWithDuplicateMethod;
+            {
+                try {
+                    // >>>duplicate
+                    String code = CodeExtractor.methodSource(DuplicateMethodClass.class, "duplicateMethod");
+                    // <<<duplicate
+                    codeWithDuplicateMethod = code;
+                } catch(Exception e) {
+                    codeWithDuplicateMethod = e.toString();
+                }
+            }
             String codeWithMethod;
             {
                 // >>>2
@@ -297,6 +308,14 @@ public class CodeExtractorTest {
                     ".Source code extracted",
                     formatSourceCode(codeWithClassAndMethodName)
             );
+
+            doc.write("We could not extract method source when there is two methods with same name in the class.",
+                    ".Extract code of a method with several signatures",
+                    extractMarkedCode(testInfo, "duplicate"),
+                    "");
+
+            doc.write(codeWithDuplicateMethod, "", "");
+
 
             if (!codeWithMethod.equals(codeWithClassAndMethodName)) {
 

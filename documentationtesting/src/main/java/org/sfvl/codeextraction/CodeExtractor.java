@@ -195,11 +195,14 @@ public class CodeExtractor {
         }
 
         public String source(Class<?> classOfTheMethod, String methodToExtract) {
-            final Method method = Arrays.stream(classOfTheMethod.getDeclaredMethods()).filter(
-                            m -> m.getName().equals(methodToExtract)
-                    ).findFirst()
-                    .orElseThrow(() -> new RuntimeException("Unknown method"));
-            return source(method);
+            final List<Method> methods = Arrays.stream(classOfTheMethod.getDeclaredMethods())
+                    .filter(m -> m.getName().equals(methodToExtract))
+                    .collect(Collectors.toList());
+
+            if (methods.isEmpty()) throw new RuntimeException("No method found with name '" + methodToExtract + "'");
+            if (methods.size() > 1)  throw new RuntimeException("More than one method with name '" + methodToExtract + "'");
+
+            return source(methods.get(0));
         }
 
         public String source(Method methodToExtract) {

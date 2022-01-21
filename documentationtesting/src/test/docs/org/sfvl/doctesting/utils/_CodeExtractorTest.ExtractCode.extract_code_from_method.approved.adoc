@@ -52,6 +52,15 @@ public class SimpleClass {
     }
 ----
 ====
+We could not extract method source when there is two methods with same name in the class.
+.Extract code of a method with several signatures
+[source, java, indent=0]
+----
+                    String code = CodeExtractor.methodSource(DuplicateMethodClass.class, "duplicateMethod");
+
+----
+java.lang.RuntimeException: More than one method with name 'duplicateMethod'
+
 .How to extract code of a method in a nested class
 [source, java, indent=0]
 ----
