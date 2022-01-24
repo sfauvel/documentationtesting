@@ -10,6 +10,7 @@ import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.sample.*;
 import org.sfvl.doctesting.writer.DocWriter;
+import org.sfvl.printer.PrinterTest;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -907,6 +908,48 @@ public class CodeExtractorTest {
 
             formatCommentExtracted("Comment extracted from class",
                     comment);
+        }
+    }
+    @Nested
+    class ExtractCodeAndResult {
+        @Test
+        public void show_extract_parameters_code() {
+            // >>>
+            final List<String> codes = CodeExtractor.extractParametersCode(
+                    "abcd".substring(2),
+                    "abcd".substring(2, 4)
+            );
+            // <<<
+            doc.write("We can use the following code to get values and the code used to obtain it",
+                    doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    "",
+                    "Result is",
+                    "",
+                    codes.stream().map(code -> doc.getFormatter().sourceCode(code)).collect(Collectors.joining("\n")));
+        }
+
+        @Test
+        public void show_extract_parameters_code_from_nested_class() {
+            List<String> codes = new NestedClassWithArgumentsToExtract().getCodeExtracted();
+
+            doc.write("We can use the following code to get values and the code used to obtain it",
+                    doc.getFormatter().sourceCode(CodeExtractor.classSource(CodeExtractorTest.NestedClassWithArgumentsToExtract.class)),
+                    "",
+                    "Result is",
+                    "",
+                    codes.stream().map(code -> doc.getFormatter().sourceCode(code)).collect(Collectors.joining("\n")));
+
+        }
+
+    }
+    static class NestedClassWithArgumentsToExtract {
+        public List<String> getCodeExtracted() {
+            final List<String> codes = CodeExtractor.extractParametersCode(
+                    "xyzxxx".substring(2),
+                    "xyzxxx".substring(2, 4)
+            );
+
+            return codes;
         }
     }
 

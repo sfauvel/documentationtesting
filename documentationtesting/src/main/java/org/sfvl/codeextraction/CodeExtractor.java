@@ -5,17 +5,16 @@ import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.EnumDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.nodeTypes.NodeWithRange;
+import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.utils.SourceRoot;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -333,4 +332,76 @@ public class CodeExtractor {
         return buffer.toString();
     }
 
+    public static class ArgumentCodeOfMethodCaller extends VoidVisitorAdapter<List<String>> {
+
+        private final int lineNumber;
+
+        public ArgumentCodeOfMethodCaller(StackTraceElement callerStack) {
+            lineNumber = callerStack.getLineNumber();
+        }
+
+        @Override
+        public void visit(MethodDeclaration n, List<String> codes) {
+            if (isLineInThatCode(n)) {
+                super.visit(n, codes);
+            }
+        }
+
+        private boolean isLineInThatCode(Node node) {
+            return isLineInThatCode(node.getBegin().get().line, node.getEnd().get().line);
+        }
+
+        private boolean isLineInThatCode(int begin, int end) {
+            return begin <= lineNumber && lineNumber <= end;
+        }
+
+        @Override
+        public void visit(MethodCallExpr n, List<String> codes) {
+            if (isLineInThatCode(n)) {
+                codes.addAll(n.getArguments().stream()
+                        .map(Node::toString)
+                        .collect(Collectors.toList()));
+            }
+        }
+    }
+
+    public static List<String> extractParametersCode(Object... values) {
+        return extractParametersCodeFromStackDepth(2);
+    }
+
+    public static List<String> extractParametersCodeFromStackDepth(int stack_depth) {
+        final StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+
+        final StackTraceElement callerMethod = IntStream.range(stack_depth + 1, stackTrace.length)
+                .mapToObj(index -> stackTrace[index])
+                .filter(stack -> !stack.getMethodName().contains("access$0"))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Stacktrace depth is out of bounds"));
+
+        CompilationUnit cu = CodeExtractor.getDefaultParsedClassRepository().getCompilationUnit(callerMethod);
+
+        final ArgumentCodeOfMethodCaller visitor = new ArgumentCodeOfMethodCaller(callerMethod);
+        List<String> codes = new ArrayList<>();
+        cu.accept(visitor, codes);
+
+        return codes.stream().collect(Collectors.toList());
+    }
+
+    public static class CodeAndResult<T> {
+        private final String code;
+        private final T value;
+
+        public CodeAndResult(String code, T value) {
+            this.code = code;
+            this.value = value;
+        }
+
+        public String getCode() {
+            return code;
+        }
+
+        public T getValue() {
+            return value;
+        }
+    }
 }

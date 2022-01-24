@@ -1,0 +1,21 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_printer_printertest_show_result_with_int_value]
+= Show result with int value
+
+We can use the following code to get values and the code used to obtain it
+
+[source,java,indent=0]
+----
+        final String result = show_result(
+                3 + 6,
+                5 + 4
+        );
+
+----
+
+
+Result is
+
+* 3 + 6 = 9
+* 5 + 4 = 9

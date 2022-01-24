@@ -1,0 +1,21 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_printer_printertest_list_of_codes_and_values_that_they_provide]
+= List of codes and values that they provide
+
+We can use the following code to get values and the code used to obtain it
+
+[source,java,indent=0]
+----
+        final List<CodeExtractor.CodeAndResult<Integer>> result = getCodeAndResult(
+                5 + 3,
+                4 + 2
+        );
+
+----
+
+
+Result is
+
+* 5 + 3 => 8
+* 4 + 2 => 6

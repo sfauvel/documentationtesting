@@ -24,12 +24,62 @@ import java.util.function.BiConsumer;
  */
 public class ParsedClassRepository {
 
-    private static final ClassFinder classFinder = new ClassFinder();
-    private List<SourceRoot> sourceRoots = new ArrayList<>();
-    private static Map<Class<?>, CompilationUnit> parsedClassCache = new HashMap<>();
+    private static class CompilationUnitCache {
+        private final ClassFinder classFinder = new ClassFinder();
+        private List<SourceRoot> sourceRoots = new ArrayList<>();
+        private static Map<String, CompilationUnit> parsedClassCache = new HashMap<>();
+
+        public CompilationUnitCache(List<SourceRoot> sourceRoots) {
+            this.sourceRoots.addAll(sourceRoots);
+        }
+
+        public void clearCache() {
+            parsedClassCache.clear();
+        }
+
+        /**
+         * Not able to read classes that are not in the public class because we are looking in java file that has the same name of this public class.
+         *
+         * @param clazz
+         * @return
+         */
+        public CompilationUnit getCompilationUnit(Class clazz) {
+
+            final String packageName = clazz.getPackage().getName();
+            final Class<?> mainFileClass = classFinder.getMainFileClass(clazz);
+            final String fileName = mainFileClass.getSimpleName() + ".java";
+
+            return getCompilationUnit(packageName, fileName);
+
+        }
+
+        public CompilationUnit getCompilationUnit(StackTraceElement callerMethod) {
+            final String fileName = callerMethod.getFileName();
+            final String className = callerMethod.getClassName();
+            final String startPackage = className.replaceAll("\\.[^\\.]+$", "");
+            return getCompilationUnit(startPackage, fileName);
+        }
+
+        public CompilationUnit getCompilationUnit(String packageName, String fileName) {
+            final String keyPath = packageName + "." + fileName;
+            final CompilationUnit compilationUnit = parsedClassCache.get(keyPath);
+            if (compilationUnit != null) return compilationUnit;
+            for (SourceRoot sourceRoot : sourceRoots) {
+                try {
+                    final CompilationUnit parse = sourceRoot.parse(packageName, fileName);
+                    parsedClassCache.put(keyPath, parse);
+                    return parse;
+                } catch (ParseProblemException e) {
+                    // try with next path
+                }
+            }
+            throw new RuntimeException(String.format("Enable to parse %s in package %s", fileName, packageName));
+        }
+    }
+
+    private final CompilationUnitCache compilationUnitProvider;
 
     public ParsedClassRepository(Path... paths) {
-
         this(Arrays.stream(paths)
                 .filter(path -> !path.toString().isEmpty())
                 .map(path -> new SourceRoot(path))
@@ -37,11 +87,7 @@ public class ParsedClassRepository {
     }
 
     public ParsedClassRepository(SourceRoot... sourceRoots) {
-        this.sourceRoots.addAll(Arrays.asList(sourceRoots));
-    }
-
-    public void clearCache() {
-        parsedClassCache.clear();
+        compilationUnitProvider = new CompilationUnitCache(Arrays.asList(sourceRoots));
     }
 
     public int getLineNumber(Class clazz) {
@@ -93,31 +139,22 @@ public class ParsedClassRepository {
         return v.comment;
     }
 
+    public void clearCache() {
+        compilationUnitProvider.clearCache();
+    }
+
     /**
      * Not able to read classes that are not in the public class because we are looking in java file that has the same name of this public class.
      *
      * @param clazz
      * @return
      */
-    private CompilationUnit getCompilationUnit(Class clazz) {
-        final CompilationUnit compilationUnit = parsedClassCache.get(clazz);
-        if (compilationUnit != null) return compilationUnit;
+    public CompilationUnit getCompilationUnit(Class clazz) {
+        return compilationUnitProvider.getCompilationUnit(clazz);
+    }
 
-        final String packageName = clazz.getPackage().getName();
-        final Class<?> mainFileClass = classFinder.getMainFileClass(clazz);
-
-        final String fileName = mainFileClass.getSimpleName() + ".java";
-        for (SourceRoot sourceRoot : sourceRoots) {
-            try {
-                final CompilationUnit parse = sourceRoot.parse(packageName, fileName);
-                parsedClassCache.put(clazz, parse);
-                return parse;
-            } catch (ParseProblemException e) {
-                // try with next path
-            }
-        }
-        throw new RuntimeException(String.format("Enable to parse %s in package %s", fileName, packageName));
-
+    public CompilationUnit getCompilationUnit(StackTraceElement callerMethod) {
+        return compilationUnitProvider.getCompilationUnit(callerMethod);
     }
 
     static class MyVisitorMethodLineNumber extends MyMethodVisitor {

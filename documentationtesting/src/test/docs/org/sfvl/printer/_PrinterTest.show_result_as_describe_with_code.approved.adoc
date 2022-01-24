@@ -1,0 +1,26 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_printer_printertest_show_result_as_describe_with_code]
+= Show result as describe with code
+
+We can use the following code to get values and the code used to obtain it
+
+[source,java,indent=0]
+----
+        final String result = show_result_as_describe(
+                (value, code) -> "Value: " + value + " +\n    " + code + "\n\n",
+                "abcd".substring(2),
+                "abcd".substring(2, 4)
+        );
+
+----
+
+
+Result is
+
+Value: cd +
+    "abcd".substring(2)
+
+Value: cd +
+    "abcd".substring(2, 4)
+
