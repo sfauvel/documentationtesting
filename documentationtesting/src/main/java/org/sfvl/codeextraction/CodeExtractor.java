@@ -62,28 +62,6 @@ public class CodeExtractor {
         return Optional.ofNullable(getDefaultParsedClassRepository().getComment(classFile, testEnum));
     }
 
-    public static <R> Map<R, List<String>> groupCodeByResult(Method method, List<R> results) {
-        return groupCodeByResult(method, o -> o, results);
-    }
-
-    public static <K, R> Map<K, List<R>> groupByResult(Function<R, K> buildKey, List<R> results) {
-        final Function<Integer, R> buildValue = index -> results.get(index);
-        return groupByResult(buildKey, buildValue, results);
-    }
-
-    private static <K, R, S> Map<K, List<S>> groupByResult(Function<R, K> buildKey, Function<Integer, S> buildValue, List<R> results) {
-        return IntStream.range(0, results.size())
-                .mapToObj(i -> Integer.valueOf(i))
-                .collect(Collectors.groupingBy(
-                        index -> buildKey.apply(results.get(index)),
-                        Collectors.mapping(buildValue, Collectors.toList())));
-    }
-
-    public static <R, K> Map<K, List<String>> groupCodeByResult(Method method, Function<R, K> buildKey, List<R> results) {
-        final Function<Integer, String> buildValue = index -> extractPartOfMethod(method, index.toString());
-        return groupByResult(buildKey, buildValue, results);
-    }
-
     static class VisitorMethodCode extends ParsedClassRepository.MyMethodVisitor {
         private final StringBuffer buffer = new StringBuffer();
         private final RangeExtractor rangeExtractor;

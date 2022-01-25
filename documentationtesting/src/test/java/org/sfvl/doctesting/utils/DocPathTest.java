@@ -13,6 +13,7 @@ import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.sample.MyClass;
+import org.sfvl.printer.Printer;
 import org.sfvl.samples.MyTest;
 
 import java.lang.reflect.Method;
@@ -233,7 +234,7 @@ public class DocPathTest {
         doc.write("You can create a " + DocPath.class.getSimpleName() + " using one of the constructor available.", "");
 
 
-        final Map<String, List<String>> codeByResult = CodeExtractor.groupCodeByResult(MethodReference.getMethod(DocPathTest::build_a_path), v -> v.approved().path().toString(), Arrays.asList(
+        final Map<String, List<String>> codeByResult = Printer.groupCodeByResult(MethodReference.getMethod(DocPathTest::build_a_path), v -> v.approved().path().toString(), Arrays.asList(
                         // >>>0
                         new DocPath(DocPathTest.class)
                         // <<<0

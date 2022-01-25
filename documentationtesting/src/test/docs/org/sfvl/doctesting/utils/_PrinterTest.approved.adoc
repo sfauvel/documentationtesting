@@ -1,0 +1,19 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_printertest]
+= Printer
+
+include::_PrinterTest.show_result_with_code.approved.adoc[leveloffset=+1]
+
+include::_PrinterTest.list_of_codes_and_values_that_they_provide.approved.adoc[leveloffset=+1]
+
+include::_PrinterTest.show_result_as_describe_with_code.approved.adoc[leveloffset=+1]
+
+[#org_sfvl_doctesting_utils_printertest_groupbyresult]
+== Group by result
+
+include::_PrinterTest.GroupByResult.description.approved.adoc[leveloffset=+2]
+
+include::_PrinterTest.GroupByResult.applying_a_function.approved.adoc[leveloffset=+2]
+
+include::_PrinterTest.GroupByResult.code_used_to_provide_a_result.approved.adoc[leveloffset=+2]

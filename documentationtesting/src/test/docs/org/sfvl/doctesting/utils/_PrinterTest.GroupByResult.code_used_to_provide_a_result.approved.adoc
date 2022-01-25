@@ -1,16 +1,7 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_codeextractortest_groupbyresult_code_used_to_provide_a_result]
+[#org_sfvl_doctesting_utils_printertest_groupbyresult_code_used_to_provide_a_result]
 = Code used to provide a result
-
-ifndef::CODE_EXTRACTOR_CSS[]
-:CODE_EXTRACTOR_CSS:
-++++
-<style>
-include::../../../../../resources/styles/code_extractor.css[]
-</style>
-++++
-endif::[]
 
 There is a method that allow to group code by the result it produces.
 
@@ -30,7 +21,7 @@ There is a method that allow to group code by the result it produces.
                     3 + 3
                     // <<<2
             );
-            final Map<Integer, List<String>> stringListMap = CodeExtractor.groupCodeByResult(
+            final Map<Integer, List<String>> stringListMap = Printer.groupCodeByResult(
                     MethodReference.getMethod(GroupByResult::code_used_to_provide_a_result), results);
 
 
