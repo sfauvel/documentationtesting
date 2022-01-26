@@ -8,6 +8,8 @@ import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.codeextraction.MethodReference;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.printer.CodeAndResult;
+import org.sfvl.printer.CodeAndResultList;
 import org.sfvl.printer.Printer;
 
 import java.lang.reflect.Method;
@@ -58,7 +60,7 @@ public class PrinterTest {
     @Test
     public void list_of_codes_and_values_that_they_provide() {
         // >>>
-        final List<CodeExtractor.CodeAndResult<Integer>> result = new Printer().getCodeAndResult(
+        final List<CodeAndResult<Integer>> result = new Printer().getCodeAndResult(
                 5 + 3,
                 4 + 2
         );
@@ -172,6 +174,36 @@ public class PrinterTest {
                     "You need to pass as parameter the method from which the code should be extracted.");
 
         }
+
+        @Test
+        public void using_code_and_result_class() {
+
+            // >>>
+            final CodeAndResultList<Integer> cr = new CodeAndResultList(
+                    2 + 4,
+                    3 + 5,
+                    3 + 3
+            );
+
+            // Extract codes grouped by value.
+            Map<Integer, List<CodeAndResult<Integer>>> result = cr.groupByResult();
+
+            // Format an output grouping codes by value and providing a function to generate lines.
+            final String output = cr.formatGroupedByValue((value, codes) ->
+                    "*" + value + "*: " + cr.mapAndJoin(codes, code -> "`" + code.trim() + "`", ", ")
+            );
+            // <<<
+
+            doc.write("You can create an object that associate the code and the value it return.",
+                    "This class provides method to help rendering data.",
+                    "",
+                    doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    "",
+                    output,
+                    "",
+                    doc.getFormatter().blockBuilder("----").title("Generated asciidoc in output").content(output).build());
+        }
+
 
     }
 

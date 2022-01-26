@@ -20,7 +20,7 @@ public class Printer {
     }
 
     public <T> String show_result(T... values) {
-        final List<CodeExtractor.CodeAndResult<T>> result_of_code = getResultFromDepth(2, values);
+        final List<CodeAndResult<T>> result_of_code = getResultFromDepth(2, values);
         return format_values_and_codes(r -> "* " + r.getCode() + " = " + r.getValue(), result_of_code);
 
 //        final List<String> codes = extract_parameters_code_from_stack(2);
@@ -32,23 +32,23 @@ public class Printer {
 //        );
     }
 
-    public <T> List<CodeExtractor.CodeAndResult<T>> getCodeAndResult(T... values) {
+    public <T> List<CodeAndResult<T>> getCodeAndResult(T... values) {
         return getResultFromDepth(2, values);
     }
 
-    private <T> List<CodeExtractor.CodeAndResult<T>> getResultFromDepth(int stack_depth, T[] values) {
+    public <T> List<CodeAndResult<T>> getResultFromDepth(int stack_depth, T[] values) {
         final List<String> codes = CodeExtractor.extractParametersCodeFromStackDepth(stack_depth + 1);
         while (codes.size() > values.length) {
             codes.remove(0);
         }
 
         return IntStream.range(0, values.length)
-                .mapToObj(i -> new CodeExtractor.CodeAndResult<T>(codes.get(i), values[i]))
+                .mapToObj(i -> new CodeAndResult<T>(codes.get(i), values[i]))
                 .collect(Collectors.toList());
     }
 
 
-    private <T> String format_values_and_codes(Function<CodeExtractor.CodeAndResult<T>, String> format, List<CodeExtractor.CodeAndResult<T>> result_of_code) {
+    private <T> String format_values_and_codes(Function<CodeAndResult<T>, String> format, List<CodeAndResult<T>> result_of_code) {
         return result_of_code.stream().map(format::apply).collect(Collectors.joining("\n"));
     }
 
@@ -82,4 +82,5 @@ public class Printer {
         final Function<Integer, String> buildValue = index -> CodeExtractor.extractPartOfMethod(method, index.toString());
         return groupByResult(buildKey, buildValue, results);
     }
+
 }

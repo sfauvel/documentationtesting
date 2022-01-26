@@ -971,6 +971,7 @@ public class CodeExtractorTest {
                 parameterCodes = CodeExtractor.extractParametersCodeFromStackDepth(2);
             }
         }
+
         @Test
         public void show_extract_parameters_code_with_an_intermediate_class() {
             // >>>
@@ -988,7 +989,6 @@ public class CodeExtractorTest {
                     "Result is",
                     "",
                     codes.stream().map(code -> doc.getFormatter().sourceCode(code)).collect(Collectors.joining("\n")));
-
         }
     }
 
