@@ -1,0 +1,54 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_show_extract_parameters_code_with_an_intermediate_class]
+= Show extract parameters code with an intermediate class
+
+ifndef::CODE_EXTRACTOR_CSS[]
+:CODE_EXTRACTOR_CSS:
+++++
+<style>
+include::../../../../../resources/styles/code_extractor.css[]
+</style>
+++++
+endif::[]
+
+We can defined a class and retrieve code used as parameters calling constructor.
+
+[source,java,indent=0]
+----
+        public class MyClass {
+
+            private final List<String> parameterCodes;
+
+            MyClass(String value_1, String value_B) {
+                parameterCodes = CodeExtractor.extractParametersCodeFromStackDepth(2);
+            }
+        }
+----
+
+
+We can create an object and get values and the code used calling the constructor.
+
+[source,java,indent=0]
+----
+            final List<String> codes = new MyClass(
+                    "abcd".substring(2),
+                    "abcd".substring(2, 4)
+            ).parameterCodes;
+
+----
+
+
+Result is
+
+
+[source,java,indent=0]
+----
+"abcd".substring(2)
+----
+
+
+[source,java,indent=0]
+----
+"abcd".substring(2, 4)
+----

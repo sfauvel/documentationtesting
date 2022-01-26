@@ -907,6 +907,7 @@ public class CodeExtractorTest {
                     comment);
         }
     }
+
     @Nested
     class ExtractCodeAndResult {
         @Test
@@ -938,7 +939,59 @@ public class CodeExtractorTest {
 
         }
 
+        public List<String> myMethod(String value_A, String value_B) {
+            return CodeExtractor.extractParametersCodeFromStackDepth(2);
+        }
+
+        @Test
+        public void show_extract_parameters_code_with_an_intermediate_method() {
+            // >>>
+            final List<String> codes = myMethod(
+                    "abcd".substring(2),
+                    "abcd".substring(2, 4)
+            );
+            // <<<
+            doc.write("We can defined a method and retrieve code used as parameters.",
+                    doc.getFormatter().sourceCode(CodeExtractor.methodSource(ExtractCodeAndResult.class, "myMethod")),
+                    "",
+                    "We can use the method and get values and the code used to obtain it",
+                    doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    "",
+                    "Result is",
+                    "",
+                    codes.stream().map(code -> doc.getFormatter().sourceCode(code)).collect(Collectors.joining("\n")));
+
+        }
+
+        public class MyClass {
+
+            private final List<String> parameterCodes;
+
+            MyClass(String value_1, String value_B) {
+                parameterCodes = CodeExtractor.extractParametersCodeFromStackDepth(2);
+            }
+        }
+        @Test
+        public void show_extract_parameters_code_with_an_intermediate_class() {
+            // >>>
+            final List<String> codes = new MyClass(
+                    "abcd".substring(2),
+                    "abcd".substring(2, 4)
+            ).parameterCodes;
+            // <<<
+            doc.write("We can defined a class and retrieve code used as parameters calling constructor.",
+                    doc.getFormatter().sourceCode(CodeExtractor.classSource(MyClass.class)),
+                    "",
+                    "We can create an object and get values and the code used calling the constructor.",
+                    doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    "",
+                    "Result is",
+                    "",
+                    codes.stream().map(code -> doc.getFormatter().sourceCode(code)).collect(Collectors.joining("\n")));
+
+        }
     }
+
     static class NestedClassWithArgumentsToExtract {
         public List<String> getCodeExtracted() {
             final List<String> codes = CodeExtractor.extractParametersCode(

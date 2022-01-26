@@ -2,20 +2,23 @@ package org.sfvl.codeextraction;
 
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.EnumDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MethodCallExpr;
+import com.github.javaparser.ast.expr.ObjectCreationExpr;
 import com.github.javaparser.ast.nodeTypes.NodeWithRange;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.utils.SourceRoot;
+import com.google.common.base.Function;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
-import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -335,8 +338,17 @@ public class CodeExtractor {
 
         @Override
         public void visit(MethodCallExpr n, List<String> codes) {
+            extractArgumentsCode(n, codes, MethodCallExpr::getArguments);
+        }
+
+        @Override
+        public void visit(ObjectCreationExpr n, List<String> codes) {
+            extractArgumentsCode(n, codes, ObjectCreationExpr::getArguments);
+        }
+
+        private <T extends Node> void extractArgumentsCode(T n, List<String> codes, Function<T, NodeList<Expression>> argumentGetter) {
             if (isLineInThatCode(n)) {
-                codes.addAll(n.getArguments().stream()
+                codes.addAll(argumentGetter.apply(n).stream()
                         .map(Node::toString)
                         .collect(Collectors.toList()));
             }
