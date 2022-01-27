@@ -24,6 +24,13 @@ public class PrinterTest {
     @RegisterExtension
     public static ApprovalsExtension doc = new SimpleApprovalsExtension();
 
+    class Toto {
+        @Override
+        public String toString() {
+            return "it's me";
+        }
+    }
+
     @Test
     public void show_result_with_code() {
         {
@@ -33,7 +40,7 @@ public class PrinterTest {
                     "abcd".substring(2, 4)
             );
             // <<<string
-            doc.write("We can use the following code to get values and the code used to obtain it",
+            doc.write("We can use the following code to get values and the code used to obtain it.",
                     doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod("string")),
                     "",
                     "Result is",
@@ -48,8 +55,25 @@ public class PrinterTest {
                     5 + 4
             );
             // <<<int
-            doc.write("", "We can use it with any value return by code.",
+            doc.write("", "We can use it with any type returned by code.",
                     doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod("int")),
+                    "",
+                    "Result is",
+                    "",
+                    result,
+                    "");
+        }
+        {
+            // >>>null
+            String value = "abcdef";
+            String nullValue = null;
+            final String result = new Printer().show_result(
+                    value,
+                    nullValue
+            );
+            // <<<null
+            doc.write("", "Null values are displayed with `null`.",
+                    doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod("null")),
                     "",
                     "Result is",
                     "",
@@ -203,7 +227,6 @@ public class PrinterTest {
                     "",
                     doc.getFormatter().blockBuilder("----").title("Generated asciidoc in output").content(output).build());
         }
-
 
     }
 
