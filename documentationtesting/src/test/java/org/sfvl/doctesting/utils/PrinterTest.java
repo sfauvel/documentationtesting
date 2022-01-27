@@ -12,11 +12,12 @@ import org.sfvl.printer.CodeAndResult;
 import org.sfvl.printer.CodeAndResultList;
 import org.sfvl.printer.Printer;
 
-import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @DisplayName(value = "Printer")
 public class PrinterTest {
@@ -89,21 +90,31 @@ public class PrinterTest {
                 4 + 2
         );
         // <<<
+
+        final List<MethodReference.SerializableFunction<CodeAndResult, ?>> getters = Arrays.asList(
+                CodeAndResult::getCode,
+                CodeAndResult::getValue
+        );
+
         doc.write("We can use the following code to get values and the code used to obtain it",
                 doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
                 "",
                 "Result is",
                 "",
-                result.stream().map(r -> "* " + r.getCode() + " => " + r.getValue()).collect(Collectors.joining("\n")));
+                "[%autowidth]" + doc.getFormatter().tableWithHeader(Stream.concat(
+                            Stream.of(getters.stream().map(f -> MethodReference.getMethod(f).getName() + "()").collect(Collectors.toList())),
+                            result.stream().map(r -> getters.stream().map(f -> f.apply(r)).collect(Collectors.toList()))
+                        ).collect(Collectors.toList())),
+                "");
     }
 
     @Test
     public void show_result_as_describe_with_code() {
         // >>>
         final String result = new Printer().show_result_as_describe(
-                (value, code) -> "Value: " + value + " +\n    " + code + "\n\n",
-                "abcd".substring(2),
-                "abcd".substring(2, 4)
+                (value, code) -> "Extracted value: `" + value + "` +\nCode to extract:\n----\n" + code + "\n----\n\n",
+                "abcdef".substring(2),
+                "abcdef".substring(2, 4)
         );
         // <<<
         doc.write("We can use the following code to get values and the code used to obtain it",
@@ -154,52 +165,6 @@ public class PrinterTest {
         }
 
         @Test
-        public void code_used_to_provide_a_result() {
-            doc.write("There is a method that allow to group code by the result it produces.",
-                    "",
-                    "");
-            // >>>
-            final List<Integer> results = Arrays.asList(
-                    // >>>0
-                    2 + 4
-                    // <<<0
-                    ,
-                    // >>>1
-                    3 + 5
-                    // <<<1
-                    ,
-                    // >>>2
-                    3 + 3
-                    // <<<2
-            );
-            final Map<Integer, List<String>> stringListMap = Printer.groupCodeByResult(
-                    MethodReference.getMethod(GroupByResult::code_used_to_provide_a_result), results);
-
-            // <<<
-            doc.write(doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()));
-
-            doc.write("",
-                    "You obtain a map with value returned by the code as key and a list of codes that provides this value.",
-                    "",
-                    "");
-
-            for (Map.Entry<Integer, List<String>> stringListEntry : stringListMap.entrySet()) {
-                doc.write("*" + stringListEntry.getKey() + "*: "
-                                + stringListEntry.getValue().stream()
-                                .map(code -> "`" + code.trim() + "`")
-                                .collect(Collectors.joining(", ")),
-                        " +", "");
-            }
-
-            doc.write("", "The method `" + MethodReference.<Method, List<Integer>>getMethod(Printer::groupCodeByResult).getName() + "`",
-                    "takes a list a values ",
-                    "and extract code between tags `" + CodeExtractor.TAG_BEGIN + "` and `" + CodeExtractor.TAG_END + "`",
-                    "with a number corresponding to the position of the parameter in the list.",
-                    "You need to pass as parameter the method from which the code should be extracted.");
-
-        }
-
-        @Test
         public void using_code_and_result_class() {
 
             // >>>
@@ -225,7 +190,47 @@ public class PrinterTest {
                     "",
                     output,
                     "",
-                    doc.getFormatter().blockBuilder("----").title("Generated asciidoc in output").content(output).build());
+                    doc.getFormatter().blockBuilder("----").title("Generated asciidoc in output").content(output).build(),
+                    "");
+
+            doc.write("You can change delimiter between values." ,
+                    "Here, we used \" / \".",
+                    "",
+                    doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod("delimiter")),
+                    "",
+                    // >>>delimiter
+                    cr.formatGroupedByValue((value, codes) ->
+                            "*" + value + "*: " + cr.mapAndJoin(codes, code -> "`" + code.trim() + "`", ", ")
+                    , " / ")
+                    // <<<delimiter
+            );
+        }
+
+        @Test
+        public void group_by_a_modified_value() {
+
+            // >>>
+            final CodeAndResultList<String> cr = new CodeAndResultList(
+                    "abc", "ijkl", "xyz"
+            );
+
+            // Format an output grouping codes by value applying a function.
+            final String output = cr.formatGroupedByValue(
+                    (value, code) -> value.length(),
+                    (value, codes) -> "*" + value + "*: " + cr.mapAndJoin(codes, Function.identity(), ", "),
+                    " +\n"
+            );
+            // <<<
+
+            doc.write("You can group using the value after applying a function.",
+                    "The key used to group can be of another type than that of the initial value.",
+                    "",
+                    doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    "",
+                    output,
+                    "",
+                    doc.getFormatter().blockBuilder("----").title("Generated asciidoc in output").content(output).build(),
+                    "");
         }
 
     }

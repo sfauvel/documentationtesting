@@ -9,50 +9,39 @@ With one of this code:
 
 [source,java,indent=0]
 ----
-                        new DocPath(Paths.get(""), "DocPathTest")
-
+new DocPath(Paths.get(""), "DocPathTest")
 ----
 
 
 [source,java,indent=0]
 ----
-                        new DocPath("DocPathTest")
-
+new DocPath("DocPathTest")
 ----
-
-Approved file is: 
-
+Approved file is:
 [source,java,indent=0]
 ----
 src/test/docs/_DocPathTest.approved.adoc
 ----
-
 ---
-
 With one of this code:
 
 [source,java,indent=0]
 ----
-                        new DocPath(DocPathTest.class)
-
+new DocPath(DocPathTest.class)
 ----
 
 
 [source,java,indent=0]
 ----
-                        new DocPath(DocPathTest.class.getPackage(), "DocPathTest")
-
+new DocPath(DocPathTest.class.getPackage(), "DocPathTest")
 ----
 
 
 [source,java,indent=0]
 ----
-                        new DocPath(Paths.get("org", "sfvl", "doctesting", "utils"), "DocPathTest")
-
+new DocPath(Paths.get("org", "sfvl", "doctesting", "utils"), "DocPathTest")
 ----
-
-Approved file is: 
-
+Approved file is:
 [source,java,indent=0]
 ----
 src/test/docs/org/sfvl/doctesting/utils/_DocPathTest.approved.adoc

@@ -16,6 +16,6 @@ include::_PrinterTest.GroupByResult.description.approved.adoc[leveloffset=+2]
 
 include::_PrinterTest.GroupByResult.applying_a_function.approved.adoc[leveloffset=+2]
 
-include::_PrinterTest.GroupByResult.code_used_to_provide_a_result.approved.adoc[leveloffset=+2]
-
 include::_PrinterTest.GroupByResult.using_code_and_result_class.approved.adoc[leveloffset=+2]
+
+include::_PrinterTest.GroupByResult.group_by_a_modified_value.approved.adoc[leveloffset=+2]

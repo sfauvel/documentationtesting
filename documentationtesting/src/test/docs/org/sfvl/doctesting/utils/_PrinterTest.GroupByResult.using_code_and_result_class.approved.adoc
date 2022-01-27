@@ -34,3 +34,17 @@ This class provides method to help rendering data.
 *6*: `2 + 4`, `3 + 3` +
 *8*: `3 + 5`
 ----
+You can change delimiter between values.
+Here, we used " / ".
+
+
+[source,java,indent=0]
+----
+                    cr.formatGroupedByValue((value, codes) ->
+                            "*" + value + "*: " + cr.mapAndJoin(codes, code -> "`" + code.trim() + "`", ", ")
+                    , " / ")
+
+----
+
+
+*6*: `2 + 4`, `3 + 3` / *8*: `3 + 5`

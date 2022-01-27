@@ -2,7 +2,6 @@ package org.sfvl.printer;
 
 import org.sfvl.codeextraction.CodeExtractor;
 
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -72,15 +71,6 @@ public class Printer {
                 .collect(Collectors.groupingBy(
                         index -> buildKey.apply(results.get(index)),
                         Collectors.mapping(buildValue, Collectors.toList())));
-    }
-
-    public static <R> Map<R, List<String>> groupCodeByResult(Method method, List<R> results) {
-        return groupCodeByResult(method, o -> o, results);
-    }
-
-    public static <R, K> Map<K, List<String>> groupCodeByResult(Method method, Function<R, K> buildKey, List<R> results) {
-        final Function<Integer, String> buildValue = index -> CodeExtractor.extractPartOfMethod(method, index.toString());
-        return groupByResult(buildKey, buildValue, results);
     }
 
 }

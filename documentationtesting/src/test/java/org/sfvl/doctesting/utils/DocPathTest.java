@@ -13,13 +13,13 @@ import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.sample.MyClass;
-import org.sfvl.printer.Printer;
+import org.sfvl.printer.CodeAndResultList;
 import org.sfvl.samples.MyTest;
 
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Optional;
 import java.util.function.Function;
 
 @ClassToDocument(clazz = DocPath.class)
@@ -233,41 +233,23 @@ public class DocPathTest {
 
         doc.write("You can create a " + DocPath.class.getSimpleName() + " using one of the constructor available.", "");
 
-
-        final Map<String, List<String>> codeByResult = Printer.groupCodeByResult(MethodReference.getMethod(DocPathTest::build_a_path), v -> v.approved().path().toString(), Arrays.asList(
-                        // >>>0
-                        new DocPath(DocPathTest.class)
-                        // <<<0
-                        ,
-                        // >>>1
-                        new DocPath(DocPathTest.class.getPackage(), "DocPathTest")
-                        // <<<1
-                        ,
-                        // >>>2
-                        new DocPath(Paths.get("org", "sfvl", "doctesting", "utils"), "DocPathTest")
-                        // <<<2
-                        ,
-                        // >>>3
-                        new DocPath(Paths.get(""), "DocPathTest")
-                        // <<<3
-                        ,
-                        // >>>4
-                        new DocPath("DocPathTest")
-                        // <<<4
-                )
+        final CodeAndResultList<DocPath> docPathCodeAndResultList = new CodeAndResultList<>(
+                new DocPath(DocPathTest.class),
+                new DocPath(DocPathTest.class.getPackage(), "DocPathTest"),
+                new DocPath(Paths.get("org", "sfvl", "doctesting", "utils"), "DocPathTest"),
+                new DocPath(Paths.get(""), "DocPathTest"),
+                new DocPath("DocPathTest")
         );
 
-
-        String separator = "";
-        for (Map.Entry<String, List<String>> resultAndCodes : codeByResult.entrySet()) {
-            doc.write(separator, "With one of this code:", "");
-            for (String code : resultAndCodes.getValue()) {
-                doc.write(formatter.sourceCode(code), "");
-            }
-            doc.write("Approved file is: ", formatter.sourceCode(DocPath.toAsciiDoc(Paths.get(resultAndCodes.getKey()))));
-            separator = "\n---\n";
-        }
-
+        final String s = docPathCodeAndResultList.formatGroupedByValue(
+                (value, code) -> value.approved().path().toString(),
+                (value, codes) -> "\nWith one of this code:\n"
+                        + docPathCodeAndResultList.mapAndJoin(codes,
+                            code -> doc.getFormatter().sourceCode(code), "\n")
+                        + "Approved file is:" + formatter.sourceCode(DocPath.toAsciiDoc(Paths.get(value))),
+                "---"
+        );
+        doc.write(s);
     }
 
     class CallsRecorder<T extends Object> implements Answer<T> {

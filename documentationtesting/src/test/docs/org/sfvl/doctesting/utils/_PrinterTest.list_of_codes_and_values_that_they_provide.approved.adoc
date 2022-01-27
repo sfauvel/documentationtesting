@@ -17,5 +17,11 @@ We can use the following code to get values and the code used to obtain it
 
 Result is
 
-* 5 + 3 => 8
-* 4 + 2 => 6
+[%autowidth]
+|====
+|getCode()|getValue()
+
+|5 + 3|8
+|4 + 2|6
+|====
+
