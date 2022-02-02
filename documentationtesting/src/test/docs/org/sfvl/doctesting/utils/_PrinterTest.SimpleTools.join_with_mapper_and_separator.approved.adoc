@@ -1,0 +1,19 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_printertest_simpletools_join_with_mapper_and_separator]
+= Join with mapper and separator
+
+
+[source,java,indent=0]
+----
+            String result = Printer.join(
+                    Arrays.asList("abc", "efg", "ijk"),
+                    String::toUpperCase,
+                    " - "
+            );
+
+----
+
+....
+ABC - EFG - IJK
+....

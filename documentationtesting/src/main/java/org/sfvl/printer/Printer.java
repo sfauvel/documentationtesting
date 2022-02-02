@@ -11,14 +11,26 @@ import java.util.stream.IntStream;
 
 public class Printer {
 
-    public <T> String show_result_as_describe(BiFunction<Object, String, String> format, T... values) {
+    public static String join(List<String> strings, Function<String, String> mapper) {
+        return join(strings, mapper, ",");
+    }
+
+    public static String join(List<String> strings, String separator) {
+        return String.join(separator, strings);
+    }
+
+    public static String join(List<String> strings, Function<String, String> mapper, String separator) {
+        return strings.stream().map(mapper).collect(Collectors.joining(separator));
+    }
+
+    public <T> String showResultWithFormat(BiFunction<Object, String, String> format, T... values) {
         final List<String> codes = CodeExtractor.extractParametersCodeFromStackDepth(2);
         codes.remove(0);
 
         return format_values_and_codes(format, values, codes);
     }
 
-    public <T> String show_result(T... values) {
+    public <T> String showResult(T... values) {
         final List<CodeAndResult<T>> result_of_code = getResultFromDepth(2, values);
         return format_values_and_codes(r -> "* " + r.getCode() + " = " + r.getValue(), result_of_code);
 

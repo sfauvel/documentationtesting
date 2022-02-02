@@ -1,0 +1,18 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_printertest_simpletools_join_with_separator]
+= Join with separator
+
+
+[source,java,indent=0]
+----
+            String result = Printer.join(
+                    Arrays.asList("abc", "efg", "ijk"),
+                    " - "
+            );
+
+----
+
+....
+abc - efg - ijk
+....

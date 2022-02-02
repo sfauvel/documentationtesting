@@ -3,9 +3,9 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 [#org_sfvl_doctesting_utils_printertest]
 = Printer
 
-include::_PrinterTest.show_result_with_code.approved.adoc[leveloffset=+1]
+include::_PrinterTest.list_of_codes_and_values_they_provided.approved.adoc[leveloffset=+1]
 
-include::_PrinterTest.list_of_codes_and_values_that_they_provide.approved.adoc[leveloffset=+1]
+include::_PrinterTest.show_result_with_code.approved.adoc[leveloffset=+1]
 
 include::_PrinterTest.show_result_as_describe_with_code.approved.adoc[leveloffset=+1]
 
@@ -19,3 +19,14 @@ include::_PrinterTest.GroupByResult.applying_a_function.approved.adoc[leveloffse
 include::_PrinterTest.GroupByResult.using_code_and_result_class.approved.adoc[leveloffset=+2]
 
 include::_PrinterTest.GroupByResult.group_by_a_modified_value.approved.adoc[leveloffset=+2]
+
+[#org_sfvl_doctesting_utils_printertest_simpletools]
+== Simple tools
+
+include::_PrinterTest.SimpleTools.join_list_to_string.approved.adoc[leveloffset=+2]
+
+include::_PrinterTest.SimpleTools.join_with_mapper.approved.adoc[leveloffset=+2]
+
+include::_PrinterTest.SimpleTools.join_with_separator.approved.adoc[leveloffset=+2]
+
+include::_PrinterTest.SimpleTools.join_with_mapper_and_separator.approved.adoc[leveloffset=+2]

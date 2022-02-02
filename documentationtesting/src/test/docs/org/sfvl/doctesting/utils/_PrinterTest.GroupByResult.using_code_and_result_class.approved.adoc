@@ -9,18 +9,18 @@ This class provides method to help rendering data.
 
 [source,java,indent=0]
 ----
-            final CodeAndResultList<Integer> cr = new CodeAndResultList(
+            final CodeAndResultList<Integer> codeAndResultList = new CodeAndResultList(
                     2 + 4,
                     3 + 5,
                     3 + 3
             );
 
             // Extract codes grouped by value.
-            Map<Integer, List<CodeAndResult<Integer>>> result = cr.groupByResult();
+            Map<Integer, List<CodeAndResult<Integer>>> result = codeAndResultList.groupBy();
 
             // Format an output grouping codes by value and providing a function to generate lines.
-            final String output = cr.formatGroupedByValue((value, codes) ->
-                    "*" + value + "*: " + cr.mapAndJoin(codes, code -> "`" + code.trim() + "`", ", ")
+            final String output = codeAndResultList.formatGroupedByValue((value, codes) ->
+                    "*" + value + "*: " + Printer.join(codes, code -> "`" + code.trim() + "`", ", ")
             );
 
 ----
@@ -40,8 +40,8 @@ Here, we used " / ".
 
 [source,java,indent=0]
 ----
-                    cr.formatGroupedByValue((value, codes) ->
-                            "*" + value + "*: " + cr.mapAndJoin(codes, code -> "`" + code.trim() + "`", ", ")
+                    codeAndResultList.formatGroupedByValue((value, codes) ->
+                            "*" + value + "*: " + Printer.join(codes, code -> "`" + code.trim() + "`", ", ")
                     , " / ")
 
 ----

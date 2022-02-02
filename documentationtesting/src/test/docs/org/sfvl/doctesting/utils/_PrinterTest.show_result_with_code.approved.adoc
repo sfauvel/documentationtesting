@@ -7,7 +7,7 @@ We can use the following code to get values and the code used to obtain it.
 
 [source,java,indent=0]
 ----
-            final String result = new Printer().show_result(
+            final String result = new Printer().showResult(
                     "abcd".substring(2),
                     "abcd".substring(2, 4)
             );
@@ -24,7 +24,7 @@ We can use it with any type returned by code.
 
 [source,java,indent=0]
 ----
-            final String result = new Printer().show_result(
+            final String result = new Printer().showResult(
                     3 + 6,
                     5 + 4
             );
@@ -43,7 +43,7 @@ Null values are displayed with `null`.
 ----
             String value = "abcdef";
             String nullValue = null;
-            final String result = new Printer().show_result(
+            final String result = new Printer().showResult(
                     value,
                     nullValue
             );

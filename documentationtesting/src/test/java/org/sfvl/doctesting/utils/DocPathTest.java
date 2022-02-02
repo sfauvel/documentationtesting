@@ -14,6 +14,7 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.sample.MyClass;
 import org.sfvl.printer.CodeAndResultList;
+import org.sfvl.printer.Printer;
 import org.sfvl.samples.MyTest;
 
 import java.lang.reflect.Method;
@@ -244,7 +245,7 @@ public class DocPathTest {
         final String s = docPathCodeAndResultList.formatGroupedByValue(
                 (value, code) -> value.approved().path().toString(),
                 (value, codes) -> "\nWith one of this code:\n"
-                        + docPathCodeAndResultList.mapAndJoin(codes,
+                        + Printer.join(codes,
                             code -> doc.getFormatter().sourceCode(code), "\n")
                         + "Approved file is:" + formatter.sourceCode(DocPath.toAsciiDoc(Paths.get(value))),
                 "---"
