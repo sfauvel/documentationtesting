@@ -13,10 +13,6 @@ public class CodeAndResultList<T> {
         this.data = data;
     }
 
-    public CodeAndResultList(T... values) {
-        this(new Printer().getResultFromDepth(2, values));
-    }
-
     public <K> Map<T, List<CodeAndResult<T>>> groupBy() {
         return groupBy(CodeAndResult::getValue);
     }

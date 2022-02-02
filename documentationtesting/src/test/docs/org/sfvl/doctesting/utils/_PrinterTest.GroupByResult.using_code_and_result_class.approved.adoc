@@ -9,7 +9,7 @@ This class provides method to help rendering data.
 
 [source,java,indent=0]
 ----
-            final CodeAndResultList<Integer> codeAndResultList = new CodeAndResultList(
+            final CodeAndResultList<Integer> codeAndResultList = Printer.extractCode(
                     2 + 4,
                     3 + 5,
                     3 + 3
@@ -40,11 +40,11 @@ Here, we used " / ".
 
 [source,java,indent=0]
 ----
-                    codeAndResultList.formatGroupedByValue((value, codes) ->
-                            "*" + value + "*: " + Printer.join(codes, code -> "`" + code.trim() + "`", ", ")
-                    , " / ")
+                    codeAndResultList.formatGroupedByValue(
+                            (value, codes) -> "*" + value + "*: " + Printer.join(codes, code -> "`" + code.trim() + "`")
+                            , " / ")
 
 ----
 
 
-*6*: `2 + 4`, `3 + 3` / *8*: `3 + 5`
+*6*: `2 + 4`,`3 + 3` / *8*: `3 + 5`

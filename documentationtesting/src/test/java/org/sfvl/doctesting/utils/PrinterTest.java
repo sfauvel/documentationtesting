@@ -169,7 +169,7 @@ public class PrinterTest {
         public void using_code_and_result_class() {
 
             // >>>
-            final CodeAndResultList<Integer> codeAndResultList = new CodeAndResultList(
+            final CodeAndResultList<Integer> codeAndResultList = Printer.extractCode(
                     2 + 4,
                     3 + 5,
                     3 + 3
@@ -200,8 +200,8 @@ public class PrinterTest {
                     doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod("delimiter")),
                     "",
                     // >>>delimiter
-                    codeAndResultList.formatGroupedByValue((value, codes) ->
-                                    "*" + value + "*: " + Printer.join(codes, code -> "`" + code.trim() + "`", ", ")
+                    codeAndResultList.formatGroupedByValue(
+                            (value, codes) -> "*" + value + "*: " + Printer.join(codes, code -> "`" + code.trim() + "`")
                             , " / ")
                     // <<<delimiter
             );
@@ -211,7 +211,7 @@ public class PrinterTest {
         public void group_by_a_modified_value() {
 
             // >>>
-            final CodeAndResultList<String> codeAndResultList = new CodeAndResultList(
+            final CodeAndResultList<String> codeAndResultList = Printer.extractCode(
                     "abc",
                     "ijkl",
                     "xyz",

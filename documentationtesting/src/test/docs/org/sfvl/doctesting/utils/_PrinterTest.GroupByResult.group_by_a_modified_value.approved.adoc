@@ -6,7 +6,7 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
 [source,java,indent=0]
 ----
-            final CodeAndResultList<String> codeAndResultList = new CodeAndResultList(
+            final CodeAndResultList<String> codeAndResultList = Printer.extractCode(
                     "abc",
                     "ijkl",
                     "xyz",

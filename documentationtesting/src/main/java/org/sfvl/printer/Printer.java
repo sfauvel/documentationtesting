@@ -23,6 +23,10 @@ public class Printer {
         return strings.stream().map(mapper).collect(Collectors.joining(separator));
     }
 
+    public static <T> CodeAndResultList<T> extractCode(T... values) {
+        return new CodeAndResultList<T>(new Printer().getResultFromDepth(2, values));
+    }
+
     public <T> String showResultWithFormat(BiFunction<Object, String, String> format, T... values) {
         final List<String> codes = CodeExtractor.extractParametersCodeFromStackDepth(2);
         codes.remove(0);
