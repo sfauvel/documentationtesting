@@ -234,7 +234,7 @@ public class DocPathTest {
 
         doc.write("You can create a " + DocPath.class.getSimpleName() + " using one of the constructor available.", "");
 
-        final CodeAndResultList<DocPath> docPathCodeAndResultList = Printer.extractCode(
+        final CodeAndResultList<DocPath> docPathCodeAndResultList = Printer.extractCodes(
                 new DocPath(DocPathTest.class),
                 new DocPath(DocPathTest.class.getPackage(), "DocPathTest"),
                 new DocPath(Paths.get("org", "sfvl", "doctesting", "utils"), "DocPathTest"),

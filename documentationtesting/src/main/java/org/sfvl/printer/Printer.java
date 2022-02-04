@@ -23,7 +23,17 @@ public class Printer {
         return strings.stream().map(mapper).collect(Collectors.joining(separator));
     }
 
-    public static <T> CodeAndResultList<T> extractCode(T... values) {
+    public static <T> CodeAndResult<T> extractCode(T value) {
+        final List<String> codes = CodeExtractor.extractParametersCodeFromStackDepth(2);
+        return new CodeAndResult<T>(codes.get(0), value);
+    }
+
+    public static <T> CodeAndResult<T> extractCodeAsItWrite(T value) {
+        final List<String> codes = CodeExtractor.extractParametersCodeFromStackDepth(2, true);
+        return new CodeAndResult<T>(codes.get(0), value);
+    }
+
+    public static <T> CodeAndResultList<T> extractCodes(T... values) {
         return new CodeAndResultList<T>(new Printer().getResultFromDepth(2, values));
     }
 

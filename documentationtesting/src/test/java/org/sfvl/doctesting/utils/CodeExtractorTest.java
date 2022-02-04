@@ -927,6 +927,24 @@ public class CodeExtractorTest {
         }
 
         @Test
+        public void extract_parameters_code_keep_format() {
+            // >>>
+            final List<String> codes = CodeExtractor.extractParametersCodeAsItWrite(
+                    "abcd"
+                            .substring(2),
+                    "abcd"
+                            .substring(2, 4)
+            );
+            // <<<
+            doc.write("We can use the following code to get values and the code used to obtain it",
+                    doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    "",
+                    "Result is",
+                    "",
+                    codes.stream().map(code -> doc.getFormatter().sourceCode(code)).collect(Collectors.joining("\n")));
+        }
+
+        @Test
         public void show_extract_parameters_code_from_nested_class() {
             List<String> codes = new NestedClassWithArgumentsToExtract().getCodeExtracted();
 

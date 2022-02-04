@@ -9,7 +9,7 @@ This class provides method to help rendering data.
 
 [source,java,indent=0]
 ----
-            final CodeAndResultList<Integer> codeAndResultList = Printer.extractCode(
+            final CodeAndResultList<Integer> codeAndResultList = Printer.extractCodes(
                     2 + 4,
                     3 + 5,
                     3 + 3

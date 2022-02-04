@@ -17,7 +17,11 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -91,6 +95,7 @@ public class CodeExtractor {
 
         /**
          * We not use `node.toString()` because it formats code.
+         *
          * @param node
          */
         @Override
@@ -121,23 +126,55 @@ public class CodeExtractor {
     }
 
     static class RangeExtractor {
-        private final Path sourcePath = TEST_PATH;
-        private final Class<?> classToDetermineFile;
+        private final Path filePath;
+
+        public RangeExtractor(Path filePath) {
+            this.filePath = filePath;
+        }
 
         public RangeExtractor(Class<?> classToDetermineFile) {
-            this.classToDetermineFile = classToDetermineFile;
+            this(TEST_PATH.resolve(CodePath.toPath(classToDetermineFile)));
         }
+
         protected String extract(NodeWithRange<?> n) {
             final int firstLine = n.getBegin().get().line;
+            final int firstColumn = n.getEnd().get().column;
             final int lastLine = n.getEnd().get().line;
-            final Path filePath = sourcePath.resolve(CodePath.toPath(classToDetermineFile));
-            return CodeExtractor.extractFromFile(filePath, firstLine, lastLine);
+            final int lastColumn = n.getEnd().get().column;
+
+            return extractFromFile(filePath, firstLine, lastLine, firstColumn, lastColumn);
 
             // With parser, some comments disappeared and code is reformatted.
 //                    final String str = n.getBody()
 //                            .map(body -> body.toString())
 //                            .orElse("");
 //                    javaCode.append(str);
+        }
+
+        private String extractFromFile(Path path, int firstLine, int lastLine, int firstColumn, int lastColumn) {
+            try (Stream<String> lines = Files.lines(path)) {
+                return extractCodeBetweenLines(lines, firstLine, lastLine, firstColumn, lastColumn);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        private String extractCodeBetweenLines(Stream<String> lines, int firstLine, int lastLine, int firstColumn, int lastColumn) {
+            Function<Stream<String>, Stream<String>> mapper = s -> {
+                final List<String> linesList = s.collect(Collectors.toList());
+                final int lastLineIndex = linesList.size() - 1;
+                linesList.set(lastLineIndex, linesList.get(lastLineIndex).substring(0, lastColumn));
+                return linesList.stream();
+            };
+            return extractCodeBetweenLines(lines, firstLine, lastLine, mapper);
+        }
+
+        private String extractCodeBetweenLines(Stream<String> lines, int firstLine, int lastLine, Function<Stream<String>, Stream<String>> mapper) {
+            final Stream<String> linesInRange = lines
+                    .skip(firstLine - 1)
+                    .limit(lastLine - firstLine + 1);
+
+            return mapper.apply(linesInRange).collect(Collectors.joining("\n"));
         }
     }
 
@@ -180,7 +217,8 @@ public class CodeExtractor {
                     .collect(Collectors.toList());
 
             if (methods.isEmpty()) throw new RuntimeException("No method found with name '" + methodToExtract + "'");
-            if (methods.size() > 1)  throw new RuntimeException("More than one method with name '" + methodToExtract + "'");
+            if (methods.size() > 1)
+                throw new RuntimeException("More than one method with name '" + methodToExtract + "'");
 
             return source(methods.get(0));
         }
@@ -240,7 +278,6 @@ public class CodeExtractor {
 
     public static String extractPartOfCurrentMethod() {
         return extractPartOfCurrentMethod(Thread.currentThread().getStackTrace()[2], "");
-
     }
 
     public static String extractPartOfCurrentMethod(String suffix) {
@@ -275,20 +312,6 @@ public class CodeExtractor {
         return extractCodeBetween(source, TAG_BEGIN + suffix, TAG_END + suffix);
     }
 
-    private static String extractFromFile(Path path, int firstLine, int lastLine) {
-        try (Stream<String> lines = Files.lines(path)) {
-            return extractCodeBetweenLines(lines, firstLine, lastLine);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static String extractCodeBetweenLines(Stream<String> lines, int firstLine, int lastLine) {
-        return lines
-                .skip(firstLine - 1)
-                .limit(lastLine - firstLine + 1)
-                .collect(Collectors.joining("\n"));
-    }
 
     public static String extractCodeBetween(String source, String begin, String end) {
         // Not compatible with JDK1.8
@@ -313,7 +336,35 @@ public class CodeExtractor {
         return buffer.toString();
     }
 
-    public static class ArgumentCodeOfMethodCaller extends VoidVisitorAdapter<List<String>> {
+    public static class ArgumentCodeOfMethodCallerFromCode extends ArgumentCodeOfMethodCaller {
+        public ArgumentCodeOfMethodCallerFromCode(StackTraceElement callerStack) {
+            super(callerStack);
+        }
+
+        protected <T extends Node> void extractFromNode(T n, List<String> codes, Function<T, NodeList<Expression>> argumentGetter) {
+            codes.addAll(argumentGetter.apply(n).stream()
+                    .map(Node::toString)
+                    .collect(Collectors.toList()));
+        }
+    }
+
+    public static class ArgumentCodeOfMethodCallerFromSource extends ArgumentCodeOfMethodCaller {
+        private final String fileName;
+
+        public ArgumentCodeOfMethodCallerFromSource(StackTraceElement callerStack) {
+            super(callerStack);
+            final String declaringClass = callerStack.getClassName().split("\\$")[0];
+            this.fileName = TEST_PATH.resolve(declaringClass.replace('.', '/') + ".java").toString();
+        }
+
+        protected <T extends Node> void extractFromNode(T n, List<String> codes, Function<T, NodeList<Expression>> argumentGetter) {
+            codes.addAll(argumentGetter.apply(n).stream()
+                    .map(arg -> new RangeExtractor(Paths.get(this.fileName)).extract(arg))
+                    .collect(Collectors.toList()));
+        }
+    }
+
+    public static abstract class ArgumentCodeOfMethodCaller extends VoidVisitorAdapter<List<String>> {
 
         private final int lineNumber;
 
@@ -348,18 +399,26 @@ public class CodeExtractor {
 
         private <T extends Node> void extractArgumentsCode(T n, List<String> codes, Function<T, NodeList<Expression>> argumentGetter) {
             if (isLineInThatCode(n)) {
-                codes.addAll(argumentGetter.apply(n).stream()
-                        .map(Node::toString)
-                        .collect(Collectors.toList()));
+                extractFromNode(n, codes, argumentGetter);
             }
         }
+
+        abstract protected <T extends Node> void extractFromNode(T n, List<String> codes, Function<T, NodeList<Expression>> argumentGetter);
     }
 
     public static List<String> extractParametersCode(Object... values) {
         return extractParametersCodeFromStackDepth(2);
     }
 
+    public static List<String> extractParametersCodeAsItWrite(Object... values) {
+        return extractParametersCodeFromStackDepth(2, true);
+    }
+
     public static List<String> extractParametersCodeFromStackDepth(int stack_depth) {
+        return extractParametersCodeFromStackDepth(stack_depth + 1, false);
+    }
+
+    public static List<String> extractParametersCodeFromStackDepth(int stack_depth, boolean asItWrite) {
         final StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
 
         final StackTraceElement callerMethod = IntStream.range(stack_depth + 1, stackTrace.length)
@@ -370,7 +429,10 @@ public class CodeExtractor {
 
         CompilationUnit cu = CodeExtractor.getDefaultParsedClassRepository().getCompilationUnit(callerMethod);
 
-        final ArgumentCodeOfMethodCaller visitor = new ArgumentCodeOfMethodCaller(callerMethod);
+        final ArgumentCodeOfMethodCaller visitor = asItWrite
+                ? new ArgumentCodeOfMethodCallerFromSource(callerMethod)
+                : new ArgumentCodeOfMethodCallerFromCode(callerMethod);
+
         List<String> codes = new ArrayList<>();
         cu.accept(visitor, codes);
 

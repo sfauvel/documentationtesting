@@ -1,0 +1,23 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_printertest_extract_one_code_and_result_keep_format]
+= Extract one code and result keep format
+
+
+[source,java,indent=0]
+----
+        final CodeAndResult<List> codeAndResultList = Printer.extractCodeAsItWrite(
+                Arrays.asList(2,
+                        3,
+                        4)
+        );
+
+----
+
+[source,java,indent=0]
+----
+                Arrays.asList(2,
+                        3,
+                        4)
+----
+Result is [2, 3, 4]

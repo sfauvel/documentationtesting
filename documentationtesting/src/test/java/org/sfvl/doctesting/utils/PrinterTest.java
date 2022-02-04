@@ -169,7 +169,7 @@ public class PrinterTest {
         public void using_code_and_result_class() {
 
             // >>>
-            final CodeAndResultList<Integer> codeAndResultList = Printer.extractCode(
+            final CodeAndResultList<Integer> codeAndResultList = Printer.extractCodes(
                     2 + 4,
                     3 + 5,
                     3 + 3
@@ -211,7 +211,7 @@ public class PrinterTest {
         public void group_by_a_modified_value() {
 
             // >>>
-            final CodeAndResultList<String> codeAndResultList = Printer.extractCode(
+            final CodeAndResultList<String> codeAndResultList = Printer.extractCodes(
                     "abc",
                     "ijkl",
                     "xyz",
@@ -280,6 +280,37 @@ public class PrinterTest {
 
     }
 
+    @Test
+    public void extract_one_code_and_result() {
+
+        // >>>
+        final CodeAndResult<Integer> codeAndResultList = Printer.extractCode(
+                2 + 4
+        );
+        // <<<
+
+        doc.write(doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()));
+        doc.write(doc.getFormatter().sourceCode(codeAndResultList.getCode()));
+        doc.write("Result is " + codeAndResultList.getValue());
+    }
+
+
+    @Test
+    public void extract_one_code_and_result_keep_format() {
+
+        // >>>
+        final CodeAndResult<List> codeAndResultList = Printer.extractCodeAsItWrite(
+                Arrays.asList(2,
+                        3,
+                        4)
+        );
+        // <<<
+
+        doc.write(doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()));
+        doc.write(doc.getFormatter().sourceCode(codeAndResultList.getCode()));
+        doc.write("Result is " + codeAndResultList.getValue());
+    }
+
     @Nested
     class SimpleTools {
         @Test
@@ -296,12 +327,6 @@ public class PrinterTest {
                     String::toUpperCase
             );
             // <<<
-
-//            final CodeAndResult list = new CodeAndResult(
-//                    Printer.join(
-//                            Arrays.asList("abc", "efg", "ijk"),
-//                            String::toUpperCase
-//                    ));
 
             doc.write(doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
                     doc.getFormatter().blockBuilder(Formatter.Block.LITERAL)
@@ -322,7 +347,6 @@ public class PrinterTest {
                     doc.getFormatter().blockBuilder(Formatter.Block.LITERAL)
                             .content(result)
                             .build());
-
         }
 
         @Test

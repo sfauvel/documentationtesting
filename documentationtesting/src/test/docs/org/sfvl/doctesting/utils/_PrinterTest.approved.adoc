@@ -20,6 +20,10 @@ include::_PrinterTest.GroupByResult.using_code_and_result_class.approved.adoc[le
 
 include::_PrinterTest.GroupByResult.group_by_a_modified_value.approved.adoc[leveloffset=+2]
 
+include::_PrinterTest.extract_one_code_and_result.approved.adoc[leveloffset=+1]
+
+include::_PrinterTest.extract_one_code_and_result_keep_format.approved.adoc[leveloffset=+1]
+
 [#org_sfvl_doctesting_utils_printertest_simpletools]
 == Simple tools
 
