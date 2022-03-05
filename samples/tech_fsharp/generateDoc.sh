@@ -7,6 +7,8 @@ SCRIPTS_PATH=${DOC_PROJECT_PATH}/scripts
 DOCS_PATH=docs
 DESTINATION_PATH=${DOC_PROJECT_PATH}/tmp/docs/${PROJECT_NAME}
 DOCKER_IMAGE=mcr.microsoft.com/dotnet/sdk
+GITHUB_REPO=https://github.com/sfauvel/documentationtesting/tree/master
+
 if [[ "$(uname)" =~ "NT" ]]; then IS_WINDOWS=true; else IS_WINDOWS=false; fi
 
 # Usage info
@@ -58,6 +60,9 @@ function generate_main_documentation_file() {
   echo ":description: Example in FSharp." >> ${DOC}
   echo "" >> ${DOC}
   echo "== FSharp examples" >> ${DOC}
+
+  CURRENT_PATH=$(pwd)
+  echo "View source project on link:${GITHUB_REPO}${CURRENT_PATH/$(realpath $DOC_PROJECT_PATH)/}[Github]" >> ${DOC}
   echo "" >> ${DOC}
   for FILENAME in $ADOC_FILES
   do
