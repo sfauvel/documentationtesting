@@ -32,16 +32,17 @@ type Doc() =
 
         let full_text = "= " + filename + "\n\n" + text
 
-        use sw = new StreamWriter(received filename, false)
-        sw.Write(full_text)
-        sw.Close()
-
         if not(File.Exists(approved filename)) then
             Assert.Fail("No approved file for: " + filename)
         else
-            Assert.That(full_text, Is.EqualTo(System.IO.File.ReadAllText(approved filename)))
-
-        File.Delete(received filename);
+            let approved_text = System.IO.File.ReadAllText(approved filename)
+            if full_text = approved_text then
+                File.Delete(received filename);
+            else
+                use sw = new StreamWriter(received filename, false)
+                sw.Write(full_text)
+                sw.Close()
+                Assert.That(full_text, Is.EqualTo(approved_text))
 
 [<SetUp>]
 let Setup () =
