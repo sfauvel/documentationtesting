@@ -1,0 +1,8 @@
+
+:toc: left
+:nofooter:
+:description: Example in FSharp.
+
+== FSharp examples
+
+include::UnitTestDemo.fs_Simple_demo.approved[leveloffset=+2]
