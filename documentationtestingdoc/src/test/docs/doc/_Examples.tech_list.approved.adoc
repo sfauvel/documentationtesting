@@ -7,6 +7,9 @@ These examples show different approaches related to the technical environment.
 It could be about languages, tools or some specifics cases.
 
 
+ * link:{ROOT_PATH}/../tech_fsharp/index.html[tech_fsharp]: Example in FSharp. 
+
+
  * link:{ROOT_PATH}/../tech_haskell/index.html[tech_haskell]: Generate documentation with Haskell 
 
 
