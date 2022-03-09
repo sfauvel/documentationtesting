@@ -2,22 +2,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.sfvl</groupId>
-    <artifactId>tech_junit5_extension</artifactId>
+    <artifactId>demo_minimal</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <description>Demo using junit5 extension.</description>
+    <description>Minimal project generating doc</description>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <junit.version>5.4.1</junit.version>
-        <qdox.version>2.0-M10</qdox.version>
-        <documentationtesting.version>1.1.15-SNAPSHOT</documentationtesting.version>
+        <approvaltests.version>4.0.2</approvaltests.version>
+        <documentationtesting.version>1.1.11-SNAPSHOT</documentationtesting.version>
         <asciidoctor.maven.plugin.version>2.1.0</asciidoctor.maven.plugin.version>
     </properties>
 
@@ -38,25 +37,6 @@
                 <version>${maven-surefire-plugin.version}</version>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <mainClass>org.sfvl.demo.BasicDocumentation</mainClass>
-                    <arguments>
-                    </arguments>
-                    <classpathScope>test</classpathScope>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
                 <version>${asciidoctor.maven.plugin.version}</version>
@@ -69,6 +49,7 @@
                     <attributes>
                         <github-repo>https://github.com/sfauvel/documentationtesting/tree/master</github-repo>
                         <github-pages>https://github.com/sfauvel/documentationtesting</github-pages>
+                        <project_name>${artifactId}</project_name>
                     </attributes>
                     <logHandler>
                         <failIf>
@@ -90,12 +71,7 @@
     </build>
 
     <dependencies>
-        <dependency>
-            <groupId>org.sfvl</groupId>
-            <artifactId>documentationtesting</artifactId>
-            <version>${documentationtesting.version}</version>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -115,9 +91,15 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.thoughtworks.qdox</groupId>
-            <artifactId>qdox</artifactId>
-            <version>${qdox.version}</version>
+            <groupId>com.approvaltests</groupId>
+            <artifactId>approvaltests</artifactId>
+            <version>${approvaltests.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.sfvl</groupId>
+            <artifactId>documentationtesting</artifactId>
+            <version>${documentationtesting.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
