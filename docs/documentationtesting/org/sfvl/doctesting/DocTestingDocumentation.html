@@ -521,11 +521,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcomment_bug_when_annotation_before_comment">Issue: comment not retrieve when an annotation is before the comment</a></li>
 </ul>
 </li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_groupbyresult">Group by result</a>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult">Extract code and result</a>
 <ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_groupbyresult_description">Description</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_groupbyresult_applying_a_function">Applying a function</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_groupbyresult_code_used_to_provide_a_result">Code used to provide a result</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_show_extract_parameters_code">Show extract parameters code</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_extract_parameters_code_keep_format">Extract parameters code keep format</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_show_extract_parameters_code_from_nested_class">Show extract parameters code from nested class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_show_extract_parameters_code_with_an_intermediate_method">Show extract parameters code with an intermediate method</a></li>
+<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_show_extract_parameters_code_with_an_intermediate_class">Show extract parameters code with an intermediate class</a></li>
 </ul>
 </li>
 </ul>
@@ -595,6 +597,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_parsed_classes_only_once">Parsed classes only once</a></li>
 </ul>
 </li>
+<li><a href="#org_sfvl_doctesting_utils_printertest">Printer</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_doctesting_utils_printertest_list_of_codes_and_values_they_provided">List of codes and values they provided</a></li>
+<li><a href="#org_sfvl_doctesting_utils_printertest_show_result_with_code">Show result with code</a></li>
+<li><a href="#org_sfvl_doctesting_utils_printertest_show_result_as_describe_with_code">Show result as describe with code</a></li>
+<li><a href="#org_sfvl_doctesting_utils_printertest_groupbyresult">Group by result</a>
+<ul class="sectlevel3">
+<li><a href="#org_sfvl_doctesting_utils_printertest_groupbyresult_description">Description</a></li>
+<li><a href="#org_sfvl_doctesting_utils_printertest_groupbyresult_applying_a_function">Applying a function</a></li>
+<li><a href="#org_sfvl_doctesting_utils_printertest_groupbyresult_using_code_and_result_class">Using code and result class</a></li>
+<li><a href="#org_sfvl_doctesting_utils_printertest_groupbyresult_group_by_a_modified_value">Group by a modified value</a></li>
+</ul>
+</li>
+<li><a href="#org_sfvl_doctesting_utils_printertest_extract_one_code_and_result">Extract one code and result</a></li>
+<li><a href="#org_sfvl_doctesting_utils_printertest_extract_one_code_and_result_keep_format">Extract one code and result keep format</a></li>
+<li><a href="#org_sfvl_doctesting_utils_printertest_simpletools">Simple tools</a>
+<ul class="sectlevel3">
+<li><a href="#org_sfvl_doctesting_utils_printertest_simpletools_join_list_to_string">Join list to string</a></li>
+<li><a href="#org_sfvl_doctesting_utils_printertest_simpletools_join_with_mapper">Join with mapper</a></li>
+<li><a href="#org_sfvl_doctesting_utils_printertest_simpletools_join_with_separator">Join with separator</a></li>
+<li><a href="#org_sfvl_doctesting_utils_printertest_simpletools_join_with_mapper_and_separator">Join with mapper and separator</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -602,7 +629,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document describes usage of classes to create test from generated documentation.</p>
+<p>This document describes usage of classes to create test used to generate documentation.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -614,6 +641,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li>
 <p><a href="#org_sfvl_doctesting_utils_codeextractortest">CodeExtractor</a>: Help to extract information from code.</p>
+</li>
+<li>
+<p><a href="#org_sfvl_doctesting_utils_printertest">Printer</a>: Utilities for result presentation.</p>
 </li>
 </ul>
 </div>
@@ -1825,6 +1855,18 @@ It&#8217;s also possible to retrieve only the method body.</p>
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p>We could not extract method source when there is two methods with same name in the class.
+.Extract code of a method with several signatures</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">methodSource</span><span class="o">(</span><span class="nc">DuplicateMethodClass</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"duplicateMethod"</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>java.lang.RuntimeException: More than one method with name 'duplicateMethod'</p>
+</div>
 <div class="listingblock">
 <div class="title">How to extract code of a method in a nested class</div>
 <div class="content">
@@ -2631,77 +2673,175 @@ This is an issue in the JavaParser we used (com.github.javaparser:javaparser-cor
 </div>
 </div>
 <div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_codeextractortest_groupbyresult">Group by result</h3>
+<h3 id="org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult">Extract code and result</h3>
 <div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_groupbyresult_description">Description</h4>
+<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_show_extract_parameters_code">Show extract parameters code</h4>
 <div class="paragraph">
-<p>It&#8217;s sometime interesting to group all values that provides the same result.
-It can be used to show several ways of doing the same thing.
-We can simply display result once with all cases that can be used to build it.
-You also can just check that we obtain the same result with different values.
-In that case, there is only one key in the result
-and you can just say that all values are the same.</p>
+<p>We can use the following code to get values and the code used to obtain it</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_groupbyresult_applying_a_function">Applying a function</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;&gt;</span> <span class="n">stringListMap</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">groupByResult</span><span class="o">(</span>
-        <span class="nl">String:</span><span class="o">:</span><span class="n">toLowerCase</span><span class="o">,</span>
-        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"abc"</span><span class="o">,</span> <span class="s">"ABC"</span><span class="o">,</span> <span class="s">"XyZ"</span><span class="o">,</span> <span class="s">"Abc"</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">codes</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractParametersCode</span><span class="o">(</span>
+        <span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">),</span>
+        <span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
 <span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You obtain a map with value returned by the function as key and a list of values that provides the key value.</p>
-</div>
-<div class="paragraph">
-<p><strong>abc</strong>: <code>abc</code>, <code>ABC</code>, <code>Abc</code>
-<br>
-<strong>xyz</strong>: <code>XyZ</code>
-<br></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_groupbyresult_code_used_to_provide_a_result">Code used to provide a result</h4>
-<div class="paragraph">
-<p>There is a method that allow to group code by the result it produces.</p>
+<p>Result is</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
-        <span class="c1">// &gt;&gt;&gt;0</span>
-        <span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span>
-        <span class="c1">// &lt;&lt;&lt;0</span>
-        <span class="o">,</span>
-        <span class="c1">// &gt;&gt;&gt;1</span>
-        <span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span>
-        <span class="c1">// &lt;&lt;&lt;1</span>
-        <span class="o">,</span>
-        <span class="c1">// &gt;&gt;&gt;2</span>
-        <span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span>
-        <span class="c1">// &lt;&lt;&lt;2</span>
-<span class="o">);</span>
-<span class="kd">final</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;&gt;</span> <span class="n">stringListMap</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">groupCodeByResult</span><span class="o">(</span>
-        <span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">GroupByResult:</span><span class="o">:</span><span class="n">code_used_to_provide_a_result</span><span class="o">),</span> <span class="n">results</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_extract_parameters_code_keep_format">Extract parameters code keep format</h4>
+<div class="paragraph">
+<p>We can use the following code to get values and the code used to obtain it</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">codes</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractParametersCodeAsItWrite</span><span class="o">(</span>
+        <span class="s">"abcd"</span>
+                <span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">),</span>
+        <span class="s">"abcd"</span>
+                <span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
+<span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You obtain a map with value returned by the code as key and a list of codes that provides this value.</p>
+<p>Result is</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="s">"abcd"</span>
+        <span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="s">"abcd"</span>
+        <span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_show_extract_parameters_code_from_nested_class">Show extract parameters code from nested class</h4>
+<div class="paragraph">
+<p>We can use the following code to get values and the code used to obtain it</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">static</span> <span class="kd">class</span> <span class="nc">NestedClassWithArgumentsToExtract</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="nf">getCodeExtracted</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">codes</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractParametersCode</span><span class="o">(</span>
+                <span class="s">"xyzxxx"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">),</span>
+                <span class="s">"xyzxxx"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
+        <span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">codes</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p><strong>6</strong>: <code>2 + 4</code>, <code>3 + 3</code>
-<br>
-<strong>8</strong>: <code>3 + 5</code>
-<br></p>
+<p>Result is</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="s">"xyzxxx"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="s">"xyzxxx"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_show_extract_parameters_code_with_an_intermediate_method">Show extract parameters code with an intermediate method</h4>
+<div class="paragraph">
+<p>We can defined a method and retrieve code used as parameters.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="nf">myMethod</span><span class="o">(</span><span class="nc">String</span> <span class="n">value_A</span><span class="o">,</span> <span class="nc">String</span> <span class="n">value_B</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractParametersCodeFromStackDepth</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+<span class="o">}</span></code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>The method <code>groupCodeByResult</code>
-takes a list a values
-and extract code between tags <code>&gt;&gt;&gt;</code> and <code>&lt;&lt;&lt;</code>
-with a number corresponding to the position of the parameter in the list.
-You need to pass as parameter the method from which the code should be extracted.</p>
+<p>We can use the method and get values and the code used to obtain it</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">codes</span> <span class="o">=</span> <span class="n">myMethod</span><span class="o">(</span>
+        <span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">),</span>
+        <span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Result is</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_show_extract_parameters_code_with_an_intermediate_class">Show extract parameters code with an intermediate class</h4>
+<div class="paragraph">
+<p>We can defined a class and retrieve code used as parameters calling constructor.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyClass</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">parameterCodes</span><span class="o">;</span>
+
+    <span class="nc">MyClass</span><span class="o">(</span><span class="nc">String</span> <span class="n">value_1</span><span class="o">,</span> <span class="nc">String</span> <span class="n">value_B</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">parameterCodes</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractParametersCodeFromStackDepth</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We can create an object and get values and the code used calling the constructor.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">codes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MyClass</span><span class="o">(</span>
+        <span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">),</span>
+        <span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
+<span class="o">).</span><span class="na">parameterCodes</span><span class="o">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Result is</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -4559,6 +4699,410 @@ you can set it with an empty value to not throw an exception.</p>
    margin-right: 2em;
 }
 </style>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_utils_printertest">Printer</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_printertest_list_of_codes_and_values_they_provided">List of codes and values they provided</h3>
+<div class="paragraph">
+<p>We can use the following code to get values and the code used to obtain it</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">CodeAndResult</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Printer</span><span class="o">().</span><span class="na">getCodeAndResult</span><span class="o">(</span>
+        <span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span><span class="o">,</span>
+        <span class="mi">4</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Result is</p>
+</div>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">getCode()</th>
+<th class="tableblock halign-left valign-top">getValue()</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5 + 3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4 + 2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_printertest_show_result_with_code">Show result with code</h3>
+<div class="paragraph">
+<p>We can use the following code to get values and the code used to obtain it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Printer</span><span class="o">().</span><span class="na">showResult</span><span class="o">(</span>
+        <span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">),</span>
+        <span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Result is</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>"abcd".substring(2) = cd</p>
+</li>
+<li>
+<p>"abcd".substring(2, 4) = cd</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We can use it with any type returned by code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Printer</span><span class="o">().</span><span class="na">showResult</span><span class="o">(</span>
+        <span class="mi">3</span> <span class="o">+</span> <span class="mi">6</span><span class="o">,</span>
+        <span class="mi">5</span> <span class="o">+</span> <span class="mi">4</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Result is</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>3 + 6 = 9</p>
+</li>
+<li>
+<p>5 + 4 = 9</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Null values are displayed with <code>null</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">value</span> <span class="o">=</span> <span class="s">"abcdef"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">nullValue</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Printer</span><span class="o">().</span><span class="na">showResult</span><span class="o">(</span>
+        <span class="n">value</span><span class="o">,</span>
+        <span class="n">nullValue</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Result is</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>value = abcdef</p>
+</li>
+<li>
+<p>nullValue = null</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_printertest_show_result_as_describe_with_code">Show result as describe with code</h3>
+<div class="paragraph">
+<p>We can use the following code to get values and the code used to obtain it</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Printer</span><span class="o">().</span><span class="na">showResultWithFormat</span><span class="o">(</span>
+        <span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">code</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="s">"Extracted value: `"</span> <span class="o">+</span> <span class="n">value</span> <span class="o">+</span> <span class="s">"` +\nCode to extract:\n----\n"</span> <span class="o">+</span> <span class="n">code</span> <span class="o">+</span> <span class="s">"\n----\n\n"</span><span class="o">,</span>
+        <span class="s">"abcdef"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">),</span>
+        <span class="s">"abcdef"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Result is</p>
+</div>
+<div class="paragraph">
+<p>Extracted value: <code>cdef</code><br>
+Code to extract:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>"abcdef".substring(2)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Extracted value: <code>cd</code><br>
+Code to extract:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>"abcdef".substring(2, 4)</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_printertest_groupbyresult">Group by result</h3>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_printertest_groupbyresult_description">Description</h4>
+<div class="paragraph">
+<p>It&#8217;s sometime interesting to group all values that provides the same result.
+It can be used to show several ways of doing the same thing.
+We can simply display result once with all cases that can be used to build it.
+You also can just check that we obtain the same result with different values.
+In that case, there is only one key in the result
+and you can just say that all values are the same.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_printertest_groupbyresult_applying_a_function">Applying a function</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;&gt;</span> <span class="n">stringListMap</span> <span class="o">=</span> <span class="nc">Printer</span><span class="o">.</span><span class="na">groupByResult</span><span class="o">(</span>
+        <span class="nl">String:</span><span class="o">:</span><span class="n">toLowerCase</span><span class="o">,</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"abc"</span><span class="o">,</span> <span class="s">"ABC"</span><span class="o">,</span> <span class="s">"XyZ"</span><span class="o">,</span> <span class="s">"Abc"</span><span class="o">)</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You obtain a map with value returned by the function as key and a list of values that provides the key value.</p>
+</div>
+<div class="paragraph">
+<p><strong>abc</strong>: <code>abc</code>, <code>ABC</code>, <code>Abc</code>
+<br>
+<strong>xyz</strong>: <code>XyZ</code>
+<br></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_printertest_groupbyresult_using_code_and_result_class">Using code and result class</h4>
+<div class="paragraph">
+<p>You can create an object that associate the code and the value it return.
+This class provides method to help rendering data.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">CodeAndResultList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">codeAndResultList</span> <span class="o">=</span> <span class="nc">Printer</span><span class="o">.</span><span class="na">extractCodes</span><span class="o">(</span>
+        <span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="o">,</span>
+        <span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span><span class="o">,</span>
+        <span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="o">);</span>
+
+<span class="c1">// Extract codes grouped by value.</span>
+<span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">CodeAndResult</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;&gt;&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">codeAndResultList</span><span class="o">.</span><span class="na">groupBy</span><span class="o">();</span>
+
+<span class="c1">// Format an output grouping codes by value and providing a function to generate lines.</span>
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="n">codeAndResultList</span><span class="o">.</span><span class="na">formatGroupedByValue</span><span class="o">((</span><span class="n">value</span><span class="o">,</span> <span class="n">codes</span><span class="o">)</span> <span class="o">-&gt;</span>
+        <span class="s">"*"</span> <span class="o">+</span> <span class="n">value</span> <span class="o">+</span> <span class="s">"*: "</span> <span class="o">+</span> <span class="nc">Printer</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="n">codes</span><span class="o">,</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="s">"`"</span> <span class="o">+</span> <span class="n">code</span><span class="o">.</span><span class="na">trim</span><span class="o">()</span> <span class="o">+</span> <span class="s">"`"</span><span class="o">,</span> <span class="s">", "</span><span class="o">)</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>6</strong>: <code>2 + 4</code>, <code>3 + 3</code><br>
+<strong>8</strong>: <code>3 + 5</code></p>
+</div>
+<div class="listingblock">
+<div class="title">Generated asciidoc in output</div>
+<div class="content">
+<pre>*6*: `2 + 4`, `3 + 3` +
+*8*: `3 + 5`</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can change delimiter between values.
+Here, we used " / ".</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">codeAndResultList</span><span class="o">.</span><span class="na">formatGroupedByValue</span><span class="o">(</span>
+        <span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">codes</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="s">"*"</span> <span class="o">+</span> <span class="n">value</span> <span class="o">+</span> <span class="s">"*: "</span> <span class="o">+</span> <span class="nc">Printer</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="n">codes</span><span class="o">,</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="s">"`"</span> <span class="o">+</span> <span class="n">code</span><span class="o">.</span><span class="na">trim</span><span class="o">()</span> <span class="o">+</span> <span class="s">"`"</span><span class="o">)</span>
+        <span class="o">,</span> <span class="s">" / "</span><span class="o">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>6</strong>: <code>2 + 4</code>,<code>3 + 3</code> / <strong>8</strong>: <code>3 + 5</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_printertest_groupbyresult_group_by_a_modified_value">Group by a modified value</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">CodeAndResultList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">codeAndResultList</span> <span class="o">=</span> <span class="nc">Printer</span><span class="o">.</span><span class="na">extractCodes</span><span class="o">(</span>
+        <span class="s">"abc"</span><span class="o">,</span>
+        <span class="s">"ijkl"</span><span class="o">,</span>
+        <span class="s">"xyz"</span><span class="o">,</span>
+        <span class="s">"a"</span> <span class="o">+</span> <span class="s">"b"</span> <span class="o">+</span> <span class="s">"c"</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can group all code that produce the same value.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">CodeAndResult</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;&gt;&gt;</span> <span class="n">groupedCode</span> <span class="o">=</span> <span class="n">codeAndResultList</span><span class="o">.</span><span class="na">groupBy</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>groupedCode</code> contains:<br>
+<strong>ijkl</strong>: "ijkl"<br>
+<strong>abc</strong>: "abc", "a" + "b" + "c"<br>
+<strong>xyz</strong>: "xyz"</p>
+</div>
+<div class="paragraph">
+<p>If you want to group with another key, you can pass a function to build the key from the value or from the code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">CodeAndResult</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;&gt;&gt;</span> <span class="n">groupedCode</span>
+        <span class="o">=</span> <span class="n">codeAndResultList</span><span class="o">.</span><span class="na">groupBy</span><span class="o">(</span><span class="n">codeAndResult</span> <span class="o">-&gt;</span> <span class="n">codeAndResult</span><span class="o">.</span><span class="na">getValue</span><span class="o">().</span><span class="na">length</span><span class="o">());</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>groupedCode</code> contains:<br>
+<strong>3</strong>: "abc", "xyz", "a" + "b" + "c"<br>
+<strong>4</strong>: "ijkl"</p>
+</div>
+<div class="paragraph">
+<p>You can group using the value after applying a function.
+The key used to group can be of another type than that of the initial value.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="c1">// Format an output grouping codes by value applying a function.</span>
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="n">codeAndResultList</span><span class="o">.</span><span class="na">formatGroupedByValue</span><span class="o">(</span>
+        <span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">code</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">value</span><span class="o">.</span><span class="na">length</span><span class="o">(),</span>
+        <span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">codes</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="s">"*"</span> <span class="o">+</span> <span class="n">value</span> <span class="o">+</span> <span class="s">"*: "</span> <span class="o">+</span> <span class="nc">Printer</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="n">codes</span><span class="o">,</span> <span class="nc">Function</span><span class="o">.</span><span class="na">identity</span><span class="o">(),</span> <span class="s">", "</span><span class="o">),</span>
+        <span class="s">" +\n"</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>3</strong>: "abc", "xyz", "a" + "b" + "c"<br>
+<strong>4</strong>: "ijkl"</p>
+</div>
+<div class="listingblock">
+<div class="title">Generated asciidoc in output</div>
+<div class="content">
+<pre>*3*: "abc", "xyz", "a" + "b" + "c" +
+*4*: "ijkl"</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_printertest_extract_one_code_and_result">Extract one code and result</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">CodeAndResult</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">codeAndResultList</span> <span class="o">=</span> <span class="nc">Printer</span><span class="o">.</span><span class="na">extractCode</span><span class="o">(</span>
+        <span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Result is 6</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_printertest_extract_one_code_and_result_keep_format">Extract one code and result keep format</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">CodeAndResult</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&gt;</span> <span class="n">codeAndResultList</span> <span class="o">=</span> <span class="nc">Printer</span><span class="o">.</span><span class="na">extractCodeAsItWrite</span><span class="o">(</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span>
+                <span class="mi">3</span><span class="o">,</span>
+                <span class="mi">4</span><span class="o">)</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span>
+        <span class="mi">3</span><span class="o">,</span>
+        <span class="mi">4</span><span class="o">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Result is [2, 3, 4]</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_printertest_simpletools">Simple tools</h3>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_printertest_simpletools_join_list_to_string">Join list to string</h4>
+<div class="paragraph">
+<p>We provide a method to transform a list to a string applying a mapper
+It&#8217;s just a encapsulated call to stream, map, collect</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_printertest_simpletools_join_with_mapper">Join with mapper</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="nc">Printer</span><span class="o">.</span><span class="na">join</span><span class="o">(</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"abc"</span><span class="o">,</span> <span class="s">"efg"</span><span class="o">,</span> <span class="s">"ijk"</span><span class="o">),</span>
+        <span class="nl">String:</span><span class="o">:</span><span class="n">toUpperCase</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>ABC,EFG,IJK</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_printertest_simpletools_join_with_separator">Join with separator</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="nc">Printer</span><span class="o">.</span><span class="na">join</span><span class="o">(</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"abc"</span><span class="o">,</span> <span class="s">"efg"</span><span class="o">,</span> <span class="s">"ijk"</span><span class="o">),</span>
+        <span class="s">" - "</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>abc - efg - ijk</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_utils_printertest_simpletools_join_with_mapper_and_separator">Join with mapper and separator</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="nc">Printer</span><span class="o">.</span><span class="na">join</span><span class="o">(</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"abc"</span><span class="o">,</span> <span class="s">"efg"</span><span class="o">,</span> <span class="s">"ijk"</span><span class="o">),</span>
+        <span class="nl">String:</span><span class="o">:</span><span class="n">toUpperCase</span><span class="o">,</span>
+        <span class="s">" - "</span>
+<span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>ABC - EFG - IJK</pre>
+</div>
+</div>
 <div id="project_home">
     <a title="home" href="../../../index.html">Doc as test</a>
 </div>
@@ -4743,6 +5287,7 @@ window.addEventListener( "load",
      }
 );
 </script>
+</div>
 </div>
 </div>
 </div>
