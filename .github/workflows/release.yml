@@ -34,7 +34,7 @@ jobs:
       run: |
         new_version=`mvn -q -Dexec.executable="echo" -Dexec.args='${project.version}' --non-recursive exec:exec --file documentationtesting/pom.xml`
         echo "New project version: $new_version"
-        for pom in samples/*/pom.xml; do mvn versions:set-property -Dproperty=documentationtesting.version -DnewVersion=$new_version --file $pom; done
+        for pom in samples/*/pom.xml; do mvn versions:set-property -Dproperty=documentationtesting.version -DnewVersion=$new_version -DgenerateBackupPoms=false --file $pom; done
         git status
         git add --all
         git commit -m "[maven-release-plugin] update version in sub-projects"
