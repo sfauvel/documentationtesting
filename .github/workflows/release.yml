@@ -28,3 +28,12 @@ jobs:
       run: mvn -B release:prepare release:perform --file documentationtesting/pom.xml
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Update samples
+      run: |
+        new_version=`mvn -q -Dexec.executable="echo" -Dexec.args='${project.version}' --non-recursive exec:exec --file documentationtesting/pom.xml`
+        echo "New project version: $new_version"
+        for p in samples/*/pom.xml do mvn versions:set-property property=documentationtesting -DnewVersion=$new_version done
+        git commit -am "[maven-release-plugin] update version in sub-projects"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
