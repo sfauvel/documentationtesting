@@ -24,6 +24,8 @@ jobs:
       run: |
         git config user.email "actions@github.com"
         git config user.name "GitHub Actions"
+    - name: Install graphviz
+      uses: kamiazya/setup-graphviz@v1
     - name: Publish JAR
       run: mvn -B release:prepare release:perform --file documentationtesting/pom.xml
       env:
