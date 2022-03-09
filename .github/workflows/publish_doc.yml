@@ -45,7 +45,7 @@ jobs:
         id: check_files
         run: |
           nb_src_files_modified=`git diff --name-only ${{ needs.get_last_release_tag.outputs.LAST_RELEASE }} HEAD | grep documentationtesting/src/main | wc -l`
-          echo ":Nb source files modified since last release: $nb_src_files_modified"
+          echo "Nb source files modified since last release: $nb_src_files_modified"
           echo "::set-output name=NB_SRC_MODIFIED::$nb_src_files_modified"
 
     outputs:

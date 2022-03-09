@@ -1,0 +1,4 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+
+include::_ProjectOrganization.approved.adoc[leveloffset=+0]

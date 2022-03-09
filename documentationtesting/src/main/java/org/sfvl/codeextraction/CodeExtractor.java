@@ -2,19 +2,25 @@ package org.sfvl.codeextraction;
 
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.EnumDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.expr.Expression;
+import com.github.javaparser.ast.expr.MethodCallExpr;
+import com.github.javaparser.ast.expr.ObjectCreationExpr;
 import com.github.javaparser.ast.nodeTypes.NodeWithRange;
+import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.utils.SourceRoot;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.regex.Matcher;
@@ -63,28 +69,6 @@ public class CodeExtractor {
         return Optional.ofNullable(getDefaultParsedClassRepository().getComment(classFile, testEnum));
     }
 
-    public static <R> Map<R, List<String>> groupCodeByResult(Method method, List<R> results) {
-        return groupCodeByResult(method, o -> o, results);
-    }
-
-    public static <K, R> Map<K, List<R>> groupByResult(Function<R, K> buildKey, List<R> results) {
-        final Function<Integer, R> buildValue = index -> results.get(index);
-        return groupByResult(buildKey, buildValue, results);
-    }
-
-    private static <K, R, S> Map<K, List<S>> groupByResult(Function<R, K> buildKey, Function<Integer, S> buildValue, List<R> results) {
-        return IntStream.range(0, results.size())
-                .mapToObj(i -> Integer.valueOf(i))
-                .collect(Collectors.groupingBy(
-                        index -> buildKey.apply(results.get(index)),
-                        Collectors.mapping(buildValue, Collectors.toList())));
-    }
-
-    public static <R, K> Map<K, List<String>> groupCodeByResult(Method method, Function<R, K> buildKey, List<R> results) {
-        final Function<Integer, String> buildValue = index -> extractPartOfMethod(method, index.toString());
-        return groupByResult(buildKey, buildValue, results);
-    }
-
     static class VisitorMethodCode extends ParsedClassRepository.MyMethodVisitor {
         private final StringBuffer buffer = new StringBuffer();
         private final RangeExtractor rangeExtractor;
@@ -111,6 +95,7 @@ public class CodeExtractor {
 
         /**
          * We not use `node.toString()` because it formats code.
+         *
          * @param node
          */
         @Override
@@ -141,23 +126,55 @@ public class CodeExtractor {
     }
 
     static class RangeExtractor {
-        private final Path sourcePath = TEST_PATH;
-        private final Class<?> classToDetermineFile;
+        private final Path filePath;
+
+        public RangeExtractor(Path filePath) {
+            this.filePath = filePath;
+        }
 
         public RangeExtractor(Class<?> classToDetermineFile) {
-            this.classToDetermineFile = classToDetermineFile;
+            this(TEST_PATH.resolve(CodePath.toPath(classToDetermineFile)));
         }
+
         protected String extract(NodeWithRange<?> n) {
             final int firstLine = n.getBegin().get().line;
+            final int firstColumn = n.getEnd().get().column;
             final int lastLine = n.getEnd().get().line;
-            final Path filePath = sourcePath.resolve(CodePath.toPath(classToDetermineFile));
-            return CodeExtractor.extractFromFile(filePath, firstLine, lastLine);
+            final int lastColumn = n.getEnd().get().column;
+
+            return extractFromFile(filePath, firstLine, lastLine, firstColumn, lastColumn);
 
             // With parser, some comments disappeared and code is reformatted.
 //                    final String str = n.getBody()
 //                            .map(body -> body.toString())
 //                            .orElse("");
 //                    javaCode.append(str);
+        }
+
+        private String extractFromFile(Path path, int firstLine, int lastLine, int firstColumn, int lastColumn) {
+            try (Stream<String> lines = Files.lines(path)) {
+                return extractCodeBetweenLines(lines, firstLine, lastLine, firstColumn, lastColumn);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        private String extractCodeBetweenLines(Stream<String> lines, int firstLine, int lastLine, int firstColumn, int lastColumn) {
+            Function<Stream<String>, Stream<String>> mapper = s -> {
+                final List<String> linesList = s.collect(Collectors.toList());
+                final int lastLineIndex = linesList.size() - 1;
+                linesList.set(lastLineIndex, linesList.get(lastLineIndex).substring(0, lastColumn));
+                return linesList.stream();
+            };
+            return extractCodeBetweenLines(lines, firstLine, lastLine, mapper);
+        }
+
+        private String extractCodeBetweenLines(Stream<String> lines, int firstLine, int lastLine, Function<Stream<String>, Stream<String>> mapper) {
+            final Stream<String> linesInRange = lines
+                    .skip(firstLine - 1)
+                    .limit(lastLine - firstLine + 1);
+
+            return mapper.apply(linesInRange).collect(Collectors.joining("\n"));
         }
     }
 
@@ -195,11 +212,15 @@ public class CodeExtractor {
         }
 
         public String source(Class<?> classOfTheMethod, String methodToExtract) {
-            final Method method = Arrays.stream(classOfTheMethod.getDeclaredMethods()).filter(
-                            m -> m.getName().equals(methodToExtract)
-                    ).findFirst()
-                    .orElseThrow(() -> new RuntimeException("Unknown method"));
-            return source(method);
+            final List<Method> methods = Arrays.stream(classOfTheMethod.getDeclaredMethods())
+                    .filter(m -> m.getName().equals(methodToExtract))
+                    .collect(Collectors.toList());
+
+            if (methods.isEmpty()) throw new RuntimeException("No method found with name '" + methodToExtract + "'");
+            if (methods.size() > 1)
+                throw new RuntimeException("More than one method with name '" + methodToExtract + "'");
+
+            return source(methods.get(0));
         }
 
         public String source(Method methodToExtract) {
@@ -257,7 +278,6 @@ public class CodeExtractor {
 
     public static String extractPartOfCurrentMethod() {
         return extractPartOfCurrentMethod(Thread.currentThread().getStackTrace()[2], "");
-
     }
 
     public static String extractPartOfCurrentMethod(String suffix) {
@@ -292,20 +312,6 @@ public class CodeExtractor {
         return extractCodeBetween(source, TAG_BEGIN + suffix, TAG_END + suffix);
     }
 
-    private static String extractFromFile(Path path, int firstLine, int lastLine) {
-        try (Stream<String> lines = Files.lines(path)) {
-            return extractCodeBetweenLines(lines, firstLine, lastLine);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static String extractCodeBetweenLines(Stream<String> lines, int firstLine, int lastLine) {
-        return lines
-                .skip(firstLine - 1)
-                .limit(lastLine - firstLine + 1)
-                .collect(Collectors.joining("\n"));
-    }
 
     public static String extractCodeBetween(String source, String begin, String end) {
         // Not compatible with JDK1.8
@@ -328,6 +334,109 @@ public class CodeExtractor {
             }
         }
         return buffer.toString();
+    }
+
+    public static class ArgumentCodeOfMethodCallerFromCode extends ArgumentCodeOfMethodCaller {
+        public ArgumentCodeOfMethodCallerFromCode(StackTraceElement callerStack) {
+            super(callerStack);
+        }
+
+        protected <T extends Node> void extractFromNode(T n, List<String> codes, Function<T, NodeList<Expression>> argumentGetter) {
+            codes.addAll(argumentGetter.apply(n).stream()
+                    .map(Node::toString)
+                    .collect(Collectors.toList()));
+        }
+    }
+
+    public static class ArgumentCodeOfMethodCallerFromSource extends ArgumentCodeOfMethodCaller {
+        private final String fileName;
+
+        public ArgumentCodeOfMethodCallerFromSource(StackTraceElement callerStack) {
+            super(callerStack);
+            final String declaringClass = callerStack.getClassName().split("\\$")[0];
+            this.fileName = TEST_PATH.resolve(declaringClass.replace('.', '/') + ".java").toString();
+        }
+
+        protected <T extends Node> void extractFromNode(T n, List<String> codes, Function<T, NodeList<Expression>> argumentGetter) {
+            codes.addAll(argumentGetter.apply(n).stream()
+                    .map(arg -> new RangeExtractor(Paths.get(this.fileName)).extract(arg))
+                    .collect(Collectors.toList()));
+        }
+    }
+
+    public static abstract class ArgumentCodeOfMethodCaller extends VoidVisitorAdapter<List<String>> {
+
+        private final int lineNumber;
+
+        public ArgumentCodeOfMethodCaller(StackTraceElement callerStack) {
+            lineNumber = callerStack.getLineNumber();
+        }
+
+        @Override
+        public void visit(MethodDeclaration n, List<String> codes) {
+            if (isLineInThatCode(n)) {
+                super.visit(n, codes);
+            }
+        }
+
+        private boolean isLineInThatCode(Node node) {
+            return isLineInThatCode(node.getBegin().get().line, node.getEnd().get().line);
+        }
+
+        private boolean isLineInThatCode(int begin, int end) {
+            return begin <= lineNumber && lineNumber <= end;
+        }
+
+        @Override
+        public void visit(MethodCallExpr n, List<String> codes) {
+            extractArgumentsCode(n, codes, MethodCallExpr::getArguments);
+        }
+
+        @Override
+        public void visit(ObjectCreationExpr n, List<String> codes) {
+            extractArgumentsCode(n, codes, ObjectCreationExpr::getArguments);
+        }
+
+        private <T extends Node> void extractArgumentsCode(T n, List<String> codes, Function<T, NodeList<Expression>> argumentGetter) {
+            if (isLineInThatCode(n)) {
+                extractFromNode(n, codes, argumentGetter);
+            }
+        }
+
+        abstract protected <T extends Node> void extractFromNode(T n, List<String> codes, Function<T, NodeList<Expression>> argumentGetter);
+    }
+
+    public static List<String> extractParametersCode(Object... values) {
+        return extractParametersCodeFromStackDepth(2);
+    }
+
+    public static List<String> extractParametersCodeAsItWrite(Object... values) {
+        return extractParametersCodeFromStackDepth(2, true);
+    }
+
+    public static List<String> extractParametersCodeFromStackDepth(int stack_depth) {
+        return extractParametersCodeFromStackDepth(stack_depth + 1, false);
+    }
+
+    public static List<String> extractParametersCodeFromStackDepth(int stack_depth, boolean asItWrite) {
+        final StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+
+        final StackTraceElement callerMethod = IntStream.range(stack_depth + 1, stackTrace.length)
+                .mapToObj(index -> stackTrace[index])
+                .filter(stack -> !stack.getMethodName().contains("access$0"))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Stacktrace depth is out of bounds"));
+
+        CompilationUnit cu = CodeExtractor.getDefaultParsedClassRepository().getCompilationUnit(callerMethod);
+
+        final ArgumentCodeOfMethodCaller visitor = asItWrite
+                ? new ArgumentCodeOfMethodCallerFromSource(callerMethod)
+                : new ArgumentCodeOfMethodCallerFromCode(callerMethod);
+
+        List<String> codes = new ArrayList<>();
+        cu.accept(visitor, codes);
+
+        return codes.stream().collect(Collectors.toList());
     }
 
 }

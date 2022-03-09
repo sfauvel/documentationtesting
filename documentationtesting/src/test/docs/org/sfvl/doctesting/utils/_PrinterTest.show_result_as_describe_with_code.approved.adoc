@@ -1,0 +1,32 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_printertest_show_result_as_describe_with_code]
+= Show result as describe with code
+
+We can use the following code to get values and the code used to obtain it
+
+[source,java,indent=0]
+----
+        final String result = new Printer().showResultWithFormat(
+                (value, code) -> "Extracted value: `" + value + "` +\nCode to extract:\n----\n" + code + "\n----\n\n",
+                "abcdef".substring(2),
+                "abcdef".substring(2, 4)
+        );
+
+----
+
+
+Result is
+
+Extracted value: `cdef` +
+Code to extract:
+----
+"abcdef".substring(2)
+----
+
+Extracted value: `cd` +
+Code to extract:
+----
+"abcdef".substring(2, 4)
+----
+

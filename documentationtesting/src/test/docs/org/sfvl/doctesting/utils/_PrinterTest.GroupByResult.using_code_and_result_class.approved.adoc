@@ -1,0 +1,50 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_printertest_groupbyresult_using_code_and_result_class]
+= Using code and result class
+
+You can create an object that associate the code and the value it return.
+This class provides method to help rendering data.
+
+
+[source,java,indent=0]
+----
+            final CodeAndResultList<Integer> codeAndResultList = Printer.extractCodes(
+                    2 + 4,
+                    3 + 5,
+                    3 + 3
+            );
+
+            // Extract codes grouped by value.
+            Map<Integer, List<CodeAndResult<Integer>>> result = codeAndResultList.groupBy();
+
+            // Format an output grouping codes by value and providing a function to generate lines.
+            final String output = codeAndResultList.formatGroupedByValue((value, codes) ->
+                    "*" + value + "*: " + Printer.join(codes, code -> "`" + code.trim() + "`", ", ")
+            );
+
+----
+
+
+*6*: `2 + 4`, `3 + 3` +
+*8*: `3 + 5`
+
+.Generated asciidoc in output
+----
+*6*: `2 + 4`, `3 + 3` +
+*8*: `3 + 5`
+----
+You can change delimiter between values.
+Here, we used " / ".
+
+
+[source,java,indent=0]
+----
+                    codeAndResultList.formatGroupedByValue(
+                            (value, codes) -> "*" + value + "*: " + Printer.join(codes, code -> "`" + code.trim() + "`")
+                            , " / ")
+
+----
+
+
+*6*: `2 + 4`,`3 + 3` / *8*: `3 + 5`

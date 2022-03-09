@@ -1,0 +1,43 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_extract_parameters_code_keep_format]
+= Extract parameters code keep format
+
+ifndef::CODE_EXTRACTOR_CSS[]
+:CODE_EXTRACTOR_CSS:
+++++
+<style>
+include::../../../../../resources/styles/code_extractor.css[]
+</style>
+++++
+endif::[]
+
+We can use the following code to get values and the code used to obtain it
+
+[source,java,indent=0]
+----
+            final List<String> codes = CodeExtractor.extractParametersCodeAsItWrite(
+                    "abcd"
+                            .substring(2),
+                    "abcd"
+                            .substring(2, 4)
+            );
+
+----
+
+
+Result is
+
+
+[source,java,indent=0]
+----
+                    "abcd"
+                            .substring(2)
+----
+
+
+[source,java,indent=0]
+----
+                    "abcd"
+                            .substring(2, 4)
+----

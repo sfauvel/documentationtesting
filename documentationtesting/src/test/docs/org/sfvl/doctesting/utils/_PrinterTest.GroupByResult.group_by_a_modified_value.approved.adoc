@@ -1,0 +1,69 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_printertest_groupbyresult_group_by_a_modified_value]
+= Group by a modified value
+
+
+[source,java,indent=0]
+----
+            final CodeAndResultList<String> codeAndResultList = Printer.extractCodes(
+                    "abc",
+                    "ijkl",
+                    "xyz",
+                    "a" + "b" + "c"
+            );
+
+
+----
+You can group all code that produce the same value.
+
+
+[source,java,indent=0]
+----
+                final Map<String, List<CodeAndResult<String>>> groupedCode = codeAndResultList.groupBy();
+
+----
+
+`groupedCode` contains: +
+*ijkl*: "ijkl" +
+*abc*: "abc", "a" + "b" + "c" +
+*xyz*: "xyz"
+
+If you want to group with another key, you can pass a function to build the key from the value or from the code.
+
+[source,java,indent=0]
+----
+                final Map<Integer, List<CodeAndResult<String>>> groupedCode
+                        = codeAndResultList.groupBy(codeAndResult -> codeAndResult.getValue().length());
+
+----
+
+`groupedCode` contains: +
+*3*: "abc", "xyz", "a" + "b" + "c" +
+*4*: "ijkl"
+
+You can group using the value after applying a function.
+The key used to group can be of another type than that of the initial value.
+
+
+[source,java,indent=0]
+----
+            // Format an output grouping codes by value applying a function.
+            final String output = codeAndResultList.formatGroupedByValue(
+                    (value, code) -> value.length(),
+                    (value, codes) -> "*" + value + "*: " + Printer.join(codes, Function.identity(), ", "),
+                    " +\n"
+            );
+
+
+----
+
+
+*3*: "abc", "xyz", "a" + "b" + "c" +
+*4*: "ijkl"
+
+.Generated asciidoc in output
+----
+*3*: "abc", "xyz", "a" + "b" + "c" +
+*4*: "ijkl"
+----

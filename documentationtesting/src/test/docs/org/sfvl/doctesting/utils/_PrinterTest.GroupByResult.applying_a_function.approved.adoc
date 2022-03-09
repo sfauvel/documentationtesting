@@ -1,21 +1,12 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_codeextractortest_groupbyresult_applying_a_function]
+[#org_sfvl_doctesting_utils_printertest_groupbyresult_applying_a_function]
 = Applying a function
-
-ifndef::CODE_EXTRACTOR_CSS[]
-:CODE_EXTRACTOR_CSS:
-++++
-<style>
-include::../../../../../resources/styles/code_extractor.css[]
-</style>
-++++
-endif::[]
 
 
 [source,java,indent=0]
 ----
-            final Map<String, List<String>> stringListMap = CodeExtractor.groupByResult(
+            final Map<String, List<String>> stringListMap = Printer.groupByResult(
                     String::toLowerCase,
                     Arrays.asList("abc", "ABC", "XyZ", "Abc")
             );

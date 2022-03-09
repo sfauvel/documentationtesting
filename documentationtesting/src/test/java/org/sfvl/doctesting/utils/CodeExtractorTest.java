@@ -16,9 +16,7 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -260,6 +258,17 @@ public class CodeExtractorTest {
                 // <<<1
                 codeWithClassAndMethodName = code;
             }
+            String codeWithDuplicateMethod;
+            {
+                try {
+                    // >>>duplicate
+                    String code = CodeExtractor.methodSource(DuplicateMethodClass.class, "duplicateMethod");
+                    // <<<duplicate
+                    codeWithDuplicateMethod = code;
+                } catch(Exception e) {
+                    codeWithDuplicateMethod = e.toString();
+                }
+            }
             String codeWithMethod;
             {
                 // >>>2
@@ -297,6 +306,14 @@ public class CodeExtractorTest {
                     ".Source code extracted",
                     formatSourceCode(codeWithClassAndMethodName)
             );
+
+            doc.write("We could not extract method source when there is two methods with same name in the class.",
+                    ".Extract code of a method with several signatures",
+                    extractMarkedCode(testInfo, "duplicate"),
+                    "");
+
+            doc.write(codeWithDuplicateMethod, "", "");
+
 
             if (!codeWithMethod.equals(codeWithClassAndMethodName)) {
 
@@ -892,89 +909,116 @@ public class CodeExtractorTest {
     }
 
     @Nested
-    class GroupByResult {
+    class ExtractCodeAndResult {
         @Test
-        public void description() {
-            doc.write("It's sometime interesting to group all values that provides the same result.",
-                    "It can be used to show several ways of doing the same thing.",
-                    "We can simply display result once with all cases that can be used to build it.",
-                    "You also can just check that we obtain the same result with different values.",
-                    "In that case, there is only one key in the result",
-                    "and you can just say that all values are the same.");
-        }
-
-        @Test
-        public void applying_a_function() {
-
+        public void show_extract_parameters_code() {
             // >>>
-            final Map<String, List<String>> stringListMap = CodeExtractor.groupByResult(
-                    String::toLowerCase,
-                    Arrays.asList("abc", "ABC", "XyZ", "Abc")
+            final List<String> codes = CodeExtractor.extractParametersCode(
+                    "abcd".substring(2),
+                    "abcd".substring(2, 4)
             );
             // <<<
-
-            doc.write(formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()));
-
-            doc.write("",
-                    "You obtain a map with value returned by the function as key and a list of values that provides the key value.",
+            doc.write("We can use the following code to get values and the code used to obtain it",
+                    doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
                     "",
-                    "");
-
-            for (Map.Entry<String, List<String>> stringListEntry : stringListMap.entrySet()) {
-                doc.write("*" + stringListEntry.getKey() + "*: "
-                                + stringListEntry.getValue().stream()
-                                .map(code -> "`" + code.trim() + "`")
-                                .collect(Collectors.joining(", ")),
-                        " +", "");
-            }
-
+                    "Result is",
+                    "",
+                    codes.stream().map(code -> doc.getFormatter().sourceCode(code)).collect(Collectors.joining("\n")));
         }
 
         @Test
-        public void code_used_to_provide_a_result() {
-            doc.write("There is a method that allow to group code by the result it produces.",
-                    "",
-                    "");
+        public void extract_parameters_code_keep_format() {
             // >>>
-            final List<Integer> results = Arrays.asList(
-                    // >>>0
-                    2 + 4
-                    // <<<0
-                    ,
-                    // >>>1
-                    3 + 5
-                    // <<<1
-                    ,
-                    // >>>2
-                    3 + 3
-                    // <<<2
+            final List<String> codes = CodeExtractor.extractParametersCodeAsItWrite(
+                    "abcd"
+                            .substring(2),
+                    "abcd"
+                            .substring(2, 4)
             );
-            final Map<Integer, List<String>> stringListMap = CodeExtractor.groupCodeByResult(
-                    MethodReference.getMethod(GroupByResult::code_used_to_provide_a_result), results);
-
             // <<<
-            doc.write(formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()));
-
-            doc.write("",
-                    "You obtain a map with value returned by the code as key and a list of codes that provides this value.",
+            doc.write("We can use the following code to get values and the code used to obtain it",
+                    doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
                     "",
-                    "");
-
-            for (Map.Entry<Integer, List<String>> stringListEntry : stringListMap.entrySet()) {
-                doc.write("*" + stringListEntry.getKey() + "*: "
-                                + stringListEntry.getValue().stream()
-                                .map(code -> "`" + code.trim() + "`")
-                                .collect(Collectors.joining(", ")),
-                        " +", "");
-            }
-
-            doc.write("", "The method `" + MethodReference.<Method, List<Integer>>getMethod(CodeExtractor::groupCodeByResult).getName() + "`",
-                    "takes a list a values ",
-                    "and extract code between tags `" + CodeExtractor.TAG_BEGIN + "` and `" + CodeExtractor.TAG_END + "`",
-                    "with a number corresponding to the position of the parameter in the list.",
-                    "You need to pass as parameter the method from which the code should be extracted.");
+                    "Result is",
+                    "",
+                    codes.stream().map(code -> doc.getFormatter().sourceCode(code)).collect(Collectors.joining("\n")));
         }
 
+        @Test
+        public void show_extract_parameters_code_from_nested_class() {
+            List<String> codes = new NestedClassWithArgumentsToExtract().getCodeExtracted();
+
+            doc.write("We can use the following code to get values and the code used to obtain it",
+                    doc.getFormatter().sourceCode(CodeExtractor.classSource(CodeExtractorTest.NestedClassWithArgumentsToExtract.class)),
+                    "",
+                    "Result is",
+                    "",
+                    codes.stream().map(code -> doc.getFormatter().sourceCode(code)).collect(Collectors.joining("\n")));
+
+        }
+
+        public List<String> myMethod(String value_A, String value_B) {
+            return CodeExtractor.extractParametersCodeFromStackDepth(2);
+        }
+
+        @Test
+        public void show_extract_parameters_code_with_an_intermediate_method() {
+            // >>>
+            final List<String> codes = myMethod(
+                    "abcd".substring(2),
+                    "abcd".substring(2, 4)
+            );
+            // <<<
+            doc.write("We can defined a method and retrieve code used as parameters.",
+                    doc.getFormatter().sourceCode(CodeExtractor.methodSource(ExtractCodeAndResult.class, "myMethod")),
+                    "",
+                    "We can use the method and get values and the code used to obtain it",
+                    doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    "",
+                    "Result is",
+                    "",
+                    codes.stream().map(code -> doc.getFormatter().sourceCode(code)).collect(Collectors.joining("\n")));
+
+        }
+
+        public class MyClass {
+
+            private final List<String> parameterCodes;
+
+            MyClass(String value_1, String value_B) {
+                parameterCodes = CodeExtractor.extractParametersCodeFromStackDepth(2);
+            }
+        }
+
+        @Test
+        public void show_extract_parameters_code_with_an_intermediate_class() {
+            // >>>
+            final List<String> codes = new MyClass(
+                    "abcd".substring(2),
+                    "abcd".substring(2, 4)
+            ).parameterCodes;
+            // <<<
+            doc.write("We can defined a class and retrieve code used as parameters calling constructor.",
+                    doc.getFormatter().sourceCode(CodeExtractor.classSource(MyClass.class)),
+                    "",
+                    "We can create an object and get values and the code used calling the constructor.",
+                    doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    "",
+                    "Result is",
+                    "",
+                    codes.stream().map(code -> doc.getFormatter().sourceCode(code)).collect(Collectors.joining("\n")));
+        }
+    }
+
+    static class NestedClassWithArgumentsToExtract {
+        public List<String> getCodeExtracted() {
+            final List<String> codes = CodeExtractor.extractParametersCode(
+                    "xyzxxx".substring(2),
+                    "xyzxxx".substring(2, 4)
+            );
+
+            return codes;
+        }
     }
 
     private String extractMarkedCode(TestInfo testInfo) {

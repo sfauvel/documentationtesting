@@ -12,10 +12,14 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
-import org.sfvl.doctesting.utils.*;
+import org.sfvl.doctesting.utils.CodeExtractorTest;
+import org.sfvl.doctesting.utils.DocWriterTest;
+import org.sfvl.doctesting.utils.NoTitle;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.writer.Classes;
 import org.sfvl.doctesting.writer.DocWriter;
+import org.sfvl.printer.Printer;
+import org.sfvl.doctesting.utils.PrinterTest;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.lang.reflect.Method;
@@ -46,10 +50,11 @@ public class DocTestingDocumentation {
 
     protected String generalInformation() {
         return formatter.paragraphSuite(
-                "This document describes usage of classes to create test from generated documentation.",
+                "This document describes usage of classes to create test used to generate documentation.",
                 "* " + makeAnchor(ApprovalsExtensionTest.class, ApprovalsExtension.class) + ": JUnit extension to check document.",
                 "* " + makeAnchor(DocWriterTest.class, DocWriter.class) + ": Store document before writting it.",
-                "* " + makeAnchor(CodeExtractorTest.class, CodeExtractor.class) + ": Help to extract information from code.");
+                "* " + makeAnchor(CodeExtractorTest.class, CodeExtractor.class) + ": Help to extract information from code.",
+                "* " + makeAnchor(PrinterTest.class, Printer.class) + ": Utilities for result presentation.");
     }
 
     private String makeAnchor(Class<?> clazzAnchor, Class<?> clazzNameToDisplay) {

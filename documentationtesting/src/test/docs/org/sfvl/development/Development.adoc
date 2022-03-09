@@ -7,7 +7,7 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 :rouge-style: thankful_eyes
 :toclevels: 4
 
-include::_ProjectOrganization.approved.adoc[]
+include::_Development.approved.adoc[]
 
 [subs=attributes+]
 ++++

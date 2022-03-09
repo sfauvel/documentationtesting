@@ -1,0 +1,7 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_printertest_simpletools_join_list_to_string]
+= Join list to string
+
+We provide a method to transform a list to a string applying a mapper
+It's just a encapsulated call to stream, map, collect

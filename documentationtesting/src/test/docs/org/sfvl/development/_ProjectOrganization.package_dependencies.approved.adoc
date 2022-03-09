@@ -10,6 +10,10 @@ The graph below shows dependencies between packages in the project.
 digraph g {
     rankdir=TD;
     node [margin=0.1 fontcolor=black fontsize=16 width=0.5 shape=rect style=filled fillcolor="#0fd289"]
+    subgraph cluster_printer {
+        bgcolor="#05fdCC";
+        "org.sfvl.printer"
+    }
     subgraph cluster_codeextraction {
         bgcolor="#05fdCC";
         "org.sfvl.codeextraction"
@@ -36,5 +40,6 @@ digraph g {
     "org.sfvl.doctesting.writer" -> "org.sfvl.codeextraction"
     "org.sfvl.doctesting.writer" -> "org.sfvl.docformatter"
     "org.sfvl.doctesting.writer" -> "org.sfvl.doctesting.utils"
+    "org.sfvl.printer" -> "org.sfvl.codeextraction"
 }
 ----

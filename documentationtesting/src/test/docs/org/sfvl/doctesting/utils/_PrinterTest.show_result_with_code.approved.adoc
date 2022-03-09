@@ -1,0 +1,57 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_printertest_show_result_with_code]
+= Show result with code
+
+We can use the following code to get values and the code used to obtain it.
+
+[source,java,indent=0]
+----
+            final String result = new Printer().showResult(
+                    "abcd".substring(2),
+                    "abcd".substring(2, 4)
+            );
+
+----
+
+
+Result is
+
+* "abcd".substring(2) = cd
+* "abcd".substring(2, 4) = cd
+
+We can use it with any type returned by code.
+
+[source,java,indent=0]
+----
+            final String result = new Printer().showResult(
+                    3 + 6,
+                    5 + 4
+            );
+
+----
+
+
+Result is
+
+* 3 + 6 = 9
+* 5 + 4 = 9
+
+Null values are displayed with `null`.
+
+[source,java,indent=0]
+----
+            String value = "abcdef";
+            String nullValue = null;
+            final String result = new Printer().showResult(
+                    value,
+                    nullValue
+            );
+
+----
+
+
+Result is
+
+* value = abcdef
+* nullValue = null

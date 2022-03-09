@@ -1,16 +1,7 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_doctesting_utils_codeextractortest_groupbyresult_description]
+[#org_sfvl_doctesting_utils_printertest_groupbyresult_description]
 = Description
-
-ifndef::CODE_EXTRACTOR_CSS[]
-:CODE_EXTRACTOR_CSS:
-++++
-<style>
-include::../../../../../resources/styles/code_extractor.css[]
-</style>
-++++
-endif::[]
 
 It's sometime interesting to group all values that provides the same result.
 It can be used to show several ways of doing the same thing.

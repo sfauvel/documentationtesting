@@ -1,0 +1,19 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_printertest_extract_one_code_and_result]
+= Extract one code and result
+
+
+[source,java,indent=0]
+----
+        final CodeAndResult<Integer> codeAndResultList = Printer.extractCode(
+                2 + 4
+        );
+
+----
+
+[source,java,indent=0]
+----
+2 + 4
+----
+Result is 6
