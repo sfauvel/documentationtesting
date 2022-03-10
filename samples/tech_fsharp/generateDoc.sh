@@ -52,18 +52,18 @@ function execute_command() {
 function generate_main_documentation_file() {
   ADOC_FILES=$(ls -1 ${DOCS_PATH})
 
+  CURRENT_PATH=$(pwd)
   ROOT_FILE=index.adoc
   DOC=${DOCS_PATH}/${ROOT_FILE}
-  echo "" > ${DOC}
-  echo ":toc: left" >> ${DOC}
-  echo ":nofooter:" >> ${DOC}
-  echo ":description: Example in FSharp." >> ${DOC}
-  echo "" >> ${DOC}
-  echo "== FSharp examples" >> ${DOC}
+  echo ":toc: left
+:nofooter:
+:description: Example in FSharp.
 
-  CURRENT_PATH=$(pwd)
-  echo "View source project on link:${GITHUB_REPO}${CURRENT_PATH/$(realpath $DOC_PROJECT_PATH)/}[Github]" >> ${DOC}
-  echo "" >> ${DOC}
+== FSharp examples
+
+View source project on link:${GITHUB_REPO}${CURRENT_PATH/$(realpath $DOC_PROJECT_PATH)/}[Github]
+" > ${DOC}
+
   for FILENAME in $ADOC_FILES
   do
     if [[ ! $FILENAME == $ROOT_FILE ]]
@@ -71,13 +71,15 @@ function generate_main_documentation_file() {
       echo "include::${FILENAME}[leveloffset=+2]" >> ${DOC}
 
       SOURCE_FILENAME=${FILENAME%%.*}; SOURCE_FILENAME=${SOURCE_FILENAME:1}.fs
-      echo "[%collapsible]" >> ${DOC}
-      echo ".Code used to generate this doc" >> ${DOC}
-      echo "====" >> ${DOC}
-      echo "----" >> ${DOC}
-      echo "include::../src/${SOURCE_FILENAME}[]" >> ${DOC}
-      echo "----" >> ${DOC}
-      echo "====" >> ${DOC}
+      echo "[%collapsible]
+
+.Code used to generate this doc
+====
+----
+include::../src/${SOURCE_FILENAME}[]
+----
+====" >> ${DOC}
+
     fi
   done
 }
