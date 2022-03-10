@@ -36,7 +36,7 @@ class TestStringMethods(unittest.TestCase):
 
     def tearDown(self):
         methodName=self._testMethodName
-        with open("../docs/" + methodName + ".adoc", "w") as f:
+        with open("../docs/_" + methodName + ".adoc", "w") as f:
             f.write("= " + self._testMethodName + "\n\n")
             f.write(self.buffer)
             f.write("\n")

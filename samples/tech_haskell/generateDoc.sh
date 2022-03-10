@@ -55,7 +55,7 @@ function reset_docs_directories() {
 function generate_main_documentation_file() {
   ADOC_FILES=$(ls -1 ${DOCS_PATH})
 
-  DOC=${DOCS_PATH}/Documentation.adoc
+  DOC=${DOCS_PATH}/index.adoc
   touch ${DOC}
   echo ":toc: left" >> ${DOC}
   echo ":nofooter:" >> ${DOC}

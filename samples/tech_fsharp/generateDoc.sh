@@ -52,7 +52,7 @@ function execute_command() {
 function generate_main_documentation_file() {
   ADOC_FILES=$(ls -1 ${DOCS_PATH})
 
-  ROOT_FILE=Documentation.adoc
+  ROOT_FILE=index.adoc
   DOC=${DOCS_PATH}/${ROOT_FILE}
   echo "" > ${DOC}
   echo ":toc: left" >> ${DOC}
