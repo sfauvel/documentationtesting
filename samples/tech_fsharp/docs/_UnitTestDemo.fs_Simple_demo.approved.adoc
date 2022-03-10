@@ -1,0 +1,6 @@
+= Simple demo
+
+ToLower on string
+
+* C -> c
+* D -> d

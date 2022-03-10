@@ -1,17 +1,13 @@
 module MyDemo.Tests
 
 open NUnit.Framework
-open System.IO
-open System
-open System.Runtime.CompilerServices
-open System.Runtime.InteropServices
-open Approvals
 
-[<SetUp>]
-let Setup () =
-    ()
+let format_to_lower(x:string) =
+     "* " + x + " -> " + x.ToLower() + "\n"
 
 [<Test>]
 let Simple_demo () =
-    "ToLower on 'C': " + "C".ToLower()
-    |> Doc().verify
+    "ToLower on string\n\n"
+        + format_to_lower("C")
+        + format_to_lower("D")
+    |> Approvals.Doc().verify
