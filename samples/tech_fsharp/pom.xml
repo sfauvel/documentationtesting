@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.sfvl</groupId>
+    <artifactId>tech_fsharp</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <description>Generate documentation with FSharp</description>
+
+    <properties>
+        <asciidoctor.maven.plugin.version>2.1.0</asciidoctor.maven.plugin.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                <version>${asciidoctor.maven.plugin.version}</version>
+                <configuration>
+                    <sourceDirectory>docs</sourceDirectory>
+                    <outputDirectory>../../tmp/docs/${project.artifactId}</outputDirectory>
+                    <preserveDirectories>true</preserveDirectories>
+                    <relativeBaseDir>true</relativeBaseDir>
+                    <backend>html</backend>
+                    <attributes>
+                        <github-repo>https://github.com/sfauvel/documentationtesting/tree/master</github-repo>
+                        <github-pages>https://github.com/sfauvel/documentationtesting</github-pages>
+                    </attributes>
+                    <logHandler>
+                        <failIf>
+                            <severity>ERROR</severity>
+                        </failIf>
+                    </logHandler>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>asciidoc-to-html</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
