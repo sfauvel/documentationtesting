@@ -18,4 +18,4 @@ tests = unlines [
         ]
 
 main = do
-    writeFile "docs/test_calculator.adoc" tests
+    writeFile "docs/_test_calculator.adoc" tests

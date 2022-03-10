@@ -6,4 +6,4 @@
 == FSharp examples
 View source project on link:https://github.com/sfauvel/documentationtesting/tree/master/samples/tech_fsharp[Github]
 
-include::UnitTestDemo.fs_Simple_demo.approved[leveloffset=+2]
+include::_UnitTestDemo.fs_Simple_demo.approved[leveloffset=+2]

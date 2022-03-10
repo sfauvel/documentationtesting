@@ -4,4 +4,4 @@
 
 == Haskell examples
 
-include::test_calculator.adoc[leveloffset=+2]
+include::_test_calculator.adoc[leveloffset=+2]

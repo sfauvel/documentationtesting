@@ -23,7 +23,7 @@ type Doc([<CallerMemberName; Optional; DefaultParameterValue("")>] caller_filena
          [<CallerFilePath; Optional; DefaultParameterValue("")>] source_file_path: string) =
 
     let doc (file: string, approvalType: ApprovalType) =
-        Directory.GetParent(__SOURCE_DIRECTORY__).ToString() + "/docs/" + file + "." + extension(approvalType)
+        Directory.GetParent(__SOURCE_DIRECTORY__).ToString() + "/docs/_" + file + "." + extension(approvalType)
 
     let file_name = Array.last(source_file_path.Split('/')) + "_" + caller_filename
 
