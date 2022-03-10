@@ -100,4 +100,5 @@ then
 else
   echo "No '$DOCKER_IMAGE' docker image. Uses already generated '.adoc' files."
 fi
-${SCRIPTS_PATH}/convertAdocToHtml.sh ${DOCS_PATH} Documentation.adoc ${DESTINATION_PATH}
+#${SCRIPTS_PATH}/convertAdocToHtml.sh ${DOCS_PATH} Documentation.adoc ${DESTINATION_PATH}
+mvn clean install package
