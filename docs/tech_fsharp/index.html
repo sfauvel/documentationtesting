@@ -444,7 +444,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_fsharp_examples">FSharp examples</a>
 <ul class="sectlevel2">
-<li><a href="#_simple_demo">Simple_demo</a></li>
+<li><a href="#_simple_demo">Simple demo</a></li>
 </ul>
 </li>
 </ul>
@@ -458,10 +458,42 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>View source project on <a href="https://github.com/sfauvel/documentationtesting/tree/master/samples/tech_fsharp">Github</a></p>
 </div>
 <div class="sect2">
-<h3 id="_simple_demo">Simple_demo</h3>
+<h3 id="_simple_demo">Simple demo</h3>
 <div class="paragraph">
-<p>ToLower on 'C': c</p>
+<p>ToLower on string</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>C &#8594; c</p>
+</li>
+<li>
+<p>D &#8594; d</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Code used to generate this doc</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre>module MyDemo.Tests
+
+open NUnit.Framework
+
+let format_to_lower(x:string) =
+     "* " + x + " -&gt; " + x.ToLower() + "\n"
+
+[&lt;Test&gt;]
+let Simple_demo () =
+    "ToLower on string\n\n"
+        + format_to_lower("C")
+        + format_to_lower("D")
+    |&gt; Approvals.Doc().verify</pre>
+</div>
+</div>
+</div>
+</details>
 </div>
 </div>
 </div>
