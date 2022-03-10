@@ -23,7 +23,7 @@ type Doc([<CallerMemberName; Optional; DefaultParameterValue("")>] caller_filena
          [<CallerFilePath; Optional; DefaultParameterValue("")>] source_file_path: string) =
 
     let doc (file: string, approvalType: ApprovalType) =
-        Directory.GetParent(__SOURCE_DIRECTORY__).ToString() + "/docs/_" + file + "." + extension(approvalType)
+        Directory.GetParent(__SOURCE_DIRECTORY__).ToString() + "/docs/_" + file + "." + extension(approvalType) + ".adoc"
 
     let file_name = Array.last(source_file_path.Split('/')) + "_" + caller_filename
 
@@ -37,7 +37,7 @@ type Doc([<CallerMemberName; Optional; DefaultParameterValue("")>] caller_filena
 
     member _.verify(text: string) =
 
-        let full_text = "= " + caller_filename + "\n\n" + text
+        let full_text = "= " + caller_filename.Replace("_", " ") + "\n\n" + text
 
         if not(File.Exists(approved_file)) then
             write_file(received_file, full_text)

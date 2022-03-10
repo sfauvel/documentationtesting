@@ -69,6 +69,15 @@ function generate_main_documentation_file() {
     if [[ ! $FILENAME == $ROOT_FILE ]]
     then
       echo "include::${FILENAME}[leveloffset=+2]" >> ${DOC}
+
+      SOURCE_FILENAME=${FILENAME%%.*}; SOURCE_FILENAME=${SOURCE_FILENAME:1}.fs
+      echo "[%collapsible]" >> ${DOC}
+      echo ".Code used to generate this doc" >> ${DOC}
+      echo "====" >> ${DOC}
+      echo "----" >> ${DOC}
+      echo "include::../src/${SOURCE_FILENAME}[]" >> ${DOC}
+      echo "----" >> ${DOC}
+      echo "====" >> ${DOC}
     fi
   done
 }
