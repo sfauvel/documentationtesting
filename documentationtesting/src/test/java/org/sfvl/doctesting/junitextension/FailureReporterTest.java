@@ -98,12 +98,28 @@ public class FailureReporterTest {
         documentReportBetween(approved, received);
     }
 
+    /**
+     * We indicate a specific message when approved file does not exist.
+     */
+    @Test
+    public void approved_file_does_not_exist() throws IOException {
+
+        final String received = String.join("\n",
+                "= Title",
+                "Description",
+                "Footer");
+
+        documentReportBetween(null, received);
+    }
+
     private void documentReportBetween(String approved, String received) throws IOException {
         final Path files = Files.createDirectory(tempDir.resolve("files"));
 
         final String approvedFile = files.resolve("approved.adoc").toFile().toString();
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(approvedFile))) {
-            writer.write(approved);
+        if (approved != null) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(approvedFile))) {
+                writer.write(approved);
+            }
         }
         final String receivedFile = files.resolve("received.adoc").toFile().toString();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(receivedFile))) {
@@ -127,11 +143,13 @@ public class FailureReporterTest {
                         .build(),
                 "");
 
-        doc.write(formatter.blockBuilder(Formatter.Block.LITERAL)
-                        .title("Approved text")
-                        .content(approved)
-                        .build(),
-                "");
+        if (approved != null) {
+            doc.write(formatter.blockBuilder(Formatter.Block.LITERAL)
+                            .title("Approved text")
+                            .content(approved)
+                            .build(),
+                    "");
+        }
 
         String report = os.toString("UTF8");
 

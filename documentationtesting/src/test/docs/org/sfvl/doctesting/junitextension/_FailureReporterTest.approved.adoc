@@ -10,3 +10,5 @@ include::_FailureReporterTest.report_when_files_are_identicals.approved.adoc[lev
 include::_FailureReporterTest.received_file_shorter_than_approved_file.approved.adoc[leveloffset=+1]
 
 include::_FailureReporterTest.received_file_longer_than_approved_file.approved.adoc[leveloffset=+1]
+
+include::_FailureReporterTest.approved_file_does_not_exist.approved.adoc[leveloffset=+1]

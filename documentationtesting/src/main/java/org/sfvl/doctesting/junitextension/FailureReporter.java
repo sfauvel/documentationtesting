@@ -27,7 +27,10 @@ public class FailureReporter implements ApprovalFailureReporter {
     @Override
     public void report(String received, String approved) {
         delegate.report(received, approved);
-
+        if (Files.notExists(Paths.get(approved))) {
+            out.println("No approved file yet");
+            return;
+        }
         try {
             final List<String> approvedLines = readFileLines(approved);
             final List<String> receivedLines = readFileLines(received);

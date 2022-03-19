@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * This object is used to store the text that need to be write to the final document.
+ * This object is used to store the text that need to be written to the final document.
  */
 public class DocWriter<F extends Formatter> {
 
@@ -127,9 +127,7 @@ public class DocWriter<F extends Formatter> {
 
     public String titleId(Method testMethod) {
         return String.format("%s_%s",
-                testMethod.getDeclaringClass().getName()
-                        .replace(".", "_")
-                        .replace("$", "_"),
+                titleId(testMethod.getDeclaringClass()),
                 testMethod.getName()).toLowerCase();
     }
 
