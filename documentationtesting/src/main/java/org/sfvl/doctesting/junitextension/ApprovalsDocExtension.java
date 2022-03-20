@@ -1,6 +1,7 @@
 package org.sfvl.doctesting.junitextension;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.core.Options;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.jupiter.api.DisplayName;
@@ -99,10 +100,14 @@ public class ApprovalsDocExtension<T extends DocWriter> implements AfterEachCall
     }
 
     private void verifyDoc(String content, ApprovalNamer approvalNamer) {
+        final Options options = new Options()
+                .forFile().withExtension(".adoc")
+                .withReporter(new FailureReporter());
+
         Approvals.verify(
-                new ApprovalTextWriter(content, "adoc"),
+                new ApprovalTextWriter(content, options),
                 approvalNamer,
-                new FailureReporter());
+                options);
     }
 
 }

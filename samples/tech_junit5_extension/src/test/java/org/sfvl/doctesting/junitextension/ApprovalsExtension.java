@@ -1,6 +1,7 @@
 package org.sfvl.doctesting.junitextension;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.core.Options;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.jupiter.api.extension.AfterEachCallback;
@@ -45,12 +46,26 @@ public class ApprovalsExtension implements AfterEachCallback {
             public String getSourceFilePath() {
                 return docPath.approved().folder().toString() + File.separator;
             }
+
+            @Override
+            public File getApprovedFile(String extensionWithDot) {
+                return new File(this.getSourceFilePath() + "/" + this.getApprovalName() + ".approved" + extensionWithDot);
+            }
+
+            @Override
+            public File getReceivedFile(String extensionWithDot) {
+                return new File(this.getSourceFilePath() + "/" + this.getApprovalName() + ".received" + extensionWithDot);
+            }
         };
 
+        final Options options = new Options()
+                .forFile().withExtension(".adoc")
+                .withReporter(new FailureReporter());
+
         Approvals.verify(
-                new ApprovalTextWriter(content, "adoc"),
+                new ApprovalTextWriter(content, options),
                 approvalNamer,
-                Approvals.getReporter());
+                options);
     }
 
     protected DocWriter getWriter(ExtensionContext extensionContext) throws Exception {

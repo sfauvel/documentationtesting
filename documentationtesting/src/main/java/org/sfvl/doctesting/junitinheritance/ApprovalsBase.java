@@ -1,8 +1,10 @@
 package org.sfvl.doctesting.junitinheritance;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.core.Options;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
+import org.sfvl.doctesting.junitextension.FailureReporter;
 import org.sfvl.doctesting.utils.DocPath;
 
 import java.io.File;
@@ -39,10 +41,14 @@ public class ApprovalsBase extends DocAsTestBase {
 
         };
 
+
+        final Options options = new Options()
+                .forFile().withExtension(".adoc");
+
         Approvals.verify(
-                new ApprovalTextWriter(content, "adoc"),
-                approvalNamer,
-                Approvals.getReporter());
+                new ApprovalTextWriter(content, options),
+                approvalNamer);
+
     }
 
 }

@@ -2,11 +2,13 @@ package com.adaptionsoft.games.trivia;
 
 import com.adaptionsoft.games.uglytrivia.Game;
 import org.approvaltests.Approvals;
+import org.approvaltests.core.Options;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
+import org.sfvl.doctesting.junitextension.FailureReporter;
 import org.sfvl.doctesting.utils.DocPath;
 
 import java.io.*;
@@ -46,10 +48,14 @@ public class ClassivalApprovalsGameTest {
 
         } while (notAWinner);
 
+        final Options options = new Options()
+                .forFile().withExtension(".adoc")
+                .withReporter(new FailureReporter());
 
-        Approvals.verify(new ApprovalTextWriter(outputStream.toString(), "adoc"),
+        Approvals.verify(
+                new ApprovalTextWriter(outputStream.toString(), options),
                 getApprovalNamer(testInfo),
-                Approvals.getReporter());
+                options);
 
     }
 
@@ -64,6 +70,16 @@ public class ClassivalApprovalsGameTest {
             @Override
             public String getSourceFilePath() {
                 return docPath.approved().folder().toString() + File.separator;
+            }
+
+            @Override
+            public File getApprovedFile(String extensionWithDot) {
+                return new File(this.getSourceFilePath() + "/" + this.getApprovalName() + ".approved" + extensionWithDot);
+            }
+
+            @Override
+            public File getReceivedFile(String extensionWithDot) {
+                return new File(this.getSourceFilePath() + "/" + this.getApprovalName() + ".received" + extensionWithDot);
             }
         };
         return approvalNamer;
