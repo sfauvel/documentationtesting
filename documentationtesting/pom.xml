@@ -10,17 +10,18 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <junit.version>5.8.0-M1</junit.version>
-        <mockito.version>2.25.1</mockito.version>
+        <junit.version>5.8.2</junit.version>
+        <junit-platform-launcher.version>1.8.2</junit-platform-launcher.version>
+        <mockito.version>4.4.0</mockito.version>
         <reflections.version>0.9.11</reflections.version>
-<!--        <reflections.version>0.10.2</reflections.version>-->
+<!--                <reflections.version>0.10.2</reflections.version>-->
         <approvaltests.version>4.0.2</approvaltests.version>
-        <javaparser.version>3.22.1</javaparser.version>
+        <javaparser.version>3.24.0</javaparser.version>
         <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <asciidoctor.maven.plugin.version>2.1.0</asciidoctor.maven.plugin.version>
-        <asciidoctorj.diagram.version>2.1.0</asciidoctorj.diagram.version>
+        <asciidoctorj.diagram.version>2.2.1</asciidoctorj.diagram.version>
     </properties>
 
     <distributionManagement>
@@ -138,7 +139,7 @@
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-launcher</artifactId>
-            <version>1.2.0</version>
+            <version>${junit-platform-launcher.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
