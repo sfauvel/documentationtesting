@@ -83,6 +83,16 @@ public class ApprovalsDocExtension<T extends DocWriter> implements AfterEachCall
             public String getSourceFilePath() {
                 return docPath.approved().folder().toString() + File.separator;
             }
+
+            @Override
+            public File getApprovedFile(String extensionWithDot) {
+                return new File(this.getSourceFilePath() + "/" + this.getApprovalName() + ".approved" + extensionWithDot);
+            }
+
+            @Override
+            public File getReceivedFile(String extensionWithDot) {
+                return new File(this.getSourceFilePath() + "/" + this.getApprovalName() + ".received" + extensionWithDot);
+            }
         };
 
         verifyDoc(content, approvalNamer);
