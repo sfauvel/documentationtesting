@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.sfvl</groupId>
@@ -13,8 +14,7 @@
         <junit.version>5.8.2</junit.version>
         <junit-platform-launcher.version>1.8.2</junit-platform-launcher.version>
         <mockito.version>4.4.0</mockito.version>
-        <reflections.version>0.9.11</reflections.version>
-<!--                <reflections.version>0.10.2</reflections.version>-->
+        <reflections.version>0.10.2</reflections.version>
         <approvaltests.version>14.0.0</approvaltests.version>
         <javaparser.version>3.24.0</javaparser.version>
         <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
@@ -37,7 +37,7 @@
         <url>git@github.com:idhub-io/idhub-api.git</url>
         <tag>HEAD</tag>
     </scm>
-   <build>
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -79,9 +79,11 @@
                     <relativeBaseDir>true</relativeBaseDir>
                     <backend>html</backend>
                     <attributes>
-                        <github-repo>https://github.com/sfauvel/documentationtesting/tree/master/${project.artifactId}</github-repo>
-                        <github-pages>https://sfauvel.github.io/documentationtesting/${project.artifactId}/</github-pages>
-                        <is-html-doc />
+                        <github-repo>https://github.com/sfauvel/documentationtesting/tree/master/${project.artifactId}
+                        </github-repo>
+                        <github-pages>https://sfauvel.github.io/documentationtesting/${project.artifactId}/
+                        </github-pages>
+                        <is-html-doc/>
                     </attributes>
                     <logHandler>
                         <failIf>
@@ -142,14 +144,14 @@
             <version>${junit-platform-launcher.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-junit-jupiter</artifactId>
-            <version>${mockito.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.approvaltests</groupId>
             <artifactId>approvaltests</artifactId>
             <version>${approvaltests.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.javaparser</groupId>
+            <artifactId>javaparser-core</artifactId>
+            <version>${javaparser.version}</version>
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>
@@ -157,9 +159,10 @@
             <version>${reflections.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.javaparser</groupId>
-            <artifactId>javaparser-core</artifactId>
-            <version>${javaparser.version}</version>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

@@ -4,12 +4,15 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.ImportDeclaration;
 import com.github.javaparser.ast.visitor.GenericVisitorAdapter;
 import com.github.javaparser.utils.SourceRoot;
+import javassist.bytecode.ClassFile;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.reflections.Reflections;
+import org.reflections.scanners.Scanner;
 import org.reflections.scanners.SubTypesScanner;
+import org.reflections.scanners.TypeElementsScanner;
+import org.reflections.util.ConfigurationBuilder;
 import org.sfvl.codeextraction.CodePath;
 import org.sfvl.doctesting.demo.DemoDocumentation;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
@@ -17,7 +20,6 @@ import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.test_tools.GraphvizGenerator;
-import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -35,6 +37,7 @@ public class ProjectOrganization {
         try {
             return Class.forName(className, false, this.getClass().getClassLoader());
         } catch (ClassNotFoundException e) {
+            System.err.println("ProjectOrganization.toClass ClassNotFoundException:" + className);
             return null;
         }
     }
@@ -229,15 +232,31 @@ public class ProjectOrganization {
         SourceRoot sourceRoot = new SourceRoot(Paths.get("src/main/java"));
         final List<String> starting_package = Arrays.asList("org", "sfvl");
 
-        Reflections reflections = new Reflections(String.join("/", starting_package), new SubTypesScanner(false));
+        final Scanner scanner = new TypeElementsScanner() {
+            @Override
+            public boolean acceptsInput(String file) {
+                return file.endsWith(".class");
+            }
 
-        final List<Class> classesToAnalysis = reflections.getAllTypes().stream()
-                .map(this::toClass)
-                .filter(c -> c.getPackage() != DemoDocumentation.class.getPackage())
-                .filter(c -> c.getPackage() != ApprovalsBase.class.getPackage())
-                .filter(this::isTopLevelClass)
-                .filter(c -> toSourceFile(c).isFile())
-                .collect(Collectors.toList());
+            @Override
+            public List<Map.Entry<String, String>> scan(ClassFile classFile) {
+                String className = classFile.getName();
+                return Arrays.asList(this.entry(className, className));
+            }
+        };
+        Reflections reflections = new Reflections(
+                new ConfigurationBuilder()
+                        .forPackage(String.join(".", starting_package))
+                        .setScanners(scanner));
+
+        final List<Class> classesToAnalysis =
+                reflections.getAll(scanner).stream()
+                        .map(this::toClass)
+                        .filter(c -> c.getPackage() != DemoDocumentation.class.getPackage())
+                        .filter(c -> c.getPackage() != ApprovalsBase.class.getPackage())
+                        .filter(this::isTopLevelClass)
+                        .filter(c -> toSourceFile(c).isFile())
+                        .collect(Collectors.toList());
 
         final Map<String, List<String>> importsByClasses = classesToAnalysis.stream()
                 .collect(Collectors.toMap(Class::getName,
@@ -268,9 +287,9 @@ public class ProjectOrganization {
                     "subgraph cluster_" + packageEntry.getKey() + " {",
                     "    bgcolor=\"#05fdCC\";",
                     packageEntry.getValue().stream()
-                    .map(Package::getName)
-                    .map(name -> "    \"" + name + "\"")
-                    .collect(Collectors.joining("\n")),
+                            .map(Package::getName)
+                            .map(name -> "    \"" + name + "\"")
+                            .collect(Collectors.joining("\n")),
                     "}",
                     "");
         }
@@ -279,7 +298,7 @@ public class ProjectOrganization {
                 "The graph below shows dependencies between packages in the project.",
 
                 graphvizGenerator.generate("node [margin=0.1 fontcolor=black fontsize=16 width=0.5 shape=rect style=filled fillcolor=\"#0fd289\"]\n" +
-                        clusters,
+                                clusters,
                         "")
         );
 
