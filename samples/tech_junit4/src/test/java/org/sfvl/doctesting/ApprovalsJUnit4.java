@@ -10,7 +10,6 @@ import org.junit.Rule;
 import org.junit.rules.TestName;
 import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
-import org.sfvl.doctesting.utils.ClassToDocument;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.writer.ClassDocumentation;
@@ -20,7 +19,6 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Paths;
-import java.util.Optional;
 
 /**
  * Base class for test.
@@ -37,28 +35,14 @@ public class ApprovalsJUnit4 {
     private static Class<?> testClass;
 
     final static DocWriter<AsciidocFormatter> docWriter = new DocWriter<AsciidocFormatter>(new AsciidocFormatter()) {
+        private final ClassDocumentation classDocumentation = new ClassDocumentation(
+                getFormatter(),
+                m -> Paths.get(new DocPath(m).approved().filename()),
+                m -> m.isAnnotationPresent(org.junit.Test.class),
+                m -> true
+        );
+
         public String formatOutput(Class<?> clazz) {
-            final ClassDocumentation classDocumentation = new ClassDocumentation(
-                    getFormatter(),
-                    m -> Paths.get(new DocPath(m).approved().filename()),
-                    m -> m.isAnnotationPresent(org.junit.Test.class),
-                    m -> true
-            ) {
-                protected Optional<String> relatedClassDescription(Class<?> fromClass) {
-                    return Optional.ofNullable(fromClass.getAnnotation(ClassToDocument.class))
-                            .map(ClassToDocument::clazz)
-                            .map(CodeExtractor::getComment);
-                }
-
-                @Override
-                public String getTitle(Class<?> clazz, int depth) {
-                    return String.join("\n",
-                            formatter.blockId(titleId(clazz)),
-                            super.getTitle(clazz, depth));
-                }
-
-            };
-
             return String.join("\n",
                     defineDocPath(clazz),
                     "",
