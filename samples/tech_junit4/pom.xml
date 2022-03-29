@@ -16,10 +16,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <junit.version>4.13.1</junit.version>
-        <qdox.version>2.0.0</qdox.version>
-        <reflections.version>0.9.12</reflections.version>
-        <approvaltests.version>9.3.0</approvaltests.version>
         <asciidoctor.maven.plugin.version>2.1.0</asciidoctor.maven.plugin.version>
+        <documentationtesting.version>1.1.16-SNAPSHOT</documentationtesting.version>
     </properties>
 
     <build>
@@ -91,28 +89,17 @@
     </build>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.sfvl</groupId>
+            <artifactId>documentationtesting</artifactId>
+            <version>${documentationtesting.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.thoughtworks.qdox</groupId>
-            <artifactId>qdox</artifactId>
-            <version>${qdox.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
-            <version>${reflections.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.approvaltests</groupId>
-            <artifactId>approvaltests</artifactId>
-            <version>${approvaltests.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

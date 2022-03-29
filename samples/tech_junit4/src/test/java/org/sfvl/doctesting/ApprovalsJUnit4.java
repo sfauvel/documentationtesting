@@ -1,94 +1,107 @@
 package org.sfvl.doctesting;
 
-import com.thoughtworks.qdox.JavaProjectBuilder;
-import com.thoughtworks.qdox.model.JavaClass;
-import com.thoughtworks.qdox.model.JavaMethod;
-import com.thoughtworks.qdox.model.JavaModel;
 import org.approvaltests.Approvals;
+import org.approvaltests.core.Options;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
-import org.junit.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Rule;
 import org.junit.rules.TestName;
+import org.sfvl.codeextraction.CodeExtractor;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
+import org.sfvl.doctesting.utils.ClassToDocument;
+import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.doctesting.writer.ClassDocumentation;
+import org.sfvl.doctesting.writer.DocWriter;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import java.util.Optional;
 
 /**
  * Base class for test.
  */
 public class ApprovalsJUnit4 {
 
-    private static final PathProvider pathProvider = new PathProvider();
-    private static final JavaProjectBuilder builder = new JavaProjectBuilder();
     static {
-        builder.addSourceTree(new File("src/test/java"));
+        CodeExtractor.init(Config.TEST_PATH, Config.SOURCE_PATH);
     }
 
     @Rule
     public TestName testName = new TestName();
 
-   private StringBuffer sb = new StringBuffer();
+    private static Class<?> testClass;
+
+    final static DocWriter<AsciidocFormatter> docWriter = new DocWriter<AsciidocFormatter>(new AsciidocFormatter()) {
+        public String formatOutput(Class<?> clazz) {
+            final ClassDocumentation classDocumentation = new ClassDocumentation(
+                    getFormatter(),
+                    m -> Paths.get(new DocPath(m).approved().filename()),
+                    m -> m.isAnnotationPresent(org.junit.Test.class),
+                    m -> true
+            ) {
+                protected Optional<String> relatedClassDescription(Class<?> fromClass) {
+                    return Optional.ofNullable(fromClass.getAnnotation(ClassToDocument.class))
+                            .map(ClassToDocument::clazz)
+                            .map(CodeExtractor::getComment);
+                }
+
+                @Override
+                public String getTitle(Class<?> clazz, int depth) {
+                    return String.join("\n",
+                            formatter.blockId(titleId(clazz)),
+                            super.getTitle(clazz, depth));
+                }
+
+            };
+
+            return String.join("\n",
+                    defineDocPath(clazz),
+                    "",
+                    classDocumentation.getClassDocumentation(clazz)
+            );
+        }
+
+    };
 
     protected void write(String... lines) {
-        sb.append(Arrays.stream(lines).collect(Collectors.joining("\n")));
+        docWriter.write(lines);
     }
 
-    /**
-     * Give path where docs are generated.
-     *
-     * @return
-     */
-    protected Path getDocPath() {
-        return ApprovalsJUnit4.pathProvider.getProjectPath().resolve(Paths.get("src", "test", "docs"));
-    }
-
-
-    protected void approved(DocumentationNamer documentationNamer, String content) {
+    protected static void approved(DocPath docPath, String content) {
         ApprovalNamer approvalNamer = new ApprovalNamer() {
-
             @Override
             public String getApprovalName() {
-                return documentationNamer.getApprovalName();
+                return "_" + docPath.name();
             }
 
             @Override
             public String getSourceFilePath() {
-                return documentationNamer.getSourceFilePath();
+                return docPath.approved().folder().toString() + File.separator;
             }
+
+            @Override
+            public File getApprovedFile(String extensionWithDot) {
+                return new File(this.getSourceFilePath() + "/" + this.getApprovalName() + ".approved" + extensionWithDot);
+            }
+
+            @Override
+            public File getReceivedFile(String extensionWithDot) {
+                return new File(this.getSourceFilePath() + "/" + this.getApprovalName() + ".received" + extensionWithDot);
+            }
+
         };
 
+        final Options options = new Options()
+                .forFile().withExtension(".adoc");
+
         Approvals.verify(
-                new ApprovalTextWriter(content, "adoc"),
-                approvalNamer,
-                Approvals.getReporter());
-    }
-
-
-    public static String fileName;
-    public static List<String> testFileName;
-    public static List<Method> testMethods;
-    private static DocumentationNamer lastNamer;
-    private static Class<?> testClass;
-
-
-    @BeforeClass
-    public static void resetDoc() {
-        fileName = null;
-        testFileName = new ArrayList<>();
-        testMethods = new ArrayList<>();
-    }
-
-    @Before
-    public void initDoc() {
-        fileName = "_" + this.getClass().getSimpleName();
+                new ApprovalTextWriter(content, options),
+                approvalNamer);
     }
 
     @After
@@ -96,97 +109,18 @@ public class ApprovalsJUnit4 {
 
         final String methodName = testName.getMethodName();
         final Method testMethod = this.getClass().getDeclaredMethod(methodName);
-        String content = String.join("\n\n",
-                "= " + formatTitle(methodName),
-                getComment(this.getClass(), methodName),
-                sb.toString());
 
-        testFileName.add(fileName + "." + testMethod.getName() + ".approved.adoc");
-        testMethods.add(testMethod);
-
-        lastNamer = new DocumentationNamer(getDocPath(), testMethod);
         testClass = testMethod.getDeclaringClass();
-
-        approved(lastNamer, content);
+        final String content = docWriter.formatOutput(testMethod);
+        approved(new DocPath(testMethod), content);
     }
 
     @AfterClass
     public static void writeTestDoc() throws IOException {
-        final File fileName = new File(ApprovalsJUnit4.fileName + ".adoc");
+        final String content = docWriter.formatOutput(testClass);
+        final DocPath path = new DocPath(testClass);
 
-        final String sourceFilePath = lastNamer.getSourceFilePath();
-
-        JavaClass javaClassUnderTest = getJavaClassUnderTest();
-
-
-        try (final FileWriter fileWriter = new FileWriter(sourceFilePath+fileName)) {
-
-            final String content = getMethodsInOrder(testMethods)
-                    .map(method -> String.format("_%s.%s.approved.adoc", method.getDeclaringClass().getSimpleName(), method.getName()))
-                    .map(name -> String.format("include::%s[leveloffset=+2]", name))
-                    .collect(Collectors.joining("\n"));
-
-            fileWriter.write("= " + javaClassUnderTest.getSimpleName() + "\n:toc:\n\n"
-                    + "== Description\n\n"
-                    + Optional.ofNullable(javaClassUnderTest.getComment()).orElse("")
-                    + "\n\n"
-                    + "== Examples\n\n"
-                    + content);
-        }
-    }
-
-    private static JavaClass getJavaClassUnderTest() {
-        final String simpleName = testClass.getCanonicalName();
-        final String s = simpleName
-                .replaceFirst("DocTest$", "")
-                .replaceFirst("Test$", "");
-        System.out.println("Class under test: " + s);
-
-        JavaProjectBuilder builder = new JavaProjectBuilder();
-        builder.addSourceTree(new File("src/main/java"));
-
-        return builder.getClassByName(s);
-    }
-
-    private String formatTitle(String methodName) {
-        String title = methodName
-                .replace("_", " ");
-
-        return title.substring(0, 1).toUpperCase() + title.substring(1);
-    }
-
-    public String getComment(Class<?> clazz, String methodName) {
-
-        JavaClass javaClass = builder.getClassByName(clazz.getCanonicalName());
-
-        JavaMethod method = javaClass.getMethod(methodName, Collections.emptyList(), false);
-        return Optional.ofNullable(method.getComment()).orElse("");
-    }
-
-    private static Stream<Method> getMethodsInOrder(List<Method> testMethods) {
-        Map<String, Method> methodsByName = testMethods.stream().collect(Collectors.toMap(
-                m -> m.getName(),
-                m -> m
-        ));
-
-        JavaProjectBuilder builder = createJavaProjectBuilderWithTestPath();
-
-        Method firstMethod = testMethods.get(0);
-        JavaClass javaClass = builder.getClassByName(firstMethod.getDeclaringClass().getCanonicalName());
-
-        return javaClass.getMethods().stream()
-                .filter(m -> methodsByName.containsKey(m.getName()))
-                .sorted(Comparator.comparingInt(JavaModel::getLineNumber))
-                .map(m -> methodsByName.get(m.getName()));
-
-    }
-
-    private static JavaProjectBuilder createJavaProjectBuilderWithTestPath() {
-        JavaProjectBuilder builder = new JavaProjectBuilder();
-
-        final Path testPath = pathProvider.getProjectPath().resolve(Paths.get("src", "test", "java"));
-        builder.addSourceTree(testPath.toFile());
-        return builder;
+        approved(path, content);
     }
 
 }
