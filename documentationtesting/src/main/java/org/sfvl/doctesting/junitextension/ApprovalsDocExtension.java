@@ -9,16 +9,12 @@ import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.platform.commons.support.ModifierSupport;
-import org.sfvl.codeextraction.CodeExtractor;
-import org.sfvl.docformatter.Formatter;
-import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.PathProvider;
 import org.sfvl.doctesting.writer.DocWriter;
 
 import java.io.File;
 import java.lang.reflect.Method;
-import java.nio.file.Path;
 
 /**
  * JUnit5 extension that verify written document matches with approved one.
