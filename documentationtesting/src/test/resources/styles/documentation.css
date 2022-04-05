@@ -139,6 +139,12 @@ td.tableblock > .content > .listingblock {
     font-weight: normal;
 }
 
+.inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+
 @media (max-width: 800px) {
   #toc {
     display: none;

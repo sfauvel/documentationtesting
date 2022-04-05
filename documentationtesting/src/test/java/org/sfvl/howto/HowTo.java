@@ -6,13 +6,16 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.codeextraction.ClassFinder;
 import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.codeextraction.CodePath;
-import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
+import org.sfvl.codeextraction.MethodReference;
 import org.sfvl.docformatter.AsciidocFormatterTest;
 import org.sfvl.docformatter.Formatter;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
-import org.sfvl.codeextraction.MethodReference;
-import org.sfvl.doctesting.utils.*;
+import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.doctesting.utils.NoTitle;
+import org.sfvl.doctesting.utils.OnePath;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.writer.Classes;
 import org.sfvl.doctesting.writer.DocWriter;
@@ -148,11 +151,14 @@ public class HowTo {
                 ".Formatter usage",
                 CodeExtractor.extractPartOfCurrentMethod(),
                 "",
-                formatter.blockBuilder("----")
+                "[.inline]",
+                formatter.sourceCodeBuilder("java")
+                        .indent(0)
                         .title("Text generated")
-                        .content(listText)
+                        .source(listText)
                         .build(),
                 "",
+                "[.inline]",
                 formatter.blockBuilder("====")
                         .title("Final rendering")
                         .content(listText)
