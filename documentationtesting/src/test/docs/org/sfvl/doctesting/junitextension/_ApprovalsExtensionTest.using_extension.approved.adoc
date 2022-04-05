@@ -31,12 +31,13 @@ public class OneTest {
 }
 ----
 
-When executing test method `test_A`, a file `_OneTest.test_A.received.adoc` is generated and contains the following text
+When executing test method `test_A`, the following text is generated
 ----
 include::../../samples/justone/_OneTest.test_A.approved.adoc[]
 ----
-If this file is identical to the `_OneTest.test_A.approved.adoc`, then the test is a success and `_OneTest.test_A.received.adoc` is removed.
-Otherwise, test fails and we can compare those two files to see what has changed.
+If this content is identical to the `_OneTest.test_A.approved.adoc`, then the test is a success.
+Otherwise, test fails and the generated text is written to the `_OneTest.test_A.received.adoc` file.
+So we can compare those two files to see what has changed.
 
 File name and title come from method name.
 The chapter content contains what was written using `doc.write`.

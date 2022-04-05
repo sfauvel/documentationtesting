@@ -69,12 +69,13 @@ public class ApprovalsExtensionTest {
         final Method method = MethodReference.getMethod(OneTest::test_A);
         final Path approvedPath = new DocPath(method).approved().from(this.getClass());
         final Path receivedPath = new DocPath(method).received().from(this.getClass());
-        doc.write("When executing test method `" + method.getName() + "`, a file `" + receivedPath.getFileName() + "` is generated and contains the following text",
+        doc.write("When executing test method `" + method.getName() + "`, the following text is generated",
                 "----",
                 formatter.include(approvedPath.toString()),
                 "----",
-                "If this file is identical to the `" + approvedPath.getFileName() + "`, then the test is a success and `" + receivedPath.getFileName() + "` is removed.",
-                "Otherwise, test fails and we can compare those two files to see what has changed.",
+                "If this content is identical to the `" + approvedPath.getFileName() + "`, then the test is a success.",
+                "Otherwise, test fails and the generated text is written to the `" + receivedPath.getFileName() + "` file.",
+                "So we can compare those two files to see what has changed.",
                 "",
                 "File name and title come from method name.", "The chapter content contains what was written using `" + methodToWrite + "`.");
 
