@@ -76,7 +76,7 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:53)
 	at org.sfvl.test_tools.TestRunnerFromTest.runTestClass(TestRunnerFromTest.java:53)
 	at org.sfvl.test_tools.ProjectTestExtension.runTestAndWriteResultAsComment(ProjectTestExtension.java:14)
-	at org.sfvl.doctesting.junitextension.ApprovalsExtensionTest.failing_test_output(ApprovalsExtensionTest.java:221)
+	at org.sfvl.doctesting.junitextension.ApprovalsExtensionTest.failing_test_output(ApprovalsExtensionTest.java:215)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

@@ -1,0 +1,63 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_parsedclassrepositorytest_create_parsedclassrepository]
+= Create ParsedClassRepository
+
+We can build a ParsedClassRepository with several paths.
+When path does not exist, an Exception was thrown.
+Empty path will not be added.
+When you do not have one of the default directories,
+you can set it with an empty value to not throw an exception.
+
+== Object creation
+
+[source,java,indent=0]
+----
+            ParsedClassRepository repository = new ParsedClassRepository(
+                    Paths.get("src/test/java")
+            );
+
+----
+
+
+[source,java,indent=0]
+----
+            ParsedClassRepository repository = new ParsedClassRepository(
+                    Paths.get("src/main/java"),
+                    Paths.get("src/test/java")
+            );
+
+----
+
+
+[source,java,indent=0]
+----
+            ParsedClassRepository repository = new ParsedClassRepository(
+                    Paths.get(""),
+                    Paths.get("src/test/java")
+            );
+
+----
+
+
+
+== Exception
+.java.lang.IllegalArgumentException: Only directories are allowed as root path: src/UNKNOWN/java
+
+[source,java,indent=0]
+----
+            ParsedClassRepository repository = new ParsedClassRepository(
+                    Paths.get("src/UNKNOWN/java")
+            );
+
+----
+
+++++
+<style>
+#org_sfvl_codeextraction_parsedclassrepositorytest_create_parsedclassrepository ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++

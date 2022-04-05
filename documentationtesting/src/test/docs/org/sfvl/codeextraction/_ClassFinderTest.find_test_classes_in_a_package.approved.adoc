@@ -1,0 +1,19 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_classfindertest_find_test_classes_in_a_package]
+= Find test classes in a package
+
+.Source code to find classes containing tests
+
+[source,java,indent=0]
+----
+        List<Class<?>> classes = new ClassFinder().classesWithAnnotatedMethod(
+                org.sfvl.doctesting.sample.SimpleClass.class.getPackage(),
+                Test.class);
+
+----
+
+Classes found:
+
+* org.sfvl.doctesting.sample.basic.FirstTest
+* org.sfvl.doctesting.sample.basic.SecondTest

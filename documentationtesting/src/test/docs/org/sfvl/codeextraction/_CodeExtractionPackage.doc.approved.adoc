@@ -1,0 +1,12 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+
+include::../codeextraction/_ClassFinderTest.approved.adoc[leveloffset=+0]
+
+include::../codeextraction/_CodeExtractorTest.approved.adoc[leveloffset=+0]
+
+include::../codeextraction/_CodePathTest.approved.adoc[leveloffset=+0]
+
+include::../codeextraction/_MethodReferenceTest.approved.adoc[leveloffset=+0]
+
+include::../codeextraction/_ParsedClassRepositoryTest.approved.adoc[leveloffset=+0]

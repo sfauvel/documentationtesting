@@ -59,6 +59,8 @@ Understanding-oriented
 // * Generation of a general documentation that aggregate all test files
 //* Tools to extract parts of code
 * An link:{ROOT_PATH}/{ASCIIDOC_FORMATTER_HTML}[AsciiDoc formatter] is an implementation of the markup API to format the output
+
+* Tools to extract code can be found in link:{ROOT_PATH}/{CODE_EXTRACTION_HTML}[codeextraction package]
 --
 
 .Reference

@@ -1,0 +1,28 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_class]
+= Retrieve comment of a class
+
+[.inline]
+.How to extract comment
+
+[source,java,indent=0]
+----
+                        String comment = parser.getComment(ClassWithInformationToExtract.class);
+
+----
+
+[.inline]
+.Comment extracted
+----
+My comment for ClassWithInformationToExtract.
+----
+++++
+<style>
+#org_sfvl_codeextraction_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_class ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++

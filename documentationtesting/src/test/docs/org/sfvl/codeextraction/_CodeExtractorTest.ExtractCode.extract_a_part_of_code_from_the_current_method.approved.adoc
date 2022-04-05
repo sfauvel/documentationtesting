@@ -1,0 +1,80 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_codeextractortest_extractcode_extract_a_part_of_code_from_the_current_method]
+= Extract a part of code from the current method
+
+ifndef::CODE_EXTRACTOR_CSS[]
+:CODE_EXTRACTOR_CSS:
+++++
+<style>
+include::../../../../resources/styles/code_extractor.css[]
+</style>
+++++
+endif::[]
+
+.How to extract code from the current method
+[source, java, indent=0]
+----
+                    String code = CodeExtractor.extractPartOfCurrentMethod();
+
+----
+
+[.inline]
+====
+.Source code from file
+[source, java, indent=0]
+----
+        public String method_with_code_to_extract() {
+            // >>>
+            String value = "some text";
+            // <<<
+
+            return CodeExtractor.extractPartOfCurrentMethod();
+        }
+----
+====
+
+[.inline]
+====
+.Source code extracted from the current method
+[source, java, indent=0]
+----
+            String value = "some text";
+
+----
+====
+.How to extract code from the current method using a tag
+[source, java, indent=0]
+----
+                    String code = CodeExtractor.extractPartOfCurrentMethod("2");
+
+----
+
+[.inline]
+====
+.Source code from file
+[source, java, indent=0]
+----
+        public String method_with_code_to_extract_with_tag() {
+            // >>>1
+            String value1 = "some text";
+            // <<<1
+
+            // >>>2
+            String value2 = "code to extract";
+            // <<<2
+
+            return CodeExtractor.extractPartOfCurrentMethod("2");
+        }
+----
+====
+
+[.inline]
+====
+.Source code extracted from the current method
+[source, java, indent=0]
+----
+            String value2 = "code to extract";
+
+----
+====

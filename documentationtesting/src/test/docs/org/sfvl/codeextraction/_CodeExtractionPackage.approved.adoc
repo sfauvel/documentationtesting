@@ -1,0 +1,6 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_codeextractionpackage]
+= Tools to extract code
+
+include::_CodeExtractionPackage.doc.approved.adoc[leveloffset=+1]
