@@ -49,14 +49,7 @@ public class ApprovalsExtensionTest {
 
         doc.runTestAndWriteResultAsComment(testClass);
 
-        if (false) {
-            // >>>doc.write
-            doc.write
-                    // <<<doc.write
-                            ("");
-        }
-
-        final String methodToWrite = CodeExtractor.extractPartOfCurrentMethod("doc.write").trim();
+        final String methodToWrite = MethodReference.getName((MethodReference.SerializableConsumer<String[]>) doc::write);
 
         doc.write("This is an example to create a simple test using `" + ApprovalsExtension.class.getSimpleName() + "`.",
                 "",

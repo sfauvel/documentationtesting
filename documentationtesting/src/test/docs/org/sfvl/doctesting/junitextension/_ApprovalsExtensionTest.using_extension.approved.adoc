@@ -8,7 +8,7 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 This is an example to create a simple test using `ApprovalsExtension`.
 
 You have to write a class and add register an `ApprovalsExtension` attribute using .`RegisterExtension` annotation.
-This extension will check that everything wrote using `doc.write` method has not changed since the last execution.
+This extension will check that everything wrote using `write` method has not changed since the last execution.
 
 .Test example using `ApprovalsExtension`
 [source,java,indent=0]
@@ -40,7 +40,7 @@ Otherwise, test fails and the generated text is written to the `_OneTest.test_A.
 So we can compare those two files to see what has changed.
 
 File name and title come from method name.
-The chapter content contains what was written using `doc.write`.
+The chapter content contains what was written using `write`.
 
 Files in folder `src/test/docs/org/sfvl/samples/justone`
 
