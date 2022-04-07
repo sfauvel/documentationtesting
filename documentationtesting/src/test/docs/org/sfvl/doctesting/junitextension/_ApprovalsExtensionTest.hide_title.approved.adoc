@@ -1,0 +1,70 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title]
+= Hide title
+
+
+// Test result for MyTestWithoutTitleOnOneTest: Success
+You can hide a test title adding the NoTitle annotation to the test.
+It's usefull to reuse content of a test in different place without keeping the original structure.
+You also want to separate the content of one chapter through different test but display them under only title.
+
+.Test example using hiding title
+
+[source,java,indent=0]
+----
+public class MyTestWithoutTitleOnOneTest {
+    @RegisterExtension
+    static final ApprovalsExtension doc = new SimpleApprovalsExtension();
+
+    @Test
+    public void intro() {
+        doc.write("First line");
+    }
+
+    @Test
+    @NoTitle
+    public void my_method() {
+        doc.write("My content without title");
+    }
+
+    @Test
+    public void conclusion() {
+        doc.write("Last line");
+    }
+}
+----
+
+
+The file generated from the method with `NoTitle` annotation has no header.
+On the final rendering, it's like it was part of the previous chapter.
+
+[.rendering]
+== Rendering of the result
+include::../../samples/_MyTestWithoutTitleOnOneTest.approved.adoc[leveloffset=+2]
+
+
+++++
+<style>
+#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering > h2:first-child,
+#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering > h3:first-child,
+#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering > h4:first-child {
+    display: none;
+}
+#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering > h2:first-child + div,
+#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering > h3:first-child + div,
+#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering > h4:first-child + div {
+    padding: 20px;
+    background: var(--bg1);
+    filter: brightness(0.95);
+    box-shadow: 10px 5px 5px var(--shadow-color);
+    border: 1px solid var(--shadow-color);
+}
+#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering h3,
+#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering h4,
+#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering h5 {
+    margin-top: 0px;
+}
+
+</style>
+++++

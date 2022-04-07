@@ -136,10 +136,12 @@ public class DocWriterTest {
 
         // >>>
         final DocWriter doc = new DocWriter();
-        doc.write("Some text added to show DocWriter output.");
-        final String output = doc.formatOutput(
-                "This title will not be displayed",
-                MyTestWithoutTitle.class.getMethod("my_method")
+        String output = String.join("\n",
+                "Some text added to show DocWriter output.",
+                doc.formatOutput(
+                        "This title will not be displayed",
+                        MyTestWithoutTitle.class.getMethod("my_method")),
+                "Some text added at the end."
         );
         // <<<
 
@@ -263,7 +265,7 @@ public class DocWriterTest {
                 "");
 
         doc.write("If we want to add description of an other class (class under test for example),",
-        String.format("we can use `%s` to define the class containing the description we want.", ClassToDocument.class.getSimpleName()),
+                String.format("we can use `%s` to define the class containing the description we want.", ClassToDocument.class.getSimpleName()),
                 "It can be combine with the description on the test class.",
                 "");
 

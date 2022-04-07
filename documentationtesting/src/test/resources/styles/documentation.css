@@ -6,8 +6,8 @@ includeblock: format an include as a block.
 :root {
   --bg1: #05fdCC;
   --bg2: #0fd289;
-  --logo_height: 100px
-  --shadow_color: #084f34;
+  --logo-height: 100;
+  --shadow-color: #084f34;
   --title-color: #7a2518;
 
   --media-small-header-height:50px;
@@ -43,14 +43,14 @@ th.tableblock {
 }
 
 #toc.toc2 {
-    top: var(--logo_height); /* Height of the project_home */
+    top: var(--logo-height); /* Height of the project_home */
     overflow: scroll; /* To avoid menu position change when scoll bar appear */
     scrollbar-color: var(--bg1) var(--bg2);
 }
 
 #project_home {
     top: 0;
-    height: var(--logo_height); /* toc2 need to be position after this height */
+    height: var(--logo-height); /* toc2 need to be position after this height */
 
     font-family: "Noto Serif","DejaVu Serif",serif;
     font-style: italic;

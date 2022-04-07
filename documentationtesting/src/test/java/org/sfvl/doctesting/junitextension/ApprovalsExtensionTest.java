@@ -13,10 +13,7 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.utils.*;
-import org.sfvl.samples.FailingTest;
-import org.sfvl.samples.MyCustomFormatterTest;
-import org.sfvl.samples.MyCustomWriterTest;
-import org.sfvl.samples.MyTest;
+import org.sfvl.samples.*;
 import org.sfvl.samples.justone.OneTest;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
@@ -110,6 +107,63 @@ public class ApprovalsExtensionTest {
     }
 
     @Test
+    @DisplayName("Hide title")
+    public void hide_title(TestInfo testInfo) {
+
+        final Class<?> testClass = MyTestWithoutTitleOnOneTest.class;
+        doc.runTestAndWriteResultAsComment(testClass);
+
+        final DocPath docPath = new DocPath(testClass);
+        final String methodId = doc.getDocWriter().titleId(testInfo.getTestMethod().get());
+        doc.write("You can hide a test title adding the " + NoTitle.class.getSimpleName() + " annotation to the test.",
+                "It's usefull to reuse content of a test in different place without keeping the original structure.",
+                "You also want to separate the content of one chapter through different test but display them under only title.",
+                "",
+                ".Test example using hiding title",
+                formatter.sourceCode(CodeExtractor.classSource(testClass)),
+                "",
+                "The file generated from the method with `" + NoTitle.class.getSimpleName() + "` annotation has no header.",
+                "On the final rendering, it's like it was part of the previous chapter.",
+                "",
+                "[.rendering]",
+                "== Rendering of the result",
+                formatter.include(docPath.approved().from(this.getClass()).toString(), 2),
+                "",
+                "",
+                sytleForHighlightChapter(methodId, ".rendering")
+        );
+    }
+
+    private String sytleForHighlightChapter(String fileId, final String className) {
+        final String cssFilter = "#" + fileId + " + div.sectionbody " + className;
+        return String.join("\n", "++++",
+                "<style>",
+                cssFilter + " > h2:first-child,",
+                cssFilter + " > h3:first-child,",
+                cssFilter + " > h4:first-child {",
+                "    display: none;",
+                "}",
+                cssFilter + " > h2:first-child + div,",
+                cssFilter + " > h3:first-child + div,",
+                cssFilter + " > h4:first-child + div {",
+                "    padding: 20px;",
+                "    background: var(--bg1);",
+                "    filter: brightness(0.95);",
+                "    box-shadow: 10px 5px 5px var(--shadow-color);",
+                "    border: 1px solid var(--shadow-color);",
+                "}",
+                cssFilter + " h3,",
+                cssFilter + " h4,",
+                cssFilter + " h5 {",
+                "    margin-top: 0px;",
+                "}",
+                "",
+                "</style>",
+                "++++");
+    }
+
+
+    @Test
     public void using_a_custom_writer() {
         final Class<?> testClass = MyCustomWriterTest.class;
 
@@ -152,7 +206,7 @@ public class ApprovalsExtensionTest {
     }
 
     @Test
-    public void nested_class()  {
+    public void nested_class() {
         try {
             doc.write("Nested class can be used to organize tests.", "Each nested class create a nested title.", "");
 
