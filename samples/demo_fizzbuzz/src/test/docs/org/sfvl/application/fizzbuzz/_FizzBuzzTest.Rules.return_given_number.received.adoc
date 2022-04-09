@@ -1,0 +1,12 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_application_fizzbuzz_fizzbuzztest_rules_return_given_number]
+= Return given number
+
+When number is not divisible by five or three, returns the number.
+
+FizzBuzz(1) = 1 +
+ FizzBuzz(2) = 2 +
+ FizzBuzz(4) = 4 +
+ FizzBuzz(22) = 22 +
+ 
