@@ -9,16 +9,16 @@ http://codingdojo.org/kata/FizzBuzz/
 
 include::_FizzBuzzTest.sample_output.approved.adoc[leveloffset=+1]
 
-include::_FizzBuzzTest.output_in_a_table.received.adoc[leveloffset=+1]
+include::_FizzBuzzTest.output_in_a_table.approved.adoc[leveloffset=+1]
 
 == Rules
 
-include::_FizzBuzzTest.Rules.return_given_number.received.adoc[leveloffset=+2]
+include::_FizzBuzzTest.Rules.return_given_number.approved.adoc[leveloffset=+2]
 
-include::_FizzBuzzTest.Rules.return_fizz_when_divisible_by_three.received.adoc[leveloffset=+2]
+include::_FizzBuzzTest.Rules.return_fizz_when_divisible_by_three.approved.adoc[leveloffset=+2]
 
-include::_FizzBuzzTest.Rules.return_buzz_when_divisible_by_five.received.adoc[leveloffset=+2]
+include::_FizzBuzzTest.Rules.return_buzz_when_divisible_by_five.approved.adoc[leveloffset=+2]
 
-include::_FizzBuzzTest.Rules.return_fizzbuzz_when_divisible_by_three_and_five.received.adoc[leveloffset=+2]
+include::_FizzBuzzTest.Rules.return_fizzbuzz_when_divisible_by_three_and_five.approved.adoc[leveloffset=+2]
 
 include::_FizzBuzzTest.values_for_a_result.approved.adoc[leveloffset=+1]
