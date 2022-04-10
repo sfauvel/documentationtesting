@@ -1,0 +1,8 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_demo_demotest_should_be_5_when_adding_2_and_3]
+= Adding 2 simple numbers
+
+When adding two simple numbers, the java operator '+' should return the sum of them.
+
+2 + 3 = 5
