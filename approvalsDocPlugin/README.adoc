@@ -9,7 +9,7 @@ Key features:
 * Compare 'received' file and 'approved' file
 
 This plugin is a beta version.
-You have to compile it and deploy it to your IntelliJ from .jar file present in 'build/distributions' folder.
+You have to compile it and then deploy it to your IntelliJ from .jar file present in 'build/distributions' folder.
 
 == Development
 
