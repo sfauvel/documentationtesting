@@ -16,12 +16,16 @@ function show_help() {
   echo "and convert asciidoctor generated to Html."
   echo ""
   echo "    -h                  display this help and exit."
+  echo "    -t                  tests only."
 }
 
-while getopts ":hm:g" opt; do
+GENERATE_HTML="yes"
+while getopts ":ht" opt; do
    case ${opt} in
      h ) show_help
        exit 0
+       ;;
+     t ) GENERATE_HTML="no"
        ;;
      \? ) show_help
        exit 0
@@ -94,6 +98,7 @@ function generate_docs() {
 function check_file_differences() {
   echo ""
   echo ---------------------
+  OPTIND=1
   DEMO_RESULT=$(source ${SCRIPTS_PATH}/checkDocInFolder.sh ${DOCS_PATH})
   echo "$DEMO_RESULT"
   echo ---------------------
@@ -111,4 +116,7 @@ else
   echo "No '$HASKELL_DOCKER_IMAGE' docker image. Uses already generated '.adoc' files."
 fi
 #${SCRIPTS_PATH}/convertAdocToHtml.sh ${DOCS_PATH} Documentation.adoc ${DESTINATION_PATH}
-mvn clean install package
+if [[ "$GENERATE_HTML" == "yes" ]];
+then
+  mvn org.asciidoctor:asciidoctor-maven-plugin:process-asciidoc
+fi
