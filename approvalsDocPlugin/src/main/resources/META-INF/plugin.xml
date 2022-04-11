@@ -12,6 +12,8 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.java</depends>
 
+    <idea-version since-build="212" />
+
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
     </extensions>
