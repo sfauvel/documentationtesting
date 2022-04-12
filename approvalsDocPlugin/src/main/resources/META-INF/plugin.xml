@@ -12,9 +12,7 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.java</depends>
 
-    <idea-version since-build="212.4746" until-build="212.*" />
-    <idea-version since-build="213" until-build="213.*" />
-    <idea-version since-build="221" until-build="221.*" />
+    <idea-version since-build="201" until-build="213.*" />
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
@@ -41,6 +39,7 @@
         <action id="SwitchToReceivedFileAction"
                 class="SwitchToReceivedFileAction"
                 text="Switch to received file"
+
                 description="Switch to received file">
             <add-to-group group-id="DocAsTestActions" anchor="first"/>
         </action>

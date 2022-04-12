@@ -16,3 +16,7 @@ You have to compile it and then deploy it to your IntelliJ from .jar file presen
 * https://plugins.jetbrains.com/docs/intellij/welcome.html[]
 * https://www.baeldung.com/intellij-new-custom-plugin[]
 * https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development?__cf_chl_captcha_tk__=pmd_k4Tjotbjb.Q5.2un_F6Gl_pgXolke818kVkkYWb8ISc-1632380657-0-gqNtZGzNA1CjcnBszQk9[]
+
+== Versions
+
+https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#intellij-platform-based-products-of-recent-ide-versions
