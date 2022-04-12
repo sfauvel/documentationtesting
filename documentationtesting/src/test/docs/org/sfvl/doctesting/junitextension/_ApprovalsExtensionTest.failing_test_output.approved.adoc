@@ -82,3 +82,17 @@ include::_ApprovalsExtensionTest.failing_test_output.ExceptionStackTrace.adoc[li
 ----
 
 --
+
+A received file is produced for the class containing the failing test.
+This file includes received files if they exist.
+It is thus possible to visualize the received file in the file with other methods.
+
+.Document generated
+----
+\ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_samples_failingtest]
+= Failing test
+
+\include::_FailingTest.failing_test.received.adoc[leveloffset=+1]
+----

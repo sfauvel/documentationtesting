@@ -37,7 +37,7 @@ public class ApprovalsJUnit4 {
     final static DocWriter<AsciidocFormatter> docWriter = new DocWriter<AsciidocFormatter>(new AsciidocFormatter()) {
         private final ClassDocumentation classDocumentation = new ClassDocumentation(
                 getFormatter(),
-                m -> Paths.get(new DocPath(m).approved().filename()),
+                o -> Paths.get(o.filename()),
                 m -> m.isAnnotationPresent(org.junit.Test.class),
                 m -> true
         );

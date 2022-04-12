@@ -12,7 +12,10 @@ import org.sfvl.codeextraction.MethodReference;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
-import org.sfvl.doctesting.utils.*;
+import org.sfvl.doctesting.utils.ClassToDocument;
+import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.doctesting.utils.NoTitle;
+import org.sfvl.doctesting.utils.OnePath;
 import org.sfvl.samples.*;
 import org.sfvl.samples.justone.OneTest;
 import org.sfvl.test_tools.IntermediateHtmlPage;
@@ -344,6 +347,14 @@ public class ApprovalsExtensionTest {
                         .replace(INCLUDE_KEYWORD_TO_SUBSTITUTE, include_stacktrace_asciidoc),
                 "--");
 
+        final DocPath classDocPath = new DocPath(FailingTest.class);
+        doc.write("", "",
+                "A received file is produced for the class containing the failing test.",
+                "This file includes received files if they exist.",
+                "It is thus possible to visualize the received file in the file with other methods.",
+                "",
+                adocFileSourceEscaped(classDocPath.received())
+        );
     }
 
     private String extractSourceWithTag(String tag, Class<?> classToIdentifySourceClass, Class<?> testClass) {
