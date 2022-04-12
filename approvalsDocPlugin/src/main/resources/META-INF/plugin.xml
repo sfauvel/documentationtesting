@@ -1,6 +1,6 @@
 <idea-plugin>
-    <id>org.sfvl.doctesting.approvalsDocPlugin</id>
-    <name>ApprovalsDocPlugin</name>
+    <id>org.sfvl.doctesting.docAsTestPlugin</id>
+    <name>DocAsTestPlugin</name>
     <vendor email="sfauvel@gmail.com" url="https://github.com/sfauvel">Sébastien Fauvel</vendor>
 
     <description><![CDATA[
