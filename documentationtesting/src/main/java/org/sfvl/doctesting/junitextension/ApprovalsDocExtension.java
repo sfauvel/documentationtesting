@@ -13,7 +13,6 @@ import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.PathProvider;
 import org.sfvl.doctesting.writer.DocWriter;
 
-import java.io.File;
 import java.lang.reflect.Method;
 
 /**
@@ -47,7 +46,6 @@ public class ApprovalsDocExtension<T extends DocWriter> implements AfterEachCall
         final String content = docWriter.formatOutput(currentClass);
 
         verifyDoc(content, new DocPath(extensionContext.getTestClass().get()));
-
     }
 
     @Override
@@ -70,29 +68,7 @@ public class ApprovalsDocExtension<T extends DocWriter> implements AfterEachCall
     }
 
     public void verifyDoc(String content, DocPath docPath) {
-        ApprovalNamer approvalNamer = new ApprovalNamer() {
-            @Override
-            public String getApprovalName() {
-                return "_" + docPath.name();
-            }
-
-            @Override
-            public String getSourceFilePath() {
-                return docPath.approved().folder().toString() + File.separator;
-            }
-
-            @Override
-            public File getApprovedFile(String extensionWithDot) {
-                return new File(this.getSourceFilePath() + "/" + this.getApprovalName() + ".approved" + extensionWithDot);
-            }
-
-            @Override
-            public File getReceivedFile(String extensionWithDot) {
-                return new File(this.getSourceFilePath() + "/" + this.getApprovalName() + ".received" + extensionWithDot);
-            }
-        };
-
-        verifyDoc(content, approvalNamer);
+        verifyDoc(content, new DocAsTestApprovalNamer(docPath));
     }
 
     private void verifyDoc(String content, ApprovalNamer approvalNamer) {
