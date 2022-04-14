@@ -42,29 +42,3 @@ On the final rendering, it's like it was part of the previous chapter.
 [.rendering]
 == Rendering of the result
 include::../../samples/_MyTestWithoutTitleOnOneTest.approved.adoc[leveloffset=+2]
-
-
-++++
-<style>
-#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering > h2:first-child,
-#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering > h3:first-child,
-#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering > h4:first-child {
-    display: none;
-}
-#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering > h2:first-child + div,
-#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering > h3:first-child + div,
-#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering > h4:first-child + div {
-    padding: 20px;
-    background: var(--bg1);
-    filter: brightness(0.95);
-    box-shadow: 10px 5px 5px var(--shadow-color);
-    border: 1px solid var(--shadow-color);
-}
-#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering h3,
-#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering h4,
-#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title + div.sectionbody .rendering h5 {
-    margin-top: 0px;
-}
-
-</style>
-++++

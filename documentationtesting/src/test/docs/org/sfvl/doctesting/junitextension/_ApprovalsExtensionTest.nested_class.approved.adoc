@@ -86,6 +86,8 @@ Document of Addition operations.
 \include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]
 ----
 
-_final rendering_
-[.includeblock]
-include::_DemoNestedTest.approved.adoc[leveloffset=+1]
+_Final rendering_
+[.rendering]
+== Rendering
+
+include::_DemoNestedTest.approved.adoc[leveloffset=+2]

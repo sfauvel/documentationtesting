@@ -36,6 +36,6 @@ Class `MyTest` is in package `org.sfvl.samples`.
 \include::_MyTest.test_A.approved.adoc[leveloffset=+1]
 ----
 
-_final rendering_
-[.includeblock]
-include::../../samples/_MyTest.approved.adoc[leveloffset=+1]
+_Final rendering_
+[.rendering]
+include::../../samples/_MyTest.approved.adoc[leveloffset=+2]

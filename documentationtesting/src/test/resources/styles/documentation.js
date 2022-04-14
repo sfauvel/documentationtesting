@@ -16,5 +16,11 @@ window.addEventListener( "load",
     function() {
         menus = document.querySelectorAll(".sectlevel1 > li");
         menus.forEach(toggleMenuOnClick);
+
+        // Move logo to the header
+        const project_home = document.getElementById('project_home');
+        const header = document.getElementById('header');
+        header.appendChild(project_home);
+
      }
 );

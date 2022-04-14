@@ -48,23 +48,8 @@ include::_ApprovalsExtensionTest.failing_test_output.ExceptionStackTrace.adoc[li
 
 ------
 
-++++
-<style>
-.includeblock .title1 {
-    font-size: 2em;
-    font-family: "Open Sans","DejaVu Sans",sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    color: #ba3925;
-    text-rendering: optimizeLegibility;
-    margin-top: 1em;
-    margin-bottom: .5em;
-}
-</style>
-++++
-
-_final rendering_
-[.includeblock]
+_Final rendering_
+[.rendering]
 --
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 

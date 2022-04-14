@@ -130,41 +130,9 @@ public class ApprovalsExtensionTest {
                 "",
                 "[.rendering]",
                 "== Rendering of the result",
-                formatter.include(docPath.approved().from(this.getClass()).toString(), 2),
-                "",
-                "",
-                sytleForHighlightChapter(methodId, ".rendering")
+                formatter.include(docPath.approved().from(this.getClass()).toString(), 2)
         );
     }
-
-    private String sytleForHighlightChapter(String fileId, final String className) {
-        final String cssFilter = "#" + fileId + " + div.sectionbody " + className;
-        return String.join("\n", "++++",
-                "<style>",
-                cssFilter + " > h2:first-child,",
-                cssFilter + " > h3:first-child,",
-                cssFilter + " > h4:first-child {",
-                "    display: none;",
-                "}",
-                cssFilter + " > h2:first-child + div,",
-                cssFilter + " > h3:first-child + div,",
-                cssFilter + " > h4:first-child + div {",
-                "    padding: 20px;",
-                "    background: var(--bg1);",
-                "    filter: brightness(0.95);",
-                "    box-shadow: 10px 5px 5px var(--shadow-color);",
-                "    border: 1px solid var(--shadow-color);",
-                "}",
-                cssFilter + " h3,",
-                cssFilter + " h4,",
-                cssFilter + " h5 {",
-                "    margin-top: 0px;",
-                "}",
-                "",
-                "</style>",
-                "++++");
-    }
-
 
     @Test
     public void using_a_custom_writer() {
@@ -232,9 +200,12 @@ public class ApprovalsExtensionTest {
                     .collect(Collectors.joining("\n"))
                     .replaceAll("\\ninclude::", "\n\\\\include::"), "----");
 
-            doc.write("", "", "_final rendering_",
-                    "[.includeblock]",
-                    formatter.include("_" + testClass.getSimpleName() + ".approved.adoc", 1)
+            doc.write("", "",
+                    "_Final rendering_",
+                    "[.rendering]",
+                    "== Rendering",
+                    "",
+                    formatter.include("_" + testClass.getSimpleName() + ".approved.adoc", 2)
             );
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -255,8 +226,10 @@ public class ApprovalsExtensionTest {
 
         doc.write("", "", adocFileSourceEscaped(approved));
 
-        doc.write("", "", "_final rendering_", "[.includeblock]", formatter.include(approved.from(this.getClass()).toString(), 1));
-
+        doc.write("", "",
+                "_Final rendering_",
+                "[.rendering]",
+                formatter.include(approved.from(this.getClass()).toString(), 2));
     }
 
     /**
@@ -318,34 +291,17 @@ public class ApprovalsExtensionTest {
                         .replace(INCLUDE_KEYWORD_TO_SUBSTITUTE, include_stacktrace_asciidoc),
                 "------");
 
-        String style = String.join("\n",
-                "++++",
-                "<style>",
-                ".includeblock .title1 {",
-                "    font-size: 2em;",
-                "    font-family: \"Open Sans\",\"DejaVu Sans\",sans-serif;",
-                "    font-weight: 300;",
-                "    font-style: normal;",
-                "    color: #ba3925;",
-                "    text-rendering: optimizeLegibility;",
-                "    margin-top: 1em;",
-                "    margin-bottom: .5em;",
-                "}",
-                "</style>",
-                "++++");
-
         doc.write("",
                 "",
-                style,
-                "",
-                "_final rendering_",
-                "[.includeblock]",
+                "_Final rendering_",
+                "[.rendering]",
                 "--",
                 cutLines.stream()
                         .map(this::escapedAdocTitle)
                         .collect(Collectors.joining("\n"))
                         .replace(INCLUDE_KEYWORD_TO_SUBSTITUTE, include_stacktrace_asciidoc),
-                "--");
+                "--"
+        );
 
         final DocPath classDocPath = new DocPath(FailingTest.class);
         doc.write("", "",
