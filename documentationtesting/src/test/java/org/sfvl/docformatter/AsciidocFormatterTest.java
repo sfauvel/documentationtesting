@@ -6,8 +6,9 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.ClassToDocument;
+import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.writer.DocWriter;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.io.FileWriter;
@@ -35,7 +36,18 @@ public class AsciidocFormatterTest {
     private String output;
 
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new ApprovalsExtension<DocWriter<Formatter>, Formatter>(new DocWriter(Config.FORMATTER) {
+
+        @Override
+        public String defineDocPath(Path relativePathToRoot) {
+            return String.join("\n",
+                    super.defineDocPath(relativePathToRoot),
+                    "ifdef::is-html-doc[:imagesdir: {ROOT_PATH}/images]",
+                    "ifndef::is-html-doc[:imagesdir: {ROOT_PATH}/../resources/images]"
+            );
+
+        }
+    });
 
     @Retention(RetentionPolicy.RUNTIME)
     public @interface TestOption {
@@ -402,6 +414,22 @@ public class AsciidocFormatterTest {
     @DisplayName("Attribute")
     public void should_add_an_attribute() throws IOException {
         output = formatter.attribute("MY_ATTRIBUTE", "The value");
+    }
+
+    @Nested
+    class Image {
+        @Test
+        public void should_add_an_image() {
+            output = formatter.image("doc_as_test.png");
+        }
+
+        /**
+         * With a title parameter, the text is shown when you mouse over the image.
+         */
+        @Test
+        public void should_add_an_image_with_title() {
+            output = formatter.image("doc_as_test.png", "doc as test");
+        }
     }
 
     @AfterEach

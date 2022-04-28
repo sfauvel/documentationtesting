@@ -50,6 +50,7 @@ public interface Formatter {
     String tableWithHeader(List<List<? extends Object>> asList);
 
     String image(String filename);
+    String image(String github_logo_path, String title);
 
     String sourceFragment(String s, String interestingCode);
 

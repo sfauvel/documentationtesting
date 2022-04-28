@@ -1,4 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+ifdef::is-html-doc[:imagesdir: {ROOT_PATH}/images]
+ifndef::is-html-doc[:imagesdir: {ROOT_PATH}/../resources/images]
 
 [#org_sfvl_docformatter_asciidocformattertest]
 = Asciidoctor formatter
@@ -95,3 +97,10 @@ include::_AsciidocFormatterTest.should_format_table.approved.adoc[leveloffset=+1
 include::_AsciidocFormatterTest.should_format_table_with_header.approved.adoc[leveloffset=+1]
 
 include::_AsciidocFormatterTest.should_add_an_attribute.approved.adoc[leveloffset=+1]
+
+[#org_sfvl_docformatter_asciidocformattertest_image]
+== Image
+
+include::_AsciidocFormatterTest.Image.should_add_an_image.approved.adoc[leveloffset=+2]
+
+include::_AsciidocFormatterTest.Image.should_add_an_image_with_title.approved.adoc[leveloffset=+2]

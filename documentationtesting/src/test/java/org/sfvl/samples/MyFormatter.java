@@ -120,6 +120,11 @@ public class MyFormatter implements Formatter  {
     }
 
     @Override
+    public String image(String filename, String title) {
+        return null;
+    }
+
+    @Override
     public String sourceFragment(String s, String interestingCode) {
         return null;
     }

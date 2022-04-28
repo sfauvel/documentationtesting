@@ -182,6 +182,11 @@ public class AsciidocFormatter implements Formatter {
     }
 
     @Override
+    public String image(String filename, String title) {
+        return String.format("\nimage:%s[title=\"%s\"]\n", filename, title);
+    }
+
+    @Override
     public String sourceFragment(String filename, String tag) {
         return "\n----\n"
                 + String.format("include::{sourcedir}/%s[tags=%s]\n", filename, tag)
