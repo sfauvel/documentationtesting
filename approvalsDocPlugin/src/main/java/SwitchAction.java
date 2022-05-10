@@ -68,5 +68,20 @@ public abstract class SwitchAction extends AnAction {
         }
     }
 
+    @Override
+    public void update(AnActionEvent actionEvent) {
+        if (!isFileToSwitchExist(actionEvent)) {
+            actionEvent.getPresentation().setVisible(false);
+            return;
+        }
+
+        actionEvent.getPresentation().setEnabled(true);
+        actionEvent.getPresentation().setVisible(true);
+
+        actionEvent.getPresentation().setText(getMenuText());
+    }
+
+    protected abstract boolean isFileToSwitchExist(AnActionEvent actionEvent);
+
     protected abstract Optional<Runnable> getRunnableAction(@NotNull AnActionEvent actionEvent);
 }

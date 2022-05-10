@@ -1,8 +1,6 @@
-import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.OpenFileDescriptor;
 import com.intellij.openapi.project.Project;
@@ -13,18 +11,25 @@ import com.intellij.psi.search.GlobalSearchScope;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SwitchToJavaFileAction extends SwitchAction {
 
+    @Override
     protected String getMenuText() {
-        return "Switch to approved file";
+        return "Switch to java file";
+    }
+
+    @Override
+    protected boolean isFileToSwitchExist(AnActionEvent actionEvent) {
+        return getJavaFile(actionEvent).isPresent();
     }
 
     @Override
@@ -34,20 +39,6 @@ public class SwitchToJavaFileAction extends SwitchAction {
         if (javaFileOptional.isEmpty()) return Optional.empty();
 
         return Optional.of(new SwitchToJavaFileAction.ApprovedRunnable(actionEvent.getProject(), javaFileOptional.get()));
-    }
-
-    @Override
-    public void update(AnActionEvent actionEvent) {
-        final Optional<ReturnJavaFile> approvalFileOptional = getJavaFile(actionEvent);
-        if (approvalFileOptional.isEmpty()) {
-            actionEvent.getPresentation().setVisible(false);
-            return;
-        }
-
-        actionEvent.getPresentation().setEnabled(true);
-        actionEvent.getPresentation().setVisible(true);
-
-        actionEvent.getPresentation().setText("Switch to java file");
     }
 
     public Optional<Path> getJavaFilePath(Path projectPath, VirtualFile file) {

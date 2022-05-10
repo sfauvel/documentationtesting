@@ -15,13 +15,15 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public abstract class SwitchToFileAction extends SwitchAction {
-
 
     private final ApprovalFile.Status approvalType;
 
@@ -29,18 +31,9 @@ public abstract class SwitchToFileAction extends SwitchAction {
         this.approvalType = approvalType;
     }
 
-
     @Override
-    public void update(AnActionEvent actionEvent) {
-        final Optional<PsiFile> approvedPsiFile = getApprovedPsiFile(actionEvent);
-        if (approvedPsiFile.isEmpty()) {
-            actionEvent.getPresentation().setVisible(false);
-            return;
-        }
-        actionEvent.getPresentation().setEnabled(true);
-        actionEvent.getPresentation().setVisible(true);
-
-        actionEvent.getPresentation().setText(getMenuText());
+    protected boolean isFileToSwitchExist(AnActionEvent actionEvent) {
+        return getApprovedPsiFile(actionEvent).isPresent();
     }
 
     @Override
