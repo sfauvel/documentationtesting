@@ -10,6 +10,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
 import com.intellij.psi.search.FilenameIndex;
 import com.intellij.psi.search.GlobalSearchScope;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +21,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SwitchToJavaFileAction extends AnAction {
+public class SwitchToJavaFileAction extends SwitchAction {
 
     private static final String DOC_AS_TEST_PROPERTIES_FILENAME = "docAsTest.properties";
     private static final String DEFAULT_SRC_PATH = "src/test/java";
@@ -41,6 +42,15 @@ public class SwitchToJavaFileAction extends AnAction {
     }
 
     @Override
+    protected Optional<Runnable> getRunnableAction(@NotNull AnActionEvent actionEvent) {
+
+        final Optional<ReturnJavaFile> javaFileOptional = getJavaFile(actionEvent);
+        if (javaFileOptional.isEmpty()) return Optional.empty();
+
+        return Optional.of(new SwitchToJavaFileAction.ApprovedRunnable(actionEvent.getProject(), javaFileOptional.get()));
+    }
+
+    @Override
     public void update(AnActionEvent actionEvent) {
         final Optional<ReturnJavaFile> approvalFileOptional = getJavaFile(actionEvent);
         if (approvalFileOptional.isEmpty()) {
@@ -52,18 +62,6 @@ public class SwitchToJavaFileAction extends AnAction {
         actionEvent.getPresentation().setVisible(true);
 
         actionEvent.getPresentation().setText("Switch to java file");
-    }
-
-    @Override
-    public void actionPerformed(AnActionEvent actionEvent) {
-        final Optional<ReturnJavaFile> javaFileOptional = getJavaFile(actionEvent);
-        if (javaFileOptional.isEmpty()) return;
-
-        CommandProcessor.getInstance().executeCommand(
-                actionEvent.getProject(),
-                new SwitchToJavaFileAction.ApprovedRunnable(actionEvent.getProject(), javaFileOptional.get()),
-                getMenuText(),
-                "Approvals");
     }
 
     public Optional<Path> getJavaFilePath(Path projectPath, VirtualFile file) {
@@ -102,18 +100,24 @@ public class SwitchToJavaFileAction extends AnAction {
     }
 
     private void loadProperties(Project project) {
+        if (properties != null) {
+            return;
+        }
+        properties = new Properties();
         final PsiFile[] propertiesByName = FilenameIndex.getFilesByName(project, DOC_AS_TEST_PROPERTIES_FILENAME, GlobalSearchScope.projectScope(project));
 
         // TODO we assume there is only one property file with this name in the project.
         // TODO We probably need to load property file by project.
-        loadProperties(propertiesByName[0].getVirtualFile());
+        if (propertiesByName.length > 0) {
+            loadProperties(propertiesByName[0].getVirtualFile());
+        }
     }
 
     private void loadProperties(VirtualFile virtualFile) {
+        if (properties == null) {
+            properties = new Properties();
+        }
         try (final InputStream inputStream = virtualFile.getInputStream()) {
-            if (properties == null) {
-                properties = new Properties();
-            }
             properties.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();

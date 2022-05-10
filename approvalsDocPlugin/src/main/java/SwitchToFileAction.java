@@ -12,6 +12,7 @@ import com.intellij.psi.*;
 import com.intellij.psi.search.FilenameIndex;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTreeUtil;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -24,7 +25,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public abstract class SwitchToFileAction extends AnAction {
+public abstract class SwitchToFileAction extends SwitchAction {
     private static final String SRC_PATH = "src/test/java";
     private static final String SRC_DOCS = "src/test/docs";
 
@@ -41,6 +42,8 @@ public abstract class SwitchToFileAction extends AnAction {
         this.approvalType = approvalType;
     }
 
+
+
     @Override
     public void update(AnActionEvent actionEvent) {
         final Optional<PsiFile> approvedPsiFile = getApprovedPsiFile(actionEvent);
@@ -53,17 +56,12 @@ public abstract class SwitchToFileAction extends AnAction {
 
         actionEvent.getPresentation().setText(getMenuText());
     }
-
     @Override
-    public void actionPerformed(AnActionEvent anActionEvent) {
-        final Optional<PsiFile> approvedPsiFile = getApprovedPsiFile(anActionEvent);
-        if (approvedPsiFile.isEmpty()) return;
+    protected Optional<Runnable> getRunnableAction(@NotNull AnActionEvent actionEvent) {
+        final Optional<PsiFile> approvedPsiFile = getApprovedPsiFile(actionEvent);
+        if (approvedPsiFile.isEmpty()) return Optional.empty();
 
-        CommandProcessor.getInstance().executeCommand(
-                anActionEvent.getProject(),
-                new ApprovedRunnable(anActionEvent.getProject(), approvedPsiFile.get()),
-                getMenuText(),
-                "Approvals");
+        return Optional.of(new ApprovedRunnable(actionEvent.getProject(), approvedPsiFile.get()));
     }
 
     protected abstract String getMenuText();
