@@ -12,15 +12,12 @@ import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public abstract class SwitchToFileAction extends SwitchAction {
@@ -44,27 +41,15 @@ public abstract class SwitchToFileAction extends SwitchAction {
         return Optional.of(new ApprovedRunnable(actionEvent.getProject(), approvedPsiFile.get()));
     }
 
-    protected abstract String getMenuText();
-
     public Optional<Path> getApprovedFilePath(Path projectPath, VirtualFile file, ApprovalFile.Status status) {
-        final String prefixFolder = getSrcPath();
-        Pattern pattern = Pattern.compile("(" + Paths.get(projectPath + File.separator).toString() + "(.*" + File.separator + ")?)"
-                + prefixFolder + File.separator
-                + "(.*" + File.separator + ")?"
-                + "(" + file.getName() + ")");
-        Matcher matcher = pattern.matcher(file.getPath());
-        if (!matcher.find()) {
-            return Optional.empty();
-        }
 
-        final String projectRootPath = matcher.group(1);
-        final Optional<String> packagePath = Optional.ofNullable(matcher.group(3));
-        final String filePath = matcher.group(4);
+        final Optional<FileBuilder> fileBuilder = FileBuilder.extractFileInfo(projectPath, file, getSrcPath());
 
-        return Optional.of(JavaFile.fromClass(packagePath.orElse(""), filePath.replaceFirst(".java$", "")))
-                .map(javaFile -> javaFile.to(status))
-                .map(approvedFile -> new FullApprovalFilePath(Paths.get(projectRootPath), Paths.get(getSrcDocs()), approvedFile))
-                .map(FullApprovalFilePath::fullPath);
+        return fileBuilder.flatMap(fileBuilderGet ->
+                Optional.of(JavaFile.fromClass(fileBuilderGet.packagePath.orElse(""), fileBuilderGet.filePath.replaceFirst(".java$", "")))
+                        .map(javaFile -> javaFile.to(status))
+                        .map(approvedFile -> new FullApprovalFilePath(Paths.get(fileBuilderGet.projectRootPath), Paths.get(getSrcDocs()), approvedFile))
+                        .map(FullApprovalFilePath::fullPath));
     }
 
     static class ApprovedRunnable implements Runnable {
