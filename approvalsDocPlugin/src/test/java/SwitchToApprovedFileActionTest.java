@@ -50,12 +50,12 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
 
             @Override
             public String getSrcDocs() {
-                return SwitchToFileAction.DEFAULT_SRC_DOCS;
+                return SwitchAction.DEFAULT_SRC_DOCS;
             }
 
             @Override
             public String getSrcPath() {
-                return SwitchToFileAction.DEFAULT_SRC_PATH;
+                return SwitchAction.DEFAULT_SRC_PATH;
             }
         };
 

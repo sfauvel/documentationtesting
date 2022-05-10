@@ -23,20 +23,6 @@ import java.util.regex.Pattern;
 
 public class SwitchToJavaFileAction extends SwitchAction {
 
-    private static final String DOC_AS_TEST_PROPERTIES_FILENAME = "docAsTest.properties";
-    private static final String DEFAULT_SRC_PATH = "src/test/java";
-    private static final String DEFAULT_SRC_DOCS = "src/test/docs";
-
-    private Properties properties = null;
-
-    public String getSrcDocs() {
-        return properties.getProperty("DOC_PATH", DEFAULT_SRC_DOCS);
-    }
-
-    public String getSrcPath() {
-        return properties.getProperty("TEST_PATH", DEFAULT_SRC_PATH);
-    }
-
     protected String getMenuText() {
         return "Switch to approved file";
     }
@@ -96,31 +82,6 @@ public class SwitchToJavaFileAction extends SwitchAction {
         public ReturnJavaFile(PsiJavaFile psiFile, JavaFile javaFile) {
             this.psiFile = psiFile;
             this.javaFile = javaFile;
-        }
-    }
-
-    private void loadProperties(Project project) {
-        if (properties != null) {
-            return;
-        }
-        properties = new Properties();
-        final PsiFile[] propertiesByName = FilenameIndex.getFilesByName(project, DOC_AS_TEST_PROPERTIES_FILENAME, GlobalSearchScope.projectScope(project));
-
-        // TODO we assume there is only one property file with this name in the project.
-        // TODO We probably need to load property file by project.
-        if (propertiesByName.length > 0) {
-            loadProperties(propertiesByName[0].getVirtualFile());
-        }
-    }
-
-    private void loadProperties(VirtualFile virtualFile) {
-        if (properties == null) {
-            properties = new Properties();
-        }
-        try (final InputStream inputStream = virtualFile.getInputStream()) {
-            properties.load(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

@@ -13,8 +13,6 @@ import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -23,49 +21,12 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public abstract class SwitchToFileAction extends SwitchAction {
-    private static final String DOC_AS_TEST_PROPERTIES_FILENAME = "docAsTest.properties";
-    protected static final String DEFAULT_SRC_PATH = "src/test/java";
-    protected static final String DEFAULT_SRC_DOCS = "src/test/docs";
-    private Properties properties = null;
-
-    public String getSrcDocs() {
-        return properties.getProperty("DOC_PATH", DEFAULT_SRC_DOCS);
-    }
-
-    public String getSrcPath() {
-        return properties.getProperty("TEST_PATH", DEFAULT_SRC_PATH);
-    }
 
 
     private final ApprovalFile.Status approvalType;
 
     protected SwitchToFileAction(ApprovalFile.Status approvalType) {
         this.approvalType = approvalType;
-    }
-
-    private void loadProperties(Project project) {
-        if (properties != null) {
-            return;
-        }
-        properties = new Properties();
-        final PsiFile[] propertiesByName = FilenameIndex.getFilesByName(project, DOC_AS_TEST_PROPERTIES_FILENAME, GlobalSearchScope.projectScope(project));
-
-        // TODO we assume there is only one property file with this name in the project.
-        // TODO We probably need to load property file by project.
-        if (propertiesByName.length > 0) {
-            loadProperties(propertiesByName[0].getVirtualFile());
-        }
-    }
-
-    private void loadProperties(VirtualFile virtualFile) {
-        if (properties == null) {
-            properties = new Properties();
-        }
-        try (final InputStream inputStream = virtualFile.getInputStream()) {
-            properties.load(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 
