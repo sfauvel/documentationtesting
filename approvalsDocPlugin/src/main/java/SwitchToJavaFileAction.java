@@ -12,26 +12,28 @@ import com.intellij.psi.search.FilenameIndex;
 import com.intellij.psi.search.GlobalSearchScope;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SwitchToJavaFileAction extends AnAction {
 
-    private static final String SRC_PATH = "src/test/java";
-    private static final String SRC_DOCS = "src/test/docs";
+    private static final String DOC_AS_TEST_PROPERTIES_FILENAME = "docAsTest.properties";
+    private static final String DEFAULT_SRC_PATH = "src/test/java";
+    private static final String DEFAULT_SRC_DOCS = "src/test/docs";
+
+    private Properties properties = null;
 
     public String getSrcDocs() {
-        return SRC_DOCS;
+        return properties.getProperty("DOC_PATH", DEFAULT_SRC_DOCS);
     }
 
     public String getSrcPath() {
-        return SRC_PATH;
+        return properties.getProperty("TEST_PATH", DEFAULT_SRC_PATH);
     }
 
     protected String getMenuText() {
@@ -41,7 +43,6 @@ public class SwitchToJavaFileAction extends AnAction {
     @Override
     public void update(AnActionEvent actionEvent) {
         final Optional<ReturnJavaFile> approvalFileOptional = getJavaFile(actionEvent);
-
         if (approvalFileOptional.isEmpty()) {
             actionEvent.getPresentation().setVisible(false);
             return;
@@ -100,7 +101,29 @@ public class SwitchToJavaFileAction extends AnAction {
         }
     }
 
+    private void loadProperties(Project project) {
+        final PsiFile[] propertiesByName = FilenameIndex.getFilesByName(project, DOC_AS_TEST_PROPERTIES_FILENAME, GlobalSearchScope.projectScope(project));
+
+        // TODO we assume there is only one property file with this name in the project.
+        // TODO We probably need to load property file by project.
+        loadProperties(propertiesByName[0].getVirtualFile());
+    }
+
+    private void loadProperties(VirtualFile virtualFile) {
+        try (final InputStream inputStream = virtualFile.getInputStream()) {
+            if (properties == null) {
+                properties = new Properties();
+            }
+            properties.load(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private Optional<ReturnJavaFile> getJavaFile(AnActionEvent actionEvent) {
+        final Project project = actionEvent.getProject();
+        loadProperties(project);
+
         VirtualFile virtualFile = null;
         final PsiFile psiFile = actionEvent.getData(CommonDataKeys.PSI_FILE);
         if (psiFile != null) {
@@ -111,7 +134,7 @@ public class SwitchToJavaFileAction extends AnAction {
                 virtualFile = psiElement.getContainingFile().getVirtualFile();
             }
         }
-        final Project project = actionEvent.getProject();
+        // TODO What happened if virtualFile is still null ?
 
         final Optional<Path> javaFilePath = getJavaFilePath(Paths.get(getProjectBasePath(project)), virtualFile);
 
@@ -123,14 +146,14 @@ public class SwitchToJavaFileAction extends AnAction {
         if (javaFile.isEmpty()) {
             return Optional.empty();
         }
-        final String fullPathToFile = getSrcPath() + File.separator + javaFile.get().getName();
+
         final PsiFile[] filesByName = FilenameIndex.getFilesByName(project, javaFile.get().getFileName(), GlobalSearchScope.projectScope(project));
         final Optional<PsiFile> first = Arrays.stream(filesByName)
-//                .filter(file -> fullPathToFile.equals(Paths.get(getProjectBasePath(project)).relativize(Paths.get(file.getVirtualFile().getPath())).toString()))
                 .filter(file -> javaFilePath.map(Path::toString).get().equals(file.getVirtualFile().getPath()))
                 .findFirst();
         return first.map(f -> new ReturnJavaFile((PsiJavaFile) f, javaFile.get()));
     }
+
 
     protected String getProjectBasePath(Project project) {
         return project.getBasePath();
@@ -153,6 +176,7 @@ public class SwitchToJavaFileAction extends AnAction {
         }
 
         private void runAction() {
+            System.out.println("ApprovedRunnable.runAction");
             final int offset = getOffset();
 
             FileEditorManager.getInstance(project)
