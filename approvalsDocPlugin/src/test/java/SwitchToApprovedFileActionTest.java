@@ -42,8 +42,25 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
 
 
     public void test_approval_file_path_from_java_file() throws IOException {
+        final SwitchToApprovedFileAction action = new SwitchToApprovedFileAction() {
+            @Override
+            protected String getProjectBasePath(Project project) {
+                return "/";
+            }
+
+            @Override
+            public String getSrcDocs() {
+                return SwitchToFileAction.DEFAULT_SRC_DOCS;
+            }
+
+            @Override
+            public String getSrcPath() {
+                return SwitchToFileAction.DEFAULT_SRC_PATH;
+            }
+        };
+
         final VirtualFile javaFile = createFile("/src/myproject/src/test/java/MyClass.java");
-        Optional<Path> approvedFilePath = actionApprovedUnderTest.getApprovedFilePath(
+        Optional<Path> approvedFilePath = action.getApprovedFilePath(
                 Paths.get("/src/myproject"),
                 javaFile, ApprovalFile.Status.APPROVED);
 
@@ -293,6 +310,29 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
         assertEquals("MyClass.java", getFileNameInEditor());
     }
 
+
+    public void test_menu_entry_when_approved_file_with_package_custom_folder() throws IOException {
+        menu_entry_when_file_with_package_custom_folder(actionApprovedUnderTest, "approved");
+    }
+
+    public void test_menu_entry_when_received_file_with_package_custom_folder() throws IOException {
+        menu_entry_when_file_with_package_custom_folder(actionReceivedUnderTest, "received");
+    }
+
+    private void menu_entry_when_file_with_package_custom_folder(SwitchToFileAction actionUnderTest, String approvalType) {
+        // WIP
+        final PsiFile propertyFile = myFixture.addFileToProject(
+                "test/src/docAsTest.properties",
+                "DOC_PATH:src/documents");
+
+        myFixture.addFileToProject("documents/org/demo/_MyClass." + approvalType + ".adoc", approvalType + " content");
+        addTestClassFile(Paths.get("org", "demo"), "MyClass", SwitchToApprovedFileActionTest.CaretOn.CLASS);
+
+        final Presentation presentation = myFixture.testAction(actionUnderTest);
+        assertTrue(presentation.isVisible());
+        assertEquals("Switch to " + approvalType + " file", presentation.getText());
+        assertEquals("_MyClass." + approvalType + ".adoc", getFileNameInEditor());
+    }
 
     static enum CaretOn {
         NONE,
