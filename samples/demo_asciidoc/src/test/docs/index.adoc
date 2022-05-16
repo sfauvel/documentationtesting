@@ -1,3 +1,4 @@
 ifndef::ROOT_PATH[:ROOT_PATH: .]
+:toc: left
 :nofooter:
 include::org/sfvl/demo/_AsciiDocRenderingTest.approved.adoc[]

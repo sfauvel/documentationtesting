@@ -34,6 +34,7 @@ public class AsciiDocRenderingTest {
         final DocPath docPath = new DocPath(AsciiDocRenderingTest.class);
         String content = String.join("\n",
                 doc.getDocWriter().defineDocPath(Paths.get(".")),
+                ":toc: left",
                 ":nofooter:",
                 "include::" + docPath.approved().from(Config.DOC_PATH).toString() + "[]");
 
@@ -142,6 +143,84 @@ public class AsciiDocRenderingTest {
                 compactIfndefDirectives
 
         );
+
+    }
+
+    @Test
+    public void draw_with_a_table() {
+        String table_code = String.join("\n",
+                "[.tableStyled]",
+                "[%autowidth, cols=2*a]",
+                "|====",
+                "|",
+                "&nbsp;",
+                "| [.yellow]",
+                "&nbsp;",
+                "|",
+                "&nbsp;",
+                "|",
+                "&nbsp;",
+                "|====");
+        String style = String.join("\n",
+                "<style>",
+                "",
+                ":root {",
+                "  --color-highlight: yellow;",
+                "  --color-blank: white;",
+                "  --color-border: black;",
+                "  --cell-size: 2em;",
+                "}",
+                "/* To fill the cell with background */",
+                ".tableStyled td {",
+                "    padding: 0;",
+                "}",
+                "/* To make a square */",
+                ".tableStyled p {",
+                "    width: var(--cell-size);",
+                "    line-height: var(--cell-size);",
+                "}",
+                ".tableStyled .yellow {",
+                "    background-color:var(--color-highlight);",
+                "    color:var(--color-highlight);",
+                "}",
+                "",
+                "</style>",
+                "");
+
+        doc.write("Cells must be interpreted as asciidoc using 'a'.",
+                "Here, we set all cells using `cols` attribute on table.",
+                "",
+                "To set a style in a cell, you can add style using `[.my_style]` at the beginning of the cell.",
+                "It must be before the content with style to apply and must not have any content after it on the same line.",
+                "",
+                "We need to put a text in cell.",
+                "We prefer `&nbsp;` to avoir some display problems when cell is too small.",
+                "",
+                table_code,
+                "",
+                "",
+                ".Click to see asciidoc code",
+                "[%collapsible]",
+                "====",
+                "[,asciidoc]",
+                "----", table_code,
+                "----",
+                "====",
+                "",
+                "",
+                ".Click to see css code",
+                "[%collapsible]",
+                "====",
+                "[,css]",
+                "----", style,
+                "----",
+                "====",
+                "",
+                "");
+
+        doc.write("++++",
+                style,
+                "++++");
 
     }
 
