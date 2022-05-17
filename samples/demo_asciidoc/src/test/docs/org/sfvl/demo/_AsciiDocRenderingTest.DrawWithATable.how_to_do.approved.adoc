@@ -1,7 +1,7 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_demo_asciidocrenderingtest_draw_with_a_table]
-= Draw with a table
+[#org_sfvl_demo_asciidocrenderingtest_drawwithatable_how_to_do]
+= How to do
 
 Cells must be interpreted as asciidoc using 'a'.
 Here, we set all cells using `cols` attribute on table.

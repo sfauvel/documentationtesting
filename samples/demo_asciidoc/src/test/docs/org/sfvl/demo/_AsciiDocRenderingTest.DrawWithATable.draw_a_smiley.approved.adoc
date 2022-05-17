@@ -1,7 +1,7 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_demo_asciidocrenderingtest_draw_a_smiley_with_a_table]
-= Draw a smiley with a table
+[#org_sfvl_demo_asciidocrenderingtest_drawwithatable_draw_a_smiley]
+= Draw a smiley
 
 We can play a little and draw a smiley for example
 
