@@ -12,3 +12,5 @@ include::_AsciiDocRenderingTest.show_hide_part_of_document.approved.adoc[levelof
 include::_AsciiDocRenderingTest.include_once.approved.adoc[leveloffset=+1]
 
 include::_AsciiDocRenderingTest.draw_with_a_table.approved.adoc[leveloffset=+1]
+
+include::_AsciiDocRenderingTest.draw_a_smiley_with_a_table.approved.adoc[leveloffset=+1]

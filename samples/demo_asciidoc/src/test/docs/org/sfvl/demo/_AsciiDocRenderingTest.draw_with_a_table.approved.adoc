@@ -53,25 +53,18 @@ We prefer `&nbsp;` to avoir some display problems when cell is too small.
 [,css]
 ----
 <style>
-
-:root {
-  --color-highlight: yellow;
-  --color-blank: white;
-  --color-border: black;
-  --cell-size: 2em;
-}
 /* To fill the cell with background */
 .tableStyled td {
     padding: 0;
 }
 /* To make a square */
 .tableStyled p {
-    width: var(--cell-size);
-    line-height: var(--cell-size);
+    width: 2em;
+    line-height: 2em;
 }
 .tableStyled .yellow {
-    background-color:var(--color-highlight);
-    color:var(--color-highlight);
+    background-color:yellow;
+    color:yellow;
 }
 
 </style>
@@ -81,25 +74,18 @@ We prefer `&nbsp;` to avoir some display problems when cell is too small.
 
 ++++
 <style>
-
-:root {
-  --color-highlight: yellow;
-  --color-blank: white;
-  --color-border: black;
-  --cell-size: 2em;
-}
 /* To fill the cell with background */
 .tableStyled td {
     padding: 0;
 }
 /* To make a square */
 .tableStyled p {
-    width: var(--cell-size);
-    line-height: var(--cell-size);
+    width: 2em;
+    line-height: 2em;
 }
 .tableStyled .yellow {
-    background-color:var(--color-highlight);
-    color:var(--color-highlight);
+    background-color:yellow;
+    color:yellow;
 }
 
 </style>
