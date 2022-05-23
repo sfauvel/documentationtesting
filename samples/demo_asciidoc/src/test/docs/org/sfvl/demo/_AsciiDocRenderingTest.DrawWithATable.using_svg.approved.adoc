@@ -1,0 +1,48 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_demo_asciidocrenderingtest_drawwithatable_using_svg]
+= Using svg
+
+We can create a svg included in asciidoc file to draw a table.
+It gives a lot of possibilities to draw what we need
+but, it's a bit difficult to use the svg to code to understand difference wit the reference file.
+Moreover, the creation of the svg is not easy.
+++++
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="91" height="91" >
+<rect x="0" y="0" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<rect x="0" y="30" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<rect x="0" y="60" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<rect x="30" y="0" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<rect x="30" y="30" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<rect x="30" y="60" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<rect x="60" y="0" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<rect x="60" y="30" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<rect x="60" y="60" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+
+<rect x="30" y="30" height="30" width="30" fill="blue" stroke="grey" stroke-width="1" />
+/<svg>
+/<svg>
+++++
+&nbsp;
+
+.Click to see asciidoc code
+[%collapsible]
+====
+[,asciidoc]
+----
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="91" height="91" >
+<rect x="0" y="0" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<rect x="0" y="30" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<rect x="0" y="60" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<rect x="30" y="0" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<rect x="30" y="30" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<rect x="30" y="60" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<rect x="60" y="0" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<rect x="60" y="30" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<rect x="60" y="60" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+
+<rect x="30" y="30" height="30" width="30" fill="blue" stroke="grey" stroke-width="1" />
+/<svg>
+----
+====
+

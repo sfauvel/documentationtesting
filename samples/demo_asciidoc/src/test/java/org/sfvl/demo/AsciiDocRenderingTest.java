@@ -17,7 +17,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -300,7 +302,8 @@ public class AsciiDocRenderingTest {
                     "</style>",
                     "");
 
-            doc.write("We can play a little and draw a smiley for example",
+            doc.write("We can play a little and draw a smiley for example.",
+                    "It's not very useful but we want to show how we can draw something using a table.",
                     "",
                     table_code,
                     "",
@@ -328,6 +331,62 @@ public class AsciiDocRenderingTest {
                     style,
                     "++++");
 
+        }
+
+        public String rect(int x, int y, int height, int width, String fill, String stroke, int strokeWidth) {
+            return String.format("<rect x=\"%d\" y=\"%d\" height=\"%d\" width=\"%d\" fill=\"%s\" stroke=\"%s\" stroke-width=\"%d\" />",
+                    x, y, height, width, fill, stroke, strokeWidth);
+        }
+
+        public String cell(int x, int y, String fill, int square_size) {
+            return rect(x * square_size, y * square_size, square_size, square_size, fill, "grey", 1);
+        }
+
+        public String table(int width, int height, int square_size) {
+            List<String> table = new ArrayList<>();
+            for (int i = 0; i < width; i++) {
+                for (int j = 0; j < height; j++) {
+                    table.add(cell(i, j, "white", square_size));
+                }
+            }
+            return table.stream().collect(Collectors.joining("\n"));
+        }
+
+        @Test
+        public void using_svg() {
+            final int width = 3;
+            final int height = 3;
+            final int square_size = 30;
+
+            String table_code = String.join("\n",
+                    String.format("<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"%d\" height=\"%d\" >",
+                            width*square_size+1, width*square_size+1),
+                    table(width, height, square_size),
+                    "",
+                    cell(1, 1, "blue", square_size),
+                    "/<svg>");
+
+            doc.write(
+                    "We can create a svg included in asciidoc file to draw a table.",
+                    "It gives a lot of possibilities to draw what we need",
+                    "but, it's a bit difficult to use the svg to code to understand difference wit the reference file.",
+                    "Moreover, the creation of the svg is not easy.",
+                    "++++",
+                    table_code,
+                    "/<svg>",
+                    "++++",
+                    "&nbsp;", // Need to add a space to make collapsible work
+                    "",
+                    ".Click to see asciidoc code",
+                    "[%collapsible]",
+                    "====",
+                    "[,asciidoc]",
+                    "----",
+                    table_code,
+                    "----",
+                    "====",
+                    "",
+                    "");
         }
     }
 

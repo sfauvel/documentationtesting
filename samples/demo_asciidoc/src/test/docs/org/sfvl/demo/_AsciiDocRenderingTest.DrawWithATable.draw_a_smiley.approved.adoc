@@ -3,7 +3,8 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 [#org_sfvl_demo_asciidocrenderingtest_drawwithatable_draw_a_smiley]
 = Draw a smiley
 
-We can play a little and draw a smiley for example
+We can play a little and draw a smiley for example.
+It's not very useful but we want to show how we can draw something using a table.
 
 [.tableStyled.smiley]
 [%autowidth, cols=15*a]

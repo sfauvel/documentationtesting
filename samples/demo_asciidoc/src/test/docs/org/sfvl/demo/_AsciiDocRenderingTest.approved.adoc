@@ -17,3 +17,5 @@ include::_AsciiDocRenderingTest.include_once.approved.adoc[leveloffset=+1]
 include::_AsciiDocRenderingTest.DrawWithATable.how_to_do.approved.adoc[leveloffset=+2]
 
 include::_AsciiDocRenderingTest.DrawWithATable.draw_a_smiley.approved.adoc[leveloffset=+2]
+
+include::_AsciiDocRenderingTest.DrawWithATable.using_svg.approved.adoc[leveloffset=+2]
