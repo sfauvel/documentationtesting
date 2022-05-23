@@ -339,7 +339,8 @@ public class AsciiDocRenderingTest {
         }
 
         public String cell(int x, int y, String fill, int square_size) {
-            return rect(x * square_size, y * square_size, square_size, square_size, fill, "grey", 1);
+            return String.format("<use xlink:href=\"#%s_square\" x=\"%d\" y=\"%d\"/>", fill, x * square_size, y * square_size);
+            //  return rect(x * square_size, y * square_size, square_size, square_size, fill, "grey", 1);
         }
 
         public String table(int width, int height, int square_size) {
@@ -360,11 +361,20 @@ public class AsciiDocRenderingTest {
 
             String table_code = String.join("\n",
                     String.format("<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"%d\" height=\"%d\" >",
-                            width*square_size+1, width*square_size+1),
+                            width * square_size + 1, width * square_size + 1),
+                    "<g id=\"square\">",
+                    "    <rect height=\"30\" width=\"30\" stroke=\"grey\" stroke-width=\"1\">",
+                    "</g>",
+                    "<g id=\"blue_square\">",
+                    "    <use xlink:href=\"#square\" fill=\"blue\"/>",
+                    "</g>",
+                    "<g id=\"white_square\">",
+                    "    <use xlink:href=\"#square\" fill=\"white\"/>",
+                    "</g>",
                     table(width, height, square_size),
                     "",
                     cell(1, 1, "blue", square_size),
-                    "/<svg>");
+                    "</svg>");
 
             doc.write(
                     "We can create a svg included in asciidoc file to draw a table.",
@@ -373,7 +383,6 @@ public class AsciiDocRenderingTest {
                     "Moreover, the creation of the svg is not easy.",
                     "++++",
                     table_code,
-                    "/<svg>",
                     "++++",
                     "&nbsp;", // Need to add a space to make collapsible work
                     "",

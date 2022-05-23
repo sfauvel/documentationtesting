@@ -9,19 +9,27 @@ but, it's a bit difficult to use the svg to code to understand difference wit th
 Moreover, the creation of the svg is not easy.
 ++++
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="91" height="91" >
-<rect x="0" y="0" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
-<rect x="0" y="30" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
-<rect x="0" y="60" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
-<rect x="30" y="0" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
-<rect x="30" y="30" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
-<rect x="30" y="60" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
-<rect x="60" y="0" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
-<rect x="60" y="30" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
-<rect x="60" y="60" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<g id="square">
+    <rect height="30" width="30" stroke="grey" stroke-width="1">
+</g>
+<g id="blue_square">
+    <use xlink:href="#square" fill="blue"/>
+</g>
+<g id="white_square">
+    <use xlink:href="#square" fill="white"/>
+</g>
+<use xlink:href="#white_square" x="0" y="0"/>
+<use xlink:href="#white_square" x="0" y="30"/>
+<use xlink:href="#white_square" x="0" y="60"/>
+<use xlink:href="#white_square" x="30" y="0"/>
+<use xlink:href="#white_square" x="30" y="30"/>
+<use xlink:href="#white_square" x="30" y="60"/>
+<use xlink:href="#white_square" x="60" y="0"/>
+<use xlink:href="#white_square" x="60" y="30"/>
+<use xlink:href="#white_square" x="60" y="60"/>
 
-<rect x="30" y="30" height="30" width="30" fill="blue" stroke="grey" stroke-width="1" />
-/<svg>
-/<svg>
+<use xlink:href="#blue_square" x="30" y="30"/>
+</svg>
 ++++
 &nbsp;
 
@@ -31,18 +39,27 @@ Moreover, the creation of the svg is not easy.
 [,asciidoc]
 ----
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="91" height="91" >
-<rect x="0" y="0" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
-<rect x="0" y="30" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
-<rect x="0" y="60" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
-<rect x="30" y="0" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
-<rect x="30" y="30" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
-<rect x="30" y="60" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
-<rect x="60" y="0" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
-<rect x="60" y="30" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
-<rect x="60" y="60" height="30" width="30" fill="white" stroke="grey" stroke-width="1" />
+<g id="square">
+    <rect height="30" width="30" stroke="grey" stroke-width="1">
+</g>
+<g id="blue_square">
+    <use xlink:href="#square" fill="blue"/>
+</g>
+<g id="white_square">
+    <use xlink:href="#square" fill="white"/>
+</g>
+<use xlink:href="#white_square" x="0" y="0"/>
+<use xlink:href="#white_square" x="0" y="30"/>
+<use xlink:href="#white_square" x="0" y="60"/>
+<use xlink:href="#white_square" x="30" y="0"/>
+<use xlink:href="#white_square" x="30" y="30"/>
+<use xlink:href="#white_square" x="30" y="60"/>
+<use xlink:href="#white_square" x="60" y="0"/>
+<use xlink:href="#white_square" x="60" y="30"/>
+<use xlink:href="#white_square" x="60" y="60"/>
 
-<rect x="30" y="30" height="30" width="30" fill="blue" stroke="grey" stroke-width="1" />
-/<svg>
+<use xlink:href="#blue_square" x="30" y="30"/>
+</svg>
 ----
 ====
 
