@@ -1,0 +1,22 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_development_development_principles_extract_from_code]
+= Extract from code
+
+We try to extract the most things from the code.
+In consequence, when refering to a class or a method, 
+we don't write directly it's name in the text but we use the java class or the method reference.
+ We ensure that we can't have a name that not exist in the code.
+
+.Extraction of class name and method name
+
+[source,java,indent=0]
+----
+            final String className = Development.class.getSimpleName();
+            final String methodName = MethodReference.getName(Development::introduction);
+            String text = String .format("The method `%s` is a method of the class `%s`", methodName, className);
+
+----
+
+
+For more detail to get method name with reference, see: link:{ROOT_PATH}/org/sfvl/codeextraction/CodeExtractionPackage.html[MethodReference documentation]

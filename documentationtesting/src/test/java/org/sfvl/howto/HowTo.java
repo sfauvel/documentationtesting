@@ -3,92 +3,48 @@ package org.sfvl.howto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.codeextraction.ClassFinder;
 import org.sfvl.codeextraction.CodeExtractor;
-import org.sfvl.codeextraction.CodePath;
 import org.sfvl.codeextraction.MethodReference;
 import org.sfvl.docformatter.AsciidocFormatterTest;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
-import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.NoTitle;
-import org.sfvl.doctesting.utils.OnePath;
-import org.sfvl.doctesting.writer.ClassDocumentation;
-import org.sfvl.doctesting.writer.Classes;
 import org.sfvl.doctesting.writer.DocWriter;
+import org.sfvl.test_tools.DocAsTestDocWiter;
+import org.sfvl.test_tools.DocFormatter;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 
-import java.lang.reflect.Method;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
 
 @ExtendWith(IntermediateHtmlPage.class)
 public class HowTo {
 
-    public static class DocFormatter extends AsciidocFormatter {
-        public String getInclude(Class aClass, int offset) {
-            return new Classes(this).includeClasses(CodePath.toPath(aClass.getPackage()), Arrays.asList(aClass), offset).trim();
-        }
+//    private static final DocFormatter formatter = new DocFormatter();
 
-        public <T> String getInclude(MethodReference.SerializableConsumer<T> methodToInclude, int offset) {
-            final Method method = MethodReference.getMethod(methodToInclude);
+//    @RegisterExtension
+//    static ApprovalsExtension doc = new ApprovalsExtension(new DocWriter(formatter));
 
-            final OnePath approvedPath = new DocPath(method).approved();
-            return include(approvedPath.from(new DocPath(this.getClass()).approved()).toString(), offset);
-        }
-
-        public String linkToClass(Class<?> clazz) {
-            final String title = new ClassDocumentation(null).getTestClassTitle(clazz);
-
-            return linkToClass(clazz, title);
-        }
-
-        public String linkToClass(Class<?> clazz, String title) {
-            return linkTo(clazz, null, title);
-        }
-
-        public String linkToMethod(Method method, String title) {
-            final Class<?> clazz = new ClassFinder().getMainFileClass(method.getDeclaringClass());
-            return linkTo(clazz, doc.getDocWriter().titleId(method), title);
-        }
-
-        public String linkTo(Class clazz, String anchor, String title) {
-            final DocPath docPath = new DocPath(clazz);
-            // TODO do we generate page here ? It's not really the role of link formatting.
-            generatePage(clazz);
-
-            final String address = DocPath.toAsciiDoc(Paths.get("{" + Config.DOC_PATH_TAG + "}").resolve(docPath.html().path()));
-            return linkToPage(address, anchor, title);
-        }
-
-        private void generatePage(Class<?> clazz) {
-            new IntermediateHtmlPage().generate(clazz);
-        }
-    }
-
-    private static final DocFormatter formatter = new DocFormatter();
-
+    private static final DocAsTestDocWiter docAsTestDocWiter = new DocAsTestDocWiter();
     @RegisterExtension
-    static ApprovalsExtension doc = new ApprovalsExtension(new DocWriter(formatter));
-
+    static ApprovalsExtension doc = new ApprovalsExtension(docAsTestDocWiter);
+    private static final DocFormatter formatter = docAsTestDocWiter.getFormatter();
     @Test
     public void getting_started() {
 
         doc.write("To get started quickly, you can download link:https://github.com/sfauvel/TryDocAsTest[Try doc as test] project.",
                 "It's a minimal project that is ready to use and that implements a small demo.",
                 "",
-                "You can alo follow steps of the " + formatter.linkToClass(Tutorial.class, "Get started") + " page.",
+                "You can alo follow steps of the " + docAsTestDocWiter.linkToClass(Tutorial.class, "Get started") + " page.",
                 "",
                 "You can use it on your own project alongside your existing tests.",
                 "Both can work together without modifying your tests.",
                 "",
                 "To do that, you need to:",
                 "",
-                "* " + formatter.linkToClass(InstallingLibrary.class, "Installing DocumentationTesting").trim() + " maven library and add dependency to your `pom.xml`",
+                "* " + docAsTestDocWiter.linkToClass(InstallingLibrary.class, "Installing DocumentationTesting").trim() + " maven library and add dependency to your `pom.xml`",
                 "",
                 "* Create a test and register ApprovalsExtension extension adding the code below to the test class.",
                 "[source,java,indent=0]",
@@ -127,7 +83,7 @@ public class HowTo {
                 "It can be used to add general description or to minimize what it is written in a test to simplify its reuse.",
                 "",
                 "The final document respect the order of the method in the test file.",
-                "We can use subclasses to create subchapter in the document (see: " + formatter.linkToMethod(MethodReference.getMethod(ApprovalsExtensionTest::nested_class), "Nested class") + ")",
+                "We can use subclasses to create subchapter in the document (see: " + docAsTestDocWiter.linkToMethod(MethodReference.getMethod(ApprovalsExtensionTest::nested_class), "Nested class") + ")",
                 "",
                 "It's not necessary to follow source code organization in tests.",
                 "Instead, organize your test packages according to the document you want to generate.");
@@ -164,7 +120,7 @@ public class HowTo {
                         .content(listText)
                         .build(),
                 "",
-                "You can take a look at the " + formatter.linkToClass(AsciidocFormatterTest.class, "formatter's full documentation")
+                "You can take a look at the " + docAsTestDocWiter.linkToClass(AsciidocFormatterTest.class, "formatter's full documentation")
                         + " to get an idea of the features available."
         );
     }
@@ -175,7 +131,7 @@ public class HowTo {
         doc.write(
                 formatter.getInclude(CreateADocument::generate_html, 0),
                 "",
-                "For more features, you can look at the " + formatter.linkToClass(CreateADocument.class, "documentation on creating a document").trim() + "."
+                "For more features, you can look at the " + docAsTestDocWiter.linkToClass(CreateADocument.class, "documentation on creating a document").trim() + "."
         );
     }
 
