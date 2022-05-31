@@ -115,6 +115,11 @@ public class MyFormatter implements Formatter  {
     }
 
     @Override
+    public String tableWithHeader(List<?> header, List<List<?>> asList) {
+        return null;
+    }
+
+    @Override
     public String image(String filename) {
         return null;
     }

@@ -411,6 +411,17 @@ public class AsciidocFormatterTest {
     }
 
     @Test
+    @DisplayName("Table with header separate from data")
+    public void should_format_table_with_header_separate_from_data() throws IOException {
+        output = formatter.tableWithHeader(
+                Arrays.asList("A", "B", "C"),
+                Arrays.asList(
+                        Arrays.asList("x", "y", "z"),
+                        Arrays.asList("1", "2", "3")
+                ));
+    }
+
+    @Test
     @DisplayName("Attribute")
     public void should_add_an_attribute() throws IOException {
         output = formatter.attribute("MY_ATTRIBUTE", "The value");
