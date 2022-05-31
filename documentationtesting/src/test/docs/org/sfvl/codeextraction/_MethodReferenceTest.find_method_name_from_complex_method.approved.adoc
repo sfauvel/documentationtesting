@@ -16,26 +16,26 @@ Those methods could not work with ambiguous method reference (same method name w
 
 ----
 
-[cols="4,1,4";headers]
-|====
-| Code | Type | Returned value 
+[cols="4a,.^1,.^4a";headers]
 
-a| 
+|====
+|Code|Type|Returned value
+
+|
 [source,java,indent=0]
 ----
 MethodReference.getName((MySpecificInterface) this::mySpecificMethod)
 ----
- .^| String .^a| mySpecificMethod
-a| 
+|String|mySpecificMethod
+|
 [source,java,indent=0]
 ----
 MethodReference.getMethod((MySpecificInterface) this::mySpecificMethod)
 ----
- .^| Method .^a| 
+|Method|
 [source,java,indent=0]
 ----
 public java.lang.String MethodReferenceTest.mySpecificMethod( java.lang.Integer, java.lang.String, java.util.List)
 ----
-
 
 |====

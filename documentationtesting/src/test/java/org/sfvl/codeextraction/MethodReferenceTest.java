@@ -8,11 +8,14 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.NoTitle;
+import org.sfvl.printer.CodeAndResult;
 import org.sfvl.printer.Printer;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @DisplayName(value = "Extract information from method reference")
 public class MethodReferenceTest {
@@ -61,8 +64,7 @@ public class MethodReferenceTest {
     public void find_method_name(TestInfo testInfo) {
         final MyClass myObject = new MyClass();
 
-        final String lines = new Printer().showResultWithFormat(
-                this::linesFormatter,
+        final List<CodeAndResult<Object>> codeAndResult = new Printer().getCodeAndResult(
                 MethodReference.getName(MyClass::myMethod),
                 MethodReference.getName(myObject::myMethod),
                 MethodReference.getName(MyClass::myConsumer),
@@ -72,12 +74,11 @@ public class MethodReferenceTest {
                 MethodReference.getName(MyClass::myStaticConsumer));
 
         doc.write("",
-                "[cols=\"6,1,2\";headers]",
-                "|====",
-                "| Code | Type | Returned value ",
-                "",
-                lines,
-                "|====");
+                "[cols=\"6a,.^1,.^2a\";headers]",
+                doc.getFormatter().tableWithHeader(
+                        Arrays.asList("Code", "Type", "Returned value"),
+                        formatToTableData(codeAndResult))
+        );
     }
 
     /**
@@ -91,8 +92,7 @@ public class MethodReferenceTest {
 
         final MyClass myObject = new MyClass();
 
-        final String lines = new Printer().showResultWithFormat(
-                this::linesFormatter,
+        final List<CodeAndResult<Object>> codeAndResult = new Printer().getCodeAndResult(
                 MethodReference.getMethod(MyClass::myMethod),
                 MethodReference.getMethod(myObject::myMethod),
                 MethodReference.getMethod(MyClass::myConsumer),
@@ -101,14 +101,12 @@ public class MethodReferenceTest {
                 MethodReference.getMethod(MyClass::myFunctionWithGeneric),
                 MethodReference.getMethod(MyClass::myStaticConsumer));
 
-
         doc.write("",
-                "[cols=\"4,1,4\";headers]",
-                "|====",
-                "| Code | Type | Returned value ",
-                "",
-                lines,
-                "|====");
+                "[cols=\"4a,.^1,.^4a\";headers]",
+                doc.getFormatter().tableWithHeader(
+                        Arrays.asList("Code", "Type", "Returned value"),
+                        formatToTableData(codeAndResult))
+        );
     }
 
     public String mySpecificMethod(Integer param1, String param2, List<String> param3) {
@@ -138,18 +136,16 @@ public class MethodReferenceTest {
                 .content(code)
                 .build(), "");
 
-        final String lines = new Printer().showResultWithFormat(
-                this::linesFormatter,
+        final List<CodeAndResult<Object>> codeAndResult = new Printer().getCodeAndResult(
                 MethodReference.getName((MySpecificInterface) this::mySpecificMethod),
                 MethodReference.getMethod((MySpecificInterface) this::mySpecificMethod));
 
         doc.write("",
-                "[cols=\"4,1,4\";headers]",
-                "|====",
-                "| Code | Type | Returned value ",
-                "",
-                lines,
-                "|====");
+                "[cols=\"4a,.^1,.^4a\";headers]",
+                doc.getFormatter().tableWithHeader(
+                        Arrays.asList("Code", "Type", "Returned value"),
+                        formatToTableData(codeAndResult))
+        );
     }
 
     @Test
@@ -164,12 +160,13 @@ public class MethodReferenceTest {
                 "");
     }
 
-    private String linesFormatter(Object value, String code) {
-        return String.format("a| %s .^| %s .^a| %s\n",
-                doc.getFormatter().sourceCode(code),
-                value.getClass().getSimpleName(),
-                formatValueToDisplay(value));
-
+    private List<List<?>> formatToTableData(List<CodeAndResult<Object>> codeAndResult) {
+        return codeAndResult.stream()
+                .map(cr -> Arrays.asList(
+                        doc.getFormatter().sourceCode(cr.getCode()),
+                        cr.getValue().getClass().getSimpleName(),
+                        formatValueToDisplay(cr.getValue())))
+                .collect(Collectors.toList());
     }
 
     private String formatValueToDisplay(Object value) {
