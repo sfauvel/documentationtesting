@@ -72,7 +72,7 @@ public class CodeExtractorTest {
 
     @Nested
     @DisplayName(value = "Extract code")
-    class ExtractCode {
+    public class ExtractCode {
 
         @Test
         public void extract_code_of_a_class(TestInfo testInfo) {

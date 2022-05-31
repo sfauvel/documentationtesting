@@ -3,7 +3,9 @@ package org.sfvl.howto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.codeextraction.CodeExtractionPackage;
 import org.sfvl.codeextraction.CodeExtractor;
+import org.sfvl.codeextraction.CodeExtractorTest;
 import org.sfvl.codeextraction.MethodReference;
 import org.sfvl.docformatter.AsciidocFormatterTest;
 import org.sfvl.docformatter.Formatter;
@@ -12,7 +14,6 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.NoTitle;
-import org.sfvl.doctesting.writer.DocWriter;
 import org.sfvl.test_tools.DocAsTestDocWiter;
 import org.sfvl.test_tools.DocFormatter;
 import org.sfvl.test_tools.IntermediateHtmlPage;
@@ -22,18 +23,14 @@ import java.nio.file.Path;
 @ExtendWith(IntermediateHtmlPage.class)
 public class HowTo {
 
-//    private static final DocFormatter formatter = new DocFormatter();
-
-//    @RegisterExtension
-//    static ApprovalsExtension doc = new ApprovalsExtension(new DocWriter(formatter));
-
     private static final DocAsTestDocWiter docAsTestDocWiter = new DocAsTestDocWiter();
     @RegisterExtension
     static ApprovalsExtension doc = new ApprovalsExtension(docAsTestDocWiter);
+
     private static final DocFormatter formatter = docAsTestDocWiter.getFormatter();
+
     @Test
     public void getting_started() {
-
         doc.write("To get started quickly, you can download link:https://github.com/sfauvel/TryDocAsTest[Try doc as test] project.",
                 "It's a minimal project that is ready to use and that implements a small demo.",
                 "",
@@ -90,7 +87,6 @@ public class HowTo {
     }
 
     @Test
-    @NoTitle
     public void format_text() {
         String listText = "";
         {
@@ -100,8 +96,7 @@ public class HowTo {
             // <<<
             listText = text;
         }
-        doc.write(formatter.title(1, "Format text"),
-                "",
+        doc.write("",
                 "To format text, we can use a formatter that hide technical syntax of the markup language used.",
                 "",
                 ".Formatter usage",
@@ -123,6 +118,22 @@ public class HowTo {
                 "You can take a look at the " + docAsTestDocWiter.linkToClass(AsciidocFormatterTest.class, "formatter's full documentation")
                         + " to get an idea of the features available."
         );
+    }
+
+    @Test
+    public void extract_code() {
+        final CodeExtractorTest codeExtractorTest = new CodeExtractorTest();
+        final CodeExtractorTest.ExtractCode extractCode = codeExtractorTest.new ExtractCode();
+        doc.write("Even if we often try to document the behavior of the application",
+                "with as little technical element as possible,",
+                "we also need to show some code to document how to use it.",
+                "",
+                "To do that, there is tools provided to do this simply.",
+                "You will find one way to extract code below.",
+                "If you want a to see all possibilities, go to " + docAsTestDocWiter.linkToClass(CodeExtractionPackage.class, CodeExtractionPackage.class.getSimpleName()),
+                "",
+                formatter.getInclude(extractCode::extract_part_of_code_from_method, 1)
+                );
     }
 
     @Test

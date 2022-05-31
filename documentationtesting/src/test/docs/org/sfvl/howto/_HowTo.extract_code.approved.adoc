@@ -1,0 +1,14 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_howto_howto_extract_code]
+= Extract code
+
+Even if we often try to document the behavior of the application
+with as little technical element as possible,
+we also need to show some code to document how to use it.
+
+To do that, there is tools provided to do this simply.
+You will find one way to extract code below.
+If you want a to see all possibilities, go to link:{ROOT_PATH}/org/sfvl/codeextraction/CodeExtractionPackage.html[CodeExtractionPackage]
+
+include::../codeextraction/_CodeExtractorTest.ExtractCode.extract_part_of_code_from_method.approved.adoc[leveloffset=+1]

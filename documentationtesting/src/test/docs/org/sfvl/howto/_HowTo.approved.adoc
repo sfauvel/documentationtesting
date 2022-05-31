@@ -11,6 +11,8 @@ include::_HowTo.organize_documentation.approved.adoc[leveloffset=+1]
 
 include::_HowTo.format_text.approved.adoc[leveloffset=+1]
 
+include::_HowTo.extract_code.approved.adoc[leveloffset=+1]
+
 include::_HowTo.create_a_document.approved.adoc[leveloffset=+1]
 
 include::_HowTo.use_your_own_style.approved.adoc[leveloffset=+1]
