@@ -4,14 +4,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.codeextraction.CodeExtractor;
-import org.sfvl.codeextraction.MethodReference;
-import org.sfvl.docformatter.Formatter;
-import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.NoTitle;
+import org.sfvl.printer.Printer;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
@@ -21,8 +18,6 @@ import java.util.List;
 public class MethodReferenceTest {
     @RegisterExtension
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
-
-    final Formatter formatter = new AsciidocFormatter();
 
     @Test
     @NoTitle
@@ -66,49 +61,23 @@ public class MethodReferenceTest {
     public void find_method_name(TestInfo testInfo) {
         final MyClass myObject = new MyClass();
 
-        doc.write("[cols=\"6,1,2\";headers]",
+        final String lines = new Printer().showResultWithFormat(
+                this::linesFormatter,
+                MethodReference.getName(MyClass::myMethod),
+                MethodReference.getName(myObject::myMethod),
+                MethodReference.getName(MyClass::myConsumer),
+                MethodReference.getName(MyClass::myFunction),
+                MethodReference.getName(myObject::myFunction),
+                MethodReference.getName(MyClass::myFunctionWithGeneric),
+                MethodReference.getName(MyClass::myStaticConsumer));
+
+        doc.write("",
+                "[cols=\"6,1,2\";headers]",
                 "|====",
                 "| Code | Type | Returned value ",
                 "",
-                findMethodNameLine(testInfo, "method",
-                        // >>>method
-                        MethodReference.getName(MyClass::myMethod)
-                        // <<<method
-                ),
-                findMethodNameLine(testInfo, "methodOnInstance",
-                        // >>>methodOnInstance
-                        MethodReference.getName(myObject::myMethod)
-                        // <<<methodOnInstance
-                ),
-                findMethodNameLine(testInfo, "consumer",
-                        // >>>consumer
-                        MethodReference.getName(MyClass::myConsumer)
-                        // <<<consumer
-                ),
-                findMethodNameLine(testInfo, "functionOnClass",
-                        // >>>functionOnClass
-                        MethodReference.getName(MyClass::myFunction)
-                        // <<<functionOnClass
-                ),
-                findMethodNameLine(testInfo, "functionOnInstance",
-                        // >>>functionOnInstance
-                        MethodReference.getName(myObject::myFunction)
-                        // <<<functionOnInstance
-                ),
-                findMethodNameLine(testInfo, "functionWithGeneric",
-                        // >>>functionWithGeneric
-                        MethodReference.getName(MyClass::myFunctionWithGeneric)
-                        // <<<functionWithGeneric
-                ),
-                findMethodNameLine(testInfo, "myStaticConsumer",
-                        // >>>myStaticConsumer
-                        MethodReference.getName(MyClass::myStaticConsumer)
-                        // <<<myStaticConsumer
-                ),
-
-                "|====",
-                "");
-
+                lines,
+                "|====");
     }
 
     /**
@@ -120,54 +89,27 @@ public class MethodReferenceTest {
     @DisplayName("Find method")
     public void find_method(TestInfo testInfo) {
 
-        MethodReference.getMethod(MyClass::myFunctionWithGeneric);
         final MyClass myObject = new MyClass();
 
-        doc.write("[cols=\"4,1,4\";headers]",
+        final String lines = new Printer().showResultWithFormat(
+                this::linesFormatter,
+                MethodReference.getMethod(MyClass::myMethod),
+                MethodReference.getMethod(myObject::myMethod),
+                MethodReference.getMethod(MyClass::myConsumer),
+                MethodReference.getMethod(MyClass::myFunction),
+                MethodReference.getMethod(myObject::myFunction),
+                MethodReference.getMethod(MyClass::myFunctionWithGeneric),
+                MethodReference.getMethod(MyClass::myStaticConsumer));
+
+
+        doc.write("",
+                "[cols=\"4,1,4\";headers]",
                 "|====",
                 "| Code | Type | Returned value ",
                 "",
-                findMethodNameLine(testInfo, "method",
-                        // >>>method
-                        MethodReference.getMethod(MyClass::myMethod)
-                        // <<<method
-                ),
-                findMethodNameLine(testInfo, "methodOnInstance",
-                        // >>>methodOnInstance
-                        MethodReference.getMethod(myObject::myMethod)
-                        // <<<methodOnInstance
-                ),
-                findMethodNameLine(testInfo, "consumer",
-                        // >>>consumer
-                        MethodReference.getMethod(MyClass::myConsumer)
-                        // <<<consumer
-                ),
-                findMethodNameLine(testInfo, "functionOnClass",
-                        // >>>functionOnClass
-                        MethodReference.getMethod(MyClass::myFunction)
-                        // <<<functionOnClass
-                ),
-                findMethodNameLine(testInfo, "functionOnInstance",
-                        // >>>functionOnInstance
-                        MethodReference.getMethod(myObject::myFunction)
-                        // <<<functionOnInstance
-                ),
-                findMethodNameLine(testInfo, "functionWithGeneric",
-                        // >>>functionWithGeneric
-                        MethodReference.getMethod(MyClass::myFunctionWithGeneric)
-                        // <<<functionWithGeneric
-                ),
-                findMethodNameLine(testInfo, "myStaticConsumer",
-                        // >>>myStaticConsumer
-                        MethodReference.getMethod(MyClass::myStaticConsumer)
-                        // <<<myStaticConsumer
-                ),
-
-                "|====",
-                "");
-
+                lines,
+                "|====");
     }
-
 
     public String mySpecificMethod(Integer param1, String param2, List<String> param3) {
         return null;
@@ -183,37 +125,30 @@ public class MethodReferenceTest {
     @DisplayName("Find method name from a specific method")
     public void find_method_name_from_complex_method(TestInfo testInfo) {
 
-        // >>>1
-        String methodName = MethodReference.getName((MySpecificInterface) this::mySpecificMethod);
-        // <<<1
-
         doc.write(String.format("`%s` class provides some common interface declarations so you can use it with simple methods.", MethodReference.class.getSimpleName()),
-                        "When you have a method with several parameters, you need to create your own interface.",
-                        "Those methods could not work with ambiguous method reference (same method name with different parameters).",
+                "When you have a method with several parameters, you need to create your own interface.",
+                "Those methods could not work with ambiguous method reference (same method name with different parameters).",
                 "", "");
-        final AsciidocFormatter formatter = new AsciidocFormatter();
+
         final String code = CodeExtractor.extractPartOfFile(
                 new DocPath(this.getClass()).test().path(), MySpecificInterface.class.getSimpleName());
 
-        doc.write(formatter.sourceCodeBuilder("java")
+        doc.write(doc.getFormatter().sourceCodeBuilder("java")
                 .title("Specific interface to create")
                 .content(code)
                 .build(), "");
 
-        doc.write("[cols=\"4,1,4\";headers]",
+        final String lines = new Printer().showResultWithFormat(
+                this::linesFormatter,
+                MethodReference.getName((MySpecificInterface) this::mySpecificMethod),
+                MethodReference.getMethod((MySpecificInterface) this::mySpecificMethod));
+
+        doc.write("",
+                "[cols=\"4,1,4\";headers]",
                 "|====",
                 "| Code | Type | Returned value ",
                 "",
-                findMethodNameLine(testInfo, "getName",
-                        // >>>getName
-                        MethodReference.getName((MySpecificInterface) this::mySpecificMethod)
-                        // <<<getName
-                ),
-                findMethodNameLine(testInfo, "getMethod",
-                        // >>>getMethod
-                        MethodReference.getMethod((MySpecificInterface) this::mySpecificMethod)
-                        // <<<getMethod
-                ),
+                lines,
                 "|====");
     }
 
@@ -222,41 +157,31 @@ public class MethodReferenceTest {
     public void classUsed() {
         final String classCode = CodeExtractor.classSource(this.getClass(), MyClass.class);
         doc.write("",
-                formatter.sourceCodeBuilder()
+                doc.getFormatter().sourceCodeBuilder()
                         .title("Class used for the examples")
                         .content(classCode)
                         .build(),
                 "");
     }
 
-    public String findMethodNameLine(TestInfo testInfo, String tagToExtract, Object returnedValue) {
-        String valueToDisplay = returnedValue.toString();
-        if (returnedValue instanceof Method) {
-            Class declaringClass = ((Method) returnedValue).getDeclaringClass();
-            valueToDisplay = returnedValue.toString()
+    private String linesFormatter(Object value, String code) {
+        return String.format("a| %s .^| %s .^a| %s\n",
+                doc.getFormatter().sourceCode(code),
+                value.getClass().getSimpleName(),
+                formatValueToDisplay(value));
+
+    }
+
+    private String formatValueToDisplay(Object value) {
+        if (value instanceof Method) {
+            Class declaringClass = ((Method) value).getDeclaringClass();
+            // To allow line break when displayed on table
+            return doc.getFormatter().sourceCode(value.toString()
                     .replace(declaringClass.getName(), declaringClass.getSimpleName())
-                    .replaceAll("([\\(,])", "$1 "); // To allow line break when displayed on table
-            valueToDisplay = formatter.sourceCode(valueToDisplay);
+                    .replaceAll("([\\(,])", "$1 "));
+        } else {
+            return value.toString();
         }
-        return String.format("a| %s .^| %s .^a| %s",
-                extractMarkedCode(testInfo, tagToExtract),
-                returnedValue.getClass().getSimpleName(),
-                valueToDisplay);
     }
 
-    private String extractMarkedCode(TestInfo testInfo) {
-        return formatSourceCode(CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get()));
-    }
-
-    private String extractMarkedCode(TestInfo testInfo, String suffix) {
-        return formatSourceCode(CodeExtractor.extractPartOfMethod(testInfo.getTestMethod().get(), suffix));
-    }
-
-    private <T> String formatSourceCode(String source) {
-        return String.join("\n",
-                "[source, java, indent=0]",
-                "----",
-                source,
-                "----");
-    }
 }

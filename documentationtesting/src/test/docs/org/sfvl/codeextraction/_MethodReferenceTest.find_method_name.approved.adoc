@@ -6,43 +6,52 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 It's possible to extract method name from a method reference.
 We can use either a reference using class or using an object instance (only on non-static method).
 
+
 [cols="6,1,2";headers]
 |====
 | Code | Type | Returned value 
 
-a| [source, java, indent=0]
+a| 
+[source,java,indent=0]
 ----
-                        MethodReference.getName(MyClass::myMethod)
-
----- .^| String .^a| myMethod
-a| [source, java, indent=0]
+MethodReference.getName(MyClass::myMethod)
 ----
-                        MethodReference.getName(myObject::myMethod)
-
----- .^| String .^a| myMethod
-a| [source, java, indent=0]
+ .^| String .^a| myMethod
+a| 
+[source,java,indent=0]
 ----
-                        MethodReference.getName(MyClass::myConsumer)
-
----- .^| String .^a| myConsumer
-a| [source, java, indent=0]
+MethodReference.getName(myObject::myMethod)
 ----
-                        MethodReference.getName(MyClass::myFunction)
-
----- .^| String .^a| myFunction
-a| [source, java, indent=0]
+ .^| String .^a| myMethod
+a| 
+[source,java,indent=0]
 ----
-                        MethodReference.getName(myObject::myFunction)
-
----- .^| String .^a| myFunction
-a| [source, java, indent=0]
+MethodReference.getName(MyClass::myConsumer)
 ----
-                        MethodReference.getName(MyClass::myFunctionWithGeneric)
-
----- .^| String .^a| myFunctionWithGeneric
-a| [source, java, indent=0]
+ .^| String .^a| myConsumer
+a| 
+[source,java,indent=0]
 ----
-                        MethodReference.getName(MyClass::myStaticConsumer)
+MethodReference.getName(MyClass::myFunction)
+----
+ .^| String .^a| myFunction
+a| 
+[source,java,indent=0]
+----
+MethodReference.getName(myObject::myFunction)
+----
+ .^| String .^a| myFunction
+a| 
+[source,java,indent=0]
+----
+MethodReference.getName(MyClass::myFunctionWithGeneric)
+----
+ .^| String .^a| myFunctionWithGeneric
+a| 
+[source,java,indent=0]
+----
+MethodReference.getName(MyClass::myStaticConsumer)
+----
+ .^| String .^a| myStaticConsumer
 
----- .^| String .^a| myStaticConsumer
 |====

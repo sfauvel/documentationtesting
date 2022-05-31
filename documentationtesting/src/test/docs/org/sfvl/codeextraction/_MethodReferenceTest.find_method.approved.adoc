@@ -5,78 +5,87 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 It's possible to extract method from a method reference.
 
+
 [cols="4,1,4";headers]
 |====
 | Code | Type | Returned value 
 
-a| [source, java, indent=0]
+a| 
+[source,java,indent=0]
 ----
-                        MethodReference.getMethod(MyClass::myMethod)
-
----- .^| Method .^a| 
+MethodReference.getMethod(MyClass::myMethod)
+----
+ .^| Method .^a| 
 [source,java,indent=0]
 ----
 public void MyClass.myMethod( )
 ----
 
-a| [source, java, indent=0]
+a| 
+[source,java,indent=0]
 ----
-                        MethodReference.getMethod(myObject::myMethod)
-
----- .^| Method .^a| 
+MethodReference.getMethod(myObject::myMethod)
+----
+ .^| Method .^a| 
 [source,java,indent=0]
 ----
 public void MyClass.myMethod( )
 ----
 
-a| [source, java, indent=0]
+a| 
+[source,java,indent=0]
 ----
-                        MethodReference.getMethod(MyClass::myConsumer)
-
----- .^| Method .^a| 
+MethodReference.getMethod(MyClass::myConsumer)
+----
+ .^| Method .^a| 
 [source,java,indent=0]
 ----
 public void MyClass.myConsumer( java.lang.String)
 ----
 
-a| [source, java, indent=0]
+a| 
+[source,java,indent=0]
 ----
-                        MethodReference.getMethod(MyClass::myFunction)
-
----- .^| Method .^a| 
+MethodReference.getMethod(MyClass::myFunction)
+----
+ .^| Method .^a| 
 [source,java,indent=0]
 ----
 public java.lang.String MyClass.myFunction( java.lang.Integer)
 ----
 
-a| [source, java, indent=0]
+a| 
+[source,java,indent=0]
 ----
-                        MethodReference.getMethod(myObject::myFunction)
-
----- .^| Method .^a| 
+MethodReference.getMethod(myObject::myFunction)
+----
+ .^| Method .^a| 
 [source,java,indent=0]
 ----
 public java.lang.String MyClass.myFunction( java.lang.Integer)
 ----
 
-a| [source, java, indent=0]
+a| 
+[source,java,indent=0]
 ----
-                        MethodReference.getMethod(MyClass::myFunctionWithGeneric)
-
----- .^| Method .^a| 
+MethodReference.getMethod(MyClass::myFunctionWithGeneric)
+----
+ .^| Method .^a| 
 [source,java,indent=0]
 ----
 public java.util.List MyClass.myFunctionWithGeneric( java.util.List)
 ----
 
-a| [source, java, indent=0]
+a| 
+[source,java,indent=0]
 ----
-                        MethodReference.getMethod(MyClass::myStaticConsumer)
-
----- .^| Method .^a| 
+MethodReference.getMethod(MyClass::myStaticConsumer)
+----
+ .^| Method .^a| 
 [source,java,indent=0]
 ----
 public static void MyClass.myStaticConsumer( java.lang.String)
 ----
+
 
 |====
