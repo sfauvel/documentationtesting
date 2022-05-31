@@ -20,8 +20,6 @@ include::_AsciidocFormatterTest.should_format_table_of_content.approved.adoc[lev
 
 include::_AsciidocFormatterTest.should_format_title.approved.adoc[leveloffset=+1]
 
-include::_AsciidocFormatterTest.should_format_warning.approved.adoc[leveloffset=+1]
-
 include::_AsciidocFormatterTest.should_format_paragraph.approved.adoc[leveloffset=+1]
 
 include::_AsciidocFormatterTest.should_format_suite_of_paragraphs.approved.adoc[leveloffset=+1]
@@ -62,6 +60,8 @@ include::_AsciidocFormatterTest.AsciiDocList.should_format_empty_list.approved.a
 [#org_sfvl_docformatter_asciidocformattertest_block]
 == Block
 
+include::_AsciidocFormatterTest.block.should_format_warning.approved.adoc[leveloffset=+2]
+
 include::_AsciidocFormatterTest.block.block_id.approved.adoc[leveloffset=+2]
 
 include::_AsciidocFormatterTest.block.should_format_block_with_enum.approved.adoc[leveloffset=+2]
@@ -92,11 +92,14 @@ include::_AsciidocFormatterTest.Include.include_with_a_tag.approved.adoc[levelof
 
 include::_AsciidocFormatterTest.Include.include_with_a_range_of_lines.approved.adoc[leveloffset=+2]
 
-include::_AsciidocFormatterTest.should_format_table.approved.adoc[leveloffset=+1]
+[#org_sfvl_docformatter_asciidocformattertest_table]
+== Table
 
-include::_AsciidocFormatterTest.should_format_table_with_header.approved.adoc[leveloffset=+1]
+include::_AsciidocFormatterTest.Table.should_format_table.approved.adoc[leveloffset=+2]
 
-include::_AsciidocFormatterTest.should_format_table_with_header_separate_from_data.approved.adoc[leveloffset=+1]
+include::_AsciidocFormatterTest.Table.should_format_table_with_header.approved.adoc[leveloffset=+2]
+
+include::_AsciidocFormatterTest.Table.should_format_table_with_header_separate_from_data.approved.adoc[leveloffset=+2]
 
 include::_AsciidocFormatterTest.should_add_an_attribute.approved.adoc[leveloffset=+1]
 

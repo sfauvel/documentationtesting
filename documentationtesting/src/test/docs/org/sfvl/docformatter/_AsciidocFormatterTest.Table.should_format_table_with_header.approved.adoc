@@ -2,18 +2,18 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 ifdef::is-html-doc[:imagesdir: {ROOT_PATH}/images]
 ifndef::is-html-doc[:imagesdir: {ROOT_PATH}/../resources/images]
 
-[#org_sfvl_docformatter_asciidocformattertest_should_format_table]
-= Table
+[#org_sfvl_docformatter_asciidocformattertest_table_should_format_table_with_header]
+= With an header
 
 
 [red]##_Usage_##
 [source,java,indent=0]
 ----
-        output = formatter.table(Arrays.asList(
-                Arrays.asList("A", "B", "C"),
-                Arrays.asList("x", "y", "z"),
-                Arrays.asList("1", "2", "3")
-        ));
+            output = formatter.tableWithHeader(Arrays.asList(
+                    Arrays.asList("A", "B", "C"),
+                    Arrays.asList("x", "y", "z"),
+                    Arrays.asList("1", "2", "3")
+            ));
 ----
 
 [red]##_Render_##
@@ -21,6 +21,7 @@ ifndef::is-html-doc[:imagesdir: {ROOT_PATH}/../resources/images]
 
 |====
 |A|B|C
+
 |x|y|z
 |1|2|3
 |====
@@ -31,6 +32,7 @@ ifndef::is-html-doc[:imagesdir: {ROOT_PATH}/../resources/images]
 
 |====
 |A|B|C
+
 |x|y|z
 |1|2|3
 |====

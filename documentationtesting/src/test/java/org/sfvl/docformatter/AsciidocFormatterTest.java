@@ -95,12 +95,6 @@ public class AsciidocFormatterTest {
         output = formatter.title(2, "Description");
     }
 
-    @Test
-    @DisplayName("Warning")
-    public void should_format_warning() {
-        output = formatter.warning("Take care of that");
-    }
-
     /**
      * Each text is written in a separate line on asciidoc file.
      * There is no line break when text is rendered in HTML.
@@ -214,6 +208,12 @@ public class AsciidocFormatterTest {
     @DisplayName(value = "Block")
     class block {
 
+
+        @Test
+        @DisplayName("Warning")
+        public void should_format_warning() {
+            output = formatter.warning("Take care of that");
+        }
 
         /**
          * A block id create an id in HTML file.
@@ -390,37 +390,39 @@ public class AsciidocFormatterTest {
         }
     }
 
-    @Test
-    @DisplayName("Table")
-    public void should_format_table() throws IOException {
-        output = formatter.table(Arrays.asList(
-                Arrays.asList("A", "B", "C"),
-                Arrays.asList("x", "y", "z"),
-                Arrays.asList("1", "2", "3")
-        ));
-    }
+    @Nested
+    class Table {
+        @Test
+        @DisplayName("Display data")
+        public void should_format_table() throws IOException {
+            output = formatter.table(Arrays.asList(
+                    Arrays.asList("A", "B", "C"),
+                    Arrays.asList("x", "y", "z"),
+                    Arrays.asList("1", "2", "3")
+            ));
+        }
 
-    @Test
-    @DisplayName("Table with header")
-    public void should_format_table_with_header() throws IOException {
-        output = formatter.tableWithHeader(Arrays.asList(
-                Arrays.asList("A", "B", "C"),
-                Arrays.asList("x", "y", "z"),
-                Arrays.asList("1", "2", "3")
-        ));
-    }
+        @Test
+        @DisplayName("With an header")
+        public void should_format_table_with_header() throws IOException {
+            output = formatter.tableWithHeader(Arrays.asList(
+                    Arrays.asList("A", "B", "C"),
+                    Arrays.asList("x", "y", "z"),
+                    Arrays.asList("1", "2", "3")
+            ));
+        }
 
-    @Test
-    @DisplayName("Table with header separate from data")
-    public void should_format_table_with_header_separate_from_data() throws IOException {
-        output = formatter.tableWithHeader(
-                Arrays.asList("A", "B", "C"),
-                Arrays.asList(
-                        Arrays.asList("x", "y", "z"),
-                        Arrays.asList("1", "2", "3")
-                ));
+        @Test
+        @DisplayName("Header separate from data")
+        public void should_format_table_with_header_separate_from_data() throws IOException {
+            output = formatter.tableWithHeader(
+                    Arrays.asList("A", "B", "C"),
+                    Arrays.asList(
+                            Arrays.asList("x", "y", "z"),
+                            Arrays.asList("1", "2", "3")
+                    ));
+        }
     }
-
     @Test
     @DisplayName("Attribute")
     public void should_add_an_attribute() throws IOException {
