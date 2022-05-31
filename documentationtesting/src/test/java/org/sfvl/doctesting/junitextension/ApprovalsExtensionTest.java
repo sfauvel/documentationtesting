@@ -53,7 +53,7 @@ public class ApprovalsExtensionTest {
 
         doc.write("This is an example to create a simple test using `" + ApprovalsExtension.class.getSimpleName() + "`.",
                 "",
-                "You have to write a class and add register an `" + ApprovalsExtension.class.getSimpleName() + "` attribute using .`" + RegisterExtension.class.getSimpleName() + "` annotation.",
+                "You have to write a class and add register an `" + ApprovalsExtension.class.getSimpleName() + "` attribute using `" + RegisterExtension.class.getSimpleName() + "` annotation.",
                 "This extension will check that everything wrote using `" + methodToWrite + "` method has not changed since the last execution.",
                 "", "");
 
@@ -62,7 +62,7 @@ public class ApprovalsExtensionTest {
         final Method method = MethodReference.getMethod(OneTest::test_A);
         final Path approvedPath = new DocPath(method).approved().from(this.getClass());
         final Path receivedPath = new DocPath(method).received().from(this.getClass());
-        doc.write("When executing test method `" + method.getName() + "`, the following text is generated",
+        doc.write("When executing test method `" + method.getName() + "`, the following text is generated.",
                 "----",
                 formatter.include(approvedPath.toString()),
                 "----",
@@ -81,9 +81,11 @@ public class ApprovalsExtensionTest {
                     .collect(Collectors.joining("\n"));
 
             doc.write("", "",
-                    String.format("Files in folder `%s`", DocPath.toAsciiDoc(docFolder)),
+                    String.format("Files are stored in `%s` directory which contains:", DocPath.toAsciiDoc(docFolder)),
                     "",
-                    filesInDocFolder);
+                    filesInDocFolder,
+                    "",
+                    "There is one file per test and one file for the class.");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
