@@ -1,0 +1,6 @@
+Number LineA LineB LineC
+1 5 3 20
+2 10 4 19 
+3 13 6 15
+4 15 11 6
+5 16 20 2
