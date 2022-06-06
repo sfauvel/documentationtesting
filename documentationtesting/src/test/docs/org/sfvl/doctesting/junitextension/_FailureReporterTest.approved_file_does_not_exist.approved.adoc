@@ -1,0 +1,17 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_junitextension_failurereportertest_approved_file_does_not_exist]
+= Approved file does not exist
+
+We indicate a specific message when approved file does not exist.
+
+.Received text
+....
+= Title
+Description
+Footer
+....
+.Report
+....
+No approved file yet
+....

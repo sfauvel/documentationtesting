@@ -1,0 +1,24 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_method]
+= Retrieve line of a method
+
+.How to get the first line of a method
+
+[source,java,indent=0]
+----
+            Method method = ClassWithInformationToExtract.class.getMethod("doSomething");
+            int lineNumber = parser.getLineNumber(method);
+
+----
+
+Line found: *13*
+++++
+<style>
+#org_sfvl_codeextraction_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_method ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++

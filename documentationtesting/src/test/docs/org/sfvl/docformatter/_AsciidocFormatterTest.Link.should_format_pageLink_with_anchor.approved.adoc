@@ -1,4 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+ifdef::is-html-doc[:imagesdir: {ROOT_PATH}/images]
+ifndef::is-html-doc[:imagesdir: {ROOT_PATH}/../resources/images]
 
 [#org_sfvl_docformatter_asciidocformattertest_link_should_format_pagelink_with_anchor]
 = Link to page with anchor

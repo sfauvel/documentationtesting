@@ -12,11 +12,11 @@ import org.sfvl.codeextraction.MethodReference;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
-import org.sfvl.doctesting.utils.*;
-import org.sfvl.samples.FailingTest;
-import org.sfvl.samples.MyCustomFormatterTest;
-import org.sfvl.samples.MyCustomWriterTest;
-import org.sfvl.samples.MyTest;
+import org.sfvl.doctesting.utils.ClassToDocument;
+import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.doctesting.utils.NoTitle;
+import org.sfvl.doctesting.utils.OnePath;
+import org.sfvl.samples.*;
 import org.sfvl.samples.justone.OneTest;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
@@ -49,18 +49,11 @@ public class ApprovalsExtensionTest {
 
         doc.runTestAndWriteResultAsComment(testClass);
 
-        if (false) {
-            // >>>doc.write
-            doc.write
-                    // <<<doc.write
-                            ("");
-        }
-
-        final String methodToWrite = CodeExtractor.extractPartOfCurrentMethod("doc.write").trim();
+        final String methodToWrite = MethodReference.getName((MethodReference.SerializableConsumer<String[]>) doc::write);
 
         doc.write("This is an example to create a simple test using `" + ApprovalsExtension.class.getSimpleName() + "`.",
                 "",
-                "You have to write a class and add register an `" + ApprovalsExtension.class.getSimpleName() + "` attribute using .`" + RegisterExtension.class.getSimpleName() + "` annotation.",
+                "You have to write a class and add register an `" + ApprovalsExtension.class.getSimpleName() + "` attribute using `" + RegisterExtension.class.getSimpleName() + "` annotation.",
                 "This extension will check that everything wrote using `" + methodToWrite + "` method has not changed since the last execution.",
                 "", "");
 
@@ -69,12 +62,13 @@ public class ApprovalsExtensionTest {
         final Method method = MethodReference.getMethod(OneTest::test_A);
         final Path approvedPath = new DocPath(method).approved().from(this.getClass());
         final Path receivedPath = new DocPath(method).received().from(this.getClass());
-        doc.write("When executing test method `" + method.getName() + "`, a file `" + receivedPath.getFileName() + "` is generated and contains the following text",
+        doc.write("When executing test method `" + method.getName() + "`, the following text is generated.",
                 "----",
                 formatter.include(approvedPath.toString()),
                 "----",
-                "If this file is identical to the `" + approvedPath.getFileName() + "`, then the test is a success and `" + receivedPath.getFileName() + "` is removed.",
-                "Otherwise, test fails and we can compare those two files to see what has changed.",
+                "If this content is identical to the `" + approvedPath.getFileName() + "`, then the test is a success.",
+                "Otherwise, test fails and the generated text is written to the `" + receivedPath.getFileName() + "` file.",
+                "So we can compare those two files to see what has changed.",
                 "",
                 "File name and title come from method name.", "The chapter content contains what was written using `" + methodToWrite + "`.");
 
@@ -87,9 +81,11 @@ public class ApprovalsExtensionTest {
                     .collect(Collectors.joining("\n"));
 
             doc.write("", "",
-                    String.format("Files in folder `%s`", DocPath.toAsciiDoc(docFolder)),
+                    String.format("Files are stored in `%s` directory which contains:", DocPath.toAsciiDoc(docFolder)),
                     "",
-                    filesInDocFolder);
+                    filesInDocFolder,
+                    "",
+                    "There is one file per test and one file for the class.");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -113,6 +109,31 @@ public class ApprovalsExtensionTest {
                 formatter.blockBuilder(Formatter.Block.CODE)
                         .content(formatter.include(approvedTestA.filename()))
                         .build());
+    }
+
+    @Test
+    @DisplayName("Hide title")
+    public void hide_title(TestInfo testInfo) {
+
+        final Class<?> testClass = MyTestWithoutTitleOnOneTest.class;
+        doc.runTestAndWriteResultAsComment(testClass);
+
+        final DocPath docPath = new DocPath(testClass);
+        final String methodId = doc.getDocWriter().titleId(testInfo.getTestMethod().get());
+        doc.write("You can hide a test title adding the " + NoTitle.class.getSimpleName() + " annotation to the test.",
+                "It's usefull to reuse content of a test in different place without keeping the original structure.",
+                "You also want to separate the content of one chapter through different test but display them under only title.",
+                "",
+                ".Test example using hiding title",
+                formatter.sourceCode(CodeExtractor.classSource(testClass)),
+                "",
+                "The file generated from the method with `" + NoTitle.class.getSimpleName() + "` annotation has no header.",
+                "On the final rendering, it's like it was part of the previous chapter.",
+                "",
+                "[.rendering]",
+                "== Rendering of the result",
+                formatter.include(docPath.approved().from(this.getClass()).toString(), 2)
+        );
     }
 
     @Test
@@ -158,7 +179,7 @@ public class ApprovalsExtensionTest {
     }
 
     @Test
-    public void nested_class()  {
+    public void nested_class() {
         try {
             doc.write("Nested class can be used to organize tests.", "Each nested class create a nested title.", "");
 
@@ -181,9 +202,12 @@ public class ApprovalsExtensionTest {
                     .collect(Collectors.joining("\n"))
                     .replaceAll("\\ninclude::", "\n\\\\include::"), "----");
 
-            doc.write("", "", "_final rendering_",
-                    "[.includeblock]",
-                    formatter.include("_" + testClass.getSimpleName() + ".approved.adoc", 1)
+            doc.write("", "",
+                    "_Final rendering_",
+                    "[.rendering]",
+                    "== Rendering",
+                    "",
+                    formatter.include("_" + testClass.getSimpleName() + ".approved.adoc", 2)
             );
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -204,8 +228,10 @@ public class ApprovalsExtensionTest {
 
         doc.write("", "", adocFileSourceEscaped(approved));
 
-        doc.write("", "", "_final rendering_", "[.includeblock]", formatter.include(approved.from(this.getClass()).toString(), 1));
-
+        doc.write("", "",
+                "_Final rendering_",
+                "[.rendering]",
+                formatter.include(approved.from(this.getClass()).toString(), 2));
     }
 
     /**
@@ -267,35 +293,26 @@ public class ApprovalsExtensionTest {
                         .replace(INCLUDE_KEYWORD_TO_SUBSTITUTE, include_stacktrace_asciidoc),
                 "------");
 
-        String style = String.join("\n",
-                "++++",
-                "<style>",
-                ".includeblock .title1 {",
-                "    font-size: 2em;",
-                "    font-family: \"Open Sans\",\"DejaVu Sans\",sans-serif;",
-                "    font-weight: 300;",
-                "    font-style: normal;",
-                "    color: #ba3925;",
-                "    text-rendering: optimizeLegibility;",
-                "    margin-top: 1em;",
-                "    margin-bottom: .5em;",
-                "}",
-                "</style>",
-                "++++");
-
         doc.write("",
                 "",
-                style,
-                "",
-                "_final rendering_",
-                "[.includeblock]",
+                "_Final rendering_",
+                "[.rendering]",
                 "--",
                 cutLines.stream()
                         .map(this::escapedAdocTitle)
                         .collect(Collectors.joining("\n"))
                         .replace(INCLUDE_KEYWORD_TO_SUBSTITUTE, include_stacktrace_asciidoc),
-                "--");
+                "--"
+        );
 
+        final DocPath classDocPath = new DocPath(FailingTest.class);
+        doc.write("", "",
+                "A received file is produced for the class containing the failing test.",
+                "This file includes received files if they exist.",
+                "It is thus possible to visualize the received file in the file with other methods.",
+                "",
+                adocFileSourceEscaped(classDocPath.received())
+        );
     }
 
     private String extractSourceWithTag(String tag, Class<?> classToIdentifySourceClass, Class<?> testClass) {

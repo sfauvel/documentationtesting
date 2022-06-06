@@ -1,0 +1,89 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_codeextractortest_extractcomment_extract_class_comment]
+= Extract class comment
+
+ifndef::CODE_EXTRACTOR_CSS[]
+:CODE_EXTRACTOR_CSS:
+++++
+<style>
+include::../../../../resources/styles/code_extractor.css[]
+</style>
+++++
+endif::[]
+
+.How to extract comment of a class
+[source, java, indent=0]
+----
+                final String comment = CodeExtractor.getComment(ClassWithCommentToExtract.class);
+
+----
+
+[.inline]
+====
+[source, java, indent=0]
+----
+include::../../../../java/org/sfvl/doctesting/sample/ClassWithCommentToExtract.java[tag=ClassWithCommentToExtract]
+----
+
+
+====
+
+[.inline]
+====
+.Comment extracted from class
+----
+Comment of the class.
+----
+
+====
+.How to extract comment of a nested class
+[source, java, indent=0]
+----
+                final String comment = CodeExtractor.getComment(CodeExtractorTest.NestedClass.class);
+
+----
+
+[.inline]
+====
+[source, java, indent=0]
+----
+include::../../../../java/org/sfvl/codeextraction/CodeExtractorTest.java[tag=NestedClass]
+----
+
+
+====
+
+[.inline]
+====
+.Comment extracted from class
+----
+Comment of the nested class of CodeExtractorTest.
+----
+
+====
+.How to extract comment of class that is not the main class of his file.
+[source, java, indent=0]
+----
+                final String comment = CodeExtractor.getComment(CodeExtractorTest.class, ClassNestedWithCommentToExtract.class);
+
+----
+
+[.inline]
+====
+[source, java, indent=0]
+----
+include::../../../../java/org/sfvl/codeextraction/CodeExtractorTest.java[tag=classNestedWithCommentToExtract]
+----
+
+
+====
+
+[.inline]
+====
+.Comment extracted from class
+----
+Comment of the class.
+----
+
+====

@@ -14,9 +14,8 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <junit.version>5.4.1</junit.version>
-        <approvaltests.version>4.0.2</approvaltests.version>
-        <documentationtesting.version>1.1.16-SNAPSHOT</documentationtesting.version>
+        <junit.version>5.8.2</junit.version>
+        <documentationtesting.version>1.1.17-SNAPSHOT</documentationtesting.version>
         <asciidoctor.maven.plugin.version>2.1.0</asciidoctor.maven.plugin.version>
     </properties>
 
@@ -88,12 +87,6 @@
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-launcher</artifactId>
             <version>1.2.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.approvaltests</groupId>
-            <artifactId>approvaltests</artifactId>
-            <version>${approvaltests.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

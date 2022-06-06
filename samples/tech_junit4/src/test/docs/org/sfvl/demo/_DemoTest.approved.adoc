@@ -1,0 +1,7 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+= Demo test
+
+Demo of a simple usage to generate documentation.
+
+include::_DemoTest.adding_2_simple_numbers.approved.adoc[leveloffset=+1]

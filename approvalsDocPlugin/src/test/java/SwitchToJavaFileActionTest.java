@@ -19,9 +19,20 @@ import java.util.Optional;
 public class SwitchToJavaFileActionTest extends BasePlatformTestCase {
 
     private final SwitchToJavaFileAction actionJavaUnderTest = new SwitchToJavaFileAction() {
+
         @Override
         protected String getProjectBasePath(Project project) {
             return "/";
+        }
+
+        @Override
+        public String getSrcPath() {
+            return "src/test/java";
+        }
+
+        @Override
+        public String getSrcDocs() {
+            return "src/test/docs";
         }
     };
 

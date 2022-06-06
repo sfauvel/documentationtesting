@@ -1,0 +1,91 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_methodreferencetest_find_method]
+= Find method
+
+It's possible to extract method from a method reference.
+
+
+[cols="4a,.^1,.^4a";headers]
+
+|====
+|Code|Type|Returned value
+
+|
+[source,java,indent=0]
+----
+MethodReference.getMethod(MyClass::myMethod)
+----
+|Method|
+[source,java,indent=0]
+----
+public void MyClass.myMethod( )
+----
+
+|
+[source,java,indent=0]
+----
+MethodReference.getMethod(myObject::myMethod)
+----
+|Method|
+[source,java,indent=0]
+----
+public void MyClass.myMethod( )
+----
+
+|
+[source,java,indent=0]
+----
+MethodReference.getMethod(MyClass::myConsumer)
+----
+|Method|
+[source,java,indent=0]
+----
+public void MyClass.myConsumer( java.lang.String)
+----
+
+|
+[source,java,indent=0]
+----
+MethodReference.getMethod(MyClass::myFunction)
+----
+|Method|
+[source,java,indent=0]
+----
+public java.lang.String MyClass.myFunction( java.lang.Integer)
+----
+
+|
+[source,java,indent=0]
+----
+MethodReference.getMethod(myObject::myFunction)
+----
+|Method|
+[source,java,indent=0]
+----
+public java.lang.String MyClass.myFunction( java.lang.Integer)
+----
+
+|
+[source,java,indent=0]
+----
+MethodReference.getMethod(MyClass::myFunctionWithGeneric)
+----
+|Method|
+[source,java,indent=0]
+----
+public java.util.List MyClass.myFunctionWithGeneric( java.util.List)
+----
+
+|
+[source,java,indent=0]
+----
+MethodReference.getMethod(MyClass::myStaticConsumer)
+----
+|Method|
+[source,java,indent=0]
+----
+public static void MyClass.myStaticConsumer( java.lang.String)
+----
+
+|====

@@ -1,0 +1,28 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+ifdef::is-html-doc[:imagesdir: {ROOT_PATH}/images]
+ifndef::is-html-doc[:imagesdir: {ROOT_PATH}/../resources/images]
+
+[#org_sfvl_docformatter_asciidocformattertest_image_should_add_an_image]
+= Should add an image
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+            output = formatter.image("doc_as_test.png");
+----
+
+[red]##_Render_##
+
+
+image::doc_as_test.png[]
+
+
+[red]##_Asciidoc generated_##
+------
+
+image::doc_as_test.png[]
+
+------
+
+___

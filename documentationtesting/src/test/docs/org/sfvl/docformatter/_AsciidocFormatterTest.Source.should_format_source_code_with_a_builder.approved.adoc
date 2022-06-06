@@ -1,4 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+ifdef::is-html-doc[:imagesdir: {ROOT_PATH}/images]
+ifndef::is-html-doc[:imagesdir: {ROOT_PATH}/../resources/images]
 
 [#org_sfvl_docformatter_asciidocformattertest_source_should_format_source_code_with_a_builder]
 = Source code using a builder

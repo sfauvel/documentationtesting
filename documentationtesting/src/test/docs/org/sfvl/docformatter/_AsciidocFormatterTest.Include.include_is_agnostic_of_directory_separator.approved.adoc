@@ -1,4 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+ifdef::is-html-doc[:imagesdir: {ROOT_PATH}/images]
+ifndef::is-html-doc[:imagesdir: {ROOT_PATH}/../resources/images]
 
 [#org_sfvl_docformatter_asciidocformattertest_include_include_is_agnostic_of_directory_separator]
 = Include is agnostic of directory separator

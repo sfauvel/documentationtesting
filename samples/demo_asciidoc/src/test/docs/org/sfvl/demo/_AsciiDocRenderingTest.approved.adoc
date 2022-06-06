@@ -10,3 +10,17 @@ include::_AsciiDocRenderingTest.useful_symbol.approved.adoc[leveloffset=+1]
 include::_AsciiDocRenderingTest.show_hide_part_of_document.approved.adoc[leveloffset=+1]
 
 include::_AsciiDocRenderingTest.include_once.approved.adoc[leveloffset=+1]
+
+[#org_sfvl_demo_asciidocrenderingtest_drawwithatable]
+== Draw with a table
+
+include::_AsciiDocRenderingTest.DrawWithATable.how_to_do.approved.adoc[leveloffset=+2]
+
+include::_AsciiDocRenderingTest.DrawWithATable.draw_a_smiley.approved.adoc[leveloffset=+2]
+
+include::_AsciiDocRenderingTest.DrawWithATable.using_svg.approved.adoc[leveloffset=+2]
+
+[#org_sfvl_demo_asciidocrenderingtest_graph]
+== Graph
+
+include::_AsciiDocRenderingTest.Graph.using_gnuplot.approved.adoc[leveloffset=+2]

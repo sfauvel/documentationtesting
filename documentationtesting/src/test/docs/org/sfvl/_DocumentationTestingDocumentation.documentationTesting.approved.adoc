@@ -4,6 +4,7 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 :HOW_TO_HTML: org/sfvl/howto/HowTo.html
 :APPROVAL_EXTENSION_HTML: org/sfvl/doctesting/junitextension/ApprovalsExtensionTest.html
 :ASCIIDOC_FORMATTER_HTML: org/sfvl/docformatter/AsciidocFormatterTest.html
+:CODE_EXTRACTION_HTML: org/sfvl/codeextraction/CodeExtractionPackage.html
 :DOC_TESTING_DOCUMENTATION_HTML: org/sfvl/doctesting/DocTestingDocumentation.html
 :DEVELOPMENT: org/sfvl/development/Development.html
 :KNOWN_ISSUES_HTML: org/sfvl/howto/KnownIssues.html

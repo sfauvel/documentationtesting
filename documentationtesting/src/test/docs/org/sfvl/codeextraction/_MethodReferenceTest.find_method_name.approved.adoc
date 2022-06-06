@@ -1,0 +1,57 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_methodreferencetest_find_method_name]
+= Find method name
+
+It's possible to extract method name from a method reference.
+We can use either a reference using class or using an object instance (only on non-static method).
+
+
+[cols="6a,.^1,.^2a";headers]
+
+|====
+|Code|Type|Returned value
+
+|
+[source,java,indent=0]
+----
+MethodReference.getName(MyClass::myMethod)
+----
+|String|myMethod
+|
+[source,java,indent=0]
+----
+MethodReference.getName(myObject::myMethod)
+----
+|String|myMethod
+|
+[source,java,indent=0]
+----
+MethodReference.getName(MyClass::myConsumer)
+----
+|String|myConsumer
+|
+[source,java,indent=0]
+----
+MethodReference.getName(MyClass::myFunction)
+----
+|String|myFunction
+|
+[source,java,indent=0]
+----
+MethodReference.getName(myObject::myFunction)
+----
+|String|myFunction
+|
+[source,java,indent=0]
+----
+MethodReference.getName(MyClass::myFunctionWithGeneric)
+----
+|String|myFunctionWithGeneric
+|
+[source,java,indent=0]
+----
+MethodReference.getName(MyClass::myStaticConsumer)
+----
+|String|myStaticConsumer
+|====

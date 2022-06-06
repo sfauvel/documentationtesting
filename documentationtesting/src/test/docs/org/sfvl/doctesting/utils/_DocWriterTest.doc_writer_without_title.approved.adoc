@@ -26,10 +26,12 @@ public class MyTestWithoutTitle {
 [source,java,indent=0]
 ----
         final DocWriter doc = new DocWriter();
-        doc.write("Some text added to show DocWriter output.");
-        final String output = doc.formatOutput(
-                "This title will not be displayed",
-                MyTestWithoutTitle.class.getMethod("my_method")
+        String output = String.join("\n",
+                "Some text added to show DocWriter output.",
+                doc.formatOutput(
+                        "This title will not be displayed",
+                        MyTestWithoutTitle.class.getMethod("my_method")),
+                "Some text added at the end."
         );
 
 ----
@@ -37,7 +39,9 @@ public class MyTestWithoutTitle {
 
 .Output provided
 ....
+Some text added to show DocWriter output.
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-Some text added to show DocWriter output.
+
+Some text added at the end.
 ....

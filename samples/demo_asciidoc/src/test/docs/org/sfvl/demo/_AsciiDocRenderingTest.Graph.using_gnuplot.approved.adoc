@@ -1,0 +1,55 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_demo_asciidocrenderingtest_graph_using_gnuplot]
+= Using gnuplot
+
+:data_file: {docdir}/data_gnuplot.txt
+
+Gnuplot documentation
+
+* http://gnuplot.info/docs_5.5/loc7228.html[Plot]
+* http://gnuplot.info/docs_5.5/loc14931.html[Set style line]
+
+// Remarks
+// 
+// * Attribute `height` seems to not work
+
+== Default line style
+
+[gnuplot, format=svg, subs="+attributes", width=300]
+....
+plot for[col=2:4] "{data_file}" using 1:col title columnheader(col) with lines
+....
+
+.View source
+[%collapsible]
+====
+----
+plot for[col=2:4] "{data_file}" using 1:col title columnheader(col) with lines
+----
+====
+
+== Line style
+
+[gnuplot, format=svg, subs="+attributes", width=300]
+....
+set style line 1 linewidth 1 linecolor rgb "blue"
+set style line 2 linewidth 10 linecolor rgb "red" pointsize 4 pointtype 7
+set style line 3 linewidth 5 linecolor rgb "yellow" pointsize 2 pointtype 5
+plot col=2 "{data_file}" using 1:col title columnheader(col) with lines ls 1, \
+     col=3 "{data_file}" using 1:col title columnheader(col) with linespoints ls 2, \
+     col=4 "{data_file}" using 1:col title columnheader(col) with linespoints ls 3
+....
+
+.View source
+[%collapsible]
+====
+----
+set style line 1 linewidth 1 linecolor rgb "blue"
+set style line 2 linewidth 10 linecolor rgb "red" pointsize 4 pointtype 7
+set style line 3 linewidth 5 linecolor rgb "yellow" pointsize 2 pointtype 5
+plot col=2 "{data_file}" using 1:col title columnheader(col) with lines ls 1, \
+     col=3 "{data_file}" using 1:col title columnheader(col) with linespoints ls 2, \
+     col=4 "{data_file}" using 1:col title columnheader(col) with linespoints ls 3
+----
+====

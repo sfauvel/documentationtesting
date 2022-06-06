@@ -1,0 +1,6 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+`MethodReferenceTest` class provides tools to extract information from a method reference.
+It retrieves the method associated with the method reference, so it's possible to get name.
+This allows to use the method reference instead of writing the method name as a string.
+Using refactoring tools, names are automatically updated and there is no risk to misspelled a name.

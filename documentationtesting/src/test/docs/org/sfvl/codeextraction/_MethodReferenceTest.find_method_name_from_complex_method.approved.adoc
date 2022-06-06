@@ -1,0 +1,41 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_methodreferencetest_find_method_name_from_complex_method]
+= Find method name from a specific method
+
+`MethodReference` class provides some common interface declarations so you can use it with simple methods.
+When you have a method with several parameters, you need to create your own interface.
+Those methods could not work with ambiguous method reference (same method name with different parameters).
+
+.Specific interface to create
+[source,java,indent=0]
+----
+    interface MySpecificInterface extends Serializable {
+        String apply(Integer param1, String param2, List<String> param3);
+    }
+
+----
+
+[cols="4a,.^1,.^4a";headers]
+
+|====
+|Code|Type|Returned value
+
+|
+[source,java,indent=0]
+----
+MethodReference.getName((MySpecificInterface) this::mySpecificMethod)
+----
+|String|mySpecificMethod
+|
+[source,java,indent=0]
+----
+MethodReference.getMethod((MySpecificInterface) this::mySpecificMethod)
+----
+|Method|
+[source,java,indent=0]
+----
+public java.lang.String MethodReferenceTest.mySpecificMethod( java.lang.Integer, java.lang.String, java.util.List)
+----
+
+|====

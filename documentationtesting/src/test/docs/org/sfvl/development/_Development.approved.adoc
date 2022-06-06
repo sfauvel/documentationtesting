@@ -5,4 +5,9 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 include::_Development.introduction.approved.adoc[leveloffset=+1]
 
+[#org_sfvl_development_development_principles]
+== Principles
+
+include::_Development.Principles.extract_from_code.approved.adoc[leveloffset=+2]
+
 include::_Development.classes_to_include.approved.adoc[leveloffset=+1]

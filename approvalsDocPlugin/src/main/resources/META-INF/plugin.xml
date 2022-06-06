@@ -1,6 +1,6 @@
 <idea-plugin>
-    <id>org.sfvl.doctesting.approvalsDocPlugin</id>
-    <name>ApprovalsDocPlugin</name>
+    <id>org.sfvl.doctesting.docAsTestPlugin</id>
+    <name>DocAsTestPlugin</name>
     <vendor email="sfauvel@gmail.com" url="https://github.com/sfauvel">Sébastien Fauvel</vendor>
 
     <description><![CDATA[
@@ -12,8 +12,10 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.java</depends>
 
+    <idea-version since-build="201" until-build="213.*" />
+
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
+        <postStartupActivity implementation="DocAsTestStartupActivity"/>
     </extensions>
 
     <actions>
@@ -37,6 +39,7 @@
         <action id="SwitchToReceivedFileAction"
                 class="SwitchToReceivedFileAction"
                 text="Switch to received file"
+
                 description="Switch to received file">
             <add-to-group group-id="DocAsTestActions" anchor="first"/>
         </action>

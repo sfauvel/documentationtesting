@@ -2,7 +2,6 @@ package org.sfvl.demo;
 
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 
 import java.util.Arrays;
@@ -327,8 +326,6 @@ public class HeroExperienceTest extends ApprovalsBase {
 
 
     private void write_when_levelup(HeroExperience heroExperience) {
-        Message message = Mockito.mock(Message.class);
-
         write("\n[%autowidth, cols=\"^.^1,^.^1,^.^1,^.^1\", options=\"header\"]\n" +
                 "|====\n" +
                 "| from level\n" +
@@ -349,7 +346,7 @@ public class HeroExperienceTest extends ApprovalsBase {
             }
             lastLevel = currentLevel;
 
-            heroExperience.gainxp(1, () -> message.setMessage("Bob gains a " + HeroClass.NINJA + " level!"));
+            heroExperience.gainxp(1, () -> {});
         }
         write("\n|====\n");
     }

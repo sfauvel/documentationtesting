@@ -1,8 +1,6 @@
-import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.OpenFileDescriptor;
@@ -12,29 +10,19 @@ import com.intellij.psi.*;
 import com.intellij.psi.search.FilenameIndex;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTreeUtil;
+import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import com.intellij.openapi.diagnostic.Logger;
 
-public abstract class SwitchToFileAction extends AnAction {
-    private static final String SRC_PATH = "src/test/java";
-    private static final String SRC_DOCS = "src/test/docs";
-
-    public String getSrcDocs() {
-        return SRC_DOCS;
-    }
-
-    public String getSrcPath() {
-        return SRC_PATH;
-    }
+public abstract class SwitchToFileAction extends SwitchAction {
+    private final static Logger LOG = Logger.getInstance(SwitchToFileAction.class);
     private final ApprovalFile.Status approvalType;
 
     protected SwitchToFileAction(ApprovalFile.Status approvalType) {
@@ -42,51 +30,28 @@ public abstract class SwitchToFileAction extends AnAction {
     }
 
     @Override
-    public void update(AnActionEvent actionEvent) {
-        final Optional<PsiFile> approvedPsiFile = getApprovedPsiFile(actionEvent);
-        if (approvedPsiFile.isEmpty()) {
-            actionEvent.getPresentation().setVisible(false);
-            return;
-        }
-        actionEvent.getPresentation().setEnabled(true);
-        actionEvent.getPresentation().setVisible(true);
-
-        actionEvent.getPresentation().setText(getMenuText());
+    protected boolean isFileToSwitchExist(AnActionEvent actionEvent) {
+        return getApprovedPsiFile(actionEvent).isPresent();
     }
 
     @Override
-    public void actionPerformed(AnActionEvent anActionEvent) {
-        final Optional<PsiFile> approvedPsiFile = getApprovedPsiFile(anActionEvent);
-        if (approvedPsiFile.isEmpty()) return;
+    protected Optional<Runnable> getRunnableAction(@NotNull AnActionEvent actionEvent) {
+        LOG.debug("getRunnableAction");
+        final Optional<PsiFile> approvedPsiFile = getApprovedPsiFile(actionEvent);
+        if (approvedPsiFile.isEmpty()) return Optional.empty();
 
-        CommandProcessor.getInstance().executeCommand(
-                anActionEvent.getProject(),
-                new ApprovedRunnable(anActionEvent.getProject(), approvedPsiFile.get()),
-                getMenuText(),
-                "Approvals");
+        return Optional.of(new ApprovedRunnable(actionEvent.getProject(), approvedPsiFile.get()));
     }
 
-    protected abstract String getMenuText();
-
     public Optional<Path> getApprovedFilePath(Path projectPath, VirtualFile file, ApprovalFile.Status status) {
-        final String prefixFolder = getSrcPath();
-        Pattern pattern = Pattern.compile("(" + Paths.get(projectPath + File.separator).toString() + "(.*" + File.separator + ")?)"
-                + prefixFolder + File.separator
-                + "(.*" + File.separator + ")?"
-                + "(" + file.getName() + ")");
-        Matcher matcher = pattern.matcher(file.getPath());
-        if (!matcher.find()) {
-            return Optional.empty();
-        }
 
-        final String projectRootPath = matcher.group(1);
-        final Optional<String> packagePath = Optional.ofNullable(matcher.group(3));
-        final String filePath = matcher.group(4);
+        final Optional<FileBuilder> fileBuilder = FileBuilder.extractFileInfo(projectPath, file, getSrcPath());
 
-        return Optional.of(JavaFile.fromClass(packagePath.orElse(""), filePath.replaceFirst(".java$", "")))
-                .map(javaFile -> javaFile.to(status))
-                .map(approvedFile -> new FullApprovalFilePath(Paths.get(projectRootPath), Paths.get(getSrcDocs()), approvedFile))
-                .map(FullApprovalFilePath::fullPath);
+        return fileBuilder.flatMap(fileBuilderGet ->
+                Optional.of(JavaFile.fromClass(fileBuilderGet.packagePath.orElse(""), fileBuilderGet.filePath.replaceFirst(".java$", "")))
+                        .map(javaFile -> javaFile.to(status))
+                        .map(approvedFile -> new FullApprovalFilePath(Paths.get(fileBuilderGet.projectRootPath), Paths.get(getSrcDocs()), approvedFile))
+                        .map(FullApprovalFilePath::fullPath));
     }
 
     static class ApprovedRunnable implements Runnable {
@@ -109,19 +74,22 @@ public abstract class SwitchToFileAction extends AnAction {
         }
     }
 
+
     protected Optional<PsiFile> getApprovedPsiFile(AnActionEvent actionEvent) {
         final Project project = actionEvent.getProject();
+
         Editor editor = actionEvent.getData(CommonDataKeys.EDITOR);
         PsiFile psiFile = actionEvent.getData(CommonDataKeys.PSI_FILE);
+
         if (psiFile != null) {
             return getApprovedPsiFile(project, editor, psiFile);
         }
 
         PsiElement psiElement = actionEvent.getData(CommonDataKeys.PSI_ELEMENT);
+
         if (psiElement != null) {
             return getApprovedPsiFile(project, psiElement);
         }
-
         return Optional.empty();
     }
 

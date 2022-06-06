@@ -11,6 +11,8 @@ public class PathProvider {
      */
     public Path getProjectPath() {
         Path classesPath = new File(this.getClass().getClassLoader().getResource("").getPath()).toPath();
+        // TODO We make getParent().getParent() because classes are in target/classes with Maven
+        // If it's not the cas ewe must be able to change this.
         return classesPath.getParent().getParent();
     }
 

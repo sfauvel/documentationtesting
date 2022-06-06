@@ -1,0 +1,30 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_parameter_with_scope]
+= Retrieve comment of a method with parameter with scope
+
+[.inline]
+.How to extract comment
+
+[source,java,indent=0]
+----
+                        Method method = ClassWithInformationToExtract.class
+                                .getMethod("doSomething", Character.class);
+                        String comment = parser.getComment(method);
+
+----
+
+[.inline]
+.Comment extracted
+----
+Do something with a java.lang.Character.
+----
+++++
+<style>
+#org_sfvl_codeextraction_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_parameter_with_scope ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++

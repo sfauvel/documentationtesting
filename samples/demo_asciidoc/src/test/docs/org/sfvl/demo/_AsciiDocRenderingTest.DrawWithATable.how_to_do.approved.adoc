@@ -1,0 +1,93 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_demo_asciidocrenderingtest_drawwithatable_how_to_do]
+= How to do
+
+Cells must be interpreted as asciidoc using 'a'.
+Here, we set all cells using `cols` attribute on table.
+
+To set a style in a cell, you can add style using `[.my_style]` at the beginning of the cell.
+It must be before the content with style to apply and must not have any content after it on the same line.
+
+We need to put a text in cell.
+We prefer `&nbsp;` to avoir some display problems when cell is too small.
+
+[.tableStyled]
+[%autowidth, cols=2*a]
+|====
+|
+&nbsp;
+| [.yellow]
+&nbsp;
+|
+&nbsp;
+|
+&nbsp;
+|====
+
+
+.Click to see asciidoc code
+[%collapsible]
+====
+[,asciidoc]
+----
+[.tableStyled]
+[%autowidth, cols=2*a]
+|====
+|
+&nbsp;
+| [.yellow]
+&nbsp;
+|
+&nbsp;
+|
+&nbsp;
+|====
+----
+====
+
+
+.Click to see css code
+[%collapsible]
+====
+[,css]
+----
+<style>
+/* To fill the cell with background */
+.tableStyled td {
+    padding: 0;
+}
+/* To make a square */
+.tableStyled p {
+    width: 2em;
+    line-height: 2em;
+}
+.tableStyled .yellow {
+    background-color:yellow;
+    color:yellow;
+}
+
+</style>
+
+----
+====
+
+++++
+<style>
+/* To fill the cell with background */
+.tableStyled td {
+    padding: 0;
+}
+/* To make a square */
+.tableStyled p {
+    width: 2em;
+    line-height: 2em;
+}
+.tableStyled .yellow {
+    background-color:yellow;
+    color:yellow;
+}
+
+</style>
+
+++++

@@ -1,6 +1,6 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-
+[#org_sfvl_howto_howto_format_text]
 = Format text
 
 
@@ -11,7 +11,9 @@ To format text, we can use a formatter that hide technical syntax of the markup 
             final String text = formatter.listItems("Item A", "Item B", "Item C");
 
 
+[.inline]
 .Text generated
+[source,java,indent=0]
 ----
 
 * Item A
@@ -19,6 +21,7 @@ To format text, we can use a formatter that hide technical syntax of the markup 
 * Item C
 ----
 
+[.inline]
 .Final rendering
 ====
 

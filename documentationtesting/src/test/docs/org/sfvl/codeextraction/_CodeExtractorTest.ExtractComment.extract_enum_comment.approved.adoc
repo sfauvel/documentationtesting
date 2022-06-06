@@ -1,0 +1,92 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_codeextractortest_extractcomment_extract_enum_comment]
+= Extract enum comment
+
+ifndef::CODE_EXTRACTOR_CSS[]
+:CODE_EXTRACTOR_CSS:
+++++
+<style>
+include::../../../../resources/styles/code_extractor.css[]
+</style>
+++++
+endif::[]
+
+
+[.inline]
+====
+
+[source,java,indent=0]
+----
+/**
+ * Comment of the class.
+ */
+public class EnumWithCommentToExtract {
+
+    /**
+     * Comment of the enum.
+     */
+    public static enum MyEnum {
+        /**
+         * First enum with comment.
+         */
+        FirstEnum,
+        /** Second enum with comment. */
+        SecondEnum,
+        ThirdEnum;
+
+        /**
+         * A method in enum.
+         */
+        public void methodInEnum() {
+
+        }
+    }
+
+}
+----
+
+====
+How to extract comment of an enum
+[source, java, indent=0]
+----
+                final String comment = CodeExtractor.getComment(
+                        EnumWithCommentToExtract.class,
+                        EnumWithCommentToExtract.MyEnum.class
+                );
+
+----
+Comment extracted: *Comment of the enum.*
+
+How to extract comment of one value of an enum
+[source, java, indent=0]
+----
+                final Optional<String> comment = CodeExtractor.getComment(
+                        EnumWithCommentToExtract.class,
+                        EnumWithCommentToExtract.MyEnum.FirstEnum
+                );
+
+----
+Comment extracted: *First enum with comment.*
+
+How to extract comment of one value of an enum
+[source, java, indent=0]
+----
+                final Optional<String> comment = CodeExtractor.getComment(
+                        EnumWithCommentToExtract.MyEnum.SecondEnum
+                );
+
+----
+Comment extracted: *Second enum with comment.*
+
+How to extract comment of one value of an enum
+[source, java, indent=0]
+----
+                final Optional<String> comment = CodeExtractor.getComment(
+                        EnumWithCommentToExtract.class,
+                        EnumWithCommentToExtract.MyEnum.ThirdEnum
+                );
+
+----
+Comment extracted: No comment
+

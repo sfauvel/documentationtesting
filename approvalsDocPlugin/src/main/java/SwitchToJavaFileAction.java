@@ -1,8 +1,7 @@
-import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.command.CommandProcessor;
+import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.OpenFileDescriptor;
 import com.intellij.openapi.project.Project;
@@ -10,84 +9,47 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
 import com.intellij.psi.search.FilenameIndex;
 import com.intellij.psi.search.GlobalSearchScope;
+import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class SwitchToJavaFileAction extends AnAction {
+public class SwitchToJavaFileAction extends SwitchAction {
+    private final static Logger LOG = Logger.getInstance(SwitchToJavaFileAction.class);
 
-    private static final String SRC_PATH = "src/test/java";
-    private static final String SRC_DOCS = "src/test/docs";
-
-    public String getSrcDocs() {
-        return SRC_DOCS;
-    }
-
-    public String getSrcPath() {
-        return SRC_PATH;
-    }
-
+    @Override
     protected String getMenuText() {
-        return "Switch to approved file";
+        return "Switch to java file";
     }
 
     @Override
-    public void update(AnActionEvent actionEvent) {
-        final Optional<ReturnJavaFile> approvalFileOptional = getJavaFile(actionEvent);
-
-        if (approvalFileOptional.isEmpty()) {
-            actionEvent.getPresentation().setVisible(false);
-            return;
-        }
-
-        actionEvent.getPresentation().setEnabled(true);
-        actionEvent.getPresentation().setVisible(true);
-
-        actionEvent.getPresentation().setText("Switch to java file");
+    protected boolean isFileToSwitchExist(AnActionEvent actionEvent) {
+        return getJavaFile(actionEvent).isPresent();
     }
 
     @Override
-    public void actionPerformed(AnActionEvent actionEvent) {
+    protected Optional<Runnable> getRunnableAction(@NotNull AnActionEvent actionEvent) {
+        LOG.debug("getRunnableAction");
+
         final Optional<ReturnJavaFile> javaFileOptional = getJavaFile(actionEvent);
-        if (javaFileOptional.isEmpty()) return;
+        if (javaFileOptional.isEmpty()) return Optional.empty();
 
-        CommandProcessor.getInstance().executeCommand(
-                actionEvent.getProject(),
-                new SwitchToJavaFileAction.ApprovedRunnable(actionEvent.getProject(), javaFileOptional.get()),
-                getMenuText(),
-                "Approvals");
+        return Optional.of(new SwitchToJavaFileAction.ApprovedRunnable(actionEvent.getProject(), javaFileOptional.get()));
     }
 
     public Optional<Path> getJavaFilePath(Path projectPath, VirtualFile file) {
-        return getFullApprovalFilePath(projectPath, file)
-                .map(FullApprovalFilePath::fullPath);
-    }
 
-    private Optional<FullApprovalFilePath> getFullApprovalFilePath(Path projectPath, VirtualFile file) {
-        final String prefixFolder = getSrcDocs();
-        Pattern pattern = Pattern.compile("(" + Paths.get(projectPath + File.separator).toString() + "(.*" + File.separator + ")?)"
-                + prefixFolder + File.separator
-                + "(.*" + File.separator + ")?"
-                + "(" + file.getName() + ")");
-        Matcher matcher = pattern.matcher(file.getPath());
-        if (!matcher.find()) {
-            return Optional.empty();
-        }
+        final Optional<FileBuilder> fileBuilder = FileBuilder.extractFileInfo(projectPath, file, getSrcDocs());
 
-        final String projectRootPath = matcher.group(1);
-        final Optional<String> packagePath = Optional.ofNullable(matcher.group(3));
-        final String filePath = matcher.group(4);
-
-        return ApprovalFile.valueOf(packagePath.orElse("") + filePath)
-                .map(approvalFile -> approvalFile.toJava())
-                .map(javaFile -> new FullApprovalFilePath(Paths.get(projectRootPath), Paths.get(getSrcPath()), javaFile));
+        return fileBuilder.flatMap(fileBuilderGet ->
+                ApprovalFile.valueOf(fileBuilderGet.packagePath.orElse("") + fileBuilderGet.filePath)
+                        .map(approvalFile -> approvalFile.toJava())
+                        .map(javaFile -> new FullApprovalFilePath(Paths.get(fileBuilderGet.projectRootPath), Paths.get(getSrcPath()), javaFile))
+                        .map(FullApprovalFilePath::fullPath));
     }
 
     public static class ReturnJavaFile {
@@ -101,6 +63,8 @@ public class SwitchToJavaFileAction extends AnAction {
     }
 
     private Optional<ReturnJavaFile> getJavaFile(AnActionEvent actionEvent) {
+        final Project project = actionEvent.getProject();
+
         VirtualFile virtualFile = null;
         final PsiFile psiFile = actionEvent.getData(CommonDataKeys.PSI_FILE);
         if (psiFile != null) {
@@ -111,7 +75,7 @@ public class SwitchToJavaFileAction extends AnAction {
                 virtualFile = psiElement.getContainingFile().getVirtualFile();
             }
         }
-        final Project project = actionEvent.getProject();
+        // TODO What happened if virtualFile is still null ?
 
         final Optional<Path> javaFilePath = getJavaFilePath(Paths.get(getProjectBasePath(project)), virtualFile);
 
@@ -123,14 +87,14 @@ public class SwitchToJavaFileAction extends AnAction {
         if (javaFile.isEmpty()) {
             return Optional.empty();
         }
-        final String fullPathToFile = getSrcPath() + File.separator + javaFile.get().getName();
+
         final PsiFile[] filesByName = FilenameIndex.getFilesByName(project, javaFile.get().getFileName(), GlobalSearchScope.projectScope(project));
         final Optional<PsiFile> first = Arrays.stream(filesByName)
-//                .filter(file -> fullPathToFile.equals(Paths.get(getProjectBasePath(project)).relativize(Paths.get(file.getVirtualFile().getPath())).toString()))
                 .filter(file -> javaFilePath.map(Path::toString).get().equals(file.getVirtualFile().getPath()))
                 .findFirst();
         return first.map(f -> new ReturnJavaFile((PsiJavaFile) f, javaFile.get()));
     }
+
 
     protected String getProjectBasePath(Project project) {
         return project.getBasePath();
@@ -153,6 +117,7 @@ public class SwitchToJavaFileAction extends AnAction {
         }
 
         private void runAction() {
+            System.out.println("ApprovedRunnable.runAction");
             final int offset = getOffset();
 
             FileEditorManager.getInstance(project)

@@ -12,7 +12,7 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
-import org.sfvl.doctesting.utils.CodeExtractorTest;
+import org.sfvl.codeextraction.CodeExtractorTest;
 import org.sfvl.doctesting.utils.DocWriterTest;
 import org.sfvl.doctesting.utils.NoTitle;
 import org.sfvl.doctesting.writer.ClassDocumentation;
@@ -53,7 +53,6 @@ public class DocTestingDocumentation {
                 "This document describes usage of classes to create test used to generate documentation.",
                 "* " + makeAnchor(ApprovalsExtensionTest.class, ApprovalsExtension.class) + ": JUnit extension to check document.",
                 "* " + makeAnchor(DocWriterTest.class, DocWriter.class) + ": Store document before writting it.",
-                "* " + makeAnchor(CodeExtractorTest.class, CodeExtractor.class) + ": Help to extract information from code.",
                 "* " + makeAnchor(PrinterTest.class, Printer.class) + ": Utilities for result presentation.");
     }
 

@@ -48,23 +48,8 @@ include::_ApprovalsExtensionTest.failing_test_output.ExceptionStackTrace.adoc[li
 
 ------
 
-++++
-<style>
-.includeblock .title1 {
-    font-size: 2em;
-    font-family: "Open Sans","DejaVu Sans",sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    color: #ba3925;
-    text-rendering: optimizeLegibility;
-    margin-top: 1em;
-    margin-bottom: .5em;
-}
-</style>
-++++
-
-_final rendering_
-[.includeblock]
+_Final rendering_
+[.rendering]
 --
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
@@ -82,3 +67,17 @@ include::_ApprovalsExtensionTest.failing_test_output.ExceptionStackTrace.adoc[li
 ----
 
 --
+
+A received file is produced for the class containing the failing test.
+This file includes received files if they exist.
+It is thus possible to visualize the received file in the file with other methods.
+
+.Document generated
+----
+\ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_samples_failingtest]
+= Failing test
+
+\include::_FailingTest.failing_test.received.adoc[leveloffset=+1]
+----

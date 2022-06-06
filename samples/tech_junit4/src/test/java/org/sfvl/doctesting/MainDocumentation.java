@@ -1,11 +1,11 @@
 package org.sfvl.doctesting;
 
-import com.thoughtworks.qdox.JavaProjectBuilder;
-import com.thoughtworks.qdox.model.JavaClass;
-import com.thoughtworks.qdox.model.JavaModel;
 import org.junit.Test;
 import org.reflections.Reflections;
-import org.reflections.scanners.MethodAnnotationsScanner;
+import org.reflections.scanners.Scanners;
+import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.doctesting.utils.PathProvider;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,7 +13,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -23,9 +23,9 @@ import java.util.stream.Stream;
 public class MainDocumentation {
 
     private static final String PACKAGE_TO_SCAN = "org.sfvl";
-    private final String DOCUMENTATION_TITLE;
     private static final String DOCUMENTATION_FILENAME = "index";
     private static final PathProvider pathProvider = new PathProvider();
+    private final String DOCUMENTATION_TITLE;
     private final Path docRootPath;
 
     public MainDocumentation() {
@@ -34,11 +34,7 @@ public class MainDocumentation {
 
     public MainDocumentation(String documentationTitle) {
         DOCUMENTATION_TITLE = documentationTitle;
-        docRootPath = pathProvider.getProjectPath().resolve(Paths.get("src", "test", "docs"));
-    }
-
-    public Path getDocRootPath() {
-        return docRootPath;
+        docRootPath = Config.DOC_PATH.toAbsolutePath();
     }
 
     protected void generate(String packageToScan) throws IOException {
@@ -55,32 +51,23 @@ public class MainDocumentation {
     }
 
     protected String getDocumentationContent(String packageToScan) {
-        final String testsDocumentation = getMethodDocumentation(packageToScan);
+        final String testsDocumentation = getClassDocumentation(packageToScan);
 
         final String header = getHeader();
 
         return header + testsDocumentation;
     }
 
-    protected String getMethodDocumentation(String packageToScan) {
-        Set<Method> testMethods = getAnnotatedMethod(Test.class, packageToScan);
+    protected String getClassDocumentation(String packageToScan) {
+        final Stream<? extends Class<?>> testClasses = getAnnotatedMethod(Test.class, packageToScan).stream()
+                .map(m -> m.getDeclaringClass())
+                .distinct();
 
-        final Map<Class<?>, List<Method>> methodsByClass = testMethods.stream().collect(Collectors.groupingBy(
-                m -> m.getDeclaringClass()
-        ));
-
-        String testsDocumentation = methodsByClass.entrySet().stream()
-                .map(e -> "== "
-                        + getTestClassTitle(e)
-                        + "\n" + getComment(e.getKey())
-                        + "\n\n"
-                        + includeMethods(e.getValue())
-                        + "\n\n"
-                )
+        String testDocumentation = testClasses
+                .map(c -> new DocPath(c).approved().from(Config.DOC_PATH))
+                .map(path -> "include::" + path + "[leveloffset=+2]")
                 .collect(Collectors.joining("\n"));
-
-        //System.out.println(testsDocumentation);
-        return testsDocumentation;
+        return testDocumentation;
     }
 
     protected String getHeader() {
@@ -101,64 +88,9 @@ public class MainDocumentation {
         fileWriter.write(content);
     }
 
-    protected String getTestClassTitle(Map.Entry<Class<?>, List<Method>> e) {
-        Class<?> testClass = e.getKey();
-        return formatTitle(testClass.getSimpleName());
-    }
-
-    protected String includeMethods(List<Method> testMethods) {
-
-        return getMethodsInOrder(testMethods)
-                .map(m -> new DocumentationNamer(docRootPath, m))
-                .map(m -> docRootPath.relativize(Paths.get(m.getSourceFilePath())) + "/" + m.getApprovalName() + ".approved.adoc")
-                .map(m -> "include::" + m + "[leveloffset=+2]")
-                .collect(Collectors.joining("\n"));
-    }
-
-    private Stream<Method> getMethodsInOrder(List<Method> testMethods) {
-        Map<String, Method> methodsByName = testMethods.stream().collect(Collectors.toMap(
-                m -> m.getName(),
-                m -> m
-        ));
-
-        JavaProjectBuilder builder = createJavaProjectBuilderWithTestPath();
-
-        Method firstMethod = testMethods.get(0);
-        JavaClass javaClass = builder.getClassByName(firstMethod.getDeclaringClass().getCanonicalName());
-
-        return javaClass.getMethods().stream()
-                .filter(m -> methodsByName.containsKey(m.getName()))
-                .sorted(Comparator.comparingInt(JavaModel::getLineNumber))
-                .map(m -> methodsByName.get(m.getName()));
-
-    }
-
-    private String formatTitle(String methodName) {
-        String title = methodName
-                .replace("_", " ");
-
-        return title.substring(0, 1).toUpperCase() + title.substring(1);
-    }
-
-    protected String getComment(Class<?> clazz) {
-        JavaProjectBuilder builder = createJavaProjectBuilderWithTestPath();
-
-        JavaClass javaClass = builder.getClassByName(clazz.getCanonicalName());
-
-        return Optional.ofNullable(javaClass.getComment()).orElse("");
-    }
-
     protected Set<Method> getAnnotatedMethod(Class<? extends Annotation> annotation, String packageToScan) {
-        Reflections reflections = new Reflections(packageToScan, new MethodAnnotationsScanner());
+        Reflections reflections = new Reflections(packageToScan, Scanners.MethodsAnnotated);
         return reflections.getMethodsAnnotatedWith(annotation);
-    }
-
-    private JavaProjectBuilder createJavaProjectBuilderWithTestPath() {
-        JavaProjectBuilder builder = new JavaProjectBuilder();
-
-        final Path testPath = pathProvider.getProjectPath().resolve(Paths.get("src", "test", "java"));
-        builder.addSourceTree(testPath.toFile());
-        return builder;
     }
 
     public static void main(String... args) throws IOException {

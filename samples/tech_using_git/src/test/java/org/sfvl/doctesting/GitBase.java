@@ -71,7 +71,6 @@ public class GitBase extends DocAsTestBase {
 
         Repository repository = new FileRepositoryBuilder()
                 .setGitDir(rootGit)
-                .setMustExist(true)
                 .build();
 
         try (Git git = new Git(repository)) {

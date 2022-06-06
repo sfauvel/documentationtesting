@@ -1,0 +1,23 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_class]
+= Retrieve line of a class
+
+.How to get the first line of a class
+
+[source,java,indent=0]
+----
+            final int lineNumber = parser.getLineNumber(ClassWithInformationToExtract.class);
+
+----
+
+Line found: *8*
+++++
+<style>
+#org_sfvl_codeextraction_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_class ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++

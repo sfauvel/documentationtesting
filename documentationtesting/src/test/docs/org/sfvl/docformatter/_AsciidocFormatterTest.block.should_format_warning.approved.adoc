@@ -1,0 +1,34 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+ifdef::is-html-doc[:imagesdir: {ROOT_PATH}/images]
+ifndef::is-html-doc[:imagesdir: {ROOT_PATH}/../resources/images]
+
+[#org_sfvl_docformatter_asciidocformattertest_block_should_format_warning]
+= Warning
+
+
+[red]##_Usage_##
+[source,java,indent=0]
+----
+            output = formatter.warning("Take care of that");
+----
+
+[red]##_Render_##
+
+
+[WARNING]
+====
+Take care of that
+====
+
+
+[red]##_Asciidoc generated_##
+------
+
+[WARNING]
+====
+Take care of that
+====
+
+------
+
+___

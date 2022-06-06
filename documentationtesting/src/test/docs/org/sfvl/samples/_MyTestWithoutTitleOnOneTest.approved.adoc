@@ -1,0 +1,10 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_samples_mytestwithouttitleononetest]
+= My test without title on one test
+
+include::_MyTestWithoutTitleOnOneTest.intro.approved.adoc[leveloffset=+1]
+
+include::_MyTestWithoutTitleOnOneTest.my_method.approved.adoc[leveloffset=+1]
+
+include::_MyTestWithoutTitleOnOneTest.conclusion.approved.adoc[leveloffset=+1]

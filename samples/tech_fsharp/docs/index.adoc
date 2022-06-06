@@ -1,13 +1,14 @@
-
 :toc: left
 :nofooter:
 :description: Example in FSharp.
 
 == FSharp examples
+
 View source project on link:https://github.com/sfauvel/documentationtesting/tree/master/samples/tech_fsharp[Github]
 
 include::_UnitTestDemo.fs_Simple_demo.approved.adoc[leveloffset=+2]
 [%collapsible]
+
 .Code used to generate this doc
 ====
 ----

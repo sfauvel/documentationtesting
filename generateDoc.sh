@@ -2,39 +2,43 @@
 oldstate="$(set +o)"
 set -euo pipefail
 
+date
+
 source ./scripts/loadWritingFunction.sh
 
 # Validation mode: git or approvals
 # With approvals: file .approved is compared to .received (no need to have git). It not verifies removed tests
 # with git: file .approved is compared with git commited version. It detects tests removed.
-VALIDATION_MODE="git"
 ROOT_PATH=$(pwd)
 OUTPUT_PATH=$ROOT_PATH/tmp
 OUTPUT_LOG=$OUTPUT_PATH/generateDoc.log
 GLOBAL_EXIT_VALUE=0
+OPTIONS=""
 
 # Usage info
 function show_help() {
-  echo "Usage: ${0##*/} [-h] [-m VALIDATION_MODE] [FILE]..."
+  echo "Usage: ${0##*/} [-h] [-t] [FILE]..."
   echo "Build all the project: compile, generate documentation, verify there is no regression"
   echo "and convert asciidoctor generated to Html."
   echo ""
   echo "    -h                  display this help and exit."
-  echo "    -m VALIDATION_MODE: could be 'git' or 'approvals'."
+  echo "    -t                  only tests."
 }
 
-while getopts ":hm:g" opt; do
+while getopts ":ht" opt; do
    case ${opt} in
      h ) show_help
        exit 0
        ;;
-     m ) VALIDATION_MODE=${OPTARG}
+     t ) OPTIONS="$OPTIONS -t"
        ;;
      \? ) show_help
        exit 0
        ;;
    esac
 done
+
+shift $((OPTIND-1))
 
 function restore_shell_options() {
   set +u
@@ -57,11 +61,10 @@ function generate_docs() {
   do
       echo -n "Project ${DEMO_NAME}: "
       echo "---------------------" >> "$OUTPUT_LOG"
-      echo "Project ${DEMO_NAME} " >> "$OUTPUT_LOG"
+      echo "Project ${DEMO_NAME} ${OPTIONS}" >> "$OUTPUT_LOG"
       pushd $DEMO_NAME > /dev/null
       returncode=0
-      ./generateDoc.sh >> "$OUTPUT_LOG" 2>&1 || returncode=$?
-
+      ./generateDoc.sh $OPTIONS >> "$OUTPUT_LOG" 2>&1 || returncode=$?
 
       if [[ returncode -eq 0 ]]
       then
@@ -104,5 +107,7 @@ set -u
 generate_docs "$MODULES"
 
 restore_shell_options
+
+date
 
 exit $GLOBAL_EXIT_VALUE

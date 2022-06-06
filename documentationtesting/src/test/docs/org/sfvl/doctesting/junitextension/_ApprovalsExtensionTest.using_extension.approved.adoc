@@ -7,8 +7,8 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 // Test result for OneTest: Success
 This is an example to create a simple test using `ApprovalsExtension`.
 
-You have to write a class and add register an `ApprovalsExtension` attribute using .`RegisterExtension` annotation.
-This extension will check that everything wrote using `doc.write` method has not changed since the last execution.
+You have to write a class and add register an `ApprovalsExtension` attribute using `RegisterExtension` annotation.
+This extension will check that everything wrote using `write` method has not changed since the last execution.
 
 .Test example using `ApprovalsExtension`
 [source,java,indent=0]
@@ -31,17 +31,20 @@ public class OneTest {
 }
 ----
 
-When executing test method `test_A`, a file `_OneTest.test_A.received.adoc` is generated and contains the following text
+When executing test method `test_A`, the following text is generated.
 ----
 include::../../samples/justone/_OneTest.test_A.approved.adoc[]
 ----
-If this file is identical to the `_OneTest.test_A.approved.adoc`, then the test is a success and `_OneTest.test_A.received.adoc` is removed.
-Otherwise, test fails and we can compare those two files to see what has changed.
+If this content is identical to the `_OneTest.test_A.approved.adoc`, then the test is a success.
+Otherwise, test fails and the generated text is written to the `_OneTest.test_A.received.adoc` file.
+So we can compare those two files to see what has changed.
 
 File name and title come from method name.
-The chapter content contains what was written using `doc.write`.
+The chapter content contains what was written using `write`.
 
-Files in folder `src/test/docs/org/sfvl/samples/justone`
+Files are stored in `src/test/docs/org/sfvl/samples/justone` directory which contains:
 
 * _OneTest.approved.adoc
 * _OneTest.test_A.approved.adoc
+
+There is one file per test and one file for the class.

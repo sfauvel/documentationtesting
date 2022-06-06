@@ -4,6 +4,7 @@ public class SwitchToReceivedFileAction extends SwitchToFileAction {
         super(ApprovalFile.Status.RECEIVED);
     }
 
+    @Override
     protected String getMenuText() {
         return "Switch to received file";
     }

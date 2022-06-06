@@ -7,6 +7,7 @@ import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.utils.ClassesOrder;
 import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.doctesting.utils.OnePath;
 import org.sfvl.doctesting.utils.PathProvider;
 
 import java.lang.reflect.Method;
@@ -27,22 +28,25 @@ public class ClassDocumentation {
     private static final PathProvider pathProvider = new PathProvider();
 
     protected final Formatter formatter;
-    protected final Function<Method, Path> methodToPath;
     private final Predicate<Method> methodFilter;
+    private final Function<OnePath, Path> onePathToPath;
     private final Predicate<Class> classFilter;
 
     public ClassDocumentation(Formatter formatter) {
         this(
                 formatter,
-                m -> Paths.get(new DocPath(m).approved().filename()),
+                o -> Paths.get(o.filename()),
                 m -> m.isAnnotationPresent(Test.class),
                 c -> c.isAnnotationPresent(Nested.class)
         );
     }
 
-    public ClassDocumentation(Formatter formatter, Function<Method, Path> methodToPath, Predicate<Method> methodFilter, Predicate<Class> classFilter) {
+    public ClassDocumentation(Formatter formatter,
+                              Function<OnePath, Path> onePathToPath,
+                              Predicate<Method> methodFilter,
+                              Predicate<Class> classFilter) {
         this.formatter = formatter;
-        this.methodToPath = methodToPath;
+        this.onePathToPath = onePathToPath;
         this.methodFilter = methodFilter;
         this.classFilter = classFilter;
     }
@@ -71,8 +75,14 @@ public class ClassDocumentation {
                 .map(encapsulateDeclared -> {
                     if (encapsulateDeclared instanceof ClassesOrder.EncapsulateDeclaredMethod) {
                         final Method encapsulatedMethod = (Method) encapsulateDeclared.getEncapsulatedObject();
-                        final Path methodPath = methodToPath.apply(encapsulatedMethod);
-                        return includeWithOffset.apply(methodPath);
+
+                        final Path receivedPath = new DocPath(encapsulatedMethod).received().path();
+                        if (receivedPath.toFile().exists()) {
+                            final Path methodReceivedPath = onePathToPath.apply(new DocPath(encapsulatedMethod).received());
+                            return includeWithOffset.apply(methodReceivedPath);
+                        }
+                        final Path methodApprovedPath = onePathToPath.apply(new DocPath(encapsulatedMethod).approved());
+                        return includeWithOffset.apply(methodApprovedPath);
                     }
                     if (encapsulateDeclared instanceof ClassesOrder.EncapsulateDeclaredClass) {
                         final Class<?> encapsulatedClass = (Class<?>) encapsulateDeclared.getEncapsulatedObject();

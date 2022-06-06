@@ -11,6 +11,8 @@ include::_ApprovalsExtensionTest.using_extension.approved.adoc[leveloffset=+1]
 
 include::_ApprovalsExtensionTest.using_displayName.approved.adoc[leveloffset=+1]
 
+include::_ApprovalsExtensionTest.hide_title.approved.adoc[leveloffset=+1]
+
 include::_ApprovalsExtensionTest.using_a_custom_writer.approved.adoc[leveloffset=+1]
 
 include::_ApprovalsExtensionTest.using_a_custom_formatter.approved.adoc[leveloffset=+1]

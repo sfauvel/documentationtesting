@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.codeextraction.CodeExtractionPackage;
 import org.sfvl.development.Development;
 import org.sfvl.docformatter.AsciidocFormatterTest;
 import org.sfvl.docformatter.Formatter;
@@ -62,6 +63,7 @@ public class DocumentationTestingDocumentation {
                 formatter.attribute("HOW_TO_HTML", htmlPath(HowTo.class)),
                 formatter.attribute("APPROVAL_EXTENSION_HTML", htmlPath(ApprovalsExtensionTest.class)),
                 formatter.attribute("ASCIIDOC_FORMATTER_HTML", htmlPath(AsciidocFormatterTest.class)),
+                formatter.attribute("CODE_EXTRACTION_HTML", htmlPath(CodeExtractionPackage.class)),
                 formatter.attribute("DOC_TESTING_DOCUMENTATION_HTML", htmlPath(DocTestingDocumentation.class)),
                 formatter.attribute("DEVELOPMENT", htmlPath(Development.class)),
                 formatter.attribute("KNOWN_ISSUES_HTML", htmlPath(KnownIssues.class)),

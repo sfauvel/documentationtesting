@@ -1,0 +1,51 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_codeextractortest_extractcode_extractpartofcode_tag_beginning_with_same_outer_tag_name]
+= Tag beginning with same outer tag name
+
+Tag inside another one can be a subpart (MyCode)  of the global one (**MyCode**Global) .
+
+ifndef::CODE_EXTRACTOR_CSS[]
+:CODE_EXTRACTOR_CSS:
+++++
+<style>
+include::../../../../resources/styles/code_extractor.css[]
+</style>
+++++
+endif::[]
+
+.Source code with extractor tags
+[source, java, indent=0]
+----
+                // >>>MyCodeGlobal
+                String partGlobalBefore = "Part global before MyCode";
+
+                // >>>MyCode
+                String partMyCode = "Part MyCode";
+                // <<<MyCode
+
+                String partGlobalAfter = "Part global after MyCode";
+                // <<<MyCodeGlobal
+
+----
+[.inline]
+====
+.Source code part MyCodeInside extracted
+[source, java, indent=0]
+----
+                String partMyCode = "Part MyCode";
+
+----
+.Source code part MyCodeInsideAround extracted
+[source, java, indent=0]
+----
+                String partGlobalBefore = "Part global before MyCode";
+
+                // >>>MyCode
+                String partMyCode = "Part MyCode";
+                // <<<MyCode
+
+                String partGlobalAfter = "Part global after MyCode";
+
+----
+====

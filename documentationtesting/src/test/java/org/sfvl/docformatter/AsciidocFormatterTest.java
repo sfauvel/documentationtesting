@@ -6,8 +6,9 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.ClassToDocument;
+import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.writer.DocWriter;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.io.FileWriter;
@@ -35,7 +36,18 @@ public class AsciidocFormatterTest {
     private String output;
 
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new ApprovalsExtension<DocWriter<Formatter>, Formatter>(new DocWriter(Config.FORMATTER) {
+
+        @Override
+        public String defineDocPath(Path relativePathToRoot) {
+            return String.join("\n",
+                    super.defineDocPath(relativePathToRoot),
+                    "ifdef::is-html-doc[:imagesdir: {ROOT_PATH}/images]",
+                    "ifndef::is-html-doc[:imagesdir: {ROOT_PATH}/../resources/images]"
+            );
+
+        }
+    });
 
     @Retention(RetentionPolicy.RUNTIME)
     public @interface TestOption {
@@ -81,12 +93,6 @@ public class AsciidocFormatterTest {
     @TestOption(showRender = false)
     public void should_format_title() {
         output = formatter.title(2, "Description");
-    }
-
-    @Test
-    @DisplayName("Warning")
-    public void should_format_warning() {
-        output = formatter.warning("Take care of that");
     }
 
     /**
@@ -202,6 +208,12 @@ public class AsciidocFormatterTest {
     @DisplayName(value = "Block")
     class block {
 
+
+        @Test
+        @DisplayName("Warning")
+        public void should_format_warning() {
+            output = formatter.warning("Take care of that");
+        }
 
         /**
          * A block id create an id in HTML file.
@@ -378,30 +390,59 @@ public class AsciidocFormatterTest {
         }
     }
 
-    @Test
-    @DisplayName("Table")
-    public void should_format_table() throws IOException {
-        output = formatter.table(Arrays.asList(
-                Arrays.asList("A", "B", "C"),
-                Arrays.asList("x", "y", "z"),
-                Arrays.asList("1", "2", "3")
-        ));
-    }
+    @Nested
+    class Table {
+        @Test
+        @DisplayName("Display data")
+        public void should_format_table() throws IOException {
+            output = formatter.table(Arrays.asList(
+                    Arrays.asList("A", "B", "C"),
+                    Arrays.asList("x", "y", "z"),
+                    Arrays.asList("1", "2", "3")
+            ));
+        }
 
-    @Test
-    @DisplayName("Table with header")
-    public void should_format_table_with_header() throws IOException {
-        output = formatter.tableWithHeader(Arrays.asList(
-                Arrays.asList("A", "B", "C"),
-                Arrays.asList("x", "y", "z"),
-                Arrays.asList("1", "2", "3")
-        ));
-    }
+        @Test
+        @DisplayName("With an header")
+        public void should_format_table_with_header() throws IOException {
+            output = formatter.tableWithHeader(Arrays.asList(
+                    Arrays.asList("A", "B", "C"),
+                    Arrays.asList("x", "y", "z"),
+                    Arrays.asList("1", "2", "3")
+            ));
+        }
 
+        @Test
+        @DisplayName("Header separate from data")
+        public void should_format_table_with_header_separate_from_data() throws IOException {
+            output = formatter.tableWithHeader(
+                    Arrays.asList("A", "B", "C"),
+                    Arrays.asList(
+                            Arrays.asList("x", "y", "z"),
+                            Arrays.asList("1", "2", "3")
+                    ));
+        }
+    }
     @Test
     @DisplayName("Attribute")
     public void should_add_an_attribute() throws IOException {
         output = formatter.attribute("MY_ATTRIBUTE", "The value");
+    }
+
+    @Nested
+    class Image {
+        @Test
+        public void should_add_an_image() {
+            output = formatter.image("doc_as_test.png");
+        }
+
+        /**
+         * With a title parameter, the text is shown when you mouse over the image.
+         */
+        @Test
+        public void should_add_an_image_with_title() {
+            output = formatter.image("doc_as_test.png", "doc as test");
+        }
     }
 
     @AfterEach

@@ -1,0 +1,110 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_codeextractortest_extractcomment_extract_method_comment]
+= Extract method comment
+
+ifndef::CODE_EXTRACTOR_CSS[]
+:CODE_EXTRACTOR_CSS:
+++++
+<style>
+include::../../../../resources/styles/code_extractor.css[]
+</style>
+++++
+endif::[]
+
+
+[.inline]
+====
+[source, java, indent=0]
+----
+include::../../../../java/org/sfvl/doctesting/sample/ClassWithCommentToExtract.java[tag=ClassWithCommentToExtract]
+----
+
+
+====
+How to extract comment of a method
+[source, java, indent=0]
+----
+                final Method method = ClassWithCommentToExtract.class.getDeclaredMethod("methodWithoutParameters");
+                final Optional<String> comment = CodeExtractor.getComment(
+                        ClassWithCommentToExtract.class,
+                        method
+                );
+
+----
+
+[.inline]
+====
+.From method without arguments.
+----
+Comment of the method without parameters.
+----
+
+====
+How to extract comment of a method with parameters
+[source, java, indent=0]
+----
+                final Method method = ClassWithCommentToExtract.class.getDeclaredMethod("methodWithParameters", int.class, String.class);
+                final Optional<String> comment = CodeExtractor.getComment(
+                        ClassWithCommentToExtract.class,
+                        method
+                );
+
+----
+
+[.inline]
+====
+.From method with parameters.
+----
+Comment of the method with two parameters.
+----
+
+====
+How to extract comment of a method using Method object
+[source, java, indent=0]
+----
+                final Method methodWithComment = ClassWithCommentToExtract.class.getMethod("methodWithoutParameters");
+                final Optional<String> comment = CodeExtractor.getComment(methodWithComment);
+
+----
+
+[.inline]
+====
+.From method
+----
+Comment of the method without parameters.
+----
+
+====
+How to extract comment of a method with parameters using Method object
+[source, java, indent=0]
+----
+                final Method methodWithComment = ClassWithCommentToExtract.class.getMethod("methodWithParameters", int.class, String.class);
+                final Optional<String> comment = CodeExtractor.getComment(methodWithComment);
+
+----
+
+[.inline]
+====
+.From method
+----
+Comment of the method with two parameters.
+----
+
+====
+How to extract comment of a method of an inner class
+[source, java, indent=0]
+----
+                final Method methodWithComment = MethodReference.getMethod(ClassNestedWithCommentToExtract.SubClassNestedWithCommentToExtract::methodInSubClass);
+                final Optional<String> comment = CodeExtractor.getComment(this.getClass(), methodWithComment);
+
+----
+
+[.inline]
+====
+.From method
+----
+Method comment in an inner class.
+----
+
+====
