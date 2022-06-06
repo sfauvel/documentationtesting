@@ -1,6 +1,7 @@
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
+import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.OpenFileDescriptor;
 import com.intellij.openapi.project.Project;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class SwitchToJavaFileAction extends SwitchAction {
+    private final static Logger LOG = Logger.getInstance(SwitchToJavaFileAction.class);
 
     @Override
     protected String getMenuText() {
@@ -31,6 +33,7 @@ public class SwitchToJavaFileAction extends SwitchAction {
 
     @Override
     protected Optional<Runnable> getRunnableAction(@NotNull AnActionEvent actionEvent) {
+        LOG.debug("getRunnableAction");
 
         final Optional<ReturnJavaFile> javaFileOptional = getJavaFile(actionEvent);
         if (javaFileOptional.isEmpty()) return Optional.empty();
@@ -61,7 +64,6 @@ public class SwitchToJavaFileAction extends SwitchAction {
 
     private Optional<ReturnJavaFile> getJavaFile(AnActionEvent actionEvent) {
         final Project project = actionEvent.getProject();
-        loadProperties(project);
 
         VirtualFile virtualFile = null;
         final PsiFile psiFile = actionEvent.getData(CommonDataKeys.PSI_FILE);

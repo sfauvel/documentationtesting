@@ -119,6 +119,8 @@ public class SwitchToApprovedFileActionCustomFolderTest extends BasePlatformTest
         myFixture.addFileToProject("documents/org/demo/_MyClass." + approvalType + ".adoc", approvalType + " content");
         addTestClassFile(Paths.get("org", "demo"), "MyClass", CaretOn.CLASS);
 
+        DocAsTestStartupActivity.loadProperties(myFixture.getProject());
+
         final Presentation presentation = myFixture.testAction(actionUnderTest);
         assertTrue(presentation.isVisible());
         assertEquals("Switch to " + approvalType + " file", presentation.getText());
