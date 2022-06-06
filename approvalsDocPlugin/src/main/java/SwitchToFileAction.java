@@ -19,9 +19,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import com.intellij.openapi.diagnostic.Logger;
 
 public abstract class SwitchToFileAction extends SwitchAction {
-
+    private final static Logger LOG = Logger.getInstance(SwitchToFileAction.class);
     private final ApprovalFile.Status approvalType;
 
     protected SwitchToFileAction(ApprovalFile.Status approvalType) {
@@ -35,6 +36,7 @@ public abstract class SwitchToFileAction extends SwitchAction {
 
     @Override
     protected Optional<Runnable> getRunnableAction(@NotNull AnActionEvent actionEvent) {
+        LOG.debug("getRunnableAction");
         final Optional<PsiFile> approvedPsiFile = getApprovedPsiFile(actionEvent);
         if (approvedPsiFile.isEmpty()) return Optional.empty();
 
@@ -72,21 +74,22 @@ public abstract class SwitchToFileAction extends SwitchAction {
         }
     }
 
+
     protected Optional<PsiFile> getApprovedPsiFile(AnActionEvent actionEvent) {
         final Project project = actionEvent.getProject();
-        loadProperties(project);
 
         Editor editor = actionEvent.getData(CommonDataKeys.EDITOR);
         PsiFile psiFile = actionEvent.getData(CommonDataKeys.PSI_FILE);
+
         if (psiFile != null) {
             return getApprovedPsiFile(project, editor, psiFile);
         }
 
         PsiElement psiElement = actionEvent.getData(CommonDataKeys.PSI_ELEMENT);
+
         if (psiElement != null) {
             return getApprovedPsiFile(project, psiElement);
         }
-
         return Optional.empty();
     }
 

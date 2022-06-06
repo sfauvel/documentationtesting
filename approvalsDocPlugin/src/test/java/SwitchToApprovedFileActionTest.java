@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
+import java.util.Properties;
 
 public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
 
@@ -32,6 +33,7 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
+        DocAsTestStartupActivity.setProperties(new Properties());
 
         myFixture.getTempDirFixture().findOrCreateDir("test/java/org/demo");
         myFixture.getTempDirFixture().findOrCreateDir("test/docs/org/demo");
@@ -50,12 +52,14 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
 
             @Override
             public String getSrcDocs() {
-                return SwitchAction.DEFAULT_SRC_DOCS;
+                return "src/test/docs";
+//                return SwitchAction.DEFAULT_SRC_DOCS;
             }
 
             @Override
             public String getSrcPath() {
-                return SwitchAction.DEFAULT_SRC_PATH;
+                return "src/test/java";
+//                return SwitchAction.DEFAULT_SRC_PATH;
             }
         };
 
@@ -327,6 +331,8 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
 
         myFixture.addFileToProject("documents/org/demo/_MyClass." + approvalType + ".adoc", approvalType + " content");
         addTestClassFile(Paths.get("org", "demo"), "MyClass", SwitchToApprovedFileActionTest.CaretOn.CLASS);
+
+        DocAsTestStartupActivity.loadProperties(myFixture.getProject());
 
         final Presentation presentation = myFixture.testAction(actionUnderTest);
         assertTrue(presentation.isVisible());
