@@ -9,7 +9,7 @@ while getopts ":t" opt; do
    esac
 done
 
-mvn clean test
+mvn clean test install
 if [[ "$GENERATE_HTML" == "yes" ]];
 then
   mvn org.asciidoctor:asciidoctor-maven-plugin:process-asciidoc
