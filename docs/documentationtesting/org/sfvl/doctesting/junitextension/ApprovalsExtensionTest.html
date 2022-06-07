@@ -444,21 +444,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_extension">Creating a test using ApprovalsExtension</a></li>
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_displayname">Using displayName</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title">Hide title</a>
+<ul class="sectlevel2">
+<li><a href="#_rendering_of_the_result">Rendering of the result</a>
+<ul class="sectlevel3">
+<li><a href="#org_sfvl_samples_mytestwithouttitleononetest">My test without title on one test</a>
+<ul class="sectlevel4">
+<li><a href="#org_sfvl_samples_mytestwithouttitleononetest_intro">Intro</a></li>
+<li><a href="#org_sfvl_samples_mytestwithouttitleononetest_conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_a_custom_writer">Using a custom writer</a></li>
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_a_custom_formatter">Using a custom formatter</a></li>
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_nested_class">Nested class</a>
 <ul class="sectlevel2">
-<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest">Demo nested test</a>
+<li><a href="#_rendering">Rendering</a>
 <ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest_adding">Adding</a>
+<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest">Demo nested test</a>
 <ul class="sectlevel4">
-<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest_adding_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</a></li>
-<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest_adding_should_be_9_when_adding_2_3_and_4">Adding 3 simple numbers</a></li>
-</ul>
-</li>
-<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest_multiply">Multiply</a>
-<ul class="sectlevel4">
-<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest_multiply_should_be_12_when_multiply_4_and_3">Multiply 2 simple numbers</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest_adding">Adding</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest_multiply">Multiply</a></li>
 </ul>
 </li>
 </ul>
@@ -466,9 +475,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_document_with_all_tests_in_a_testclass">Document with all tests in a testclass</a>
-<ul class="sectlevel2">
-<li><a href="#org_sfvl_samples_mytest">My test</a>
 <ul class="sectlevel3">
+<li><a href="#org_sfvl_samples_mytest">My test</a>
+<ul class="sectlevel4">
 <li><a href="#org_sfvl_samples_mytest_test_a">Test A</a></li>
 </ul>
 </li>
@@ -496,8 +505,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>This is an example to create a simple test using <code>ApprovalsExtension</code>.</p>
 </div>
 <div class="paragraph">
-<p>You have to write a class and add register an <code>ApprovalsExtension</code> attribute using .<code>RegisterExtension</code> annotation.
-This extension will check that everything wrote using <code>doc.write</code> method has not changed since the last execution.</p>
+<p>You have to write a class and add register an <code>ApprovalsExtension</code> attribute using <code>RegisterExtension</code> annotation.
+This extension will check that everything wrote using <code>write</code> method has not changed since the last execution.</p>
 </div>
 <div class="listingblock">
 <div class="title">Test example using <code>ApprovalsExtension</code></div>
@@ -521,7 +530,7 @@ This extension will check that everything wrote using <code>doc.write</code> met
 </div>
 </div>
 <div class="paragraph">
-<p>When executing test method <code>test_A</code>, a file <code>_OneTest.test_A.received.adoc</code> is generated and contains the following text</p>
+<p>When executing test method <code>test_A</code>, the following text is generated.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -532,15 +541,16 @@ In my *test*</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If this file is identical to the <code>_OneTest.test_A.approved.adoc</code>, then the test is a success and <code>_OneTest.test_A.received.adoc</code> is removed.
-Otherwise, test fails and we can compare those two files to see what has changed.</p>
+<p>If this content is identical to the <code>_OneTest.test_A.approved.adoc</code>, then the test is a success.
+Otherwise, test fails and the generated text is written to the <code>_OneTest.test_A.received.adoc</code> file.
+So we can compare those two files to see what has changed.</p>
 </div>
 <div class="paragraph">
 <p>File name and title come from method name.
-The chapter content contains what was written using <code>doc.write</code>.</p>
+The chapter content contains what was written using <code>write</code>.</p>
 </div>
 <div class="paragraph">
-<p>Files in folder <code>src/test/docs/org/sfvl/samples/justone</code></p>
+<p>Files are stored in <code>src/test/docs/org/sfvl/samples/justone</code> directory which contains:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -551,6 +561,9 @@ The chapter content contains what was written using <code>doc.write</code>.</p>
 <p>_OneTest.test_A.approved.adoc</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>There is one file per test and one file for the class.</p>
 </div>
 </div>
 </div>
@@ -583,6 +596,66 @@ The chapter content contains what was written using <code>doc.write</code>.</p>
 = Title for this test
 
 In my *test*</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title">Hide title</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can hide a test title adding the NoTitle annotation to the test.
+It&#8217;s usefull to reuse content of a test in different place without keeping the original structure.
+You also want to separate the content of one chapter through different test but display them under only title.</p>
+</div>
+<div class="listingblock">
+<div class="title">Test example using hiding title</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyTestWithoutTitleOnOneTest</span> <span class="o">{</span>
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">intro</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"First line"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@NoTitle</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">my_method</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"My content without title"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">conclusion</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"Last line"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The file generated from the method with <code>NoTitle</code> annotation has no header.
+On the final rendering, it&#8217;s like it was part of the previous chapter.</p>
+</div>
+<div class="sect2 rendering">
+<h3 id="_rendering_of_the_result">Rendering of the result</h3>
+<div class="sect3">
+<h4 id="org_sfvl_samples_mytestwithouttitleononetest">My test without title on one test</h4>
+<div class="sect4">
+<h5 id="org_sfvl_samples_mytestwithouttitleononetest_intro">Intro</h5>
+<div class="paragraph">
+<p>First line</p>
+</div>
+<div class="paragraph">
+<p>My content without title</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="org_sfvl_samples_mytestwithouttitleononetest_conclusion">Conclusion</h5>
+<div class="paragraph">
+<p>Last line</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -786,26 +859,28 @@ include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ad
 </div>
 </div>
 <div class="paragraph">
-<p><em>final rendering</em></p>
+<p><em>Final rendering</em></p>
 </div>
-<div class="sect2 includeblock">
-<h3 id="org_sfvl_doctesting_junitextension_demonestedtest">Demo nested test</h3>
+<div class="sect2 rendering">
+<h3 id="_rendering">Rendering</h3>
+<div class="sect3">
+<h4 id="org_sfvl_doctesting_junitextension_demonestedtest">Demo nested test</h4>
 <div class="paragraph">
 <p>Demo of a simple usage to generate documentation.</p>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_junitextension_demonestedtest_adding">Adding</h4>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_junitextension_demonestedtest_adding">Adding</h5>
 <div class="paragraph">
 <p>Document of Addition operations.</p>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_junitextension_demonestedtest_adding_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h5>
+<div class="sect5">
+<h6 id="org_sfvl_doctesting_junitextension_demonestedtest_adding_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h6>
 <div class="paragraph">
 <p>2 + 3 = 5</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_junitextension_demonestedtest_adding_should_be_9_when_adding_2_3_and_4">Adding 3 simple numbers</h5>
+<div class="sect5">
+<h6 id="org_sfvl_doctesting_junitextension_demonestedtest_adding_should_be_9_when_adding_2_3_and_4">Adding 3 simple numbers</h6>
 <div class="paragraph">
 <p>A nested test.</p>
 </div>
@@ -814,12 +889,13 @@ include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ad
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_junitextension_demonestedtest_multiply">Multiply</h4>
 <div class="sect4">
-<h5 id="org_sfvl_doctesting_junitextension_demonestedtest_multiply_should_be_12_when_multiply_4_and_3">Multiply 2 simple numbers</h5>
+<h5 id="org_sfvl_doctesting_junitextension_demonestedtest_multiply">Multiply</h5>
+<div class="sect5">
+<h6 id="org_sfvl_doctesting_junitextension_demonestedtest_multiply_should_be_12_when_multiply_4_and_3">Multiply 2 simple numbers</h6>
 <div class="paragraph">
 <p>4 * 3 = 12</p>
+</div>
 </div>
 </div>
 </div>
@@ -865,12 +941,12 @@ include::_MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
 </div>
 </div>
 <div class="paragraph">
-<p><em>final rendering</em></p>
+<p><em>Final rendering</em></p>
 </div>
-<div class="sect2 includeblock">
-<h3 id="org_sfvl_samples_mytest">My test</h3>
-<div class="sect3">
-<h4 id="org_sfvl_samples_mytest_test_a">Test A</h4>
+<div class="sect3 rendering">
+<h4 id="org_sfvl_samples_mytest">My test</h4>
+<div class="sect4">
+<h5 id="org_sfvl_samples_mytest_test_a">Test A</h5>
 <div class="paragraph">
 <p>In my <strong>test</strong></p>
 </div>
@@ -918,29 +994,17 @@ Some information before failure.
 ----
 org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:118)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
 	at org.sfvl.samples.FailingTest.failing_test(FailingTest.java:23)
 	...
 
 ----</pre>
 </div>
 </div>
-<style>
-.includeblock .title1 {
-    font-size: 2em;
-    font-family: "Open Sans","DejaVu Sans",sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    color: #ba3925;
-    text-rendering: optimizeLegibility;
-    margin-top: 1em;
-    margin-bottom: .5em;
-}
-</style>
 <div class="paragraph">
-<p><em>final rendering</em></p>
+<p><em>Final rendering</em></p>
 </div>
-<div class="openblock includeblock">
+<div class="openblock rendering">
 <div class="content">
 <div id="org_sfvl_samples_failingtest_failing_test" class="paragraph">
 <p><span class="title1">Failing test</span></p>
@@ -955,11 +1019,27 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 <div class="content">
 <pre>org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:118)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
 	at org.sfvl.samples.FailingTest.failing_test(FailingTest.java:23)
 	...</pre>
 </div>
 </div>
+</div>
+</div>
+<div class="paragraph">
+<p>A received file is produced for the class containing the failing test.
+This file includes received files if they exist.
+It is thus possible to visualize the received file in the file with other methods.</p>
+</div>
+<div class="listingblock">
+<div class="title">Document generated</div>
+<div class="content">
+<pre>ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_samples_failingtest]
+= Failing test
+
+include::_FailingTest.failing_test.received.adoc[leveloffset=+1]</pre>
 </div>
 </div>
 <div id="project_home">
@@ -974,8 +1054,8 @@ includeblock: format an include as a block.
 :root {
   --bg1: #05fdCC;
   --bg2: #0fd289;
-  --logo_height: 100px
-  --shadow_color: #084f34;
+  --logo-height: 100;
+  --shadow-color: #084f34;
   --title-color: #7a2518;
 
   --media-small-header-height:50px;
@@ -1011,14 +1091,14 @@ th.tableblock {
 }
 
 #toc.toc2 {
-    top: var(--logo_height); /* Height of the project_home */
+    top: var(--logo-height); /* Height of the project_home */
     overflow: scroll; /* To avoid menu position change when scoll bar appear */
     scrollbar-color: var(--bg1) var(--bg2);
 }
 
 #project_home {
     top: 0;
-    height: var(--logo_height); /* toc2 need to be position after this height */
+    height: var(--logo-height); /* toc2 need to be position after this height */
 
     font-family: "Noto Serif","DejaVu Serif",serif;
     font-style: italic;
@@ -1107,6 +1187,71 @@ td.tableblock > .content > .listingblock {
     font-weight: normal;
 }
 
+.inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+
+
+/*
+To add a section that render asciidoc you can open a block:
+
+[.rendering]
+--
+My text
+--
+
+or, if you need to include a file, you could not do it inside a block.
+Instead of that, you can create a section with title.
+
+[.rendering]
+== Rendering of the result
+
+The title will be hide and all the content has a specific css.
+
+
+*/
+div.sectionbody .rendering > h2:first-child,
+div.sectionbody .rendering > h3:first-child,
+div.sectionbody .rendering > h4:first-child {
+    display: none;
+}
+/*
+div.sectionbody .rendering > h2:first-child + div,
+div.sectionbody .rendering > h3:first-child + div,
+div.sectionbody .rendering > h4:first-child + div {
+*/
+
+.openblock.rendering,
+div.sectionbody .rendering,
+div.sectionbody .rendering,
+div.sectionbody .rendering {
+    padding: 20px;
+    margin-bottom: 1em;
+    background: var(--bg1);
+    filter: brightness(0.90);
+    box-shadow: 10px 5px 5px var(--shadow-color);
+    border: 1px solid var(--shadow-color);
+}
+div.sectionbody .rendering h3,
+div.sectionbody .rendering h4,
+div.sectionbody .rendering h5 {
+    margin-top: 0px;
+}
+
+.openblock.rendering .title1,
+div.sectionbody .rendering .title1 {
+    font-size: 2em;
+    font-family: "Open Sans","DejaVu Sans",sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: #ba3925;
+    text-rendering: optimizeLegibility;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
 @media (max-width: 800px) {
   #toc {
     display: none;
@@ -1143,6 +1288,12 @@ window.addEventListener( "load",
     function() {
         menus = document.querySelectorAll(".sectlevel1 > li");
         menus.forEach(toggleMenuOnClick);
+
+        // Move logo to the header
+        const project_home = document.getElementById('project_home');
+        const header = document.getElementById('header');
+        header.appendChild(project_home);
+
      }
 );
 </script>

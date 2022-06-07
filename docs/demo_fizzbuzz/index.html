@@ -445,10 +445,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_fizz_buzz_test">Fizz buzz test</a>
 <ul class="sectlevel2">
 <li><a href="#org_sfvl_application_fizzbuzz_fizzbuzztest_sample_output">Sample output</a></li>
-<li><a href="#org_sfvl_application_fizzbuzz_fizzbuzztest_return_given_number">Return given number</a></li>
-<li><a href="#org_sfvl_application_fizzbuzz_fizzbuzztest_return_fizz_when_divisible_by_three">Return fizz when divisible by three</a></li>
-<li><a href="#org_sfvl_application_fizzbuzz_fizzbuzztest_return_buzz_when_divisible_by_five">Return buzz when divisible by five</a></li>
-<li><a href="#org_sfvl_application_fizzbuzz_fizzbuzztest_return_fizzbuzz_when_divisible_by_three_and_five">Return fizzbuzz when divisible by three and five</a></li>
+<li><a href="#org_sfvl_application_fizzbuzz_fizzbuzztest_output_in_a_table">Output in a table</a></li>
+<li><a href="#_rules">Rules</a></li>
 <li><a href="#org_sfvl_application_fizzbuzz_fizzbuzztest_values_for_a_result">Values by result</a></li>
 </ul>
 </li>
@@ -517,7 +515,82 @@ Buzz&#8230;&#8203; etc up to 100</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="org_sfvl_application_fizzbuzz_fizzbuzztest_return_given_number">Return given number</h3>
+<h3 id="org_sfvl_application_fizzbuzz_fizzbuzztest_output_in_a_table">Output in a table</h3>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">12</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">13</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">14</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">16</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">18</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">19</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">20</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Fizz</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Buzz</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Fizz</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Fizz</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Buzz</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Fizz</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">13</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">14</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">FizzBuzz</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">16</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">17</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Fizz</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">19</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Buzz</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_rules">Rules</h3>
+<div class="sect3">
+<h4 id="org_sfvl_application_fizzbuzz_fizzbuzztest_rules_return_given_number">Return given number</h4>
 <div class="paragraph">
 <p>When number is not divisible by five or three, returns the number.</p>
 </div>
@@ -528,8 +601,8 @@ Buzz&#8230;&#8203; etc up to 100</p>
  FizzBuzz(22) = 22<br></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="org_sfvl_application_fizzbuzz_fizzbuzztest_return_fizz_when_divisible_by_three">Return fizz when divisible by three</h3>
+<div class="sect3">
+<h4 id="org_sfvl_application_fizzbuzz_fizzbuzztest_rules_return_fizz_when_divisible_by_three">Return fizz when divisible by three</h4>
 <div class="paragraph">
 <p>When number is divisible by three, returns Fizz.</p>
 </div>
@@ -538,8 +611,8 @@ Buzz&#8230;&#8203; etc up to 100</p>
  FizzBuzz(9) = Fizz<br></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="org_sfvl_application_fizzbuzz_fizzbuzztest_return_buzz_when_divisible_by_five">Return buzz when divisible by five</h3>
+<div class="sect3">
+<h4 id="org_sfvl_application_fizzbuzz_fizzbuzztest_rules_return_buzz_when_divisible_by_five">Return buzz when divisible by five</h4>
 <div class="paragraph">
 <p>When number is divisible by five, returns Buzz.</p>
 </div>
@@ -548,14 +621,15 @@ Buzz&#8230;&#8203; etc up to 100</p>
  FizzBuzz(25) = Buzz<br></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="org_sfvl_application_fizzbuzz_fizzbuzztest_return_fizzbuzz_when_divisible_by_three_and_five">Return fizzbuzz when divisible by three and five</h3>
+<div class="sect3">
+<h4 id="org_sfvl_application_fizzbuzz_fizzbuzztest_rules_return_fizzbuzz_when_divisible_by_three_and_five">Return fizzbuzz when divisible by three and five</h4>
 <div class="paragraph">
 <p>When number is divisible by three and five, returns FizzBuzz.</p>
 </div>
 <div class="paragraph">
 <p>FizzBuzz(15) = FizzBuzz<br>
  FizzBuzz(60) = FizzBuzz<br></p>
+</div>
 </div>
 </div>
 <div class="sect2">

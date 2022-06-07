@@ -445,7 +445,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_standard_option">Standard options</a></li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_table_of_content">Table of content</a></li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_title">Title</a></li>
-<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_warning">Warning</a></li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_paragraph">Paragraph</a></li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_suite_of_paragraphs">Suite of paragraphs</a></li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_style">Style</a>
@@ -474,6 +473,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_block">Block</a>
 <ul class="sectlevel2">
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_block_should_format_warning">Warning</a></li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_block_block_id">Block id</a></li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_block_should_format_block_with_enum">Predefine blocks</a></li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_block_should_format_block">Free block</a></li>
@@ -496,9 +496,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_include_include_with_a_range_of_lines">Include with a range of lines</a></li>
 </ul>
 </li>
-<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_table">Table</a></li>
-<li><a href="#org_sfvl_docformatter_asciidocformattertest_should_format_table_with_header">Table with header</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_table">Table</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_table_should_format_table">Display data</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_table_should_format_table_with_header">With an header</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_table_should_format_table_with_header_separate_from_data">Header separate from data</a></li>
+</ul>
+</li>
 <li><a href="#org_sfvl_docformatter_asciidocformattertest_should_add_an_attribute">Attribute</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_image">Image</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_image_should_add_an_image">Should add an image</a></li>
+<li><a href="#org_sfvl_docformatter_asciidocformattertest_image_should_add_an_image_with_title">Should add an image with title</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -608,48 +619,6 @@ For each method, we describe:</p>
 <div class="listingblock">
 <div class="content">
 <pre>== Description</pre>
-</div>
-</div>
-<hr>
-</div>
-</div>
-<div class="sect1">
-<h2 id="org_sfvl_docformatter_asciidocformattertest_should_format_warning">Warning</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><span class="red"><em>Usage</em></span></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">warning</span><span class="o">(</span><span class="s">"Take care of that"</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><span class="red"><em>Render</em></span></p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Warning</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Take care of that</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><span class="red"><em>Asciidoc generated</em></span></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>[WARNING]
-====
-Take care of that
-====</pre>
 </div>
 </div>
 <hr>
@@ -1101,6 +1070,46 @@ The second paragraph with a blank line before to separate from the first one.</p
 <div class="sect1">
 <h2 id="org_sfvl_docformatter_asciidocformattertest_block">Block</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_block_should_format_warning">Warning</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">warning</span><span class="o">(</span><span class="s">"Take care of that"</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Take care of that</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[WARNING]
+====
+Take care of that
+====</pre>
+</div>
+</div>
+<hr>
+</div>
 <div class="sect2">
 <h3 id="org_sfvl_docformatter_asciidocformattertest_block_block_id">Block id</h3>
 <div class="paragraph">
@@ -1557,8 +1566,10 @@ include::tmp/anotherFile.adoc[]</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_docformatter_asciidocformattertest_should_format_table">Table</h2>
+<h2 id="org_sfvl_docformatter_asciidocformattertest_table">Table</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_table_should_format_table">Display data</h3>
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
 </div>
@@ -1612,10 +1623,8 @@ include::tmp/anotherFile.adoc[]</pre>
 </div>
 <hr>
 </div>
-</div>
-<div class="sect1">
-<h2 id="org_sfvl_docformatter_asciidocformattertest_should_format_table_with_header">Table with header</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_table_should_format_table_with_header">With an header</h3>
 <div class="paragraph">
 <p><span class="red"><em>Usage</em></span></p>
 </div>
@@ -1672,6 +1681,66 @@ include::tmp/anotherFile.adoc[]</pre>
 </div>
 <hr>
 </div>
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_table_should_format_table_with_header_separate_from_data">Header separate from data</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">tableWithHeader</span><span class="o">(</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"A"</span><span class="o">,</span> <span class="s">"B"</span><span class="o">,</span> <span class="s">"C"</span><span class="o">),</span>
+        <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+                <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"x"</span><span class="o">,</span> <span class="s">"y"</span><span class="o">,</span> <span class="s">"z"</span><span class="o">),</span>
+                <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"1"</span><span class="o">,</span> <span class="s">"2"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">)</span>
+        <span class="o">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">A</th>
+<th class="tableblock halign-left valign-top">B</th>
+<th class="tableblock halign-left valign-top">C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">z</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>|====
+|A|B|C
+
+|x|y|z
+|1|2|3
+|====</pre>
+</div>
+</div>
+<hr>
+</div>
+</div>
 </div>
 <div class="sect1">
 <h2 id="org_sfvl_docformatter_asciidocformattertest_should_add_an_attribute">Attribute</h2>
@@ -1696,6 +1765,67 @@ include::tmp/anotherFile.adoc[]</pre>
 </div>
 </div>
 <hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_docformatter_asciidocformattertest_image">Image</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_image_should_add_an_image">Should add an image</h3>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">image</span><span class="o">(</span><span class="s">"doc_as_test.png"</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../images/doc_as_test.png" alt="doc as test">
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>image::doc_as_test.png[]</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_docformatter_asciidocformattertest_image_should_add_an_image_with_title">Should add an image with title</h3>
+<div class="paragraph">
+<p>With a title parameter, the text is shown when you mouse over the image.</p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Usage</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="n">output</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="na">image</span><span class="o">(</span><span class="s">"doc_as_test.png"</span><span class="o">,</span> <span class="s">"doc as test"</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Render</em></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../../../images/doc_as_test.png" alt="doc as test" title="doc as test"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="red"><em>Asciidoc generated</em></span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>image:doc_as_test.png[title="doc as test"]</pre>
+</div>
+</div>
+<hr>
 <div id="project_home">
     <a title="home" href="../../../index.html">Doc as test</a>
 </div>
@@ -1708,8 +1838,8 @@ includeblock: format an include as a block.
 :root {
   --bg1: #05fdCC;
   --bg2: #0fd289;
-  --logo_height: 100px
-  --shadow_color: #084f34;
+  --logo-height: 100;
+  --shadow-color: #084f34;
   --title-color: #7a2518;
 
   --media-small-header-height:50px;
@@ -1745,14 +1875,14 @@ th.tableblock {
 }
 
 #toc.toc2 {
-    top: var(--logo_height); /* Height of the project_home */
+    top: var(--logo-height); /* Height of the project_home */
     overflow: scroll; /* To avoid menu position change when scoll bar appear */
     scrollbar-color: var(--bg1) var(--bg2);
 }
 
 #project_home {
     top: 0;
-    height: var(--logo_height); /* toc2 need to be position after this height */
+    height: var(--logo-height); /* toc2 need to be position after this height */
 
     font-family: "Noto Serif","DejaVu Serif",serif;
     font-style: italic;
@@ -1841,6 +1971,71 @@ td.tableblock > .content > .listingblock {
     font-weight: normal;
 }
 
+.inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+
+
+/*
+To add a section that render asciidoc you can open a block:
+
+[.rendering]
+--
+My text
+--
+
+or, if you need to include a file, you could not do it inside a block.
+Instead of that, you can create a section with title.
+
+[.rendering]
+== Rendering of the result
+
+The title will be hide and all the content has a specific css.
+
+
+*/
+div.sectionbody .rendering > h2:first-child,
+div.sectionbody .rendering > h3:first-child,
+div.sectionbody .rendering > h4:first-child {
+    display: none;
+}
+/*
+div.sectionbody .rendering > h2:first-child + div,
+div.sectionbody .rendering > h3:first-child + div,
+div.sectionbody .rendering > h4:first-child + div {
+*/
+
+.openblock.rendering,
+div.sectionbody .rendering,
+div.sectionbody .rendering,
+div.sectionbody .rendering {
+    padding: 20px;
+    margin-bottom: 1em;
+    background: var(--bg1);
+    filter: brightness(0.90);
+    box-shadow: 10px 5px 5px var(--shadow-color);
+    border: 1px solid var(--shadow-color);
+}
+div.sectionbody .rendering h3,
+div.sectionbody .rendering h4,
+div.sectionbody .rendering h5 {
+    margin-top: 0px;
+}
+
+.openblock.rendering .title1,
+div.sectionbody .rendering .title1 {
+    font-size: 2em;
+    font-family: "Open Sans","DejaVu Sans",sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: #ba3925;
+    text-rendering: optimizeLegibility;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
 @media (max-width: 800px) {
   #toc {
     display: none;
@@ -1877,9 +2072,16 @@ window.addEventListener( "load",
     function() {
         menus = document.querySelectorAll(".sectlevel1 > li");
         menus.forEach(toggleMenuOnClick);
+
+        // Move logo to the header
+        const project_home = document.getElementById('project_home');
+        const header = document.getElementById('header');
+        header.appendChild(project_home);
+
      }
 );
 </script>
+</div>
 </div>
 </div>
 </div>

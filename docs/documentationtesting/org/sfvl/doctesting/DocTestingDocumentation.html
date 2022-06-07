@@ -446,25 +446,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_extension">Creating a test using ApprovalsExtension</a></li>
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_displayname">Using displayName</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title">Hide title</a>
+<ul class="sectlevel3">
+<li><a href="#_rendering_of_the_result">Rendering of the result</a>
+<ul class="sectlevel4">
+<li><a href="#org_sfvl_samples_mytestwithouttitleononetest">My test without title on one test</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_a_custom_writer">Using a custom writer</a></li>
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_a_custom_formatter">Using a custom formatter</a></li>
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_nested_class">Nested class</a>
 <ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest">Demo nested test</a>
+<li><a href="#_rendering">Rendering</a>
 <ul class="sectlevel4">
-<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest_adding">Adding</a></li>
-<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest_multiply">Multiply</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_demonestedtest">Demo nested test</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_document_with_all_tests_in_a_testclass">Document with all tests in a testclass</a>
-<ul class="sectlevel3">
-<li><a href="#org_sfvl_samples_mytest">My test</a>
 <ul class="sectlevel4">
-<li><a href="#org_sfvl_samples_mytest_test_a">Test A</a></li>
-</ul>
-</li>
+<li><a href="#org_sfvl_samples_mytest">My test</a></li>
 </ul>
 </li>
 <li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_failing_test_output">Failing test output</a></li>
@@ -476,13 +480,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_junitextension_failurereportertest_report_when_files_are_identicals">Report when files are identicals</a></li>
 <li><a href="#org_sfvl_doctesting_junitextension_failurereportertest_received_file_shorter_than_approved_file">Received file shorter than approved file</a></li>
 <li><a href="#org_sfvl_doctesting_junitextension_failurereportertest_received_file_longer_than_approved_file">Received file longer than approved file</a></li>
-</ul>
-</li>
-<li><a href="#org_sfvl_doctesting_utils_classfindertest">Class finder</a>
-<ul class="sectlevel2">
-<li><a href="#org_sfvl_doctesting_utils_classfindertest_find_test_classes_in_a_package">Find test classes in a package</a></li>
-<li><a href="#org_sfvl_doctesting_utils_classfindertest_find_test_classes_in_a_package_with_filter">Find test classes in a package with a filter</a></li>
-<li><a href="#org_sfvl_doctesting_utils_classfindertest_find_root_class_from_enclosing_class">Find root class from enclosing class</a></li>
+<li><a href="#org_sfvl_doctesting_junitextension_failurereportertest_approved_file_does_not_exist">Approved file does not exist</a></li>
 </ul>
 </li>
 <li><a href="#org_sfvl_doctesting_utils_classesordertest">Classes order</a>
@@ -490,46 +488,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_utils_classesordertest_in_order">In order</a></li>
 <li><a href="#org_sfvl_doctesting_utils_classesordertest_filter_methods_and_classes">Filter methods and classes</a></li>
 <li><a href="#org_sfvl_doctesting_utils_classesordertest_nested_class_using_outer_method">Nested class using outer method</a></li>
-</ul>
-</li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest">CodeExtractor</a>
-<ul class="sectlevel2">
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode">Extract code</a>
-<ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_a_class">Extract code of a class</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_an_inner_class">Extract code of an inner class</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_an_other_class_in_file">Extract code of a non public class in file</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_an_enum_in_file">Extract code of a an enum in file</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_from_method">Extract code from method</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_part_of_code_from_method">Extract a part of code from method</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_part_of_code_from_file">Extract a part of code from a file</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_a_part_of_code_from_the_current_method">Extract a part of code from the current method</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode">Extract part of code</a>
-<ul class="sectlevel4">
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_with_same_beginning_of_another_tag">Tag with same beginning of another tag</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_beginning_with_same_outer_tag_name">Tag beginning with same outer tag name</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_beginning_with_same_inner_tag_name">Tag beginning with same inner tag name</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcomment">Extract comment</a>
-<ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_class_comment">Extract class comment</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_method_comment">Extract method comment</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_enum_comment">Extract enum comment</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcomment_bug_when_annotation_before_comment">Issue: comment not retrieve when an annotation is before the comment</a></li>
-</ul>
-</li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult">Extract code and result</a>
-<ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_show_extract_parameters_code">Show extract parameters code</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_extract_parameters_code_keep_format">Extract parameters code keep format</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_show_extract_parameters_code_from_nested_class">Show extract parameters code from nested class</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_show_extract_parameters_code_with_an_intermediate_method">Show extract parameters code with an intermediate method</a></li>
-<li><a href="#org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_show_extract_parameters_code_with_an_intermediate_class">Show extract parameters code with an intermediate class</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li><a href="#org_sfvl_doctesting_utils_configtest">Configuration</a>
@@ -556,45 +514,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_utils_docwritertest_doc_writer_without_title">Hide title</a></li>
 <li><a href="#org_sfvl_doctesting_utils_docwritertest_format_title">Format title</a></li>
 <li><a href="#org_sfvl_doctesting_utils_docwritertest_add_description_using_comment">Add a description</a></li>
-</ul>
-</li>
-<li><a href="#org_sfvl_doctesting_utils_methodreferencetest">Extract information from method reference</a>
-<ul class="sectlevel2">
-<li><a href="#org_sfvl_doctesting_utils_methodreferencetest_find_method_name">Find method name</a></li>
-<li><a href="#org_sfvl_doctesting_utils_methodreferencetest_find_method">Find method</a></li>
-<li><a href="#org_sfvl_doctesting_utils_methodreferencetest_find_method_name_from_complex_method">Find method name from a specific method</a></li>
-<li><a href="#org_sfvl_doctesting_utils_methodreferencetest_classused">Class used in examples</a></li>
-</ul>
-</li>
-<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest">ParsedClassRepository</a>
-<ul class="sectlevel2">
-<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_context">Context</a></li>
-<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment">Retrieve comment</a>
-<ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_class">Retrieve comment of a class</a></li>
-<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method">Retrieve comment of a method</a></li>
-<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_local_class_defined_in_a_method">Retrieve comment of local class defined in a method</a></li>
-<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_parameter">Retrieve comment of a method with parameter</a></li>
-<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_parameter_with_scope">Retrieve comment of a method with parameter with scope</a></li>
-<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_list_parameter">Retrieve comment of a method with list parameter</a></li>
-<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_array_parameter">Retrieve comment of a method with array parameter</a></li>
-</ul>
-</li>
-<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber">Retrieve line number</a>
-<ul class="sectlevel3">
-<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_class">Retrieve line of a class</a></li>
-<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_method">Retrieve line of a method</a></li>
-<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_an_enum">Retrieve line of an enum</a></li>
-<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_method_in_an_enum">Retrieve line of a method in an enum</a></li>
-</ul>
-</li>
-<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_create_parsedclassrepository">Create ParsedClassRepository</a>
-<ul class="sectlevel3">
-<li><a href="#_object_creation">Object creation</a></li>
-<li><a href="#_exception">Exception</a></li>
-</ul>
-</li>
-<li><a href="#org_sfvl_doctesting_utils_parsedclassrepositorytest_parsed_classes_only_once">Parsed classes only once</a></li>
 </ul>
 </li>
 <li><a href="#org_sfvl_doctesting_utils_printertest">Printer</a>
@@ -640,9 +559,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><a href="#org_sfvl_doctesting_utils_docwritertest">DocWriter</a>: Store document before writting it.</p>
 </li>
 <li>
-<p><a href="#org_sfvl_doctesting_utils_codeextractortest">CodeExtractor</a>: Help to extract information from code.</p>
-</li>
-<li>
 <p><a href="#org_sfvl_doctesting_utils_printertest">Printer</a>: Utilities for result presentation.</p>
 </li>
 </ul>
@@ -664,8 +580,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>This is an example to create a simple test using <code>ApprovalsExtension</code>.</p>
 </div>
 <div class="paragraph">
-<p>You have to write a class and add register an <code>ApprovalsExtension</code> attribute using .<code>RegisterExtension</code> annotation.
-This extension will check that everything wrote using <code>doc.write</code> method has not changed since the last execution.</p>
+<p>You have to write a class and add register an <code>ApprovalsExtension</code> attribute using <code>RegisterExtension</code> annotation.
+This extension will check that everything wrote using <code>write</code> method has not changed since the last execution.</p>
 </div>
 <div class="listingblock">
 <div class="title">Test example using <code>ApprovalsExtension</code></div>
@@ -689,7 +605,7 @@ This extension will check that everything wrote using <code>doc.write</code> met
 </div>
 </div>
 <div class="paragraph">
-<p>When executing test method <code>test_A</code>, a file <code>_OneTest.test_A.received.adoc</code> is generated and contains the following text</p>
+<p>When executing test method <code>test_A</code>, the following text is generated.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -700,15 +616,16 @@ In my *test*</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If this file is identical to the <code>_OneTest.test_A.approved.adoc</code>, then the test is a success and <code>_OneTest.test_A.received.adoc</code> is removed.
-Otherwise, test fails and we can compare those two files to see what has changed.</p>
+<p>If this content is identical to the <code>_OneTest.test_A.approved.adoc</code>, then the test is a success.
+Otherwise, test fails and the generated text is written to the <code>_OneTest.test_A.received.adoc</code> file.
+So we can compare those two files to see what has changed.</p>
 </div>
 <div class="paragraph">
 <p>File name and title come from method name.
-The chapter content contains what was written using <code>doc.write</code>.</p>
+The chapter content contains what was written using <code>write</code>.</p>
 </div>
 <div class="paragraph">
-<p>Files in folder <code>src/test/docs/org/sfvl/samples/justone</code></p>
+<p>Files are stored in <code>src/test/docs/org/sfvl/samples/justone</code> directory which contains:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -719,6 +636,9 @@ The chapter content contains what was written using <code>doc.write</code>.</p>
 <p>_OneTest.test_A.approved.adoc</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>There is one file per test and one file for the class.</p>
 </div>
 </div>
 <div class="sect2">
@@ -749,6 +669,64 @@ The chapter content contains what was written using <code>doc.write</code>.</p>
 = Title for this test
 
 In my *test*</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_hide_title">Hide title</h3>
+<div class="paragraph">
+<p>You can hide a test title adding the NoTitle annotation to the test.
+It&#8217;s usefull to reuse content of a test in different place without keeping the original structure.
+You also want to separate the content of one chapter through different test but display them under only title.</p>
+</div>
+<div class="listingblock">
+<div class="title">Test example using hiding title</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyTestWithoutTitleOnOneTest</span> <span class="o">{</span>
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">intro</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"First line"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@NoTitle</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">my_method</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"My content without title"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">conclusion</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"Last line"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The file generated from the method with <code>NoTitle</code> annotation has no header.
+On the final rendering, it&#8217;s like it was part of the previous chapter.</p>
+</div>
+<div class="sect3 rendering">
+<h4 id="_rendering_of_the_result">Rendering of the result</h4>
+<div class="sect4">
+<h5 id="org_sfvl_samples_mytestwithouttitleononetest">My test without title on one test</h5>
+<div class="sect5">
+<h6 id="org_sfvl_samples_mytestwithouttitleononetest_intro">Intro</h6>
+<div class="paragraph">
+<p>First line</p>
+</div>
+<div class="paragraph">
+<p>My content without title</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="org_sfvl_samples_mytestwithouttitleononetest_conclusion">Conclusion</h6>
+<div class="paragraph">
+<p>Last line</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -946,26 +924,28 @@ include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ad
 </div>
 </div>
 <div class="paragraph">
-<p><em>final rendering</em></p>
+<p><em>Final rendering</em></p>
 </div>
-<div class="sect3 includeblock">
-<h4 id="org_sfvl_doctesting_junitextension_demonestedtest">Demo nested test</h4>
+<div class="sect3 rendering">
+<h4 id="_rendering">Rendering</h4>
+<div class="sect4">
+<h5 id="org_sfvl_doctesting_junitextension_demonestedtest">Demo nested test</h5>
 <div class="paragraph">
 <p>Demo of a simple usage to generate documentation.</p>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_junitextension_demonestedtest_adding">Adding</h5>
+<div class="sect5">
+<h6 id="org_sfvl_doctesting_junitextension_demonestedtest_adding">Adding</h6>
 <div class="paragraph">
 <p>Document of Addition operations.</p>
 </div>
-<div class="sect5">
-<h6 id="org_sfvl_doctesting_junitextension_demonestedtest_adding_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h6>
+<div class="sect6">
+<h7 id="org_sfvl_doctesting_junitextension_demonestedtest_adding_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h7>
 <div class="paragraph">
 <p>2 + 3 = 5</p>
 </div>
 </div>
-<div class="sect5">
-<h6 id="org_sfvl_doctesting_junitextension_demonestedtest_adding_should_be_9_when_adding_2_3_and_4">Adding 3 simple numbers</h6>
+<div class="sect6">
+<h7 id="org_sfvl_doctesting_junitextension_demonestedtest_adding_should_be_9_when_adding_2_3_and_4">Adding 3 simple numbers</h7>
 <div class="paragraph">
 <p>A nested test.</p>
 </div>
@@ -974,12 +954,13 @@ include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.ad
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_junitextension_demonestedtest_multiply">Multiply</h5>
 <div class="sect5">
-<h6 id="org_sfvl_doctesting_junitextension_demonestedtest_multiply_should_be_12_when_multiply_4_and_3">Multiply 2 simple numbers</h6>
+<h6 id="org_sfvl_doctesting_junitextension_demonestedtest_multiply">Multiply</h6>
+<div class="sect6">
+<h7 id="org_sfvl_doctesting_junitextension_demonestedtest_multiply_should_be_12_when_multiply_4_and_3">Multiply 2 simple numbers</h7>
 <div class="paragraph">
 <p>4 * 3 = 12</p>
+</div>
 </div>
 </div>
 </div>
@@ -1023,12 +1004,12 @@ include::_MyTest.test_A.approved.adoc[leveloffset=+1]</pre>
 </div>
 </div>
 <div class="paragraph">
-<p><em>final rendering</em></p>
+<p><em>Final rendering</em></p>
 </div>
-<div class="sect3 includeblock">
-<h4 id="org_sfvl_samples_mytest">My test</h4>
-<div class="sect4">
-<h5 id="org_sfvl_samples_mytest_test_a">Test A</h5>
+<div class="sect4 rendering">
+<h5 id="org_sfvl_samples_mytest">My test</h5>
+<div class="sect5">
+<h6 id="org_sfvl_samples_mytest_test_a">Test A</h6>
 <div class="paragraph">
 <p>In my <strong>test</strong></p>
 </div>
@@ -1074,29 +1055,17 @@ Some information before failure.
 ----
 org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:118)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
 	at org.sfvl.samples.FailingTest.failing_test(FailingTest.java:23)
 	...
 
 ----</pre>
 </div>
 </div>
-<style>
-.includeblock .title1 {
-    font-size: 2em;
-    font-family: "Open Sans","DejaVu Sans",sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    color: #ba3925;
-    text-rendering: optimizeLegibility;
-    margin-top: 1em;
-    margin-bottom: .5em;
-}
-</style>
 <div class="paragraph">
-<p><em>final rendering</em></p>
+<p><em>Final rendering</em></p>
 </div>
-<div class="openblock includeblock">
+<div class="openblock rendering">
 <div class="content">
 <div id="org_sfvl_samples_failingtest_failing_test" class="paragraph">
 <p><span class="title1">Failing test</span></p>
@@ -1111,11 +1080,27 @@ org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 <div class="content">
 <pre>org.opentest4j.AssertionFailedError: Problem on the test, it fails.
 	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:39)
-	at org.junit.jupiter.api.Assertions.fail(Assertions.java:118)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
 	at org.sfvl.samples.FailingTest.failing_test(FailingTest.java:23)
 	...</pre>
 </div>
 </div>
+</div>
+</div>
+<div class="paragraph">
+<p>A received file is produced for the class containing the failing test.
+This file includes received files if they exist.
+It is thus possible to visualize the received file in the file with other methods.</p>
+</div>
+<div class="listingblock">
+<div class="title">Document generated</div>
+<div class="content">
+<pre>ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_samples_failingtest]
+= Failing test
+
+include::_FailingTest.failing_test.received.adoc[leveloffset=+1]</pre>
 </div>
 </div>
 </div>
@@ -1262,93 +1247,23 @@ Description</pre>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="org_sfvl_doctesting_utils_classfindertest">Class finder</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>It&#8217;s help to find in project classes that match some criteria.</p>
-</div>
 <div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_classfindertest_find_test_classes_in_a_package">Find test classes in a package</h3>
-<div class="listingblock">
-<div class="title">Source code to find classes containing tests</div>
+<h3 id="org_sfvl_doctesting_junitextension_failurereportertest_approved_file_does_not_exist">Approved file does not exist</h3>
+<div class="paragraph">
+<p>We indicate a specific message when approved file does not exist.</p>
+</div>
+<div class="literalblock">
+<div class="title">Received text</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Class</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">classes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ClassFinder</span><span class="o">().</span><span class="na">classesWithAnnotatedMethod</span><span class="o">(</span>
-        <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">doctesting</span><span class="o">.</span><span class="na">sample</span><span class="o">.</span><span class="na">SimpleClass</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getPackage</span><span class="o">(),</span>
-        <span class="nc">Test</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Classes found:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>org.sfvl.doctesting.sample.basic.FirstTest</p>
-</li>
-<li>
-<p>org.sfvl.doctesting.sample.basic.SecondTest</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_classfindertest_find_test_classes_in_a_package_with_filter">Find test classes in a package with a filter</h3>
-<div class="paragraph">
-<p>By default, all classes containing a test method are found.
-It&#8217;s possible to exclude some test methods because they are not relevant in the context.
-If all test methods of a class are excluded, then the class will not be return as a found class.</p>
-</div>
-<div class="paragraph">
-<p>Here, we exclude all method in a class with name starting by 'Second'.
-.Source code to find classes containing tests</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Class</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">classes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ClassFinder</span><span class="o">().</span><span class="na">classesWithAnnotatedMethod</span><span class="o">(</span>
-        <span class="n">org</span><span class="o">.</span><span class="na">sfvl</span><span class="o">.</span><span class="na">doctesting</span><span class="o">.</span><span class="na">sample</span><span class="o">.</span><span class="na">SimpleClass</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getPackage</span><span class="o">(),</span>
-        <span class="nc">Test</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="n">m</span> <span class="o">-&gt;</span> <span class="o">!</span><span class="n">m</span><span class="o">.</span><span class="na">getDeclaringClass</span><span class="o">().</span><span class="na">getSimpleName</span><span class="o">().</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"Second"</span><span class="o">));</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Classes found:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>org.sfvl.doctesting.sample.basic.FirstTest</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_classfindertest_find_root_class_from_enclosing_class">Find root class from enclosing class</h3>
-<div class="listingblock">
-<div class="title">Class used</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">FirstClass</span> <span class="o">{</span>
-    <span class="kd">class</span> <span class="nc">SecondClass</span> <span class="o">{</span>
-        <span class="kd">class</span> <span class="nc">ThirdClass</span> <span class="o">{</span>
-
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
+<pre>= Title
+Description
+Footer</pre>
 </div>
 </div>
 <div class="literalblock">
-<div class="title">Code to find root class from an enclosing class</div>
+<div class="title">Report</div>
 <div class="content">
-<pre>final ClassFinder finder = new ClassFinder();
-Class&lt;?&gt; clazz = finder.getMainFileClass(FirstClass.SecondClass.ThirdClass.class);</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Result</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">FirstClass</span></code></pre>
+<pre>No approved file yet</pre>
 </div>
 </div>
 </div>
@@ -1491,1357 +1406,6 @@ Those methods should not be in sorted method list</p>
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="org_sfvl_doctesting_utils_codeextractortest">CodeExtractor</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>It is often useful to retrieve information from the source code itself.
-This class provides utilities to extract pieces of code or comments.</p>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_codeextractortest_extractcode">Extract code</h3>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_a_class">Extract code of a class</h4>
-<style>
-.inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-<div class="listingblock">
-<div class="title">How to extract code of a class</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">classToExtract</span> <span class="o">=</span> <span class="nc">SimpleClass</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
-<span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">classSource</span><span class="o">(</span><span class="n">classToExtract</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code to extract</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kn">package</span> <span class="nn">org.sfvl.doctesting.sample</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleClass</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleClass</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_an_inner_class">Extract code of an inner class</h4>
-<div class="listingblock">
-<div class="title">How to extract code of an inner class</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">classSource</span><span class="o">(</span><span class="nc">CodeExtractorTest</span><span class="o">.</span><span class="na">SimpleInnerClass</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code to extract</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">SimpleInnerClass</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">SimpleInnerClass</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_an_other_class_in_file">Extract code of a non public class in file</h4>
-<div class="paragraph">
-<p>It&#8217;s not possible to extract code of a non public class because it&#8217;s not possible to determine source file.
-To be able to extract it, we have to explicitly give source file.</p>
-</div>
-<div class="listingblock">
-<div class="title">How to extract code of a non public class</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">classSource</span><span class="o">(</span><span class="nc">CodeExtractorTest</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="nc">ClassNestedWithCommentToExtract</span><span class="o">.</span><span class="na">SubClassNestedWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code to extract</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
- * Comment of the class.
- */</span>
-<span class="nd">@NotIncludeToDoc</span>
-<span class="kd">class</span> <span class="nc">ClassNestedWithCommentToExtract</span> <span class="o">{</span>
-
-    <span class="cm">/**
-     * Comment of the subclass.
-     */</span>
-    <span class="kd">class</span> <span class="nc">SubClassNestedWithCommentToExtract</span> <span class="o">{</span>
-        <span class="cm">/**
-         * Method comment in an inner class.
-         */</span>
-        <span class="nd">@Test</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodInSubClass</span><span class="o">()</span> <span class="o">{</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"My method"</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
- * Comment of the subclass.
- */</span>
-<span class="kd">class</span> <span class="nc">SubClassNestedWithCommentToExtract</span> <span class="o">{</span>
-    <span class="cm">/**
-     * Method comment in an inner class.
-     */</span>
-    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodInSubClass</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"My method"</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Non public class in a file could not be retrieve without giving main class of the file containing searching class.</p>
-</div>
-<div class="listingblock">
-<div class="title">This code does not work and throw an exception</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">classSource</span><span class="o">(</span>
-        <span class="nc">ClassNestedWithCommentToExtract</span><span class="o">.</span><span class="na">SubClassNestedWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="title">Example 1. Exception thrown</div>
-<div class="content">
-java.nio.file.NoSuchFileException: src/test/java/org/sfvl/doctesting/utils/ClassNestedWithCommentToExtract.java
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_of_an_enum_in_file">Extract code of a an enum in file</h4>
-<div class="listingblock">
-<div class="title">How to extract code of an enum</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">enumSource</span><span class="o">(</span><span class="nc">EnumWithCommentToExtract</span><span class="o">.</span><span class="na">MyEnum</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code to extract</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
- * Comment of the class.
- */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EnumWithCommentToExtract</span> <span class="o">{</span>
-
-    <span class="cm">/**
-     * Comment of the enum.
-     */</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">enum</span> <span class="nc">MyEnum</span> <span class="o">{</span>
-        <span class="cm">/**
-         * First enum with comment.
-         */</span>
-        <span class="nc">FirstEnum</span><span class="o">,</span>
-        <span class="cm">/** Second enum with comment. */</span>
-        <span class="nc">SecondEnum</span><span class="o">,</span>
-        <span class="nc">ThirdEnum</span><span class="o">;</span>
-
-        <span class="cm">/**
-         * A method in enum.
-         */</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodInEnum</span><span class="o">()</span> <span class="o">{</span>
-
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
- * Comment of the enum.
- */</span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="kd">enum</span> <span class="nc">MyEnum</span> <span class="o">{</span>
-    <span class="cm">/**
-     * First enum with comment.
-     */</span>
-    <span class="nc">FirstEnum</span><span class="o">,</span>
-    <span class="cm">/** Second enum with comment. */</span>
-    <span class="nc">SecondEnum</span><span class="o">,</span>
-    <span class="nc">ThirdEnum</span><span class="o">;</span>
-
-    <span class="cm">/**
-     * A method in enum.
-     */</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodInEnum</span><span class="o">()</span> <span class="o">{</span>
-
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">How to extract code of an enum declared outside the class</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">enumSource</span><span class="o">(</span><span class="nc">CodeExtractorTest</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="nc">EnumNotInAClass</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code to extract</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">enum</span> <span class="nc">EnumNotInAClass</span> <span class="o">{</span>
-    <span class="nc">First</span><span class="o">,</span>
-    <span class="nc">Second</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">enum</span> <span class="nc">EnumNotInAClass</span> <span class="o">{</span>
-    <span class="nc">First</span><span class="o">,</span>
-    <span class="nc">Second</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">How to extract code of an enum declared in a class not in his file</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">enumSource</span><span class="o">(</span><span class="nc">CodeExtractorTest</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="nc">ClassWithEnum</span><span class="o">.</span><span class="na">EnumInAClass</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code to extract</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">class</span> <span class="nc">ClassWithEnum</span> <span class="o">{</span>
-    <span class="kd">enum</span> <span class="nc">EnumInAClass</span> <span class="o">{</span>
-        <span class="nc">First</span><span class="o">,</span>
-        <span class="nc">Second</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">enum</span> <span class="nc">EnumInAClass</span> <span class="o">{</span>
-    <span class="nc">First</span><span class="o">,</span>
-    <span class="nc">Second</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_code_from_method">Extract code from method</h4>
-<div class="paragraph">
-<p>Method source code can be retrived from his method object or from his class and his method name.
-It&#8217;s also possible to retrieve only the method body.</p>
-</div>
-<div class="listingblock">
-<div class="title">How to extract code of a method</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">methodSource</span><span class="o">(</span><span class="nc">SimpleClass</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"simpleMethod"</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">SimpleClass:</span><span class="o">:</span><span class="n">simpleMethod</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">methodSource</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code from file</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleClass</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>We could not extract method source when there is two methods with same name in the class.
-.Extract code of a method with several signatures</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">methodSource</span><span class="o">(</span><span class="nc">DuplicateMethodClass</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"duplicateMethod"</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>java.lang.RuntimeException: More than one method with name 'duplicateMethod'</p>
-</div>
-<div class="listingblock">
-<div class="title">How to extract code of a method in a nested class</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nc">ClassWithNestedClass</span><span class="o">.</span><span class="na">NestedClass</span><span class="o">::</span><span class="n">nestedMethod</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">methodSource</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code from file</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClassWithNestedClass</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">NestedClass</span> <span class="o">{</span>
-        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">nestedMethod</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="mi">2</span><span class="o">;</span> <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">nestedMethod</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="mi">2</span><span class="o">;</span> <span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">How to extract body of a method</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractMethodBody</span><span class="o">(</span><span class="nc">SimpleClass</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"simpleMethod"</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code from file</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleClass</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">simpleMethod</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="k">return</span> <span class="mi">0</span><span class="o">;</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_part_of_code_from_method">Extract a part of code from method</h4>
-<div class="paragraph">
-<p>To extract a part of a method, you can write a comment with a specific value
-that indicate beginining of the code to extract.
-Another comment with a specific value indicate the end of the code.</p>
-</div>
-<div class="listingblock">
-<div class="title">How to extract part of a method code</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">ClassWithMethodToExtract:</span><span class="o">:</span><span class="n">methodWithOnePartToExtract</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfMethod</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfMethod</span><span class="o">(</span><span class="nc">ClassWithMethodToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"methodWithOnePartToExtract"</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code from file</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodWithOnePartToExtract</span><span class="o">()</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="c1">// &gt;&gt;&gt;</span>
-    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-    <span class="c1">// &lt;&lt;&lt;</span>
-    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">;</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>You can have several part identify by a text that you pass as argument to the function extracting the code.
-You can have several part identified by the same text.
-In that case, all parts matching the text will be returned.</p>
-</div>
-<div class="listingblock">
-<div class="title">How to extract part of a method</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">ClassWithMethodToExtract:</span><span class="o">:</span><span class="n">methodWithSeveralPartsToExtract</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">codePart1</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfMethod</span><span class="o">(</span><span class="n">method</span><span class="o">,</span> <span class="s">"Part1"</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">codePart2</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfMethod</span><span class="o">(</span><span class="n">method</span><span class="o">,</span> <span class="s">"Part2"</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code from file</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">methodWithSeveralPartsToExtract</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// &gt;&gt;&gt;Part1</span>
-    <span class="kt">int</span> <span class="n">square</span> <span class="o">=</span> <span class="n">value</span> <span class="o">*</span> <span class="n">value</span><span class="o">;</span>
-    <span class="c1">// &lt;&lt;&lt;Part1</span>
-
-    <span class="c1">// &gt;&gt;&gt;Part2</span>
-    <span class="kd">final</span> <span class="nc">String</span> <span class="n">text</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span>
-            <span class="s">"square(%d)=%d"</span><span class="o">,</span>
-            <span class="n">value</span><span class="o">,</span>
-            <span class="n">square</span><span class="o">);</span>
-    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
-    <span class="c1">// &lt;&lt;&lt;Part2</span>
-
-    <span class="c1">// &gt;&gt;&gt;Part1</span>
-    <span class="k">return</span> <span class="n">square</span><span class="o">;</span>
-    <span class="c1">// &lt;&lt;&lt;Part1</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code Part 1 extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">square</span> <span class="o">=</span> <span class="n">value</span> <span class="o">*</span> <span class="n">value</span><span class="o">;</span>
-<span class="k">return</span> <span class="n">square</span><span class="o">;</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Source code Part 2 extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">text</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span>
-        <span class="s">"square(%d)=%d"</span><span class="o">,</span>
-        <span class="n">value</span><span class="o">,</span>
-        <span class="n">square</span><span class="o">);</span>
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">text</span><span class="o">);</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_part_of_code_from_file">Extract a part of code from a file</h4>
-<div class="listingblock">
-<div class="title">How to extract part of a method code</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfFile</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="s">"import"</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">File content</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kn">package</span> <span class="nn">org.sfvl.doctesting.sample</span><span class="o">;</span>
-
-<span class="c1">// &gt;&gt;&gt;import</span>
-<span class="kn">import</span> <span class="nn">static</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Math</span><span class="o">.*;</span>
-<span class="c1">// &lt;&lt;&lt;import</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FileWithCodeToExtract</span> <span class="o">{</span>
-
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">absoluteValue</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nf">abs</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Content extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kn">import</span> <span class="nn">static</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Math</span><span class="o">.*;</span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extract_a_part_of_code_from_the_current_method">Extract a part of code from the current method</h4>
-<div class="listingblock">
-<div class="title">How to extract code from the current method</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfCurrentMethod</span><span class="o">();</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code from file</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="nc">String</span> <span class="nf">method_with_code_to_extract</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">// &gt;&gt;&gt;</span>
-    <span class="nc">String</span> <span class="n">value</span> <span class="o">=</span> <span class="s">"some text"</span><span class="o">;</span>
-    <span class="c1">// &lt;&lt;&lt;</span>
-
-    <span class="k">return</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfCurrentMethod</span><span class="o">();</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code extracted from the current method</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">value</span> <span class="o">=</span> <span class="s">"some text"</span><span class="o">;</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">How to extract code from the current method using a tag</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfCurrentMethod</span><span class="o">(</span><span class="s">"2"</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code from file</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="nc">String</span> <span class="nf">method_with_code_to_extract_with_tag</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">// &gt;&gt;&gt;1</span>
-    <span class="nc">String</span> <span class="n">value1</span> <span class="o">=</span> <span class="s">"some text"</span><span class="o">;</span>
-    <span class="c1">// &lt;&lt;&lt;1</span>
-
-    <span class="c1">// &gt;&gt;&gt;2</span>
-    <span class="nc">String</span> <span class="n">value2</span> <span class="o">=</span> <span class="s">"code to extract"</span><span class="o">;</span>
-    <span class="c1">// &lt;&lt;&lt;2</span>
-
-    <span class="k">return</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfCurrentMethod</span><span class="o">(</span><span class="s">"2"</span><span class="o">);</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code extracted from the current method</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">value2</span> <span class="o">=</span> <span class="s">"code to extract"</span><span class="o">;</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode">Extract part of code</h4>
-<div class="paragraph">
-<p>We shows here some technical cases.</p>
-</div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_with_same_beginning_of_another_tag">Tag with same beginning of another tag</h5>
-<div class="paragraph">
-<p>Tag (MyCode) could be a subpart of another one (<strong>MyCode</strong>Before or <strong>MyCode</strong>After).</p>
-</div>
-<div class="listingblock">
-<div class="title">Source code with extractor tags</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="c1">// &gt;&gt;&gt;MyCodeBefore</span>
-<span class="nc">String</span> <span class="n">partBefore</span> <span class="o">=</span> <span class="s">"Part before MyCode"</span><span class="o">;</span>
-<span class="c1">// &lt;&lt;&lt;MyCodeBefore</span>
-
-<span class="c1">// &gt;&gt;&gt;MyCode</span>
-<span class="nc">String</span> <span class="n">partMyCode</span> <span class="o">=</span> <span class="s">"Part MyCode"</span><span class="o">;</span>
-<span class="c1">// &lt;&lt;&lt;MyCode</span>
-
-<span class="c1">// &gt;&gt;&gt;MyCodeAfter</span>
-<span class="nc">String</span> <span class="n">partAfter</span> <span class="o">=</span> <span class="s">"Part after MyCode"</span><span class="o">;</span>
-<span class="c1">// &lt;&lt;&lt;MyCodeAfter</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code part MyCodeBefore extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">partBefore</span> <span class="o">=</span> <span class="s">"Part before MyCode"</span><span class="o">;</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Source code part MyCodeAfter extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">partAfter</span> <span class="o">=</span> <span class="s">"Part after MyCode"</span><span class="o">;</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Source code part MyCode extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">partMyCode</span> <span class="o">=</span> <span class="s">"Part MyCode"</span><span class="o">;</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_beginning_with_same_outer_tag_name">Tag beginning with same outer tag name</h5>
-<div class="paragraph">
-<p>Tag inside another one can be a subpart (MyCode)  of the global one (<strong>MyCode</strong>Global) .</p>
-</div>
-<div class="listingblock">
-<div class="title">Source code with extractor tags</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="c1">// &gt;&gt;&gt;MyCodeGlobal</span>
-<span class="nc">String</span> <span class="n">partGlobalBefore</span> <span class="o">=</span> <span class="s">"Part global before MyCode"</span><span class="o">;</span>
-
-<span class="c1">// &gt;&gt;&gt;MyCode</span>
-<span class="nc">String</span> <span class="n">partMyCode</span> <span class="o">=</span> <span class="s">"Part MyCode"</span><span class="o">;</span>
-<span class="c1">// &lt;&lt;&lt;MyCode</span>
-
-<span class="nc">String</span> <span class="n">partGlobalAfter</span> <span class="o">=</span> <span class="s">"Part global after MyCode"</span><span class="o">;</span>
-<span class="c1">// &lt;&lt;&lt;MyCodeGlobal</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code part MyCodeInside extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">partMyCode</span> <span class="o">=</span> <span class="s">"Part MyCode"</span><span class="o">;</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Source code part MyCodeInsideAround extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">partGlobalBefore</span> <span class="o">=</span> <span class="s">"Part global before MyCode"</span><span class="o">;</span>
-
-<span class="c1">// &gt;&gt;&gt;MyCode</span>
-<span class="nc">String</span> <span class="n">partMyCode</span> <span class="o">=</span> <span class="s">"Part MyCode"</span><span class="o">;</span>
-<span class="c1">// &lt;&lt;&lt;MyCode</span>
-
-<span class="nc">String</span> <span class="n">partGlobalAfter</span> <span class="o">=</span> <span class="s">"Part global after MyCode"</span><span class="o">;</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="org_sfvl_doctesting_utils_codeextractortest_extractcode_extractpartofcode_tag_beginning_with_same_inner_tag_name">Tag beginning with same inner tag name</h5>
-<div class="paragraph">
-<p>Tag inside (<strong>MyCodeGlobal</strong>Inside) another one can be an extension of an outside tag (MyCodeGlobal).</p>
-</div>
-<div class="listingblock">
-<div class="title">Source code with extractor tags</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="c1">// &gt;&gt;&gt;MyCodeGlobal</span>
-<span class="nc">String</span> <span class="n">partGlobalBefore</span> <span class="o">=</span> <span class="s">"Part global before MyCode"</span><span class="o">;</span>
-
-<span class="c1">// &gt;&gt;&gt;MyCodeGlobalInside</span>
-<span class="nc">String</span> <span class="n">partInside</span> <span class="o">=</span> <span class="s">"Part MyCode"</span><span class="o">;</span>
-<span class="c1">// &lt;&lt;&lt;MyCodeGlobalInside</span>
-
-<span class="nc">String</span> <span class="n">partGlobalAfter</span> <span class="o">=</span> <span class="s">"Part global after MyCode"</span><span class="o">;</span>
-<span class="c1">// &lt;&lt;&lt;MyCodeGlobal</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code part MyCodeEnclosed extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">partInside</span> <span class="o">=</span> <span class="s">"Part MyCode"</span><span class="o">;</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Source code part MyCodeEnclosedInside extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">partGlobalBefore</span> <span class="o">=</span> <span class="s">"Part global before MyCode"</span><span class="o">;</span>
-
-<span class="c1">// &gt;&gt;&gt;MyCodeGlobalInside</span>
-<span class="nc">String</span> <span class="n">partInside</span> <span class="o">=</span> <span class="s">"Part MyCode"</span><span class="o">;</span>
-<span class="c1">// &lt;&lt;&lt;MyCodeGlobalInside</span>
-
-<span class="nc">String</span> <span class="n">partGlobalAfter</span> <span class="o">=</span> <span class="s">"Part global after MyCode"</span><span class="o">;</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_codeextractortest_extractcomment">Extract comment</h3>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_class_comment">Extract class comment</h4>
-<div class="listingblock">
-<div class="title">How to extract comment of a class</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">ClassWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
- * Comment of the class.
- */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClassWithCommentToExtract</span> <span class="o">{</span>
-
-    <span class="cm">/**
-     * Comment of the method without parameters.
-     */</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodWithoutParameters</span><span class="o">()</span> <span class="o">{</span>
-
-    <span class="o">}</span>
-
-    <span class="cm">/**
-     * Comment of the method with two parameters.
-     */</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodWithParameters</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-
-    <span class="o">}</span>
-
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Comment extracted from class</div>
-<div class="content">
-<pre>Comment of the class.</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">How to extract comment of a nested class</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">CodeExtractorTest</span><span class="o">.</span><span class="na">NestedClass</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
- * Comment of the nested class of CodeExtractorTest.
- */</span>
-<span class="nd">@NotIncludeToDoc</span>
-<span class="kd">class</span> <span class="nc">NestedClass</span> <span class="o">{</span>
-    <span class="cm">/**
-     * Method comment in an inner class.
-     */</span>
-    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodInSubClass</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"My method"</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Comment extracted from class</div>
-<div class="content">
-<pre>Comment of the nested class of CodeExtractorTest.</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">How to extract comment of class that is not the main class of his file.</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">CodeExtractorTest</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">ClassNestedWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
- * Comment of the class.
- */</span>
-<span class="nd">@NotIncludeToDoc</span>
-<span class="kd">class</span> <span class="nc">ClassNestedWithCommentToExtract</span> <span class="o">{</span>
-
-    <span class="cm">/**
-     * Comment of the subclass.
-     */</span>
-    <span class="kd">class</span> <span class="nc">SubClassNestedWithCommentToExtract</span> <span class="o">{</span>
-        <span class="cm">/**
-         * Method comment in an inner class.
-         */</span>
-        <span class="nd">@Test</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodInSubClass</span><span class="o">()</span> <span class="o">{</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"My method"</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Comment extracted from class</div>
-<div class="content">
-<pre>Comment of the class.</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_method_comment">Extract method comment</h4>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
- * Comment of the class.
- */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClassWithCommentToExtract</span> <span class="o">{</span>
-
-    <span class="cm">/**
-     * Comment of the method without parameters.
-     */</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodWithoutParameters</span><span class="o">()</span> <span class="o">{</span>
-
-    <span class="o">}</span>
-
-    <span class="cm">/**
-     * Comment of the method with two parameters.
-     */</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodWithParameters</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-
-    <span class="o">}</span>
-
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>How to extract comment of a method</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getDeclaredMethod</span><span class="o">(</span><span class="s">"methodWithoutParameters"</span><span class="o">);</span>
-<span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span>
-        <span class="nc">ClassWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="n">method</span>
-<span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">From method without arguments.</div>
-<div class="content">
-<pre>Comment of the method without parameters.</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>How to extract comment of a method with parameters</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getDeclaredMethod</span><span class="o">(</span><span class="s">"methodWithParameters"</span><span class="o">,</span> <span class="kt">int</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-<span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span>
-        <span class="nc">ClassWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="n">method</span>
-<span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">From method with parameters.</div>
-<div class="content">
-<pre>Comment of the method with two parameters.</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>How to extract comment of a method using Method object</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">methodWithComment</span> <span class="o">=</span> <span class="nc">ClassWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"methodWithoutParameters"</span><span class="o">);</span>
-<span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">methodWithComment</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">From method</div>
-<div class="content">
-<pre>Comment of the method without parameters.</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>How to extract comment of a method with parameters using Method object</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">methodWithComment</span> <span class="o">=</span> <span class="nc">ClassWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"methodWithParameters"</span><span class="o">,</span> <span class="kt">int</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-<span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">methodWithComment</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">From method</div>
-<div class="content">
-<pre>Comment of the method with two parameters.</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>How to extract comment of a method of an inner class</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Method</span> <span class="n">methodWithComment</span> <span class="o">=</span> <span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nc">ClassNestedWithCommentToExtract</span><span class="o">.</span><span class="na">SubClassNestedWithCommentToExtract</span><span class="o">::</span><span class="n">methodInSubClass</span><span class="o">);</span>
-<span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">getClass</span><span class="o">(),</span> <span class="n">methodWithComment</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">From method</div>
-<div class="content">
-<pre>Method comment in an inner class.</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcomment_extract_enum_comment">Extract enum comment</h4>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
- * Comment of the class.
- */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EnumWithCommentToExtract</span> <span class="o">{</span>
-
-    <span class="cm">/**
-     * Comment of the enum.
-     */</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">enum</span> <span class="nc">MyEnum</span> <span class="o">{</span>
-        <span class="cm">/**
-         * First enum with comment.
-         */</span>
-        <span class="nc">FirstEnum</span><span class="o">,</span>
-        <span class="cm">/** Second enum with comment. */</span>
-        <span class="nc">SecondEnum</span><span class="o">,</span>
-        <span class="nc">ThirdEnum</span><span class="o">;</span>
-
-        <span class="cm">/**
-         * A method in enum.
-         */</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodInEnum</span><span class="o">()</span> <span class="o">{</span>
-
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>How to extract comment of an enum</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span>
-        <span class="nc">EnumWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="nc">EnumWithCommentToExtract</span><span class="o">.</span><span class="na">MyEnum</span><span class="o">.</span><span class="na">class</span>
-<span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Comment extracted: <strong>Comment of the enum.</strong></p>
-</div>
-<div class="paragraph">
-<p>How to extract comment of one value of an enum</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span>
-        <span class="nc">EnumWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="nc">EnumWithCommentToExtract</span><span class="o">.</span><span class="na">MyEnum</span><span class="o">.</span><span class="na">FirstEnum</span>
-<span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Comment extracted: <strong>First enum with comment.</strong></p>
-</div>
-<div class="paragraph">
-<p>How to extract comment of one value of an enum</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span>
-        <span class="nc">EnumWithCommentToExtract</span><span class="o">.</span><span class="na">MyEnum</span><span class="o">.</span><span class="na">SecondEnum</span>
-<span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Comment extracted: <strong>Second enum with comment.</strong></p>
-</div>
-<div class="paragraph">
-<p>How to extract comment of one value of an enum</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span>
-        <span class="nc">EnumWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
-        <span class="nc">EnumWithCommentToExtract</span><span class="o">.</span><span class="na">MyEnum</span><span class="o">.</span><span class="na">ThirdEnum</span>
-<span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Comment extracted: No comment</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcomment_bug_when_annotation_before_comment">Issue: comment not retrieve when an annotation is before the comment</h4>
-<div class="paragraph">
-<p>When there is an annotation before the class comment, the comment is not retrieve.
-This is an issue in the JavaParser we used (com.github.javaparser:javaparser-core:3.22.1).</p>
-</div>
-<div class="listingblock">
-<div class="title">How to extract comment of a class</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">ClassWithAnnotationBeforeComment</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@NotIncludeToDoc</span>
-<span class="cm">/**
- * Comment of the class.
- */</span>
-<span class="kd">class</span> <span class="nc">ClassWithAnnotationBeforeComment</span> <span class="o">{</span>
-    <span class="c1">// ...</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Comment extracted from class</div>
-<div class="content">
-<pre></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult">Extract code and result</h3>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_show_extract_parameters_code">Show extract parameters code</h4>
-<div class="paragraph">
-<p>We can use the following code to get values and the code used to obtain it</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">codes</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractParametersCode</span><span class="o">(</span>
-        <span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">),</span>
-        <span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
-<span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Result is</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_extract_parameters_code_keep_format">Extract parameters code keep format</h4>
-<div class="paragraph">
-<p>We can use the following code to get values and the code used to obtain it</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">codes</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractParametersCodeAsItWrite</span><span class="o">(</span>
-        <span class="s">"abcd"</span>
-                <span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">),</span>
-        <span class="s">"abcd"</span>
-                <span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
-<span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Result is</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="s">"abcd"</span>
-        <span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="s">"abcd"</span>
-        <span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_show_extract_parameters_code_from_nested_class">Show extract parameters code from nested class</h4>
-<div class="paragraph">
-<p>We can use the following code to get values and the code used to obtain it</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">static</span> <span class="kd">class</span> <span class="nc">NestedClassWithArgumentsToExtract</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="nf">getCodeExtracted</span><span class="o">()</span> <span class="o">{</span>
-        <span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">codes</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractParametersCode</span><span class="o">(</span>
-                <span class="s">"xyzxxx"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">),</span>
-                <span class="s">"xyzxxx"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
-        <span class="o">);</span>
-
-        <span class="k">return</span> <span class="n">codes</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Result is</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="s">"xyzxxx"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="s">"xyzxxx"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_show_extract_parameters_code_with_an_intermediate_method">Show extract parameters code with an intermediate method</h4>
-<div class="paragraph">
-<p>We can defined a method and retrieve code used as parameters.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="nf">myMethod</span><span class="o">(</span><span class="nc">String</span> <span class="n">value_A</span><span class="o">,</span> <span class="nc">String</span> <span class="n">value_B</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractParametersCodeFromStackDepth</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>We can use the method and get values and the code used to obtain it</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">codes</span> <span class="o">=</span> <span class="n">myMethod</span><span class="o">(</span>
-        <span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">),</span>
-        <span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
-<span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Result is</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_codeextractortest_extractcodeandresult_show_extract_parameters_code_with_an_intermediate_class">Show extract parameters code with an intermediate class</h4>
-<div class="paragraph">
-<p>We can defined a class and retrieve code used as parameters calling constructor.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyClass</span> <span class="o">{</span>
-
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">parameterCodes</span><span class="o">;</span>
-
-    <span class="nc">MyClass</span><span class="o">(</span><span class="nc">String</span> <span class="n">value_1</span><span class="o">,</span> <span class="nc">String</span> <span class="n">value_B</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">parameterCodes</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractParametersCodeFromStackDepth</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>We can create an object and get values and the code used calling the constructor.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">codes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MyClass</span><span class="o">(</span>
-        <span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">),</span>
-        <span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
-<span class="o">).</span><span class="na">parameterCodes</span><span class="o">;</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Result is</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="s">"abcd"</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span></code></pre>
-</div>
 </div>
 </div>
 </div>
@@ -3711,17 +2275,22 @@ that have its own title for example.</p>
 <div class="title">DocWriter usage</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">();</span>
-<span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"Some text added to show DocWriter output."</span><span class="o">);</span>
-<span class="kd">final</span> <span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span>
-        <span class="s">"This title will not be displayed"</span><span class="o">,</span>
-        <span class="nc">MyTestWithoutTitle</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"my_method"</span><span class="o">)</span>
+<span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">"\n"</span><span class="o">,</span>
+        <span class="s">"Some text added to show DocWriter output."</span><span class="o">,</span>
+        <span class="n">doc</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span>
+                <span class="s">"This title will not be displayed"</span><span class="o">,</span>
+                <span class="nc">MyTestWithoutTitle</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"my_method"</span><span class="o">)),</span>
+        <span class="s">"Some text added at the end."</span>
 <span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="literalblock">
 <div class="title">Output provided</div>
 <div class="content">
-<pre>Some text added to show DocWriter output.</pre>
+<pre>Some text added to show DocWriter output.
+
+
+Some text added at the end.</pre>
 </div>
 </div>
 </div>
@@ -3878,827 +2447,6 @@ Description of the test class.
 include::_MyTestWithClassToDocument.test_A.approved.adoc[leveloffset=+1]</pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="org_sfvl_doctesting_utils_methodreferencetest">Extract information from method reference</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><code>MethodReferenceTest</code> class provides tools to extract information from a method reference.
-It retrieves the method associated with the method reference, so it&#8217;s possible to get name.
-This allows to use the method reference instead of writing the method name as a string.
-Using refactoring tools, names are automatically updated and there is no risk to misspelled a name.</p>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_methodreferencetest_find_method_name">Find method name</h3>
-<div class="paragraph">
-<p>It&#8217;s possible to extract method name from a method reference.
-We can use either a reference using class or using an object instance (only on non-static method).</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 66.6666%;">
-<col style="width: 11.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Code</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Returned value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myMethod</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>myMethod</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">myObject:</span><span class="o">:</span><span class="n">myMethod</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>myMethod</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myConsumer</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>myConsumer</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myFunction</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>myFunction</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">myObject:</span><span class="o">:</span><span class="n">myFunction</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>myFunction</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myFunctionWithGeneric</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>myFunctionWithGeneric</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myStaticConsumer</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>myStaticConsumer</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_methodreferencetest_find_method">Find method</h3>
-<div class="paragraph">
-<p>It&#8217;s possible to extract method from a method reference.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 44.4444%;">
-<col style="width: 11.1111%;">
-<col style="width: 44.4445%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Code</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Returned value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myMethod</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Method</p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nc">MyClass</span><span class="o">.</span><span class="na">myMethod</span><span class="o">(</span> <span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">myObject:</span><span class="o">:</span><span class="n">myMethod</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Method</p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nc">MyClass</span><span class="o">.</span><span class="na">myMethod</span><span class="o">(</span> <span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myConsumer</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Method</p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nc">MyClass</span><span class="o">.</span><span class="na">myConsumer</span><span class="o">(</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myFunction</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Method</p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span> <span class="nc">MyClass</span><span class="o">.</span><span class="na">myFunction</span><span class="o">(</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Integer</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">myObject:</span><span class="o">:</span><span class="n">myFunction</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Method</p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span> <span class="nc">MyClass</span><span class="o">.</span><span class="na">myFunction</span><span class="o">(</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Integer</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myFunctionWithGeneric</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Method</p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">List</span> <span class="nc">MyClass</span><span class="o">.</span><span class="na">myFunctionWithGeneric</span><span class="o">(</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">List</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">MyClass:</span><span class="o">:</span><span class="n">myStaticConsumer</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Method</p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nc">MyClass</span><span class="o">.</span><span class="na">myStaticConsumer</span><span class="o">(</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_methodreferencetest_find_method_name_from_complex_method">Find method name from a specific method</h3>
-<div class="paragraph">
-<p><code>MethodReference</code> class provides some common interface declarations so you can use it with simple methods.
-When you have a method with several parameters, you need to create your own interface.
-Those methods could not work with ambiguous method reference (same method name with different parameters).</p>
-</div>
-<div class="listingblock">
-<div class="title">Specific interface to create</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">interface</span> <span class="nc">MySpecificInterface</span> <span class="kd">extends</span> <span class="nc">Serializable</span> <span class="o">{</span>
-    <span class="nc">String</span> <span class="nf">apply</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">param1</span><span class="o">,</span> <span class="nc">String</span> <span class="n">param2</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">param3</span><span class="o">);</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 44.4444%;">
-<col style="width: 11.1111%;">
-<col style="width: 44.4445%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Code</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Returned value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getName</span><span class="o">((</span><span class="nc">MySpecificInterface</span><span class="o">)</span> <span class="k">this</span><span class="o">::</span><span class="n">mySpecificMethod</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>mySpecificMethod</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">((</span><span class="nc">MySpecificInterface</span><span class="o">)</span> <span class="k">this</span><span class="o">::</span><span class="n">mySpecificMethod</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Method</p></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span> <span class="nc">MethodReferenceTest</span><span class="o">.</span><span class="na">mySpecificMethod</span><span class="o">(</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Integer</span><span class="o">,</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span><span class="o">,</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">List</span><span class="o">)</span></code></pre>
-</div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_methodreferencetest_classused">Class used in examples</h3>
-<div class="listingblock">
-<div class="title">Class used for the examples</div>
-<div class="content">
-<pre class="rouge highlight"><code>static class MyClass {
-    public void myMethod() {
-    }
-
-    public void myConsumer(String parameter) {
-    }
-
-    public String myFunction(Integer parameter) {
-        return null;
-    }
-
-    public List&lt;String&gt; myFunctionWithGeneric(List&lt;Integer&gt; parameter) {
-        return null;
-    }
-
-    public static void myStaticConsumer(String parameter) {
-    }
-
-    public String mySpecificMethod(Integer param1, String param2, List&lt;String&gt; param3) {
-        return null;
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="org_sfvl_doctesting_utils_parsedclassrepositorytest">ParsedClassRepository</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Extract information from source code.</p>
-</div>
-<div class="paragraph">
-<p>Extraction from method is a naive implementation.
-We compare only class name without checking the scope (package).</p>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_context">Context</h3>
-<div class="paragraph">
-<p>Exemples of this chapter use the following class
-.Class from which information is extracted</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-</pre></td><td class="code"><pre><span class="kn">package</span> <span class="nn">org.sfvl.doctesting.utils</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
-
-<span class="cm">/**
- * My comment for ClassWithInformationToExtract.
- */</span>
-<span class="kd">class</span> <span class="nc">ClassWithInformationToExtract</span> <span class="o">{</span>
-
-    <span class="cm">/**
-     * Description of the method 'doSomething'.
-     */</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">()</span> <span class="o">{</span>
-    <span class="o">}</span>
-
-    <span class="cm">/**
-     * Do something with a String.
-     */</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">(</span><span class="nc">String</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
-    <span class="o">}</span>
-
-    <span class="cm">/**
-     * Do something with a java.lang.Character.
-     */</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Character</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
-    <span class="o">}</span>
-
-    <span class="cm">/**
-     * Do something with a List&lt;String&gt;.
-     */</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
-    <span class="o">}</span>
-
-    <span class="cm">/**
-     * Do something with a String[].
-     */</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
-    <span class="o">}</span>
-
-    <span class="cm">/**
-     * Do something with an Integer.
-     */</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">(</span><span class="kt">int</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></td></tr></tbody></table></code></pre>
-</div>
-</div>
-<style>
-#org_sfvl_doctesting_utils_parsedclassrepositorytest_context ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment">Retrieve comment</h3>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_class">Retrieve comment of a class</h4>
-<div class="listingblock inline">
-<div class="title">How to extract comment</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="listingblock inline">
-<div class="title">Comment extracted</div>
-<div class="content">
-<pre>My comment for ClassWithInformationToExtract.</pre>
-</div>
-</div>
-<style>
-#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_class ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method">Retrieve comment of a method</h4>
-<div class="listingblock inline">
-<div class="title">How to extract comment</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span>
-        <span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="listingblock inline">
-<div class="title">Comment extracted</div>
-<div class="content">
-<pre>Description of the method 'doSomething'.</pre>
-</div>
-</div>
-<style>
-#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_local_class_defined_in_a_method">Retrieve comment of local class defined in a method</h4>
-<div class="paragraph">
-<p>We are not able to deal with local classes(those defined in method).</p>
-</div>
-<div class="listingblock inline">
-<div class="title">How to extract comment</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
- * Comment of local class defined in method.
- */</span>
-<span class="kd">class</span> <span class="nc">MyLocalClass</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">()</span> <span class="o">{</span>
-
-    <span class="o">}</span>
-<span class="o">}</span>
-<span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">MyLocalClass</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="listingblock inline">
-<div class="title">Exception</div>
-<div class="content">
-<pre>java.lang.RuntimeException: Local classes are not handled</pre>
-</div>
-</div>
-<style>
-#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_local_class_defined_in_a_method ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_parameter">Retrieve comment of a method with parameter</h4>
-<div class="listingblock inline">
-<div class="title">How to extract comment</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span>
-        <span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="listingblock inline">
-<div class="title">Comment extracted</div>
-<div class="content">
-<pre>Do something with a String.</pre>
-</div>
-</div>
-<style>
-#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_parameter ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_parameter_with_scope">Retrieve comment of a method with parameter with scope</h4>
-<div class="listingblock inline">
-<div class="title">How to extract comment</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span>
-        <span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">,</span> <span class="nc">Character</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="listingblock inline">
-<div class="title">Comment extracted</div>
-<div class="content">
-<pre>Do something with a java.lang.Character.</pre>
-</div>
-</div>
-<style>
-#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_parameter_with_scope ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_list_parameter">Retrieve comment of a method with list parameter</h4>
-<div class="listingblock inline">
-<div class="title">How to extract comment</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span>
-        <span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">,</span> <span class="nc">List</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="listingblock inline">
-<div class="title">Comment extracted</div>
-<div class="content">
-<pre>Do something with a List&lt;String&gt;.</pre>
-</div>
-</div>
-<style>
-#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_list_parameter ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_array_parameter">Retrieve comment of a method with array parameter</h4>
-<div class="listingblock inline">
-<div class="title">How to extract comment</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span>
-        <span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">,</span> <span class="nc">String</span><span class="o">[].</span><span class="na">class</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="listingblock inline">
-<div class="title">Comment extracted</div>
-<div class="content">
-<pre>Do something with a String[].</pre>
-</div>
-</div>
-<style>
-#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievecomment_retrieve_comment_of_a_method_with_array_parameter ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-</div>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber">Retrieve line number</h3>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_class">Retrieve line of a class</h4>
-<div class="listingblock">
-<div class="title">How to get the first line of a class</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="kt">int</span> <span class="n">lineNumber</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getLineNumber</span><span class="o">(</span><span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Line found: <strong>8</strong></p>
-</div>
-<style>
-#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_class ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_method">Retrieve line of a method</h4>
-<div class="listingblock">
-<div class="title">How to get the first line of a method</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">ClassWithInformationToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"doSomething"</span><span class="o">);</span>
-<span class="kt">int</span> <span class="n">lineNumber</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getLineNumber</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Line found: <strong>13</strong></p>
-</div>
-<style>
-#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_method ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_an_enum">Retrieve line of an enum</h4>
-<div class="listingblock">
-<div class="title">How to get the first line of an enum in a class</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="kt">int</span> <span class="n">lineNumber</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getLineNumber</span><span class="o">(</span><span class="nc">EnumWithCommentToExtract</span><span class="o">.</span><span class="na">MyEnum</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Line found: <strong>11</strong></p>
-</div>
-<style>
-#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_an_enum ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-</div>
-<div class="sect3">
-<h4 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_method_in_an_enum">Retrieve line of a method in an enum</h4>
-<div class="listingblock">
-<div class="title">How to get the first line of a method in an enum</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">EnumWithCommentToExtract</span><span class="o">.</span><span class="na">MyEnum</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"methodInEnum"</span><span class="o">);</span>
-<span class="kd">final</span> <span class="kt">int</span> <span class="n">lineNumber</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">getLineNumber</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Line found: <strong>23</strong></p>
-</div>
-<style>
-#org_sfvl_doctesting_utils_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_method_in_an_enum ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-</div>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_create_parsedclassrepository">Create ParsedClassRepository</h3>
-<div class="paragraph">
-<p>We can build a ParsedClassRepository with several paths.
-When path does not exist, an Exception was thrown.
-Empty path will not be added.
-When you do not have one of the default directories,
-you can set it with an empty value to not throw an exception.</p>
-</div>
-<div class="sect3">
-<h4 id="_object_creation">Object creation</h4>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">ParsedClassRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParsedClassRepository</span><span class="o">(</span>
-        <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"src/test/java"</span><span class="o">)</span>
-<span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">ParsedClassRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParsedClassRepository</span><span class="o">(</span>
-        <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"src/main/java"</span><span class="o">),</span>
-        <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"src/test/java"</span><span class="o">)</span>
-<span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">ParsedClassRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParsedClassRepository</span><span class="o">(</span>
-        <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">""</span><span class="o">),</span>
-        <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"src/test/java"</span><span class="o">)</span>
-<span class="o">);</span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_exception">Exception</h4>
-<div class="listingblock">
-<div class="title">java.lang.IllegalArgumentException: Only directories are allowed as root path: src/UNKNOWN/java</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">ParsedClassRepository</span> <span class="n">repository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ParsedClassRepository</span><span class="o">(</span>
-        <span class="nc">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"src/UNKNOWN/java"</span><span class="o">)</span>
-<span class="o">);</span></code></pre>
-</div>
-</div>
-<style>
-#org_sfvl_doctesting_utils_parsedclassrepositorytest_create_parsedclassrepository ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
-</div>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_parsedclassrepositorytest_parsed_classes_only_once">Parsed classes only once</h3>
-<div class="paragraph">
-<p>The <code>ParsedClassRepository</code> have a cache to avoid parsing twice the same class.</p>
-</div>
-<div class="paragraph">
-<p>Below, we show calls to <code>parse</code> method when we call a method of <code>ParsedClassRepository</code>.
-<code>clearCache</code> method clears the cache and classes need to parse again.</p>
-</div>
-<div class="exampleblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>clearCache()</p>
-</li>
-<li>
-<p>getComment(ApprovalsExtensionTest.class)</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>parse(org.sfvl.doctesting.junitextension, ApprovalsExtensionTest.java.class)</strong></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>getComment(DocPathTest.class)</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>parse(org.sfvl.doctesting.utils, DocPathTest.java.class)</strong></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>getComment(ApprovalsExtensionTest.class)</p>
-</li>
-<li>
-<p>getComment(ApprovalsExtensionTest.class, using_extension)</p>
-</li>
-<li>
-<p>getComment(FailureReporterTest.class)</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>parse(org.sfvl.doctesting.junitextension, FailureReporterTest.java.class)</strong></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>clearCache()</p>
-</li>
-<li>
-<p>getComment(ApprovalsExtensionTest.class)</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>parse(org.sfvl.doctesting.junitextension, ApprovalsExtensionTest.java.class)</strong></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<style>
-#org_sfvl_doctesting_utils_parsedclassrepositorytest_parsed_classes_only_once ~ .inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
-}
-</style>
 </div>
 </div>
 </div>
@@ -5115,8 +2863,8 @@ includeblock: format an include as a block.
 :root {
   --bg1: #05fdCC;
   --bg2: #0fd289;
-  --logo_height: 100px
-  --shadow_color: #084f34;
+  --logo-height: 100;
+  --shadow-color: #084f34;
   --title-color: #7a2518;
 
   --media-small-header-height:50px;
@@ -5152,14 +2900,14 @@ th.tableblock {
 }
 
 #toc.toc2 {
-    top: var(--logo_height); /* Height of the project_home */
+    top: var(--logo-height); /* Height of the project_home */
     overflow: scroll; /* To avoid menu position change when scoll bar appear */
     scrollbar-color: var(--bg1) var(--bg2);
 }
 
 #project_home {
     top: 0;
-    height: var(--logo_height); /* toc2 need to be position after this height */
+    height: var(--logo-height); /* toc2 need to be position after this height */
 
     font-family: "Noto Serif","DejaVu Serif",serif;
     font-style: italic;
@@ -5248,6 +2996,71 @@ td.tableblock > .content > .listingblock {
     font-weight: normal;
 }
 
+.inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+
+
+/*
+To add a section that render asciidoc you can open a block:
+
+[.rendering]
+--
+My text
+--
+
+or, if you need to include a file, you could not do it inside a block.
+Instead of that, you can create a section with title.
+
+[.rendering]
+== Rendering of the result
+
+The title will be hide and all the content has a specific css.
+
+
+*/
+div.sectionbody .rendering > h2:first-child,
+div.sectionbody .rendering > h3:first-child,
+div.sectionbody .rendering > h4:first-child {
+    display: none;
+}
+/*
+div.sectionbody .rendering > h2:first-child + div,
+div.sectionbody .rendering > h3:first-child + div,
+div.sectionbody .rendering > h4:first-child + div {
+*/
+
+.openblock.rendering,
+div.sectionbody .rendering,
+div.sectionbody .rendering,
+div.sectionbody .rendering {
+    padding: 20px;
+    margin-bottom: 1em;
+    background: var(--bg1);
+    filter: brightness(0.90);
+    box-shadow: 10px 5px 5px var(--shadow-color);
+    border: 1px solid var(--shadow-color);
+}
+div.sectionbody .rendering h3,
+div.sectionbody .rendering h4,
+div.sectionbody .rendering h5 {
+    margin-top: 0px;
+}
+
+.openblock.rendering .title1,
+div.sectionbody .rendering .title1 {
+    font-size: 2em;
+    font-family: "Open Sans","DejaVu Sans",sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: #ba3925;
+    text-rendering: optimizeLegibility;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
 @media (max-width: 800px) {
   #toc {
     display: none;
@@ -5284,6 +3097,12 @@ window.addEventListener( "load",
     function() {
         menus = document.querySelectorAll(".sectlevel1 > li");
         menus.forEach(toggleMenuOnClick);
+
+        // Move logo to the header
+        const project_home = document.getElementById('project_home');
+        const header = document.getElementById('header');
+        header.appendChild(project_home);
+
      }
 );
 </script>
