@@ -41,7 +41,7 @@ public class CompareFileAction extends AnAction {
     }
 
     private Optional<VirtualFile> getFileToCompare(VirtualFile fileSelected) {
-        return Optional.of(fileSelected)
+        return Optional.ofNullable(fileSelected)
                 .filter(Predicate.not(VirtualFile::isDirectory))
                 .map(VirtualFile::getName)
                 .map(this::getApprovalFile)
