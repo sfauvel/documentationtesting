@@ -1,13 +1,12 @@
 
-import com.intellij.openapi.actionSystem.AnAction;
-import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.PlatformDataKeys;
+import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
+import docAsTest.DocAsTestAction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,11 +16,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class ApproveFileAction extends AnAction {
-    private final static Logger LOG = Logger.getInstance(ApproveFileAction.class);
+public class ApproveFileAction extends DocAsTestAction {
 
     @Override
     public void update(AnActionEvent actionEvent) {
+        LOG.debug("ApproveFileAction.update");
+        traceActionEvent(actionEvent);
+
         final VirtualFile[] dataFiles = getData(actionEvent);
         actionEvent.getPresentation().setVisible(Arrays.stream(dataFiles).anyMatch(this::isVisible));
         actionEvent.getPresentation().setText(getApproveActionName(dataFiles));
@@ -43,6 +44,8 @@ public class ApproveFileAction extends AnAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent actionEvent) {
+        LOG.debug("ApproveFileAction.actionPerformed");
+        traceActionEvent(actionEvent);
 
         final @Nullable VirtualFile[] actionEventData = getData(actionEvent);
 
@@ -50,7 +53,8 @@ public class ApproveFileAction extends AnAction {
                 actionEvent.getProject(),
                 new ApprovedRunnable(actionEvent.getProject(), actionEventData),
                 getApproveActionName(actionEventData),
-                "Approvals");
+                "Approvals",
+                getUndoConfirmationPolicy());
     }
 
     @NotNull
@@ -120,7 +124,7 @@ public class ApproveFileAction extends AnAction {
                     }
 
                     fileToRename.rename(null, newFileName);
-                    System.out.println(String.format("File '%s' renamed to '%s'", oldFilename, newFileName));
+                    LOG.debug(String.format("File '%s' renamed to '%s'", oldFilename, newFileName));
                 } catch (IOException ex) {
                     ex.printStackTrace();
                     System.err.println(String.format("File '%s' could not be renamed to '%s'", oldFilename, newFileName));

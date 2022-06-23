@@ -3,20 +3,22 @@ import com.intellij.diff.DiffManager;
 import com.intellij.diff.contents.DiffContent;
 import com.intellij.diff.requests.DiffRequest;
 import com.intellij.diff.requests.SimpleDiffRequest;
-import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.vfs.VirtualFile;
+import docAsTest.DocAsTestAction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 import java.util.function.Predicate;
 
-public class CompareFileAction extends AnAction {
+public class CompareFileAction extends DocAsTestAction {
 
     @Override
     public void update(AnActionEvent e) {
+        LOG.debug("CompareFileAction.update " + this.getClass().getName());
+        traceActionEvent(e);
 
         VirtualFile fileSelected = e.getData(PlatformDataKeys.VIRTUAL_FILE);
         final Optional<VirtualFile> approvalFileOptional = getFileToCompare(fileSelected);
@@ -31,6 +33,9 @@ public class CompareFileAction extends AnAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
+        LOG.debug("CompareFileAction.actionPerformed");
+        traceActionEvent(e);
+
         VirtualFile fileSelected = e.getData(PlatformDataKeys.VIRTUAL_FILE);
         final Optional<VirtualFile> fileToCompare = getFileToCompare(fileSelected);
 
