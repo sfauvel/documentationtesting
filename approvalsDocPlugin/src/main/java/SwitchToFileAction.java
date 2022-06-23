@@ -34,7 +34,6 @@ public abstract class SwitchToFileAction extends SwitchAction {
     protected Optional<Runnable> getRunnableAction(@NotNull AnActionEvent actionEvent) {
         LOG.debug("getRunnableAction");
         final Optional<PsiFile> approvedPsiFile = getApprovedPsiFile(actionEvent);
-        System.out.println("SwitchToFileAction.getRunnableAction approvedPsiFile: "+ approvedPsiFile.map(PsiFile::getName).orElse("???"));
         if (approvedPsiFile.isEmpty()) return Optional.empty();
 
         return Optional.of(new ApprovedRunnable(actionEvent.getProject(), approvedPsiFile.get()));
