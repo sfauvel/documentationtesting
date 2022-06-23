@@ -8,13 +8,22 @@ import com.intellij.openapi.command.UndoConfirmationPolicy;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiFile;
+import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.*;
 import com.intellij.psi.search.FilenameIndex;
 import com.intellij.psi.search.GlobalSearchScope;
+import com.intellij.psi.util.PsiTreeUtil;
+import docAsTest.approvalFile.ApprovalFile;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Encapsulate FilenameIndex to check it's not call during `update`
@@ -23,7 +32,23 @@ import java.util.List;
 public abstract class DocAsTestAction extends AnAction {
     protected final static Logger LOG = Logger.getInstance(DocAsTestAction.class);
 
+    private boolean traceActionEvent = false;
+
+    public void setTraceActionEvent(boolean traceActionEvent) {
+        this.traceActionEvent = traceActionEvent;
+    }
+
+    public String getSrcDocs() {
+        return DocAsTestStartupActivity.getSrcDocs();
+    }
+
+    public String getSrcPath() {
+        return DocAsTestStartupActivity.getSrcPath();
+    }
+
     protected void traceActionEvent(AnActionEvent actionEvent) {
+        if (!traceActionEvent) return;
+
         final List<DataKey<?>> dataKeys = Arrays.asList(
                 CommonDataKeys.EDITOR,
                 CommonDataKeys.PSI_FILE,
@@ -36,12 +61,12 @@ public abstract class DocAsTestAction extends AnAction {
         final Editor editor = actionEvent.getData(CommonDataKeys.EDITOR);
         if (editor != null) {
             final int offset = editor.getCaretModel().getOffset();
-            System.out.println("DocAsTestAction.traceActionEvent offset " + offset);
+            LOG.debug("DocAsTestAction.traceActionEvent offset " + offset);
             final PsiFile psiFile = actionEvent.getData(CommonDataKeys.PSI_FILE);
             final PsiElement elementAt = psiFile.findElementAt(offset);
-            System.out.println("DocAsTestAction.traceActionEvent elementAt " + elementAt);
+            LOG.debug("DocAsTestAction.traceActionEvent elementAt " + elementAt);
             final PsiElement parent = elementAt.getParent();
-            System.out.println("DocAsTestAction.traceActionEvent parent " + parent);
+            LOG.debug("DocAsTestAction.traceActionEvent parent " + parent);
 
         }
 
@@ -52,17 +77,17 @@ public abstract class DocAsTestAction extends AnAction {
                 if (data != null && data.getClass().isArray()) {
                     final Object[] array = (Object[]) data;
                     final String text = String.format("Common - %s:[%d] %s", dataKey.getName(), array.length, data);
-                    System.out.println(text);
+                    LOG.debug(text);
                     for (Object o : array) {
-                        System.out.println(String.format("                    - %s", o));
+                        LOG.debug(String.format("                    - %s", o));
                     }
                 } else {
                     final String text = String.format("Common - %s: %s", dataKey.getName(), data);
-                    System.out.println(text);
+                    LOG.debug(text);
                 }
             }
         } catch (Exception e) {
-            System.out.println("traceActionEvent EXCEPTION " + e.getMessage());
+            LOG.debug("traceActionEvent EXCEPTION " + e.getMessage());
             e.printStackTrace();
             throw e;
         }
@@ -106,5 +131,66 @@ public abstract class DocAsTestAction extends AnAction {
 
     protected String getProjectBasePath(Project project) {
         return project.getBasePath();
+    }
+
+
+
+    // ////////////////////:
+    @NotNull
+    protected Optional<VirtualFile> getApprovedVirtualFile(Project project, PsiElement element, ApprovalFile.Status approvalType) {
+        // TODO add test to chech strict=false is useful when on PsiMethod/PsiClass and not PsiIdentifier.
+        PsiJavaFile containingJavaFile = getPsiJavaFile(element);
+
+        if (containingJavaFile == null) {
+            return Optional.empty();
+        }
+
+        final String packageName = containingJavaFile.getPackageName();
+        // TODO add test to chech strict=false is useful when on PsiMethod/PsiClass and not PsiIdentifier.
+        final PsiClass containingClazz = PsiTreeUtil.getParentOfType(element, PsiClass.class, false);
+
+        ApprovalFile approvalFile = containingClazz == null
+                ? ApprovalFile.fromClass(packageName, containingJavaFile.getVirtualFile().getNameWithoutExtension())
+                : approvalFileFromMethod(element, packageName, containingClazz);
+
+        final Path approvedFilePath = Paths.get(getProjectBasePath(project))
+                .resolve(getSrcDocs())
+                .resolve(approvalFile.to(approvalType).getName());
+
+        return Optional.of(approvedFilePath)
+                .map(file -> Paths.get(containingJavaFile.getVirtualFile().getPath()).relativize(file))
+                .map(Path::toString)
+                .map(path -> {
+                    return containingJavaFile.getVirtualFile().findFileByRelativePath(path);
+                });
+    }
+
+    @Nullable
+    public PsiJavaFile getPsiJavaFile(PsiElement element) {
+        return (element instanceof PsiJavaFile)
+                ? (PsiJavaFile) element
+                : PsiTreeUtil.getParentOfType(element, PsiJavaFile.class, false);
+    }
+
+    private ApprovalFile approvalFileFromMethod(PsiElement element, String packageName, PsiClass containingClazz) {
+
+        // TODO add test to chech strict=false is useful when on PsiMethod/PsiClass and not PsiIdentifier.
+        final PsiMethod containingMethod = PsiTreeUtil.getParentOfType(element, PsiMethod.class, false);
+        final String fullClassName = getFullClassName(containingClazz);
+        return containingMethod == null
+                ? ApprovalFile.fromClass(packageName, fullClassName)
+                : ApprovalFile.fromMethod(packageName, fullClassName, containingMethod.getName());
+    }
+
+    private String getFullClassName(PsiClass containingClazz) {
+        String className = "";
+        List<String> classesHierarchy = new ArrayList<>();
+        PsiClass currentClass = containingClazz;
+        while (currentClass != null) {
+            classesHierarchy.add(0, currentClass.getName());
+            currentClass = currentClass.getContainingClass();
+        }
+        final String fullClassName = classesHierarchy.stream().collect(Collectors.joining("."));
+        return fullClassName;
     }
 }

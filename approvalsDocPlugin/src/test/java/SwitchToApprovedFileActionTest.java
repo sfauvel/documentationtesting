@@ -1,16 +1,13 @@
 import com.intellij.openapi.actionSystem.Presentation;
-import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
-import org.jetbrains.annotations.NotNull;
+import docAsTest.DocAsTestStartupActivity;
 import tools.DocAsTestPlatformTest;
 import tools.FieldAutoNaming;
 import tools.FileHelper.CaretOn;
 import tools.MockActionOnFileEvent;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Properties;
@@ -210,37 +207,6 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTest {
         );
         menu_entry_when_approval_file_on_method("approved", this.actionApprovedUnderTest);
     }
-
-    // From UI
-//    DocAsTestAction.traceActionEvent offset 6759
-//    DocAsTestAction.traceActionEvent elementAt PsiIdentifier:testCurrentlyBuilding
-//    DocAsTestAction.traceActionEvent parent PsiMethod:testCurrentlyBuilding
-//    Common - editor: EditorImpl[file:///home/sfauvel/Documents/projects/games/freecol/freecol/test/src/net/sf/freecol/common/model/ColonyDocTest.java]
-//    Common - psi.File: PsiJavaFile:ColonyDocTest.java
-//    Common - psi.Element: PsiMethod:testCurrentlyBuilding
-//    Common - Navigatable: PsiMethod:testCurrentlyBuilding
-//    Common - NavigatableArray:[1] [Lcom.intellij.pom.Navigatable;@f3402ce
-//                    - PsiMethod:testCurrentlyBuilding
-//    Common - virtualFile: file:///home/sfauvel/Documents/projects/games/freecol/freecol/test/src/net/sf/freecol/common/model/ColonyDocTest.java
-//    Common - virtualFileArray:[1] [Lcom.intellij.openapi.vfs.VirtualFile;@4f07f3e7
-//            - file:///home/sfauvel/Documents/projects/games/freecol/freecol/test/src/net/sf/freecol/common/model/ColonyDocTest.java
-//    SwitchToFileAction.getApprovedVirtualFile: ../../../../../../../docs/net/sf/freecol/common/model/_ColonyDocTest.approved.adoc
-
-    // From Test
-//    DocAsTestAction.traceActionEvent offset 43
-//    DocAsTestAction.traceActionEvent elementAt PsiIdentifier:myMethod
-//    DocAsTestAction.traceActionEvent parent PsiMethod:myMethod
-//    Common - editor: EditorImpl[temp:///src/FileA.java]
-//    Common - psi.File: PsiJavaFile:FileA.java
-//    Common - psi.Element: PsiIdentifier:myMethod
-//    Common - Navigatable: PsiIdentifier:myMethod
-//    Common - NavigatableArray:[1] [Lcom.intellij.pom.Navigatable;@28c09a2a
-//                    - PsiIdentifier:myMethod
-//    Common - virtualFile: temp:///src/FileA.java
-//    Common - virtualFileArray:[1] [Lcom.intellij.openapi.vfs.VirtualFile;@48c3bfbf
-//                    - temp:///src/FileA.java
-//    SwitchToFileAction.getApprovedVirtualFile: ../docs/_FileA.myMethod.received.adoc
-//    SwitchToFileAction.getRunnableAction approvedPsiFile: _FileA.myMethod.received.adoc
 
     public void test_menu_entry_when_received_file_on_method() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
