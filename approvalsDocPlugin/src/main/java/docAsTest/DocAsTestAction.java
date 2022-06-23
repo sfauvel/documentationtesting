@@ -36,12 +36,12 @@ public abstract class DocAsTestAction extends AnAction {
         final Editor editor = actionEvent.getData(CommonDataKeys.EDITOR);
         if (editor != null) {
             final int offset = editor.getCaretModel().getOffset();
-            System.out.println("DocAsTestAction.traceActionEvent offset " + offset);
+            LOG.debug("DocAsTestAction.traceActionEvent offset " + offset);
             final PsiFile psiFile = actionEvent.getData(CommonDataKeys.PSI_FILE);
             final PsiElement elementAt = psiFile.findElementAt(offset);
-            System.out.println("DocAsTestAction.traceActionEvent elementAt " + elementAt);
+            LOG.debug("DocAsTestAction.traceActionEvent elementAt " + elementAt);
             final PsiElement parent = elementAt.getParent();
-            System.out.println("DocAsTestAction.traceActionEvent parent " + parent);
+            LOG.debug("DocAsTestAction.traceActionEvent parent " + parent);
 
         }
 
@@ -52,17 +52,17 @@ public abstract class DocAsTestAction extends AnAction {
                 if (data != null && data.getClass().isArray()) {
                     final Object[] array = (Object[]) data;
                     final String text = String.format("Common - %s:[%d] %s", dataKey.getName(), array.length, data);
-                    System.out.println(text);
+                    LOG.debug(text);
                     for (Object o : array) {
-                        System.out.println(String.format("                    - %s", o));
+                        LOG.debug(String.format("                    - %s", o));
                     }
                 } else {
                     final String text = String.format("Common - %s: %s", dataKey.getName(), data);
-                    System.out.println(text);
+                    LOG.debug(text);
                 }
             }
         } catch (Exception e) {
-            System.out.println("traceActionEvent EXCEPTION " + e.getMessage());
+            LOG.debug("traceActionEvent EXCEPTION " + e.getMessage());
             e.printStackTrace();
             throw e;
         }
