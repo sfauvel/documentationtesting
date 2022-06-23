@@ -8,10 +8,8 @@ import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiJavaFile;
-import com.intellij.testFramework.fixtures.BasePlatformTestCase;
-import org.jetbrains.annotations.NotNull;
+import docAsTest.approvalFile.JavaFile;
 import tools.DocAsTestPlatformTest;
-import tools.FileHelper;
 import tools.FileHelper.CaretOn;
 
 import java.io.IOException;

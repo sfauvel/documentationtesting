@@ -1,22 +1,16 @@
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.OpenFileDescriptor;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
-import com.intellij.psi.util.PsiTreeUtil;
+import docAsTest.approvalFile.ApprovalFile;
 import org.jetbrains.annotations.NotNull;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public abstract class SwitchToFileAction extends SwitchAction {
     private final ApprovalFile.Status approvalType;
@@ -78,7 +72,7 @@ public abstract class SwitchToFileAction extends SwitchAction {
 
     @NotNull
     protected Optional<PsiFile> getApprovedPsiFile(Project project, PsiElement element) {
-        return getApprovedVirtualFile(project, element)
+        return getApprovedVirtualFile(project, element, this.approvalType)
                 .map(virtualFile -> PsiManager.getInstance(project).findFile(virtualFile));
     }
 
@@ -86,61 +80,7 @@ public abstract class SwitchToFileAction extends SwitchAction {
     protected Optional<VirtualFile> getApprovedVirtualFile(AnActionEvent actionEvent) {
         final Project project = actionEvent.getProject();
         return Optional.ofNullable(actionEvent.getData(CommonDataKeys.PSI_ELEMENT))
-                .flatMap(psi -> getApprovedVirtualFile(project, psi));
+                .flatMap(psi -> getApprovedVirtualFile(project, psi, this.approvalType));
     }
-    @NotNull
-    protected Optional<VirtualFile> getApprovedVirtualFile(Project project, PsiElement element) {
-        // TODO add test to chech strict=false is useful when on PsiMethod/PsiClass and not PsiIdentifier.
-        PsiJavaFile containingJavaFile = (element instanceof PsiJavaFile)
-                ? (PsiJavaFile) element
-                : PsiTreeUtil.getParentOfType(element, PsiJavaFile.class, false);
-
-        if (containingJavaFile == null) {
-            return Optional.empty();
-        }
-
-        final String packageName = containingJavaFile.getPackageName();
-        // TODO add test to chech strict=false is useful when on PsiMethod/PsiClass and not PsiIdentifier.
-        final PsiClass containingClazz = PsiTreeUtil.getParentOfType(element, PsiClass.class, false);
-
-        ApprovalFile approvalFile = containingClazz == null
-                ? ApprovalFile.fromClass(packageName, containingJavaFile.getVirtualFile().getNameWithoutExtension())
-                : approvalFileFromMethod(element, packageName, containingClazz);
-
-        final Path approvedFilePath = Paths.get(getProjectBasePath(project))
-                .resolve(getSrcDocs())
-                .resolve(approvalFile.to(this.approvalType).getName());
-
-        return Optional.of(approvedFilePath)
-                .map(file -> Paths.get(containingJavaFile.getVirtualFile().getPath()).relativize(file))
-                .map(Path::toString)
-                .map(path -> {
-                    return containingJavaFile.getVirtualFile().findFileByRelativePath(path);
-                });
-
-    }
-
-    private ApprovalFile approvalFileFromMethod(PsiElement element, String packageName, PsiClass containingClazz) {
-
-        // TODO add test to chech strict=false is useful when on PsiMethod/PsiClass and not PsiIdentifier.
-        final PsiMethod containingMethod = PsiTreeUtil.getParentOfType(element, PsiMethod.class, false);
-        final String fullClassName = getFullClassName(containingClazz);
-        return containingMethod == null
-                ? ApprovalFile.fromClass(packageName, fullClassName)
-                : ApprovalFile.fromMethod(packageName, fullClassName, containingMethod.getName());
-    }
-
-    private String getFullClassName(PsiClass containingClazz) {
-        String className = "";
-        List<String> classesHierarchy = new ArrayList<>();
-        PsiClass currentClass = containingClazz;
-        while (currentClass != null) {
-            classesHierarchy.add(0, currentClass.getName());
-            currentClass = currentClass.getContainingClass();
-        }
-        final String fullClassName = classesHierarchy.stream().collect(Collectors.joining("."));
-        return fullClassName;
-    }
-
 
 }

@@ -1,6 +1,7 @@
+package docAsTest.approvalFile;
+
 import com.intellij.openapi.vfs.VirtualFile;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.InvalidParameterException;
@@ -9,76 +10,6 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-class ApprovedFile extends ApprovalFile {
-
-    public ApprovedFile(String filename, Status status) {
-        super(filename, status, "adoc");
-    }
-
-    public ApprovedFile(Path path, String fileName, String methodName, Status status) {
-        super(path,
-                fileName,
-                methodName,
-                status,
-                "adoc");
-    }
-
-    @Override
-    public String getFileName() {
-        return String.format("%s%s.%s.%s",
-                Paths.get("_" + className).getFileName().toString(),
-                getMethodName() == null ? "" : "." + getMethodName(),
-                getStatusName(status),
-                getExtension()
-        );
-    }
-
-    @Override
-    public String getName() {
-        return String.format("%s%s.%s.%s",
-                getPath().resolve("_" + className),
-                getMethodName() == null ? "" : "." + getMethodName(),
-                getStatusName(status),
-                getExtension()
-        );
-    }
-
-}
-
-class JavaFile extends ApprovalFile {
-
-    public JavaFile(String packageName, String className) {
-        this(packageName, className, null);
-    }
-
-    public JavaFile(String packageName, String className, String methodName) {
-        this(Paths.get(packageName.replace('.', File.separatorChar)), className, methodName);
-    }
-
-    public JavaFile(Path packagePath, String className, String methodName) {
-        super(packagePath, className, methodName, null, "java");
-    }
-
-    @Override
-    public String getName() {
-        return String.format("%s.%s", getPath().resolve(getMainClass()), getExtension());
-    }
-
-    @Override
-    public String getFileName() {
-        return String.format("%s.%s", getMainClass(), getExtension());
-    }
-
-    @Override
-    public ApprovalFile to(Status approved) {
-        return new ApprovedFile(getPath(), className, getMethodName(), approved);
-    }
-
-    private String getMainClass() {
-        return getClassName().split("\\.")[0];
-    }
-}
 
 public abstract class ApprovalFile {
 
@@ -197,7 +128,7 @@ public abstract class ApprovalFile {
         }
     }
 
-    static boolean isReceivedFilename(String filename) {
+    public static boolean isReceivedFilename(String filename) {
         return valueOf(filename)
                 .filter(ApprovalFile::isReceived)
                 .isPresent();
