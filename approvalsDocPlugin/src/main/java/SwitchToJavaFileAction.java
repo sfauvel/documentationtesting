@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class SwitchToJavaFileAction extends SwitchAction {
-    private final static Logger LOG = Logger.getInstance(SwitchToJavaFileAction.class);
 
     @Override
     protected String getMenuText() {
@@ -95,11 +94,6 @@ public class SwitchToJavaFileAction extends SwitchAction {
         return first.map(f -> new ReturnJavaFile((PsiJavaFile) f, javaFile.get()));
     }
 
-
-    protected String getProjectBasePath(Project project) {
-        return project.getBasePath();
-    }
-
     static class ApprovedRunnable implements Runnable {
         private final PsiJavaFile javaFile;
         private final Project project;
@@ -117,7 +111,7 @@ public class SwitchToJavaFileAction extends SwitchAction {
         }
 
         private void runAction() {
-            System.out.println("ApprovedRunnable.runAction");
+            LOG.debug("ApprovedRunnable.runAction");
             final int offset = getOffset();
 
             FileEditorManager.getInstance(project)

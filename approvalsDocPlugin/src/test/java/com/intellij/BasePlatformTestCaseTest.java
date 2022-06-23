@@ -1,0 +1,90 @@
+package com.intellij;
+
+import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.PsiFile;
+import com.intellij.testFramework.fixtures.BasePlatformTestCase;
+
+/**
+ * testdata: files under plugin's root but not under source root
+ * test project directory: source directory ('src' with BasePlatformTestCase)
+ */
+public class BasePlatformTestCaseTest extends BasePlatformTestCase {
+
+    /**
+     * Overriden getTestDataPath to specify the location of testdata
+     * https://plugins.jetbrains.com/docs/intellij/test-project-and-testdata-directories.html#testdata-files
+     *
+     * @return
+     */
+    @Override
+    protected String getTestDataPath() {
+        return "testPlugin";
+    }
+
+    public void testTempDirPath() {
+        assertEquals("temp:///root", myFixture.getTempDirPath());
+    }
+
+    /**
+     * Starts with /tmp/unitTest_ follow by the name of the first executed test.
+     * The BasePAth finished by a random key.
+     * This is probably because the project is reuse through tests (see https://plugins.jetbrains.com/docs/intellij/light-and-heavy-tests.html).
+     */
+    public void testProjectBasePath() {
+        final String projectBasePath = myFixture.getProject().getBasePath();
+        assertTrue("BasePath:" + projectBasePath,
+                projectBasePath
+                        .matches("/tmp/unitTest_\\w+_[a-zA-Z0-9]+"));
+    }
+
+    /**
+     * The test project will have one module with one source root called 'src'.
+     * see https://plugins.jetbrains.com/docs/intellij/test-project-and-testdata-directories.html
+     */
+    public void testAddFileInTempDirFixture() {
+        final VirtualFile file = myFixture.getTempDirFixture().createFile("file.txt");
+        assertEquals("/src/file.txt", file.getPath());
+        assertEquals("file.txt", file.getName());
+        assertEquals("/src/file.txt", file.getPath());
+        assertEquals("/src/file.txt", file.getCanonicalPath());
+
+        assertNotNull(myFixture.findFileInTempDir("file.txt"));
+    }
+
+    public void testAddFileTotProject() {
+        final PsiFile psiFile = myFixture.addFileToProject("file.txt", "My text");
+
+        assertEquals("file.txt", psiFile.getName());
+        assertEquals("file.txt", psiFile.getVirtualFile().getName());
+        assertEquals("/src/file.txt", psiFile.getVirtualFile().getPath());
+
+        assertEquals("My text", psiFile.getText());
+    }
+
+    public void testConfigureByTest() {
+        final PsiFile psiFile = myFixture.configureByText("file.txt", "My text");
+        assertEquals("file.txt", psiFile.getName());
+        assertEquals("file.txt", psiFile.getVirtualFile().getName());
+        assertEquals("/src/file.txt", psiFile.getVirtualFile().getPath());
+
+        assertEquals("My text", psiFile.getText());
+    }
+
+    public void testOpenInEditorWithConfigureByText() {
+        final PsiFile psiFile = myFixture.configureByText("file.txt", "My text");
+
+        assertEquals("My text", myFixture.getEditor().getDocument().getText());
+    }
+
+    public void testOpenInEditorWithConfigureByFilesOpenTheFirstOne() {
+        myFixture.addFileToProject("fileA.txt", "Text A");
+        myFixture.addFileToProject("fileB.txt", "Text B");
+
+        assertNull(myFixture.getEditor());
+
+        final PsiFile[] psiFiles = myFixture.configureByFiles("fileA.txt", "fileB.txt");
+
+        assertEquals("Text A", myFixture.getEditor().getDocument().getText());
+    }
+
+}
