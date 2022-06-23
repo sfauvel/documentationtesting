@@ -27,6 +27,7 @@ patchPluginXml {
       Change notes<br>
       <li>Switch between java/approved/received files</li>
       <li>Select several received files to approved</li>
+      <li>Compare approved and received files from Java file</li>
       """
 }
 
