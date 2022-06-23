@@ -75,11 +75,13 @@ public class SwitchToJavaFileAction extends SwitchAction {
                 virtualFile = psiElement.getContainingFile().getVirtualFile();
             }
         }
-        // TODO What happened if virtualFile is still null ?
+        if (virtualFile == null) {
+            return Optional.empty();
+        }
 
         final Optional<Path> javaFilePath = getJavaFilePath(Paths.get(getProjectBasePath(project)), virtualFile);
 
-        final Path pathFromDocPath = Paths.get(getProjectBasePath(project)).resolve(getSrcDocs()).relativize(Paths.get(virtualFile.getPath()));
+        Path pathFromDocPath = Paths.get(getProjectBasePath(project)).resolve(getSrcDocs()).relativize(Paths.get(virtualFile.getPath()));
 
         final Optional<JavaFile> javaFile = ApprovalFile.valueOf(pathFromDocPath.toString())
                 .map(ApprovalFile::toJava);
