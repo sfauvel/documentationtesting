@@ -1,3 +1,5 @@
+import docAsTest.approvalFile.ApprovalFile;
+import docAsTest.approvalFile.ApprovedFile;
 import org.junit.Test;
 
 import java.nio.file.Paths;

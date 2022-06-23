@@ -4,9 +4,13 @@ import com.intellij.diff.contents.DiffContent;
 import com.intellij.diff.requests.DiffRequest;
 import com.intellij.diff.requests.SimpleDiffRequest;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.PsiElement;
 import docAsTest.DocAsTestAction;
+import docAsTest.approvalFile.ApprovalFile;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -15,20 +19,58 @@ import java.util.function.Predicate;
 
 public class CompareFileAction extends DocAsTestAction {
 
+    class FilesToCompare {
+        final Optional<VirtualFile> approved;
+        final Optional<VirtualFile> receveived;
+
+        public FilesToCompare(Optional<VirtualFile> approved, Optional<VirtualFile> receveived) {
+            this.approved = approved;
+            this.receveived = receveived;
+        }
+
+        public boolean arePresents() {
+            return approved.isPresent() && receveived.isPresent();
+        }
+    }
     @Override
     public void update(AnActionEvent e) {
         LOG.debug("CompareFileAction.update " + this.getClass().getName());
         traceActionEvent(e);
 
-        VirtualFile fileSelected = e.getData(PlatformDataKeys.VIRTUAL_FILE);
-        final Optional<VirtualFile> approvalFileOptional = getFileToCompare(fileSelected);
+        boolean filesToCompareArePresents = getFilesToCompare(e).arePresents();
 
-        e.getPresentation().setVisible(approvalFileOptional.isPresent());
-        e.getPresentation().setEnabled(approvalFileOptional.isPresent());
+        e.getPresentation().setVisible(filesToCompareArePresents);
+        e.getPresentation().setEnabled(filesToCompareArePresents);
 
-        if (approvalFileOptional.isPresent()) {
+        if (filesToCompareArePresents) {
             e.getPresentation().setText("Compare files");
         }
+    }
+
+    @NotNull
+    private FilesToCompare getFilesToCompare(AnActionEvent e) {
+        VirtualFile fileSelected = e.getData(PlatformDataKeys.VIRTUAL_FILE);
+
+        final Project project = e.getProject();
+        final Optional<PsiElement> psiElement = Optional.ofNullable(e.getData(CommonDataKeys.PSI_ELEMENT));
+
+        boolean filesToCompareArePresents = false;
+        FilesToCompare filesToCompare;
+        if (psiElement.map(this::getPsiJavaFile).isPresent()) {
+            filesToCompare = getFilesToCompare(project, psiElement.get());
+        } else {
+            final Optional<VirtualFile> approvalFileOptional = getFileToCompare(fileSelected);
+            filesToCompare = new FilesToCompare(Optional.ofNullable(fileSelected), approvalFileOptional);
+        }
+        return filesToCompare;
+    }
+
+    @NotNull
+    private FilesToCompare getFilesToCompare(Project project, PsiElement psiJavaFile) {
+        return new FilesToCompare(
+                getApprovedVirtualFile(project, psiJavaFile, ApprovalFile.Status.APPROVED),
+                getApprovedVirtualFile(project, psiJavaFile, ApprovalFile.Status.RECEIVED)
+        );
     }
 
     @Override
@@ -36,13 +78,15 @@ public class CompareFileAction extends DocAsTestAction {
         LOG.debug("CompareFileAction.actionPerformed");
         traceActionEvent(e);
 
-        VirtualFile fileSelected = e.getData(PlatformDataKeys.VIRTUAL_FILE);
-        final Optional<VirtualFile> fileToCompare = getFileToCompare(fileSelected);
-
-        if (fileToCompare.isPresent()) {
-            DiffRequest diffRequest = getDiffRequest(e, fileSelected, fileToCompare.get());
-            DiffManager.getInstance().showDiff(e.getProject(), diffRequest);
+        final FilesToCompare filesToCompare = getFilesToCompare(e);
+        if (filesToCompare.arePresents()) {
+            showDiff(e, filesToCompare.approved.get(), filesToCompare.receveived.get());
         }
+    }
+
+    protected void showDiff(AnActionEvent e, VirtualFile fileApproved, VirtualFile fileReceived) {
+        DiffRequest diffRequest = getDiffRequest(e, fileReceived, fileApproved);
+        DiffManager.getInstance().showDiff(e.getProject(), diffRequest);
     }
 
     private Optional<VirtualFile> getFileToCompare(VirtualFile fileSelected) {

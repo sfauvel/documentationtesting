@@ -1,22 +1,15 @@
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.Presentation;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiJavaFile;
 import com.intellij.testFramework.fixtures.BasePlatformTestCase;
+import docAsTest.DocAsTestStartupActivity;
 import org.jetbrains.annotations.NotNull;
-import tools.FileHelper;
 import tools.FileHelper.CaretOn;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Optional;
 
 public class SwitchToJavaFileActionCustomeFolderTest extends BasePlatformTestCase {
 

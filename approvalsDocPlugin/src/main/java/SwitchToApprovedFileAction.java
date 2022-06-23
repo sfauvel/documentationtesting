@@ -1,3 +1,5 @@
+import docAsTest.approvalFile.ApprovalFile;
+
 public class SwitchToApprovedFileAction extends SwitchToFileAction {
 
     public SwitchToApprovedFileAction() {

@@ -1,3 +1,5 @@
+package docAsTest;
+
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.startup.StartupActivity;
@@ -42,7 +44,7 @@ public class DocAsTestStartupActivity implements StartupActivity {
         loadProperties(project);
     }
 
-    protected static void loadProperties(Project project) {
+    public static void loadProperties(Project project) {
         LOG.debug("project: " + project.getName());
         final PsiFile[] propertiesByName = FilenameIndex.getFilesByName(project, DOC_AS_TEST_PROPERTIES_FILENAME, GlobalSearchScope.projectScope(project));
         // TODO we assume there is only one property file with this name in the project.
