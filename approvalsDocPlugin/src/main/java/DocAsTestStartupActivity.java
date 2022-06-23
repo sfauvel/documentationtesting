@@ -44,12 +44,9 @@ public class DocAsTestStartupActivity implements StartupActivity {
 
     protected static void loadProperties(Project project) {
         LOG.debug("project: " + project.getName());
-
         final PsiFile[] propertiesByName = FilenameIndex.getFilesByName(project, DOC_AS_TEST_PROPERTIES_FILENAME, GlobalSearchScope.projectScope(project));
-
         // TODO we assume there is only one property file with this name in the project.
         // TODO We probably need to load property file by project.
-
         LOG.debug("properties file found: " + propertiesByName.length);
         if (propertiesByName.length > 0) {
             loadProperties(propertiesByName[0].getVirtualFile());

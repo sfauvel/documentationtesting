@@ -1,59 +1,83 @@
 
-import com.intellij.openapi.actionSystem.AnAction;
-import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.PlatformDataKeys;
+import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.CommandProcessor;
+import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
+import docAsTest.DocAsTestAction;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
-public class ApproveFileAction extends AnAction {
+public class ApproveFileAction extends DocAsTestAction {
 
     @Override
     public void update(AnActionEvent actionEvent) {
-        VirtualFile data = actionEvent.getData(PlatformDataKeys.VIRTUAL_FILE);
+        LOG.debug("ApproveFileAction.update");
+        traceActionEvent(actionEvent);
 
-        actionEvent.getPresentation().setText(getApproveActionName(data));
+        final VirtualFile[] dataFiles = getData(actionEvent);
+        actionEvent.getPresentation().setVisible(Arrays.stream(dataFiles).anyMatch(this::isVisible));
+        actionEvent.getPresentation().setText(getApproveActionName(dataFiles));
+    }
+
+    @Nullable
+    private VirtualFile[] getData(AnActionEvent actionEvent) {
+        return Optional.ofNullable(actionEvent.getData(PlatformDataKeys.VIRTUAL_FILE_ARRAY))
+                .orElse(new VirtualFile[0]);
+    }
+
+    private boolean isVisible(VirtualFile data) {
         if (data.isDirectory()) {
-            actionEvent.getPresentation().setVisible(true);
+            return true;
         } else {
-            actionEvent.getPresentation().setVisible(ApprovalFile.isReceivedFilename(data.getName()));
+            return ApprovalFile.isReceivedFilename(data.getName());
         }
-//        e.getPresentation().setEnabled(visible && !isInProgress());
-
     }
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent actionEvent) {
+        LOG.debug("ApproveFileAction.actionPerformed");
+        traceActionEvent(actionEvent);
 
-        VirtualFile actionEventData = actionEvent.getData(PlatformDataKeys.VIRTUAL_FILE);
+        final @Nullable VirtualFile[] actionEventData = getData(actionEvent);
 
         CommandProcessor.getInstance().executeCommand(
                 actionEvent.getProject(),
                 new ApprovedRunnable(actionEvent.getProject(), actionEventData),
                 getApproveActionName(actionEventData),
-                "Approvals");
+                "Approvals",
+                getUndoConfirmationPolicy());
     }
 
     @NotNull
-    private String getApproveActionName(VirtualFile actionEventData) {
-        return actionEventData.isDirectory() ? "Approved All" : "Approved file";
+    private String getApproveActionName(VirtualFile[] actionEventData) {
+        if (actionEventData.length == 1) {
+            return actionEventData[0].isDirectory() ? "Approved All" : "Approved file";
+        } else {
+            return "Approved selected files";
+        }
     }
 
     static class ApprovedRunnable implements Runnable {
-        private final VirtualFile virtualFile;
+        private final List<VirtualFile> virtualFiles;
         private final Project project;
 
         public ApprovedRunnable(Project project, VirtualFile virtualFile) {
             this.project = project;
-            this.virtualFile = virtualFile;
+            this.virtualFiles = Arrays.asList(virtualFile);
+        }
+
+        public ApprovedRunnable(Project project, VirtualFile[] virtualFiles) {
+            this.project = project;
+            this.virtualFiles = Arrays.asList(virtualFiles);
         }
 
         private void addReceivedFiles(List<VirtualFile> receivedFiles, VirtualFile virtualFile) {
@@ -68,9 +92,9 @@ public class ApproveFileAction extends AnAction {
 
         }
 
-        private List<VirtualFile> getReceivedFiles(VirtualFile virtualFile) {
+        private List<VirtualFile> getReceivedFiles(List<VirtualFile> virtualFiles) {
             List<VirtualFile> receivedFiles = new ArrayList<VirtualFile>();
-            addReceivedFiles(receivedFiles, virtualFile);
+            virtualFiles.forEach(virtualFile -> addReceivedFiles(receivedFiles, virtualFile));
             return receivedFiles;
         }
 
@@ -80,7 +104,7 @@ public class ApproveFileAction extends AnAction {
         }
 
         private void approveReceivedFiles() {
-            List<VirtualFile> filesToRename = getReceivedFiles(virtualFile);
+            List<VirtualFile> filesToRename = getReceivedFiles(virtualFiles);
 
             if (!Messages.isApplicationInUnitTestOrHeadless()) {
                 int result = Messages.showYesNoDialog(project, "You will approved " + filesToRename.size() + " files.\nDo you want to continue ?", "Approvals", Messages.getQuestionIcon());
@@ -100,7 +124,7 @@ public class ApproveFileAction extends AnAction {
                     }
 
                     fileToRename.rename(null, newFileName);
-                    System.out.println(String.format("File '%s' renamed to '%s'", oldFilename, newFileName));
+                    LOG.debug(String.format("File '%s' renamed to '%s'", oldFilename, newFileName));
                 } catch (IOException ex) {
                     ex.printStackTrace();
                     System.err.println(String.format("File '%s' could not be renamed to '%s'", oldFilename, newFileName));
