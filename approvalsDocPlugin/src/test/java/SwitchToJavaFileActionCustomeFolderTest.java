@@ -1,17 +1,16 @@
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
-import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 import docAsTest.DocAsTestStartupActivity;
-import org.jetbrains.annotations.NotNull;
+import tools.DocAsTestPlatformTest;
+import tools.FieldAutoNaming;
 import tools.FileHelper.CaretOn;
+import tools.MockActionOnFileEvent;
 
 import java.io.IOException;
-import java.nio.file.Path;
 
-public class SwitchToJavaFileActionCustomeFolderTest extends BasePlatformTestCase {
+public class SwitchToJavaFileActionCustomeFolderTest extends DocAsTestPlatformTest {
 
     private final SwitchToJavaFileAction actionJavaUnderTest = new SwitchToJavaFileAction() {
         @Override
@@ -19,58 +18,66 @@ public class SwitchToJavaFileActionCustomeFolderTest extends BasePlatformTestCas
             return "/";
         }
     };
+    private MockActionOnFileEvent actionEvent;
 
+    public static class fileNames extends FieldAutoNaming {
+        public String test_documents_fileA_approved_adoc;
+    }
+
+    final private fileNames FILE_NAMES = new fileNames();
     @Override
     protected void setUp() throws Exception {
         super.setUp();
 
-        final VirtualFile docsDir = myFixture.getTempDirFixture().findOrCreateDir("test/docs");
+        final VirtualFile testDir = myFixture.getTempDirFixture().findOrCreateDir(CUSTOM_TEST_FOLDER);
+        final VirtualFile docDir = myFixture.getTempDirFixture().findOrCreateDir(CUSTOM_DOC_FOLDER);
+        actionEvent = new MockActionOnFileEvent(myFixture);
+
     }
 
-    public void test_open_java_file_on_editor_when_on_approved_PsiElement() throws IOException {
-        final PsiFile propertyFile = myFixture.addFileToProject("test/src/docAsTest.properties", "TEST_PATH:src/test/custom_folder");
-        DocAsTestStartupActivity.loadProperties(myFixture.getProject());
+    private final String CUSTOM_TEST_FOLDER = "test/custom_folder";
+    private String CUSTOM_DOC_FOLDER="test/documents";
 
-        final String approvalType = "approved";
-        myFixture.addFileToProject("test/custom_folder/MyClass.java", generateCode(CaretOn.NONE));
-        final PsiFile approvedFile = myFixture.configureByText("_MyClass." + approvalType + ".adoc", approvalType + " content");
-        myFixture.moveFile(approvedFile.getName(), "test/docs");
-        assertEquals("_MyClass." + approvalType + ".adoc", getFileNameInEditor());
+    public void test_open_java_file_on_editor_when_on_approved() throws IOException {
+        test_file_in_editor_when_open_it_from_approved_file(String.join("\n",
+                "TEST_PATH:src/" + CUSTOM_TEST_FOLDER,
+                "DOC_PATH:src/" + CUSTOM_DOC_FOLDER
+        ),
+                "MyClass.java",
+                "_MyClass.approved.adoc");
+    }
+
+    public void test_not_open_java_file_on_editor_when_test_folder_is_not_set() throws IOException {
+        test_file_in_editor_when_open_it_from_approved_file(String.join("\n",
+                "DOC_PATH:src/" + CUSTOM_DOC_FOLDER
+        ),
+                "_MyClass.approved.adoc",
+                "_MyClass.approved.adoc");
+    }
+
+    public void test_not_open_java_file_on_editor_when_doc_folder_is_not_set() throws IOException {
+        test_file_in_editor_when_open_it_from_approved_file(String.join("\n",
+                        "TEST_PATH:src/" + CUSTOM_TEST_FOLDER
+                ),
+                "_MyClass.approved.adoc",
+                "_MyClass.approved.adoc");
+    }
+
+    private void test_file_in_editor_when_open_it_from_approved_file(String properties, String fileOnEditorAfterAction, String fileName) {
+        final PsiFile propertyFile = myFixture.addFileToProject("docAsTest.properties",
+                properties
+        );
+        new DocAsTestStartupActivity().runActivity(myFixture.getProject());
+
+        final PsiFile javaFile = myFixture.addFileToProject(CUSTOM_TEST_FOLDER + "/MyClass.java", fileHelper.generateCode(CaretOn.NONE));
+        final PsiFile approvedFile = myFixture.configureByText(fileName, fileName + " content");
+        myFixture.moveFile(approvedFile.getName(), CUSTOM_DOC_FOLDER);
+        assertEquals(fileName, getFileNameInEditor());
 
         AnActionEvent actionEvent = new MockActionOnPsiElementEvent(approvedFile);
         actionJavaUnderTest.actionPerformed(actionEvent);
 
-        assertEquals("MyClass.java", getFileNameInEditor());
-    }
-
-
-    @NotNull
-    private String getFileNameInEditor() {
-        return FileEditorManager.getInstance(myFixture.getProject()).getSelectedEditor().getFile().getName();
-    }
-
-    private void addTestClassFile(final String className, CaretOn caretOn) {
-        final PsiFile psiFile = myFixture.configureByText("MyClass.java", generateCode(caretOn));
-    }
-
-    private void addTestClassFile(final Path packagePath, final String className, CaretOn caretOn) {
-        final PsiFile psiFile = myFixture.configureByText("MyClass.java", generateCode(packagePath, caretOn));
-        myFixture.moveFile(psiFile.getName(), packagePath.toString());
-    }
-
-    private String generateCode(Path packagePath, CaretOn caretOn) {
-        return String.format("package %s;\n%s",
-                packagePath.toString().replace(java.io.File.separatorChar, '.'),
-                generateCode(caretOn));
-    }
-
-    private String generateCode(CaretOn caretOn) {
-        return String.format("import %sorg.demo; class %sMyClass { public void %smyMethod() {} class %sInnerClass{ public void %sinnerMethod() {} } }",
-                CaretOn.IMPORT.equals(caretOn) ? "<caret>" : "",
-                CaretOn.CLASS.equals(caretOn) ? "<caret>" : "",
-                CaretOn.METHOD.equals(caretOn) ? "<caret>" : "",
-                CaretOn.INNER_CLASS.equals(caretOn) ? "<caret>" : "",
-                CaretOn.INNER_METHOD.equals(caretOn) ? "<caret>" : "");
+        assertEquals(fileOnEditorAfterAction, getFileNameInEditor());
     }
 
 }

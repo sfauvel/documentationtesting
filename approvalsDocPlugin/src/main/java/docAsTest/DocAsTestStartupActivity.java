@@ -2,10 +2,10 @@ package docAsTest;
 
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.startup.StartupActivity;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.search.FilenameIndex;
 import com.intellij.psi.search.GlobalSearchScope;
 import org.jetbrains.annotations.NotNull;
 
@@ -18,7 +18,7 @@ import java.util.Properties;
 
 public class DocAsTestStartupActivity implements StartupActivity {
 
-    private final static Logger LOG = Logger.getInstance(DocAsTestStartupActivity.class);
+    private static final Logger LOG = Logger.getInstance(DocAsTestStartupActivity.class);
     private static final String DOC_AS_TEST_PROPERTIES_FILENAME = "docAsTest.properties";
 
     private static final String DEFAULT_SRC_PATH = "src/test/java";
@@ -38,6 +38,10 @@ public class DocAsTestStartupActivity implements StartupActivity {
 
     private static Properties properties = null;
 
+    public static void reset() {
+        properties = null;
+    }
+
     @Override
     public void runActivity(@NotNull Project project) {
         LOG.info("runActivity project:" + project.getName());
@@ -46,21 +50,20 @@ public class DocAsTestStartupActivity implements StartupActivity {
 
     public static void loadProperties(Project project) {
         LOG.debug("project: " + project.getName());
-        final PsiFile[] propertiesByName = FilenameIndex.getFilesByName(project, DOC_AS_TEST_PROPERTIES_FILENAME, GlobalSearchScope.projectScope(project));
-        // TODO we assume there is only one property file with this name in the project.
-        // TODO We probably need to load property file by project.
-        LOG.debug("properties file found: " + propertiesByName.length);
-        if (propertiesByName.length > 0) {
-            loadProperties(propertiesByName[0].getVirtualFile());
+
+        final VirtualFile[] contentSourceRoots = ProjectRootManager.getInstance(project).getContentSourceRoots();
+        properties = new Properties();
+        for (VirtualFile contentSourceRoot : contentSourceRoots) {
+            final VirtualFile fileByRelativePath = contentSourceRoot.findFileByRelativePath(DOC_AS_TEST_PROPERTIES_FILENAME);
+            if(fileByRelativePath != null) {
+                loadProperties(fileByRelativePath);
+            }
         }
     }
 
     private static void loadProperties(VirtualFile virtualFile) {
-
         try (final InputStream inputStream = virtualFile.getInputStream()) {
-            Properties tmp_properties = new Properties();
-            tmp_properties.load(inputStream);
-            properties = tmp_properties;
+            properties.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }

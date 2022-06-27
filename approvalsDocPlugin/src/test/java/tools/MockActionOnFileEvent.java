@@ -6,7 +6,6 @@ import com.intellij.openapi.command.UndoConfirmationPolicy;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileDocumentManager;
 import com.intellij.openapi.fileEditor.PsiElementNavigatable;
-import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.pom.Navigatable;
 import com.intellij.psi.PsiElement;
@@ -14,6 +13,7 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiFileSystemItem;
 import com.intellij.testFramework.fixtures.CodeInsightTestFixture;
 import docAsTest.DocAsTestAction;
+import docAsTest.DocAsTestFilenameIndex;
 import org.jetbrains.annotations.NotNull;
 import org.mockito.Mockito;
 
@@ -127,19 +127,12 @@ public class MockActionOnFileEvent extends MockActionEvent {
         return this;
     }
 
-    final DocAsTestAction.SlowOperationPolicy noSlowOperationPolicy = new DocAsTestAction.SlowOperationPolicy() {
-        @Override
-        public void runSlowOperation() {
-            throw new RuntimeException("No slow operation authorized in this test");
-        }
-    };
-
     public void performUpdate(DocAsTestAction action, PsiFileSystemItem psiFile) {
         performUpdate(action, Arrays.asList(psiFile));
     }
 
     public void performUpdate(DocAsTestAction action, List<? extends PsiFileSystemItem> psiFiles) {
-        action.setSlowOperationPolicy(noSlowOperationPolicy);
+        DocAsTestFilenameIndex.setSlowOperationPolicy(DocAsTestPlatformTest.NO_SLOW_OPERATION_POLICY);
 
         withSelectedFromMenuFirstCall(psiFiles);
         action.update(this);
@@ -153,6 +146,7 @@ public class MockActionOnFileEvent extends MockActionEvent {
     }
 
     public void performAction(DocAsTestAction action, List<? extends PsiFileSystemItem> psiItems) {
+        DocAsTestFilenameIndex.setSlowOperationPolicy(DocAsTestPlatformTest.SLOW_OPERATION_ALLOWED);
         action.setUndoConfirmationPolicy(UndoConfirmationPolicy.DO_NOT_REQUEST_CONFIRMATION);
 
         // performAction call update and actionPerformed with the same dataContext

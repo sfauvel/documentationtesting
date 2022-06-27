@@ -92,7 +92,7 @@ public class SwitchToJavaFileAction extends SwitchAction {
 
         final PsiFile[] filesByName = FilenameIndex.getFilesByName(project, javaFile.get().getFileName(), GlobalSearchScope.projectScope(project));
         final Optional<PsiFile> first = Arrays.stream(filesByName)
-                .filter(file -> javaFilePath.map(Path::toString).get().equals(file.getVirtualFile().getPath()))
+                .filter(file -> file.getVirtualFile().getPath().equals(javaFilePath.map(Path::toString).orElse(null)))
                 .findFirst();
         return first.map(f -> new ReturnJavaFile((PsiJavaFile) f, javaFile.get()));
     }
