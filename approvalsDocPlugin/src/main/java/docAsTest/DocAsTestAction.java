@@ -94,26 +94,14 @@ public abstract class DocAsTestAction extends AnAction {
 
     }
 
-    public static class SlowOperationPolicy {
-        public void runSlowOperation() {
-        }
-    }
-
-    private static SlowOperationPolicy defaultSlowOperationPolicy = new SlowOperationPolicy();
-    private SlowOperationPolicy slowOperationPolicy;
     private UndoConfirmationPolicy undoConfirmationPolicy;
 
     public DocAsTestAction() {
-        this(defaultSlowOperationPolicy, UndoConfirmationPolicy.DEFAULT);
+        this(UndoConfirmationPolicy.DEFAULT);
     }
 
-    public DocAsTestAction(SlowOperationPolicy slowOperationPolicy, UndoConfirmationPolicy undoConfirmationPolicy) {
-        this.slowOperationPolicy = slowOperationPolicy;
+    public DocAsTestAction(UndoConfirmationPolicy undoConfirmationPolicy) {
         this.undoConfirmationPolicy = undoConfirmationPolicy;
-    }
-
-    public void setSlowOperationPolicy(SlowOperationPolicy slowOperationPolicy) {
-        this.slowOperationPolicy = slowOperationPolicy;
     }
 
     public void setUndoConfirmationPolicy(UndoConfirmationPolicy undoConfirmationPolicy) {
@@ -125,8 +113,7 @@ public abstract class DocAsTestAction extends AnAction {
     }
 
     protected PsiFile[] getFilesByName(Project project, String fileName) {
-        slowOperationPolicy.runSlowOperation();
-        return FilenameIndex.getFilesByName(project, fileName, GlobalSearchScope.projectScope(project));
+        return DocAsTestFilenameIndex.getFilesByName(project, fileName);
     }
 
     protected String getProjectBasePath(Project project) {

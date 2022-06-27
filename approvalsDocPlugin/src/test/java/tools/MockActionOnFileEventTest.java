@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
-public class MockActionOnFileEventTest extends BasePlatformTestCase {
+public class MockActionOnFileEventTest extends DocAsTestPlatformTest {
     MockActionOnFileEvent actionEvent;
     FileHelper fileHelper;
 
@@ -195,7 +195,8 @@ public class MockActionOnFileEventTest extends BasePlatformTestCase {
             actionEvent.performUpdate(action, Arrays.asList(psiFileA));
         } catch (RuntimeException e) {
             final StackTraceElement[] stackTrace = e.getStackTrace();
-            assertEquals("runSlowOperation", stackTrace[0].getMethodName());
+            assertEquals("run", stackTrace[0].getMethodName());
+            assertTrue(stackTrace[0].getClassName().contains("DocAsTestPlatformTest"));
             return;
         }
         fail("An exception should be thrown");
