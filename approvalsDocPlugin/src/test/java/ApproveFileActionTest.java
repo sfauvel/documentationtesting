@@ -3,10 +3,8 @@ import com.intellij.openapi.command.undo.UndoManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiFile;
-import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 import tools.DocAsTestPlatformTest;
 import tools.FieldAutoNaming;
-import tools.FileHelper;
 import tools.MockActionOnFileEvent;
 
 import java.io.IOException;

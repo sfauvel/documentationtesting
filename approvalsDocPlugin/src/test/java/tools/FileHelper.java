@@ -3,7 +3,6 @@ package tools;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiDirectory;
-import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.search.FilenameIndex;
 import com.intellij.psi.search.GlobalSearchScope;
@@ -12,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -74,8 +74,8 @@ public class FileHelper {
 
     public String generateCode(String className, CaretOn caretOn) {
         return new CodeGenerator()
-                        .withClass(className)
-                        .generate(caretOn);
+                .withClass(className)
+                .generate(caretOn);
     }
 
 
@@ -101,15 +101,18 @@ public class FileHelper {
             this.className = className;
             return this;
         }
+
         public CodeGenerator withMethod(String method) {
             this.method = method;
             return this;
         }
+
         public CodeGenerator withPackage(String fullPackage) {
             this.fullPackage = fullPackage;
             return this;
         }
     }
+
     public String generateCode(CaretOn caretOn) {
         return String.format("import %sorg.demo; class %sMyClass { public void %smyMethod() {} class %sInnerClass{ public void %sinnerMethod() {} } }",
                 CaretOn.IMPORT.equals(caretOn) ? "<caret>" : "",
@@ -153,8 +156,26 @@ public class FileHelper {
             files.put(filepath, myFixture.addFileToProject(filepath, getFileContent(filepath)));
         }
 
+//        for (String filepath : filepaths) {
+//            final Path path = Paths.get(filepath);
+//            final String fileName = path.getFileName().toString();
+//            final String fileFolder = path.getParent().toString();
+//
+//
+//            final PsiFile psiFile = myFixture.configureByText(fileName, path.toString() + " content");
+////            try {
+////                myFixture.moveFile(file.getName(), "..");
+////                final VirtualFile file = myFixture.getTempDirFixture().createFile(fileName, path.toString() + " content");
+////                final VirtualFile javaDir = myFixture.getTempDirFixture().findOrCreateDir(fileFolder);
+////                myFixture.moveFile(file.getName(), fileFolder);
+////            } catch (IOException e) {
+////                e.printStackTrace();
+////            }
+//
+//        }
+
         System.out.println("FileHelper.initFiles:\n"
-                +files.values().stream()
+                + files.values().stream()
                 .map(file -> "  - " + file.getName())
                 .collect(Collectors.joining("\n")));
 
