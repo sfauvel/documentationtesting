@@ -60,6 +60,37 @@ public class SwitchToJavaFileAction extends SwitchAction {
             this.psiFile = psiFile;
             this.javaFile = javaFile;
         }
+
+        public int getOffset() {
+            final String className = this.javaFile.getClassName();
+            final List<String> classNames = new ArrayList<>(Arrays.asList(className.split("\\.")));
+
+            String firstClass = classNames.remove(0);
+            final Optional<PsiClass> first = Optional.of(psiFile).stream()
+                    .flatMap(c -> Arrays.stream(c.getClasses()))
+                    .filter(c -> c.getName().equals(firstClass))
+                    .findFirst();
+
+            Optional<PsiClass> clazzFound = first;
+            while (!classNames.isEmpty()) {
+                final String firstInnerClass = classNames.remove(0);
+                clazzFound = clazzFound.stream()
+                        .flatMap(c -> Arrays.stream(c.getInnerClasses()))
+                        .filter(c -> c.getName().equals(firstInnerClass))
+                        .findFirst();
+            }
+
+            if (this.javaFile.getMethodName() == null) {
+                return clazzFound.map(c -> c.getTextOffset()).orElse(0);
+            }
+            final int offset = clazzFound.stream()
+                    .flatMap(c -> Arrays.stream(c.getMethods()))
+                    .filter(m -> m.getName().equals(this.javaFile.getMethodName()))
+                    .map(PsiMethod::getTextOffset)
+                    .findFirst()
+                    .orElse(0);
+            return offset;
+        }
     }
 
     private Optional<ReturnJavaFile> getJavaFile(AnActionEvent actionEvent) {
@@ -90,7 +121,9 @@ public class SwitchToJavaFileAction extends SwitchAction {
             return Optional.empty();
         }
 
+//        final PsiFile[] filesByName = DocAsTestFilenameIndex.getFilesByName(project, javaFile.get().getFileName());
         final PsiFile[] filesByName = FilenameIndex.getFilesByName(project, javaFile.get().getFileName(), GlobalSearchScope.projectScope(project));
+
         final Optional<PsiFile> first = Arrays.stream(filesByName)
                 .filter(file -> file.getVirtualFile().getPath().equals(javaFilePath.map(Path::toString).orElse(null)))
                 .findFirst();
@@ -98,14 +131,12 @@ public class SwitchToJavaFileAction extends SwitchAction {
     }
 
     static class ApprovedRunnable implements Runnable {
-        private final PsiJavaFile javaFile;
         private final Project project;
-        private final JavaFile javaClassFile;
+        private ReturnJavaFile javaFile;
 
         ApprovedRunnable(Project project, ReturnJavaFile javaFile) {
             this.project = project;
-            this.javaFile = javaFile.psiFile;
-            this.javaClassFile = javaFile.javaFile;
+            this.javaFile = javaFile;
         }
 
         @Override
@@ -115,42 +146,13 @@ public class SwitchToJavaFileAction extends SwitchAction {
 
         private void runAction() {
             LOG.debug("ApprovedRunnable.runAction");
-            final int offset = getOffset();
+            final int offset = javaFile.getOffset();
 
             FileEditorManager.getInstance(project)
-                    .openTextEditor(new OpenFileDescriptor(project, javaFile.getVirtualFile(), offset), true);
+                    .openTextEditor(new OpenFileDescriptor(project, javaFile.psiFile.getVirtualFile(), offset), true);
         }
 
-        public int getOffset() {
-            final String className = javaClassFile.getClassName();
-            final List<String> classNames = new ArrayList<>(Arrays.asList(className.split("\\.")));
-
-            String firstClass = classNames.remove(0);
-            final Optional<PsiClass> first = Optional.of(this.javaFile).stream()
-                    .flatMap(c -> Arrays.stream(c.getClasses()))
-                    .filter(c -> c.getName().equals(firstClass))
-                    .findFirst();
-
-            Optional<PsiClass> clazzFound = first;
-            while (!classNames.isEmpty()) {
-                final String firstInnerClass = classNames.remove(0);
-                clazzFound = clazzFound.stream()
-                        .flatMap(c -> Arrays.stream(c.getInnerClasses()))
-                        .filter(c -> c.getName().equals(firstInnerClass))
-                        .findFirst();
-            }
-
-            if (javaClassFile.getMethodName() == null) {
-                return clazzFound.map(c -> c.getTextOffset()).orElse(0);
-            }
-            final int offset = clazzFound.stream()
-                    .flatMap(c -> Arrays.stream(c.getMethods()))
-                    .filter(m -> m.getName().equals(javaClassFile.getMethodName()))
-                    .map(PsiMethod::getTextOffset)
-                    .findFirst()
-                    .orElse(0);
-            return offset;
-        }
+        // TODO remove this method when no more usage
 
     }
 
