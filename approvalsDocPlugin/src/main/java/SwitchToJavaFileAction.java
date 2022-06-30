@@ -4,10 +4,9 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.OpenFileDescriptor;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
-import com.intellij.psi.search.FilenameIndex;
-import com.intellij.psi.search.GlobalSearchScope;
 import docAsTest.approvalFile.ApprovalFile;
 import docAsTest.approvalFile.JavaFile;
 import org.jetbrains.annotations.NotNull;
@@ -121,10 +120,16 @@ public class SwitchToJavaFileAction extends SwitchAction {
             return Optional.empty();
         }
 
-//        final PsiFile[] filesByName = DocAsTestFilenameIndex.getFilesByName(project, javaFile.get().getFileName());
-        final PsiFile[] filesByName = FilenameIndex.getFilesByName(project, javaFile.get().getFileName(), GlobalSearchScope.projectScope(project));
+        final VirtualFile[] contentSourceRoots = ProjectRootManager.getInstance(project).getContentSourceRoots();
+        final List<PsiFile> filesByName = new ArrayList<>();
+        for (VirtualFile contentSourceRoot : contentSourceRoots) {
+            final VirtualFile fileByRelativePath = contentSourceRoot.findFileByRelativePath(javaFile.get().getName());
+            if (fileByRelativePath != null) {
+                filesByName.add(PsiManager.getInstance(project).findFile(fileByRelativePath));
+            }
+        }
 
-        final Optional<PsiFile> first = Arrays.stream(filesByName)
+        final Optional<PsiFile> first = filesByName.stream()
                 .filter(file -> file.getVirtualFile().getPath().equals(javaFilePath.map(Path::toString).orElse(null)))
                 .findFirst();
         return first.map(f -> new ReturnJavaFile((PsiJavaFile) f, javaFile.get()));
@@ -151,9 +156,5 @@ public class SwitchToJavaFileAction extends SwitchAction {
             FileEditorManager.getInstance(project)
                     .openTextEditor(new OpenFileDescriptor(project, javaFile.psiFile.getVirtualFile(), offset), true);
         }
-
-        // TODO remove this method when no more usage
-
     }
-
 }

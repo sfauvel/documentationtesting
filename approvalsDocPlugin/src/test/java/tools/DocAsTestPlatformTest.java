@@ -1,12 +1,24 @@
 package tools;
 
+import com.intellij.openapi.application.WriteAction;
+import com.intellij.openapi.command.WriteCommandAction;
+import com.intellij.openapi.editor.Document;
+import com.intellij.openapi.fileEditor.FileDocumentManager;
 import com.intellij.openapi.fileEditor.FileEditorManager;
+import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.PsiDocumentManager;
+import com.intellij.psi.PsiFile;
 import com.intellij.testFramework.fixtures.BasePlatformTestCase;
+import com.intellij.testFramework.fixtures.impl.CodeInsightTestFixtureImpl;
+import com.intellij.testFramework.fixtures.impl.LightTempDirTestFixtureImpl;
 import docAsTest.DocAsTestFilenameIndex;
 import docAsTest.DocAsTestFilenameIndex.SlowOperationPolicy;
 import docAsTest.DocAsTestStartupActivity;
 import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
+import java.nio.file.Path;
 
 public abstract class DocAsTestPlatformTest extends BasePlatformTestCase {
 
@@ -31,6 +43,56 @@ public abstract class DocAsTestPlatformTest extends BasePlatformTestCase {
     @NotNull
     protected String getFileNameInEditor() {
         return FileEditorManager.getInstance(myFixture.getProject()).getSelectedEditor().getFile().getName();
+    }
+
+    public VirtualFile findOrCreate(PsiFile testFile, Path path) {
+        return findOrCreate(testFile.getVirtualFile(), path);
+    }
+
+    public VirtualFile findOrCreate(final VirtualFile rootVirtualFile, Path path) {
+        WriteAction.computeAndWait(() -> {
+            try {
+                VirtualFile currentVirtualFile = rootVirtualFile;
+                for (Path folder : path) {
+                    final VirtualFile existingVirtualFile = currentVirtualFile.findFileByRelativePath(folder.toString());
+                    currentVirtualFile = existingVirtualFile != null
+                            ? existingVirtualFile
+                            : currentVirtualFile.createChildDirectory(this, folder.toString());
+                    System.out.println("SetupWithDescriptorFactoryTest.findOrCreate " + currentVirtualFile);
+                }
+                return currentVirtualFile;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        return rootVirtualFile.findFileByRelativePath(path.toString());
+    }
+
+    public PsiFile configureByText(@NotNull final VirtualFile root, @NotNull final String fileName, @NotNull final String text) {
+
+        try {
+            VirtualFile vFile = WriteCommandAction.writeCommandAction(getProject()).compute(() -> {
+                final VirtualFile file;
+                if (!(myFixture.getTempDirFixture() instanceof LightTempDirTestFixtureImpl)) {
+                    throw new RuntimeException("Handle only LightTempDirTestFixtureImpl as TempDirFixture");
+                }
+                root.refresh(false, false);
+                file = root.findOrCreateChildData(this, fileName);
+                assertNotNull(fileName + " not found in " + root.getPath(), file);
+
+                final Document document = FileDocumentManager.getInstance().getCachedDocument(file);
+                if (document != null) {
+                    PsiDocumentManager.getInstance(getProject()).doPostponedOperationsAndUnblockDocument(document);
+                    FileDocumentManager.getInstance().saveDocument(document);
+                }
+                VfsUtil.saveText(file, text);
+                return file;
+            });
+            ((CodeInsightTestFixtureImpl) myFixture).configureFromExistingVirtualFile(vFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return myFixture.getFile();
     }
 
     protected void assertExists(String filename) {
