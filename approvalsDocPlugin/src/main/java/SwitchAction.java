@@ -25,14 +25,6 @@ public abstract class SwitchAction extends DocAsTestAction {
 
 
     protected abstract String getMenuText();
-//
-//    public String getSrcDocs() {
-//        return DocAsTestStartupActivity.getSrcDocs();
-//    }
-//
-//    public String getSrcPath() {
-//        return DocAsTestStartupActivity.getSrcPath();
-//    }
 
     @Override
     public void update(AnActionEvent actionEvent) {

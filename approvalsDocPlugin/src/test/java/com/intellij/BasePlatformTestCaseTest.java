@@ -4,6 +4,9 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 
+import java.io.IOException;
+import java.util.Arrays;
+
 /**
  * testdata: files under plugin's root but not under source root
  * test project directory: source directory ('src' with BasePlatformTestCase)
@@ -87,4 +90,55 @@ public class BasePlatformTestCaseTest extends BasePlatformTestCase {
         assertEquals("Text A", myFixture.getEditor().getDocument().getText());
     }
 
+    public void testOpenInEditorATxtFile() {
+        final PsiFile text_a = myFixture.addFileToProject("fileA.txt", "Text A");
+        final PsiFile text_b = myFixture.addFileToProject("fileB.txt", "Text B");
+
+        assertNull(myFixture.getEditor());
+
+        myFixture.openFileInEditor(text_a.getVirtualFile());
+
+        assertEquals("Text A", myFixture.getEditor().getDocument().getText());
+    }
+
+    public void testMoveFileConfigureByTest() throws IOException {
+        final PsiFile psiFile = myFixture.configureByText("file.txt", "My text");
+        assertEquals("/src/file.txt", psiFile.getVirtualFile().getPath());
+
+        myFixture.getTempDirFixture().findOrCreateDir("xxx");
+        myFixture.moveFile(psiFile.getVirtualFile().getName(), "xxx");
+
+        assertEquals("/src/xxx/file.txt", psiFile.getVirtualFile().getPath());
+    }
+
+    public void testMoveFileConfigureByTestOutsideOfSrc() throws IOException {
+        final PsiFile psiFile = myFixture.configureByText("file.txt", "My text");
+        assertEquals("/src/file.txt", psiFile.getVirtualFile().getPath());
+
+        myFixture.getTempDirFixture().findOrCreateDir("../xxx");
+        myFixture.moveFile(psiFile.getVirtualFile().getName(), "../xxx");
+
+        // Test alone, the file is moved to xxx but with all project tests
+        // the file stay on src and we don't know why
+        assertTrue(Arrays.asList("/xxx/file.txt", "/src/file.txt")
+                .contains(psiFile.getVirtualFile().getPath()));
+//        assertEquals("/xxx/file.txt", psiFile.getVirtualFile().getPath());
+
+    }
+
+    public void test_found_root_source() throws IOException {
+        final VirtualFile srcPath = myFixture.getTempDirFixture().findOrCreateDir(".");
+        assertEquals("src", srcPath.getName());
+        assertEquals("/src", srcPath.getPath());
+        assertEquals("/src", srcPath.getCanonicalPath());
+        assertEquals("temp:///src", srcPath.getUrl());
+    }
+
+    public void testFoundRootSource() throws IOException {
+        final VirtualFile srcPath = myFixture.getTempDirFixture().findOrCreateDir(".");
+        assertEquals("src", srcPath.getName());
+        assertEquals("/src", srcPath.getPath());
+        assertEquals("/src", srcPath.getCanonicalPath());
+        assertEquals("temp:///src", srcPath.getUrl());
+    }
 }

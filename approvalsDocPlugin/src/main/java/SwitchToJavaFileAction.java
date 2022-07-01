@@ -4,10 +4,9 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.OpenFileDescriptor;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
-import com.intellij.psi.search.FilenameIndex;
-import com.intellij.psi.search.GlobalSearchScope;
 import docAsTest.approvalFile.ApprovalFile;
 import docAsTest.approvalFile.JavaFile;
 import org.jetbrains.annotations.NotNull;
@@ -60,6 +59,37 @@ public class SwitchToJavaFileAction extends SwitchAction {
             this.psiFile = psiFile;
             this.javaFile = javaFile;
         }
+
+        public int getOffset() {
+            final String className = this.javaFile.getClassName();
+            final List<String> classNames = new ArrayList<>(Arrays.asList(className.split("\\.")));
+
+            String firstClass = classNames.remove(0);
+            final Optional<PsiClass> first = Optional.of(psiFile).stream()
+                    .flatMap(c -> Arrays.stream(c.getClasses()))
+                    .filter(c -> c.getName().equals(firstClass))
+                    .findFirst();
+
+            Optional<PsiClass> clazzFound = first;
+            while (!classNames.isEmpty()) {
+                final String firstInnerClass = classNames.remove(0);
+                clazzFound = clazzFound.stream()
+                        .flatMap(c -> Arrays.stream(c.getInnerClasses()))
+                        .filter(c -> c.getName().equals(firstInnerClass))
+                        .findFirst();
+            }
+
+            if (this.javaFile.getMethodName() == null) {
+                return clazzFound.map(c -> c.getTextOffset()).orElse(0);
+            }
+            final int offset = clazzFound.stream()
+                    .flatMap(c -> Arrays.stream(c.getMethods()))
+                    .filter(m -> m.getName().equals(this.javaFile.getMethodName()))
+                    .map(PsiMethod::getTextOffset)
+                    .findFirst()
+                    .orElse(0);
+            return offset;
+        }
     }
 
     private Optional<ReturnJavaFile> getJavaFile(AnActionEvent actionEvent) {
@@ -90,22 +120,28 @@ public class SwitchToJavaFileAction extends SwitchAction {
             return Optional.empty();
         }
 
-        final PsiFile[] filesByName = FilenameIndex.getFilesByName(project, javaFile.get().getFileName(), GlobalSearchScope.projectScope(project));
-        final Optional<PsiFile> first = Arrays.stream(filesByName)
-                .filter(file -> javaFilePath.map(Path::toString).get().equals(file.getVirtualFile().getPath()))
+        final VirtualFile[] contentSourceRoots = ProjectRootManager.getInstance(project).getContentSourceRoots();
+        final List<PsiFile> filesByName = new ArrayList<>();
+        for (VirtualFile contentSourceRoot : contentSourceRoots) {
+            final VirtualFile fileByRelativePath = contentSourceRoot.findFileByRelativePath(javaFile.get().getName());
+            if (fileByRelativePath != null) {
+                filesByName.add(PsiManager.getInstance(project).findFile(fileByRelativePath));
+            }
+        }
+
+        final Optional<PsiFile> first = filesByName.stream()
+                .filter(file -> file.getVirtualFile().getPath().equals(javaFilePath.map(Path::toString).orElse(null)))
                 .findFirst();
         return first.map(f -> new ReturnJavaFile((PsiJavaFile) f, javaFile.get()));
     }
 
     static class ApprovedRunnable implements Runnable {
-        private final PsiJavaFile javaFile;
         private final Project project;
-        private final JavaFile javaClassFile;
+        private ReturnJavaFile javaFile;
 
         ApprovedRunnable(Project project, ReturnJavaFile javaFile) {
             this.project = project;
-            this.javaFile = javaFile.psiFile;
-            this.javaClassFile = javaFile.javaFile;
+            this.javaFile = javaFile;
         }
 
         @Override
@@ -115,43 +151,10 @@ public class SwitchToJavaFileAction extends SwitchAction {
 
         private void runAction() {
             LOG.debug("ApprovedRunnable.runAction");
-            final int offset = getOffset();
+            final int offset = javaFile.getOffset();
 
             FileEditorManager.getInstance(project)
-                    .openTextEditor(new OpenFileDescriptor(project, javaFile.getVirtualFile(), offset), true);
+                    .openTextEditor(new OpenFileDescriptor(project, javaFile.psiFile.getVirtualFile(), offset), true);
         }
-
-        public int getOffset() {
-            final String className = javaClassFile.getClassName();
-            final List<String> classNames = new ArrayList<>(Arrays.asList(className.split("\\.")));
-
-            String firstClass = classNames.remove(0);
-            final Optional<PsiClass> first = Optional.of(this.javaFile).stream()
-                    .flatMap(c -> Arrays.stream(c.getClasses()))
-                    .filter(c -> c.getName().equals(firstClass))
-                    .findFirst();
-
-            Optional<PsiClass> clazzFound = first;
-            while (!classNames.isEmpty()) {
-                final String firstInnerClass = classNames.remove(0);
-                clazzFound = clazzFound.stream()
-                        .flatMap(c -> Arrays.stream(c.getInnerClasses()))
-                        .filter(c -> c.getName().equals(firstInnerClass))
-                        .findFirst();
-            }
-
-            if (javaClassFile.getMethodName() == null) {
-                return clazzFound.map(c -> c.getTextOffset()).orElse(0);
-            }
-            final int offset = clazzFound.stream()
-                    .flatMap(c -> Arrays.stream(c.getMethods()))
-                    .filter(m -> m.getName().equals(javaClassFile.getMethodName()))
-                    .map(PsiMethod::getTextOffset)
-                    .findFirst()
-                    .orElse(0);
-            return offset;
-        }
-
     }
-
 }

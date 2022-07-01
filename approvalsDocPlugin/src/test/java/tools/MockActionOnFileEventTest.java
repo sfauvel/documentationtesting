@@ -1,12 +1,10 @@
 package tools;
 
-import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.editor.impl.EditorImpl;
 import com.intellij.psi.*;
-import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 import docAsTest.DocAsTestAction;
 import org.jetbrains.annotations.NotNull;
 
@@ -15,7 +13,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
-public class MockActionOnFileEventTest extends BasePlatformTestCase {
+public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
     MockActionOnFileEvent actionEvent;
     FileHelper fileHelper;
 
@@ -162,7 +160,7 @@ public class MockActionOnFileEventTest extends BasePlatformTestCase {
     public void test_perform_update_call_update_twice_with_different_mock_on_editor_on_method() {
         final String selectedClassName = "MyClass";
         final String selectedMethod = "SelectedMethod";
-        final String code = new FileHelper.CodeGenerator()
+        final String code = new CodeGenerator()
                 .withMethod("SelectedMethod")
                 .generate(FileHelper.CaretOn.METHOD);
         final PsiFile psiFile = fileHelper.addTestClassFile(selectedClassName, code);
@@ -195,7 +193,8 @@ public class MockActionOnFileEventTest extends BasePlatformTestCase {
             actionEvent.performUpdate(action, Arrays.asList(psiFileA));
         } catch (RuntimeException e) {
             final StackTraceElement[] stackTrace = e.getStackTrace();
-            assertEquals("runSlowOperation", stackTrace[0].getMethodName());
+            assertEquals("run", stackTrace[0].getMethodName());
+            assertTrue(stackTrace[0].getClassName().contains("DocAsTestPlatformTestCase"));
             return;
         }
         fail("An exception should be thrown");
@@ -223,7 +222,7 @@ public class MockActionOnFileEventTest extends BasePlatformTestCase {
         final String selectedClassName = "MyClass";
         final String selectedMethod = "SelectedMethod";
 
-        final String code = new FileHelper.CodeGenerator()
+        final String code = new CodeGenerator()
                 .withMethod("SelectedMethod")
                 .generate(FileHelper.CaretOn.METHOD);
         final PsiFile psiFile = fileHelper.addTestClassFile(selectedClassName, code);

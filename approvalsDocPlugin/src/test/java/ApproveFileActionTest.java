@@ -3,10 +3,8 @@ import com.intellij.openapi.command.undo.UndoManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiFile;
-import com.intellij.testFramework.fixtures.BasePlatformTestCase;
-import tools.DocAsTestPlatformTest;
+import tools.DocAsTestPlatformTestCase;
 import tools.FieldAutoNaming;
-import tools.FileHelper;
 import tools.MockActionOnFileEvent;
 
 import java.io.IOException;
@@ -25,7 +23,7 @@ import java.util.Map;
  * - test several files and directories selected in menu
  * - test editor selected
  */
-public class ApproveFileActionTest extends DocAsTestPlatformTest {
+public class ApproveFileActionTest extends DocAsTestPlatformTestCase {
 
     public static class fileNames extends FieldAutoNaming {
         public String folder1_fileA_received_adoc;

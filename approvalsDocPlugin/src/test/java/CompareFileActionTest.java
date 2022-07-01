@@ -3,9 +3,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import docAsTest.DocAsTestStartupActivity;
-import org.jetbrains.annotations.NotNull;
-import org.mockito.Mockito;
-import tools.DocAsTestPlatformTest;
+import tools.DocAsTestPlatformTestCase;
 import tools.FieldAutoNaming;
 import tools.FileHelper;
 import tools.MockActionOnFileEvent;
@@ -14,7 +12,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
 
-public class CompareFileActionTest extends DocAsTestPlatformTest {
+public class CompareFileActionTest extends DocAsTestPlatformTestCase {
 
     class SpyCompareFileAction extends CompareFileAction {
         private VirtualFile fileApproved;
