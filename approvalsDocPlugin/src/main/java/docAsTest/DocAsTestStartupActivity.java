@@ -44,8 +44,10 @@ public class DocAsTestStartupActivity implements StartupActivity {
 
     @Override
     public void runActivity(@NotNull Project project) {
-        LOG.info("runActivity project:" + project.getName());
+        LOG.info("Initialize DocAsTest plugin on project:" + project.getName());
         loadProperties(project);
+        LOG.info("Test path: " + getSrcPath());
+        LOG.info("Doc path : " + getSrcDocs());
     }
 
     public static void loadProperties(Project project) {
