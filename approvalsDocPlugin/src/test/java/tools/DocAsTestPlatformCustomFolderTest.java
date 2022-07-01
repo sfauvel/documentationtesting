@@ -26,7 +26,7 @@ public class DocAsTestPlatformCustomFolderTest extends DocAsTestPlatformTestCase
     }
 
     public void test_get_root_source_path() throws IOException {
-        final VirtualFile srcPath = main_source_path();
+        final VirtualFile srcPath = fileHelper.main_source_path();
         assertEquals("java", srcPath.getName());
         assertEquals("/src/test/java", srcPath.getPath());
         assertEquals("/src/test/java", srcPath.getCanonicalPath());
@@ -36,7 +36,7 @@ public class DocAsTestPlatformCustomFolderTest extends DocAsTestPlatformTestCase
     public void test_find_or_create_from_path() throws IOException {
         final Path pathToCreate = Paths.get("src/custom/docs");
 
-        final VirtualFile docs_path = findOrCreate(pathToCreate);
+        final VirtualFile docs_path = fileHelper.findOrCreate(pathToCreate);
 
         assertEquals("/" + pathToCreate.toString(), docs_path.getPath());
     }
@@ -45,7 +45,7 @@ public class DocAsTestPlatformCustomFolderTest extends DocAsTestPlatformTestCase
 
         assertEquals(
                 "/" + "tmp/custom/my/folder",
-                findOrCreate("tmp/custom/my/folder").getPath()
+                fileHelper.findOrCreate("tmp/custom/my/folder").getPath()
         );
     }
 
@@ -74,7 +74,7 @@ public class DocAsTestPlatformCustomFolderTest extends DocAsTestPlatformTestCase
         final PsiFile testFile = myFixture.configureByText("TestMyClass.java", "My text");
         assertEquals("/src/test/java/TestMyClass.java", testFile.getVirtualFile().getPath());
 
-        final VirtualFile virtualFileFoundOrCreated = findOrCreate(testFile, Paths.get("../../docs"));
+        final VirtualFile virtualFileFoundOrCreated = fileHelper.findOrCreate(testFile, Paths.get("../../docs"));
         final PsiFile javaFile = configureByText(virtualFileFoundOrCreated, "MyClass.adoc", "My text");
         assertEquals("/src/test/docs/MyClass.adoc", javaFile.getVirtualFile().getPath());
     }
@@ -83,7 +83,7 @@ public class DocAsTestPlatformCustomFolderTest extends DocAsTestPlatformTestCase
         final PsiFile psiFile = myFixture.configureByText("file.txt", "My text");
         assertEquals("/src/test/java/file.txt", psiFile.getVirtualFile().getPath());
 
-        final VirtualFile virtualFileFoundOrCreated = findOrCreate(psiFile, Paths.get("../../../../documents"));
+        final VirtualFile virtualFileFoundOrCreated = fileHelper.findOrCreate(psiFile, Paths.get("../../../../documents"));
 
         myFixture.configureByText("toto.txt", "coucou");
         final PsiFile customFile = configureByText(virtualFileFoundOrCreated, "file.adoc", "My text");

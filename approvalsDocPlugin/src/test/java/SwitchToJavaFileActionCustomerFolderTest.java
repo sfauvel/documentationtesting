@@ -4,6 +4,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiFile;
 import com.intellij.testFramework.LightProjectDescriptor;
 import docAsTest.DocAsTestStartupActivity;
+import tools.CodeGenerator;
 import tools.DocAsTestPlatformTestCase;
 import tools.FileHelper.CaretOn;
 import tools.MockActionOnFileEvent;
@@ -72,9 +73,9 @@ public class SwitchToJavaFileActionCustomerFolderTest extends DocAsTestPlatformT
         );
         new DocAsTestStartupActivity().runActivity(myFixture.getProject());
 
-        myFixture.addFileToProject("MyClass.java", fileHelper.generateCode(CaretOn.NONE));
+        myFixture.addFileToProject("MyClass.java", CodeGenerator.generateCode(CaretOn.NONE));
         final PsiFile approvedFile = configureByText(
-                findOrCreate(CUSTOM_DOC_FOLDER),
+                fileHelper.findOrCreate(CUSTOM_DOC_FOLDER),
                 fileName,
                 fileName + " content");
 
