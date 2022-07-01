@@ -46,47 +46,6 @@ public abstract class DocAsTestPlatformTestCase extends BasePlatformTestCase {
         return FileEditorManager.getInstance(myFixture.getProject()).getSelectedEditor().getFile().getName();
     }
 
-    protected @NotNull VirtualFile main_source_path() throws IOException {
-        return myFixture.getTempDirFixture().findOrCreateDir(".");
-    }
-
-    public VirtualFile findOrCreate(PsiFile testFile, Path path) {
-        return findOrCreate(testFile.getVirtualFile(), path);
-    }
-
-    public VirtualFile findOrCreate(String pathToCreate) throws IOException {
-        return findOrCreate(Paths.get(pathToCreate));
-    }
-
-    public VirtualFile findOrCreate(Path pathToCreate) throws IOException {
-        final VirtualFile srcVirtualFile = main_source_path();
-        final Path srcPathFromRoot = Paths.get("/")
-                .relativize(Paths.get(srcVirtualFile.getPath()));
-        
-        final Path pathToCreateRelativeToSrc = srcPathFromRoot.relativize(pathToCreate);
-
-        return findOrCreate(srcVirtualFile, pathToCreateRelativeToSrc);
-    }
-
-    public VirtualFile findOrCreate(final VirtualFile rootVirtualFile, Path path) {
-        WriteAction.computeAndWait(() -> {
-            try {
-                VirtualFile currentVirtualFile = rootVirtualFile;
-                for (Path folder : path) {
-                    final VirtualFile existingVirtualFile = currentVirtualFile.findFileByRelativePath(folder.toString());
-                    currentVirtualFile = existingVirtualFile != null
-                            ? existingVirtualFile
-                            : currentVirtualFile.createChildDirectory(this, folder.toString());
-                    //System.out.println("SetupWithDescriptorFactoryTest.findOrCreate " + currentVirtualFile);
-                }
-                return currentVirtualFile;
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-        return rootVirtualFile.findFileByRelativePath(path.toString());
-    }
-
     public PsiFile configureByText(@NotNull final VirtualFile root, @NotNull final String fileName, @NotNull final String text) {
 
         try {

@@ -1,5 +1,6 @@
 package tools;
 
+import com.intellij.openapi.application.WriteAction;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiDirectory;
@@ -33,7 +34,7 @@ public class FileHelper {
     }
 
     public PsiFile addTestClassFile(final String className, CaretOn caretOn) {
-        final String code = generateCode(className, caretOn);
+        final String code = CodeGenerator.generateCode(className, caretOn);
         return addTestClassFile(className, code);
     }
 
@@ -43,7 +44,7 @@ public class FileHelper {
     }
 
     public PsiFile addTestClassFile(final Path packagePath, final String className, CaretOn caretOn) {
-        final String code = generateCode(packagePath, className, caretOn);
+        final String code = CodeGenerator.generateCode(packagePath, className, caretOn);
         return addTestClassFile(packagePath, className, code);
     }
 
@@ -59,72 +60,51 @@ public class FileHelper {
         return psiFile;
     }
 
-    public String generateCode(Path packagePath, String className, CaretOn caretOn) {
-        return new CodeGenerator()
-                .withPackage(packagePath.toString().replace(java.io.File.separatorChar, '.'))
-                .withClass(className)
-                .generate(caretOn);
-    }
-
-    public String generateCode(Path packagePath, CaretOn caretOn) {
-        return String.format("package %s;\n%s",
-                packagePath.toString().replace(java.io.File.separatorChar, '.'),
-                generateCode(caretOn));
-    }
-
-    public String generateCode(String className, CaretOn caretOn) {
-        return new CodeGenerator()
-                .withClass(className)
-                .generate(caretOn);
-    }
-
-
-    public static class CodeGenerator {
-        private String className = "MyClass";
-        private String method = "myMethod";
-        private String fullPackage = null;
-
-        String generate(CaretOn caretOn) {
-            return String.format("%simport %sorg.demo; class %s%s { public void %s%s() {} class %sInnerClass{ public void %sinnerMethod() {} } }",
-//                    CaretOn.NONE.equals(caretOn) ? "<caret>" : "",
-                    this.fullPackage != null ? "package " + fullPackage + "; " : "",
-                    CaretOn.IMPORT.equals(caretOn) ? "<caret>" : "",
-                    CaretOn.CLASS.equals(caretOn) ? "<caret>" : "",
-                    this.className,
-                    CaretOn.METHOD.equals(caretOn) ? "<caret>" : "",
-                    this.method,
-                    CaretOn.INNER_CLASS.equals(caretOn) ? "<caret>" : "",
-                    CaretOn.INNER_METHOD.equals(caretOn) ? "<caret>" : "");
-        }
-
-        public CodeGenerator withClass(String className) {
-            this.className = className;
-            return this;
-        }
-
-        public CodeGenerator withMethod(String method) {
-            this.method = method;
-            return this;
-        }
-
-        public CodeGenerator withPackage(String fullPackage) {
-            this.fullPackage = fullPackage;
-            return this;
-        }
-    }
-
-    public String generateCode(CaretOn caretOn) {
-        return String.format("import %sorg.demo; class %sMyClass { public void %smyMethod() {} class %sInnerClass{ public void %sinnerMethod() {} } }",
-                CaretOn.IMPORT.equals(caretOn) ? "<caret>" : "",
-                CaretOn.CLASS.equals(caretOn) ? "<caret>" : "",
-                CaretOn.METHOD.equals(caretOn) ? "<caret>" : "",
-                CaretOn.INNER_CLASS.equals(caretOn) ? "<caret>" : "",
-                CaretOn.INNER_METHOD.equals(caretOn) ? "<caret>" : "");
-    }
-
     public VirtualFile createFile(String path) {
         return myFixture.getTempDirFixture().createFile(path);
     }
+
+    public VirtualFile findOrCreate(PsiFile testFile, Path path) {
+        return findOrCreate(testFile.getVirtualFile(), path);
+    }
+
+    public VirtualFile findOrCreate(String pathToCreate) throws IOException {
+        return findOrCreate(Paths.get(pathToCreate));
+    }
+
+    public @NotNull VirtualFile main_source_path() throws IOException {
+        return myFixture.getTempDirFixture().findOrCreateDir(".");
+    }
+
+    public VirtualFile findOrCreate(Path pathToCreate) throws IOException {
+        final VirtualFile srcVirtualFile = main_source_path();
+        final Path srcPathFromRoot = Paths.get("/")
+                .relativize(Paths.get(srcVirtualFile.getPath()));
+
+        final Path pathToCreateRelativeToSrc = srcPathFromRoot.relativize(pathToCreate);
+
+        return findOrCreate(srcVirtualFile, pathToCreateRelativeToSrc);
+    }
+
+    public VirtualFile findOrCreate(final VirtualFile rootVirtualFile, Path path) {
+        WriteAction.computeAndWait(() -> {
+            try {
+                VirtualFile currentVirtualFile = rootVirtualFile;
+                for (Path folder : path) {
+                    final VirtualFile existingVirtualFile = currentVirtualFile.findFileByRelativePath(folder.toString());
+                    currentVirtualFile = existingVirtualFile != null
+                            ? existingVirtualFile
+                            : currentVirtualFile.createChildDirectory(this, folder.toString());
+                    //System.out.println("SetupWithDescriptorFactoryTest.findOrCreate " + currentVirtualFile);
+                }
+                return currentVirtualFile;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        return rootVirtualFile.findFileByRelativePath(path.toString());
+    }
+
 
     public Map<String, PsiDirectory> initFolders(String... filepaths) {
         Map<String, PsiDirectory> files = new HashMap<>();

@@ -160,7 +160,7 @@ public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
     public void test_perform_update_call_update_twice_with_different_mock_on_editor_on_method() {
         final String selectedClassName = "MyClass";
         final String selectedMethod = "SelectedMethod";
-        final String code = new FileHelper.CodeGenerator()
+        final String code = new CodeGenerator()
                 .withMethod("SelectedMethod")
                 .generate(FileHelper.CaretOn.METHOD);
         final PsiFile psiFile = fileHelper.addTestClassFile(selectedClassName, code);
@@ -222,7 +222,7 @@ public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
         final String selectedClassName = "MyClass";
         final String selectedMethod = "SelectedMethod";
 
-        final String code = new FileHelper.CodeGenerator()
+        final String code = new CodeGenerator()
                 .withMethod("SelectedMethod")
                 .generate(FileHelper.CaretOn.METHOD);
         final PsiFile psiFile = fileHelper.addTestClassFile(selectedClassName, code);
