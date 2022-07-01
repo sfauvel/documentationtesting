@@ -125,4 +125,20 @@ public class BasePlatformTestCaseTest extends BasePlatformTestCase {
 //        assertEquals("/xxx/file.txt", psiFile.getVirtualFile().getPath());
 
     }
+
+    public void test_found_root_source() throws IOException {
+        final VirtualFile srcPath = myFixture.getTempDirFixture().findOrCreateDir(".");
+        assertEquals("src", srcPath.getName());
+        assertEquals("/src", srcPath.getPath());
+        assertEquals("/src", srcPath.getCanonicalPath());
+        assertEquals("temp:///src", srcPath.getUrl());
+    }
+
+    public void testFoundRootSource() throws IOException {
+        final VirtualFile srcPath = myFixture.getTempDirFixture().findOrCreateDir(".");
+        assertEquals("src", srcPath.getName());
+        assertEquals("/src", srcPath.getPath());
+        assertEquals("/src", srcPath.getCanonicalPath());
+        assertEquals("temp:///src", srcPath.getUrl());
+    }
 }

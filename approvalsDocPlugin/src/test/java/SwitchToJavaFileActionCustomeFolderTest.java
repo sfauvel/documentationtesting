@@ -5,7 +5,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.testFramework.LightProjectDescriptor;
 import docAsTest.DocAsTestStartupActivity;
-import tools.DocAsTestPlatformTest;
+import tools.DocAsTestPlatformTestCase;
 import tools.FieldAutoNaming;
 import tools.FileHelper.CaretOn;
 import tools.MockActionOnFileEvent;
@@ -15,7 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-public class SwitchToJavaFileActionCustomeFolderTest extends DocAsTestPlatformTest {
+public class SwitchToJavaFileActionCustomeFolderTest extends DocAsTestPlatformTestCase {
     private final String CUSTOM_TEST_FOLDER = "src/test/custom_folder";
     private final String CUSTOM_DOC_FOLDER="documents/adoc";
     private final Path JAVA_TO_DOC = Paths.get(CUSTOM_TEST_FOLDER).relativize(Paths.get(CUSTOM_DOC_FOLDER));

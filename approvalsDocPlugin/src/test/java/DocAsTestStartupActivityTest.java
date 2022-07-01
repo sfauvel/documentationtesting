@@ -1,12 +1,12 @@
 import com.intellij.psi.PsiFile;
 import docAsTest.DocAsTestFilenameIndex;
 import docAsTest.DocAsTestStartupActivity;
-import tools.DocAsTestPlatformTest;
+import tools.DocAsTestPlatformTestCase;
 
-public class DocAsTestStartupActivityTest extends DocAsTestPlatformTest {
+public class DocAsTestStartupActivityTest extends DocAsTestPlatformTestCase {
 
     public void setUp() throws Exception {
-        DocAsTestFilenameIndex.setSlowOperationPolicy(DocAsTestPlatformTest.NO_SLOW_OPERATION_POLICY);
+        DocAsTestFilenameIndex.setSlowOperationPolicy(DocAsTestPlatformTestCase.NO_SLOW_OPERATION_POLICY);
         super.setUp();
         DocAsTestStartupActivity.reset();
     }

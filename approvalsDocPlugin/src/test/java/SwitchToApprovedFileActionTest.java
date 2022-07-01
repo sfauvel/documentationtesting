@@ -7,7 +7,7 @@ import docAsTest.DocAsTestAction;
 import docAsTest.DocAsTestStartupActivity;
 import docAsTest.approvalFile.ApprovalFile;
 import org.jetbrains.annotations.NotNull;
-import tools.DocAsTestPlatformTest;
+import tools.DocAsTestPlatformTestCase;
 import tools.FieldAutoNaming;
 import tools.FileHelper.CaretOn;
 import tools.MockActionOnFileEvent;
@@ -18,7 +18,7 @@ import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Properties;
 
-public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTest {
+public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
 
     private final SwitchToApprovedFileAction actionApprovedUnderTest = new SwitchToApprovedFileAction() {
         @Override

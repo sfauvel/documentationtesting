@@ -3,7 +3,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiFile;
 import docAsTest.DocAsTestFilenameIndex;
 import docAsTest.DocAsTestStartupActivity;
-import tools.DocAsTestPlatformTest;
+import tools.DocAsTestPlatformTestCase;
 import tools.FieldAutoNaming;
 import tools.FileHelper.CaretOn;
 import tools.MockActionOnFileEvent;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Map;
 
-public class SwitchToApprovedFileActionCustomFolderTest extends DocAsTestPlatformTest {
+public class SwitchToApprovedFileActionCustomFolderTest extends DocAsTestPlatformTestCase {
 
     private final SwitchToApprovedFileAction actionApprovedUnderTest = new SwitchToApprovedFileAction() {
         @Override
@@ -44,7 +44,7 @@ public class SwitchToApprovedFileActionCustomFolderTest extends DocAsTestPlatfor
 
     @Override
     protected void setUp() throws Exception {
-        DocAsTestFilenameIndex.setSlowOperationPolicy(DocAsTestPlatformTest.NO_SLOW_OPERATION_POLICY);
+        DocAsTestFilenameIndex.setSlowOperationPolicy(DocAsTestPlatformTestCase.NO_SLOW_OPERATION_POLICY);
         super.setUp();
         DocAsTestStartupActivity.reset();
         new DocAsTestStartupActivity().runActivity(myFixture.getProject());
