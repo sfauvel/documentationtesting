@@ -11,7 +11,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-// TODO rename. It"s not a really a file ApprovalDescriptor ?
 public abstract class ApprovalFile {
 
     private final Path path;

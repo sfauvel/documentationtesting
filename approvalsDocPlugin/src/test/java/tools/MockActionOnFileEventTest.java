@@ -1,12 +1,10 @@
 package tools;
 
-import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.editor.impl.EditorImpl;
 import com.intellij.psi.*;
-import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 import docAsTest.DocAsTestAction;
 import org.jetbrains.annotations.NotNull;
 
@@ -15,7 +13,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
-public class MockActionOnFileEventTest extends DocAsTestPlatformTest {
+public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
     MockActionOnFileEvent actionEvent;
     FileHelper fileHelper;
 
@@ -196,7 +194,7 @@ public class MockActionOnFileEventTest extends DocAsTestPlatformTest {
         } catch (RuntimeException e) {
             final StackTraceElement[] stackTrace = e.getStackTrace();
             assertEquals("run", stackTrace[0].getMethodName());
-            assertTrue(stackTrace[0].getClassName().contains("DocAsTestPlatformTest"));
+            assertTrue(stackTrace[0].getClassName().contains("DocAsTestPlatformTestCase"));
             return;
         }
         fail("An exception should be thrown");

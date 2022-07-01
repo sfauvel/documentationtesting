@@ -19,8 +19,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
-public abstract class DocAsTestPlatformTest extends BasePlatformTestCase {
+public abstract class DocAsTestPlatformTestCase extends BasePlatformTestCase {
 
     public static final SlowOperationPolicy NO_SLOW_OPERATION_POLICY = new SlowOperationPolicy() {
         @Override
@@ -45,8 +46,26 @@ public abstract class DocAsTestPlatformTest extends BasePlatformTestCase {
         return FileEditorManager.getInstance(myFixture.getProject()).getSelectedEditor().getFile().getName();
     }
 
+    protected @NotNull VirtualFile main_source_path() throws IOException {
+        return myFixture.getTempDirFixture().findOrCreateDir(".");
+    }
+
     public VirtualFile findOrCreate(PsiFile testFile, Path path) {
         return findOrCreate(testFile.getVirtualFile(), path);
+    }
+
+    public VirtualFile findOrCreate(String pathToCreate) throws IOException {
+        return findOrCreate(Paths.get(pathToCreate));
+    }
+
+    public VirtualFile findOrCreate(Path pathToCreate) throws IOException {
+        final VirtualFile srcVirtualFile = main_source_path();
+        final Path srcPathFromRoot = Paths.get("/")
+                .relativize(Paths.get(srcVirtualFile.getPath()));
+        
+        final Path pathToCreateRelativeToSrc = srcPathFromRoot.relativize(pathToCreate);
+
+        return findOrCreate(srcVirtualFile, pathToCreateRelativeToSrc);
     }
 
     public VirtualFile findOrCreate(final VirtualFile rootVirtualFile, Path path) {
@@ -58,7 +77,7 @@ public abstract class DocAsTestPlatformTest extends BasePlatformTestCase {
                     currentVirtualFile = existingVirtualFile != null
                             ? existingVirtualFile
                             : currentVirtualFile.createChildDirectory(this, folder.toString());
-                    System.out.println("SetupWithDescriptorFactoryTest.findOrCreate " + currentVirtualFile);
+                    //System.out.println("SetupWithDescriptorFactoryTest.findOrCreate " + currentVirtualFile);
                 }
                 return currentVirtualFile;
             } catch (IOException e) {

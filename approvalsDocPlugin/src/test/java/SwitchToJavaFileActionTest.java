@@ -1,4 +1,3 @@
-import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.Presentation;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
@@ -10,7 +9,7 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiJavaFile;
 import docAsTest.DocAsTestStartupActivity;
 import docAsTest.approvalFile.JavaFile;
-import tools.DocAsTestPlatformTest;
+import tools.DocAsTestPlatformTestCase;
 import tools.FieldAutoNaming;
 import tools.FileHelper.CaretOn;
 import tools.MockActionOnFileEvent;
@@ -23,7 +22,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 
-public class SwitchToJavaFileActionTest extends DocAsTestPlatformTest {
+public class SwitchToJavaFileActionTest extends DocAsTestPlatformTestCase {
     public static class fileNames extends FieldAutoNaming {
         public String docs_fileA_received_adoc;
         public String docs_fileA_approved_adoc;
@@ -182,7 +181,6 @@ public class SwitchToJavaFileActionTest extends DocAsTestPlatformTest {
     public void test_open_method_in_inner_class_in_java_file_from_approved_file_in_menu_or_editor() throws IOException {
         check_open_java_file_from_approval_file_in_menu_or_editor(FILE_NAMES.docs_fileA_InnerClass_innerMethod_approved_adoc,"innerMethod()");
     }
-        // TODO
 
     public void test_find_class_offset_from_approved_file_name() {
         final String beginOfCode = "class ";
@@ -265,7 +263,7 @@ public class SwitchToJavaFileActionTest extends DocAsTestPlatformTest {
     // ////////////////////////////////::
     // Test on specific methods of Action
     public void test_java_file_path_from_approved_file() throws IOException {
-        final VirtualFile approvedFile = createFile("/myproject/src/docs/_MyClass.approved.adoc");
+        final VirtualFile approvedFile = fileHelper.createFile("/myproject/src/docs/_MyClass.approved.adoc");
         Optional<Path> javaFilePath = actionJavaUnderTest.getJavaFilePath(
                 Paths.get("/src/myproject"),
                 approvedFile);
@@ -274,7 +272,7 @@ public class SwitchToJavaFileActionTest extends DocAsTestPlatformTest {
     }
 
     public void test_java_file_path_from_approved_file_with_subproject() throws IOException {
-        final VirtualFile approvedFile = createFile("/myproject/subproject/src/docs/_MyClass.approved.adoc");
+        final VirtualFile approvedFile = fileHelper.createFile("/myproject/subproject/src/docs/_MyClass.approved.adoc");
         Optional<Path> javaFilePath = actionJavaUnderTest.getJavaFilePath(
 //                Paths.get("/src/myproject"),
                 Paths.get("/"),
@@ -285,7 +283,7 @@ public class SwitchToJavaFileActionTest extends DocAsTestPlatformTest {
 
     public void test_java_file_path_from_approved_file_with_package() throws IOException {
         // Files are created under /src
-        final VirtualFile approvedFile = createFile("docs/org/demo/_MyClass.approved.adoc");
+        final VirtualFile approvedFile = fileHelper.createFile("docs/org/demo/_MyClass.approved.adoc");
         Optional<Path> javaFilePath = actionJavaUnderTest.getJavaFilePath(
                 Paths.get("/"),
                 approvedFile);
@@ -300,7 +298,7 @@ public class SwitchToJavaFileActionTest extends DocAsTestPlatformTest {
         properties.setProperty("DOC_PATH", "src/myproject/src/test/docs");
         DocAsTestStartupActivity.setProperties(properties);
 
-        final VirtualFile approvedFile = createFile("myproject/src/test/docs/org/demo/_MyClass.approved.adoc");
+        final VirtualFile approvedFile = fileHelper.createFile("myproject/src/test/docs/org/demo/_MyClass.approved.adoc");
         Optional<Path> javaFilePath = actionJavaUnderTest.getJavaFilePath(
                 Paths.get("/"),
 //                Paths.get("/src/myproject"),
@@ -310,16 +308,12 @@ public class SwitchToJavaFileActionTest extends DocAsTestPlatformTest {
     }
 
     public void test_no_java_file_path_from_a_non_approved_file() throws IOException {
-        final VirtualFile approvedFile = createFile("docs/org/demo/_MyClass.something.adoc");
+        final VirtualFile approvedFile = fileHelper.createFile("docs/org/demo/_MyClass.something.adoc");
         Optional<Path> javaFilePath = actionJavaUnderTest.getJavaFilePath(
                 Paths.get("/"),
                 approvedFile);
 
         assertEquals(false, javaFilePath.isPresent());
-    }
-
-    private VirtualFile createFile(String path) {
-        return myFixture.getTempDirFixture().createFile(path);
     }
 
 }

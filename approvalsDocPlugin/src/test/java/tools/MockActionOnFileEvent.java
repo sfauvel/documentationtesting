@@ -132,7 +132,7 @@ public class MockActionOnFileEvent extends MockActionEvent {
     }
 
     public void performUpdate(DocAsTestAction action, List<? extends PsiFileSystemItem> psiFiles) {
-        DocAsTestFilenameIndex.setSlowOperationPolicy(DocAsTestPlatformTest.NO_SLOW_OPERATION_POLICY);
+        DocAsTestFilenameIndex.setSlowOperationPolicy(DocAsTestPlatformTestCase.NO_SLOW_OPERATION_POLICY);
 
         withSelectedFromMenuFirstCall(psiFiles);
         action.update(this);
@@ -146,7 +146,7 @@ public class MockActionOnFileEvent extends MockActionEvent {
     }
 
     public void performAction(DocAsTestAction action, List<? extends PsiFileSystemItem> psiItems) {
-        DocAsTestFilenameIndex.setSlowOperationPolicy(DocAsTestPlatformTest.SLOW_OPERATION_ALLOWED);
+        DocAsTestFilenameIndex.setSlowOperationPolicy(DocAsTestPlatformTestCase.SLOW_OPERATION_ALLOWED);
         action.setUndoConfirmationPolicy(UndoConfirmationPolicy.DO_NOT_REQUEST_CONFIRMATION);
 
         // performAction call update and actionPerformed with the same dataContext
