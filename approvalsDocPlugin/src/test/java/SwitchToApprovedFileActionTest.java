@@ -1,13 +1,19 @@
+import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.Presentation;
 import com.intellij.openapi.project.Project;
-import com.intellij.psi.PsiFile;
+import com.intellij.psi.*;
+import com.intellij.psi.util.PsiTreeUtil;
+import docAsTest.DocAsTestAction;
 import docAsTest.DocAsTestStartupActivity;
+import docAsTest.approvalFile.ApprovalFile;
+import org.jetbrains.annotations.NotNull;
 import tools.DocAsTestPlatformTest;
 import tools.FieldAutoNaming;
 import tools.FileHelper.CaretOn;
 import tools.MockActionOnFileEvent;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Properties;
@@ -47,6 +53,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTest {
     public static class folderNames extends FieldAutoNaming {
     }
 
+    private static final String DOC_PATH = "src/docs";
     private MockActionOnFileEvent actionEvent;
     private Presentation presentation;
     final private fileNames FILE_NAMES = new fileNames();
@@ -60,7 +67,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTest {
         final Properties properties = new Properties();
         properties.setProperty("TEST_PATH", "src");
         // We are not able to put a file outside of /src for now so we put docs folder in src.
-        properties.setProperty("DOC_PATH", "src/docs");
+        properties.setProperty("DOC_PATH", DOC_PATH);
         DocAsTestStartupActivity.setProperties(properties);
 
 
@@ -219,17 +226,18 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTest {
         final PsiFile classFile = fileHelper.addTestClassFile("FileA", CaretOn.METHOD);
 
         actionEvent.performUpdateOnEditor(actionUnderTest, myFixture, classFile);
-        assertTrue(presentation.isVisible());;
+        assertTrue(presentation.isVisible());
+        ;
         assertEquals("Switch to " + approvalType + " file", presentation.getText());
 
-        actionEvent.performActionOnEditor(actionUnderTest,  myFixture, classFile);
+        actionEvent.performActionOnEditor(actionUnderTest, myFixture, classFile);
         assertEquals("_FileA.myMethod." + approvalType + ".adoc", getFileNameInEditor());
     }
 
     public void test_menu_entry_when_approved_file_on_package() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
-            FILE_NAMES.docs_fileA_approved_adoc
-    );
+                FILE_NAMES.docs_fileA_approved_adoc
+        );
         menu_entry_when_approval_file_on_package("approved", this.actionApprovedUnderTest);
     }
 
@@ -399,5 +407,93 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTest {
     }
 
 
+    private static class DocAsTestActionForTest extends DocAsTestAction {
 
+        private Project project;
+        public DocAsTestActionForTest(Project project) {
+            this.project = project;
+        }
+
+        @Override
+        public void actionPerformed(@NotNull AnActionEvent e) {
+        }
+
+        @NotNull
+        public Path getApprovedFilePathFromProjectRootPath(PsiJavaFile classFile, PsiElement elementAt) {
+            final Path approvedFilePath = getApprovedFilePath(project, elementAt, ApprovalFile.Status.APPROVED, classFile);
+            return Paths.get(project.getBasePath()).relativize(approvedFilePath);
+        }
+    }
+
+    public void test_getApprovedVirtualFile_from_method() {
+        final DocAsTestActionForTest action = new DocAsTestActionForTest(myFixture.getProject());
+
+        final PsiJavaFile classFile = (PsiJavaFile) fileHelper.addTestClassFile("MyClass", CaretOn.METHOD);
+        final PsiElement currentElement = classFile.findElementAt(myFixture.getEditor().getCaretModel().getCurrentCaret().getOffset());
+
+        assertElementType(currentElement, PsiIdentifier.class);
+        assertEquals("myMethod", currentElement.getText());
+        assertEquals(
+                Paths.get(DOC_PATH, "_MyClass.myMethod.approved.adoc"),
+                action.getApprovedFilePathFromProjectRootPath(classFile, currentElement)
+        );
+
+        final PsiElement methodElement = currentElement.getParent();
+        assertElementType(methodElement, PsiMethod.class);
+        assertEquals("myMethod", ((PsiMethod) methodElement).getName());
+        assertEquals(
+                Paths.get(DOC_PATH, "_MyClass.myMethod.approved.adoc"),
+                action.getApprovedFilePathFromProjectRootPath(classFile, methodElement)
+        );
+
+        final PsiElement classElement = methodElement.getParent();
+        assertElementType(classElement, PsiClass.class);
+        assertEquals("MyClass", ((PsiClass) classElement).getName());
+        assertEquals(
+                Paths.get(DOC_PATH, "_MyClass.approved.adoc"),
+                action.getApprovedFilePathFromProjectRootPath(classFile, classElement)
+        );
+    }
+
+    public void test_getApprovedVirtualFile_from_class() {
+        final DocAsTestActionForTest action = new DocAsTestActionForTest(myFixture.getProject());
+
+        final PsiJavaFile classFile = (PsiJavaFile) fileHelper.addTestClassFile("MyClass", CaretOn.CLASS);
+        final PsiElement currentElement = classFile.findElementAt(myFixture.getEditor().getCaretModel().getCurrentCaret().getOffset());
+
+        assertElementType(currentElement, PsiIdentifier.class);
+        assertEquals("MyClass", currentElement.getText());
+        assertEquals(
+                Paths.get(DOC_PATH, "_MyClass.approved.adoc"),
+                action.getApprovedFilePathFromProjectRootPath(classFile, currentElement)
+        );
+
+        final PsiElement classElement = currentElement.getParent();
+        assertElementType(classElement, PsiClass.class);
+        assertEquals("MyClass", ((PsiClass) classElement).getName());
+        assertEquals(
+                Paths.get(DOC_PATH, "_MyClass.approved.adoc"),
+                action.getApprovedFilePathFromProjectRootPath(classFile, classElement)
+        );
+    }
+
+    public void test_getApprovedVirtualFile_from_import() {
+        final DocAsTestActionForTest action = new DocAsTestActionForTest(myFixture.getProject());
+
+        final PsiJavaFile classFile = (PsiJavaFile) fileHelper.addTestClassFile("MyClass", CaretOn.NONE);
+        final PsiElement currentElement = classFile.findElementAt(myFixture.getEditor().getCaretModel().getCurrentCaret().getOffset());
+
+        // Check we are not in a class
+        assertNull(PsiTreeUtil.getParentOfType(currentElement, PsiClass.class, false));
+        assertEquals(
+                Paths.get(DOC_PATH, "_MyClass.approved.adoc"),
+                action.getApprovedFilePathFromProjectRootPath(classFile, currentElement)
+        );
+
+    }
+
+    private void assertElementType(PsiElement elementAt, Class<? extends PsiElement> expectedType) {
+        assertTrue("Class is " + elementAt.getClass().getSimpleName(),
+                expectedType.isAssignableFrom(elementAt.getClass()));
+    }
 }
