@@ -125,24 +125,13 @@ public abstract class DocAsTestAction extends AnAction {
     // ////////////////////:
     @NotNull
     protected Optional<VirtualFile> getApprovedVirtualFile(Project project, PsiElement element, ApprovalFile.Status approvalType) {
-        // TODO add test to chech strict=false is useful when on PsiMethod/PsiClass and not PsiIdentifier.
         PsiJavaFile containingJavaFile = getPsiJavaFile(element);
 
         if (containingJavaFile == null) {
             return Optional.empty();
         }
 
-        final String packageName = containingJavaFile.getPackageName();
-        // TODO add test to chech strict=false is useful when on PsiMethod/PsiClass and not PsiIdentifier.
-        final PsiClass containingClazz = PsiTreeUtil.getParentOfType(element, PsiClass.class, false);
-
-        ApprovalFile approvalFile = containingClazz == null
-                ? ApprovalFile.fromClass(packageName, containingJavaFile.getVirtualFile().getNameWithoutExtension())
-                : approvalFileFromMethod(element, packageName, containingClazz);
-
-        final Path approvedFilePath = Paths.get(getProjectBasePath(project))
-                .resolve(getSrcDocs())
-                .resolve(approvalFile.to(approvalType).getName());
+        final Path approvedFilePath = getApprovedFilePath(project, element, approvalType, containingJavaFile);
 
         return Optional.of(approvedFilePath)
                 .map(file -> Paths.get(containingJavaFile.getVirtualFile().getPath()).relativize(file))
@@ -150,6 +139,21 @@ public abstract class DocAsTestAction extends AnAction {
                 .map(path -> {
                     return containingJavaFile.getVirtualFile().findFileByRelativePath(path);
                 });
+    }
+
+    @NotNull
+    protected Path getApprovedFilePath(Project project, PsiElement element, ApprovalFile.Status approvalType, PsiJavaFile containingJavaFile) {
+        final String packageName = containingJavaFile.getPackageName();
+
+        PsiClass clazzOfElement = PsiTreeUtil.getParentOfType(element, PsiClass.class);
+        ApprovalFile approvalFile = clazzOfElement == null
+                ? ApprovalFile.fromClass(packageName, containingJavaFile.getVirtualFile().getNameWithoutExtension())
+                : approvalFileFromMethod(element, packageName, clazzOfElement);
+
+        final Path approvedFilePath = Paths.get(getProjectBasePath(project))
+                .resolve(getSrcDocs())
+                .resolve(approvalFile.to(approvalType).getName());
+        return approvedFilePath;
     }
 
     @Nullable
@@ -161,7 +165,6 @@ public abstract class DocAsTestAction extends AnAction {
 
     private ApprovalFile approvalFileFromMethod(PsiElement element, String packageName, PsiClass containingClazz) {
 
-        // TODO add test to chech strict=false is useful when on PsiMethod/PsiClass and not PsiIdentifier.
         final PsiMethod containingMethod = PsiTreeUtil.getParentOfType(element, PsiMethod.class, false);
         final String fullClassName = getFullClassName(containingClazz);
         return containingMethod == null
