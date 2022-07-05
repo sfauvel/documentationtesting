@@ -12,7 +12,7 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.java</depends>
 
-    <idea-version since-build="201" until-build="213.*" />
+    <idea-version since-build="201" />
 
     <extensions defaultExtensionNs="com.intellij">
         <postStartupActivity implementation="docAsTest.DocAsTestStartupActivity"/>
