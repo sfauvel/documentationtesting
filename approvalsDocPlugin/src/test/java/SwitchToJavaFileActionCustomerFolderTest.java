@@ -88,8 +88,7 @@ public class SwitchToJavaFileActionCustomerFolderTest extends DocAsTestPlatformT
 
         assertEquals(fileName, getFileNameInEditor());
 
-        AnActionEvent actionEvent = new MockActionOnPsiElementEvent(approvedFile);
-        actionJavaUnderTest.actionPerformed(actionEvent);
+        actionEvent.performActionOnEditor(actionJavaUnderTest, myFixture, approvedFile);
 
         assertEquals(fileOnEditorAfterAction, getFileNameInEditor());
     }
