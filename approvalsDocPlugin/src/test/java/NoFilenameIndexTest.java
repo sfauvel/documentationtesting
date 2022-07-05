@@ -1,4 +1,7 @@
 import junit.framework.TestCase;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,7 +11,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@RunWith(JUnit4.class)
 public class NoFilenameIndexTest extends TestCase {
+    @Test
     public void testNoFilenameIndexUsed() throws IOException {
         try (Stream<Path> pathsInSource = Files.list(Paths.get("src/main/java"))) {
             final List<Path> filesImportingFilenameIndex = pathsInSource

@@ -4,12 +4,16 @@ import com.intellij.MultiSourcePathLightProjectDescriptor;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.testFramework.LightProjectDescriptor;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+@RunWith(JUnit4.class)
 public class DocAsTestPlatformCustomFolderTest extends DocAsTestPlatformTestCase {
     @Override
     protected LightProjectDescriptor getProjectDescriptor() {
@@ -25,6 +29,7 @@ public class DocAsTestPlatformCustomFolderTest extends DocAsTestPlatformTestCase
         fileHelper = new FileHelper(myFixture);
     }
 
+    @Test
     public void test_get_root_source_path() throws IOException {
         final VirtualFile srcPath = fileHelper.main_source_path();
         assertEquals("java", srcPath.getName());
@@ -33,6 +38,7 @@ public class DocAsTestPlatformCustomFolderTest extends DocAsTestPlatformTestCase
         assertEquals("temp:///src/test/java", srcPath.getUrl());
     }
 
+    @Test
     public void test_find_or_create_from_path() throws IOException {
         final Path pathToCreate = Paths.get("src/custom/docs");
 
@@ -41,6 +47,7 @@ public class DocAsTestPlatformCustomFolderTest extends DocAsTestPlatformTestCase
         assertEquals("/" + pathToCreate.toString(), docs_path.getPath());
     }
 
+    @Test
     public void test_find_or_create_from_string() throws IOException {
 
         assertEquals(
@@ -49,6 +56,7 @@ public class DocAsTestPlatformCustomFolderTest extends DocAsTestPlatformTestCase
         );
     }
 
+    @Test
     public void test_add_file_on_source_folders() throws IOException {
         final PsiFile testFile = myFixture.configureByText("TestMyClass.java", "My text");
         assertEquals("/src/test/java/TestMyClass.java", testFile.getVirtualFile().getPath());
@@ -70,6 +78,7 @@ public class DocAsTestPlatformCustomFolderTest extends DocAsTestPlatformTestCase
         }
     }
 
+    @Test
     public void test_add_file_not_on_source_folders() throws IOException {
         final PsiFile testFile = myFixture.configureByText("TestMyClass.java", "My text");
         assertEquals("/src/test/java/TestMyClass.java", testFile.getVirtualFile().getPath());
@@ -79,6 +88,7 @@ public class DocAsTestPlatformCustomFolderTest extends DocAsTestPlatformTestCase
         assertEquals("/src/test/docs/MyClass.adoc", javaFile.getVirtualFile().getPath());
     }
 
+    @Test
     public void test_add_file_on_the_last_source_folder() throws IOException {
         final PsiFile psiFile = myFixture.configureByText("file.txt", "My text");
         assertEquals("/src/test/java/file.txt", psiFile.getVirtualFile().getPath());

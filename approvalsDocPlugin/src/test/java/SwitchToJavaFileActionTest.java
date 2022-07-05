@@ -9,6 +9,9 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiJavaFile;
 import docAsTest.DocAsTestStartupActivity;
 import docAsTest.approvalFile.JavaFile;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import tools.DocAsTestPlatformTestCase;
 import tools.FieldAutoNaming;
 import tools.FileHelper.CaretOn;
@@ -22,6 +25,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 
+@RunWith(JUnit4.class)
 public class SwitchToJavaFileActionTest extends DocAsTestPlatformTestCase {
     public static class fileNames extends FieldAutoNaming {
         public String docs_fileA_received_adoc;
@@ -71,24 +75,28 @@ public class SwitchToJavaFileActionTest extends DocAsTestPlatformTestCase {
     // //////////////////////////
     // Update
 
+    @Test
     public void test_menu_present_from_approved_file_when_java_file_exists() throws IOException {
         check_menu_presence_from_approval_file_in_menu_or_editor_with_FileA_java_class(
                 FILE_NAMES.docs_fileA_approved_adoc,
                 true);
     }
 
+    @Test
     public void test_menu_present_from_received_file_when_java_file_exists() throws IOException {
         check_menu_presence_from_approval_file_in_menu_or_editor_with_FileA_java_class(
                 FILE_NAMES.docs_fileA_received_adoc,
                 true);
     }
 
+    @Test
     public void test_menu_not_present_from_approved_file_when_no_java_file_exists() throws IOException {
         check_menu_presence_from_approval_file_in_menu_or_editor_with_FileA_java_class(
                 FILE_NAMES.docs_fileB_approved_adoc,
                 false);
     }
 
+    @Test
     public void test_menu_not_present_from_received_file_when_no_java_file_exists() throws IOException {
         check_menu_presence_from_approval_file_in_menu_or_editor_with_FileA_java_class(
                 FILE_NAMES.docs_fileB_received_adoc,
@@ -166,22 +174,27 @@ public class SwitchToJavaFileActionTest extends DocAsTestPlatformTestCase {
         assertTrue(text.trim().startsWith(textUnderCursor));
     }
 
+    @Test
     public void test_open_java_file_from_approved_file_in_menu_or_editor() throws IOException {
         check_open_java_file_from_approval_file_in_menu_or_editor(FILE_NAMES.docs_fileA_approved_adoc);
     }
 
+    @Test
     public void test_open_java_file_from_received_file_in_menu_or_editor() throws IOException {
         check_open_java_file_from_approval_file_in_menu_or_editor(FILE_NAMES.docs_fileA_received_adoc);
     }
 
+    @Test
     public void test_open_method_on_java_file_from_approved_file_in_menu_or_editor() throws IOException {
         check_open_java_file_from_approval_file_in_menu_or_editor(FILE_NAMES.docs_fileA_myMethod_approved_adoc,"myMethod()");
     }
 
+    @Test
     public void test_open_method_in_inner_class_in_java_file_from_approved_file_in_menu_or_editor() throws IOException {
         check_open_java_file_from_approval_file_in_menu_or_editor(FILE_NAMES.docs_fileA_InnerClass_innerMethod_approved_adoc,"innerMethod()");
     }
 
+    @Test
     public void test_find_class_offset_from_approved_file_name() {
         final String beginOfCode = "class ";
         final String classCode = "MyClass { public void ";
@@ -198,6 +211,7 @@ public class SwitchToJavaFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals(beginOfCode.length(), offset);
     }
 
+    @Test
     public void test_find_method_offset_from_approved_file_name() {
         final String beginOfCode = "class ";
         final String classCode = "MyClass { public void ";
@@ -215,6 +229,7 @@ public class SwitchToJavaFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals((beginOfCode + classCode).length(), offset);
     }
 
+    @Test
     public void test_find_inner_class_offset_from_approved_file_name() {
         final String beginOfCode = "class MyClass { class FirstInnerClass {} class ";
         final String innerClassCode = "SecondInnerClass {} ";
@@ -230,6 +245,7 @@ public class SwitchToJavaFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals(beginOfCode.length(), offset);
     }
 
+    @Test
     public void test_find_sub_inner_class_offset_from_approved_file_name() {
         final String beginOfCode = "class MyClass { class FirstInnerClass { class ";
         final String innerClassCode = "SecondInnerClass { ";
@@ -245,6 +261,7 @@ public class SwitchToJavaFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals(beginOfCode.length(), offset);
     }
 
+    @Test
     public void test_find_method_in_sub_inner_class_offset_from_approved_file_name() {
         final String beginOfCode = "class MyClass { class FirstInnerClass { class SecondInnerClass { void ";
         final String methodCode = "myMethod() {} ";
@@ -262,6 +279,7 @@ public class SwitchToJavaFileActionTest extends DocAsTestPlatformTestCase {
 
     // ////////////////////////////////::
     // Test on specific methods of Action
+    @Test
     public void test_java_file_path_from_approved_file() throws IOException {
         final VirtualFile approvedFile = fileHelper.createFile("/myproject/src/docs/_MyClass.approved.adoc");
         Optional<Path> javaFilePath = actionJavaUnderTest.getJavaFilePath(Paths.get("/src/myproject"), approvedFile);
@@ -269,6 +287,7 @@ public class SwitchToJavaFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals("/src/myproject/src/MyClass.java", javaFilePath.map(Path::toString).get());
     }
 
+    @Test
     public void test_java_file_path_from_approved_file_with_subproject() throws IOException {
         final VirtualFile approvedFile = fileHelper.createFile("/myproject/subproject/src/docs/_MyClass.approved.adoc");
         Optional<Path> javaFilePath = actionJavaUnderTest.getJavaFilePath(Paths.get("/"), approvedFile);
@@ -276,6 +295,7 @@ public class SwitchToJavaFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals("/src/myproject/subproject/src/MyClass.java", javaFilePath.map(Path::toString).get());
     }
 
+    @Test
     public void test_java_file_path_from_approved_file_with_package() throws IOException {
         // Files are created under /src
         final VirtualFile approvedFile = fileHelper.createFile("docs/org/demo/_MyClass.approved.adoc");
@@ -284,6 +304,7 @@ public class SwitchToJavaFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals("/src/org/demo/MyClass.java", javaFilePath.map(Path::toString).get());
     }
 
+    @Test
     public void test_java_file_path_from_approved_file_with_package_and_custom_path() throws IOException {
         final Properties properties = new Properties();
         properties.setProperty("TEST_PATH", "src/myproject/src/test/java");
@@ -297,6 +318,7 @@ public class SwitchToJavaFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals("/src/myproject/src/test/java/org/demo/MyClass.java", javaFilePath.map(Path::toString).get());
     }
 
+    @Test
     public void test_no_java_file_path_from_a_non_approved_file() throws IOException {
         final VirtualFile approvedFile = fileHelper.createFile("docs/org/demo/_MyClass.something.adoc");
         Optional<Path> javaFilePath = actionJavaUnderTest.getJavaFilePath(Paths.get("/"), approvedFile);

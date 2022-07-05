@@ -5,6 +5,8 @@ import com.intellij.psi.PsiElement;
 import org.mockito.Mockito;
 import tools.MockActionEvent;
 
+
+// TODO clean this class
 class MockActionOnPsiElementEvent extends MockActionEvent {
 
     public MockActionOnPsiElementEvent(PsiElement psiElement) {
