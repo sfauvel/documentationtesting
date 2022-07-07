@@ -14,11 +14,17 @@ import java.util.stream.Stream;
 
 public class ClassesOrder {
 
-    PathProvider pathProvider = new PathProvider();
+    final PathProvider pathProvider;
 
     private static ParsedClassRepository parserClassBuilder;
 
     public ClassesOrder() {
+        this(new PathProvider());
+    }
+
+    public ClassesOrder(PathProvider pathProvider) {
+        this.pathProvider = pathProvider;
+
         if (parserClassBuilder == null) {
             parserClassBuilder = createParsedeClassBuilderWithTestPath();
         }
