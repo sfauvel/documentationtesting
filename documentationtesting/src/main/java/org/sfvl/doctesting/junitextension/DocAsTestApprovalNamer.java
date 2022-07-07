@@ -5,7 +5,7 @@ import org.sfvl.doctesting.utils.DocPath;
 
 import java.io.File;
 
-class DocAsTestApprovalNamer implements ApprovalNamer {
+public class DocAsTestApprovalNamer implements ApprovalNamer {
     private final DocPath docPath;
 
     public DocAsTestApprovalNamer(DocPath docPath) {

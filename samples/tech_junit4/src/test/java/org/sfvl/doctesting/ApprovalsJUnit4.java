@@ -10,6 +10,7 @@ import org.junit.Rule;
 import org.junit.rules.TestName;
 import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
+import org.sfvl.doctesting.junitextension.DocAsTestApprovalNamer;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.writer.ClassDocumentation;
@@ -57,28 +58,7 @@ public class ApprovalsJUnit4 {
     }
 
     protected static void approved(DocPath docPath, String content) {
-        ApprovalNamer approvalNamer = new ApprovalNamer() {
-            @Override
-            public String getApprovalName() {
-                return "_" + docPath.name();
-            }
-
-            @Override
-            public String getSourceFilePath() {
-                return docPath.approved().folder().toString() + File.separator;
-            }
-
-            @Override
-            public File getApprovedFile(String extensionWithDot) {
-                return new File(this.getSourceFilePath() + "/" + this.getApprovalName() + ".approved" + extensionWithDot);
-            }
-
-            @Override
-            public File getReceivedFile(String extensionWithDot) {
-                return new File(this.getSourceFilePath() + "/" + this.getApprovalName() + ".received" + extensionWithDot);
-            }
-
-        };
+        ApprovalNamer approvalNamer = new DocAsTestApprovalNamer(docPath);
 
         final Options options = new Options()
                 .forFile().withExtension(".adoc");
