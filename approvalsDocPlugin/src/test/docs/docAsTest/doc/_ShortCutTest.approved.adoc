@@ -1,0 +1,5 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../..]
+
+= Short cut test
+
+include::_ShortCutTest.plugin_actions.approved.adoc[leveloffset=+1]

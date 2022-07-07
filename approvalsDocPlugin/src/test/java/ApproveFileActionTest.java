@@ -3,6 +3,7 @@ import com.intellij.openapi.command.undo.UndoManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiFile;
+import docAsTest.action.ApproveFileAction;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;

@@ -1,3 +1,5 @@
+package docAsTest.action;
+
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
@@ -8,6 +10,8 @@ import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
 import docAsTest.approvalFile.ApprovalFile;
+import docAsTest.approvalFile.FileBuilder;
+import docAsTest.approvalFile.FullApprovalFilePath;
 import docAsTest.approvalFile.JavaFile;
 import org.jetbrains.annotations.NotNull;
 

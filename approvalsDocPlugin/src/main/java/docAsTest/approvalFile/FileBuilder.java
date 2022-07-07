@@ -1,3 +1,5 @@
+package docAsTest.approvalFile;
+
 import com.intellij.openapi.vfs.VirtualFile;
 
 import java.io.File;
@@ -7,7 +9,7 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class FileBuilder {
+public class FileBuilder {
 
     public final String projectRootPath;
     public final Optional<String> packagePath;

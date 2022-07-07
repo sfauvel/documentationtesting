@@ -1,3 +1,4 @@
+package docAsTest.action;
 
 import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.application.ApplicationManager;

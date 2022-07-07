@@ -1,3 +1,5 @@
+package docAsTest.action;
+
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.UpdateInBackground;
 import com.intellij.openapi.command.CommandProcessor;

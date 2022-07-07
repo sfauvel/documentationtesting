@@ -8,6 +8,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiJavaFile;
 import docAsTest.DocAsTestStartupActivity;
+import docAsTest.action.SwitchToJavaFileAction;
 import docAsTest.approvalFile.JavaFile;
 import org.junit.Test;
 import org.junit.runner.RunWith;
