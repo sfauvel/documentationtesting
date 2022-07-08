@@ -1,0 +1,5 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../..]
+
+= Index doc test
+
+include::_IndexDocTest.test_content.approved.adoc[leveloffset=+1]
