@@ -23,4 +23,17 @@ public class DemoTest extends ApprovalsJUnit4 {
         write(String.format("%d + %d = %d", a, b, a + b));
         write(CodeExtractor.extractPartOfCurrentMethod("A"));
     }
+
+
+    /**
+     * When multiplying two simple numbers, the java operator '*' should return the multiplication of them.
+     */
+    @Test
+    public void multiplying_2_simple_numbers() {
+        final SourceRoot parserCode = new SourceRoot(TEST_PATH);
+        int a = 2;
+        int b = 3;
+        write(String.format("%d * %d = %d", a, b, a * b));
+        write(CodeExtractor.extractPartOfCurrentMethod("A"));
+    }
 }
