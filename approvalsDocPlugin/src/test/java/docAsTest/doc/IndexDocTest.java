@@ -41,7 +41,7 @@ public class IndexDocTest extends ApprovalsJUnit4 {
                         "Compare `approved` and `received` files"
                 ),
                 "",
-                "Those features are accessible from contextual menu on project explorer or on editor.",
+                "Those features are accessible from contextual menu of the project explorer or from the editor.",
                 "",
                 ""
         );

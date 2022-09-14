@@ -8,6 +8,6 @@ Features are:
 * Switch between `Java`, `approved` and `received` files
 * Compare `approved` and `received` files
 
-Those features are accessible from contextual menu on project explorer or on editor.
+Those features are accessible from contextual menu of the project explorer or from the editor.
 
 include::_ShortCutTest.approved.adoc[]
