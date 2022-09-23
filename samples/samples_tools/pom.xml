@@ -2,21 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.sfvl</groupId>
-    <artifactId>demo_trivia</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>samples_tools</artifactId>
+    <version>1.0.0</version>
 
-    <description>Demo with trivia kata. An example which shows a very visual representation of the tests.</description>
+    <description>Tools usefull for several demo's project</description>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <junit.version>5.8.2</junit.version>
-        <samples_tools.version>1.0.0</samples_tools.version>
         <documentationtesting.version>1.1.17-SNAPSHOT</documentationtesting.version>
         <asciidoctor.maven.plugin.version>2.1.0</asciidoctor.maven.plugin.version>
     </properties>
@@ -36,25 +34,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <mainClass>com.adaptionsoft.games.uglytrivia.TriviaDocumentation</mainClass>
-                    <arguments>
-                    </arguments>
-                    <classpathScope>test</classpathScope>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.asciidoctor</groupId>
@@ -92,33 +71,23 @@
     <dependencies>
         <dependency>
             <groupId>org.sfvl</groupId>
-            <artifactId>samples_tools</artifactId>
-            <version>${samples_tools.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.sfvl</groupId>
             <artifactId>documentationtesting</artifactId>
             <version>${documentationtesting.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-launcher</artifactId>
             <version>1.2.0</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 

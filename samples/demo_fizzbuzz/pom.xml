@@ -15,6 +15,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <junit.version>5.8.2</junit.version>
+        <samples_tools.version>1.0.0</samples_tools.version>
         <documentationtesting.version>1.1.17-SNAPSHOT</documentationtesting.version>
         <asciidoctor.maven.plugin.version>2.1.0</asciidoctor.maven.plugin.version>
     </properties>
@@ -88,6 +89,12 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>org.sfvl</groupId>
+            <artifactId>samples_tools</artifactId>
+            <version>${samples_tools.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.sfvl</groupId>
             <artifactId>documentationtesting</artifactId>
