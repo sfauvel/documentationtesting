@@ -6,7 +6,6 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.HtmlPageExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.NoTitle;
 import tools.CustomPageExtension;
@@ -31,8 +30,8 @@ public class Reference {
                 "",
                 formatter.listItems(
                         "Documentation of the concept: link:{github-pages}[]",
-                        "Library for Java: link:{github-pages}/documentationtesting[DocumentationTesting]",
-                        "Library for Python and pytest: link:https://github.com/sfauvel/doc_as_test_pytest[doc_as_test_pytest]",
+                        "Library for Java: " + Links.JavaDocAsTest(),
+                        "Library for Python and pytest: " + Links.PythonDocAsTest(),
                         "To get source and examples: link:{github-repo}[]",
                         "A plugin for IntelliJ is provided in {github-repo}/approvalsDocPlugin[approvalsDocPlugin] folder")
         ));

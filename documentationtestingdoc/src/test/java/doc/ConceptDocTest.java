@@ -75,7 +75,9 @@ public class ConceptDocTest extends MyFormatter {
         //"Understanding-oriented"
         return paragraph(
                 linkToPage(Explanation.class, "More explanation"),
-                "You want to have more information of the concept, the idea, the history, ..."
+                "You want to have more information of the concept, the idea, the history, ...",
+                "",
+                Links.VideoDocAsTest()
         );
     }
 
@@ -107,7 +109,8 @@ public class ConceptDocTest extends MyFormatter {
                 //"Information-oriented",
                 "",
                 "Tools, full discussions and choices",
-                ""
+                "",
+                Links.JavaDocAsTest("Java") + ", " + Links.PythonDocAsTest("Python") + ", ..."
         );
 
     }
