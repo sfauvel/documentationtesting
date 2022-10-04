@@ -96,3 +96,15 @@ Asciidoc is just one of them that provide enough capabilities to create a full d
 
 See: https://docs.asciidoctor.org/asciidoc/latest/asciidoc-vs-markdown/[asciidoc-vs-markdown]
 ====
+
+What are the impacts on performance ?
+[%collapsible]
+====
+It's right that there is an impact on performance but the main reason is the use of parsing to extract information from code
+mmore than the file writing.
+
+The other part that takes time is the HTML generation from `adoc` files.
+It's needed to publish the doc that can be done on a continuous integration and not in the development phase.
+
+You can find in demos a performance evaluation that show a significant degradation on fast tests.
+====
