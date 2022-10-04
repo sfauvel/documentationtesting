@@ -1,13 +1,18 @@
+package docAsTest.action;
+
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.OpenFileDescriptor;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
-import com.intellij.psi.search.FilenameIndex;
-import com.intellij.psi.search.GlobalSearchScope;
+import docAsTest.approvalFile.ApprovalFile;
+import docAsTest.approvalFile.FileBuilder;
+import docAsTest.approvalFile.FullApprovalFilePath;
+import docAsTest.approvalFile.JavaFile;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.Path;
@@ -31,6 +36,7 @@ public class SwitchToJavaFileAction extends SwitchAction {
 
     @Override
     protected Optional<Runnable> getRunnableAction(@NotNull AnActionEvent actionEvent) {
+        LOG.debug("getRunnableAction");
 
         final Optional<ReturnJavaFile> javaFileOptional = getJavaFile(actionEvent);
         if (javaFileOptional.isEmpty()) return Optional.empty();
@@ -57,77 +63,13 @@ public class SwitchToJavaFileAction extends SwitchAction {
             this.psiFile = psiFile;
             this.javaFile = javaFile;
         }
-    }
-
-    private Optional<ReturnJavaFile> getJavaFile(AnActionEvent actionEvent) {
-        final Project project = actionEvent.getProject();
-        loadProperties(project);
-
-        VirtualFile virtualFile = null;
-        final PsiFile psiFile = actionEvent.getData(CommonDataKeys.PSI_FILE);
-        if (psiFile != null) {
-            virtualFile = psiFile.getVirtualFile();
-        } else {
-            final PsiElement psiElement = actionEvent.getData(CommonDataKeys.PSI_ELEMENT);
-            if (psiElement != null) {
-                virtualFile = psiElement.getContainingFile().getVirtualFile();
-            }
-        }
-        // TODO What happened if virtualFile is still null ?
-
-        final Optional<Path> javaFilePath = getJavaFilePath(Paths.get(getProjectBasePath(project)), virtualFile);
-
-        final Path pathFromDocPath = Paths.get(getProjectBasePath(project)).resolve(getSrcDocs()).relativize(Paths.get(virtualFile.getPath()));
-
-        final Optional<JavaFile> javaFile = ApprovalFile.valueOf(pathFromDocPath.toString())
-                .map(ApprovalFile::toJava);
-
-        if (javaFile.isEmpty()) {
-            return Optional.empty();
-        }
-
-        final PsiFile[] filesByName = FilenameIndex.getFilesByName(project, javaFile.get().getFileName(), GlobalSearchScope.projectScope(project));
-        final Optional<PsiFile> first = Arrays.stream(filesByName)
-                .filter(file -> javaFilePath.map(Path::toString).get().equals(file.getVirtualFile().getPath()))
-                .findFirst();
-        return first.map(f -> new ReturnJavaFile((PsiJavaFile) f, javaFile.get()));
-    }
-
-
-    protected String getProjectBasePath(Project project) {
-        return project.getBasePath();
-    }
-
-    static class ApprovedRunnable implements Runnable {
-        private final PsiJavaFile javaFile;
-        private final Project project;
-        private final JavaFile javaClassFile;
-
-        ApprovedRunnable(Project project, ReturnJavaFile javaFile) {
-            this.project = project;
-            this.javaFile = javaFile.psiFile;
-            this.javaClassFile = javaFile.javaFile;
-        }
-
-        @Override
-        public void run() {
-            ApplicationManager.getApplication().runWriteAction(() -> runAction());
-        }
-
-        private void runAction() {
-            System.out.println("ApprovedRunnable.runAction");
-            final int offset = getOffset();
-
-            FileEditorManager.getInstance(project)
-                    .openTextEditor(new OpenFileDescriptor(project, javaFile.getVirtualFile(), offset), true);
-        }
 
         public int getOffset() {
-            final String className = javaClassFile.getClassName();
+            final String className = this.javaFile.getClassName();
             final List<String> classNames = new ArrayList<>(Arrays.asList(className.split("\\.")));
 
             String firstClass = classNames.remove(0);
-            final Optional<PsiClass> first = Optional.of(this.javaFile).stream()
+            final Optional<PsiClass> first = Optional.of(psiFile).stream()
                     .flatMap(c -> Arrays.stream(c.getClasses()))
                     .filter(c -> c.getName().equals(firstClass))
                     .findFirst();
@@ -141,18 +83,82 @@ public class SwitchToJavaFileAction extends SwitchAction {
                         .findFirst();
             }
 
-            if (javaClassFile.getMethodName() == null) {
+            if (this.javaFile.getMethodName() == null) {
                 return clazzFound.map(c -> c.getTextOffset()).orElse(0);
             }
             final int offset = clazzFound.stream()
                     .flatMap(c -> Arrays.stream(c.getMethods()))
-                    .filter(m -> m.getName().equals(javaClassFile.getMethodName()))
+                    .filter(m -> m.getName().equals(this.javaFile.getMethodName()))
                     .map(PsiMethod::getTextOffset)
                     .findFirst()
                     .orElse(0);
             return offset;
         }
-
     }
 
+    private Optional<ReturnJavaFile> getJavaFile(AnActionEvent actionEvent) {
+        final Project project = actionEvent.getProject();
+
+        VirtualFile virtualFile = null;
+        final PsiFile psiFile = actionEvent.getData(CommonDataKeys.PSI_FILE);
+        if (psiFile != null) {
+            virtualFile = psiFile.getVirtualFile();
+        } else {
+            final PsiElement psiElement = actionEvent.getData(CommonDataKeys.PSI_ELEMENT);
+            if (psiElement != null) {
+                virtualFile = psiElement.getContainingFile().getVirtualFile();
+            }
+        }
+        if (virtualFile == null) {
+            return Optional.empty();
+        }
+
+        final Optional<Path> javaFilePath = getJavaFilePath(Paths.get(getProjectBasePath(project)), virtualFile);
+
+        Path pathFromDocPath = Paths.get(getProjectBasePath(project)).resolve(getSrcDocs()).relativize(Paths.get(virtualFile.getPath()));
+
+        final Optional<JavaFile> javaFile = ApprovalFile.valueOf(pathFromDocPath.toString())
+                .map(ApprovalFile::toJava);
+
+        if (javaFile.isEmpty()) {
+            return Optional.empty();
+        }
+
+        final VirtualFile[] contentSourceRoots = ProjectRootManager.getInstance(project).getContentSourceRoots();
+        final List<PsiFile> filesByName = new ArrayList<>();
+        for (VirtualFile contentSourceRoot : contentSourceRoots) {
+            final VirtualFile fileByRelativePath = contentSourceRoot.findFileByRelativePath(javaFile.get().getName());
+            if (fileByRelativePath != null) {
+                filesByName.add(PsiManager.getInstance(project).findFile(fileByRelativePath));
+            }
+        }
+
+        final Optional<PsiFile> first = filesByName.stream()
+                .filter(file -> file.getVirtualFile().getPath().equals(javaFilePath.map(Path::toString).orElse(null)))
+                .findFirst();
+        return first.map(f -> new ReturnJavaFile((PsiJavaFile) f, javaFile.get()));
+    }
+
+    static class ApprovedRunnable implements Runnable {
+        private final Project project;
+        private ReturnJavaFile javaFile;
+
+        ApprovedRunnable(Project project, ReturnJavaFile javaFile) {
+            this.project = project;
+            this.javaFile = javaFile;
+        }
+
+        @Override
+        public void run() {
+            ApplicationManager.getApplication().runWriteAction(() -> runAction());
+        }
+
+        private void runAction() {
+            LOG.debug("ApprovedRunnable.runAction");
+            final int offset = javaFile.getOffset();
+
+            FileEditorManager.getInstance(project)
+                    .openTextEditor(new OpenFileDescriptor(project, javaFile.psiFile.getVirtualFile(), offset), true);
+        }
+    }
 }

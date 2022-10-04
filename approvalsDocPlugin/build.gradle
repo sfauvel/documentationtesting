@@ -5,15 +5,17 @@ plugins {
 }
 
 group 'org.sfvl.doctesting'
-version '1.1.1'
+version '1.1.5-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    mavenLocal() // Only for documentationtesting while waiting for it to be in Maven central.
 }
 
 dependencies {
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-core:2.1.0'
+    testImplementation 'org.sfvl:documentationtesting:1.1.17-SNAPSHOT'
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
@@ -26,6 +28,8 @@ patchPluginXml {
     changeNotes = """
       Change notes<br>
       <li>Switch between java/approved/received files</li>
+      <li>Select several received files to approved</li>
+      <li>Compare approved and received files from Java file</li>
       """
 }
 

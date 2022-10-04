@@ -1,3 +1,5 @@
+import docAsTest.approvalFile.ApprovalFile;
+import docAsTest.approvalFile.ApprovedFile;
 import org.junit.Test;
 
 import java.nio.file.Paths;
@@ -185,13 +187,13 @@ public class ApprovalFileTest {
 
     @Test
     public void extract_class_from_received_file_with_multi_parts_name() {
-        ApprovalFile filename = ApprovalFile.valueOf("_test.file.multi_part.my_method.received.adoc").get();
+        ApprovalFile filename = ApprovalFile.valueOf("_test.file.multi_part.myMethod.received.adoc").get();
         assertEquals("test.file.multi_part", filename.getClassName());
     }
 
     @Test
     public void extract_class_from_java_file_with_multi_parts_name_from_received() {
-        ApprovalFile filename = ApprovalFile.valueOf("_test.file.multi_part.my_method.received.adoc").get().toJava();
+        ApprovalFile filename = ApprovalFile.valueOf("_test.file.multi_part.myMethod.received.adoc").get().toJava();
         assertEquals("test.file.multi_part", filename.getClassName());
     }
 

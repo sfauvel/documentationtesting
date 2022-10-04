@@ -1,0 +1,8 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_demo_demotest_multiplying_2_simple_numbers]
+= Multiplying 2 simple numbers
+
+When multiplying two simple numbers, the java operator '*' should return the multiplication of them.
+
+2 * 3 = 6

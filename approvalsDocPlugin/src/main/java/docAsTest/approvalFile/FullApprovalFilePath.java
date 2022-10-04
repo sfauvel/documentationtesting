@@ -1,3 +1,7 @@
+package docAsTest.approvalFile;
+
+import docAsTest.approvalFile.ApprovalFile;
+
 import java.nio.file.Path;
 
 public class FullApprovalFilePath {

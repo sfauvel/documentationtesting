@@ -24,3 +24,7 @@ The plugin is not in the marketplace, so you have to deploy it to your IntelliJ 
 === Versions
 
 https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#intellij-platform-based-products-of-recent-ide-versions
+
+== Tests
+
+We use `JUnit4`, so classes must be annotated with `@RunWith(JUnit4.class)` and methods withe `@Test` as described in `com.intellij.testFramework.UsefulTestCase`.

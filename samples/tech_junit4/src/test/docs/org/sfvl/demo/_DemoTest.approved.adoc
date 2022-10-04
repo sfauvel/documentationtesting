@@ -5,3 +5,5 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 Demo of a simple usage to generate documentation.
 
 include::_DemoTest.adding_2_simple_numbers.approved.adoc[leveloffset=+1]
+
+include::_DemoTest.multiplying_2_simple_numbers.approved.adoc[leveloffset=+1]

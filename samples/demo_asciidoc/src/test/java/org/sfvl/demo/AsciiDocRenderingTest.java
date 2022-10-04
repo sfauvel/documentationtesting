@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.junit.jupiter.api.io.TempDir;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
@@ -12,6 +13,7 @@ import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.NoTitle;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -398,6 +400,79 @@ public class AsciiDocRenderingTest {
                     "");
         }
     }
+
+
+    @Nested
+    class Graph {
+        @Test
+        public void using_gnuplot(@TempDir Path tempDir) throws IOException {
+
+            final Path data_file = new DocPath(this.getClass()).approved().folder().resolve("data_gnuplot.txt");
+            try (FileWriter fileWriter = new FileWriter(data_file.toFile())) {
+                fileWriter.write(String.join("\n",
+                                "Number LineA LineB LineC",
+                                "1 5 3 20",
+                                "2 10 4 19 ",
+                                "3 13 6 15",
+                                "4 15 11 6",
+                                "5 16 20 2"
+                        )
+                );
+            }
+
+            doc.write(
+                    ":data_file: {docdir}/" + data_file.getFileName(),
+                    "",
+                    "Gnuplot documentation",
+                    "",
+                    "* http://gnuplot.info/docs_5.5/loc7228.html[Plot]",
+                    "* http://gnuplot.info/docs_5.5/loc14931.html[Set style line]",
+                    "",
+                    "// Remarks",
+                    "// ",
+                    "// * Attribute `height` seems to not work",
+                    "");
+
+            doc.write("",
+                    "== Default line style",
+                    "",
+                    build_gnuplot("plot for[col=2:4] \"{data_file}\" using 1:col title columnheader(col) with lines"),
+                    ""
+            );
+
+            doc.write("",
+                    "== Line style",
+                    "",
+                    build_gnuplot(
+                            "set style line 1 linewidth 1 linecolor rgb \"blue\"",
+                            "set style line 2 linewidth 10 linecolor rgb \"red\" pointsize 4 pointtype 7",
+                            "set style line 3 linewidth 5 linecolor rgb \"yellow\" pointsize 2 pointtype 5",
+                            "plot col=2 \"{data_file}\" using 1:col title columnheader(col) with lines ls 1, \\",
+                            "     col=3 \"{data_file}\" using 1:col title columnheader(col) with linespoints ls 2, \\",
+                            "     col=4 \"{data_file}\" using 1:col title columnheader(col) with linespoints ls 3"
+                    ),
+                    ""
+            );
+
+        }
+
+        private String build_gnuplot(String... lines) {
+            return String.join("\n",
+                    "[gnuplot, format=svg, subs=\"+attributes\", width=300]",
+                    "....",
+                    String.join("\n", lines),
+                    "....",
+                    "",
+                    ".View source",
+                    "[%collapsible]",
+                    "====",
+                    "----",
+                    String.join("\n", lines),
+                    "----",
+                    "====");
+        }
+    }
+
 
     private String ifndef(String attribute, String defaultValue, String other) {
         return String.format("ifndef::%s[]\n:%s: %s\n%s\nendif::[]", attribute, attribute, defaultValue, other);

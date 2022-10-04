@@ -64,3 +64,35 @@ This is very restrictive because it's instructions to the machine. Here, we are 
 We can understand each case and validate them more easily when functional change.
 * *TDD*: It's not really made for TDD because it can slow down the rytme if we want to produce very readable documentation.
 But, at the end, our test are not only a technical code lost in the sources but they provides a real documentation.
+
+
+== Frequently Asked Questions
+
+.Are the tests more complicated to write ?
+[%collapsible]
+====
+If you don't need an advanced presentation, the test is not more complicated.
+It can be even simpler in some cases.
+What can be difficult is to define which information we need to provide.
+It's another way of thinking tests.
+
+Of course, a complex rendering requires an extra effort, but are we comparing the same thing ?
+If we do that, it's because the result brings more value than the version with classical tests.
+====
+
+.But finally, a person need to validate the document ?
+[%collapsible]
+====
+Yes, as you need to have someone to choose input data and expected values in your tests.
+Once the document is approved there is no need to validate it again until it change.
+====
+
+.Why asciidoc ?
+[%collapsible]
+====
+In fact, we can use any text format (and even other).
+Markup language is very close to the text displayed so, it's very easy to compare two versions of the document.
+Asciidoc is just one of them that provide enough capabilities to create a full documentation (tables, links, includes, code, attributes, ...).
+
+See: https://docs.asciidoctor.org/asciidoc/latest/asciidoc-vs-markdown/[asciidoc-vs-markdown]
+====

@@ -1,19 +1,31 @@
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.Presentation;
-import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiJavaFile;
-import com.intellij.testFramework.fixtures.BasePlatformTestCase;
+import com.intellij.psi.*;
+import com.intellij.psi.util.PsiTreeUtil;
+import docAsTest.DocAsTestAction;
+import docAsTest.DocAsTestStartupActivity;
+import docAsTest.action.SwitchToApprovedFileAction;
+import docAsTest.action.SwitchToFileAction;
+import docAsTest.action.SwitchToReceivedFileAction;
+import docAsTest.approvalFile.ApprovalFile;
 import org.jetbrains.annotations.NotNull;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import tools.DocAsTestPlatformTestCase;
+import tools.FieldAutoNaming;
+import tools.FileHelper.CaretOn;
+import tools.MockActionOnFileEvent;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Optional;
+import java.util.Map;
+import java.util.Properties;
 
-public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
+@RunWith(JUnit4.class)
+public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
 
     private final SwitchToApprovedFileAction actionApprovedUnderTest = new SwitchToApprovedFileAction() {
         @Override
@@ -29,48 +41,61 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
         }
     };
 
+    public static class fileNames extends FieldAutoNaming {
+
+        public String docs_fileA_received_adoc;
+        public String docs_fileA_approved_adoc;
+        public String docs_fileA_myMethod_received_adoc;
+        public String docs_fileA_myMethod_approved_adoc;
+        public String docs_fileA_InnerClass_received_adoc;
+        public String docs_fileA_InnerClass_approved_adoc;
+        public String docs_fileA_InnerClass_innerMethod_received_adoc;
+        public String docs_fileA_InnerClass_innerMethod_approved_adoc;
+        public String documents_org_demo_fileX_approved_adoc;
+        public String documents_org_demo_fileX_received_adoc;
+        public String folder1_fileB_received_adoc;
+
+    }
+
+    public static class folderNames extends FieldAutoNaming {
+    }
+
+    private static final String DOC_PATH = "src/docs";
+    private MockActionOnFileEvent actionEvent;
+    private Presentation presentation;
+    final private fileNames FILE_NAMES = new fileNames();
+    final private folderNames FOLDER_NAMES = new folderNames();
+
     @Override
     protected void setUp() throws Exception {
         super.setUp();
+        myFixture.setTestDataPath(myFixture.getProject().getBasePath());
 
+        final Properties properties = new Properties();
+        properties.setProperty("TEST_PATH", "src");
+        // We are not able to put a file outside of /src for now so we put docs folder in src.
+        properties.setProperty("DOC_PATH", DOC_PATH);
+        DocAsTestStartupActivity.setProperties(properties);
+
+
+        actionEvent = new MockActionOnFileEvent(myFixture);
+        presentation = actionEvent.getPresentation();
+
+        myFixture.getTempDirFixture().findOrCreateDir("org/demo");
         myFixture.getTempDirFixture().findOrCreateDir("test/java/org/demo");
         myFixture.getTempDirFixture().findOrCreateDir("test/docs/org/demo");
 
         myFixture.addFileToProject("test/docs/_AnotherFile.approved.adoc", "approved content");
         myFixture.addFileToProject("test/docs/_AnotherFile.received.adoc", "approved content");
+
     }
 
-
-    public void test_approval_file_path_from_java_file() throws IOException {
-        final SwitchToApprovedFileAction action = new SwitchToApprovedFileAction() {
-            @Override
-            protected String getProjectBasePath(Project project) {
-                return "/";
-            }
-
-            @Override
-            public String getSrcDocs() {
-                return SwitchAction.DEFAULT_SRC_DOCS;
-            }
-
-            @Override
-            public String getSrcPath() {
-                return SwitchAction.DEFAULT_SRC_PATH;
-            }
-        };
-
-        final VirtualFile javaFile = createFile("/src/myproject/src/test/java/MyClass.java");
-        Optional<Path> approvedFilePath = action.getApprovedFilePath(
-                Paths.get("/src/myproject"),
-                javaFile, ApprovalFile.Status.APPROVED);
-
-        assertEquals("/src/myproject/src/test/docs/_MyClass.approved.adoc", approvedFilePath.map(Path::toString).get());
-    }
-
+    @Test
     public void test_no_approved_menu_entry_when_not_on_java_file() throws IOException {
         no_menu_entry_when_not_on_java_file(this.actionApprovedUnderTest);
     }
 
+    @Test
     public void test_no_received_menu_entry_when_not_on_java_file() throws IOException {
         no_menu_entry_when_not_on_java_file(this.actionReceivedUnderTest);
     }
@@ -84,52 +109,96 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
         assertEquals("MyClass.txt", getFileNameInEditor());
     }
 
+    @Test
     public void test_no_menu_entry_when_no_approved_file() throws IOException {
-        no_menu_entry_when_no_approval_file(this.actionApprovedUnderTest);
+        no_menu_entry_when_no_approval_file(new SwitchToApprovedFileAction());
     }
 
+    @Test
     public void test_no_menu_entry_when_no_received_file() throws IOException {
-        no_menu_entry_when_no_approval_file(this.actionReceivedUnderTest);
+        no_menu_entry_when_no_approval_file(new SwitchToReceivedFileAction());
     }
 
     private void no_menu_entry_when_no_approval_file(SwitchToFileAction actionUnderTest) {
-        addTestClassFile("MyClass", CaretOn.CLASS);
+        final String selectedClassName = "MyClass";
+        final PsiFile psiFile = fileHelper.addTestClassFile(selectedClassName, CaretOn.CLASS);
 
-        final Presentation presentation = myFixture.testAction(actionUnderTest);
-        assertFalse(presentation.isVisible());
+        actionEvent.performAction(actionApprovedUnderTest, psiFile);
+
+        assertFalse(presentation.isEnabledAndVisible());
         assertNull(presentation.getText());
         assertEquals("MyClass.java", getFileNameInEditor());
     }
 
+    @Test
     public void test_menu_entry_when_approved_file() throws IOException {
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.docs_fileA_approved_adoc,
+                FILE_NAMES.folder1_fileB_received_adoc
+        );
         menu_entry_when_approval_file_exists("approved", actionApprovedUnderTest);
     }
 
+    @Test
     public void test_menu_entry_when_received_file() throws IOException {
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.docs_fileA_received_adoc
+        );
         menu_entry_when_approval_file_exists("received", actionReceivedUnderTest);
     }
 
     private void menu_entry_when_approval_file_exists(String approvalType, SwitchToFileAction actionApprovedUnderTest) {
-        myFixture.addFileToProject("test/docs/_MyClass." + approvalType + ".adoc", approvalType + " content");
-        addTestClassFile("MyClass", CaretOn.CLASS);
+        final String selectedClassName = "FileA";
+        final PsiFile psiFile = fileHelper.addTestClassFile(selectedClassName, CaretOn.CLASS);
 
-        final Presentation presentation = myFixture.testAction(actionApprovedUnderTest);
-        assertTrue(presentation.isVisible());
+        actionEvent.performUpdateOnEditor(actionApprovedUnderTest, myFixture, psiFile);
+
+        assertTrue(presentation.isEnabledAndVisible());
         assertEquals("Switch to " + approvalType + " file", presentation.getText());
-        assertEquals("_MyClass." + approvalType + ".adoc", getFileNameInEditor());
     }
 
+    @Test
+    public void test_menu_switch_when_approved_file() throws IOException {
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.docs_fileA_approved_adoc,
+                FILE_NAMES.folder1_fileB_received_adoc
+        );
+        menu_switch_when_approval_file_exists("approved", actionApprovedUnderTest);
+    }
+
+    @Test
+    public void test_menu_switch_when_received_file() throws IOException {
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.docs_fileA_received_adoc
+        );
+        menu_switch_when_approval_file_exists("received", actionReceivedUnderTest);
+    }
+
+    private void menu_switch_when_approval_file_exists(String approvalType, SwitchToFileAction actionApprovedUnderTest) {
+        final String selectedClassName = "FileA";
+        final PsiFile psiFile = fileHelper.addTestClassFile(selectedClassName, CaretOn.CLASS);
+
+        assertEquals("FileA.java", getFileNameInEditor());
+
+        actionEvent.performAction(actionApprovedUnderTest, psiFile);
+
+        assertEquals(String.format("_%s.%s.adoc", selectedClassName, approvalType), getFileNameInEditor());
+    }
+
+    @Test
     public void test_menu_entry_when_approved_file_with_package() throws IOException {
         menu_entry_when_file_with_package(actionApprovedUnderTest, "approved");
     }
 
+    @Test
     public void test_menu_entry_when_received_file_with_package() throws IOException {
         menu_entry_when_file_with_package(actionReceivedUnderTest, "received");
     }
 
     private void menu_entry_when_file_with_package(SwitchToFileAction actionUnderTest, String approvalType) {
-        myFixture.addFileToProject("test/docs/org/demo/_MyClass." + approvalType + ".adoc", approvalType + " content");
-        addTestClassFile(Paths.get("org", "demo"), "MyClass", CaretOn.CLASS);
+        final PsiFile psiFile = myFixture.addFileToProject("docs/org/demo/_MyClass." + approvalType + ".adoc", approvalType + " content");
+        System.out.println("SwitchToApprovedFileActionTest.menu_entry_when_file_with_package approved added: " + psiFile.getVirtualFile().getPath() + "/" + psiFile.getVirtualFile().getName());
+        fileHelper.addTestClassFile(Paths.get("org", "demo"), "MyClass", CaretOn.CLASS);
 
         final Presentation presentation = myFixture.testAction(actionUnderTest);
         assertTrue(presentation.isVisible());
@@ -137,17 +206,20 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
         assertEquals("_MyClass." + approvalType + ".adoc", getFileNameInEditor());
     }
 
+    @Test
     public void test_no_menu_entry_when_approved_file_not_on_the_same_folder() throws IOException {
         no_menu_entry_when_approval_file_not_on_the_same_folder("approved", this.actionApprovedUnderTest);
     }
 
+    @Test
     public void test_no_menu_entry_when_received_file_not_on_the_same_folder() throws IOException {
         no_menu_entry_when_approval_file_not_on_the_same_folder("received", this.actionReceivedUnderTest);
     }
 
     private void no_menu_entry_when_approval_file_not_on_the_same_folder(String approvalType, SwitchToFileAction actionUnderTest) {
         myFixture.addFileToProject("test/docs/otherfolder/_MyClass." + approvalType + ".adoc", approvalType + " content");
-        addTestClassFile("MyClass", CaretOn.CLASS);
+
+        fileHelper.addTestClassFile("MyClass", CaretOn.CLASS);
 
         final Presentation presentation = myFixture.testAction(actionUnderTest);
         assertFalse(presentation.isVisible());
@@ -155,226 +227,309 @@ public class SwitchToApprovedFileActionTest extends BasePlatformTestCase {
         assertEquals("MyClass.java", getFileNameInEditor());
     }
 
+    @Test
     public void test_menu_entry_when_approved_file_on_method() throws IOException {
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.docs_fileA_myMethod_approved_adoc
+        );
         menu_entry_when_approval_file_on_method("approved", this.actionApprovedUnderTest);
     }
 
+    @Test
     public void test_menu_entry_when_received_file_on_method() throws IOException {
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.docs_fileA_myMethod_received_adoc
+        );
         menu_entry_when_approval_file_on_method("received", this.actionReceivedUnderTest);
     }
 
     private void menu_entry_when_approval_file_on_method(String approvalType, SwitchToFileAction actionUnderTest) {
-        myFixture.addFileToProject("test/docs/_MyClass.my_method." + approvalType + ".adoc", approvalType + " content");
-        addTestClassFile("MyClass", CaretOn.METHOD);
+        final PsiFile classFile = fileHelper.addTestClassFile("FileA", CaretOn.METHOD);
 
-        final Presentation presentation = myFixture.testAction(actionUnderTest);
+        actionEvent.performUpdateOnEditor(actionUnderTest, myFixture, classFile);
         assertTrue(presentation.isVisible());
+        ;
         assertEquals("Switch to " + approvalType + " file", presentation.getText());
-        assertEquals("_MyClass.my_method." + approvalType + ".adoc", getFileNameInEditor());
+
+        actionEvent.performActionOnEditor(actionUnderTest, myFixture, classFile);
+        assertEquals("_FileA.myMethod." + approvalType + ".adoc", getFileNameInEditor());
     }
 
+    @Test
     public void test_menu_entry_when_approved_file_on_package() throws IOException {
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.docs_fileA_approved_adoc
+        );
         menu_entry_when_approval_file_on_package("approved", this.actionApprovedUnderTest);
     }
 
+    @Test
     public void test_menu_entry_when_received_file_on_package() throws IOException {
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.docs_fileA_received_adoc
+        );
         menu_entry_when_approval_file_on_package("received", this.actionReceivedUnderTest);
     }
 
     private void menu_entry_when_approval_file_on_package(String approvalType, SwitchToFileAction actionUnderTest) {
-        myFixture.addFileToProject("test/docs/_MyClass." + approvalType + ".adoc", approvalType + " content");
-        addTestClassFile("MyClass", CaretOn.IMPORT);
+        final PsiFile classFile = fileHelper.addTestClassFile("FileA", CaretOn.IMPORT);
 
-        final Presentation presentation = myFixture.testAction(actionUnderTest);
+        actionEvent.performUpdate(actionUnderTest, classFile);
+
         assertTrue(presentation.isVisible());
         assertEquals("Switch to " + approvalType + " file", presentation.getText());
-        assertEquals("_MyClass." + approvalType + ".adoc", getFileNameInEditor());
+
+        actionEvent.performAction(actionUnderTest, classFile);
+        assertEquals("_FileA." + approvalType + ".adoc", getFileNameInEditor());
     }
 
 
+    @Test
     public void test_menu_entry_when_approved_file_on_inner_class() throws IOException {
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.docs_fileA_InnerClass_approved_adoc
+        );
         menu_entry_when_approval_file_on_inner_class("approved", this.actionApprovedUnderTest);
     }
 
+    @Test
     public void test_menu_entry_when_received_file_on_inner_class() throws IOException {
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.docs_fileA_InnerClass_received_adoc
+        );
         menu_entry_when_approval_file_on_inner_class("received", this.actionReceivedUnderTest);
     }
 
     private void menu_entry_when_approval_file_on_inner_class(String approvalType, SwitchToFileAction actionUnderTest) {
-        myFixture.addFileToProject("test/docs/_MyClass.InnerClass." + approvalType + ".adoc", approvalType + " content");
-        addTestClassFile("MyClass", CaretOn.INNER_CLASS);
+        final PsiFile classFile = fileHelper.addTestClassFile("FileA", CaretOn.INNER_CLASS);
 
-        final Presentation presentation = myFixture.testAction(actionUnderTest);
+        actionEvent.performUpdateOnEditor(actionUnderTest, myFixture, classFile);
         assertTrue(presentation.isVisible());
         assertEquals("Switch to " + approvalType + " file", presentation.getText());
-        assertEquals("_MyClass.InnerClass." + approvalType + ".adoc", getFileNameInEditor());
+
+        actionEvent.performActionOnEditor(actionUnderTest, myFixture, classFile);
+        assertEquals("_FileA.InnerClass." + approvalType + ".adoc", getFileNameInEditor());
     }
 
+    @Test
     public void test_menu_entry_when_approved_file_on_inner_method() throws IOException {
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.docs_fileA_InnerClass_innerMethod_approved_adoc
+        );
         menu_entry_when_approval_file_on_inner_method("approved", this.actionApprovedUnderTest);
     }
 
+    @Test
     public void test_menu_entry_when_received_file_on_inner_method() throws IOException {
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.docs_fileA_InnerClass_innerMethod_received_adoc
+        );
         menu_entry_when_approval_file_on_inner_method("received", this.actionReceivedUnderTest);
     }
 
     private void menu_entry_when_approval_file_on_inner_method(String approvalType, SwitchToFileAction actionUnderTest) {
-        myFixture.addFileToProject("test/docs/_MyClass.InnerClass.inner_method." + approvalType + ".adoc", approvalType + " content");
-        addTestClassFile("MyClass", CaretOn.INNER_METHOD);
+        final PsiFile classFile = fileHelper.addTestClassFile("FileA", CaretOn.INNER_METHOD);
 
-        final Presentation presentation = myFixture.testAction(actionUnderTest);
+        actionEvent.performUpdateOnEditor(actionUnderTest, myFixture, classFile);
+
         assertTrue(presentation.isVisible());
         assertEquals("Switch to " + approvalType + " file", presentation.getText());
-        assertEquals("_MyClass.InnerClass.inner_method." + approvalType + ".adoc", getFileNameInEditor());
+
+        actionEvent.performActionOnEditor(actionUnderTest, myFixture, classFile);
+        assertEquals("_FileA.InnerClass.innerMethod." + approvalType + ".adoc", getFileNameInEditor());
     }
 
+    @Test
     public void test_menu_when_not_on_editor() throws IOException {
-        final String approvalType = "approved";
-        myFixture.addFileToProject("test/docs/_MyClass." + approvalType + ".adoc", approvalType + " content");
-        final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java", generateCode(CaretOn.NONE));
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.docs_fileA_approved_adoc
+        );
 
-        AnActionEvent actionEvent = new MockActionOnFileEvent(psiFile);
+        String approvalType = "approved";
+        final String selectedClassName = "FileA";
+        final PsiFile psiFile = fileHelper.addTestClassFile(selectedClassName, CaretOn.NONE);
 
-        actionApprovedUnderTest.update(actionEvent);
+        actionEvent.performUpdate(actionApprovedUnderTest, psiFile);
 
         final Presentation presentation = actionEvent.getPresentation();
         assertTrue(presentation.isVisible());
         assertEquals("Switch to " + approvalType + " file", presentation.getText());
     }
 
-    /**
-     * When select file from menu, the PsiElement is a PsiClass.
-     */
-    public void test_menu_when_on_java_PsiElement() throws IOException {
-        final String approvalType = "approved";
-        myFixture.addFileToProject("test/docs/_MyClass." + approvalType + ".adoc", approvalType + " content");
-        final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java", generateCode(CaretOn.NONE));
-
-        AnActionEvent actionEvent = new MockActionOnPsiElementEvent(((PsiJavaFile) psiFile).getClasses()[0]);
-
-        actionApprovedUnderTest.update(actionEvent);
-    }
-
+    @Test
     public void test_open_approved_file_on_editor_when_on_java_PsiElement() throws IOException {
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.docs_fileA_approved_adoc
+        );
         final String approvalType = "approved";
-        myFixture.addFileToProject("test/docs/_MyClass." + approvalType + ".adoc", approvalType + " content");
-        final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java", generateCode(CaretOn.NONE));
+        final String selectedClassName = "FileA";
+        final PsiFile psiFile = fileHelper.addTestClassFile(selectedClassName, CaretOn.NONE);
 
-        AnActionEvent actionEvent = new MockActionOnPsiElementEvent(((PsiJavaFile) psiFile).getClasses()[0]);
+        actionEvent.performAction(actionApprovedUnderTest, psiFile);
 
-        actionApprovedUnderTest.actionPerformed(actionEvent);
-
-        assertEquals("_MyClass." + approvalType + ".adoc", getFileNameInEditor());
+        assertEquals("_FileA." + approvalType + ".adoc", getFileNameInEditor());
     }
 
+    @Test
     public void test_open_approved_file_on_editor_when_on_java_PsiFile() throws IOException {
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.docs_fileA_approved_adoc
+        );
         final String approvalType = "approved";
-        myFixture.addFileToProject("test/docs/_MyClass." + approvalType + ".adoc", approvalType + " content");
-        final PsiFile psiFile = myFixture.addFileToProject("test/java/MyClass.java", generateCode(CaretOn.NONE));
+        final String selectedClassName = "FileA";
+        final PsiFile psiFile = fileHelper.addTestClassFile(selectedClassName, CaretOn.CLASS);
 
-        AnActionEvent actionEvent = new MockActionOnFileEvent(psiFile);
+        actionEvent.performAction(actionApprovedUnderTest, psiFile);
 
-        actionApprovedUnderTest.actionPerformed(actionEvent);
-
-        assertEquals("_MyClass." + approvalType + ".adoc", getFileNameInEditor());
+        assertEquals("_FileA." + approvalType + ".adoc", getFileNameInEditor());
     }
 
+    @Test
     public void test_menu_java_entry_when_approval_file() {
 
-        SwitchToJavaFileAction actionJavaUnderTest = new SwitchToJavaFileAction() {
-            @Override
-            protected String getProjectBasePath(Project project) {
-                return "/";
-            }
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.docs_fileA_approved_adoc
+        );
+        final String approvalType = "approved";
+        final String selectedClassName = "FileA";
+        final PsiFile psiFile = fileHelper.addTestClassFile(selectedClassName, CaretOn.INNER_CLASS);
 
-            @Override
-            public String getSrcDocs() {
-                return "src/test/docs";
-            }
+        actionEvent.performUpdate(actionApprovedUnderTest, psiFile);
 
-            @Override
-            public String getSrcPath() {
-                return "src/test/java";
-            }
-        };
-
-        String approvalType = "approved";
-        addTestClassFile("MyClass", CaretOn.INNER_CLASS);
-        final PsiFile psiFile = myFixture.configureByText("_MyClass." + approvalType + ".adoc", approvalType + " content");
-        myFixture.moveFile(psiFile.getVirtualFile().getName(), "test/docs");
-        assertEquals("_MyClass." + approvalType + ".adoc", getFileNameInEditor());
-
-        final Presentation presentation = myFixture.testAction(actionJavaUnderTest);
         assertTrue(presentation.isVisible());
-        assertEquals("Switch to java file", presentation.getText());
-        assertEquals("MyClass.java", getFileNameInEditor());
+        assertEquals("Switch to " + approvalType + " file", presentation.getText());
+
+        actionEvent.performAction(actionApprovedUnderTest, psiFile);
+        assertEquals("_FileA." + approvalType + ".adoc", getFileNameInEditor());
     }
 
 
+    @Test
     public void test_menu_entry_when_approved_file_with_package_custom_folder() throws IOException {
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.documents_org_demo_fileX_approved_adoc
+        );
         menu_entry_when_file_with_package_custom_folder(actionApprovedUnderTest, "approved");
     }
 
+    @Test
     public void test_menu_entry_when_received_file_with_package_custom_folder() throws IOException {
+        final Map<String, PsiFile> files = fileHelper.initFiles(
+                FILE_NAMES.documents_org_demo_fileX_received_adoc
+        );
         menu_entry_when_file_with_package_custom_folder(actionReceivedUnderTest, "received");
     }
 
     private void menu_entry_when_file_with_package_custom_folder(SwitchToFileAction actionUnderTest, String approvalType) {
-        // WIP
         final PsiFile propertyFile = myFixture.addFileToProject(
-                "test/src/docAsTest.properties",
-                "DOC_PATH:src/documents");
+                "docAsTest.properties",
+                String.join("\n",
+                        "TEST_PATH:src",
+                        "DOC_PATH:src/documents"));
 
-        myFixture.addFileToProject("documents/org/demo/_MyClass." + approvalType + ".adoc", approvalType + " content");
-        addTestClassFile(Paths.get("org", "demo"), "MyClass", SwitchToApprovedFileActionTest.CaretOn.CLASS);
+        final PsiFile psiFile = fileHelper.addTestClassFile(Paths.get("org", "demo"), "FileX", CaretOn.CLASS);
 
-        final Presentation presentation = myFixture.testAction(actionUnderTest);
+        DocAsTestStartupActivity.loadProperties(myFixture.getProject());
+
+        actionEvent.performUpdate(actionUnderTest, psiFile);
         assertTrue(presentation.isVisible());
         assertEquals("Switch to " + approvalType + " file", presentation.getText());
-        assertEquals("_MyClass." + approvalType + ".adoc", getFileNameInEditor());
-    }
 
-    static enum CaretOn {
-        NONE,
-        IMPORT,
-        CLASS,
-        METHOD,
-        INNER_CLASS,
-        INNER_METHOD;
-    }
-
-    @NotNull
-    private String getFileNameInEditor() {
-        return FileEditorManager.getInstance(myFixture.getProject()).getSelectedEditor().getFile().getName();
-    }
-
-    private void addTestClassFile(final String className, CaretOn caretOn) {
-        final PsiFile psiFile = myFixture.configureByText("MyClass.java", generateCode(caretOn));
-        myFixture.moveFile(psiFile.getName(), "./test/java/");
-    }
-
-    private void addTestClassFile(final Path packagePath, final String className, CaretOn caretOn) {
-        final PsiFile psiFile = myFixture.configureByText("MyClass.java", generateCode(packagePath, caretOn));
-        myFixture.moveFile(psiFile.getName(), "./test/java/" + packagePath.toString());
-    }
-
-    private String generateCode(Path packagePath, CaretOn caretOn) {
-        return String.format("package %s;\n%s",
-                packagePath.toString().replace(java.io.File.separatorChar, '.'),
-                generateCode(caretOn));
+        actionEvent.performAction(actionUnderTest, psiFile);
+        assertEquals("_FileX." + approvalType + ".adoc", getFileNameInEditor());
     }
 
 
-    private String generateCode(CaretOn caretOn) {
-        return String.format("import %sorg.demo; class %sMyClass { public void %smy_method() {} class %sInnerClass{ public void %sinner_method() {} } }",
-                CaretOn.IMPORT.equals(caretOn) ? "<caret>" : "",
-                CaretOn.CLASS.equals(caretOn) ? "<caret>" : "",
-                CaretOn.METHOD.equals(caretOn) ? "<caret>" : "",
-                CaretOn.INNER_CLASS.equals(caretOn) ? "<caret>" : "",
-                CaretOn.INNER_METHOD.equals(caretOn) ? "<caret>" : "");
+    private static class DocAsTestActionForTest extends DocAsTestAction {
+
+        private Project project;
+        public DocAsTestActionForTest(Project project) {
+            this.project = project;
+        }
+
+        @Override
+        public void actionPerformed(@NotNull AnActionEvent e) {
+        }
+
+        @NotNull
+        public Path getApprovedFilePathFromProjectRootPath(PsiJavaFile classFile, PsiElement elementAt) {
+            final Path approvedFilePath = getApprovedFilePath(project, elementAt, ApprovalFile.Status.APPROVED, classFile);
+            return Paths.get(project.getBasePath()).relativize(approvedFilePath);
+        }
     }
 
-    private VirtualFile createFile(String path) {
-        return myFixture.getTempDirFixture().createFile(path);
+    @Test
+    public void test_getApprovedVirtualFile_from_method() {
+        final DocAsTestActionForTest action = new DocAsTestActionForTest(myFixture.getProject());
+
+        final PsiJavaFile classFile = (PsiJavaFile) fileHelper.addTestClassFile("MyClass", CaretOn.METHOD);
+        final PsiElement currentElement = classFile.findElementAt(myFixture.getEditor().getCaretModel().getCurrentCaret().getOffset());
+
+        assertElementType(currentElement, PsiIdentifier.class);
+        assertEquals("myMethod", currentElement.getText());
+        assertEquals(
+                Paths.get(DOC_PATH, "_MyClass.myMethod.approved.adoc"),
+                action.getApprovedFilePathFromProjectRootPath(classFile, currentElement)
+        );
+
+        final PsiElement methodElement = currentElement.getParent();
+        assertElementType(methodElement, PsiMethod.class);
+        assertEquals("myMethod", ((PsiMethod) methodElement).getName());
+        assertEquals(
+                Paths.get(DOC_PATH, "_MyClass.myMethod.approved.adoc"),
+                action.getApprovedFilePathFromProjectRootPath(classFile, methodElement)
+        );
+
+        final PsiElement classElement = methodElement.getParent();
+        assertElementType(classElement, PsiClass.class);
+        assertEquals("MyClass", ((PsiClass) classElement).getName());
+        assertEquals(
+                Paths.get(DOC_PATH, "_MyClass.approved.adoc"),
+                action.getApprovedFilePathFromProjectRootPath(classFile, classElement)
+        );
+    }
+
+    @Test
+    public void test_getApprovedVirtualFile_from_class() {
+        final DocAsTestActionForTest action = new DocAsTestActionForTest(myFixture.getProject());
+
+        final PsiJavaFile classFile = (PsiJavaFile) fileHelper.addTestClassFile("MyClass", CaretOn.CLASS);
+        final PsiElement currentElement = classFile.findElementAt(myFixture.getEditor().getCaretModel().getCurrentCaret().getOffset());
+
+        assertElementType(currentElement, PsiIdentifier.class);
+        assertEquals("MyClass", currentElement.getText());
+        assertEquals(
+                Paths.get(DOC_PATH, "_MyClass.approved.adoc"),
+                action.getApprovedFilePathFromProjectRootPath(classFile, currentElement)
+        );
+
+        final PsiElement classElement = currentElement.getParent();
+        assertElementType(classElement, PsiClass.class);
+        assertEquals("MyClass", ((PsiClass) classElement).getName());
+        assertEquals(
+                Paths.get(DOC_PATH, "_MyClass.approved.adoc"),
+                action.getApprovedFilePathFromProjectRootPath(classFile, classElement)
+        );
+    }
+
+    @Test
+    public void test_getApprovedVirtualFile_from_import() {
+        final DocAsTestActionForTest action = new DocAsTestActionForTest(myFixture.getProject());
+
+        final PsiJavaFile classFile = (PsiJavaFile) fileHelper.addTestClassFile("MyClass", CaretOn.NONE);
+        final PsiElement currentElement = classFile.findElementAt(myFixture.getEditor().getCaretModel().getCurrentCaret().getOffset());
+
+        // Check we are not in a class
+        assertNull(PsiTreeUtil.getParentOfType(currentElement, PsiClass.class, false));
+        assertEquals(
+                Paths.get(DOC_PATH, "_MyClass.approved.adoc"),
+                action.getApprovedFilePathFromProjectRootPath(classFile, currentElement)
+        );
+
+    }
+
+    private void assertElementType(PsiElement elementAt, Class<? extends PsiElement> expectedType) {
+        assertTrue("Class is " + elementAt.getClass().getSimpleName(),
+                expectedType.isAssignableFrom(elementAt.getClass()));
     }
 }
