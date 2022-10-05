@@ -98,7 +98,7 @@ function generate_docs() {
 set +u
 if [ -z "$1" ]
 then
-  MODULES="documentationtesting $(find samples -maxdepth 1 -name "demo_*") $(find samples -maxdepth 1 -name "tech_*") documentationtestingdoc"
+  MODULES="documentationtesting samples/samples_tools $(find samples -maxdepth 1 -name "demo_*") $(find samples -maxdepth 1 -name "tech_*") documentationtestingdoc"
 else
   MODULES="$1"
 fi
