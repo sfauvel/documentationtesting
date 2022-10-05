@@ -447,6 +447,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_what_is_a_test_for">What is a test for</a></li>
 <li><a href="#_what_are_the_advantages">What are the advantages</a></li>
 <li><a href="#_compare_with_other_approches">Compare with other approches</a></li>
+<li><a href="#_frequently_asked_questions">Frequently Asked Questions</a></li>
 </ul>
 </div>
 </div>
@@ -550,10 +551,71 @@ But, at the end, our test are not only a technical code lost in the sources but 
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_frequently_asked_questions">Frequently Asked Questions</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Are the tests more complicated to write ?</summary>
+<div class="content">
+<div class="paragraph">
+<p>If you don&#8217;t need an advanced presentation, the test is not more complicated.
+It can be even simpler in some cases.
+What can be difficult is to define which information we need to provide.
+It&#8217;s another way of thinking tests.</p>
+</div>
+<div class="paragraph">
+<p>Of course, a complex rendering requires an extra effort, but are we comparing the same thing ?
+If we do that, it&#8217;s because the result brings more value than the version with classical tests.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">But finally, a person need to validate the document ?</summary>
+<div class="content">
+<div class="paragraph">
+<p>Yes, as you need to have someone to choose input data and expected values in your tests.
+Once the document is approved there is no need to validate it again until it change.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Why asciidoc ?</summary>
+<div class="content">
+<div class="paragraph">
+<p>In fact, we can use any text format (and even other).
+Markup language is very close to the text displayed so, it&#8217;s very easy to compare two versions of the document.
+Asciidoc is just one of them that provide enough capabilities to create a full documentation (tables, links, includes, code, attributes, &#8230;&#8203;).</p>
+</div>
+<div class="paragraph">
+<p>See: <a href="https://docs.asciidoctor.org/asciidoc/latest/asciidoc-vs-markdown/">asciidoc-vs-markdown</a></p>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>What are the impacts on performance ?</p>
+</div>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="paragraph">
+<p>It&#8217;s right that there is an impact on performance but the main reason is the use of parsing to extract information from code
+mmore than the file writing.</p>
+</div>
+<div class="paragraph">
+<p>The other part that takes time is the HTML generation from <code>adoc</code> files.
+It&#8217;s needed to publish the doc that can be done on a continuous integration and not in the development phase.</p>
+</div>
+<div class="paragraph">
+<p>You can find in demos a performance evaluation that show a significant degradation on fast tests.</p>
+</div>
+</div>
+</details>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-07-01 15:54:11 UTC
+Last updated 2022-10-05 07:26:57 UTC
 </div>
 </div>
 </body>
