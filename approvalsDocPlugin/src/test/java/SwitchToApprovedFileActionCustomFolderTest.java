@@ -3,6 +3,12 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiFile;
 import docAsTest.DocAsTestFilenameIndex;
 import docAsTest.DocAsTestStartupActivity;
+import docAsTest.action.SwitchToApprovedFileAction;
+import docAsTest.action.SwitchToFileAction;
+import docAsTest.action.SwitchToReceivedFileAction;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import tools.DocAsTestPlatformTestCase;
 import tools.FieldAutoNaming;
 import tools.FileHelper.CaretOn;
@@ -12,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Map;
 
+@RunWith(JUnit4.class)
 public class SwitchToApprovedFileActionCustomFolderTest extends DocAsTestPlatformTestCase {
 
     private final SwitchToApprovedFileAction actionApprovedUnderTest = new SwitchToApprovedFileAction() {
@@ -64,6 +71,7 @@ public class SwitchToApprovedFileActionCustomFolderTest extends DocAsTestPlatfor
 
     }
 
+    @Test
     public void test_menu_entry_when_approved_file_with_package() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.documents_org_demo_fileA_approved_adoc
@@ -71,6 +79,7 @@ public class SwitchToApprovedFileActionCustomFolderTest extends DocAsTestPlatfor
         menu_entry_when_file_with_package(actionApprovedUnderTest, "approved");
     }
 
+    @Test
     public void test_menu_entry_when_received_file_with_package() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.documents_org_demo_fileA_received_adoc

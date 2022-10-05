@@ -4,12 +4,16 @@ import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.testFramework.LightProjectDescriptor;
 import com.intellij.testFramework.fixtures.BasePlatformTestCase;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RunWith(JUnit4.class)
 public class SetupWithDescriptorFactoryTest extends BasePlatformTestCase /*DocAsTestPlatformTestCase*/ {
     @Override
     protected LightProjectDescriptor getProjectDescriptor() {
@@ -19,6 +23,7 @@ public class SetupWithDescriptorFactoryTest extends BasePlatformTestCase /*DocAs
         ));
     }
 
+    @Test
     public void test_set_up() throws Exception {
         System.out.println("SetupWithDescriptorFactoryTest.test_setup");
 

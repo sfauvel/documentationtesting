@@ -1,0 +1,13 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../..]
+
+This plugin improve the user experience developing with DocAsTest.
+
+Features are:
+
+* Approved one or more files
+* Switch between `Java`, `approved` and `received` files
+* Compare `approved` and `received` files
+
+Those features are accessible from contextual menu of the project explorer or from the editor.
+
+include::_ShortCutTest.approved.adoc[]

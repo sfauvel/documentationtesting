@@ -7,12 +7,16 @@ import com.intellij.openapi.editor.impl.EditorImpl;
 import com.intellij.psi.*;
 import docAsTest.DocAsTestAction;
 import org.jetbrains.annotations.NotNull;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
+@RunWith(JUnit4.class)
 public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
     MockActionOnFileEvent actionEvent;
     FileHelper fileHelper;
@@ -23,6 +27,7 @@ public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
         actionEvent = new MockActionOnFileEvent(myFixture);
     }
 
+    @Test
     public void test_perform_update_without_files() {
         PsiFile psiFile = myFixture.addFileToProject("file.txt", "content");
 
@@ -36,6 +41,7 @@ public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
     }
 
 
+    @Test
     public void test_perform_update_call_update_twice_with_different_mock() {
         PsiFile psiFile = myFixture.addFileToProject("file.txt", "content");
 
@@ -49,6 +55,7 @@ public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
     }
 
 
+    @Test
     public void test_perform_update_call_update_twice_with_different_mock_on_multi_files() {
         PsiFile psiFileA = myFixture.addFileToProject("fileA.txt", "content");
         PsiFile psiFileB = myFixture.addFileToProject("fileB.txt", "content");
@@ -63,6 +70,7 @@ public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
         assertEquals(2, action.getCalls());
     }
 
+    @Test
     public void test_perform_update_call_update_twice_with_different_mock_on_folder() {
 
         PsiFile psiFileA = myFixture.addFileToProject("folder/fileA.txt", "content");
@@ -79,6 +87,7 @@ public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
         assertEquals(2, action.getCalls());
     }
 
+    @Test
     public void test_perform_update_call_update_twice_with_different_mock_on_multi_folders() {
 
         PsiFile psiFileA = myFixture.addFileToProject("folderA/fileA.txt", "content");
@@ -95,6 +104,7 @@ public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
         assertEquals(2, action.getCalls());
     }
 
+    @Test
     public void test_perform_update_call_update_twice_with_different_mock_on_mixte_files_folders_file_first() {
 
         PsiFile psiFileA = myFixture.addFileToProject("folderA/fileA.txt", "content");
@@ -113,6 +123,7 @@ public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
         assertEquals(2, action.getCalls());
     }
 
+    @Test
     public void test_perform_update_call_update_twice_with_different_mock_on_mixte_files_folders_folder_first() {
 
         PsiFile psiFileA = myFixture.addFileToProject("folderA/fileA.txt", "content");
@@ -131,6 +142,7 @@ public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
         assertEquals(2, action.getCalls());
     }
 
+    @Test
     public void test_perform_update_call_update_twice_with_different_mock_on_editor_outside_class() {
         final String selectedClassName = "SelectedClass";
         final PsiFile psiFile = fileHelper.addTestClassFile(selectedClassName, FileHelper.CaretOn.NONE);
@@ -144,6 +156,7 @@ public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
         assertEquals(2, action.getCalls());
     }
 
+    @Test
     public void test_perform_update_call_update_twice_with_different_mock_on_editor_on_class() {
         final String selectedClassName = "SelectedClass";
         final PsiFile psiFile = fileHelper.addTestClassFile(selectedClassName, FileHelper.CaretOn.CLASS);
@@ -157,6 +170,7 @@ public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
         assertEquals(2, action.getCalls());
     }
 
+    @Test
     public void test_perform_update_call_update_twice_with_different_mock_on_editor_on_method() {
         final String selectedClassName = "MyClass";
         final String selectedMethod = "SelectedMethod";
@@ -173,6 +187,7 @@ public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
 
         assertEquals(2, action.getCalls());
     }
+    @Test
     public void test_perform_update_should_not_call_slow_operation() {
         PsiFile psiFileA = myFixture.addFileToProject("folderA/fileA.txt", "content");
 
@@ -201,6 +216,7 @@ public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
 
     }
 
+    @Test
     public void test_perform_action() {
 
         PsiFile psiFileA = myFixture.addFileToProject("folderA/fileA.txt", "content");
@@ -218,6 +234,7 @@ public class MockActionOnFileEventTest extends DocAsTestPlatformTestCase {
         assertEquals(2, action.getCalls());
     }
 
+    @Test
     public void test_perform_action_on_editor() {
         final String selectedClassName = "MyClass";
         final String selectedMethod = "SelectedMethod";

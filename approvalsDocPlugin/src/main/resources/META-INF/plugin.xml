@@ -12,7 +12,7 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.java</depends>
 
-    <idea-version since-build="201" until-build="213.*" />
+    <idea-version since-build="201" />
 
     <extensions defaultExtensionNs="com.intellij">
         <postStartupActivity implementation="docAsTest.DocAsTestStartupActivity"/>
@@ -25,35 +25,59 @@
         </group>
 
         <action id="SwitchToJavaFileAction"
-                class="SwitchToJavaFileAction"
+                class="docAsTest.action.SwitchToJavaFileAction"
                 text="Switch to java file"
-                description="Switch to java file">
+                description="Switch to the test class or method related to the approved or the received file.">
             <add-to-group group-id="DocAsTestActions" anchor="first"/>
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="control alt D"
+                    second-keystroke="J"/>
         </action>
         <action id="SwitchToApprovedFileAction"
-                class="SwitchToApprovedFileAction"
+                class="docAsTest.action.SwitchToApprovedFileAction"
                 text="Switch to approved file"
-                description="Switch to approved file">
+                description="Switch to the approved file related to the test class, the test method or the received file.">
             <add-to-group group-id="DocAsTestActions" anchor="first"/>
+
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="control alt D"
+                    second-keystroke="A"/>
         </action>
         <action id="SwitchToReceivedFileAction"
-                class="SwitchToReceivedFileAction"
+                class="docAsTest.action.SwitchToReceivedFileAction"
                 text="Switch to received file"
 
-                description="Switch to received file">
+                description="Switch to the received file related to the test class, the test method or the approved file.">
             <add-to-group group-id="DocAsTestActions" anchor="first"/>
+
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="control alt D"
+                    second-keystroke="R"/>
         </action>
         <action id="ApproveFileAction"
-                class="ApproveFileAction"
+                class="docAsTest.action.ApproveFileAction"
                 text="Approve file"
-                description="Approve file">
+                description="Approve selected files or all the files contained in one or more selected folders.">
             <add-to-group group-id="DocAsTestActions" anchor="first"/>
+
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="control alt D"
+                    second-keystroke="O"/>
         </action>
         <action id="CompareFileAction"
-                class="CompareFileAction"
-                text="CompareFileAction"
-                description="CompareFileAction">
+                class="docAsTest.action.CompareFileAction"
+                text="Compare files"
+                description="Compare approved and received files related to the selected one or to the selected class or method.">
             <add-to-group group-id="DocAsTestActions" anchor="first"/>
+
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="control alt D"
+                    second-keystroke="C"/>
         </action>
 
     </actions>

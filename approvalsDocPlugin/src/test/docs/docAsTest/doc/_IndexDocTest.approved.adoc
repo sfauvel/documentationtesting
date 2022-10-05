@@ -1,0 +1,5 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../..]
+
+= DocAsTest plugin
+
+include::_IndexDocTest.test_content.approved.adoc[leveloffset=+1]

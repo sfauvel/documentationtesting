@@ -1,9 +1,12 @@
 import com.intellij.MultiSourcePathLightProjectDescriptor;
-import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiFile;
 import com.intellij.testFramework.LightProjectDescriptor;
 import docAsTest.DocAsTestStartupActivity;
+import docAsTest.action.SwitchToJavaFileAction;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import tools.CodeGenerator;
 import tools.DocAsTestPlatformTestCase;
 import tools.FileHelper.CaretOn;
@@ -14,6 +17,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+@RunWith(JUnit4.class)
 public class SwitchToJavaFileActionCustomerFolderTest extends DocAsTestPlatformTestCase {
 
     private static final String CUSTOM_TEST_FOLDER = "src/test/custom_folder";
@@ -42,6 +46,7 @@ public class SwitchToJavaFileActionCustomerFolderTest extends DocAsTestPlatformT
         actionEvent = new MockActionOnFileEvent(myFixture);
     }
 
+    @Test
     public void test_open_java_file_on_editor_when_on_approved() throws IOException {
         test_file_in_editor_when_open_it_from_approved_file(String.join("\n",
                         "TEST_PATH:" + CUSTOM_TEST_FOLDER,
@@ -51,6 +56,7 @@ public class SwitchToJavaFileActionCustomerFolderTest extends DocAsTestPlatformT
                 "_MyClass.approved.adoc");
     }
 
+    @Test
     public void test_not_open_java_file_on_editor_when_test_folder_is_not_set() throws IOException {
         test_file_in_editor_when_open_it_from_approved_file(String.join("\n",
                         "DOC_PATH:" + CUSTOM_DOC_FOLDER
@@ -59,6 +65,7 @@ public class SwitchToJavaFileActionCustomerFolderTest extends DocAsTestPlatformT
                 "_MyClass.approved.adoc");
     }
 
+    @Test
     public void test_not_open_java_file_on_editor_when_doc_folder_is_not_set() throws IOException {
         test_file_in_editor_when_open_it_from_approved_file(String.join("\n",
                         "TEST_PATH:" + CUSTOM_TEST_FOLDER
@@ -81,8 +88,7 @@ public class SwitchToJavaFileActionCustomerFolderTest extends DocAsTestPlatformT
 
         assertEquals(fileName, getFileNameInEditor());
 
-        AnActionEvent actionEvent = new MockActionOnPsiElementEvent(approvedFile);
-        actionJavaUnderTest.actionPerformed(actionEvent);
+        actionEvent.performActionOnEditor(actionJavaUnderTest, myFixture, approvedFile);
 
         assertEquals(fileOnEditorAfterAction, getFileNameInEditor());
     }

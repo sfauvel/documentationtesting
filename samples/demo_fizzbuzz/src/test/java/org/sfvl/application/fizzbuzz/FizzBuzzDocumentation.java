@@ -5,7 +5,6 @@ import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.writer.Document;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 
 public class FizzBuzzDocumentation extends DemoDocumentation {
 

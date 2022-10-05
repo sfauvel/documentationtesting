@@ -1,0 +1,38 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../..]
+
+[#docastest_doc_shortcuttest_plugin_actions]
+= Plugin actions
+
+This plugin provide contextual menu to navigate between files related to a DocAsTest test.
+
+[%autowidth, cols=",,a"]
+
+|====
+|Text|Description|Shortcut
+
+|Switch to java file|Switch to the test class or method related to the approved or the received file.|
+[%nowrap]
+----
+Ctrl+Alt+D+J
+----
+|Switch to approved file|Switch to the approved file related to the test class, the test method or the received file.|
+[%nowrap]
+----
+Ctrl+Alt+D+A
+----
+|Switch to received file|Switch to the received file related to the test class, the test method or the approved file.|
+[%nowrap]
+----
+Ctrl+Alt+D+R
+----
+|Approve file|Approve selected files or all the files contained in one or more selected folders.|
+[%nowrap]
+----
+Ctrl+Alt+D+O
+----
+|Compare files|Compare approved and received files related to the selected one or to the selected class or method.|
+[%nowrap]
+----
+Ctrl+Alt+D+C
+----
+|====

@@ -187,6 +187,8 @@ Here, what resources you can find on this site
 
 You want to have more information of the concept, the idea, the history, ...
 
+link:https://www.youtube.com/watch?v=1slYI-dBMcc[video (10mn in french)]
+
 
 ^.a| == link:{ROOT_PATH}/doc/Tutorial.html[Just try it]
 
@@ -206,6 +208,7 @@ That shows how we can present some information in a documentation that is also a
 
 Tools, full discussions and choices
 
+link:{github-pages}/documentationtesting[Java], link:https://github.com/sfauvel/doc_as_test_pytest[Python], ...
 
 
 |====

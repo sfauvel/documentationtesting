@@ -14,7 +14,6 @@ import org.reflections.scanners.SubTypesScanner;
 import org.reflections.scanners.TypeElementsScanner;
 import org.reflections.util.ConfigurationBuilder;
 import org.sfvl.codeextraction.CodePath;
-import org.sfvl.doctesting.demo.DemoDocumentation;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
@@ -73,7 +72,6 @@ public class ProjectOrganization {
         Reflections reflections = new Reflections("org/sfvl", new SubTypesScanner(false));
         final List<File> sourceFiles = reflections.getAllTypes().stream()
                 .map(this::toClass)
-                .filter(c -> c.getPackage() != DemoDocumentation.class.getPackage())
                 .filter(c -> c.getPackage() != ApprovalsBase.class.getPackage())
                 .map(this::toSourceFile)
                 .distinct()
@@ -252,7 +250,6 @@ public class ProjectOrganization {
         final List<Class> classesToAnalysis =
                 reflections.getAll(scanner).stream()
                         .map(this::toClass)
-                        .filter(c -> c.getPackage() != DemoDocumentation.class.getPackage())
                         .filter(c -> c.getPackage() != ApprovalsBase.class.getPackage())
                         .filter(this::isTopLevelClass)
                         .filter(c -> toSourceFile(c).isFile())

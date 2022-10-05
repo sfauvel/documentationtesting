@@ -1,3 +1,5 @@
+package docAsTest.action;
+
 import com.intellij.diff.DiffContentFactory;
 import com.intellij.diff.DiffManager;
 import com.intellij.diff.contents.DiffContent;

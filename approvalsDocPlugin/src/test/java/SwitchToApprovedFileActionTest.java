@@ -5,8 +5,14 @@ import com.intellij.psi.*;
 import com.intellij.psi.util.PsiTreeUtil;
 import docAsTest.DocAsTestAction;
 import docAsTest.DocAsTestStartupActivity;
+import docAsTest.action.SwitchToApprovedFileAction;
+import docAsTest.action.SwitchToFileAction;
+import docAsTest.action.SwitchToReceivedFileAction;
 import docAsTest.approvalFile.ApprovalFile;
 import org.jetbrains.annotations.NotNull;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import tools.DocAsTestPlatformTestCase;
 import tools.FieldAutoNaming;
 import tools.FileHelper.CaretOn;
@@ -18,6 +24,7 @@ import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Properties;
 
+@RunWith(JUnit4.class)
 public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
 
     private final SwitchToApprovedFileAction actionApprovedUnderTest = new SwitchToApprovedFileAction() {
@@ -83,10 +90,12 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
 
     }
 
+    @Test
     public void test_no_approved_menu_entry_when_not_on_java_file() throws IOException {
         no_menu_entry_when_not_on_java_file(this.actionApprovedUnderTest);
     }
 
+    @Test
     public void test_no_received_menu_entry_when_not_on_java_file() throws IOException {
         no_menu_entry_when_not_on_java_file(this.actionReceivedUnderTest);
     }
@@ -100,10 +109,12 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals("MyClass.txt", getFileNameInEditor());
     }
 
+    @Test
     public void test_no_menu_entry_when_no_approved_file() throws IOException {
         no_menu_entry_when_no_approval_file(new SwitchToApprovedFileAction());
     }
 
+    @Test
     public void test_no_menu_entry_when_no_received_file() throws IOException {
         no_menu_entry_when_no_approval_file(new SwitchToReceivedFileAction());
     }
@@ -119,6 +130,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals("MyClass.java", getFileNameInEditor());
     }
 
+    @Test
     public void test_menu_entry_when_approved_file() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_approved_adoc,
@@ -127,6 +139,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         menu_entry_when_approval_file_exists("approved", actionApprovedUnderTest);
     }
 
+    @Test
     public void test_menu_entry_when_received_file() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_received_adoc
@@ -144,6 +157,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals("Switch to " + approvalType + " file", presentation.getText());
     }
 
+    @Test
     public void test_menu_switch_when_approved_file() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_approved_adoc,
@@ -152,6 +166,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         menu_switch_when_approval_file_exists("approved", actionApprovedUnderTest);
     }
 
+    @Test
     public void test_menu_switch_when_received_file() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_received_adoc
@@ -170,10 +185,12 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals(String.format("_%s.%s.adoc", selectedClassName, approvalType), getFileNameInEditor());
     }
 
+    @Test
     public void test_menu_entry_when_approved_file_with_package() throws IOException {
         menu_entry_when_file_with_package(actionApprovedUnderTest, "approved");
     }
 
+    @Test
     public void test_menu_entry_when_received_file_with_package() throws IOException {
         menu_entry_when_file_with_package(actionReceivedUnderTest, "received");
     }
@@ -189,10 +206,12 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals("_MyClass." + approvalType + ".adoc", getFileNameInEditor());
     }
 
+    @Test
     public void test_no_menu_entry_when_approved_file_not_on_the_same_folder() throws IOException {
         no_menu_entry_when_approval_file_not_on_the_same_folder("approved", this.actionApprovedUnderTest);
     }
 
+    @Test
     public void test_no_menu_entry_when_received_file_not_on_the_same_folder() throws IOException {
         no_menu_entry_when_approval_file_not_on_the_same_folder("received", this.actionReceivedUnderTest);
     }
@@ -208,6 +227,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals("MyClass.java", getFileNameInEditor());
     }
 
+    @Test
     public void test_menu_entry_when_approved_file_on_method() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_myMethod_approved_adoc
@@ -215,6 +235,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         menu_entry_when_approval_file_on_method("approved", this.actionApprovedUnderTest);
     }
 
+    @Test
     public void test_menu_entry_when_received_file_on_method() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_myMethod_received_adoc
@@ -234,6 +255,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals("_FileA.myMethod." + approvalType + ".adoc", getFileNameInEditor());
     }
 
+    @Test
     public void test_menu_entry_when_approved_file_on_package() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_approved_adoc
@@ -241,6 +263,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         menu_entry_when_approval_file_on_package("approved", this.actionApprovedUnderTest);
     }
 
+    @Test
     public void test_menu_entry_when_received_file_on_package() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_received_adoc
@@ -261,6 +284,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
     }
 
 
+    @Test
     public void test_menu_entry_when_approved_file_on_inner_class() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_InnerClass_approved_adoc
@@ -268,6 +292,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         menu_entry_when_approval_file_on_inner_class("approved", this.actionApprovedUnderTest);
     }
 
+    @Test
     public void test_menu_entry_when_received_file_on_inner_class() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_InnerClass_received_adoc
@@ -286,6 +311,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals("_FileA.InnerClass." + approvalType + ".adoc", getFileNameInEditor());
     }
 
+    @Test
     public void test_menu_entry_when_approved_file_on_inner_method() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_InnerClass_innerMethod_approved_adoc
@@ -293,6 +319,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         menu_entry_when_approval_file_on_inner_method("approved", this.actionApprovedUnderTest);
     }
 
+    @Test
     public void test_menu_entry_when_received_file_on_inner_method() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_InnerClass_innerMethod_received_adoc
@@ -312,6 +339,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals("_FileA.InnerClass.innerMethod." + approvalType + ".adoc", getFileNameInEditor());
     }
 
+    @Test
     public void test_menu_when_not_on_editor() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_approved_adoc
@@ -328,6 +356,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals("Switch to " + approvalType + " file", presentation.getText());
     }
 
+    @Test
     public void test_open_approved_file_on_editor_when_on_java_PsiElement() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_approved_adoc
@@ -341,6 +370,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals("_FileA." + approvalType + ".adoc", getFileNameInEditor());
     }
 
+    @Test
     public void test_open_approved_file_on_editor_when_on_java_PsiFile() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_approved_adoc
@@ -354,6 +384,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         assertEquals("_FileA." + approvalType + ".adoc", getFileNameInEditor());
     }
 
+    @Test
     public void test_menu_java_entry_when_approval_file() {
 
         final Map<String, PsiFile> files = fileHelper.initFiles(
@@ -373,6 +404,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
     }
 
 
+    @Test
     public void test_menu_entry_when_approved_file_with_package_custom_folder() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.documents_org_demo_fileX_approved_adoc
@@ -380,6 +412,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         menu_entry_when_file_with_package_custom_folder(actionApprovedUnderTest, "approved");
     }
 
+    @Test
     public void test_menu_entry_when_received_file_with_package_custom_folder() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.documents_org_demo_fileX_received_adoc
@@ -425,6 +458,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         }
     }
 
+    @Test
     public void test_getApprovedVirtualFile_from_method() {
         final DocAsTestActionForTest action = new DocAsTestActionForTest(myFixture.getProject());
 
@@ -455,6 +489,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         );
     }
 
+    @Test
     public void test_getApprovedVirtualFile_from_class() {
         final DocAsTestActionForTest action = new DocAsTestActionForTest(myFixture.getProject());
 
@@ -477,6 +512,7 @@ public class SwitchToApprovedFileActionTest extends DocAsTestPlatformTestCase {
         );
     }
 
+    @Test
     public void test_getApprovedVirtualFile_from_import() {
         final DocAsTestActionForTest action = new DocAsTestActionForTest(myFixture.getProject());
 

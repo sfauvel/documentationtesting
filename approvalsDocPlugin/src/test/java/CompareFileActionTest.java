@@ -3,6 +3,10 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import docAsTest.DocAsTestStartupActivity;
+import docAsTest.action.CompareFileAction;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import tools.DocAsTestPlatformTestCase;
 import tools.FieldAutoNaming;
 import tools.FileHelper;
@@ -12,6 +16,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
 
+@RunWith(JUnit4.class)
 public class CompareFileActionTest extends DocAsTestPlatformTestCase {
 
     class SpyCompareFileAction extends CompareFileAction {
@@ -57,6 +62,7 @@ public class CompareFileActionTest extends DocAsTestPlatformTestCase {
         DocAsTestStartupActivity.setProperties(properties);
     }
 
+    @Test
     public void test_compare_file_menu_when_no_received_file() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_approved_adoc
@@ -68,6 +74,7 @@ public class CompareFileActionTest extends DocAsTestPlatformTestCase {
         assertFalse(actionEvent.getPresentation().isEnabledAndVisible());
     }
 
+    @Test
     public void test_compare_file_menu_when_no_approved_file() throws IOException {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_received_adoc
@@ -79,10 +86,12 @@ public class CompareFileActionTest extends DocAsTestPlatformTestCase {
         assertFalse(actionEvent.getPresentation().isEnabledAndVisible());
     }
 
+    @Test
     public void test_compare_from_menu_receive_file_when_approved_and_received_files() {
         assert_menu_when_compare_file_menu_when_approved_and_received_files(FILE_NAMES.docs_fileA_received_adoc);
     }
 
+    @Test
     public void test_compare_from_menu_approved_file_when_approved_and_received_files() {
         assert_menu_when_compare_file_menu_when_approved_and_received_files(FILE_NAMES.docs_fileA_approved_adoc);
     }
@@ -99,6 +108,7 @@ public class CompareFileActionTest extends DocAsTestPlatformTestCase {
         assertTrue(actionEvent.getPresentation().isEnabledAndVisible());
     }
 
+    @Test
     public void test_compare_file_menu_from_java_file_when_approved_and_received_files() {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_received_adoc,
@@ -117,6 +127,7 @@ public class CompareFileActionTest extends DocAsTestPlatformTestCase {
         assertTrue(actionEvent.getPresentation().isEnabledAndVisible());
     }
 
+    @Test
     public void test_compare_file_menu_from_java_method_when_approved_and_received_files() {
         final Map<String, PsiFile> files = fileHelper.initFiles(
                 FILE_NAMES.docs_fileA_myMethod_received_adoc,
@@ -136,11 +147,13 @@ public class CompareFileActionTest extends DocAsTestPlatformTestCase {
 
     }
 
+    @Test
     public void test_no_compare_file_menu_from_java_method_when_only_approved_file() {
         no_compare_file_menu_from_java_method_when_not_approved_and_received(
                 FILE_NAMES.docs_fileA_myMethod_approved_adoc);
     }
 
+    @Test
     public void test_no_compare_file_menu_from_java_method_when_only_received_file() {
         no_compare_file_menu_from_java_method_when_not_approved_and_received(
                 FILE_NAMES.docs_fileA_myMethod_received_adoc);
