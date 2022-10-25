@@ -1,0 +1,16 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_printer_svggraphtest]
+= Svg graph test
+
+include::_SvgGraphTest.an_empty_grid.approved.adoc[leveloffset=+1]
+
+include::_SvgGraphTest.one_simple_line.approved.adoc[leveloffset=+1]
+
+include::_SvgGraphTest.one_simple_line_with_negative_value.approved.adoc[leveloffset=+1]
+
+include::_SvgGraphTest.one_line_with_negative_and_postive_values.approved.adoc[leveloffset=+1]
+
+include::_SvgGraphTest.multi_lines.approved.adoc[leveloffset=+1]
+
+include::_SvgGraphTest.apply_factor_on_axes.approved.adoc[leveloffset=+1]

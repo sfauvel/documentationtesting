@@ -1,0 +1,54 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_printer_svggraphtest_an_empty_grid]
+= Generate an empty grid
+
+
+[source,java,indent=0]
+----
+        final String svg = new SvgGraph().generate();
+
+----
+++++
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+width="700" height="500"     style="background-color:grey">
+<style>
+.graph {
+    stroke:rgb(200,200,200);
+    stroke-width:1;
+}
+.curve {
+    fill:none;
+    stroke-width:3;
+    marker: url(#markerCircle);
+    stroke:black;
+}
+</style>
+<defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="1.5" style="stroke: none; fill:#000000;"/>
+    </marker>
+</defs>
+<svg class="graph">
+    <rect fill="white" width="640" height="440" x="30" y="30"/>
+    <g class="grid">
+        <line x1="60" x2="60" y1="440" y2="60"/>
+    </g>
+    <g class="grid">
+        <line x1="60" x2="640" y1="440" y2="440"/>
+    </g>
+
+    <text x="35" y="65">1</text>
+    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="445">0</text>
+    <line x1="56" x2="64" y1="440" y2="440"/>
+
+    <text x="55" y="465">0</text>
+    <line x1="60" x2="60" y1="440" y2="444"/>
+    <text x="635" y="465">1</text>
+    <line x1="640" x2="640" y1="440" y2="444"/>
+</svg>
+
+</svg>
+++++
