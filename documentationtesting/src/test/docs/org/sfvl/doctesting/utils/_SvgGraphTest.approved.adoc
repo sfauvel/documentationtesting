@@ -1,7 +1,7 @@
-ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_printer_svggraphtest]
-= Svg graph test
+[#org_sfvl_doctesting_utils_svggraphtest]
+= Svg graph
 
 include::_SvgGraphTest.an_empty_grid.approved.adoc[leveloffset=+1]
 

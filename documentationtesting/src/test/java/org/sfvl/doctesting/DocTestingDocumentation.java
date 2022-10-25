@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.codeextraction.ClassFinder;
-import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.codeextraction.CodePath;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
@@ -12,7 +11,6 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
-import org.sfvl.codeextraction.CodeExtractorTest;
 import org.sfvl.doctesting.utils.DocWriterTest;
 import org.sfvl.doctesting.utils.NoTitle;
 import org.sfvl.doctesting.writer.ClassDocumentation;
@@ -20,6 +18,8 @@ import org.sfvl.doctesting.writer.Classes;
 import org.sfvl.doctesting.writer.DocWriter;
 import org.sfvl.printer.Printer;
 import org.sfvl.doctesting.utils.PrinterTest;
+import org.sfvl.printer.SvgGraph;
+import org.sfvl.doctesting.utils.SvgGraphTest;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.lang.reflect.Method;
@@ -53,7 +53,8 @@ public class DocTestingDocumentation {
                 "This document describes usage of classes to create test used to generate documentation.",
                 "* " + makeAnchor(ApprovalsExtensionTest.class, ApprovalsExtension.class) + ": JUnit extension to check document.",
                 "* " + makeAnchor(DocWriterTest.class, DocWriter.class) + ": Store document before writting it.",
-                "* " + makeAnchor(PrinterTest.class, Printer.class) + ": Utilities for result presentation.");
+                "* " + makeAnchor(PrinterTest.class, Printer.class) + ": Utilities for result presentation.",
+                "* " + makeAnchor(SvgGraphTest.class, SvgGraph.class) + ": Create a svg graph.");
     }
 
     private String makeAnchor(Class<?> clazzAnchor, Class<?> clazzNameToDisplay) {

@@ -1,13 +1,15 @@
-ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 
-[#org_sfvl_printer_svggraphtest_one_line_with_negative_and_postive_values]
-= Draw a single line with negative and positive values
+[#org_sfvl_doctesting_utils_svggraphtest_multi_lines]
+= Draw several lines
 
 
 [source,java,indent=0]
 ----
         final String svg = new SvgGraph()
-                .withLine("Values", Arrays.asList(-15, 4, -6, 30, 25))
+                .withLine("Line A", Arrays.asList(-15, 6, 30, 25))
+                .withLine("Line B", Arrays.asList(5, 12, 45, 17))
+                .withLine("Line C", Arrays.asList(-5, -10, -20, 8))
                 .generate();
 
 ----
@@ -38,25 +40,36 @@ width="700" height="500"     style="background-color:grey">
         <line x1="60" x2="60" y1="440" y2="60"/>
     </g>
     <g class="grid">
-        <line x1="60" x2="640" y1="314" y2="314"/>
+        <line x1="60" x2="640" y1="324" y2="324"/>
     </g>
 
-    <text x="35" y="65">30</text>
+    <text x="35" y="65">45</text>
     <line x1="56" x2="64" y1="60" y2="60"/>
-    <text x="35" y="445">-15</text>
+    <text x="35" y="445">-20</text>
     <line x1="56" x2="64" y1="440" y2="440"/>
 
-    <text x="55" y="339">0</text>
-    <line x1="60" x2="60" y1="314" y2="318"/>
-    <text x="635" y="339">4</text>
-    <line x1="640" x2="640" y1="314" y2="318"/>
+    <text x="55" y="349">0</text>
+    <line x1="60" x2="60" y1="324" y2="328"/>
+    <text x="634" y="349">3</text>
+    <line x1="639" x2="639" y1="324" y2="328"/>
 </svg>
 <polyline style="stroke:blue" class="curve" points="
-60,440
-205,280
-350,364
-495,60
-640,102
+60,411
+253,288
+446,148
+639,177
+"/>
+<polyline style="stroke:red" class="curve" points="
+60,294
+253,253
+446,60
+639,224
+"/>
+<polyline style="stroke:green" class="curve" points="
+60,353
+253,382
+446,440
+639,277
 "/>
 </svg>
 ++++

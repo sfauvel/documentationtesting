@@ -1,4 +1,4 @@
-package org.sfvl.printer;
+package org.sfvl.doctesting.utils;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -6,9 +6,11 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.printer.SvgGraph;
 
 import java.util.Arrays;
 
+@DisplayName("Svg graph")
 public class SvgGraphTest {
     @RegisterExtension
     static ApprovalsExtension doc = new SimpleApprovalsExtension();
