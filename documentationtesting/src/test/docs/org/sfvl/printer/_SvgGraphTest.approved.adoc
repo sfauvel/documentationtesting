@@ -5,6 +5,8 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 include::_SvgGraphTest.an_empty_grid.approved.adoc[leveloffset=+1]
 
+include::_SvgGraphTest.specify_grid_size.approved.adoc[leveloffset=+1]
+
 include::_SvgGraphTest.one_simple_line.approved.adoc[leveloffset=+1]
 
 include::_SvgGraphTest.one_simple_line_with_negative_value.approved.adoc[leveloffset=+1]

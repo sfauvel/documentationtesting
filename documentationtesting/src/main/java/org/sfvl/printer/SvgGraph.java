@@ -9,8 +9,8 @@ import java.util.stream.IntStream;
 
 public class SvgGraph {
 
-    private final int width = 700;
-    private final int height = 500;
+    private int width = 700;
+    private int height = 500;
     private final int margin = 30;
     private final int marginAxe = 30;
     private final List<SvgLineData> lines = new ArrayList<>();
@@ -32,6 +32,16 @@ public class SvgGraph {
 
     private SvgGraph withYFactor(double factor, Integer minY) {
         axeY = new SvgAxe(-factor, height - (margin + marginAxe) + (int) (minY * factor));
+        return this;
+    }
+
+    public SvgGraph withHeight(int height) {
+        this.height = height + (2 * margin) + (2 * marginAxe);
+        return this;
+    }
+
+    public SvgGraph withWidth(int width) {
+        this.width = width + (2 * margin) + (2 * marginAxe);
         return this;
     }
 
