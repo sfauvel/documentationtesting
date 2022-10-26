@@ -2,14 +2,17 @@ package org.sfvl.doctesting.utils;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.printer.SvgGraph;
+import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.util.Arrays;
 
+@ExtendWith(IntermediateHtmlPage.class)
 @DisplayName("Svg graph")
 public class SvgGraphTest {
     @RegisterExtension
@@ -115,7 +118,7 @@ public class SvgGraphTest {
         int height = 160;
         doc.write("",
                 String.format("Here, with a max value at %d and a factor at %d, the max point is %d * %d = %d",
-                max_value, factor, max_value, factor, max_value * factor),
+                        max_value, factor, max_value, factor, max_value * factor),
                 String.format("This point is only %d pixels below the height of the grid specified (%d).", height - max_value * factor, height));
         {
             // >>>svg2

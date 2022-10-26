@@ -14,6 +14,7 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.NoTitle;
+import org.sfvl.doctesting.utils.SvgGraphTest;
 import org.sfvl.test_tools.DocAsTestDocWiter;
 import org.sfvl.test_tools.DocFormatter;
 import org.sfvl.test_tools.IntermediateHtmlPage;
@@ -152,4 +153,16 @@ public class HowTo {
         doc.write(formatter.getInclude(UseYourOwnStyle.class, 0));
     }
 
+    @Test
+    public void visualize_data_with_a_graph() {
+        doc.write(
+                "It is very common to have to present the values obtained according to the input data.",
+                "To do this, there is nothing better than to display a graph.",
+                "We provide a way to do it easily generating a SVG from the data.",
+                "",
+                formatter.getInclude(SvgGraphTest::multi_lines, 1),
+                "",
+                "For more features, you can look at the " + docAsTestDocWiter.linkToClass(SvgGraphTest.class, "Create a graph to visualize data").trim() + "."
+        );
+    }
 }
