@@ -541,6 +541,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
+<li><a href="#org_sfvl_doctesting_utils_svggraphtest">Svg graph</a>
+<ul class="sectlevel2">
+<li><a href="#org_sfvl_doctesting_utils_svggraphtest_an_empty_grid">Generate an empty grid</a></li>
+<li><a href="#org_sfvl_doctesting_utils_svggraphtest_specify_grid_size">Specify grid size</a></li>
+<li><a href="#org_sfvl_doctesting_utils_svggraphtest_one_simple_line">Draw a single line</a></li>
+<li><a href="#org_sfvl_doctesting_utils_svggraphtest_one_simple_line_with_negative_value">Draw a single line with negative values</a></li>
+<li><a href="#org_sfvl_doctesting_utils_svggraphtest_one_line_with_negative_and_postive_values">Draw a single line with negative and positive values</a></li>
+<li><a href="#org_sfvl_doctesting_utils_svggraphtest_multi_lines">Draw several lines</a></li>
+<li><a href="#org_sfvl_doctesting_utils_svggraphtest_apply_factor_on_axes">Apply factor on axes</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -560,6 +571,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li>
 <p><a href="#org_sfvl_doctesting_utils_printertest">Printer</a>: Utilities for result presentation.</p>
+</li>
+<li>
+<p><a href="#org_sfvl_doctesting_utils_svggraphtest">SvgGraph</a>: Create a svg graph.</p>
 </li>
 </ul>
 </div>
@@ -2851,6 +2865,468 @@ It&#8217;s just a encapsulated call to stream, map, collect</p>
 <pre>ABC - EFG - IJK</pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_utils_svggraphtest">Svg graph</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_svggraphtest_an_empty_grid">Generate an empty grid</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SvgGraph</span><span class="o">().</span><span class="na">generate</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+width="700" height="500"     style="background-color:grey">
+<style>
+.graph {
+    stroke:rgb(200,200,200);
+    stroke-width:1;
+}
+.curve {
+    fill:none;
+    stroke-width:3;
+    marker: url(#markerCircle);
+    stroke:black;
+}
+</style>
+<defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="1.5" style="stroke: none; fill:#000000;"/>
+    </marker>
+</defs>
+<svg class="graph">
+    <rect fill="white" width="640" height="440" x="30" y="30"/>
+    <g class="grid">
+        <line x1="60" x2="60" y1="440" y2="60"/>
+    </g>
+    <g class="grid">
+        <line x1="60" x2="640" y1="440" y2="440"/>
+    </g>
+
+    <text x="35" y="65">1</text>
+    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="445">0</text>
+    <line x1="56" x2="64" y1="440" y2="440"/>
+
+    <text x="55" y="465">0</text>
+    <line x1="60" x2="60" y1="440" y2="444"/>
+    <text x="635" y="465">1</text>
+    <line x1="640" x2="640" y1="440" y2="444"/>
+</svg>
+
+</svg>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_svggraphtest_specify_grid_size">Specify grid size</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SvgGraph</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">withHeight</span><span class="o">(</span><span class="mi">100</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">generate</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+width="320" height="220"     style="background-color:grey">
+<style>
+.graph {
+    stroke:rgb(200,200,200);
+    stroke-width:1;
+}
+.curve {
+    fill:none;
+    stroke-width:3;
+    marker: url(#markerCircle);
+    stroke:black;
+}
+</style>
+<defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="1.5" style="stroke: none; fill:#000000;"/>
+    </marker>
+</defs>
+<svg class="graph">
+    <rect fill="white" width="260" height="160" x="30" y="30"/>
+    <g class="grid">
+        <line x1="60" x2="60" y1="160" y2="60"/>
+    </g>
+    <g class="grid">
+        <line x1="60" x2="260" y1="160" y2="160"/>
+    </g>
+
+    <text x="35" y="65">1</text>
+    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="165">0</text>
+    <line x1="56" x2="64" y1="160" y2="160"/>
+
+    <text x="55" y="185">0</text>
+    <line x1="60" x2="60" y1="160" y2="164"/>
+    <text x="255" y="185">1</text>
+    <line x1="260" x2="260" y1="160" y2="164"/>
+</svg>
+
+</svg>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_svggraphtest_one_simple_line">Draw a single line</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SvgGraph</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">withLine</span><span class="o">(</span><span class="s">"Values"</span><span class="o">,</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="mi">10</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">generate</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+width="700" height="500"     style="background-color:grey">
+<style>
+.graph {
+    stroke:rgb(200,200,200);
+    stroke-width:1;
+}
+.curve {
+    fill:none;
+    stroke-width:3;
+    marker: url(#markerCircle);
+    stroke:black;
+}
+</style>
+<defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="1.5" style="stroke: none; fill:#000000;"/>
+    </marker>
+</defs>
+<svg class="graph">
+    <rect fill="white" width="640" height="440" x="30" y="30"/>
+    <g class="grid">
+        <line x1="60" x2="60" y1="440" y2="60"/>
+    </g>
+    <g class="grid">
+        <line x1="60" x2="640" y1="440" y2="440"/>
+    </g>
+
+    <text x="35" y="65">20</text>
+    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="445">0</text>
+    <line x1="56" x2="64" y1="440" y2="440"/>
+
+    <text x="55" y="465">0</text>
+    <line x1="60" x2="60" y1="440" y2="444"/>
+    <text x="635" y="465">2</text>
+    <line x1="640" x2="640" y1="440" y2="444"/>
+</svg>
+<polyline style="stroke:blue" class="curve" points="
+60,440
+350,60
+640,250
+"/>
+</svg>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_svggraphtest_one_simple_line_with_negative_value">Draw a single line with negative values</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SvgGraph</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">withLine</span><span class="o">(</span><span class="s">"Values"</span><span class="o">,</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="o">-</span><span class="mi">20</span><span class="o">,</span> <span class="o">-</span><span class="mi">10</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">generate</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+width="700" height="500"     style="background-color:grey">
+<style>
+.graph {
+    stroke:rgb(200,200,200);
+    stroke-width:1;
+}
+.curve {
+    fill:none;
+    stroke-width:3;
+    marker: url(#markerCircle);
+    stroke:black;
+}
+</style>
+<defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="1.5" style="stroke: none; fill:#000000;"/>
+    </marker>
+</defs>
+<svg class="graph">
+    <rect fill="white" width="640" height="440" x="30" y="30"/>
+    <g class="grid">
+        <line x1="60" x2="60" y1="440" y2="60"/>
+    </g>
+    <g class="grid">
+        <line x1="60" x2="640" y1="60" y2="60"/>
+    </g>
+
+    <text x="35" y="65">0</text>
+    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="445">-20</text>
+    <line x1="56" x2="64" y1="440" y2="440"/>
+
+    <text x="55" y="85">0</text>
+    <line x1="60" x2="60" y1="60" y2="64"/>
+    <text x="635" y="85">2</text>
+    <line x1="640" x2="640" y1="60" y2="64"/>
+</svg>
+<polyline style="stroke:blue" class="curve" points="
+60,60
+350,440
+640,250
+"/>
+</svg>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_svggraphtest_one_line_with_negative_and_postive_values">Draw a single line with negative and positive values</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SvgGraph</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">withLine</span><span class="o">(</span><span class="s">"Values"</span><span class="o">,</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(-</span><span class="mi">15</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="o">-</span><span class="mi">6</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="mi">25</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">generate</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+width="700" height="500"     style="background-color:grey">
+<style>
+.graph {
+    stroke:rgb(200,200,200);
+    stroke-width:1;
+}
+.curve {
+    fill:none;
+    stroke-width:3;
+    marker: url(#markerCircle);
+    stroke:black;
+}
+</style>
+<defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="1.5" style="stroke: none; fill:#000000;"/>
+    </marker>
+</defs>
+<svg class="graph">
+    <rect fill="white" width="640" height="440" x="30" y="30"/>
+    <g class="grid">
+        <line x1="60" x2="60" y1="440" y2="60"/>
+    </g>
+    <g class="grid">
+        <line x1="60" x2="640" y1="314" y2="314"/>
+    </g>
+
+    <text x="35" y="65">30</text>
+    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="445">-15</text>
+    <line x1="56" x2="64" y1="440" y2="440"/>
+
+    <text x="55" y="339">0</text>
+    <line x1="60" x2="60" y1="314" y2="318"/>
+    <text x="635" y="339">4</text>
+    <line x1="640" x2="640" y1="314" y2="318"/>
+</svg>
+<polyline style="stroke:blue" class="curve" points="
+60,440
+205,280
+350,364
+495,60
+640,102
+"/>
+</svg>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_svggraphtest_multi_lines">Draw several lines</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SvgGraph</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">withLine</span><span class="o">(</span><span class="s">"Line A"</span><span class="o">,</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(-</span><span class="mi">15</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="mi">25</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">withLine</span><span class="o">(</span><span class="s">"Line B"</span><span class="o">,</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">12</span><span class="o">,</span> <span class="mi">45</span><span class="o">,</span> <span class="mi">17</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">withLine</span><span class="o">(</span><span class="s">"Line C"</span><span class="o">,</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(-</span><span class="mi">5</span><span class="o">,</span> <span class="o">-</span><span class="mi">10</span><span class="o">,</span> <span class="o">-</span><span class="mi">20</span><span class="o">,</span> <span class="mi">8</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">generate</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+width="700" height="500"     style="background-color:grey">
+<style>
+.graph {
+    stroke:rgb(200,200,200);
+    stroke-width:1;
+}
+.curve {
+    fill:none;
+    stroke-width:3;
+    marker: url(#markerCircle);
+    stroke:black;
+}
+</style>
+<defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="1.5" style="stroke: none; fill:#000000;"/>
+    </marker>
+</defs>
+<svg class="graph">
+    <rect fill="white" width="640" height="440" x="30" y="30"/>
+    <g class="grid">
+        <line x1="60" x2="60" y1="440" y2="60"/>
+    </g>
+    <g class="grid">
+        <line x1="60" x2="640" y1="324" y2="324"/>
+    </g>
+
+    <text x="35" y="65">45</text>
+    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="445">-20</text>
+    <line x1="56" x2="64" y1="440" y2="440"/>
+
+    <text x="55" y="349">0</text>
+    <line x1="60" x2="60" y1="324" y2="328"/>
+    <text x="634" y="349">3</text>
+    <line x1="639" x2="639" y1="324" y2="328"/>
+</svg>
+<polyline style="stroke:blue" class="curve" points="
+60,411
+253,288
+446,148
+639,177
+"/>
+<polyline style="stroke:red" class="curve" points="
+60,294
+253,253
+446,60
+639,224
+"/>
+<polyline style="stroke:green" class="curve" points="
+60,353
+253,382
+446,440
+639,277
+"/>
+</svg>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_svggraphtest_apply_factor_on_axes">Apply factor on axes</h3>
+<div class="paragraph">
+<p>By default, the factor apply for axis is calculated to fill the space.
+This factor could be set manually.
+It can be use to display several graph with the same scale.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SvgGraph</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">withXFactor</span><span class="o">(</span><span class="mi">290</span><span class="o">)</span> <span class="c1">// 580 / 2 =&gt; grid width / nb values</span>
+        <span class="o">.</span><span class="na">withYFactor</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span> <span class="c1">// 380 / 38 =&gt; grid height / max value</span>
+        <span class="o">.</span><span class="na">withLine</span><span class="o">(</span><span class="s">"Values"</span><span class="o">,</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">38</span><span class="o">,</span> <span class="mi">20</span><span class="o">)).</span><span class="na">generate</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+width="700" height="500"     style="background-color:grey">
+<style>
+.graph {
+    stroke:rgb(200,200,200);
+    stroke-width:1;
+}
+.curve {
+    fill:none;
+    stroke-width:3;
+    marker: url(#markerCircle);
+    stroke:black;
+}
+</style>
+<defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="1.5" style="stroke: none; fill:#000000;"/>
+    </marker>
+</defs>
+<svg class="graph">
+    <rect fill="white" width="640" height="440" x="30" y="30"/>
+    <g class="grid">
+        <line x1="60" x2="60" y1="440" y2="60"/>
+    </g>
+    <g class="grid">
+        <line x1="60" x2="640" y1="440" y2="440"/>
+    </g>
+
+    <text x="35" y="65">38</text>
+    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="445">0</text>
+    <line x1="56" x2="64" y1="440" y2="440"/>
+
+    <text x="55" y="465">0</text>
+    <line x1="60" x2="60" y1="440" y2="444"/>
+    <text x="635" y="465">2</text>
+    <line x1="640" x2="640" y1="440" y2="444"/>
+</svg>
+<polyline style="stroke:blue" class="curve" points="
+60,340
+350,60
+640,240
+"/>
+</svg>
+<div class="paragraph">
+<p>Here, with a max value at 38 and a factor at 4, the max point is 38 * 4 = 152
+This point is only 8 pixels below the height of the grid specified (160).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SvgGraph</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">withHeight</span><span class="o">(</span><span class="mi">160</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withYFactor</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withLine</span><span class="o">(</span><span class="s">"Values"</span><span class="o">,</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">38</span><span class="o">,</span> <span class="mi">20</span><span class="o">)).</span><span class="na">generate</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+width="700" height="280"     style="background-color:grey">
+<style>
+.graph {
+    stroke:rgb(200,200,200);
+    stroke-width:1;
+}
+.curve {
+    fill:none;
+    stroke-width:3;
+    marker: url(#markerCircle);
+    stroke:black;
+}
+</style>
+<defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="1.5" style="stroke: none; fill:#000000;"/>
+    </marker>
+</defs>
+<svg class="graph">
+    <rect fill="white" width="640" height="220" x="30" y="30"/>
+    <g class="grid">
+        <line x1="60" x2="60" y1="220" y2="60"/>
+    </g>
+    <g class="grid">
+        <line x1="60" x2="640" y1="220" y2="220"/>
+    </g>
+
+    <text x="35" y="65">40</text>
+    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="225">0</text>
+    <line x1="56" x2="64" y1="220" y2="220"/>
+
+    <text x="55" y="245">0</text>
+    <line x1="60" x2="60" y1="220" y2="224"/>
+    <text x="635" y="245">2</text>
+    <line x1="640" x2="640" y1="220" y2="224"/>
+</svg>
+<polyline style="stroke:blue" class="curve" points="
+60,180
+350,68
+640,140
+"/>
+</svg>
 <div id="project_home">
     <a title="home" href="../../../index.html">Doc as test</a>
 </div>
@@ -3106,7 +3582,6 @@ window.addEventListener( "load",
      }
 );
 </script>
-</div>
 </div>
 </div>
 </div>
