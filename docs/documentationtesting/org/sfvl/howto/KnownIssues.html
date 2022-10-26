@@ -441,11 +441,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Known issues</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel2">
+<ul class="sectlevel1">
 <li><a href="#_known_issues">Known issues</a>
-<ul class="sectlevel3">
+<ul class="sectlevel2">
 <li><a href="#_maven_test_pass_even_afterall_fail_with_maven_surefire_plugin_3_0_0_m4">Maven test pass even @AfterAll fail with maven-surefire-plugin 3.0.0-M4</a>
-<ul class="sectlevel4">
+<ul class="sectlevel3">
 <li><a href="#_description">Description</a></li>
 <li><a href="#_solution">Solution</a></li>
 </ul>
@@ -456,12 +456,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_known_issues">Known issues</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_known_issues">Known issues</h3>
+<h3 id="_maven_test_pass_even_afterall_fail_with_maven_surefire_plugin_3_0_0_m4">Maven test pass even @AfterAll fail with maven-surefire-plugin 3.0.0-M4</h3>
 <div class="sect3">
-<h4 id="_maven_test_pass_even_afterall_fail_with_maven_surefire_plugin_3_0_0_m4">Maven test pass even @AfterAll fail with maven-surefire-plugin 3.0.0-M4</h4>
-<div class="sect4">
-<h5 id="_description">Description</h5>
+<h4 id="_description">Description</h4>
 <div class="paragraph">
 <p>When approved file for the class change, test fails but surefire do not mark this class as failing.
 Tests running in IDE fails but they don&#8217;t when they are run with <code>mvn test</code>.</p>
@@ -483,8 +484,8 @@ Tests running in IDE fails but they don&#8217;t when they are run with <code>mvn
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_solution">Solution</h5>
+<div class="sect3">
+<h4 id="_solution">Solution</h4>
 <div class="paragraph">
 <p>Do not use <code>maven-surefire-plugin 3.0.0-M4</code> version.
 you can use an older or newer version instead.</p>
@@ -744,6 +745,7 @@ window.addEventListener( "load",
      }
 );
 </script>
+</div>
 </div>
 </div>
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>How to</title>
+<title>Svg graph</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,496 +436,304 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 </head>
-<body id="org_sfvl_howto_howto" class="article toc2 toc-left">
+<body id="org_sfvl_doctesting_utils_svggraphtest" class="article toc2 toc-left">
 <div id="header">
-<h1>How to</h1>
+<h1>Svg graph</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#org_sfvl_howto_howto_getting_started">Getting started</a></li>
-<li><a href="#org_sfvl_doctesting_junitextension_approvalsextensiontest_using_extension">Creating a test using ApprovalsExtension</a></li>
-<li><a href="#org_sfvl_howto_howto_organize_documentation">Organize documentation</a></li>
-<li><a href="#org_sfvl_howto_howto_format_text">Format text</a></li>
-<li><a href="#org_sfvl_howto_howto_extract_code">Extract code</a>
-<ul class="sectlevel2">
-<li><a href="#org_sfvl_codeextraction_codeextractortest_extractcode_extract_part_of_code_from_method">Extract a part of code from method</a></li>
-</ul>
-</li>
-<li><a href="#org_sfvl_howto_createadocument_generate_html">Generate html</a></li>
-<li><a href="#org_sfvl_howto_useyourownstyle">Use your own style</a>
-<ul class="sectlevel2">
-<li><a href="#org_sfvl_howto_useyourownstyle_define_a_custom_style">Define a custom style</a></li>
-</ul>
-</li>
-<li><a href="#org_sfvl_howto_howto_visualize_data_with_a_graph">Visualize data with a graph</a>
-<ul class="sectlevel2">
+<li><a href="#org_sfvl_doctesting_utils_svggraphtest_an_empty_grid">Generate an empty grid</a></li>
+<li><a href="#org_sfvl_doctesting_utils_svggraphtest_specify_grid_size">Specify grid size</a></li>
+<li><a href="#org_sfvl_doctesting_utils_svggraphtest_one_simple_line">Draw a single line</a></li>
+<li><a href="#org_sfvl_doctesting_utils_svggraphtest_one_simple_line_with_negative_value">Draw a single line with negative values</a></li>
+<li><a href="#org_sfvl_doctesting_utils_svggraphtest_one_line_with_negative_and_postive_values">Draw a single line with negative and positive values</a></li>
 <li><a href="#org_sfvl_doctesting_utils_svggraphtest_multi_lines">Draw several lines</a></li>
-</ul>
-</li>
+<li><a href="#org_sfvl_doctesting_utils_svggraphtest_apply_factor_on_axes">Apply factor on axes</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="org_sfvl_howto_howto_getting_started">Getting started</h2>
+<h2 id="org_sfvl_doctesting_utils_svggraphtest_an_empty_grid">Generate an empty grid</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>To get started quickly, you can download <a href="https://github.com/sfauvel/TryDocAsTest">Try doc as test</a> project.
-It&#8217;s a minimal project that is ready to use and that implements a small demo.</p>
-</div>
-<div class="paragraph">
-<p>You can alo follow steps of the <a href="../../../org/sfvl/howto/Tutorial.html">Get started</a> page.</p>
-</div>
-<div class="paragraph">
-<p>You can use it on your own project alongside your existing tests.
-Both can work together without modifying your tests.</p>
-</div>
-<div class="paragraph">
-<p>To do that, you need to:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="../../../org/sfvl/howto/InstallingLibrary.html">Installing DocumentationTesting</a> maven library and add dependency to your <code>pom.xml</code></p>
-</li>
-<li>
-<p>Create a test and register ApprovalsExtension extension adding the code below to the test class.</p>
-</li>
-</ul>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre>@RegisterExtension
-static ApprovalsExtension extension = new SimpleApprovalsExtension();</pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SvgGraph</span><span class="o">().</span><span class="na">generate</span><span class="o">();</span></code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Write in your test everything you want to see in your documentation using <code>doc.write("&#8230;&#8203;")</code>
-You don&#8217;t have to write assertions, tests will be passed when generated documents are the same as the last time.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="org_sfvl_doctesting_junitextension_approvalsextensiontest_using_extension">Creating a test using ApprovalsExtension</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This is an example to create a simple test using <code>ApprovalsExtension</code>.</p>
-</div>
-<div class="paragraph">
-<p>You have to write a class and add register an <code>ApprovalsExtension</code> attribute using <code>RegisterExtension</code> annotation.
-This extension will check that everything wrote using <code>write</code> method has not changed since the last execution.</p>
-</div>
-<div class="listingblock">
-<div class="title">Test example using <code>ApprovalsExtension</code></div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kn">package</span> <span class="nn">org.sfvl.samples.justone</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.extension.RegisterExtension</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.ApprovalsExtension</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.sfvl.doctesting.junitextension.SimpleApprovalsExtension</span><span class="o">;</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OneTest</span> <span class="o">{</span>
-    <span class="nd">@RegisterExtension</span>
-    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
-
-    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
-    <span class="o">}</span>
-
-<span class="o">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When executing test method <code>test_A</code>, the following text is generated.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>[#org_sfvl_samples_justone_onetest_test_a]
-= Test A
-
-In my *test*</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If this content is identical to the <code>_OneTest.test_A.approved.adoc</code>, then the test is a success.
-Otherwise, test fails and the generated text is written to the <code>_OneTest.test_A.received.adoc</code> file.
-So we can compare those two files to see what has changed.</p>
-</div>
-<div class="paragraph">
-<p>File name and title come from method name.
-The chapter content contains what was written using <code>write</code>.</p>
-</div>
-<div class="paragraph">
-<p>Files are stored in <code>src/test/docs/org/sfvl/samples/justone</code> directory which contains:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>_OneTest.approved.adoc</p>
-</li>
-<li>
-<p>_OneTest.test_A.approved.adoc</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>There is one file per test and one file for the class.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="org_sfvl_howto_howto_organize_documentation">Organize documentation</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To organize documentation, we have to consider test methods as the generator of one chapter.
-Each test will have a title by default following by text added executing it.
-Some of them show a specific behavior like any classic test.</p>
-</div>
-<div class="paragraph">
-<p>But, it&#8217;s also possible to have one test that runs several cases and presents a global report of the execution.
-Even if there is a regression for one case in that test,
-all results will be written in the document and can be compared with the reference file.</p>
-</div>
-<div class="paragraph">
-<p>We also can create a test method that just write text without code execution.
-It can be used to add general description or to minimize what it is written in a test to simplify its reuse.</p>
-</div>
-<div class="paragraph">
-<p>The final document respect the order of the method in the test file.
-We can use subclasses to create subchapter in the document (see: <a href="../../../org/sfvl/doctesting/junitextension/ApprovalsExtensionTest.html#org_sfvl_doctesting_junitextension_approvalsextensiontest_nested_class">Nested class</a>)</p>
-</div>
-<div class="paragraph">
-<p>It&#8217;s not necessary to follow source code organization in tests.
-Instead, organize your test packages according to the document you want to generate.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="org_sfvl_howto_howto_format_text">Format text</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To format text, we can use a formatter that hide technical syntax of the markup language used.</p>
-</div>
-<div class="literalblock">
-<div class="title">Formatter usage</div>
-<div class="content">
-<pre>Formatter formatter = new AsciidocFormatter();
-final String text = formatter.listItems("Item A", "Item B", "Item C");</pre>
-</div>
-</div>
-<div class="listingblock inline">
-<div class="title">Text generated</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="o">*</span> <span class="nc">Item</span> <span class="no">A</span>
-<span class="o">*</span> <span class="nc">Item</span> <span class="no">B</span>
-<span class="o">*</span> <span class="nc">Item</span> <span class="no">C</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="title">Example 1. Final rendering</div>
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Item A</p>
-</li>
-<li>
-<p>Item B</p>
-</li>
-<li>
-<p>Item C</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>You can take a look at the <a href="../../../org/sfvl/docformatter/AsciidocFormatterTest.html">formatter&#8217;s full documentation</a> to get an idea of the features available.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="org_sfvl_howto_howto_extract_code">Extract code</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Even if we often try to document the behavior of the application
-with as little technical element as possible,
-we also need to show some code to document how to use it.</p>
-</div>
-<div class="paragraph">
-<p>To do that, there is tools provided to do this simply.
-You will find one way to extract code below.
-If you want a to see all possibilities, go to <a href="../../../org/sfvl/codeextraction/CodeExtractionPackage.html">CodeExtractionPackage</a></p>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_codeextraction_codeextractortest_extractcode_extract_part_of_code_from_method">Extract a part of code from method</h3>
-<div class="paragraph">
-<p>To extract a part of a method, you can write a comment with a specific value
-that indicate beginining of the code to extract.
-Another comment with a specific value indicate the end of the code.</p>
-</div>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+width="700" height="500"     style="background-color:grey">
 <style>
-.inline {
-   display: inline-block;
-   vertical-align: top;
-   margin-right: 2em;
+.graph {
+    stroke:rgb(200,200,200);
+    stroke-width:1;
+}
+.curve {
+    fill:none;
+    stroke-width:3;
+    marker: url(#markerCircle);
+    stroke:black;
 }
 </style>
-<div class="listingblock">
-<div class="title">How to extract part of a method code</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">ClassWithMethodToExtract:</span><span class="o">:</span><span class="n">methodWithOnePartToExtract</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfMethod</span><span class="o">(</span><span class="n">method</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">code</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfMethod</span><span class="o">(</span><span class="nc">ClassWithMethodToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"methodWithOnePartToExtract"</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code from file</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodWithOnePartToExtract</span><span class="o">()</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-    <span class="c1">// &gt;&gt;&gt;</span>
-    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-    <span class="c1">// &lt;&lt;&lt;</span>
-    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">;</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>You can have several part identify by a text that you pass as argument to the function extracting the code.
-You can have several part identified by the same text.
-In that case, all parts matching the text will be returned.</p>
-</div>
-<div class="listingblock">
-<div class="title">How to extract part of a method</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">MethodReference</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="nl">ClassWithMethodToExtract:</span><span class="o">:</span><span class="n">methodWithSeveralPartsToExtract</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">codePart1</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfMethod</span><span class="o">(</span><span class="n">method</span><span class="o">,</span> <span class="s">"Part1"</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">codePart2</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">extractPartOfMethod</span><span class="o">(</span><span class="n">method</span><span class="o">,</span> <span class="s">"Part2"</span><span class="o">);</span></code></pre>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code from file</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">methodWithSeveralPartsToExtract</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// &gt;&gt;&gt;Part1</span>
-    <span class="kt">int</span> <span class="n">square</span> <span class="o">=</span> <span class="n">value</span> <span class="o">*</span> <span class="n">value</span><span class="o">;</span>
-    <span class="c1">// &lt;&lt;&lt;Part1</span>
+<defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="1.5" style="stroke: none; fill:#000000;"/>
+    </marker>
+</defs>
+<svg class="graph">
+    <rect fill="white" width="640" height="440" x="30" y="30"/>
+    <g class="grid">
+        <line x1="60" x2="60" y1="440" y2="60"/>
+    </g>
+    <g class="grid">
+        <line x1="60" x2="640" y1="440" y2="440"/>
+    </g>
 
-    <span class="c1">// &gt;&gt;&gt;Part2</span>
-    <span class="kd">final</span> <span class="nc">String</span> <span class="n">text</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span>
-            <span class="s">"square(%d)=%d"</span><span class="o">,</span>
-            <span class="n">value</span><span class="o">,</span>
-            <span class="n">square</span><span class="o">);</span>
-    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
-    <span class="c1">// &lt;&lt;&lt;Part2</span>
+    <text x="35" y="65">1</text>
+    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="445">0</text>
+    <line x1="56" x2="64" y1="440" y2="440"/>
 
-    <span class="c1">// &gt;&gt;&gt;Part1</span>
-    <span class="k">return</span> <span class="n">square</span><span class="o">;</span>
-    <span class="c1">// &lt;&lt;&lt;Part1</span>
-<span class="o">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock inline">
-<div class="content">
-<div class="listingblock">
-<div class="title">Source code Part 1 extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">square</span> <span class="o">=</span> <span class="n">value</span> <span class="o">*</span> <span class="n">value</span><span class="o">;</span>
-<span class="k">return</span> <span class="n">square</span><span class="o">;</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Source code Part 2 extracted</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">text</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span>
-        <span class="s">"square(%d)=%d"</span><span class="o">,</span>
-        <span class="n">value</span><span class="o">,</span>
-        <span class="n">square</span><span class="o">);</span>
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">text</span><span class="o">);</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
+    <text x="55" y="465">0</text>
+    <line x1="60" x2="60" y1="440" y2="444"/>
+    <text x="635" y="465">1</text>
+    <line x1="640" x2="640" y1="440" y2="444"/>
+</svg>
+
+</svg>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_howto_createadocument_generate_html">Generate html</h2>
+<h2 id="org_sfvl_doctesting_utils_svggraphtest_specify_grid_size">Specify grid size</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>To convert <code>.adoc</code> to <code>.html</code>, we use <code>asciidoctor-maven-plugin</code> plugin.
-It&#8217;s configure in <code>pom.xml</code> and it&#8217;s can be run in one phase of the maven lifecycle (generally the <code>package</code> phase).</p>
-</div>
-<div class="paragraph">
-<p>By default, files started with <code>_</code> are not converted to HTML by this plugin.
-We have chosen to start all <code>approved</code> file names with an <code>_</code>.
-They are only chapters of documents.
-They need to be included in a file that will be converted into HTML.
-So, this makes it easier to reuse these chapters and organize the documentation.</p>
-</div>
-<div class="paragraph">
-<p>To have a file that not start with <code>_</code>, we need to generate one.
-The <code>HtmlPageExtension</code> extension is made for that.
-When a test class used this extension, it will generate a simple <code>.adoc</code> file that include the <code>approved</code> file of the same class.
-The final HTML file will contain all the chapters generated from methods of this class.</p>
-</div>
 <div class="listingblock">
-<div class="title">Example of class creating the file that will be converted into HTML</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@ExtendWith</span><span class="o">(</span><span class="nc">HtmlPageExtension</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HtmlTest</span> <span class="o">{</span>
-    <span class="nd">@RegisterExtension</span>
-    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
-
-    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">doc</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">"In my *test*"</span><span class="o">);</span>
-    <span class="o">}</span>
-
-<span class="o">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SvgGraph</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">withHeight</span><span class="o">(</span><span class="mi">100</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">generate</span><span class="o">();</span></code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Files in folder <code>src/test/docs/org/sfvl/samples/generateHtml</code></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>HtmlTest.adoc</p>
-</li>
-<li>
-<p>_HtmlTest.approved.adoc</p>
-</li>
-<li>
-<p>_HtmlTest.test_A.approved.adoc</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Content of the file <code>src/test/docs/org/sfvl/samples/generateHtml/HtmlTest.adoc</code></div>
-<div class="content">
-<pre>include::_HtmlTest.approved.adoc[]</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>For more features, you can look at the <a href="../../../org/sfvl/howto/CreateADocument.html">documentation on creating a document</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="org_sfvl_howto_useyourownstyle">Use your own style</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To have specific style in some chapter, you can use HTML style directly in your Asciidoc files.</p>
-</div>
-<div class="paragraph">
-<p>You need to encapsulate it between ++++ and &lt;style&gt; balise.</p>
-</div>
-<div class="sect2">
-<h3 id="org_sfvl_howto_useyourownstyle_define_a_custom_style">Define a custom style</h3>
-<div class="paragraph">
-<p>You can customize style adding a css style directly in your file.
-You need to put an html style tag (<code>&lt;style&gt;&lt;/style&gt;</code>) enclosed in <code>++++</code>
-to add it without processed content and send it directly to the output.</p>
-</div>
-<div class="listingblock">
-<div class="title">Asciidoc content</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="html">++++
-<span class="nt">&lt;style&gt;</span>
-<span class="nc">.withColor</span> <span class="p">{</span>
-   <span class="nl">color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nt">&lt;/style&gt;</span>
-++++
-This text should be black.
-
-[.withColor]#This text shoud be blue.#
-
-This text should be black.
-
-[.withColor]
---
-This section formed by several lines in asciidoc
-should be blue.
---
-This text should be black.</code></pre>
-</div>
-</div>
-<div class="exampleblock">
-<div class="title">Example 2. Content rendering</div>
-<div class="content">
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+width="320" height="220"     style="background-color:grey">
 <style>
-.withColor {
-   color: blue;
+.graph {
+    stroke:rgb(200,200,200);
+    stroke-width:1;
+}
+.curve {
+    fill:none;
+    stroke-width:3;
+    marker: url(#markerCircle);
+    stroke:black;
 }
 </style>
-<div class="paragraph">
-<p>This text should be black.</p>
-</div>
-<div class="paragraph">
-<p><span class="withColor">This text shoud be blue.</span></p>
-</div>
-<div class="paragraph">
-<p>This text should be black.</p>
-</div>
-<div class="openblock withColor">
-<div class="content">
-<div class="paragraph">
-<p>This section formed by several lines in asciidoc
-should be blue.</p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>This text should be black.</p>
-</div>
-</div>
-</div>
-</div>
+<defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="1.5" style="stroke: none; fill:#000000;"/>
+    </marker>
+</defs>
+<svg class="graph">
+    <rect fill="white" width="260" height="160" x="30" y="30"/>
+    <g class="grid">
+        <line x1="60" x2="60" y1="160" y2="60"/>
+    </g>
+    <g class="grid">
+        <line x1="60" x2="260" y1="160" y2="160"/>
+    </g>
+
+    <text x="35" y="65">1</text>
+    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="165">0</text>
+    <line x1="56" x2="64" y1="160" y2="160"/>
+
+    <text x="55" y="185">0</text>
+    <line x1="60" x2="60" y1="160" y2="164"/>
+    <text x="255" y="185">1</text>
+    <line x1="260" x2="260" y1="160" y2="164"/>
+</svg>
+
+</svg>
 </div>
 </div>
 <div class="sect1">
-<h2 id="org_sfvl_howto_howto_visualize_data_with_a_graph">Visualize data with a graph</h2>
+<h2 id="org_sfvl_doctesting_utils_svggraphtest_one_simple_line">Draw a single line</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>It is very common to have to present the values obtained according to the input data.
-To do this, there is nothing better than to display a graph.
-We provide a way to do it easily generating a SVG from the data.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SvgGraph</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">withLine</span><span class="o">(</span><span class="s">"Values"</span><span class="o">,</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="mi">10</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">generate</span><span class="o">();</span></code></pre>
 </div>
-<div class="sect2">
-<h3 id="org_sfvl_doctesting_utils_svggraphtest_multi_lines">Draw several lines</h3>
+</div>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+width="700" height="500"     style="background-color:grey">
+<style>
+.graph {
+    stroke:rgb(200,200,200);
+    stroke-width:1;
+}
+.curve {
+    fill:none;
+    stroke-width:3;
+    marker: url(#markerCircle);
+    stroke:black;
+}
+</style>
+<defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="1.5" style="stroke: none; fill:#000000;"/>
+    </marker>
+</defs>
+<svg class="graph">
+    <rect fill="white" width="640" height="440" x="30" y="30"/>
+    <g class="grid">
+        <line x1="60" x2="60" y1="440" y2="60"/>
+    </g>
+    <g class="grid">
+        <line x1="60" x2="640" y1="440" y2="440"/>
+    </g>
+
+    <text x="35" y="65">20</text>
+    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="445">0</text>
+    <line x1="56" x2="64" y1="440" y2="440"/>
+
+    <text x="55" y="465">0</text>
+    <line x1="60" x2="60" y1="440" y2="444"/>
+    <text x="635" y="465">2</text>
+    <line x1="640" x2="640" y1="440" y2="444"/>
+</svg>
+<polyline style="stroke:blue" class="curve" points="
+60,440
+350,60
+640,250
+"/>
+</svg>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_utils_svggraphtest_one_simple_line_with_negative_value">Draw a single line with negative values</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SvgGraph</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">withLine</span><span class="o">(</span><span class="s">"Values"</span><span class="o">,</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="o">-</span><span class="mi">20</span><span class="o">,</span> <span class="o">-</span><span class="mi">10</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">generate</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+width="700" height="500"     style="background-color:grey">
+<style>
+.graph {
+    stroke:rgb(200,200,200);
+    stroke-width:1;
+}
+.curve {
+    fill:none;
+    stroke-width:3;
+    marker: url(#markerCircle);
+    stroke:black;
+}
+</style>
+<defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="1.5" style="stroke: none; fill:#000000;"/>
+    </marker>
+</defs>
+<svg class="graph">
+    <rect fill="white" width="640" height="440" x="30" y="30"/>
+    <g class="grid">
+        <line x1="60" x2="60" y1="440" y2="60"/>
+    </g>
+    <g class="grid">
+        <line x1="60" x2="640" y1="60" y2="60"/>
+    </g>
+
+    <text x="35" y="65">0</text>
+    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="445">-20</text>
+    <line x1="56" x2="64" y1="440" y2="440"/>
+
+    <text x="55" y="85">0</text>
+    <line x1="60" x2="60" y1="60" y2="64"/>
+    <text x="635" y="85">2</text>
+    <line x1="640" x2="640" y1="60" y2="64"/>
+</svg>
+<polyline style="stroke:blue" class="curve" points="
+60,60
+350,440
+640,250
+"/>
+</svg>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_utils_svggraphtest_one_line_with_negative_and_postive_values">Draw a single line with negative and positive values</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SvgGraph</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">withLine</span><span class="o">(</span><span class="s">"Values"</span><span class="o">,</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(-</span><span class="mi">15</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="o">-</span><span class="mi">6</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="mi">25</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">generate</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+width="700" height="500"     style="background-color:grey">
+<style>
+.graph {
+    stroke:rgb(200,200,200);
+    stroke-width:1;
+}
+.curve {
+    fill:none;
+    stroke-width:3;
+    marker: url(#markerCircle);
+    stroke:black;
+}
+</style>
+<defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="1.5" style="stroke: none; fill:#000000;"/>
+    </marker>
+</defs>
+<svg class="graph">
+    <rect fill="white" width="640" height="440" x="30" y="30"/>
+    <g class="grid">
+        <line x1="60" x2="60" y1="440" y2="60"/>
+    </g>
+    <g class="grid">
+        <line x1="60" x2="640" y1="314" y2="314"/>
+    </g>
+
+    <text x="35" y="65">30</text>
+    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="445">-15</text>
+    <line x1="56" x2="64" y1="440" y2="440"/>
+
+    <text x="55" y="339">0</text>
+    <line x1="60" x2="60" y1="314" y2="318"/>
+    <text x="635" y="339">4</text>
+    <line x1="640" x2="640" y1="314" y2="318"/>
+</svg>
+<polyline style="stroke:blue" class="curve" points="
+60,440
+205,280
+350,364
+495,60
+640,102
+"/>
+</svg>
+</div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_utils_svggraphtest_multi_lines">Draw several lines</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SvgGraph</span><span class="o">()</span>
@@ -993,11 +801,128 @@ width="700" height="500"     style="background-color:grey">
 639,277
 "/>
 </svg>
-<div class="paragraph">
-<p>For more features, you can look at the <a href="../../../org/sfvl/doctesting/utils/SvgGraphTest.html">Create a graph to visualize data</a>.</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="org_sfvl_doctesting_utils_svggraphtest_apply_factor_on_axes">Apply factor on axes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, the factor apply for axis is calculated to fill the space.
+This factor could be set manually.
+It can be use to display several graph with the same scale.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SvgGraph</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">withXFactor</span><span class="o">(</span><span class="mi">290</span><span class="o">)</span> <span class="c1">// 580 / 2 =&gt; grid width / nb values</span>
+        <span class="o">.</span><span class="na">withYFactor</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span> <span class="c1">// 380 / 38 =&gt; grid height / max value</span>
+        <span class="o">.</span><span class="na">withLine</span><span class="o">(</span><span class="s">"Values"</span><span class="o">,</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">38</span><span class="o">,</span> <span class="mi">20</span><span class="o">)).</span><span class="na">generate</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+width="700" height="500"     style="background-color:grey">
+<style>
+.graph {
+    stroke:rgb(200,200,200);
+    stroke-width:1;
+}
+.curve {
+    fill:none;
+    stroke-width:3;
+    marker: url(#markerCircle);
+    stroke:black;
+}
+</style>
+<defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="1.5" style="stroke: none; fill:#000000;"/>
+    </marker>
+</defs>
+<svg class="graph">
+    <rect fill="white" width="640" height="440" x="30" y="30"/>
+    <g class="grid">
+        <line x1="60" x2="60" y1="440" y2="60"/>
+    </g>
+    <g class="grid">
+        <line x1="60" x2="640" y1="440" y2="440"/>
+    </g>
+
+    <text x="35" y="65">38</text>
+    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="445">0</text>
+    <line x1="56" x2="64" y1="440" y2="440"/>
+
+    <text x="55" y="465">0</text>
+    <line x1="60" x2="60" y1="440" y2="444"/>
+    <text x="635" y="465">2</text>
+    <line x1="640" x2="640" y1="440" y2="444"/>
+</svg>
+<polyline style="stroke:blue" class="curve" points="
+60,340
+350,60
+640,240
+"/>
+</svg>
+<div class="paragraph">
+<p>Here, with a max value at 38 and a factor at 4, the max point is 38 * 4 = 152
+This point is only 8 pixels below the height of the grid specified (160).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SvgGraph</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">withHeight</span><span class="o">(</span><span class="mi">160</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withYFactor</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">withLine</span><span class="o">(</span><span class="s">"Values"</span><span class="o">,</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">38</span><span class="o">,</span> <span class="mi">20</span><span class="o">)).</span><span class="na">generate</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+width="700" height="280"     style="background-color:grey">
+<style>
+.graph {
+    stroke:rgb(200,200,200);
+    stroke-width:1;
+}
+.curve {
+    fill:none;
+    stroke-width:3;
+    marker: url(#markerCircle);
+    stroke:black;
+}
+</style>
+<defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="1.5" style="stroke: none; fill:#000000;"/>
+    </marker>
+</defs>
+<svg class="graph">
+    <rect fill="white" width="640" height="220" x="30" y="30"/>
+    <g class="grid">
+        <line x1="60" x2="60" y1="220" y2="60"/>
+    </g>
+    <g class="grid">
+        <line x1="60" x2="640" y1="220" y2="220"/>
+    </g>
+
+    <text x="35" y="65">40</text>
+    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="225">0</text>
+    <line x1="56" x2="64" y1="220" y2="220"/>
+
+    <text x="55" y="245">0</text>
+    <line x1="60" x2="60" y1="220" y2="224"/>
+    <text x="635" y="245">2</text>
+    <line x1="640" x2="640" y1="220" y2="224"/>
+</svg>
+<polyline style="stroke:blue" class="curve" points="
+60,180
+350,68
+640,140
+"/>
+</svg>
 <div id="project_home">
-    <a title="home" href="../../../index.html">Doc as test</a>
+    <a title="home" href="../../../../index.html">Doc as test</a>
 </div>
 <style>
 /*
@@ -1251,7 +1176,6 @@ window.addEventListener( "load",
      }
 );
 </script>
-</div>
 </div>
 </div>
 </div>
