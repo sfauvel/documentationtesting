@@ -19,11 +19,11 @@ to add it without processed content and send it directly to the output.
 ++++
 This text should be black.
 
-[withColor]#This text shoud be blue.#
+[.withColor]#This text shoud be blue.#
 
 This text should be black.
 
-[withColor]
+[.withColor]
 --
 This section formed by several lines in asciidoc
 should be blue.
@@ -42,11 +42,11 @@ This text should be black.
 ++++
 This text should be black.
 
-[withColor]#This text shoud be blue.#
+[.withColor]#This text shoud be blue.#
 
 This text should be black.
 
-[withColor]
+[.withColor]
 --
 This section formed by several lines in asciidoc
 should be blue.
