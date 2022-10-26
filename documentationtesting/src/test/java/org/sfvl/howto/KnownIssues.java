@@ -27,7 +27,7 @@ public class KnownIssues {
     public void knownIssues() {
         final Path path = new DocPath("knownIssues").resource().from(this.getClass());
 
-        doc.write(formatter.include(DocPath.toAsciiDoc(path), 1));
+        doc.write(formatter.include(DocPath.toAsciiDoc(path), 0));
     }
 
 }

@@ -231,7 +231,7 @@ public class ApprovalsExtensionTest {
         doc.write("", "",
                 "_Final rendering_",
                 "[.rendering]",
-                formatter.include(approved.from(this.getClass()).toString(), 2));
+                formatter.include(approved.from(this.getClass()).toString(), 1));
     }
 
     /**

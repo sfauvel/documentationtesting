@@ -25,7 +25,7 @@ endif::[]
 </style>
 ++++
 
-[icon-header]
+[.icon-header]
 --
 image::{imagedir}/github.svg[link={github-repo}, width=30px]
 --

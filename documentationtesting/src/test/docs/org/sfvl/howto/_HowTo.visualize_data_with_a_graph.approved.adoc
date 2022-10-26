@@ -1,0 +1,12 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_howto_howto_visualize_data_with_a_graph]
+= Visualize data with a graph
+
+It is very common to have to present the values obtained according to the input data.
+To do this, there is nothing better than to display a graph.
+We provide a way to do it easily generating a SVG from the data.
+
+include::../doctesting/utils/_SvgGraphTest.multi_lines.approved.adoc[leveloffset=+1]
+
+For more features, you can look at the link:{ROOT_PATH}/org/sfvl/doctesting/utils/SvgGraphTest.html[Create a graph to visualize data].
