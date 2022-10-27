@@ -13,6 +13,8 @@ include::_SvgGraphTest.one_simple_line_with_negative_value.approved.adoc[levelof
 
 include::_SvgGraphTest.one_line_with_negative_and_postive_values.approved.adoc[leveloffset=+1]
 
+include::_SvgGraphTest.one_line_with_float_values.approved.adoc[leveloffset=+1]
+
 include::_SvgGraphTest.multi_lines.approved.adoc[leveloffset=+1]
 
 include::_SvgGraphTest.apply_factor_on_axes.approved.adoc[leveloffset=+1]
