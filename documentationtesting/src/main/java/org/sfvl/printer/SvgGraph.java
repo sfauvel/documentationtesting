@@ -58,8 +58,8 @@ public class SvgGraph {
             this.delta = delta;
         }
 
-        public int getPosition(int value) {
-            return (int) ((value * factor) + delta);
+        public int getPosition(Number value) {
+            return (int) ((value.doubleValue() * factor) + delta);
         }
 
         public double getValue(int position) {
@@ -70,10 +70,10 @@ public class SvgGraph {
     private static class SvgLineData {
 
         private final String name;
-        private final List<Integer> lineData;
+        private final List<? extends Number> lineData;
         private final String color;
 
-        SvgLineData(String name, List<Integer> lineData, String lineColor) {
+        SvgLineData(String name, List<? extends Number> lineData, String lineColor) {
             this.name = name;
             this.lineData = lineData;
             this.color = lineColor;
@@ -108,9 +108,21 @@ public class SvgGraph {
                 "</svg>");
     }
 
+    private Number min(Number x, Number y) {
+        return compare(x, y) < 0 ? x : y;
+    }
+
+    private Number max(Number x, Number y) {
+        return compare(x, y) > 0 ? x : y;
+    }
+
+    private Number orElse(Optional<? extends Number> number, Number defaultValue) {
+        return number.isPresent() ? number.get() : defaultValue;
+    }
+
     private String generateGrid() {
-        final Integer maxY = getMaxValue().orElse(0);
-        final Integer minY = getMinValue().orElse(0);
+        final Number maxY = orElse(getMaxValue(), 0);
+        final Number minY = orElse(getMinValue(), 0);
         final Integer maxX = lines.stream()
                 .mapToInt(line -> line.size() - 1)
                 .max()
@@ -130,10 +142,15 @@ public class SvgGraph {
             final int valueWidth = Math.max(1, maxX);
             withXFactor(gridWidth / valueWidth);
         }
-        final int minYValue = Math.min(0, minY);
+        final Number minYValue = min(0, minY);
+        int minYIntegerValue = (int) Math.floor(minYValue.doubleValue());
+        int maxYIntegerValue = (int) Math.ceil(max(0, maxY).doubleValue());
+        if (maxYIntegerValue - minYIntegerValue < 1) {
+            maxYIntegerValue += 1;
+        }
         if (axeY == null) {
-            final int valueHeight = Math.max(1, Math.max(0, maxY) - minYValue);
-            withYFactor((double) gridHeight / valueHeight, minYValue);
+            final double valueHeight = maxYIntegerValue - minYIntegerValue;
+            withYFactor((double) gridHeight / valueHeight, minYIntegerValue);
         }
         int x0 = axeX.getPosition(0);
         int y0 = axeY.getPosition(0);
@@ -150,24 +167,28 @@ public class SvgGraph {
                 "        " + svgHLine(xMinPosition, xMaxPosition, y0),
                 "    </g>",
                 "",
-                numberOnYAxis(x0, yMax),
-                numberOnYAxis(x0, minYValue),
+                numberOnYAxis(x0, maxYIntegerValue),
+                numberOnYAxis(x0, minYIntegerValue),
                 "",
                 numberOnXAxis(y0, 0),
                 numberOnXAxis(y0, xMax),
                 "</svg>");
     }
 
-    private Optional<Integer> getMinValue() {
-        return lines.stream()
-                .flatMap(line -> line.lineData.stream())
-                .min(Integer::compare);
+    private int compare(final Number x, final Number y) {
+        return Double.compare(x.doubleValue(), y.doubleValue());
     }
 
-    private Optional<Integer> getMaxValue() {
+    private Optional<? extends Number> getMinValue() {
         return lines.stream()
                 .flatMap(line -> line.lineData.stream())
-                .max(Integer::compare);
+                .min(this::compare);
+    }
+
+    private Optional<? extends Number> getMaxValue() {
+        return lines.stream()
+                .flatMap(line -> line.lineData.stream())
+                .max(this::compare);
     }
 
     private String numberOnYAxis(int x0, int value) {
@@ -229,7 +250,7 @@ public class SvgGraph {
                 "</style>");
     }
 
-    public SvgGraph withLine(String label, List<Integer> values) {
+    public SvgGraph withLine(String label, List<? extends Number> values) {
         String lineColor = colors.get((colorIndex++) % colors.size());
 
         return withLine(new SvgLineData(label, values, lineColor));

@@ -101,8 +101,8 @@ width="700" height="280"     style="background-color:grey">
         <line x1="60" x2="640" y1="220" y2="220"/>
     </g>
 
-    <text x="35" y="65">40</text>
-    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="73">38</text>
+    <line x1="56" x2="64" y1="68" y2="68"/>
     <text x="35" y="225">0</text>
     <line x1="56" x2="64" y1="220" y2="220"/>
 

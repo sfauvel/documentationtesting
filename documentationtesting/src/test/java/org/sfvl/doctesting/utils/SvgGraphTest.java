@@ -82,6 +82,19 @@ public class SvgGraphTest {
         write_svg(svg);
     }
 
+    @DisplayName("Draw a single line with float values")
+    @Test
+    public void one_line_with_float_values() {
+        // >>>
+        final String svg = new SvgGraph()
+                .withLine("Values", Arrays.asList(-2.5, 1.2, -0.5, 3.6))
+                .generate();
+        // <<<
+
+        doc.write(doc.getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()));
+        write_svg(svg);
+    }
+
     @DisplayName("Draw several lines")
     @Test
     public void multi_lines() {
