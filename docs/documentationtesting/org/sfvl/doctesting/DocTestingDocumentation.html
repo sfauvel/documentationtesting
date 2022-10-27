@@ -552,6 +552,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_utils_svggraphtest_one_simple_line">Draw a single line</a></li>
 <li><a href="#org_sfvl_doctesting_utils_svggraphtest_one_simple_line_with_negative_value">Draw a single line with negative values</a></li>
 <li><a href="#org_sfvl_doctesting_utils_svggraphtest_one_line_with_negative_and_postive_values">Draw a single line with negative and positive values</a></li>
+<li><a href="#org_sfvl_doctesting_utils_svggraphtest_one_line_with_float_values">Draw a single line with float values</a></li>
 <li><a href="#org_sfvl_doctesting_utils_svggraphtest_multi_lines">Draw several lines</a></li>
 <li><a href="#org_sfvl_doctesting_utils_svggraphtest_apply_factor_on_axes">Apply factor on axes</a></li>
 </ul>
@@ -3145,6 +3146,62 @@ width="700" height="500"     style="background-color:grey">
 </svg>
 </div>
 <div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_svggraphtest_one_line_with_float_values">Draw a single line with float values</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">svg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SvgGraph</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">withLine</span><span class="o">(</span><span class="s">"Values"</span><span class="o">,</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(-</span><span class="mf">2.5</span><span class="o">,</span> <span class="mf">1.2</span><span class="o">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">,</span> <span class="mf">3.6</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">generate</span><span class="o">();</span></code></pre>
+</div>
+</div>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+width="700" height="500"     style="background-color:grey">
+<style>
+.graph {
+    stroke:rgb(200,200,200);
+    stroke-width:1;
+}
+.curve {
+    fill:none;
+    stroke-width:3;
+    marker: url(#markerCircle);
+    stroke:black;
+}
+</style>
+<defs>
+    <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="1.5" style="stroke: none; fill:#000000;"/>
+    </marker>
+</defs>
+<svg class="graph">
+    <rect fill="white" width="640" height="440" x="30" y="30"/>
+    <g class="grid">
+        <line x1="60" x2="60" y1="440" y2="60"/>
+    </g>
+    <g class="grid">
+        <line x1="60" x2="640" y1="278" y2="278"/>
+    </g>
+
+    <text x="35" y="65">4</text>
+    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="445">-3</text>
+    <line x1="56" x2="64" y1="440" y2="440"/>
+
+    <text x="55" y="303">0</text>
+    <line x1="60" x2="60" y1="278" y2="282"/>
+    <text x="634" y="303">3</text>
+    <line x1="639" x2="639" y1="278" y2="282"/>
+</svg>
+<polyline style="stroke:blue" class="curve" points="
+60,413
+253,212
+446,305
+639,82
+"/>
+</svg>
+</div>
+<div class="sect2">
 <h3 id="org_sfvl_doctesting_utils_svggraphtest_multi_lines">Draw several lines</h3>
 <div class="listingblock">
 <div class="content">
@@ -3315,8 +3372,8 @@ width="700" height="280"     style="background-color:grey">
         <line x1="60" x2="640" y1="220" y2="220"/>
     </g>
 
-    <text x="35" y="65">40</text>
-    <line x1="56" x2="64" y1="60" y2="60"/>
+    <text x="35" y="73">38</text>
+    <line x1="56" x2="64" y1="68" y2="68"/>
     <text x="35" y="225">0</text>
     <line x1="56" x2="64" y1="220" y2="220"/>
 
