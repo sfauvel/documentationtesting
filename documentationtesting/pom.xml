@@ -4,7 +4,7 @@
 
     <groupId>org.sfvl</groupId>
     <artifactId>documentationtesting</artifactId>
-    <version>1.1.20</version>
+    <version>1.1.21-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -34,7 +34,7 @@
         <connection>scm:git:https://github.com/sfauvel/documentationtesting.git</connection>
         <developerConnection>scm:git:https://github.com/sfauvel/documentationtesting.git</developerConnection>
         <url>git@github.com:idhub-io/idhub-api.git</url>
-        <tag>documentationtesting-1.1.20</tag>
+        <tag>HEAD</tag>
     </scm>
     <build>
         <plugins>
