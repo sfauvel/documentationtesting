@@ -17,7 +17,7 @@ public class MyTestWithComment {
     static final ApprovalsExtension doc = new SimpleApprovalsExtension();
 
     /**
-     * To decribe a method, you can add a comment.
+     * To describe a method, you can add a comment.
      * It will be added under title.
      */
     @Test
