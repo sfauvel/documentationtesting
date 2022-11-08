@@ -54,13 +54,20 @@ public class DocWriter<F extends Formatter> {
     }
 
     public String formatOutput(String title, Method testMethod) {
-        final MethodDocumentation methodDocumentation = new MethodDocumentation(formatter, (BiFunction<String, Method, String>) this::formatTitle);
-        return methodDocumentation.format(
+        final MethodDocumentation methodDocumentation = new MethodDocumentation(formatter, (BiFunction<String, Method, String>) this::formatTitle) {
+            @Override
+            protected String getTitle(Method testMethod, String title) {
+                return super.getTitle(testMethod, DocWriter.this.formatTitle(title, testMethod));
+            }
+        };
+        return String.join("\n",
+                defineDocPath(testMethod.getDeclaringClass()),
+                "",
+                methodDocumentation.format(
                 title,
                 testMethod,
                 read(),
-                defineDocPath(testMethod.getDeclaringClass()),
-                getComment(testMethod.getDeclaringClass(), testMethod).map(comment -> comment + "\n\n").orElse(""));
+                        getComment(testMethod.getDeclaringClass(), testMethod).map(comment -> comment + "\n\n").orElse("")));
     }
 
     protected Optional<String> getComment(Class<?> classFile, Method testMethod) {

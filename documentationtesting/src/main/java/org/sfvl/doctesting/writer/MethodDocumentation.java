@@ -8,17 +8,13 @@ import java.util.function.BiFunction;
 
 class MethodDocumentation<F extends Formatter> {
     private F formatter;
-    private BiFunction<String, Method, String> titleFormatter;
 
     public MethodDocumentation(F formatter, BiFunction<String, Method, String> titleFormatter) {
         this.formatter = formatter;
-        this.titleFormatter = titleFormatter;
     }
 
-    public String format(String title, Method method, String content, String docPath, String comment) {
+    public String format(String title, Method method, String content, String comment) {
         return String.join("",
-                docPath,
-                "\n\n",
                 formatAdocTitle(title, method),
                 comment,
                 content);
@@ -30,8 +26,12 @@ class MethodDocumentation<F extends Formatter> {
         return isTitle
                 ? formatter.paragraph(
                 formatter.blockId(titleId(testMethod)),
-                formatter.title(1, titleFormatter.apply(title, testMethod)).trim()
+                getTitle(testMethod, title)
         ) : "";
+    }
+
+    protected String getTitle(Method testMethod, String title) {
+        return formatter.title(1, title).trim();
     }
 
     public String titleId(Method testMethod) {
