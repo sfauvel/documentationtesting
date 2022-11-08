@@ -16,6 +16,7 @@ import org.sfvl.samples.*;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
 
 import java.lang.reflect.Method;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -283,6 +284,53 @@ public class DocWriterTest {
                 .escapeSpecialKeywords()
                 .content(writer.formatOutput(MyTestWithClassToDocument.class))
                 .build());
+
+    }
+    
+    @Test
+    @DisplayName("Customize description")
+    public void customize_description(TestInfo testInfo) throws NoSuchMethodException {
+
+        // >>>
+        final DocWriter writer = new DocWriter() {
+            /**
+             * Override getComment to upper case the comment.
+             */
+            @Override
+            protected Optional<String> getComment(Class classFile, Method testMethod) {
+                return ((Optional<String>) super.getComment(classFile, testMethod))
+                        .map(c -> c.toUpperCase());
+            }
+
+        };
+
+        final String method_output = writer.formatOutput(
+                "My title",
+                MyTestWithComment.class.getMethod("test_A")
+        );
+
+        final String class_output = writer.formatOutput(MyTestWithComment.class);
+        // <<<
+
+        doc.write("If you want to modify the comment before adding it to the document,",
+                "you can extend the " + DocWriter.class.getSimpleName() + ".",
+                "","");
+
+        doc.write(".Class used",
+                formatter.sourceCode(extractAndCleanSource(MyTestWithComment.class, MyTestWithComment.class)),
+                "", "");
+
+        doc.write(".DocWriter usage",
+                formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                "", "");
+
+        doc.write(formatter
+                        .blockBuilder(Formatter.Block.LITERAL)
+                        .title("Output provided with method")
+                        .escapeSpecialKeywords()
+                        .content(method_output)
+                        .build(),
+                "");
 
     }
 

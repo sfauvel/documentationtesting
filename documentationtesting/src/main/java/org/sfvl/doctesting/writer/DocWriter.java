@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -61,8 +62,16 @@ public class DocWriter<F extends Formatter> {
                 defineDocPath(testMethod.getDeclaringClass()),
                 "\n\n",
                 formatAdocTitle(title, testMethod),
-                CodeExtractor.getComment(classFile, testMethod).map(comment -> comment + "\n\n").orElse(""),
+                getComment(classFile, testMethod).map(comment -> comment + "\n\n").orElse(""),
                 read());
+    }
+
+    protected Optional<String> getComment(Class<?> classFile, Method testMethod) {
+        return CodeExtractor.getComment(classFile, testMethod);
+    }
+
+    protected String getComment(Class<?> clazz) {
+        return CodeExtractor.getComment(clazz);
     }
 
     private String formatAdocTitle(String title, Method testMethod) {
@@ -76,21 +85,8 @@ public class DocWriter<F extends Formatter> {
     }
 
     public String formatOutput(Class<?> clazz) {
-        final ClassDocumentation classDocumentation = new ClassDocumentation(formatter) {
-            protected Optional<String> relatedClassDescription(Class<?> fromClass) {
-                return Optional.ofNullable(fromClass.getAnnotation(ClassToDocument.class))
-                        .map(ClassToDocument::clazz)
-                        .map(CodeExtractor::getComment);
-            }
-
-            @Override
-            public String getTitle(Class<?> clazz, int depth) {
-                return String.join("\n",
-                        formatter.blockId(titleId(clazz)),
-                        super.getTitle(clazz, depth));
-            }
-
-        };
+        final ClassDocumentation classDocumentation =
+                new MyClassDocumentation(this.formatter, this::titleId);
 
         return String.join("\n",
                 defineDocPath(clazz),
@@ -156,5 +152,32 @@ public class DocWriter<F extends Formatter> {
 
     public void reset() {
         sb = new StringBuffer();
+    }
+
+    private static class MyClassDocumentation extends ClassDocumentation {
+
+        private Function<Class, String> titleId;
+
+        public MyClassDocumentation(Formatter formatter, Function<Class, String> titleId) {
+            super(formatter);
+            this.titleId = titleId;
+        }
+
+        protected Optional<String> relatedClassDescription(Class<?> fromClass) {
+            return Optional.ofNullable(fromClass.getAnnotation(ClassToDocument.class))
+                    .map(ClassToDocument::clazz)
+                    .map(this::getRelatedComment);
+        }
+
+        @Override
+        public String getTitle(Class<?> clazz, int depth) {
+            return String.join("\n",
+                    formatter.blockId(titleId.apply(clazz)),
+                    super.getTitle(clazz, depth));
+        }
+
+        protected String getRelatedComment(Class<?> clazz) {
+            return CodeExtractor.getComment(clazz);
+        }
     }
 }

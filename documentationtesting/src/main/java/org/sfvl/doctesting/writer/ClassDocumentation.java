@@ -100,7 +100,11 @@ public class ClassDocumentation {
     protected String getDescription(Class<?> classToDocument) {
         return formatter.paragraphSuite(
                 relatedClassDescription(classToDocument).orElse(""),
-                CodeExtractor.getComment(classToDocument));
+                getComment(classToDocument));
+    }
+
+    protected String getComment(Class<?> classToDocument) {
+        return CodeExtractor.getComment(classToDocument);
     }
 
     protected Optional<String> relatedClassDescription(Class<?> fromClass) {

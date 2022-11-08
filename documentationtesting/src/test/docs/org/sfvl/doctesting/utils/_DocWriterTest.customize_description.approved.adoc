@@ -1,0 +1,69 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+
+[#org_sfvl_doctesting_utils_docwritertest_customize_description]
+= Customize description
+
+If you want to modify the comment before adding it to the document,
+you can extend the DocWriter.
+
+.Class used
+
+[source,java,indent=0]
+----
+/**
+ * My comment for MyTestComment
+ */
+public class MyTestWithComment {
+    @RegisterExtension
+    static final ApprovalsExtension doc = new SimpleApprovalsExtension();
+
+    /**
+     * To describe a method, you can add a comment.
+     * It will be added under title.
+     */
+    @Test
+    public void test_A() {
+    }
+
+}
+----
+
+
+.DocWriter usage
+
+[source,java,indent=0]
+----
+        final DocWriter writer = new DocWriter() {
+            /**
+             * Override getComment to upper case the comment.
+             */
+            @Override
+            protected Optional<String> getComment(Class classFile, Method testMethod) {
+                return ((Optional<String>) super.getComment(classFile, testMethod))
+                        .map(c -> c.toUpperCase());
+            }
+
+        };
+
+        final String method_output = writer.formatOutput(
+                "My title",
+                MyTestWithComment.class.getMethod("test_A")
+        );
+
+        final String class_output = writer.formatOutput(MyTestWithComment.class);
+
+----
+
+
+.Output provided with method
+....
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_samples_mytestwithcomment_test_a]
+= My title
+
+TO DESCRIBE A METHOD, YOU CAN ADD A COMMENT.
+IT WILL BE ADDED UNDER TITLE.
+
+
+....
