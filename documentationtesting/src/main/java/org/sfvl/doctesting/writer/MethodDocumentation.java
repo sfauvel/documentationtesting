@@ -4,12 +4,11 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.utils.NoTitle;
 
 import java.lang.reflect.Method;
-import java.util.function.BiFunction;
 
 class MethodDocumentation<F extends Formatter> {
     private F formatter;
 
-    public MethodDocumentation(F formatter, BiFunction<String, Method, String> titleFormatter) {
+    public MethodDocumentation(F formatter) {
         this.formatter = formatter;
     }
 
@@ -26,11 +25,11 @@ class MethodDocumentation<F extends Formatter> {
         return isTitle
                 ? formatter.paragraph(
                 formatter.blockId(titleId(testMethod)),
-                getTitle(testMethod, title)
+                getTitle(title)
         ) : "";
     }
 
-    protected String getTitle(Method testMethod, String title) {
+    protected String getTitle(String title) {
         return formatter.title(1, title).trim();
     }
 
