@@ -104,7 +104,7 @@ public class ClassDocumentation {
     }
 
     protected String getComment(Class<?> classToDocument) {
-        return CodeExtractor.getComment(classToDocument);
+        return CodeExtractor.getComment(classToDocument).orElse("");
     }
 
     protected Optional<String> relatedClassDescription(Class<?> fromClass) {

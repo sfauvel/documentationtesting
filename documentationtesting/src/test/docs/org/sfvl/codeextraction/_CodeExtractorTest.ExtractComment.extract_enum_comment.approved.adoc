@@ -53,7 +53,7 @@ How to extract comment of an enum
                 final String comment = CodeExtractor.getComment(
                         EnumWithCommentToExtract.class,
                         EnumWithCommentToExtract.MyEnum.class
-                );
+                ).orElse("");
 
 ----
 Comment extracted: *Comment of the enum.*

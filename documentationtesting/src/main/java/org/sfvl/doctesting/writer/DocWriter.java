@@ -68,7 +68,7 @@ public class DocWriter<F extends Formatter> {
         return CodeExtractor.getComment(classFile, testMethod);
     }
 
-    protected String getComment(Class<?> clazz) {
+    protected Optional<String> getComment(Class<?> clazz) {
         return CodeExtractor.getComment(clazz);
     }
 
@@ -154,7 +154,7 @@ public class DocWriter<F extends Formatter> {
         protected Optional<String> relatedClassDescription(Class<?> fromClass) {
             return Optional.ofNullable(fromClass.getAnnotation(ClassToDocument.class))
                     .map(ClassToDocument::clazz)
-                    .map(this::getRelatedComment);
+                    .flatMap(this::getRelatedComment);
         }
 
         @Override
@@ -164,7 +164,7 @@ public class DocWriter<F extends Formatter> {
                     super.getTitle(clazz, depth));
         }
 
-        protected String getRelatedComment(Class<?> clazz) {
+        protected Optional<String> getRelatedComment(Class<?> clazz) {
             return CodeExtractor.getComment(clazz);
         }
     }

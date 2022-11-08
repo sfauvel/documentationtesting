@@ -45,12 +45,12 @@ public class CodeExtractor {
         return new ParsedClassRepository(TEST_PATH, SOURCE_PATH);
     }
 
-    public static String getComment(Class<?> clazz) {
+    public static Optional<String> getComment(Class<?> clazz) {
         return getComment(clazz, clazz);
     }
 
-    public static String getComment(Class<?> classFile, Class<?> clazz) {
-        return Optional.ofNullable(getDefaultParsedClassRepository().getComment(classFile, clazz)).orElse("");
+    public static Optional<String> getComment(Class<?> classFile, Class<?> clazz) {
+        return Optional.ofNullable(getDefaultParsedClassRepository().getComment(classFile, clazz));
     }
 
     public static Optional<String> getComment(Class<?> classFile, Method testMethod) {

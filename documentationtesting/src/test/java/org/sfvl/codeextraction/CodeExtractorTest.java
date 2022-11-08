@@ -698,7 +698,7 @@ public class CodeExtractorTest {
                         "");
 
                 // >>>1
-                final String comment = CodeExtractor.getComment(ClassWithCommentToExtract.class);
+                final String comment = CodeExtractor.getComment(ClassWithCommentToExtract.class).orElse("");
                 // <<<1
 
                 doc.writeInline(includeSourceWithTag("ClassWithCommentToExtract", ClassWithCommentToExtract.class), "", "");
@@ -713,7 +713,7 @@ public class CodeExtractorTest {
                         "");
 
                 // >>>2
-                final String comment = CodeExtractor.getComment(CodeExtractorTest.NestedClass.class);
+                final String comment = CodeExtractor.getComment(CodeExtractorTest.NestedClass.class).orElse("");
                 // <<<2
 
                 doc.writeInline(includeSourceWithTag(NestedClass.class.getSimpleName()), "", "");
@@ -729,7 +729,7 @@ public class CodeExtractorTest {
 
 
                 // >>>3
-                final String comment = CodeExtractor.getComment(CodeExtractorTest.class, ClassNestedWithCommentToExtract.class);
+                final String comment = CodeExtractor.getComment(CodeExtractorTest.class, ClassNestedWithCommentToExtract.class).orElse("");
                 // <<<3
 
                 doc.writeInline(includeSourceWithTag("classNestedWithCommentToExtract"), "", "");
@@ -834,7 +834,7 @@ public class CodeExtractorTest {
                 final String comment = CodeExtractor.getComment(
                         EnumWithCommentToExtract.class,
                         EnumWithCommentToExtract.MyEnum.class
-                );
+                ).orElse("");
                 // <<<1
 
                 doc.write("Comment extracted: *" + comment + "*", "", "");
@@ -897,7 +897,7 @@ public class CodeExtractorTest {
                     "");
 
             // >>>1
-            final String comment = CodeExtractor.getComment(ClassWithAnnotationBeforeComment.class);
+            final String comment = CodeExtractor.getComment(ClassWithAnnotationBeforeComment.class).orElse("");
             // <<<1
 
             doc.writeInline(includeSourceWithTag(ClassWithAnnotationBeforeComment.class.getSimpleName(), ClassWithAnnotationBeforeComment.class), "", "");
