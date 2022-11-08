@@ -5,7 +5,6 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.utils.ClassToDocument;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
-import org.sfvl.doctesting.utils.NoTitle;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -14,6 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -54,16 +54,13 @@ public class DocWriter<F extends Formatter> {
     }
 
     public String formatOutput(String title, Method testMethod) {
-        return formatOutput(title, testMethod.getDeclaringClass(), testMethod);
-    }
-
-    public String formatOutput(String title, Class<?> classFile, Method testMethod) {
-        return String.join("",
+        final MethodDocumentation methodDocumentation = new MethodDocumentation(formatter, (BiFunction<String, Method, String>) this::formatTitle);
+        return methodDocumentation.format(
+                title,
+                testMethod,
+                read(),
                 defineDocPath(testMethod.getDeclaringClass()),
-                "\n\n",
-                formatAdocTitle(title, testMethod),
-                getComment(classFile, testMethod).map(comment -> comment + "\n\n").orElse(""),
-                read());
+                getComment(testMethod.getDeclaringClass(), testMethod).map(comment -> comment + "\n\n").orElse(""));
     }
 
     protected Optional<String> getComment(Class<?> classFile, Method testMethod) {
@@ -72,16 +69,6 @@ public class DocWriter<F extends Formatter> {
 
     protected String getComment(Class<?> clazz) {
         return CodeExtractor.getComment(clazz);
-    }
-
-    private String formatAdocTitle(String title, Method testMethod) {
-        boolean isTitle = testMethod.getAnnotation(NoTitle.class) == null;
-
-        return isTitle
-                ? formatter.paragraph(
-                formatter.blockId(titleId(testMethod)),
-                formatter.title(1, formatTitle(title, testMethod)).trim()
-        ) : "";
     }
 
     public String formatOutput(Class<?> clazz) {
