@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -53,15 +54,19 @@ public class DocWriter<F extends Formatter> {
     }
 
     public String formatOutput(String title, Method testMethod) {
-        final MethodDocumentation methodDocumentation = new MethodDocumentation(formatter);
+        final MethodDocumentation methodDocumentation = new MethodDocumentation(
+                formatter,
+                (BiFunction<Class, Method, Optional<String>>) this::getComment
+        );
+
         return String.join("\n",
                 defineDocPath(testMethod.getDeclaringClass()),
                 "",
                 methodDocumentation.format(
                         title,
                         testMethod,
-                        read(),
-                        getComment(testMethod.getDeclaringClass(), testMethod).map(comment -> comment + "\n\n").orElse("")));
+                        read()
+                ));
     }
 
     protected Optional<String> getComment(Class<?> classFile, Method testMethod) {

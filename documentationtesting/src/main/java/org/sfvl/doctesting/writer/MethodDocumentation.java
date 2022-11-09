@@ -4,18 +4,22 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.utils.NoTitle;
 
 import java.lang.reflect.Method;
+import java.util.Optional;
+import java.util.function.BiFunction;
 
 class MethodDocumentation<F extends Formatter> {
     private F formatter;
+    private BiFunction<Class, Method, Optional<String>> comment_extractor;
 
-    public MethodDocumentation(F formatter) {
+    public MethodDocumentation(F formatter, BiFunction<Class, Method, Optional<String>> comment) {
         this.formatter = formatter;
+        this.comment_extractor = comment;
     }
 
-    public String format(String title, Method method, String content, String comment) {
+    public String format(String title, Method method, String content) {
         return String.join("",
                 formatAdocTitle(title, method),
-                comment,
+                comment_extractor.apply(method.getDeclaringClass(), method).map(c -> c + "\n\n").orElse(""),
                 content);
     }
 
