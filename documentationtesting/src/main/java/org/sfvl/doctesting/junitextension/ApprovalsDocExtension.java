@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.platform.commons.support.ModifierSupport;
+import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.PathProvider;
 import org.sfvl.doctesting.writer.DocWriter;
@@ -46,6 +47,8 @@ public class ApprovalsDocExtension<T extends DocWriter> implements AfterEachCall
         final String content = docWriter.formatOutput(currentClass);
 
         verifyDoc(content, new DocPath(extensionContext.getTestClass().get()));
+
+        CodeExtractor.clearCache();
     }
 
     @Override

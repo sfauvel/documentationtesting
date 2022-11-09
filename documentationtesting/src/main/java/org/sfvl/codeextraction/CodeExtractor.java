@@ -11,7 +11,6 @@ import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.expr.ObjectCreationExpr;
 import com.github.javaparser.ast.nodeTypes.NodeWithRange;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import com.github.javaparser.utils.SourceRoot;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -35,14 +34,19 @@ public class CodeExtractor {
     private static final ClassFinder classFinder = new ClassFinder();
     private static Path TEST_PATH;
     private static Path SOURCE_PATH;
+    private static ParsedClassRepository parsedClassRepository;
 
+    public static void clearCache() {
+        parsedClassRepository.clearCache();
+    }
     public static void init(Path testPath, Path sourcePath) {
         TEST_PATH = testPath;
         SOURCE_PATH = sourcePath;
+        parsedClassRepository = new ParsedClassRepository(TEST_PATH, SOURCE_PATH);
     }
 
     private static ParsedClassRepository getDefaultParsedClassRepository() {
-        return new ParsedClassRepository(TEST_PATH, SOURCE_PATH);
+        return parsedClassRepository;
     }
 
     public static Optional<String> getComment(Class<?> clazz) {
@@ -183,7 +187,7 @@ public class CodeExtractor {
     }
 
     public static String enumSource(Class<?> classToIdentifySourceFile, Class<?> enumToExtract) {
-        final ParserCode parserCode = new ParserCode(TEST_PATH);
+        final ParserCode parserCode = new ParserCode();
         return parserCode.source(classToIdentifySourceFile, enumToExtract);
     }
 
@@ -192,12 +196,6 @@ public class CodeExtractor {
     }
 
     static class ParserCode {
-
-        private final SourceRoot sourceRoot;
-
-        public ParserCode(Path path) {
-            this.sourceRoot = new SourceRoot(path);
-        }
 
         public String source(Class<?> classToExtract) {
             return source(classFinder.getMainFileClass(classToExtract), classToExtract);
@@ -233,27 +231,24 @@ public class CodeExtractor {
         }
 
         private CompilationUnit getCompilationUnit(Class<?> classToDetermineFile) {
-            CompilationUnit cu = sourceRoot.parse(
-                    classToDetermineFile.getPackage().getName(),
-                    CodePath.toFile(classToDetermineFile).toString());
-            return cu;
+            return CodeExtractor.parsedClassRepository.getCompilationUnit(classToDetermineFile);
         }
 
     }
 
     public static String classSource(Class<?> classToIdentifySourceFile, Class<?> classToExtract) {
 
-        final ParserCode parserCode = new ParserCode(TEST_PATH);
+        final ParserCode parserCode = new ParserCode();
         return parserCode.source(classToIdentifySourceFile, classToExtract);
     }
 
     public static String methodSource(Method methodToExtract) {
-        final ParserCode parserCode = new ParserCode(TEST_PATH);
+        final ParserCode parserCode = new ParserCode();
         return parserCode.source(methodToExtract);
     }
 
     public static String methodSource(Class<?> classToExtract, String methodToExtract) {
-        final ParserCode parserCode = new ParserCode(TEST_PATH);
+        final ParserCode parserCode = new ParserCode();
         return parserCode.source(classToExtract, methodToExtract);
     }
 
