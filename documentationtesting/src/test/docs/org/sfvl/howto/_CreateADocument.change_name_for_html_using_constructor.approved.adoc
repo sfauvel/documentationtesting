@@ -34,3 +34,4 @@ Files in folder `src/test/docs/org/sfvl/samples/htmlPageConstructor`
 * _HtmlNameConstructorTest.approved.adoc
 * _HtmlNameConstructorTest.test_A.approved.adoc
 * index.adoc
+

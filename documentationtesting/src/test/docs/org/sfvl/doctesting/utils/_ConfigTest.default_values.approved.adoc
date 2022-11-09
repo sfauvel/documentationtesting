@@ -15,3 +15,5 @@ By default, values are:
 | RESOURCE_PATH | Path | src/test/resources
 | FORMATTER | Formatter | org.sfvl.docformatter.asciidoc.AsciidocFormatter
 |====
+
+

@@ -9,3 +9,4 @@ We can simply display result once with all cases that can be used to build it.
 You also can just check that we obtain the same result with different values.
 In that case, there is only one key in the result
 and you can just say that all values are the same.
+

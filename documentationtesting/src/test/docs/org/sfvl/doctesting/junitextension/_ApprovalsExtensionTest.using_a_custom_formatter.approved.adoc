@@ -37,3 +37,4 @@ When executing test method `test_A`, a file `_MyCustomFormatterTest.test_A.appro
 ----
 include::../../samples/_MyCustomFormatterTest.test_A.approved.adoc[]
 ----
+

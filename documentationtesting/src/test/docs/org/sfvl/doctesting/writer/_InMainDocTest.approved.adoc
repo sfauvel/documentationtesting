@@ -8,3 +8,4 @@ Class comment is added to description.
 include::_InMainDocTest.testA.approved.adoc[leveloffset=+1]
 
 include::_InMainDocTest.testB.approved.adoc[leveloffset=+1]
+

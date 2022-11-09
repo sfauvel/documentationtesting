@@ -44,3 +44,4 @@ public class HtmlHeaderTest {
 :nofooter:
 \include::_HtmlHeaderTest.approved.adoc[]
 ----
+

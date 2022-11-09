@@ -10,3 +10,4 @@ include::_ClassFinderTest.find_test_classes_in_a_package.approved.adoc[leveloffs
 include::_ClassFinderTest.find_test_classes_in_a_package_with_filter.approved.adoc[leveloffset=+1]
 
 include::_ClassFinderTest.find_root_class_from_enclosing_class.approved.adoc[leveloffset=+1]
+

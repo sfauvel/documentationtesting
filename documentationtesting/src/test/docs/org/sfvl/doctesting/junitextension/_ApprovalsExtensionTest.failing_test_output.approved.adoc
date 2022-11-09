@@ -38,6 +38,8 @@ class FailingTest {
 
 Some information before failure.
 
+
+
 *Error generating documentation*
 ----
 org.opentest4j.AssertionFailedError: Problem on the test, it fails.
@@ -57,6 +59,8 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 [.title1]#Failing test#
 
 Some information before failure.
+
+
 
 *Error generating documentation*
 ----
@@ -80,4 +84,6 @@ It is thus possible to visualize the received file in the file with other method
 = Failing test
 
 \include::_FailingTest.failing_test.received.adoc[leveloffset=+1]
+
 ----
+

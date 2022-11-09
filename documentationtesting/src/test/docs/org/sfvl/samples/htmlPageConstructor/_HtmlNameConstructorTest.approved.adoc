@@ -4,3 +4,4 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 = Html name constructor test
 
 include::_HtmlNameConstructorTest.test_A.approved.adoc[leveloffset=+1]
+

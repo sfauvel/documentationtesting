@@ -4,3 +4,4 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 = Multiply 2 simple numbers
 
 4 * 3 = 12
+

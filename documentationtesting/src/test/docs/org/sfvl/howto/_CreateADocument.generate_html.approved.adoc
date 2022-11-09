@@ -48,3 +48,4 @@ Files in folder `src/test/docs/org/sfvl/samples/generateHtml`
 ----
 \include::_HtmlTest.approved.adoc[]
 ----
+

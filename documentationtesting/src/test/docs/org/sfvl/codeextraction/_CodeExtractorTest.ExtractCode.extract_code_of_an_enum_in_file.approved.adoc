@@ -135,3 +135,5 @@ include::../../../../java/org/sfvl/codeextraction/CodeExtractorTest.java[tag=Cla
     }
 ----
 ====
+
+

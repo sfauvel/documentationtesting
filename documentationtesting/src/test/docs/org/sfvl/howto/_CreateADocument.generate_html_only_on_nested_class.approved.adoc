@@ -39,3 +39,4 @@ Files in folder `src/test/docs/org/sfvl/samples/generateOnlyNestedHtml`
 * _HtmlOnlyNestedTest.HtmlNestedClassTest.test_in_nested_class.approved.adoc
 * _HtmlOnlyNestedTest.approved.adoc
 * _HtmlOnlyNestedTest.test_A.approved.adoc
+

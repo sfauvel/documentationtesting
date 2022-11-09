@@ -19,3 +19,4 @@ We can use subclasses to create subchapter in the document (see: link:{ROOT_PATH
 
 It's not necessary to follow source code organization in tests.
 Instead, organize your test packages according to the document you want to generate.
+

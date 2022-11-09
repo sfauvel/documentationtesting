@@ -34,3 +34,4 @@ include::_PrinterTest.SimpleTools.join_with_mapper.approved.adoc[leveloffset=+2]
 include::_PrinterTest.SimpleTools.join_with_separator.approved.adoc[leveloffset=+2]
 
 include::_PrinterTest.SimpleTools.join_with_mapper_and_separator.approved.adoc[leveloffset=+2]
+

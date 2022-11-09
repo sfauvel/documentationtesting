@@ -43,3 +43,4 @@ When executing test method `test_A`, a file `_MyCustomWriterTest.test_A.approved
 ----
 include::../../samples/_MyCustomWriterTest.test_A.approved.adoc[]
 ----
+

@@ -6,3 +6,5 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 Name for nested class `org.sfvl.doctesting.sample.MyClass$MySubClass` is `MyClass.MySubClass`.
 
 Name for method `doSomething` in nested class `org.sfvl.doctesting.sample.MyClass$MySubClass` is `MyClass.MySubClass.doSomething`.
+
+

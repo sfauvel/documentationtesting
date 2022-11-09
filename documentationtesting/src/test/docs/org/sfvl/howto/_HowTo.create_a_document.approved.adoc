@@ -3,3 +3,4 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 include::../howto/_CreateADocument.generate_html.approved.adoc[leveloffset=+0]
 
 For more features, you can look at the link:{ROOT_PATH}/org/sfvl/howto/CreateADocument.html[documentation on creating a document].
+

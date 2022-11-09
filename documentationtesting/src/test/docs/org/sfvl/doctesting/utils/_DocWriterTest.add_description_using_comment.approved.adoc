@@ -56,6 +56,8 @@ To describe a method, you can add a comment.
 It will be added under title.
 
 
+
+
 ....
 .Output provided with class
 ....
@@ -67,6 +69,8 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 My comment for MyTestComment
 
 \include::_MyTestWithComment.test_A.approved.adoc[leveloffset=+1]
+
+
 ....
 If we want to add description of an other class (class under test for example),
 we can use `ClassToDocument` to define the class containing the description we want.
@@ -116,4 +120,7 @@ Description of the class ClassUnderTest.
 Description of the test class.
 
 \include::_MyTestWithClassToDocument.test_A.approved.adoc[leveloffset=+1]
+
+
 ....
+

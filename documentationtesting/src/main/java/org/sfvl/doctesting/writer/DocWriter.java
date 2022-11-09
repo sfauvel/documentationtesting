@@ -59,13 +59,10 @@ public class DocWriter<F extends Formatter> {
                 (BiFunction<Class, Method, Optional<String>>) this::getComment
         );
 
-        return String.join("\n",
+        return formatter.paragraph(
                 defineDocPath(testMethod.getDeclaringClass()),
                 "",
-                methodDocumentation.format(
-                        title,
-                        testMethod,
-                        read()
+                methodDocumentation.format(title, testMethod, read()
                 ));
     }
 
@@ -78,10 +75,12 @@ public class DocWriter<F extends Formatter> {
     }
 
     public String formatOutput(Class<?> clazz) {
-        final ClassDocumentation classDocumentation =
-                new MyClassDocumentation(this.formatter, this::titleId);
+        final ClassDocumentation classDocumentation = new MyClassDocumentation(
+                this.formatter,
+                this::titleId
+        );
 
-        return String.join("\n",
+        return formatter.paragraph(
                 defineDocPath(clazz),
                 "",
                 classDocumentation.getClassDocumentation(clazz)

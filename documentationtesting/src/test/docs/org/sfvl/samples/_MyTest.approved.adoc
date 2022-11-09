@@ -4,3 +4,4 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 = My test
 
 include::_MyTest.test_A.approved.adoc[leveloffset=+1]
+

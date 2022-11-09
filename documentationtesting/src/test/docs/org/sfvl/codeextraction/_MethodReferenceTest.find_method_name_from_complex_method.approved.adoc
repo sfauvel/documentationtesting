@@ -39,3 +39,5 @@ public java.lang.String MethodReferenceTest.mySpecificMethod( java.lang.Integer,
 ----
 
 |====
+
+

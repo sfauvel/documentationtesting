@@ -42,3 +42,4 @@ On the final rendering, it's like it was part of the previous chapter.
 [.rendering]
 == Rendering of the result
 include::../../samples/_MyTestWithoutTitleOnOneTest.approved.adoc[leveloffset=+2]
+

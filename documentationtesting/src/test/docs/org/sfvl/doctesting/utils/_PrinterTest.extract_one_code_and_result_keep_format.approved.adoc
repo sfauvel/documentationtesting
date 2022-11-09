@@ -21,3 +21,4 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
                         4)
 ----
 Result is [2, 3, 4]
+

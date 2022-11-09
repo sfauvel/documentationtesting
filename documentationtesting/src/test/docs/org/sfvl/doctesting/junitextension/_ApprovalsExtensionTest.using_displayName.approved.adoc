@@ -27,3 +27,4 @@ class UsingDisplayNameTest {
 ----
 include::_UsingDisplayNameTest.test_A.approved.adoc[]
 ----
+

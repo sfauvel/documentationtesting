@@ -22,3 +22,5 @@ Here, we exclude all method in a class with name starting by 'Second'.
 Classes found:
 
 * org.sfvl.doctesting.sample.basic.FirstTest
+
+

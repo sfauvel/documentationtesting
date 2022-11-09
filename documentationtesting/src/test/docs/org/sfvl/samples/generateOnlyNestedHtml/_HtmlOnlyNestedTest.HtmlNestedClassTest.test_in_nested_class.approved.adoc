@@ -4,3 +4,4 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 = Test in nested class
 
 In my *test* in nested class
+
