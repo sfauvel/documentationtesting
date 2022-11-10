@@ -27,3 +27,4 @@ include::_ClassDocumentationTest_DemoNestedTest.method_between_two_nested_classe
 == Multiply
 
 include::_ClassDocumentationTest_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]
+

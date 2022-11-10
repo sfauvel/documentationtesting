@@ -9,3 +9,4 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 :DEVELOPMENT: org/sfvl/development/Development.html
 :KNOWN_ISSUES_HTML: org/sfvl/howto/KnownIssues.html
 include::../../../resources/indexContent.adoc[leveloffset=+1]
+

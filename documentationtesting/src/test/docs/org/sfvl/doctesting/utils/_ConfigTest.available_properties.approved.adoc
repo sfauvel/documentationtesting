@@ -9,3 +9,4 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 * DOC_PATH: Path where documentation is generated.
 * RESOURCE_PATH: Path of resources.
 * FORMATTER: Full qualified name of the formatter class.
+

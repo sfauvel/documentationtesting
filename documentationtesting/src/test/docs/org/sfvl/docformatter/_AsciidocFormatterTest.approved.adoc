@@ -109,3 +109,4 @@ include::_AsciidocFormatterTest.should_add_an_attribute.approved.adoc[leveloffse
 include::_AsciidocFormatterTest.Image.should_add_an_image.approved.adoc[leveloffset=+2]
 
 include::_AsciidocFormatterTest.Image.should_add_an_image_with_title.approved.adoc[leveloffset=+2]
+

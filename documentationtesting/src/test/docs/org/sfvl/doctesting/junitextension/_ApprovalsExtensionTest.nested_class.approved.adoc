@@ -84,6 +84,7 @@ Document of Addition operations.
 == Multiply
 
 \include::_DemoNestedTest.Multiply.should_be_12_when_multiply_4_and_3.approved.adoc[leveloffset=+2]
+
 ----
 
 _Final rendering_
@@ -91,3 +92,4 @@ _Final rendering_
 == Rendering
 
 include::_DemoNestedTest.approved.adoc[leveloffset=+2]
+

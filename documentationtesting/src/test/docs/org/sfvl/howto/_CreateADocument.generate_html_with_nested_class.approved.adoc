@@ -38,3 +38,4 @@ Files in folder `src/test/docs/org/sfvl/samples/generateNestedHtml`
 * _HtmlNestedTest.HtmlNestedClassTest.test_in_nested_class.approved.adoc
 * _HtmlNestedTest.approved.adoc
 * _HtmlNestedTest.test_A.approved.adoc
+

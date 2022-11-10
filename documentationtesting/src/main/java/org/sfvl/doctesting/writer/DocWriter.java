@@ -5,7 +5,6 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.utils.ClassToDocument;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
-import org.sfvl.doctesting.utils.NoTitle;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -14,6 +13,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -53,46 +54,33 @@ public class DocWriter<F extends Formatter> {
     }
 
     public String formatOutput(String title, Method testMethod) {
-        return formatOutput(title, testMethod.getDeclaringClass(), testMethod);
-    }
+        final MethodDocumentation methodDocumentation = new MethodDocumentation(
+                formatter,
+                (BiFunction<Class, Method, Optional<String>>) this::getComment
+        );
 
-    public String formatOutput(String title, Class<?> classFile, Method testMethod) {
-        return String.join("",
+        return formatter.paragraph(
                 defineDocPath(testMethod.getDeclaringClass()),
-                "\n\n",
-                formatAdocTitle(title, testMethod),
-                CodeExtractor.getComment(classFile, testMethod).map(comment -> comment + "\n\n").orElse(""),
-                read());
+                "",
+                methodDocumentation.format(title, testMethod, read()
+                ));
     }
 
-    private String formatAdocTitle(String title, Method testMethod) {
-        boolean isTitle = testMethod.getAnnotation(NoTitle.class) == null;
+    protected Optional<String> getComment(Class<?> classFile, Method testMethod) {
+        return CodeExtractor.getComment(classFile, testMethod);
+    }
 
-        return isTitle
-                ? formatter.paragraph(
-                formatter.blockId(titleId(testMethod)),
-                formatter.title(1, formatTitle(title, testMethod)).trim()
-        ) : "";
+    protected Optional<String> getComment(Class<?> clazz) {
+        return CodeExtractor.getComment(clazz);
     }
 
     public String formatOutput(Class<?> clazz) {
-        final ClassDocumentation classDocumentation = new ClassDocumentation(formatter) {
-            protected Optional<String> relatedClassDescription(Class<?> fromClass) {
-                return Optional.ofNullable(fromClass.getAnnotation(ClassToDocument.class))
-                        .map(ClassToDocument::clazz)
-                        .map(CodeExtractor::getComment);
-            }
+        final ClassDocumentation classDocumentation = new MyClassDocumentation(
+                this.formatter,
+                this::titleId
+        );
 
-            @Override
-            public String getTitle(Class<?> clazz, int depth) {
-                return String.join("\n",
-                        formatter.blockId(titleId(clazz)),
-                        super.getTitle(clazz, depth));
-            }
-
-        };
-
-        return String.join("\n",
+        return formatter.paragraph(
                 defineDocPath(clazz),
                 "",
                 classDocumentation.getClassDocumentation(clazz)
@@ -156,5 +144,32 @@ public class DocWriter<F extends Formatter> {
 
     public void reset() {
         sb = new StringBuffer();
+    }
+
+    private static class MyClassDocumentation extends ClassDocumentation {
+
+        private Function<Class, String> titleId;
+
+        public MyClassDocumentation(Formatter formatter, Function<Class, String> titleId) {
+            super(formatter);
+            this.titleId = titleId;
+        }
+
+        protected Optional<String> relatedClassDescription(Class<?> fromClass) {
+            return Optional.ofNullable(fromClass.getAnnotation(ClassToDocument.class))
+                    .map(ClassToDocument::clazz)
+                    .flatMap(this::getRelatedComment);
+        }
+
+        @Override
+        public String getTitle(Class<?> clazz, int depth) {
+            return String.join("\n",
+                    formatter.blockId(titleId.apply(clazz)),
+                    super.getTitle(clazz, depth));
+        }
+
+        protected Optional<String> getRelatedComment(Class<?> clazz) {
+            return CodeExtractor.getComment(clazz);
+        }
     }
 }

@@ -19,6 +19,9 @@ It could be about languages, tools or some specifics cases.
  * link:{ROOT_PATH}/../tech_junit5_extension/index.html[tech_junit5_extension]: Demo using junit5 extension. 
 
 
+ * link:{ROOT_PATH}/../tech_kotlin/index.html[tech_kotlin]: Use DocAsTest with Kotlin 
+
+
  * link:{ROOT_PATH}/../tech_perf/index.html[tech_perf]: Evalute performance between classical test between using documentation approvals. 
 
 
@@ -32,3 +35,5 @@ It could be about languages, tools or some specifics cases.
 
 
  * link:{ROOT_PATH}/../tech_using_git_or_approvals/index.html[tech_using_git_or_approvals]: Simple demo with validation using git or approvals. 
+
+

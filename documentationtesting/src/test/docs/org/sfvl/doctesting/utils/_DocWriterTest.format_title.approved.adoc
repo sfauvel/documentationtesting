@@ -19,6 +19,8 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 = My title
 
 
+
+
 ----
 When a title is not specified, title comes from the method name or the class name after some formatting
  (remove '_', uppercase first letter).
@@ -40,6 +42,8 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 = Format title
 
 
+
+
 ----
 .Format title from class name
 ----
@@ -49,4 +53,8 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 = My test
 
 \include::_MyTest.test_A.approved.adoc[leveloffset=+1]
+
+
 ----
+
+

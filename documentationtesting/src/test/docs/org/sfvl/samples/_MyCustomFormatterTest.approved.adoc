@@ -4,3 +4,4 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 = My custom formatter test
 
 include::_MyCustomFormatterTest.test_A.approved.adoc[leveloffset=+1]
+

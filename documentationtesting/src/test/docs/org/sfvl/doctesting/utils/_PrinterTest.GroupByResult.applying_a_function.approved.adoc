@@ -19,3 +19,5 @@ You obtain a map with value returned by the function as key and a list of values
  +
 *xyz*: `XyZ`
  +
+
+

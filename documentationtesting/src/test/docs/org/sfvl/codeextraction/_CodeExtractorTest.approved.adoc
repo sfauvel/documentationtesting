@@ -59,3 +59,4 @@ include::_CodeExtractorTest.ExtractCodeAndResult.show_extract_parameters_code_fr
 include::_CodeExtractorTest.ExtractCodeAndResult.show_extract_parameters_code_with_an_intermediate_method.approved.adoc[leveloffset=+2]
 
 include::_CodeExtractorTest.ExtractCodeAndResult.show_extract_parameters_code_with_an_intermediate_class.approved.adoc[leveloffset=+2]
+

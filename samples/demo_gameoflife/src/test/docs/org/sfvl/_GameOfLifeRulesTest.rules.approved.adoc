@@ -15,3 +15,5 @@ At each step in time, the following transitions occur:
 
 . Any dead cell with *2, 4 live neighbours*  stayed a dead cell. 
 
+
+

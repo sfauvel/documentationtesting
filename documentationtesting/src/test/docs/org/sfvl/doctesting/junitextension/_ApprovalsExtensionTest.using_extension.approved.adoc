@@ -48,3 +48,4 @@ Files are stored in `src/test/docs/org/sfvl/samples/justone` directory which con
 * _OneTest.test_A.approved.adoc
 
 There is one file per test and one file for the class.
+

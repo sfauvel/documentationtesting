@@ -4,3 +4,4 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 = Html header test
 
 include::_HtmlHeaderTest.test_A.approved.adoc[leveloffset=+1]
+

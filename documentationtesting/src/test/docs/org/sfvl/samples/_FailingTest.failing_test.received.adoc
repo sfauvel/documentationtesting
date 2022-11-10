@@ -5,6 +5,8 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 Some information before failure.
 
+
+
 *Error generating documentation*
 ----
 org.opentest4j.AssertionFailedError: Problem on the test, it fails.

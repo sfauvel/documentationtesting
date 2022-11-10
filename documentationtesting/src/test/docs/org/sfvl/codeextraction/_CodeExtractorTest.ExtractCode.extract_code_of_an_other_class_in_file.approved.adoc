@@ -64,8 +64,10 @@ Non public class in a file could not be retrieve without giving main class of th
 [.inline]
 ====
 ++++
-java.nio.file.NoSuchFileException: src/test/java/org/sfvl/codeextraction/ClassNestedWithCommentToExtract.java
+java.nio.file.NoSuchFileException: src/main/java/org/sfvl/codeextraction/ClassNestedWithCommentToExtract.java
 ++++
 
 
 ====
+
+

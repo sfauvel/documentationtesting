@@ -12,3 +12,4 @@ You will find one way to extract code below.
 If you want a to see all possibilities, go to link:{ROOT_PATH}/org/sfvl/codeextraction/CodeExtractionPackage.html[CodeExtractionPackage]
 
 include::../codeextraction/_CodeExtractorTest.ExtractCode.extract_part_of_code_from_method.approved.adoc[leveloffset=+1]
+

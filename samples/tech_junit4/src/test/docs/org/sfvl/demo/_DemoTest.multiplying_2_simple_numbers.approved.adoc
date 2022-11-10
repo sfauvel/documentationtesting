@@ -6,3 +6,4 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 When multiplying two simple numbers, the java operator '*' should return the multiplication of them.
 
 2 * 3 = 6
+

@@ -24,3 +24,5 @@ static ApprovalsExtension extension = new SimpleApprovalsExtension();
 
 * Write in your test everything you want to see in your documentation using `doc.write("...")`
 You don't have to write assertions, tests will be passed when generated documents are the same as the last time.
+
+

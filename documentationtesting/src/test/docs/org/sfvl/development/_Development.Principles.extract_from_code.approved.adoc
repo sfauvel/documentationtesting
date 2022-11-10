@@ -20,3 +20,4 @@ we don't write directly it's name in the text but we use the java class or the m
 
 
 For more detail to get method name with reference, see: link:{ROOT_PATH}/org/sfvl/codeextraction/CodeExtractionPackage.html[MethodReference documentation]
+

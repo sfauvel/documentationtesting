@@ -18,7 +18,7 @@ endif::[]
 .How to extract comment of a class
 [source, java, indent=0]
 ----
-            final String comment = CodeExtractor.getComment(ClassWithAnnotationBeforeComment.class);
+            final String comment = CodeExtractor.getComment(ClassWithAnnotationBeforeComment.class).orElse("");
 
 ----
 
@@ -40,3 +40,5 @@ include::../../../../java/org/sfvl/codeextraction/ClassWithAnnotationBeforeComme
 ----
 
 ====
+
+

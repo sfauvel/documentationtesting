@@ -10,3 +10,4 @@ FizzBuzz(1) = 1 +
  FizzBuzz(4) = 4 +
  FizzBuzz(22) = 22 +
  
+

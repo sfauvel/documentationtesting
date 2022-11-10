@@ -31,3 +31,4 @@ To format text, we can use a formatter that hide technical syntax of the markup 
 ====
 
 You can take a look at the link:{ROOT_PATH}/org/sfvl/docformatter/AsciidocFormatterTest.html[formatter's full documentation] to get an idea of the features available.
+

@@ -10,3 +10,4 @@ We provide a way to do it easily generating a SVG from the data.
 include::../doctesting/utils/_SvgGraphTest.multi_lines.approved.adoc[leveloffset=+1]
 
 For more features, you can look at the link:{ROOT_PATH}/org/sfvl/doctesting/utils/SvgGraphTest.html[Create a graph to visualize data].
+

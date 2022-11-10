@@ -35,3 +35,4 @@ Files in folder `src/test/docs/org/sfvl/samples/htmlPageName`
 * _HtmlNameTest.approved.adoc
 * _HtmlNameTest.test_A.approved.adoc
 * index.adoc
+

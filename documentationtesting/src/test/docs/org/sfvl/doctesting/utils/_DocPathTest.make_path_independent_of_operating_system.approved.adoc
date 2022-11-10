@@ -17,3 +17,4 @@ Otherwise, the test could fail when executed on another operating system.
 ----
 
 *asciiDocPath = src/main/java*
+

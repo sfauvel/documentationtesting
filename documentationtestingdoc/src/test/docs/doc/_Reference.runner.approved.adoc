@@ -10,3 +10,5 @@ In this page, you will find links to resources that help you to implement a docu
 * To get source and examples: link:{github-repo}[]
 * A plugin for IntelliJ is provided in {github-repo}/approvalsDocPlugin[approvalsDocPlugin] folder
 
+
+

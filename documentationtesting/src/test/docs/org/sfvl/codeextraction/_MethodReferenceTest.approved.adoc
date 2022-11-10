@@ -12,3 +12,4 @@ include::_MethodReferenceTest.find_method.approved.adoc[leveloffset=+1]
 include::_MethodReferenceTest.find_method_name_from_complex_method.approved.adoc[leveloffset=+1]
 
 include::_MethodReferenceTest.classUsed.approved.adoc[leveloffset=+1]
+

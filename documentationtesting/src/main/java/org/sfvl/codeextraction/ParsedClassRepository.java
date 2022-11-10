@@ -64,6 +64,7 @@ public class ParsedClassRepository {
             final String keyPath = packageName + "." + fileName;
             final CompilationUnit compilationUnit = parsedClassCache.get(keyPath);
             if (compilationUnit != null) return compilationUnit;
+            ParseProblemException lastException = null;
             for (SourceRoot sourceRoot : sourceRoots) {
                 try {
                     final CompilationUnit parse = sourceRoot.parse(packageName, fileName);
@@ -71,9 +72,10 @@ public class ParsedClassRepository {
                     return parse;
                 } catch (ParseProblemException e) {
                     // try with next path
+                    lastException = e;
                 }
             }
-            throw new RuntimeException(String.format("Enable to parse %s in package %s", fileName, packageName));
+            throw lastException;
         }
     }
 

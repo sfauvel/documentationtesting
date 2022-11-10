@@ -65,6 +65,8 @@ With less than 2 neighbours, cell die on the next generation.
 *
 
 |====
+
+
 ifndef::STYLE_INCLUDED[]
 include::{ROOT_PATH}/../resources/style.css[]
 :STYLE_INCLUDED:
