@@ -1,6 +1,6 @@
-ifndef::ROOT_PATH[:ROOT_PATH: ../..]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_demo_operationstest_calculate_the_square_of_a_number]
+[#org_sfvl_demo_operationstest_calculate_the_square_of_a_number]
 = Calculate the square of a number
 
 In mathematics, a square is the result of multiplying a number by itself.
