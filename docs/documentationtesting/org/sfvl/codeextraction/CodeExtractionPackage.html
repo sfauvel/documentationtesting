@@ -799,7 +799,7 @@ To be able to extract it, we have to explicitly give source file.</p>
 <div class="exampleblock inline">
 <div class="title">Example 1. Exception thrown</div>
 <div class="content">
-java.nio.file.NoSuchFileException: src/test/java/org/sfvl/codeextraction/ClassNestedWithCommentToExtract.java
+java.nio.file.NoSuchFileException: src/main/java/org/sfvl/codeextraction/ClassNestedWithCommentToExtract.java
 </div>
 </div>
 </div>
@@ -1422,7 +1422,7 @@ In that case, all parts matching the text will be returned.</p>
 <div class="listingblock">
 <div class="title">How to extract comment of a class</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">ClassWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">ClassWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">orElse</span><span class="o">(</span><span class="s">""</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="exampleblock inline">
@@ -1466,7 +1466,7 @@ In that case, all parts matching the text will be returned.</p>
 <div class="listingblock">
 <div class="title">How to extract comment of a nested class</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">CodeExtractorTest</span><span class="o">.</span><span class="na">NestedClass</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">CodeExtractorTest</span><span class="o">.</span><span class="na">NestedClass</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">orElse</span><span class="o">(</span><span class="s">""</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="exampleblock inline">
@@ -1503,7 +1503,7 @@ In that case, all parts matching the text will be returned.</p>
 <div class="listingblock">
 <div class="title">How to extract comment of class that is not the main class of his file.</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">CodeExtractorTest</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">ClassNestedWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">CodeExtractorTest</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">ClassNestedWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">orElse</span><span class="o">(</span><span class="s">""</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="exampleblock inline">
@@ -1720,7 +1720,7 @@ In that case, all parts matching the text will be returned.</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span>
         <span class="nc">EnumWithCommentToExtract</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
         <span class="nc">EnumWithCommentToExtract</span><span class="o">.</span><span class="na">MyEnum</span><span class="o">.</span><span class="na">class</span>
-<span class="o">);</span></code></pre>
+<span class="o">).</span><span class="na">orElse</span><span class="o">(</span><span class="s">""</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1777,7 +1777,7 @@ This is an issue in the JavaParser we used (com.github.javaparser:javaparser-cor
 <div class="listingblock">
 <div class="title">How to extract comment of a class</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">ClassWithAnnotationBeforeComment</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">String</span> <span class="n">comment</span> <span class="o">=</span> <span class="nc">CodeExtractor</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="nc">ClassWithAnnotationBeforeComment</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">orElse</span><span class="o">(</span><span class="s">""</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="exampleblock inline">

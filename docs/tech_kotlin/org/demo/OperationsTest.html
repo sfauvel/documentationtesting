@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Explanation</title>
+<title>Operations</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,186 +436,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body id="org_demo_operationstest" class="article">
 <div id="header">
-<h1>Explanation</h1>
-<div id="toc" class="toc2">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_principal">Principal</a></li>
-<li><a href="#_another_way_to_test">Another way to test</a></li>
-<li><a href="#_what_is_a_test_for">What is a test for</a></li>
-<li><a href="#_what_are_the_advantages">What are the advantages</a></li>
-<li><a href="#_compare_with_other_approches">Compare with other approches</a></li>
-<li><a href="#_frequently_asked_questions">Frequently Asked Questions</a></li>
-</ul>
-</div>
+<h1>Operations</h1>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_principal">Principal</h2>
+<h2 id="org_demo_operationstest_calculate_the_square_of_a_number">Calculate the square of a number</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The idea is to have documentation generated from the code so that it reflects the current behavior of the application.</p>
+<p>In mathematics, a square is the result of multiplying a number by itself.</p>
 </div>
 <div class="paragraph">
-<p>We can then validate, after proofreading, that what is written corresponds to the expectations of the product.</p>
+<p>The square of 5 is equal to 25</p>
 </div>
-<div class="paragraph">
-<p>These documents become the reference on which we will rely to detect regressions.
-Any change will be considered a failed test.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_another_way_to_test">Another way to test</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>With this approach, we have to change the way we test software.
-We need to think more about documentation than about tests.
-We just have to make visible how the software behave whatever this behavior.
-Secondly, we will decide if this behavior is the one we expect.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_what_is_a_test_for">What is a test for</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>A test is done to ensure the behavior of the application.
-To do that, we just have to check that a sequence of actions gives the expected result.</p>
-</div>
-<div class="paragraph">
-<p>In a generated document from the code, if all the information describing this behavior and the result appears,
-we are able to validate or not the application.</p>
-</div>
-<div class="paragraph">
-<p>As long as the application produce the same validated document, that means that the behavior is preserved.
-If we need a human to certify the correctness of the first document version,
-the next checks can be done automatically by comparing with the original version.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_what_are_the_advantages">What are the advantages</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>First of all, we have <strong>created automated tests</strong>.
-They are different from those we are used to, but they do the same job.
-If we just want this automation, <strong>there is almost no overhead</strong> to write them comparing to classical ones.</p>
-</div>
-<div class="paragraph">
-<p>Once this done, we have a full <strong>documentation of cases we have tested</strong>.
-It could be just a list of title with some output at the beginning
-but too often no one knows what automated tests are being performed.</p>
-</div>
-<div class="paragraph">
-<p>With a little work, we can make the document produced more explicit.
-It can then be <strong>read by anyone</strong> and be <strong>always synchronized with the code</strong>.
-What is written is the truth of the application.</p>
-</div>
-<div class="paragraph">
-<p>There are no constraints on the produced document.
-We can therefore organize it as we wish so that it is <strong>as understandable as possible</strong>.
-If it can help, we can generate or <strong>include diagram, pictures</strong>, other documents or anything that can improve understanding.</p>
-</div>
-<div class="paragraph">
-<p>As the documents are generated, it is possible to <strong>produce several versions</strong> for different uses.
-It&#8217;s very easy to reuse some parts without needing to maintain each of them.
-For example, we can have a document with the standard use cases of the main functionalities
-and another one with all details and special cases.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_compare_with_other_approches">Compare with other approches</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Living documentation</strong>: It&#8217;s a living documentation with in addition the assurance that there is no change without control.</p>
-</li>
-<li>
-<p><strong>BDD</strong>: It&#8217;s a way to do BDD. Often we automated features created using <a href="https://cucumber.io/docs/gherkin/reference/">Gherkin</a> syntax.
-This is very restrictive because it&#8217;s instructions to the machine. Here, we are free to produce the document we need. This gives more possibilities to write a readable documentation.</p>
-</li>
-<li>
-<p><strong>Golden Master</strong> (or Approval): We use the golden master approach but reference files are not just data.
-We can understand each case and validate them more easily when functional change.</p>
-</li>
-<li>
-<p><strong>TDD</strong>: It&#8217;s not really made for TDD because it can slow down the rytme if we want to produce very readable documentation.
-But, at the end, our test are not only a technical code lost in the sources but they provides a real documentation.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_frequently_asked_questions">Frequently Asked Questions</h2>
-<div class="sectionbody">
-<details>
-<summary class="title">Are the tests more complicated to write ?</summary>
-<div class="content">
-<div class="paragraph">
-<p>If you don&#8217;t need an advanced presentation, the test is not more complicated.
-It can be even simpler in some cases.
-What can be difficult is to define which information we need to provide.
-It&#8217;s another way of thinking tests.</p>
-</div>
-<div class="paragraph">
-<p>Of course, a complex rendering requires an extra effort, but are we comparing the same thing ?
-If we do that, it&#8217;s because the result brings more value than the version with classical tests.</p>
-</div>
-</div>
-</details>
-<details>
-<summary class="title">But finally, a person need to validate the document ?</summary>
-<div class="content">
-<div class="paragraph">
-<p>Yes, as you need to have someone to choose input data and expected values in your tests.
-Once the document is approved there is no need to validate it again until it change.</p>
-</div>
-</div>
-</details>
-<details>
-<summary class="title">Why asciidoc ?</summary>
-<div class="content">
-<div class="paragraph">
-<p>In fact, we can use any text format (and even other).
-Markup language is very close to the text displayed so, it&#8217;s very easy to compare two versions of the document.
-Asciidoc is just one of them that provide enough capabilities to create a full documentation (tables, links, includes, code, attributes, &#8230;&#8203;).</p>
-</div>
-<div class="paragraph">
-<p>See: <a href="https://docs.asciidoctor.org/asciidoc/latest/asciidoc-vs-markdown/">asciidoc-vs-markdown</a></p>
-</div>
-</div>
-</details>
-<div class="paragraph">
-<p>What are the impacts on performance ?</p>
-</div>
-<details>
-<summary class="title">Details</summary>
-<div class="content">
-<div class="paragraph">
-<p>It&#8217;s right that there is an impact on performance but the main reason is the use of parsing to extract information from code
-mmore than the file writing.</p>
-</div>
-<div class="paragraph">
-<p>The other part that takes time is the HTML generation from <code>adoc</code> files.
-It&#8217;s needed to publish the doc that can be done on a continuous integration and not in the development phase.</p>
-</div>
-<div class="paragraph">
-<p>You can find in demos a performance evaluation that show a significant degradation on fast tests.</p>
-</div>
-</div>
-</details>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-11-10 23:13:16 UTC
+Last updated 2022-11-10 23:12:31 UTC
 </div>
 </div>
 </body>

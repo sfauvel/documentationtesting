@@ -683,13 +683,9 @@ and modify what it will be written in the final document.</p>
 
                 <span class="nd">@Override</span>
                 <span class="kd">public</span> <span class="nc">String</span> <span class="nf">formatOutput</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">,</span> <span class="nc">Method</span> <span class="n">testMethod</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">return</span> <span class="s">"// Add an header to the document\n"</span>
-                            <span class="o">+</span> <span class="kd">super</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span><span class="n">title</span><span class="o">,</span> <span class="n">testMethod</span><span class="o">);</span>
-                <span class="o">}</span>
 
-                <span class="nd">@Override</span>
-                <span class="kd">public</span> <span class="nc">String</span> <span class="nf">formatTitle</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">,</span> <span class="nc">Method</span> <span class="n">method</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">formatTitle</span><span class="o">(</span><span class="n">title</span><span class="o">,</span> <span class="n">method</span><span class="o">)</span> <span class="o">+</span> <span class="s">": Custom title"</span><span class="o">;</span>
+                    <span class="k">return</span> <span class="s">"// Add an header to the document\n"</span>
+                            <span class="o">+</span> <span class="kd">super</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span><span class="n">title</span> <span class="o">+</span> <span class="s">": Custom title"</span><span class="o">,</span> <span class="n">testMethod</span><span class="o">);</span>
                 <span class="o">}</span>
             <span class="o">}</span>
     <span class="o">);</span>
@@ -989,6 +985,8 @@ It&#8217;s help to understand and investigate on the problem.</p>
 = Failing test
 
 Some information before failure.
+
+
 
 *Error generating documentation*
 ----

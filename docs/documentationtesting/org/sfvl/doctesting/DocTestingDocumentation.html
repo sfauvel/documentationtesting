@@ -518,6 +518,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#org_sfvl_doctesting_utils_docwritertest_doc_writer_without_title">Hide title</a></li>
 <li><a href="#org_sfvl_doctesting_utils_docwritertest_format_title">Format title</a></li>
 <li><a href="#org_sfvl_doctesting_utils_docwritertest_add_description_using_comment">Add a description</a></li>
+<li><a href="#org_sfvl_doctesting_utils_docwritertest_customize_description">Customize description</a></li>
 </ul>
 </li>
 <li><a href="#org_sfvl_doctesting_utils_printertest">Printer</a>
@@ -771,13 +772,9 @@ and modify what it will be written in the final document.</p>
 
                 <span class="nd">@Override</span>
                 <span class="kd">public</span> <span class="nc">String</span> <span class="nf">formatOutput</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">,</span> <span class="nc">Method</span> <span class="n">testMethod</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">return</span> <span class="s">"// Add an header to the document\n"</span>
-                            <span class="o">+</span> <span class="kd">super</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span><span class="n">title</span><span class="o">,</span> <span class="n">testMethod</span><span class="o">);</span>
-                <span class="o">}</span>
 
-                <span class="nd">@Override</span>
-                <span class="kd">public</span> <span class="nc">String</span> <span class="nf">formatTitle</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">,</span> <span class="nc">Method</span> <span class="n">method</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">formatTitle</span><span class="o">(</span><span class="n">title</span><span class="o">,</span> <span class="n">method</span><span class="o">)</span> <span class="o">+</span> <span class="s">": Custom title"</span><span class="o">;</span>
+                    <span class="k">return</span> <span class="s">"// Add an header to the document\n"</span>
+                            <span class="o">+</span> <span class="kd">super</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span><span class="n">title</span> <span class="o">+</span> <span class="s">": Custom title"</span><span class="o">,</span> <span class="n">testMethod</span><span class="o">);</span>
                 <span class="o">}</span>
             <span class="o">}</span>
     <span class="o">);</span>
@@ -1069,6 +1066,8 @@ It&#8217;s help to understand and investigate on the problem.</p>
 = Failing test
 
 Some information before failure.
+
+
 
 *Error generating documentation*
 ----
@@ -2309,6 +2308,8 @@ that have its own title for example.</p>
 <pre>Some text added to show DocWriter output.
 
 
+
+
 Some text added at the end.</pre>
 </div>
 </div>
@@ -2376,7 +2377,7 @@ It can be done with the method javadoc or the class javadoc.</p>
     <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
 
     <span class="cm">/**
-     * To decribe a method, you can add a comment.
+     * To describe a method, you can add a comment.
      * It will be added under title.
      */</span>
     <span class="nd">@Test</span>
@@ -2405,7 +2406,7 @@ It can be done with the method javadoc or the class javadoc.</p>
 <pre>[#org_sfvl_samples_mytestwithcomment_test_a]
 = My title
 
-To decribe a method, you can add a comment.
+To describe a method, you can add a comment.
 It will be added under title.</pre>
 </div>
 </div>
@@ -2464,6 +2465,67 @@ Description of the class ClassUnderTest.
 Description of the test class.
 
 include::_MyTestWithClassToDocument.test_A.approved.adoc[leveloffset=+1]</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="org_sfvl_doctesting_utils_docwritertest_customize_description">Customize description</h3>
+<div class="paragraph">
+<p>If you want to modify the comment before adding it to the document,
+you can extend the DocWriter.</p>
+</div>
+<div class="listingblock">
+<div class="title">Class used</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="cm">/**
+ * My comment for MyTestComment
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyTestWithComment</span> <span class="o">{</span>
+    <span class="nd">@RegisterExtension</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ApprovalsExtension</span> <span class="n">doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleApprovalsExtension</span><span class="o">();</span>
+
+    <span class="cm">/**
+     * To describe a method, you can add a comment.
+     * It will be added under title.
+     */</span>
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test_A</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">DocWriter usage</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">final</span> <span class="nc">DocWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DocWriter</span><span class="o">()</span> <span class="o">{</span>
+    <span class="cm">/**
+     * Override getComment to upper case the comment.
+     */</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="nf">getComment</span><span class="o">(</span><span class="nc">Class</span> <span class="n">classFile</span><span class="o">,</span> <span class="nc">Method</span> <span class="n">testMethod</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="o">((</span><span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;)</span> <span class="kd">super</span><span class="o">.</span><span class="na">getComment</span><span class="o">(</span><span class="n">classFile</span><span class="o">,</span> <span class="n">testMethod</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">());</span>
+    <span class="o">}</span>
+
+<span class="o">};</span>
+
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">method_output</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span>
+        <span class="s">"My title"</span><span class="o">,</span>
+        <span class="nc">MyTestWithComment</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">"test_A"</span><span class="o">)</span>
+<span class="o">);</span>
+
+<span class="kd">final</span> <span class="nc">String</span> <span class="n">class_output</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="na">formatOutput</span><span class="o">(</span><span class="nc">MyTestWithComment</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="title">Output provided with method</div>
+<div class="content">
+<pre>[#org_sfvl_samples_mytestwithcomment_test_a]
+= My title
+
+TO DESCRIBE A METHOD, YOU CAN ADD A COMMENT.
+IT WILL BE ADDED UNDER TITLE.</pre>
 </div>
 </div>
 </div>
