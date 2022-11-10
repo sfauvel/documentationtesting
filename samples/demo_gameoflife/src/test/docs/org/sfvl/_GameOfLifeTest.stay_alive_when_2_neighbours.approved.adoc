@@ -63,6 +63,8 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../..]
 *
 
 |====
+
+
 ifndef::STYLE_INCLUDED[]
 include::{ROOT_PATH}/../resources/style.css[]
 :STYLE_INCLUDED:

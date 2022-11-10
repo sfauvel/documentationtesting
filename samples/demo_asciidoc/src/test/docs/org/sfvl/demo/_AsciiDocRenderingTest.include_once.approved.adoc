@@ -53,3 +53,5 @@ Below, what we can see on the document.
 ifndef::COMPACT_SYNTAX[:COMPACT_SYNTAX: My value]
 
 COMPACT_SYNTAX value: *{COMPACT_SYNTAX}*
+
+

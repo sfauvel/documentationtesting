@@ -67,7 +67,7 @@ public class ClassDocumentation {
         return getClassDocumentation(clazz, depth, declaredInOrder.collect(Collectors.toList()));
     }
 
-    private String getClassDocumentation(Class<?> clazz, int depth, List<ClassesOrder.EncapsulateDeclared> encapsulatedDeclarations) {
+    protected String getClassDocumentation(Class<?> clazz, int depth, List<ClassesOrder.EncapsulateDeclared> encapsulatedDeclarations) {
         // Trim because formatter add some line breaks (it may not add those line breaks)
         final Function<Path, String> includeWithOffset = path -> formatter.include(path.toString(), depth).trim();
 

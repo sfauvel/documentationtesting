@@ -27,3 +27,4 @@ We show here the code used to create the above chapter.
         write(String.format("This property has been verified using %s products.", products.size()));
     
 ----
+

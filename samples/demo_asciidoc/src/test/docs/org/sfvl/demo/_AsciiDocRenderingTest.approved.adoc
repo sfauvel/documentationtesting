@@ -24,3 +24,4 @@ include::_AsciiDocRenderingTest.DrawWithATable.using_svg.approved.adoc[leveloffs
 == Graph
 
 include::_AsciiDocRenderingTest.Graph.using_gnuplot.approved.adoc[leveloffset=+2]
+

@@ -20,3 +20,4 @@ to get a seat.
 include::_TrainBookTest.Max_70_percent.train_is_too_full_to_place_a_group.approved.adoc[leveloffset=+2]
 
 include::_TrainBookTest.Max_70_percent.train_has_enough_space_left.approved.adoc[leveloffset=+2]
+

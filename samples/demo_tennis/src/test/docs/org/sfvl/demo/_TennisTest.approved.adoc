@@ -16,3 +16,4 @@ include::_TennisTest.player_A_win_two_points.approved.adoc[leveloffset=+1]
 include::_TennisTest.player_B_win_two_points.approved.adoc[leveloffset=+1]
 
 include::_TennisTest.both_players_win_some_points.approved.adoc[leveloffset=+1]
+

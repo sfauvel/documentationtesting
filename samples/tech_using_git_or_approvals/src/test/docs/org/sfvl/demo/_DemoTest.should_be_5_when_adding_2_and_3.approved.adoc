@@ -6,3 +6,4 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 When adding two simple numbers, the java operator '+' should return the sum of them.
 
 2 + 3 = 5
+

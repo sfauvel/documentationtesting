@@ -6,3 +6,4 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 With TAX_FREE, tax is always 0
 
 This property has been verified using 10 products.
+

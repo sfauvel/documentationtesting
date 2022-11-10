@@ -8,3 +8,4 @@ Demo of a simple usage to generate documentation.
 include::_DemoTest.note_demo.approved.adoc[leveloffset=+1]
 
 include::_DemoTest.should_be_5_when_adding_2_and_3.approved.adoc[leveloffset=+1]
+
