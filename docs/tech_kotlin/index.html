@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Tutorial</title>
+<title>Kotlin</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,154 +438,79 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Tutorial</h1>
+<h1>Kotlin</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_quick_start">Quick start</a></li>
-<li><a href="#_java_project">Java project</a>
+<li><a href="#org_sfvl_demo_operationstest">Operations</a>
 <ul class="sectlevel2">
-<li><a href="#_ready_to_test_project">Ready to test project</a></li>
-<li><a href="#_use_it_in_your_own_project">Use it in your own project</a></li>
+<li><a href="#org_sfvl_demo_operationstest_calculate_the_square_of_a_number">Calculate the square of a number</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="_quick_start">Quick start</h2>
+<div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>You can experiment it simply with almost nothing.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Use your usual test framework.</p>
-</li>
-<li>
-<p>Create a test that write to a text file.</p>
-</li>
-<li>
-<p>Put the result of the test execution in that text.</p>
-</li>
-<li>
-<p>Add the file to git.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>You now have a non regression test in place.
-Each time you run this test, a change in the file is a regression.
-You can use git to detect file changes and to see the differences with the previous version.</p>
-</div>
-<div class="paragraph">
-<p>By the time, you can add useful information to the output file and format it to be more readable.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_java_project">Java project</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><a href="https://sfauvel.github.io/documentationtesting/documentationtesting">DocumentationTesting</a> is a java library which provides tools to easily implement this approach.</p>
-</div>
-<div class="sect2">
-<h3 id="_ready_to_test_project">Ready to test project</h3>
-<div class="paragraph">
-<p>You can use the <a href="https://github.com/sfauvel/TryDocAsTest">TryDocAsTest</a> project.
-It&#8217;s a preconfigure project to start with a complete tool.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_use_it_in_your_own_project">Use it in your own project</h3>
-<div class="paragraph">
-<p>You want to create your own Java project to try this approach.
-The only module you need is <code>documentationtestesting</code> one.</p>
-</div>
-<div class="paragraph">
-<p>Start by writing a test that inherits from <code>org.sfvl.doctesting.junitinheritance.ApprovalsBase</code>.</p>
-</div>
-<div class="paragraph">
-<p>Use <code>write</code> method to write all you want to be in documentation.
-It should be at least input and output.
-When you write output, you don&#8217;t write values expected but only values given by the application.</p>
-</div>
-<div class="paragraph">
-<p>Then run test as usual.
-First time, test fails and a file is produced in <code>src/test/docs</code> with the name of the test.
-The filename ends with <code>received.adoc</code>.</p>
-</div>
-<div class="paragraph">
-<p>Read the file and verify that it looks like as you want.
-If it is the case, rename it with <code>approved.adoc</code> instead of <code>received.adoc</code>.</p>
-</div>
-<div class="paragraph">
-<p>Relaunch tests and they should pass.</p>
-</div>
-<div class="listingblock">
-<div class="title">Example with DemoTest.java</div>
-<div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">package org.sfvl.demo;
-
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.sfvl.doctesting.utils.NoTitle;
-
-/**
- * Demo of a simple usage to generate documentation.
- */
-public class DemoTest extends DemoBaseClass {
-
-    @Test
-    @NoTitle
-    public void note_demo() {
-        super.note_demo();
-    }
-
-    /**
-     * When adding two simple numbers, the java operator '+' should return the sum of them.
-     */
-    @Test
-    @DisplayName("Adding 2 simple numbers")
-    public void should_be_5_when_adding_2_and_3() {
-        int a = 2;
-        int b = 3;
-        doc.write(String.format("%d + %d = %d", a, b, a + b));
-    }
-}</code></pre>
-</div>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
+<div class="admonitionblock note">
+<table>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">File generated to validate</p></td>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The examples shown here are generated from the source code.
+They therefore represent the behavior of the application at any times.
+Non regression is ensured by checking the absence of change in this document.
+Learn more here <a href="https://github.com/sfauvel/documentationtesting" class="bare">https://github.com/sfauvel/documentationtesting</a>
+</td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="sect3">
-<h4 id="org_sfvl_demo_demotest_should_be_5_when_adding_2_and_3">Adding 2 simple numbers</h4>
-<div class="paragraph">
-<p>When adding two simple numbers, the java operator '+' should return the sum of them.</p>
-</div>
-<div class="paragraph">
-<p>2 + 3 = 5</p>
-</div>
-</div></div></td>
-</tr>
-</tbody>
 </table>
 </div>
+<div class="paragraph">
+<p>View source of project on <a href="https://github.com/sfauvel/documentationtesting/tree/master/samples/tech_kotlin">Github</a></p>
 </div>
 </div>
 </div>
-<div id="footer">
-<div id="footer-text">
-Last updated 2022-11-10 23:48:10 UTC
+<div class="sect1">
+<h2 id="org_sfvl_demo_operationstest">Operations</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="org_sfvl_demo_operationstest_calculate_the_square_of_a_number">Calculate the square of a number</h3>
+<div class="paragraph">
+<p>In mathematics, a square is the result of multiplying a number by itself.</p>
+</div>
+<div class="paragraph">
+<p>The square of 5 is equal to 25</p>
 </div>
 </div>
+</div>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>
