@@ -1,4 +1,4 @@
-package org.demo
+package org.sfvl.demo
 
 object Operations {
     @JvmStatic

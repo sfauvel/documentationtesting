@@ -1,6 +1,6 @@
-package org.demo
+package org.sfvl.demo
 
-import org.demo.Operations.square
+import org.sfvl.demo.Operations.square
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith

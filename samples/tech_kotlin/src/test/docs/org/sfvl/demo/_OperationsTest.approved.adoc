@@ -1,6 +1,6 @@
-ifndef::ROOT_PATH[:ROOT_PATH: ../..]
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_demo_operationstest]
+[#org_sfvl_demo_operationstest]
 = Operations
 
 include::_OperationsTest.calculate_the_square_of_a_number.approved.adoc[leveloffset=+1]

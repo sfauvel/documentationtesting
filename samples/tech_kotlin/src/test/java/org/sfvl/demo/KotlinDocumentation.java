@@ -1,4 +1,4 @@
-package org.demo;
+package org.sfvl.demo;
 
 import org.sfvl.doctesting.demo.DemoDocumentation;
 import org.sfvl.doctesting.utils.Config;
