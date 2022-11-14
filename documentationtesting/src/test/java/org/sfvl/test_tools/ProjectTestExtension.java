@@ -1,6 +1,5 @@
 package org.sfvl.test_tools;
 
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.DocPath;
 
 import java.io.File;
@@ -18,7 +17,7 @@ public class ProjectTestExtension extends FastApprovalsExtension {
                 pathname -> pathname.isFile() && !pathname.getName().startsWith("_"));
         if (filesToDelete == null) return;
 
-        for(File file: filesToDelete) {
+        for (File file : filesToDelete) {
             file.delete();
         }
     }

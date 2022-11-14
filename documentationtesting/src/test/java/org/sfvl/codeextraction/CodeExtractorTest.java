@@ -8,7 +8,7 @@ import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.sample.*;
 import org.sfvl.doctesting.utils.DocPath;
-import org.sfvl.doctesting.writer.DocWriter;
+import org.sfvl.test_tools.FastDocWriter;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -26,7 +26,10 @@ import java.util.stream.Collectors;
 @DisplayName(value = "CodeExtractor")
 public class CodeExtractorTest {
 
-    static class CodeExtractorWriter extends DocWriter {
+    static class CodeExtractorWriter extends FastDocWriter {
+        CodeExtractorWriter() {
+            super(new AsciidocFormatter());
+        }
 
         void writeInline(String... texts) {
             write(
@@ -368,16 +371,13 @@ public class CodeExtractorTest {
             }
         }
 
-        /**
-         * To extract a part of a method, you can write a comment with a specific value
-         * that indicate beginining of the code to extract.
-         * Another comment with a specific value indicate the end of the code.
-         *
-         * @param testInfo
-         */
         @Test
         @DisplayName(value = "Extract a part of code from method")
         public void extract_part_of_code_from_method(TestInfo testInfo) {
+            doc.write("To extract a part of a method, you can write a comment with a specific value",
+                    "that indicate beginining of the code to extract.",
+                    "Another comment with a specific value indicate the end of the code.",
+                    "", "");
             {
                 String codeFromMethod;
                 {
@@ -572,11 +572,10 @@ public class CodeExtractorTest {
         @Nested
         class ExtractPartOfCode {
 
-            /**
-             * Tag (MyCode) could be a subpart of another one (**MyCode**Before or **MyCode**After).
-             */
             @Test
             public void tag_with_same_beginning_of_another_tag(TestInfo testInfo) {
+                doc.write("Tag (MyCode) could be a subpart of another one (**MyCode**Before or **MyCode**After).", "", "");
+
                 final Method testMethod = testInfo.getTestMethod().get();
 
                 // >>>SourceCode
@@ -606,11 +605,10 @@ public class CodeExtractorTest {
 
             }
 
-            /**
-             * Tag inside another one can be a subpart (MyCode)  of the global one (**MyCode**Global) .
-             */
             @Test
             public void tag_beginning_with_same_outer_tag_name(TestInfo testInfo) {
+                doc.write("Tag inside another one can be a subpart (MyCode)  of the global one (**MyCode**Global) .", "", "");
+
                 final Method testMethod = testInfo.getTestMethod().get();
 
                 // >>>SourceCode
@@ -635,11 +633,10 @@ public class CodeExtractorTest {
                         formatSourceCode(CodeExtractor.extractPartOfMethod(testMethod, "MyCodeGlobal")));
             }
 
-            /**
-             * Tag inside (**MyCodeGlobal**Inside) another one can be an extension of an outside tag (MyCodeGlobal).
-             */
             @Test
             public void tag_beginning_with_same_inner_tag_name(TestInfo testInfo) {
+                doc.write("Tag inside (**MyCodeGlobal**Inside) another one can be an extension of an outside tag (MyCodeGlobal).", "", "");
+
                 final Method testMethod = testInfo.getTestMethod().get();
 
                 // >>>SourceCode
@@ -884,13 +881,12 @@ public class CodeExtractorTest {
             }
         }
 
-        /**
-         * When there is an annotation before the class comment, the comment is not retrieve.
-         * This is an issue in the JavaParser we used (com.github.javaparser:javaparser-core:3.22.1).
-         */
         @Test
         @DisplayName(value = "Issue: comment not retrieve when an annotation is before the comment")
         public void bug_when_annotation_before_comment(TestInfo testInfo) {
+            doc.write("When there is an annotation before the class comment, the comment is not retrieve.",
+                    "This is an issue in the JavaParser we used (com.github.javaparser:javaparser-core:3.22.1).",
+                    "", "");
             doc.write(
                     ".How to extract comment of a class",
                     extractMarkedCode(testInfo, "1"),

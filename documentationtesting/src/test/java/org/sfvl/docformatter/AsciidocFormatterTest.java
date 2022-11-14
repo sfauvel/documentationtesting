@@ -423,6 +423,7 @@ public class AsciidocFormatterTest {
                     ));
         }
     }
+
     @Test
     @DisplayName("Attribute")
     public void should_add_an_attribute() throws IOException {
