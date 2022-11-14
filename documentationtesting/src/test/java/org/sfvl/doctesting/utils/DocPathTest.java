@@ -3,9 +3,6 @@ package org.sfvl.doctesting.utils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.codeextraction.MethodReference;
 import org.sfvl.docformatter.Formatter;
@@ -17,6 +14,7 @@ import org.sfvl.printer.CodeAndResultList;
 import org.sfvl.printer.Printer;
 import org.sfvl.samples.MyTest;
 
+import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -57,7 +55,6 @@ public class DocPathTest {
                 // <<<2
                 ;
 
-
         doc.write("[%autowidth]",
                 "[%header]",
                 "|====",
@@ -67,23 +64,18 @@ public class DocPathTest {
                 linePath(docPath, DocPath::received, functionToPath),
                 linePath(docPath, DocPath::test, functionToPath),
                 linePath(docPath, DocPath::html, functionToPath),
-
                 "|====");
     }
 
-    private String linePath(DocPath docPath, Function<DocPath, OnePath> methodOnDocPath, Function<OnePath, Path> functionToPath) {
-        final CallsRecorder recorder = new CallsRecorder();
+    private String linePath(DocPath docPath, MethodReference.SerializableFunction<DocPath, OnePath> methodOnDocPath, Function<OnePath, Path> functionToPath) {
 
-        final DocPath spyDocPath = addSpyRecorderOn(docPath, recorder);
+        final String methodCalledOnDocPath = MethodReference.getName(methodOnDocPath);
+        final Method lastMethod = MethodReference.getMethod(methodOnDocPath);
 
-        final OnePath onePath = methodOnDocPath.apply(spyDocPath);
-        final String methodCalledOnDocPath = recorder.lastCall();
-
-        Method lastMethod = recorder.getLastMethod();
+        final OnePath onePath = methodOnDocPath.apply(docPath);
         final Optional<String> comment = CodeExtractor.getComment(lastMethod);
 
-        return String.format("a| %s | %s | %s", methodCalledOnDocPath, DocPath.toAsciiDoc(functionToPath.apply(onePath)), comment.orElse(""));
-
+        return String.format("a| %s() | %s | %s", methodCalledOnDocPath, DocPath.toAsciiDoc(functionToPath.apply(onePath)), comment.orElse(""));
     }
 
     @Test
@@ -113,17 +105,15 @@ public class DocPathTest {
                         DocPath.toAsciiDoc(relativeToApproved.path())),
                 "");
 
-
-        final CallsRecorder recorder = new CallsRecorder();
-        final DocPath spyDocPath = addSpyRecorderOn(docPath, recorder);
-        final String name = spyDocPath.name();
-        final String methodCalledOnDocPath = recorder.lastCall();
+        final MethodReference.SerializableFunction<DocPath, String> nameMethod = DocPath::name;
+        final String methodCalledOnDocPath = MethodReference.getName(nameMethod);
+        final String name = nameMethod.apply(docPath);
 
         doc.write("[%autowidth]",
                 "[%header]",
                 "|====",
                 "| Method | Result",
-                String.format("| %s | %s", methodCalledOnDocPath, name),
+                String.format("| %s() | %s", methodCalledOnDocPath, name),
                 "|====",
                 "");
 
@@ -168,16 +158,15 @@ public class DocPathTest {
                 "");
 
 
-        final CallsRecorder recorder = new CallsRecorder();
-        final DocPath spyDocPath = addSpyRecorderOn(docPath, recorder);
-        final String name = spyDocPath.name();
-        final String methodCalledOnDocPath = recorder.lastCall();
+        final MethodReference.SerializableFunction<DocPath, String> nameMethod = DocPath::name;
+        final String methodCalledOnDocPath = MethodReference.getName(nameMethod);
+        final String name = nameMethod.apply(docPath);
 
         doc.write("[%autowidth]",
                 "[%header]",
                 "|====",
                 "| Method | Result",
-                String.format("| %s | %s", methodCalledOnDocPath, name),
+                String.format("| %s() | %s", methodCalledOnDocPath, name),
                 "|====",
                 "");
 
@@ -253,62 +242,36 @@ public class DocPathTest {
         doc.write(s);
     }
 
-    class CallsRecorder<T extends Object> implements Answer<T> {
-        String lastCall = "";
-        Method lastMethod = null;
 
-        @Override
-        public T answer(InvocationOnMock a) throws Throwable {
-            final Object result = a.callRealMethod();
 
-//                final Object[] arguments = a.getArguments();
-//                String parameters = Arrays.stream(arguments).map(v -> "" + v).collect(Collectors.joining(", "));
-//                lastCall = a.getMethod().getName() + "(" + parameters + ")";
-            lastMethod = a.getMethod();
-            lastCall = lastMethod.getName() + "()";
-            return (T) result;
-        }
-
-        String lastCall() {
-            return lastCall;
-        }
-
-        Method getLastMethod() {
-            return lastMethod;
-        }
+    private String formatOnePathToPathResult(OnePath onePath, MethodReference.SerializableFunction<OnePath, Path> pathToString) {
+        return formatLineResult(pathToString, DocPath.toAsciiDoc(pathToString.apply(onePath)));
     }
 
-    String callResult(CallsRecorder recorder, Path path) {
-        return String.format("%s | %s", recorder.lastCall(), DocPath.toAsciiDoc(path));
+    private String formatOnePathToPathResult(OnePath onePath, MethodReference.SerializableBiFunction<OnePath, OnePath, Path> pathToString, OnePath relativeToOnePath) {
+        return formatLineResult(pathToString, DocPath.toAsciiDoc(pathToString.apply(onePath, relativeToOnePath)));
     }
 
-    String callResult(CallsRecorder recorder, String t) {
-        return String.format("%s | %s", recorder.lastCall(), t);
+    private String formatOnePathToStringResult(OnePath onePath, MethodReference.SerializableFunction<OnePath, String> pathToString) {
+        return formatLineResult(pathToString, pathToString.apply(onePath));
     }
 
-    String line(DocPath docPath, Function<DocPath, OnePath> methodOnDocPath, OnePath relativeToApproved) {
-        final CallsRecorder recorder = new CallsRecorder();
+    private String formatLineResult(Serializable methodCalled, String result) {
+        return String.format("%s() | %s", MethodReference.getName(methodCalled), result);
+    }
 
-        final DocPath spyDocPath = addSpyRecorderOn(docPath, recorder);
-
-        final OnePath onePath = methodOnDocPath.apply(spyDocPath);
-        final String methodCalledOnDocPath = recorder.lastCall();
-
-        final OnePath spy = addSpyRecorderOn(onePath, recorder);
+    private String line(DocPath docPath, MethodReference.SerializableFunction<DocPath, OnePath> methodOnDocPath, OnePath relativeToApproved) {
+        final String methodCalledOnDocPath = MethodReference.getName(methodOnDocPath);
+        final OnePath onePath = methodOnDocPath.apply(docPath);
 
         return String.join("\n",
-                ".5+a| `" + methodCalledOnDocPath + "` | "
-                        + callResult(recorder, spy.path())
-                , "a| " + callResult(recorder, spy.folder())
-                , "a| " + callResult(recorder, spy.filename())
-                , "a| " + callResult(recorder, spy.from(relativeToApproved))
-                , "a| " + callResult(recorder, spy.to(relativeToApproved))
+                ".5+a| `" + methodCalledOnDocPath + "()` | "
+                        + formatOnePathToPathResult(onePath, OnePath::path)
+                , "a| " + formatOnePathToPathResult(onePath, OnePath::folder)
+                , "a| " + formatOnePathToStringResult(onePath, OnePath::filename)
+                , "a| " + formatOnePathToPathResult(onePath, OnePath::from, relativeToApproved)
+                , "a| " + formatOnePathToPathResult(onePath, OnePath::to, relativeToApproved)
         );
-    }
-
-    private <T> T addSpyRecorderOn(T docPath, Answer recorder) {
-        return Mockito.mock((Class<T>) docPath.getClass(),
-                Mockito.withSettings().spiedInstance(docPath).defaultAnswer(recorder));
     }
 
 }

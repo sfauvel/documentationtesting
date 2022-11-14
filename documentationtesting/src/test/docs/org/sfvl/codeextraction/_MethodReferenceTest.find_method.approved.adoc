@@ -80,6 +80,17 @@ public java.util.List MyClass.myFunctionWithGeneric( java.util.List)
 |
 [source,java,indent=0]
 ----
+MethodReference.getMethod(myObject::myBiFunction)
+----
+|Method|
+[source,java,indent=0]
+----
+public java.lang.String MyClass.myBiFunction( java.lang.Integer, java.lang.String)
+----
+
+|
+[source,java,indent=0]
+----
 MethodReference.getMethod(MyClass::myStaticConsumer)
 ----
 |Method|

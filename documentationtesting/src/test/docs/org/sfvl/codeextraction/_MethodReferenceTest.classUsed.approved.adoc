@@ -22,6 +22,10 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
             return null;
         }
 
+        public String myBiFunction(Integer param1, String param2) {
+            return null;
+        }
+
         public static void myStaticConsumer(String parameter) {
         }
 

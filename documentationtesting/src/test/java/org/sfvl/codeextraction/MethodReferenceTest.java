@@ -47,6 +47,10 @@ public class MethodReferenceTest {
             return null;
         }
 
+        public String myBiFunction(Integer param1, String param2) {
+            return null;
+        }
+
         public static void myStaticConsumer(String parameter) {
         }
 
@@ -71,6 +75,7 @@ public class MethodReferenceTest {
                 MethodReference.getName(MyClass::myFunction),
                 MethodReference.getName(myObject::myFunction),
                 MethodReference.getName(MyClass::myFunctionWithGeneric),
+                MethodReference.getName(myObject::myBiFunction),
                 MethodReference.getName(MyClass::myStaticConsumer));
 
         doc.write("",
@@ -99,6 +104,7 @@ public class MethodReferenceTest {
                 MethodReference.getMethod(MyClass::myFunction),
                 MethodReference.getMethod(myObject::myFunction),
                 MethodReference.getMethod(MyClass::myFunctionWithGeneric),
+                MethodReference.getMethod(myObject::myBiFunction),
                 MethodReference.getMethod(MyClass::myStaticConsumer));
 
         doc.write("",

@@ -51,6 +51,12 @@ MethodReference.getName(MyClass::myFunctionWithGeneric)
 |
 [source,java,indent=0]
 ----
+MethodReference.getName(myObject::myBiFunction)
+----
+|String|myBiFunction
+|
+[source,java,indent=0]
+----
 MethodReference.getName(MyClass::myStaticConsumer)
 ----
 |String|myStaticConsumer

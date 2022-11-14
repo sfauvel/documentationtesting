@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -70,6 +71,19 @@ public class MethodReference {
     public static <T1, V1> Method getMethod(SerializableFunction<T1, V1> function) {
         return getMethod(getSerializedLambda(function));
     }
+
+    public @FunctionalInterface
+    static interface SerializableBiFunction<T, U, R> extends BiFunction<T, U, R>, Serializable {
+    }
+
+//    public static <T1, U1, R1> String getName(SerializableBiFunction<T1, U1, R1> function) {
+//        return getName(getSerializedLambda(function));
+//    }
+
+    public static <T1, U1, R1> Method getMethod(SerializableBiFunction<T1, U1, R1> function) {
+        return getMethod(getSerializedLambda(function));
+    }
+
 
     // Genereric for custom interfaces
 
