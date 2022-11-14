@@ -8,10 +8,10 @@ import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.codeextraction.MethodReference;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.printer.CodeAndResult;
 import org.sfvl.printer.CodeAndResultList;
 import org.sfvl.printer.Printer;
+import org.sfvl.test_tools.FastApprovalsExtension;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +24,7 @@ import java.util.stream.Stream;
 public class PrinterTest {
 
     @RegisterExtension
-    public static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    public static ApprovalsExtension doc = new FastApprovalsExtension();
 
     class Toto {
         @Override

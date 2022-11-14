@@ -4,12 +4,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.ClassToDocument;
 import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.test_tools.FastApprovalsExtension;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +21,7 @@ public class ClassFinderTest {
     Formatter formatter = new AsciidocFormatter();
 
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new FastApprovalsExtension();
 
     @Test
     public void find_test_classes_in_a_package(TestInfo testInfo) {
@@ -44,14 +44,14 @@ public class ClassFinderTest {
                 classesFound);
     }
 
-    /**
-     * By default, all classes containing a test method are found.
-     * It's possible to exclude some test methods because they are not relevant in the context.
-     * If all test methods of a class are excluded, then the class will not be return as a found class.
-     */
     @Test
     @DisplayName("Find test classes in a package with a filter")
     public void find_test_classes_in_a_package_with_filter(TestInfo testInfo) {
+        doc.write("By default, all classes containing a test method are found.",
+                "It's possible to exclude some test methods because they are not relevant in the context.",
+                "If all test methods of a class are excluded, then the class will not be return as a found class.",
+                "", "");
+        
         // >>>
         List<Class<?>> classes = new ClassFinder().classesWithAnnotatedMethod(
                 org.sfvl.doctesting.sample.SimpleClass.class.getPackage(),

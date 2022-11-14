@@ -8,11 +8,11 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.DocTestingDocumentation;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 import org.sfvl.doctesting.utils.NoTitle;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.writer.Classes;
+import org.sfvl.test_tools.FastApprovalsExtension;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.lang.reflect.Method;
@@ -25,7 +25,7 @@ import java.util.List;
 public class CodeExtractionPackage {
 
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new FastApprovalsExtension();
 
     private static final ClassFinder classFinder = new ClassFinder();
 

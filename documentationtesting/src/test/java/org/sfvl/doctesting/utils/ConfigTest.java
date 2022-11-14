@@ -7,7 +7,7 @@ import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.test_tools.FastApprovalsExtension;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @DisplayName(value = "Configuration")
 class ConfigTest {
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new FastApprovalsExtension();
 
     @Test
     public void available_properties() {

@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.test_tools.FastApprovalsExtension;
 
 @NotIncludeToDoc
 class InMainDocBisTest {
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new FastApprovalsExtension();
 
     @Test
     @DisplayName("Title for this test")

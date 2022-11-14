@@ -4,16 +4,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.codeextraction.CodePath;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.utils.ClassToDocument;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.PathProvider;
+import org.sfvl.test_tools.FastApprovalsExtension;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -27,7 +27,7 @@ class ClassDocumentationTest {
 
     private final AsciidocFormatter formatter = new AsciidocFormatter();
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new FastApprovalsExtension();
 
     @Test
     @DisplayName(value = "Default test class documentation")
@@ -77,11 +77,9 @@ class ClassDocumentationTest {
                         .build(), "");
     }
 
-    /**
-     * We can define the title level.
-     */
     @Test
     public void title_level(TestInfo testInfo) throws IOException {
+        doc.write("We can define the title level.", "", "");
 
         // >>>
         final ClassDocumentation defaultDocumentation = new ClassDocumentation(new AsciidocFormatter());

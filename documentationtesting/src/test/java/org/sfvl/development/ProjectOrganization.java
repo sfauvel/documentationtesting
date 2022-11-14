@@ -15,9 +15,9 @@ import org.reflections.scanners.TypeElementsScanner;
 import org.reflections.util.ConfigurationBuilder;
 import org.sfvl.codeextraction.CodePath;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 import org.sfvl.doctesting.utils.Config;
+import org.sfvl.test_tools.FastApprovalsExtension;
 import org.sfvl.test_tools.GraphvizGenerator;
 
 import java.io.File;
@@ -30,7 +30,7 @@ import java.util.stream.Stream;
 public class ProjectOrganization {
 
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new FastApprovalsExtension();
 
     private Class<?> toClass(String className) {
         try {

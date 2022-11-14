@@ -30,6 +30,19 @@ public class FastDocWriter  extends DocWriter<Formatter> {
         return Optional.empty();
     }
 
+//    public String formatOutput(Class<?> clazz) {
+//        final ClassDocumentation classDocumentation = new FastClassDocumentation(
+//                this.getFormatter(),
+//                this::titleId
+//        );
+//
+//        return getFormatter().paragraph(
+//                defineDocPath(clazz),
+//                "",
+//                classDocumentation.getClassDocumentation(clazz)
+//        );
+//    }
+
     public static class FastClassDocumentation extends ClassDocumentation {
         private Function<Class, String> titleId;
 

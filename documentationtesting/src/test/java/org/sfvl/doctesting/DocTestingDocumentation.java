@@ -9,17 +9,17 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.junitinheritance.ApprovalsBase;
 import org.sfvl.doctesting.utils.DocWriterTest;
 import org.sfvl.doctesting.utils.NoTitle;
+import org.sfvl.doctesting.utils.PrinterTest;
+import org.sfvl.doctesting.utils.SvgGraphTest;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.writer.Classes;
 import org.sfvl.doctesting.writer.DocWriter;
 import org.sfvl.printer.Printer;
-import org.sfvl.doctesting.utils.PrinterTest;
 import org.sfvl.printer.SvgGraph;
-import org.sfvl.doctesting.utils.SvgGraphTest;
+import org.sfvl.test_tools.FastApprovalsExtension;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.lang.reflect.Method;
@@ -30,7 +30,7 @@ import java.util.List;
 public class DocTestingDocumentation {
 
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new FastApprovalsExtension();
 
     protected final Formatter formatter = new AsciidocFormatter();
     private static final ClassFinder classFinder = new ClassFinder();

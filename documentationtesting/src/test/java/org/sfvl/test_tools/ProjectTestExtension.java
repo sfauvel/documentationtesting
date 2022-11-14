@@ -1,12 +1,9 @@
 package org.sfvl.test_tools;
 
 import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
-import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 
 import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class ProjectTestExtension extends SimpleApprovalsExtension {
 

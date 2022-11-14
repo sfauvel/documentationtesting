@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.NoTitle;
 import org.sfvl.printer.CodeAndResult;
 import org.sfvl.printer.Printer;
+import org.sfvl.test_tools.FastApprovalsExtension;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @DisplayName(value = "Extract information from method reference")
 public class MethodReferenceTest {
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new FastApprovalsExtension();
 
     @Test
     @NoTitle
@@ -59,13 +59,13 @@ public class MethodReferenceTest {
         }
     }
 
-    /**
-     * It's possible to extract method name from a method reference.
-     * We can use either a reference using class or using an object instance (only on non-static method).
-     */
     @Test
     @DisplayName("Find method name")
     public void find_method_name(TestInfo testInfo) {
+        doc.write("It's possible to extract method name from a method reference.",
+                "We can use either a reference using class or using an object instance (only on non-static method).",
+                "", "");
+
         final MyClass myObject = new MyClass();
 
         final List<CodeAndResult<Object>> codeAndResult = new Printer().getCodeAndResult(
@@ -86,14 +86,10 @@ public class MethodReferenceTest {
         );
     }
 
-    /**
-     * It's possible to extract method from a method reference.
-     *
-     * @param testInfo
-     */
     @Test
     @DisplayName("Find method")
     public void find_method(TestInfo testInfo) {
+        doc.write("It's possible to extract method from a method reference.", "", "");
 
         final MyClass myObject = new MyClass();
 

@@ -4,15 +4,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.test_tools.FastApprovalsExtension;
 
 import java.nio.file.Path;
 
 class CodePathTest {
 
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new FastApprovalsExtension();
 
     static Formatter formatter = doc.getFormatter();
 
@@ -80,11 +80,10 @@ class CodePathTest {
                         .build());
     }
 
-    /**
-     * With a nested class, the file is that of the main class of the file.
-     */
     @Test
     public void file_of_a_nested_class() {
+        doc.write("With a nested class, the file is that of the main class of the file.", "", "");
+
         // >>>
         final Class<?> clazz = org.sfvl.samples.MyTestWithNestedClass.MyNestedClass.class;
         final Path path = CodePath.toFile(clazz);

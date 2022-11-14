@@ -6,8 +6,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.printer.SvgGraph;
+import org.sfvl.test_tools.FastApprovalsExtension;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.util.Arrays;
@@ -16,7 +16,7 @@ import java.util.Arrays;
 @DisplayName("Svg graph")
 public class SvgGraphTest {
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new FastApprovalsExtension();
 
     @DisplayName("Generate an empty grid")
     @Test

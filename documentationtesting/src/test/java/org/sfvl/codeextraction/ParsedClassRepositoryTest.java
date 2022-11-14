@@ -4,15 +4,17 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.utils.SourceRoot;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.codeextraction.ClassFinder;
-import org.sfvl.codeextraction.CodeExtractor;
-import org.sfvl.codeextraction.MethodReference;
-import org.sfvl.codeextraction.ParsedClassRepository;
-import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
-import org.sfvl.doctesting.junitextension.*;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
+import org.sfvl.doctesting.junitextension.ApprovalsExtension;
+import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
+import org.sfvl.doctesting.junitextension.FailureReporterTest;
 import org.sfvl.doctesting.sample.EnumWithCommentToExtract;
-import org.sfvl.doctesting.utils.*;
+import org.sfvl.doctesting.utils.ClassToDocument;
+import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.utils.DocPath;
+import org.sfvl.doctesting.utils.DocPathTest;
+import org.sfvl.test_tools.FastApprovalsExtension;
 import org.sfvl.test_tools.SupplierWithException;
 
 import java.io.IOException;
@@ -31,7 +33,7 @@ import java.util.stream.Stream;
 public class ParsedClassRepositoryTest {
     Formatter formatter = new AsciidocFormatter();
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new FastApprovalsExtension();
 
     @AfterEach
     public void addSyle(TestInfo testInfo) {
@@ -120,13 +122,10 @@ public class ParsedClassRepositoryTest {
                     , CodeExtractor.extractPartOfCurrentMethod());
         }
 
-        /**
-         * We are not able to deal with local classes(those defined in method).
-         *
-         * @throws NoSuchMethodException
-         */
         @Test
         public void retrieve_comment_of_local_class_defined_in_a_method() throws NoSuchMethodException {
+            doc.write("We are not able to deal with local classes(those defined in method).", "", "");
+
             retrieve_comment(() -> {
                         // >>>
                         /**

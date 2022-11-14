@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
+import org.sfvl.test_tools.FastApprovalsExtension;
 
 /**
  * To have specific style in some chapter, you can use HTML style directly in your Asciidoc files.
@@ -14,17 +14,17 @@ import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 public class UseYourOwnStyle {
 
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new FastApprovalsExtension();
 
     private final AsciidocFormatter formatter = new AsciidocFormatter();
 
-    /**
-     * You can customize style adding a css style directly in your file.
-     * You need to put an html style tag (`<style></style>`) enclosed in `\++++++`
-     * to add it without processed content and send it directly to the output.
-     */
+
     @Test
     public void define_a_custom_style() {
+        doc.write(                "You can customize style adding a css style directly in your file.",
+                "You need to put an html style tag (`<style></style>`) enclosed in `\\++++++`",
+                "to add it without processed content and send it directly to the output.",
+                "", "");
         final String style = String.join("\n",
                 "++++",
                 "<style>",

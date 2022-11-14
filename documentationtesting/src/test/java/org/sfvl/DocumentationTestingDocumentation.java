@@ -13,13 +13,13 @@ import org.sfvl.doctesting.DocTestingDocumentation;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.junitextension.ApprovalsExtensionTest;
 import org.sfvl.doctesting.junitextension.HtmlPageExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.NoTitle;
 import org.sfvl.howto.HowTo;
 import org.sfvl.howto.KnownIssues;
 import org.sfvl.howto.Tutorial;
+import org.sfvl.test_tools.FastApprovalsExtension;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -44,7 +44,7 @@ public class DocumentationTestingDocumentation {
     }
 
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new FastApprovalsExtension();
 
     private final Formatter formatter = new AsciidocFormatter();
 

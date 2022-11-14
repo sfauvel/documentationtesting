@@ -10,9 +10,9 @@ import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.NotIncludeToDoc;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.writer.DocWriter;
 import org.sfvl.samples.*;
+import org.sfvl.test_tools.FastApprovalsExtension;
 import org.sfvl.test_tools.OnlyRunProgrammatically;
 
 import java.lang.reflect.Method;
@@ -23,7 +23,7 @@ import java.util.stream.IntStream;
 @DisplayName("DocWriter")
 public class DocWriterTest {
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new FastApprovalsExtension();
 
     final AsciidocFormatter formatter = new AsciidocFormatter();
 
@@ -50,19 +50,14 @@ public class DocWriterTest {
     }
     // <<<simple_method
 
-
-    /**
-     * DocWriter is just a buffer.
-     * Everything wrote in DocWriter will be returned when asking for output.
-     * The output is composed with a title, the comment of the method (without params).
-     * An id is also added above the title to be able to apply a specific style in the chapter if needed.
-     *
-     * @param testInfo
-     * @throws NoSuchMethodException
-     */
     @Test
     @DisplayName("Usage")
     public void doc_writer_usage(TestInfo testInfo) throws NoSuchMethodException {
+        DocWriterTest.doc.write("DocWriter is just a buffer.",
+                "Everything wrote in DocWriter will be returned when asking for output.",
+                "The output is composed with a title, the comment of the method (without params).",
+                "An id is also added above the title to be able to apply a specific style in the chapter if needed.",
+                "","");
 
         // >>>
         final DocWriter doc = new DocWriter();
@@ -92,18 +87,14 @@ public class DocWriterTest {
                 .build());
     }
 
-    /**
-     * DocWriter is also used to format output of a test class.
-     * In that case, we add a title and include all test files of the class.
-     * What is written on DocWriter is not used in this case.
-     *
-     * @param testInfo
-     * @throws NoSuchMethodException
-     */
     @Test
     @DisplayName("Output with a class")
     public void doc_writer_with_a_class(TestInfo testInfo) throws NoSuchMethodException {
-
+        DocWriterTest.doc.write("DocWriter is also used to format output of a test class.",
+                "In that case, we add a title and include all test files of the class.",
+                "What is written on DocWriter is not used in this case.",
+                "","");
+        
         // >>>
         final DocWriter doc = new DocWriter();
 
@@ -126,15 +117,16 @@ public class DocWriterTest {
                 .build());
     }
 
-    /**
-     * If you don't want the default title in the generated file, add @NoTitle annotation.
-     * It can be useful when you want to include this file in another test
-     * that have its own title for example.
-     */
+
     @Test
     @DisplayName("Hide title")
     public void doc_writer_without_title(TestInfo testInfo) throws NoSuchMethodException {
-
+        DocWriterTest.doc.write("If you don't want the default title in the generated file, add @NoTitle annotation.",
+                "It can be useful when you want to include this file in another test",
+                "that have its own title for example.",
+                "","");
+        
+        
         // >>>
         final DocWriter doc = new DocWriter();
         String output = String.join("\n",
@@ -221,16 +213,12 @@ public class DocWriterTest {
 
     }
 
-    /**
-     * A description can be added after the title using the Javadoc.
-     * It can be done with the method javadoc or the class javadoc.
-     *
-     * @param testInfo
-     * @throws NoSuchMethodException
-     */
     @Test
     @DisplayName("Add a description")
     public void add_description_using_comment(TestInfo testInfo) throws NoSuchMethodException {
+        doc.write("A description can be added after the title using the Javadoc.",
+                "It can be done with the method javadoc or the class javadoc.",
+                "","");
 
         // >>>
         final DocWriter writer = new DocWriter();

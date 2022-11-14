@@ -1,3 +1,5 @@
+// This class may be impacted with an intellij formatter removing some comments between imports.
+// In that case, associated tests will not work.
 // >>>OneTest
 package org.sfvl.samples.justone;
 

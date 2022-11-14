@@ -1,18 +1,13 @@
 package org.sfvl.test_tools;
 
-import org.sfvl.codeextraction.ClassFinder;
 import org.sfvl.codeextraction.CodePath;
 import org.sfvl.codeextraction.MethodReference;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
-import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.utils.OnePath;
-import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.writer.Classes;
-import org.sfvl.howto.HowTo;
 
 import java.lang.reflect.Method;
-import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class DocFormatter extends AsciidocFormatter {

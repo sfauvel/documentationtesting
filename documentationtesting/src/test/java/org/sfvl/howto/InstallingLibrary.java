@@ -2,17 +2,17 @@ package org.sfvl.howto;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.utils.NoTitle;
 import org.sfvl.doctesting.writer.Options;
+import org.sfvl.test_tools.FastApprovalsExtension;
 
 public class InstallingLibrary {
 
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new FastApprovalsExtension();
 
     Formatter formatter = new AsciidocFormatter();
 

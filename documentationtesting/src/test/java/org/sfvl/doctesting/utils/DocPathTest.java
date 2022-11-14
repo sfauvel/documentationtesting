@@ -8,11 +8,11 @@ import org.sfvl.codeextraction.MethodReference;
 import org.sfvl.docformatter.Formatter;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
-import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 import org.sfvl.doctesting.sample.MyClass;
 import org.sfvl.printer.CodeAndResultList;
 import org.sfvl.printer.Printer;
 import org.sfvl.samples.MyTest;
+import org.sfvl.test_tools.FastApprovalsExtension;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
@@ -25,7 +25,7 @@ import java.util.function.Function;
 @DisplayName(value = "Document path")
 public class DocPathTest {
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new FastApprovalsExtension();
 
     final Formatter formatter = new AsciidocFormatter();
 
@@ -202,14 +202,13 @@ public class DocPathTest {
         );
     }
 
-    /**
-     * Path in asciidoc files must used '/' independently of operating system and file separator.
-     *
-     * It's important to always generate the same reference file (.adoc) because we compare it with the last generated one.
-     * Otherwise, the test could fail when executed on another operating system.
-     */
     @Test
     public void make_path_independent_of_operating_system() {
+        doc.write("Path in asciidoc files must used '/' independently of operating system and file separator.",
+                "",
+                "It's important to always generate the same reference file (.adoc) because we compare it with the last generated one.",
+                "Otherwise, the test could fail when executed on another operating system.",
+                "", "");
         // >>>
         Path path = Paths.get("src", "main", "java");
         String asciiDocPath = DocPath.toAsciiDoc(path);
