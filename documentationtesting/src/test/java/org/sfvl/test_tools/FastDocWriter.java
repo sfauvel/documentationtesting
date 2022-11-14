@@ -6,9 +6,9 @@ import org.sfvl.doctesting.writer.DocWriter;
 import java.lang.reflect.Method;
 import java.util.Optional;
 
-public class FastDocWriter extends DocWriter<Formatter> {
+public class FastDocWriter<F extends Formatter> extends DocWriter<F> {
 
-    public FastDocWriter(Formatter formatter) {
+    public FastDocWriter(F formatter) {
         super(formatter);
     }
 

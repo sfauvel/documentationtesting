@@ -9,7 +9,7 @@ import org.sfvl.doctesting.writer.DocWriter;
 import java.lang.reflect.Method;
 import java.nio.file.Paths;
 
-public class DocAsTestDocWiter extends DocWriter<DocFormatter> {
+public class DocAsTestDocWiter extends FastDocWriter<DocFormatter> {
     private final boolean generateHtmlPage;
 
     public DocAsTestDocWiter() {
