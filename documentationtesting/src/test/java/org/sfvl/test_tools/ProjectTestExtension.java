@@ -5,7 +5,7 @@ import org.sfvl.doctesting.utils.DocPath;
 
 import java.io.File;
 
-public class ProjectTestExtension extends SimpleApprovalsExtension {
+public class ProjectTestExtension extends FastApprovalsExtension {
 
     public void runTestAndWriteResultAsComment(Class<?> testClass) {
         final TestRunnerFromTest.Results results = new TestRunnerFromTest().runTestClass(testClass);

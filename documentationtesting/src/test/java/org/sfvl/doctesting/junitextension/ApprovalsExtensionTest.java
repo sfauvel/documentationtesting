@@ -234,14 +234,13 @@ public class ApprovalsExtensionTest {
                 formatter.include(approved.from(this.getClass()).toString(), 1));
     }
 
-    /**
-     * When a test fails, the error is written in the final document.
-     * It's help to understand and investigate on the problem.
-     */
+
     @Test
     public void failing_test_output(TestInfo info) throws IOException {
-
-        doc.write("When the test fails, the reason (exception) is written into the generated document.", "");
+        doc.write("When a test fails, the error is written in the final document.",
+                "It's help to understand and investigate on the problem.",
+                "",
+                "When the test fails, the reason (exception) is written into the generated document.", "");
 
         final Class<?> testClass = FailingTest.class;
         doc.runTestAndWriteResultAsComment(testClass);

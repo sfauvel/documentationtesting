@@ -55,6 +55,18 @@ public class CreateADocument {
      */
     @Test
     public void generate_html() {
+        doc.write(":underscore: _",
+                "",
+                "To convert `.adoc` to `.html`, we use `asciidoctor-maven-plugin` plugin.",
+                "It's configure in `pom.xml` and it's can be run in one phase of the maven lifecycle (generally the `package` phase).",
+                "",
+                "By default, files started with `{underscore}` are not converted to HTML by this plugin.",
+                "We have chosen to start all `approved` file names with an `{underscore}`.",
+                "They are only chapters of documents.",
+                "They need to be included in a file that will be converted into HTML.",
+                "So, this makes it easier to reuse these chapters and organize the documentation.",
+                "","");
+
         doc.write("To have a file that not start with `{underscore}`, we need to generate one.",
                 String.format("The `%s` extension is made for that.", HtmlPageExtension.class.getSimpleName()),
                 "When a test class used this extension, it will generate a simple `.adoc` file that include the `approved` file of the same class.",
