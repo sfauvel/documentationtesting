@@ -5,7 +5,6 @@ import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.writer.DocWriter;
-import org.sfvl.howto.HowTo;
 
 import java.lang.reflect.Method;
 import java.nio.file.Paths;
@@ -16,6 +15,7 @@ public class DocAsTestDocWiter extends DocWriter<DocFormatter> {
     public DocAsTestDocWiter() {
         this(false);
     }
+
     public DocAsTestDocWiter(boolean generateHtmlPage) {
         super(new DocFormatter());
         this.generateHtmlPage = generateHtmlPage;

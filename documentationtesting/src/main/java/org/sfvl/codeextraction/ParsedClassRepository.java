@@ -67,6 +67,7 @@ public class ParsedClassRepository {
             ParseProblemException lastException = null;
             for (SourceRoot sourceRoot : sourceRoots) {
                 try {
+                    System.out.println("CompilationUnitCache.getCompilationUnit: " + packageName + " - " + fileName);
                     final CompilationUnit parse = sourceRoot.parse(packageName, fileName);
                     parsedClassCache.put(keyPath, parse);
                     return parse;

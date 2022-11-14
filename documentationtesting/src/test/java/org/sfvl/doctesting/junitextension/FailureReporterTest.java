@@ -4,8 +4,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.api.io.TempDir;
-import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.docformatter.Formatter;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
+import org.sfvl.test_tools.FastApprovalsExtension;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -14,19 +15,21 @@ import java.nio.file.Path;
 @DisplayName("Failure report")
 public class FailureReporterTest {
     @RegisterExtension
-    static ApprovalsExtension doc = new SimpleApprovalsExtension();
+    static ApprovalsExtension doc = new FastApprovalsExtension();
 
     @TempDir
     Path tempDir;
 
     private final Formatter formatter = new AsciidocFormatter();
 
-    /**
-     * When the received file is not the same as the approved file,
-     * first different line is displayed on report.
-     */
     @Test
     public void report_when_files_are_differents() throws IOException {
+        doc.write(
+                "When the received file is not the same as the approved file,",
+                "first different line is displayed on report.",
+                "",""
+        );
+
         final String approved = String.join("\n",
                 "= Title",
                 "Description",
@@ -42,13 +45,14 @@ public class FailureReporterTest {
         documentReportBetween(approved, received);
     }
 
-    /**
-     * When the received file is identical to the approved file,
-     * it's indicated it.
-     * But this report is normally not displayed when files are identical.
-     */
     @Test
     public void report_when_files_are_identicals() throws IOException {
+        doc.write(
+                "When the received file is identical to the approved file,",
+                "it's indicated it.",
+                "But this report is normally not displayed when files are identical.",
+                "",""
+        );
         final String approved = String.join("\n",
                 "= Title",
                 "Description");
@@ -60,12 +64,13 @@ public class FailureReporterTest {
         documentReportBetween(approved, received);
     }
 
-    /**
-     * When the received file is shorter than the approved file,
-     * We indicate that there is no more lines.
-     */
     @Test
     public void received_file_shorter_than_approved_file() throws IOException {
+        doc.write(
+                "When the received file is shorter than the approved file,",
+                "We indicate that there is no more lines.",
+                "",""
+        );
 
         final String approved = String.join("\n",
                 "= Title",
@@ -79,12 +84,13 @@ public class FailureReporterTest {
         documentReportBetween(approved, received);
     }
 
-    /**
-     * When the received file is longer than the approved file,
-     * We indicate that there is no more lines.
-     */
     @Test
     public void received_file_longer_than_approved_file() throws IOException {
+        doc.write(
+                "When the received file is longer than the approved file,",
+                "We indicate that there is no more lines.",
+                "",""
+        );
 
         final String approved = String.join("\n",
                 "= Title",
@@ -98,12 +104,9 @@ public class FailureReporterTest {
         documentReportBetween(approved, received);
     }
 
-    /**
-     * We indicate a specific message when approved file does not exist.
-     */
     @Test
     public void approved_file_does_not_exist() throws IOException {
-
+        doc.write("We indicate a specific message when approved file does not exist.", "", "");
         final String received = String.join("\n",
                 "= Title",
                 "Description",
