@@ -31,4 +31,10 @@ public class DocAsTestApprovalNamer implements ApprovalNamer {
     public File getReceivedFile(String extensionWithDot) {
         return new File(this.getSourceFilePath() + "/" + this.getApprovalName() + ".received" + extensionWithDot);
     }
+
+    @Override
+    public ApprovalNamer addAdditionalInformation(String info) {
+        return this;
+    }
+
 }
