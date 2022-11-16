@@ -15,6 +15,7 @@ There is no line break when text is rendered in HTML.
         output = formatter.paragraph("We write some sentences.",
                 "Each of them are in is own line in asciidoc text.",
                 "They are in a same paragraph at the end.");
+
 ----
 
 [red]##_Render_##

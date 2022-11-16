@@ -13,7 +13,7 @@ public class FastDocWriter<F extends Formatter> extends DocWriter<F> {
     }
 
     /**
-     * Skip reading comment because it's time consuming.
+     * Skip reading comment because it's time-consuming and not very usefull.
      * We can add comment by a doc.write instruction at the beginning of the test.
      * Most of the time, we need to add reference in description and we already use doc.write instead of the Javadoc.
      */

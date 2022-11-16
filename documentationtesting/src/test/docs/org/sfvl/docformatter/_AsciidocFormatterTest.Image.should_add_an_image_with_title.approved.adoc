@@ -12,6 +12,7 @@ With a title parameter, the text is shown when you mouse over the image.
 [source,java,indent=0]
 ----
             output = formatter.image("doc_as_test.png", "doc as test");
+
 ----
 
 [red]##_Render_##

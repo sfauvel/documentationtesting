@@ -13,6 +13,7 @@ Join paragraph with enough line break to separate them.
 ----
         output = formatter.paragraphSuite("My first paragraph.",
                 "The second paragraph with a blank line before to separate from the first one.");
+
 ----
 
 [red]##_Render_##

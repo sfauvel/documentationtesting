@@ -12,6 +12,7 @@ It can be used to define a style.
 [red]##_Usage_##
 [source,java,indent=0]
 ----
+            output = formatter.blockId("myId");
 
 ----
 

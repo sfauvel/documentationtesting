@@ -16,6 +16,7 @@ It allows to have same outputs when running tests in several environments.
                     formatter.include("tmp/anotherFile.adoc"),
                     "",
                     formatter.include("tmp\\anotherFile.adoc"));
+
 ----
 
 [red]##_Asciidoc generated_##

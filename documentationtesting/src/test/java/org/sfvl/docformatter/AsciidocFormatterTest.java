@@ -9,6 +9,7 @@ import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.utils.ClassToDocument;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.writer.DocWriter;
+import org.sfvl.test_tools.FastDocWriter;
 import org.sfvl.test_tools.IntermediateHtmlPage;
 
 import java.io.FileWriter;
@@ -36,7 +37,7 @@ public class AsciidocFormatterTest {
     private String output;
 
     @RegisterExtension
-    static ApprovalsExtension doc = new ApprovalsExtension<DocWriter<Formatter>, Formatter>(new DocWriter(Config.FORMATTER) {
+    static ApprovalsExtension doc = new ApprovalsExtension<DocWriter<Formatter>, Formatter>(new FastDocWriter(Config.FORMATTER) {
 
         @Override
         public String defineDocPath(Path relativePathToRoot) {
@@ -95,26 +96,29 @@ public class AsciidocFormatterTest {
         output = formatter.title(2, "Description");
     }
 
-    /**
-     * Each text is written in a separate line on asciidoc file.
-     * There is no line break when text is rendered in HTML.
-     */
     @Test
     @DisplayName("Paragraph")
+    @TestOption(extractAll = false)
     public void should_format_paragraph() {
+        doc.write("Each text is written in a separate line on asciidoc file.",
+                "There is no line break when text is rendered in HTML.",
+                "", "");
+        // >>>
         output = formatter.paragraph("We write some sentences.",
                 "Each of them are in is own line in asciidoc text.",
                 "They are in a same paragraph at the end.");
+        // <<<
     }
 
-    /**
-     * Join paragraph with enough line break to separate them.
-     */
     @Test
     @DisplayName("Suite of paragraphs")
+    @TestOption(extractAll = false)
     public void should_format_suite_of_paragraphs() {
+        doc.write("Join paragraph with enough line break to separate them.", "", "");
+        // >>>
         output = formatter.paragraphSuite("My first paragraph.",
                 "The second paragraph with a blank line before to separate from the first one.");
+        // <<<
     }
 
     @Nested
@@ -193,14 +197,14 @@ public class AsciidocFormatterTest {
             output = formatter.listItemsWithTitle("List title", "First", "Second", "Third");
         }
 
-        /**
-         * When no items, listItems method return an empty string.
-         */
         @Test
         @DisplayName("Empty list")
-        @TestOption(showRender = false)
+        @TestOption(showRender = false, extractAll = false)
         public void should_format_empty_list() {
+            doc.write("When no items, listItems method return an empty string.", "", "");
+            // >>>
             output = formatter.listItems();
+            // <<<
         }
     }
 
@@ -215,23 +219,23 @@ public class AsciidocFormatterTest {
             output = formatter.warning("Take care of that");
         }
 
-        /**
-         * A block id create an id in HTML file.
-         * It can be used to define a style.
-         */
         @Test
         @TestOption(extractAll = false)
         public void block_id() {
+            doc.write("A block id create an id in HTML file.",
+                    "It can be used to define a style.",
+                    "", "");
+            // >>>
             output = formatter.blockId("myId");
+            // <<<
         }
 
-        /**
-         * You can select block type from one of the Block enum.
-         */
         @Test
         @DisplayName("Predefine blocks")
         @TestOption(extractAll = false)
         public void should_format_block_with_enum() {
+            doc.write("You can select block type from one of the Block enum.",
+                    "", "");
             doc.write(formatter.listItemsWithTitle("Block value available",
                             Arrays.stream(Formatter.Block.values()).map(Enum::name).toArray(String[]::new)),
                     "");
@@ -253,16 +257,15 @@ public class AsciidocFormatterTest {
                     .build();
         }
 
-        /**
-         * To display asciidoc in a block, it's necessary to escape some keyword
-         * that are interpreted even in an uninterpreted block.
-         *
-         * With this option, all lines starting by `include::` add an anti-slash to escape this directive.
-         */
         @Test
         @DisplayName("Escape asciidoc")
         @TestOption(normalOutput = true)
         public void escape_asciidoc(TestInfo testinfo) {
+            doc.write("To display asciidoc in a block, it's necessary to escape some keyword",
+                    "that are interpreted even in an uninterpreted block.",
+                    "",
+                    "With this option, all lines starting by `include::` add an anti-slash to escape this directive.",
+                    "", "");
 
             // >>>
             output = formatter.blockBuilder("----")
@@ -348,17 +351,18 @@ public class AsciidocFormatterTest {
             output = formatter.include(fileToInclude, 2);
         }
 
-        /**
-         * Include directive always used '/' as directory separator regardless of operating system.
-         * It allows to have same outputs when running tests in several environments.
-         */
         @Test
-        @TestOption(showRender = false)
+        @TestOption(showRender = false, extractAll = false)
         public void include_is_agnostic_of_directory_separator() throws IOException {
+            doc.write("Include directive always used '/' as directory separator regardless of operating system.",
+                    "It allows to have same outputs when running tests in several environments.",
+                    "", "");
+            // >>>
             output = String.join("\n",
                     formatter.include("tmp/anotherFile.adoc"),
                     "",
                     formatter.include("tmp\\anotherFile.adoc"));
+            // <<<
         }
 
         @Test
@@ -437,12 +441,13 @@ public class AsciidocFormatterTest {
             output = formatter.image("doc_as_test.png");
         }
 
-        /**
-         * With a title parameter, the text is shown when you mouse over the image.
-         */
         @Test
+        @TestOption(extractAll = false)
         public void should_add_an_image_with_title() {
+            doc.write("With a title parameter, the text is shown when you mouse over the image.", "", "");
+            // >>>
             output = formatter.image("doc_as_test.png", "doc as test");
+            // <<<
         }
     }
 
@@ -463,7 +468,6 @@ public class AsciidocFormatterTest {
                 if (comment.isPresent()) {
                     doc.write(comment.get(), "");
                 }
-                ;
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             }
