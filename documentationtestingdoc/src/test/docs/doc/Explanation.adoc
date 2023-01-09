@@ -1,2 +1,3 @@
 :toc: left
 include::../../resources/doc/Explanation.adoc[]
+include::_Explanation.Videos.approved.adoc[leveloffset=+1]

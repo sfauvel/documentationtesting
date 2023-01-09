@@ -1,0 +1,9 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ..]
+
+[#doc_explanation_videos]
+= Videos
+
+
+* link:https://www.youtube.com/watch?v=1slYI-dBMcc[Human Talks Nantes 2022 (10mn in french)]
+* link:https://youtu.be/AQDILnknTJ0[Bdx I/O 2022 (43mn in french)]
+

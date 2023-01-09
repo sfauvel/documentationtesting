@@ -1,0 +1,7 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ..]
+
+[#doc_explanation]
+= Explanation
+
+include::_Explanation.Videos.approved.adoc[leveloffset=+1]
+

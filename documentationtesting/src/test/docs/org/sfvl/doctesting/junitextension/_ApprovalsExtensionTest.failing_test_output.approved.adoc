@@ -3,10 +3,8 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
 [#org_sfvl_doctesting_junitextension_approvalsextensiontest_failing_test_output]
 = Failing test output
 
-When a test fails, the error is written in the final document.
+When an exception occurs executing the test, the error is written in the final document.
 It's help to understand and investigate on the problem.
-
-When the test fails, the reason (exception) is written into the generated document.
 
 // Test result for FailingTest: Fails
 

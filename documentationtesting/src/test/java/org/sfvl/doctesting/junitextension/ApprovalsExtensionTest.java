@@ -237,10 +237,9 @@ public class ApprovalsExtensionTest {
 
     @Test
     public void failing_test_output(TestInfo info) throws IOException {
-        doc.write("When a test fails, the error is written in the final document.",
+        doc.write("When an exception occurs executing the test, the error is written in the final document.",
                 "It's help to understand and investigate on the problem.",
-                "",
-                "When the test fails, the reason (exception) is written into the generated document.", "");
+                "");
 
         final Class<?> testClass = FailingTest.class;
         doc.runTestAndWriteResultAsComment(testClass);
