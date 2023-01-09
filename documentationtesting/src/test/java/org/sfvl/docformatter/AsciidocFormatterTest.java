@@ -8,6 +8,7 @@ import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.junitextension.ApprovalsExtension;
 import org.sfvl.doctesting.utils.ClassToDocument;
 import org.sfvl.doctesting.utils.Config;
+import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.writer.DocWriter;
 import org.sfvl.test_tools.FastDocWriter;
 import org.sfvl.test_tools.IntermediateHtmlPage;
@@ -19,7 +20,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Each section of this documentation explain one method of the `AsciidocFormatter`.
@@ -453,27 +453,19 @@ public class AsciidocFormatterTest {
 
     @AfterEach
     public void displaySource(TestInfo testinfo) {
-        final Optional<TestOption> options = Optional.ofNullable(testinfo.getTestMethod()
-                .get()
-                .getAnnotation(TestOption.class));
 
-        final TestOption annot = options.orElse(DEFAULT_OPTION);
-        if (annot.normalOutput()) {
+        final TestOption options = Optional.ofNullable(testinfo.getTestMethod()
+                .get()
+                .getAnnotation(TestOption.class))
+                .orElse(DEFAULT_OPTION);
+
+        if (options.normalOutput()) {
             return;
         }
-        final String methodName = annot.includeMethodDoc();
-        if (!methodName.isEmpty()) {
-            try {
-                final Optional<String> comment = CodeExtractor.getComment(AsciidocFormatter.class.getDeclaredMethod(methodName));
-                if (comment.isPresent()) {
-                    doc.write(comment.get(), "");
-                }
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            }
-        }
 
-        String methodCode = annot.extractAll()
+        docOfMethodToInclude(options).ifPresent(comment -> doc.write(comment, ""));
+
+        String methodCode = options.extractAll()
                 ? extractMethod(testinfo)
                 : CodeExtractor.extractPartOfMethod(testinfo.getTestMethod().get());
 
@@ -484,7 +476,7 @@ public class AsciidocFormatterTest {
                 methodCode,
                 "----", "");
 
-        if (options.map(TestOption::showRender).orElse(true)) {
+        if (options.showRender()){
             doc.write("", "[red]##_Render_##", "", output, "");
         }
         doc.write("\n[red]##_Asciidoc generated_##",
@@ -497,22 +489,25 @@ public class AsciidocFormatterTest {
         doc.write("", "___", "");
     }
 
-    public String extractMethod(TestInfo testinfo) {
-        final String body = CodeExtractor.extractMethodBody(testinfo.getTestMethod().get());
-        final String[] split = body.split("\n");
-        final String bodyFormatted = Arrays.stream(Arrays.copyOfRange(split, 1, split.length - 1))
-                .collect(Collectors.joining("\n"));
-        return bodyFormatted;
+    private Optional<String> docOfMethodToInclude(TestOption options) {
+        final String methodName = options.includeMethodDoc();
+        if (!methodName.isEmpty()) {
+            try {
+                return CodeExtractor.getComment(AsciidocFormatter.class.getDeclaredMethod(methodName));
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+        }
+        return Optional.empty();
     }
 
-    private String extractMethod(Class classWithFormula, String methodName) {
-        return CodeExtractor.extractMethodBody(classWithFormula, methodName);
+    public String extractMethod(TestInfo testinfo) {
+        final String body = CodeExtractor.extractMethodBody(testinfo.getTestMethod().get());
+        return body.substring(body.indexOf("\n") + 1, body.lastIndexOf("\n"));
     }
 
     public void writeAFile(String fileName, String text) throws IOException {
-
-        final String canonicalName = this.getClass().getPackage().getName();
-        final String pathName = canonicalName.toString().replace('.', '/');
+        final Path pathName = new DocPath(this.getClass()).packagePath();
         final Path filePath = doc.getDocPath().resolve(pathName).resolve(fileName);
 
         filePath.getParent().toFile().mkdirs();
