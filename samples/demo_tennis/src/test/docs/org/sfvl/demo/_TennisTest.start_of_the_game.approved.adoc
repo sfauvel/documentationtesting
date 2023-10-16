@@ -8,8 +8,8 @@ At the beginning, score is 0 / 0.
 [%autowidth, cols=2*, stripes=none]
 |===
 | Player A
-.2+^.^| *0 - 0* 
-| Player B| 
+.2+^.^| *0 - 0*
+| Player B |
 |===
 
 ++++

@@ -7,9 +7,9 @@ When player A win 2 points and player B win 3 points, score is 30 / 40.
 
 [%autowidth, cols=7*, stripes=none]
 |===
-| Player A |   | &#x2714; | &#x2714; |   |  
-.2+^.^| *30 - 40* 
-| Player B | &#x2714; |   |   | &#x2714; | &#x2714;| 
+| Player A|   | &#x2714; | &#x2714; |   |
+.2+^.^| *30 - 40*
+| Player B| &#x2714; |   |   | &#x2714; | &#x2714; |
 |===
 
 ++++

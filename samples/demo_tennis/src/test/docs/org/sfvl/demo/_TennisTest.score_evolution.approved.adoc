@@ -1,15 +1,13 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
-[#org_sfvl_demo_tennistest_player_a_win_one_point]
-= Player A win one point
+[#org_sfvl_demo_tennistest_score_evolution]
+= Score evolution in a game
 
-When player A win one point, score is 15 / 0.
-
-[%autowidth, cols=3*, stripes=none]
+[%autowidth%footer, stripes=none]
 |===
-| Player A| &#x2714;
-.2+^.^| *15 - 0*
-| Player B| |
+| Player A|   | &#x2714; | &#x2714; |   |
+| Player B| &#x2714; |   |   | &#x2714; | &#x2714;
+| Score | *0-15* | *15-15* | *30-15* | *30-30* | *30-40*
 |===
 
 ++++

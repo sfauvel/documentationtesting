@@ -7,9 +7,9 @@ When player B win one point, score is 0 / 15.
 
 [%autowidth, cols=3*, stripes=none]
 |===
-| Player A |  
-.2+^.^| *0 - 15* 
-| Player B | &#x2714;| 
+| Player A|
+.2+^.^| *0 - 15*
+| Player B| &#x2714; |
 |===
 
 ++++

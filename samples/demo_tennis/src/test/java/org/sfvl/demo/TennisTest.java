@@ -21,17 +21,20 @@ public class TennisTest {
 
     static class TennisRecorder extends Tennis {
         List<String> points = new ArrayList<>();
+        List<Score> scores = new ArrayList<>();
 
         @Override
         public void playerAWinPoint() {
             points.add("A");
             super.playerAWinPoint();
+            scores.add(super.getScore());
         }
 
         @Override
         public void playerBWinPoint() {
             points.add("B");
             super.playerBWinPoint();
+            scores.add(super.getScore());
         }
     }
 
@@ -106,14 +109,40 @@ public class TennisTest {
         displayScore(tennis);
     }
 
+    @DisplayName("Score evolution in a game")
+    @Test
+    public void score_evolution() {
+
+        tennis.playerBWinPoint();
+        tennis.playerAWinPoint();
+        tennis.playerAWinPoint();
+        tennis.playerBWinPoint();
+        tennis.playerBWinPoint();
+
+        displayScoreEvolution(tennis);
+    }
+
+    private void displayScoreEvolution(TennisRecorder tennis) {
+        Score score = tennis.getScore();
+        String textScore = score.playerA() + " - " + score.playerB();
+        doc.write("[%autowidth%footer, stripes=none]",
+                "|===",
+                "| Player A" + pointsToTable("A", tennis.points),
+                "| Player B" + pointsToTable("B", tennis.points),
+                "| Score | " + tennis.scores.stream().map(s -> "*" + s.playerA() + "-" + s.playerB() + "*").collect(Collectors.joining(" | ")),
+                "|===",
+                "");
+
+        writeStyle();
+    }
 
     private void displayScore(TennisRecorder tennis) {
         Score score = tennis.getScore();
         String textScore = score.playerA() + " - " + score.playerB();
         doc.write("[%autowidth, cols=" + (tennis.points.size() + 2) + "*, stripes=none]",
                 "|===",
-                "| Player A" + pointsToTable("A", tennis.points) + "\n.2+^.^| *" + textScore + "* ",
-                "| Player B" + pointsToTable("B", tennis.points) + "| ",
+                "| Player A" + pointsToTable("A", tennis.points) + "\n.2+^.^| *" + textScore + "*",
+                "| Player B" + pointsToTable("B", tennis.points) + " |",
                 "|===",
                 "");
 
@@ -128,7 +157,7 @@ public class TennisTest {
         if (points.isEmpty()) {
             return "";
         } else {
-            return points.stream().map(p -> p.equals(player) ? "&#x2714;" : " ").collect(Collectors.joining(" | ", " | ", ""));
+            return points.stream().map(p -> p.equals(player) ? "&#x2714;" : " ").collect(Collectors.joining(" | ", " | ", "")).trim();
         }
     }
 }
