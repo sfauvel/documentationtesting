@@ -3,22 +3,11 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 [#org_sfvl_demo_tennistest_score_evolution]
 = Score evolution in a game
 
-[%autowidth%footer, stripes=none]
+[%autowidth, cols=11*, stripes=none]
 |===
-| Player A|   | &#x2714; | &#x2714; |   |
-| Player B| &#x2714; |   |   | &#x2714; | &#x2714;
-| Score | *0-15* | *15-15* | *30-15* | *30-30* | *30-40*
+| Player A|   | &#x2714; | &#x2714; |   |   | &#x2714; | &#x2714; |   |   |
+| Player B| &#x2714; |   |   | &#x2714; | &#x2714; |   |   | &#x2714; | &#x2714; | &#x2714;
+| Score | *0 - 15* | *15 - 15* | *30 - 15* | *30 - 30* | *30 - 40* | *40 - 40* | *Adv. A* | *Deuce* | *Adv. B* | *Game B*
 |===
-
-++++
-<style>
-table.tableblock.grid-all {
-    border-collapse: collapse;
-}
-table.tableblock.grid-all, table.tableblock.grid-all td, table.grid-all > * > tr > .tableblock:last-child {
-    border: 1px solid #dddddd;
-}
-</style>
-++++
 
 

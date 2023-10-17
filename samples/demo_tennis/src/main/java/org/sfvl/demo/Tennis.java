@@ -6,7 +6,7 @@ public class Tennis {
     int nbPointsB = 0;
 
     public Score getScore() {
-        return new Score(nbPointsA, nbPointsB);
+        return Score.build(nbPointsA, nbPointsB);
     }
 
     public void playerAWinPoint() {

@@ -8,7 +8,9 @@ import org.sfvl.doctesting.junitextension.SimpleApprovalsExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * We will display a tennis score.
@@ -118,27 +120,29 @@ public class TennisTest {
         tennis.playerAWinPoint();
         tennis.playerBWinPoint();
         tennis.playerBWinPoint();
+        tennis.playerAWinPoint();
+        tennis.playerAWinPoint();
+        tennis.playerBWinPoint();
+        tennis.playerBWinPoint();
+        tennis.playerBWinPoint();
 
         displayScoreEvolution(tennis);
     }
 
     private void displayScoreEvolution(TennisRecorder tennis) {
-        Score score = tennis.getScore();
-        String textScore = score.playerA() + " - " + score.playerB();
-        doc.write("[%autowidth%footer, stripes=none]",
+        doc.write("[%autowidth, cols=" + (tennis.points.size() + 1) + "*, stripes=none]",
                 "|===",
                 "| Player A" + pointsToTable("A", tennis.points),
                 "| Player B" + pointsToTable("B", tennis.points),
-                "| Score | " + tennis.scores.stream().map(s -> "*" + s.playerA() + "-" + s.playerB() + "*").collect(Collectors.joining(" | ")),
+                "| Score" + scoresToTables(tennis.scores),
                 "|===",
                 "");
-
-        writeStyle();
     }
 
+
+
     private void displayScore(TennisRecorder tennis) {
-        Score score = tennis.getScore();
-        String textScore = score.playerA() + " - " + score.playerB();
+        String textScore = tennis.getScore().toString();
         doc.write("[%autowidth, cols=" + (tennis.points.size() + 2) + "*, stripes=none]",
                 "|===",
                 "| Player A" + pointsToTable("A", tennis.points) + "\n.2+^.^| *" + textScore + "*",
@@ -154,11 +158,15 @@ public class TennisTest {
     }
 
     private String pointsToTable(String player, List<String> points) {
-        if (points.isEmpty()) {
-            return "";
-        } else {
-            return points.stream().map(p -> p.equals(player) ? "&#x2714;" : " ").collect(Collectors.joining(" | ", " | ", "")).trim();
-        }
+        return points.stream()
+                .map(p -> " | " + (p.equals(player) ? "&#x2714;" : " "))
+                .collect(Collectors.joining())
+                .trim();
     }
+
+    private static String scoresToTables(List<Score> scores) {
+        return scores.stream().map(s -> " | *" + s.toString() + "*").collect(Collectors.joining());
+    }
+
 }
 
