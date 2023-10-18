@@ -10,14 +10,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TennisStandardTest {
 
     @Test
-    public void xx(){
+    public void some_points(){
         final Tennis game = new Tennis();
         game.playerAWinPoint();
         game.playerBWinPoint();
         game.playerBWinPoint();
 
         final Score score = game.getScore();
-        assertEquals("15-30", score.toString());
+        assertEquals("15 - 30", score.toString());
     }
 
     @Test
