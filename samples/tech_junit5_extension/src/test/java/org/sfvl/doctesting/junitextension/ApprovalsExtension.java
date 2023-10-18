@@ -56,6 +56,11 @@ public class ApprovalsExtension implements AfterEachCallback {
             public File getReceivedFile(String extensionWithDot) {
                 return new File(this.getSourceFilePath() + "/" + this.getApprovalName() + ".received" + extensionWithDot);
             }
+
+            @Override
+            public ApprovalNamer addAdditionalInformation(String s) {
+                return null;
+            }
         };
 
         final Options options = new Options()
