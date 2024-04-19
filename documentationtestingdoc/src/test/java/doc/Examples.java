@@ -102,6 +102,16 @@ public class Examples {
         doc.write("\n * link:" + "https://sfauvel.github.io/documentationtesting/documentationtesting/index.html"
                 + "[DocumentationTesting Java library]: "
                 + "Library to implements this approach in Java." + " \n");
+
+        doc.write("\n * link:" + "https://gcollic.github.io/ansi-console-to-html/"
+                + "[ANSIConsoleToHtml]: "
+                + "A `.NET` library to convert ANSI console output to HTML." + " \n");
+
+        doc.write("\n * link:" + "https://github.com/gcollic/nmermaid/blob/main/Nmermaid.DocAsTests/Docs/FlowchartDoc.All.verified.md"
+                + "[Mermaid C# library]: "
+                + "This library helps generate `Mermaid` diagram from `C#`." + " \n");
+
+
     }
 
 

@@ -8,4 +8,8 @@ Real projects that use this approch.
 
  * link:https://sfauvel.github.io/documentationtesting/documentationtesting/index.html[DocumentationTesting Java library]: Library to implements this approach in Java. 
 
+ * link:https://gcollic.github.io/ansi-console-to-html/[ANSIConsoleToHtml]: A `.NET` library to convert ANSI console output to HTML. 
+
+ * link:https://github.com/gcollic/nmermaid/blob/main/Nmermaid.DocAsTests/Docs/FlowchartDoc.All.verified.md[Mermaid C# library]: This library helps generate `Mermaid` diagram from `C#`. 
+
 
