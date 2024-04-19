@@ -7,6 +7,7 @@ In this page, you will find links to resources that help you to implement a docu
 * Documentation of the concept: link:{github-pages}[]
 * Library for Java: link:{github-pages}/documentationtesting[DocumentationTesting]
 * Library for Python and pytest: link:https://github.com/sfauvel/doc_as_test_pytest[doc_as_test_pytest]
+* Library for Rust: link:https://docastest.github.io/doc_as_test.rust/[doc_as_test.rust]
 * To get source and examples: link:{github-repo}[]
 * A plugin for IntelliJ is provided in {github-repo}/approvalsDocPlugin[approvalsDocPlugin] folder
 

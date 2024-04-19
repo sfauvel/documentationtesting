@@ -32,6 +32,7 @@ public class Reference {
                         "Documentation of the concept: link:{github-pages}[]",
                         "Library for Java: " + Links.JavaDocAsTest(),
                         "Library for Python and pytest: " + Links.PythonDocAsTest(),
+                        "Library for Rust: " + Links.RustDocAsTest(),
                         "To get source and examples: link:{github-repo}[]",
                         "A plugin for IntelliJ is provided in {github-repo}/approvalsDocPlugin[approvalsDocPlugin] folder")
         ));

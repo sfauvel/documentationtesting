@@ -60,8 +60,16 @@ public class Links {
         return PythonDocAsTest("doc_as_test_pytest");
     }
 
+    public static String RustDocAsTest() {
+        return RustDocAsTest("doc_as_test.rust");
+    }
+
     public static String PythonDocAsTest(String text) {
         return new AsciidocFormatter().linkToPage("https://github.com/sfauvel/doc_as_test_pytest", text);
+    }
+
+    public static String RustDocAsTest(String text) {
+        return new AsciidocFormatter().linkToPage("https://docastest.github.io/doc_as_test.rust/", text);
     }
 
     public static String JavaDocAsTest() {

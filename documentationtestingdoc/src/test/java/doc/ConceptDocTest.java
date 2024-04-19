@@ -110,7 +110,7 @@ public class ConceptDocTest extends MyFormatter {
                 "",
                 "Tools, full discussions and choices",
                 "",
-                Links.JavaDocAsTest("Java") + ", " + Links.PythonDocAsTest("Python") + ", ..."
+                Links.JavaDocAsTest("Java") + ", " + Links.PythonDocAsTest("Python") + ", " + Links.RustDocAsTest("Rust") + ", ..."
         );
 
     }

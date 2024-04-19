@@ -208,7 +208,7 @@ That shows how we can present some information in a documentation that is also a
 
 Tools, full discussions and choices
 
-link:{github-pages}/documentationtesting[Java], link:https://github.com/sfauvel/doc_as_test_pytest[Python], ...
+link:{github-pages}/documentationtesting[Java], link:https://github.com/sfauvel/doc_as_test_pytest[Python], link:https://docastest.github.io/doc_as_test.rust/[Rust], ...
 
 
 |====
