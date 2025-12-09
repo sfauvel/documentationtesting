@@ -8,6 +8,11 @@ import java.util.List;
 class ClassWithInformationToExtract {
 
     /**
+     * A simple field.
+     */
+    String aField;
+
+    /**
      * Description of the method 'doSomething'.
      */
     public void doSomething() {
@@ -41,5 +46,13 @@ class ClassWithInformationToExtract {
      * Do something with an Integer.
      */
     public void doSomething(int param) {
+    }
+
+    static public class SubClass {
+        /**
+         * A field in a subclass.
+         */
+        String subclassField;
+
     }
 }

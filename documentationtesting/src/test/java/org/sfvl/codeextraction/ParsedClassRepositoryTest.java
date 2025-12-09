@@ -16,6 +16,7 @@ import org.sfvl.doctesting.utils.*;
 import org.sfvl.test_tools.SupplierWithException;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -225,6 +226,34 @@ public class ParsedClassRepositoryTest {
                     String.format("Line found: *%d*", lineNumber)
             );
         }
+
+        @Test
+        public void retrieve_line_of_a_field() throws NoSuchMethodException, NoSuchFieldException {
+            final ParsedClassRepository parser = new ParsedClassRepository(Config.TEST_PATH);
+            // >>>
+            Field field = ClassWithInformationToExtract.class.getDeclaredField("aField");
+            int lineNumber = parser.getLineNumber(field);
+            // <<<
+            doc.write(
+                    ".How to get the declaration line of a field",
+                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    String.format("Line found: *%d*", lineNumber)
+            );
+        }
+        @Test
+        public void retrieve_line_of_a_subclass_field() throws NoSuchMethodException, NoSuchFieldException {
+            final ParsedClassRepository parser = new ParsedClassRepository(Config.TEST_PATH);
+            // >>>
+            Field field = ClassWithInformationToExtract.SubClass.class.getDeclaredField("subclassField");
+            int lineNumber = parser.getLineNumber(field);
+            // <<<
+            doc.write(
+                    ".How to get the declaration line of a subclass field",
+                    formatter.sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                    String.format("Line found: *%d*", lineNumber)
+            );
+        }
+
 
         @Test
         public void retrieve_line_of_an_enum() {

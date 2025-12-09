@@ -12,7 +12,7 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
 
 ----
 
-Line found: *13*
+Line found: *18*
 ++++
 <style>
 #org_sfvl_codeextraction_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_method ~ .inline {

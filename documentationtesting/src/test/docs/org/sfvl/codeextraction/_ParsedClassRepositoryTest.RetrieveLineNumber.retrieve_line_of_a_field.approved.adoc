@@ -1,0 +1,25 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_field]
+= Retrieve line of a field
+
+.How to get the declaration line of a field
+
+[source,java,indent=0]
+----
+            Field field = ClassWithInformationToExtract.class.getDeclaredField("aField");
+            int lineNumber = parser.getLineNumber(field);
+
+----
+
+Line found: *13*
+++++
+<style>
+#org_sfvl_codeextraction_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_field ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++
+

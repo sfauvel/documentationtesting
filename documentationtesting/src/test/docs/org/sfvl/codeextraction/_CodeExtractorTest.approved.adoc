@@ -43,6 +43,8 @@ include::_CodeExtractorTest.ExtractComment.extract_class_comment.approved.adoc[l
 
 include::_CodeExtractorTest.ExtractComment.extract_method_comment.approved.adoc[leveloffset=+2]
 
+include::_CodeExtractorTest.ExtractComment.extract_field_comment.approved.adoc[leveloffset=+2]
+
 include::_CodeExtractorTest.ExtractComment.extract_enum_comment.approved.adoc[leveloffset=+2]
 
 include::_CodeExtractorTest.ExtractComment.bug_when_annotation_before_comment.approved.adoc[leveloffset=+2]

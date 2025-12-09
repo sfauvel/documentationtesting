@@ -1,0 +1,25 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_subclass_field]
+= Retrieve line of a subclass field
+
+.How to get the declaration line of a subclass field
+
+[source,java,indent=0]
+----
+            Field field = ClassWithInformationToExtract.SubClass.class.getDeclaredField("subclassField");
+            int lineNumber = parser.getLineNumber(field);
+
+----
+
+Line found: *55*
+++++
+<style>
+#org_sfvl_codeextraction_parsedclassrepositorytest_retrievelinenumber_retrieve_line_of_a_subclass_field ~ .inline {
+   display: inline-block;
+   vertical-align: top;
+   margin-right: 2em;
+}
+</style>
+++++
+

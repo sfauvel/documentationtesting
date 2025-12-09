@@ -13,6 +13,7 @@ import com.github.javaparser.ast.nodeTypes.NodeWithRange;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -59,6 +60,10 @@ public class CodeExtractor {
 
     public static Optional<String> getComment(Class<?> classFile, Method testMethod) {
         return Optional.ofNullable(getDefaultParsedClassRepository().getComment(classFile, testMethod));
+    }
+
+    public static Optional<String> getComment(Field field) {
+        return Optional.ofNullable(getDefaultParsedClassRepository().getComment(field));
     }
 
     public static Optional<String> getComment(Method testMethod) {

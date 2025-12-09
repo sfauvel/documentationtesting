@@ -34,6 +34,10 @@ include::_ParsedClassRepositoryTest.RetrieveLineNumber.retrieve_line_of_a_class.
 
 include::_ParsedClassRepositoryTest.RetrieveLineNumber.retrieve_line_of_a_method.approved.adoc[leveloffset=+2]
 
+include::_ParsedClassRepositoryTest.RetrieveLineNumber.retrieve_line_of_a_field.approved.adoc[leveloffset=+2]
+
+include::_ParsedClassRepositoryTest.RetrieveLineNumber.retrieve_line_of_a_subclass_field.approved.adoc[leveloffset=+2]
+
 include::_ParsedClassRepositoryTest.RetrieveLineNumber.retrieve_line_of_an_enum.approved.adoc[leveloffset=+2]
 
 include::_ParsedClassRepositoryTest.RetrieveLineNumber.retrieve_line_of_a_method_in_an_enum.approved.adoc[leveloffset=+2]

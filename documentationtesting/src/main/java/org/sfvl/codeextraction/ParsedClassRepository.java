@@ -3,14 +3,12 @@ package org.sfvl.codeextraction;
 import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
-import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
-import com.github.javaparser.ast.body.EnumConstantDeclaration;
-import com.github.javaparser.ast.body.EnumDeclaration;
-import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.*;
 import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.utils.SourceRoot;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.util.*;
@@ -109,6 +107,15 @@ public class ParsedClassRepository {
         return v.line;
     }
 
+    public int getLineNumber(Field field) {
+        Class<?> clazz = field.getDeclaringClass();
+        CompilationUnit cu = getCompilationUnit(clazz);
+
+        final MyVisitorFieldLineNumber v = new MyVisitorFieldLineNumber(field);
+        cu.accept(v, null);
+        return v.line;
+    }
+
     public String getComment(Class<?> clazz) {
         return getComment(clazz, clazz);
     }
@@ -129,6 +136,14 @@ public class ParsedClassRepository {
         CompilationUnit cu = getCompilationUnit(classFile);
 
         final MyVisitorComment v = new MyVisitorComment(method);
+        cu.accept(v, null);
+        return v.comment;
+    }
+
+    public String getComment(Field field) {
+        CompilationUnit cu = getCompilationUnit(field.getDeclaringClass());
+
+        final MyVisitorCommentField v = new MyVisitorCommentField(field);
         cu.accept(v, null);
         return v.comment;
     }
@@ -168,6 +183,19 @@ public class ParsedClassRepository {
 
         @Override
         protected void actionOnMethod(MethodDeclaration n) {
+            line = n.getBegin().get().line;
+        }
+    }
+
+    static class MyVisitorFieldLineNumber extends MyFieldVisitor {
+        int line = -1;
+
+        public MyVisitorFieldLineNumber(Field field) {
+            super(field);
+        }
+
+        @Override
+        protected void actionOnField(FieldDeclaration n) {
             line = n.getBegin().get().line;
         }
     }
@@ -266,6 +294,19 @@ public class ParsedClassRepository {
         }
     }
 
+    static class MyVisitorCommentField extends MyFieldVisitor {
+        private String comment;
+
+        public MyVisitorCommentField(Field field, Class<?>... parameters) {
+            super(field);
+        }
+
+        @Override
+        protected void actionOnField(FieldDeclaration n) {
+            n.getJavadoc().ifPresent(doc -> comment = doc.getDescription().toText());
+        }
+    }
+
     static abstract class MyEnumVisitor extends VoidVisitorAdapter<Void> {
         private Enum enumValue;
 
@@ -335,6 +376,24 @@ public class ParsedClassRepository {
         }
 
         protected abstract void actionOnMethod(MethodDeclaration n);
+    }
+
+    static abstract class MyFieldVisitor extends VoidVisitorAdapter<Void> {
+        private final Field field;
+
+        public MyFieldVisitor(Field field) {
+            this.field = field;
+        }
+
+        @Override
+        public void visit(FieldDeclaration n, Void arg) {
+            if (!n.getVariable(0).getName().asString().equals(field.getName())) {
+                return;
+            }
+            actionOnField(n);
+        }
+
+        protected abstract void actionOnField(FieldDeclaration n);
     }
 
     static abstract class MyClassVisitor extends VoidVisitorAdapter<Void> {

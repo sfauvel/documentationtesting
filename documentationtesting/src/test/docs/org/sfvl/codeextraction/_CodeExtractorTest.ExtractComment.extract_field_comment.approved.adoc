@@ -1,0 +1,89 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+
+[#org_sfvl_codeextraction_codeextractortest_extractcomment_extract_field_comment]
+= Extract field comment
+
+ifndef::CODE_EXTRACTOR_CSS[]
+:CODE_EXTRACTOR_CSS:
+++++
+<style>
+include::../../../../resources/styles/code_extractor.css[]
+</style>
+++++
+endif::[]
+
+
+[.inline]
+====
+
+[source,java,indent=0]
+----
+public class FieldWithCommentToExtract {
+    /**
+     * Comment on a public field.
+     */
+    public String publicField;
+
+    /**
+     * Comment on a private field.
+     */
+    private String privateField;
+
+    private String fieldWithoutComment;
+
+    public static class SubClassWithFieldToExtract {
+        /**
+         * Comment on a subclass field.
+         */
+        public String subclassField;
+    }
+
+}
+----
+
+====
+It is not possible to have a reference to a field.
+You have to retrieve the field through a string.
+
+.Code to extract the comment from a public field
+[source, java, indent=0]
+----
+                Optional<String> comment = CodeExtractor.getComment(
+                        FieldWithCommentToExtract.class.getDeclaredField("publicField")
+                );
+
+----
+Comment extracted: *Comment on a public field.*
+
+.Code to extract the comment from a private field
+[source, java, indent=0]
+----
+                Optional<String> comment = CodeExtractor.getComment(
+                        FieldWithCommentToExtract.class.getDeclaredField("privateField")
+                );
+
+----
+Comment extracted: *Comment on a private field.*
+
+.Code that attempts to extract a comment from a field that does not have one
+[source, java, indent=0]
+----
+                final Optional<String> comment = CodeExtractor.getComment(
+                        FieldWithCommentToExtract.class.getDeclaredField("fieldWithoutComment")
+                );
+
+----
+Comment extracted: `Empty Optional`
+
+.Code that attempts to extract a comment from a field in a subclass
+[source, java, indent=0]
+----
+                final Optional<String> comment = CodeExtractor.getComment(
+                        FieldWithCommentToExtract.SubClassWithFieldToExtract.class.getDeclaredField("subclassField")
+                );
+
+----
+Comment extracted: *Comment on a subclass field.*
+
+
+

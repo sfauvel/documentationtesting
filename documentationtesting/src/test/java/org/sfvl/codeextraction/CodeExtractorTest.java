@@ -17,6 +17,7 @@ import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -821,6 +822,75 @@ public class CodeExtractorTest {
         }
 
         @Test
+        @DisplayName(value = "Extract field comment")
+        public void extract_field_comment(TestInfo testInfo) throws NoSuchMethodException, NoSuchFieldException {
+
+            Function<Optional<String>, String> commentFormatter =
+                    c -> c.map(comment -> "*" + comment + "*")
+                            .orElse("`Empty Optional`");
+
+            doc.writeInline(doc.getFormatter().sourceCode(CodeExtractor.classSource(FieldWithCommentToExtract.class)));
+
+            doc.write("It is not possible to have a reference to a field.",
+                    "You have to retrieve the field through a string.",
+                    "", "");
+
+            {
+                doc.write(".Code to extract the comment from a public field",
+                        extractMarkedCode(testInfo, "1"),
+                        "");
+
+                // >>>1
+                Optional<String> comment = CodeExtractor.getComment(
+                        FieldWithCommentToExtract.class.getDeclaredField("publicField")
+                );
+                // <<<1
+
+                 doc.write("Comment extracted: " + commentFormatter.apply(comment), "", "");
+            }
+            {
+                doc.write(".Code to extract the comment from a private field",
+                        extractMarkedCode(testInfo, "2"),
+                        "");
+
+                // >>>2
+                Optional<String> comment = CodeExtractor.getComment(
+                        FieldWithCommentToExtract.class.getDeclaredField("privateField")
+                );
+                // <<<2
+
+                doc.write("Comment extracted: " + commentFormatter.apply(comment), "", "");
+            }
+            {
+                doc.write(".Code that attempts to extract a comment from a field that does not have one",
+                        extractMarkedCode(testInfo, "3"),
+                        "");
+
+                // >>>3
+                final Optional<String> comment = CodeExtractor.getComment(
+                        FieldWithCommentToExtract.class.getDeclaredField("fieldWithoutComment")
+                );
+                // <<<3
+
+                doc.write("Comment extracted: " + commentFormatter.apply(comment), "", "");
+            }
+            {
+                doc.write(".Code that attempts to extract a comment from a field in a subclass",
+                        extractMarkedCode(testInfo, "4"),
+                        "");
+
+                // >>>4
+                final Optional<String> comment = CodeExtractor.getComment(
+                        FieldWithCommentToExtract.SubClassWithFieldToExtract.class.getDeclaredField("subclassField")
+                );
+                // <<<4
+
+                doc.write("Comment extracted: " + commentFormatter.apply(comment), "", "");
+            }
+
+        }
+
+            @Test
         @DisplayName(value = "Extract enum comment")
         public void extract_enum_comment(TestInfo testInfo) throws NoSuchMethodException {
             doc.writeInline(doc.getFormatter().sourceCode(CodeExtractor.classSource(EnumWithCommentToExtract.class)));
